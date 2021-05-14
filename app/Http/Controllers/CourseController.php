@@ -53,12 +53,36 @@ class CourseController extends Controller
     {
         $free_courses_count = Course::where('price', 0)->count();
 
-        $free_courses = Course::where('price', 0)
-            ->orderBy('created_at', 'DESC')
-            ->limit(4)->get();
+        $free_courses_ids = Course::where('price', 0)
+            ->get(['releaseDate', 'updateDate', 'id'])
+            ->map(function ($c) {
+                return ['id' => $c->id, 'date' => $c->updateDate ?? $c->releaseDate,];
+            })->sortByDesc(function ($c) {
+                return verta($c['date']);
+            })->take(4);
+        $ids = [];
+        foreach ($free_courses_ids as $free_course) {
+            $ids[] = $free_course['id'];
+        }
+        $free_courses = Course::whereIn('id', $ids)->get();
 
-        $latest_courses = Course::orderBy('created_at', 'DESC')
-            ->limit(4)->get();
+        $free_courses->sortBy(function ($model) use ($ids) {
+            return array_search($model->getKey(), $ids);
+        });
+
+        $latest__courses_ids = Course::get(['releaseDate', 'updateDate', 'id'])
+            ->map(function ($c) {
+                return ['id' => $c->id, 'date' => $c->updateDate ?? $c->releaseDate];
+            })->sortByDesc(function ($c) {
+                return verta($c['date']);
+            })->take(4);
+        $ids = [];
+        foreach ($latest__courses_ids as $latest__course) {
+            $ids[] = $latest__course['id'];
+        }
+
+        $latest_courses = Course::whereIn('id', $ids)->get();
+
 
         $popular_courses = Course::orderBy('views', 'DESC')
             ->limit(4)->get();

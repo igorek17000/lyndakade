@@ -590,4 +590,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
     });
 
   </script>
-  {{-- <script type="text/javascript" src="{
+  {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
+</body>
+
+</html>
