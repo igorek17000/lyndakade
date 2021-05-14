@@ -1,0 +1,22 @@
+<?php
+
+namespace Pishran\Zarinpal;
+
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+
+class ServiceProvider extends BaseServiceProvider
+{
+    public function boot(): void
+    {
+        $this->publishes([
+            __DIR__.'/../config/zarinpal.php' => config_path('zarinpal.php'),
+        ], 'config');
+    }
+
+    public function register(): void
+    {
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/zarinpal.php', 'zarinpal'
+        );
+    }
+}

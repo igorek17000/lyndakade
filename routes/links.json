@@ -1,0 +1,22 @@
+{
+    "library": {
+        "index": "/",
+        "show": "/{library_slug}-training-tutorials/{library_id}-0.html"
+    },
+    "subject": {
+        "index": "/{library_slug}-training-tutorials/{library_id}-0.html",
+        "show": "/{topic_slug}-training-tutorials/{topic_id}-0.html"
+    },
+    "software": {
+        "index": "/{library_slug}-training-tutorials/{library_id}-0.html",
+        "show": "/{software_slug}-training-tutorials/{software_id}-0.html"
+    },
+    "learn-path": {
+        "index": "/learning-paths/{library_title}",
+        "show": "/learning-paths/{library_title}/{learn_path_slug}"
+    },
+    "course": {
+        "index": "/",
+        "show": "/{subject_slug}-tutorials/{course_slug}/{course_id}-2.html"
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "short_name": "لیندا کده",
+    "name": "لیندا کده | بروزترین وبسایت آموزشی",
+    "icons": [
+        {
+            "src": "/image/logo192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/image/logo512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/",
+    "background_color": "#3367D6",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#3367D6",
+    "shortcuts": [
+        {
+            "name": "دوره های آموزشی رایگان",
+            "short_name": "رایگان ها",
+            "description": "نمایش دوره های آموزشی رایگان وبسایت",
+            "url": "/courses/free",
+            "icons": [
+                {
+                    "src": "/image/logo192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "جدیدترین دوره های آموزشی",
+            "short_name": "جدیدترین ها",
+            "description": "نمایش جدیدترین دوره های آموزشی وبسایت",
+            "url": "/courses/newest",
+            "icons": [
+                {
+                    "src": "/image/logo192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "محبوبترین دوره های آموزشی",
+            "short_name": "محبوبترین ها",
+            "description": "نمایش محبوبترین دوره های آموزشی وبسایت",
+            "url": "/courses/best",
+            "icons": [
+                {
+                    "src": "/image/logo192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ],
+    "description": "لیندا کده | بروزترین وبسایت آموزشی | دانلود ویدیوهای آموزشی لیندا با زیرنویس فارسی و انگلیسی و دوبله + برخی رایگان",
+    "screenshots": [
+        {
+            "src": "/image/Screenshot1.png",
+            "type": "image/png",
+            "sizes": "540x720"
+        }
+    ]
+}

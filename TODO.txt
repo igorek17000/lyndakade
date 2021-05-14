@@ -1,0 +1,6 @@
+laravel: make and save token in laravel host
+dl host: send the token via url to DL host    https://dl.lyndakade.ir/download.php?id=1234&token=asdgase31qewrfgfashgthgsfzfdf
+dl host: validate the token using ajax from laravel host
+laravel: return validation infos
+dl host: if it is valid ? return files content : return laravel login page
+lyndakade.ir/courses/download/course_id?file_type=auth()->id()

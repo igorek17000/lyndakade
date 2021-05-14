@@ -1,0 +1,86 @@
+users {
+    id,
+    firstName,
+    lastName,
+    email,
+    email_verified_at,
+    password,
+    rememberToken,
+}
+
+user_activities {
+    id,
+    url,
+    user_id,
+}
+
+skills {
+    id,
+    title,
+}
+
+authors {
+    id,
+    name,
+    slug,
+    description,
+    skills,
+    img,
+}
+
+courses {
+    id,
+    title,
+    slug,
+    tag, -----------------
+    description,
+    releaseDate,
+    durationHours,
+    durationMinutes,
+    views,
+    skillLevel,
+    partNumbers,
+    img,
+    previewFile,
+    user_id,
+    author_id,
+}
+
+course_tags {   -------------- to be removed
+    id,
+    title,
+}
+
+course_parts {
+    id,
+    title,
+    path,
+    fileType,
+    duration,
+    durationHours,
+    durationMinutes,
+    durationSeconds,
+    partNumber,
+    course_id,
+}
+
+bookmarks {
+    id,
+    title,
+    partNumbers,
+    user_id,
+}
+
+bookmark_parts {
+    id,
+    bookmark_id,
+    course_id,
+}
+
+message {
+    id,
+    message,
+    is_read,
+    from,
+    to,
+}
