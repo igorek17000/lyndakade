@@ -8,7 +8,7 @@
     </div>
     <div class="card-body row mx-0 pt-3 pb-0" style="max-height: 160px; min-height: 160px;">
       <div class="col-12 px-0 text-right mb-2" style="color: green;position: relative;font-size: 15px;">
-        1
+        <span style="opacity: 0;">1</span>
         <div style="
                 color: white;
                 font-weight: 600;

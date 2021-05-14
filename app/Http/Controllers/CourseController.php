@@ -70,15 +70,15 @@ class CourseController extends Controller
             return array_search($model->getKey(), $ids);
         });
 
-        $latest__courses_ids = Course::get(['releaseDate', 'updateDate', 'id'])
+        $latest_courses_ids = Course::get(['releaseDate', 'updateDate', 'id'])
             ->map(function ($c) {
                 return ['id' => $c->id, 'date' => $c->updateDate ?? $c->releaseDate];
             })->sortByDesc(function ($c) {
                 return verta($c['date']);
             })->take(4);
         $ids = [];
-        foreach ($latest__courses_ids as $latest__course) {
-            $ids[] = $latest__course['id'];
+        foreach ($latest_courses_ids as $latest_course) {
+            $ids[] = $latest_course['id'];
         }
 
         $latest_courses = Course::whereIn('id', $ids)->get();
