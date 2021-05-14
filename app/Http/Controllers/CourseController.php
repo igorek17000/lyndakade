@@ -66,7 +66,7 @@ class CourseController extends Controller
         }
         $free_courses = Course::whereIn('id', $ids)->get();
 
-        $free_courses->sortBy(function ($model) use ($ids) {
+        $free_courses->sortByDesc(function ($model) use ($ids) {
             return array_search($model->getKey(), $ids);
         });
 
@@ -83,6 +83,9 @@ class CourseController extends Controller
 
         $latest_courses = Course::whereIn('id', $ids)->get();
 
+        $latest_courses->sortByDesc(function ($model) use ($ids) {
+            return array_search($model->getKey(), $ids);
+        });
 
         $popular_courses = Course::orderBy('views', 'DESC')
             ->limit(4)->get();
