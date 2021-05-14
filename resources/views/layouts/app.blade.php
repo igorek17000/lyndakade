@@ -197,7 +197,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 action="{{ route('search') }}">
                 <div class="form-group">
                   <input type="search" name="q" class="form-control search-input" id="header-search-field"
-                    role="combobox"
+                    role="combobox" value="{{ $q ?? '' }}"
                     style="font-size: 14px; border: 0; text-align: right; padding: 0; padding-right: 5px;"
                     placeholder="نرم افزار یا مهارتی که میخواهید یاد بگیرید را جستجو کنید" autocomplete="off" />
                 </div>
