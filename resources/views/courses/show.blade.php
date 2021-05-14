@@ -29,7 +29,7 @@
         <div class="panel-title">
           <span class="course-title">{{ $course->title }}</span>
         </div>
-        <div class="panel-title text-right">
+        <div class="panel-title text-left" style="direction: ltr;">
           <span class="course-title">{{ $course->titleEng }}</span>
         </div>
         <div class="video-player">
