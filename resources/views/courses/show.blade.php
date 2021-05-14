@@ -276,13 +276,15 @@
             <h5 class="course-title">دروس مرتبط</h5>
           </div>
           <div id="carousel-arrows" class="col-6">
-            <a class="align-self-center" href="#blogCarousel" role="button" data-slide="prev">
-              <i class="lyndacon arrow-right" aria-hidden="true"></i>
-              <span class="sr-only">Previous</span>
-            </a>
             <a class="align-self-center" href="#blogCarousel" role="button" data-slide="next">
-              <i class="lyndacon arrow-left" aria-hidden="true"></i>
+              <i class="lyndacon arrow-right" aria-hidden="true"></i>
+              بعدی
               <span class="sr-only">Next</span>
+            </a>
+            <a class="align-self-center" href="#blogCarousel" role="button" data-slide="prev">
+              قبلی
+              <i class="lyndacon arrow-left" aria-hidden="true"></i>
+              <span class="sr-only">Previous</span>
             </a>
           </div>
         </div>
