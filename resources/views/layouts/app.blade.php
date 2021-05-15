@@ -399,6 +399,8 @@ session(['redirectToAfterLogin' => url()->previous()]);
 
   @if (Session::has('message'))
     <script>
+      toastr.options.rtl = true;
+      toastr.options.positionClass = 'toast-bottom-left';
       toastr.info("{{ Session::get('message') }}");
       //   var alertType = {!! json_encode(Session::get('alert-type', 'info')) !!};
       //   var alertMessage = {!! json_encode(Session::get('message')) !!};
