@@ -21,10 +21,13 @@
         </div> --}}
 
         <div class="panel-title">
-          <span class="course-title">{{ $course->title }}</span>
-          @if ($course->persian_subtitle_id == 1)
-            (<span style="color: green">با زیر نویس فارسی</span>)
-          @endif
+          <span class="course-title">
+            {{ $course->title }}
+            @if ($course->persian_subtitle_id == 1)
+              (<span style="color: green">با زیر نویس فارسی</span>)
+            @endif
+          </span>
+
         </div>
         <div class="panel-title text-left" style="direction: ltr;">
           <span class="course-title">{{ $course->titleEng }}</span>
