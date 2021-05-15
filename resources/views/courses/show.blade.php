@@ -246,7 +246,7 @@
         <div class="section-module">
           @if (count($course->subjects) > 0)
             <div class="tags subject-tags">
-              <h5 class="course-title">عناوین مرتبط</h5>
+              <h5 class="course-title" style="font-size: 1.2rem;">عناوین مرتبط</h5>
               @foreach ($course->subjects as $subject)
                 <a target="_blank"
                   href="{{ route('home.show', [$subject->slug, $subject->id]) }}"><em>{{ $subject->title }}</em></a>
@@ -256,7 +256,7 @@
 
           @if (count($course->softwares) > 0)
             <div class="tags software-tags">
-              <h5 class="course-title">نرم افزارهای مرتبط</h5>
+              <h5 class="course-title" style="font-size: 1.2rem;">نرم افزارهای مرتبط</h5>
               @foreach ($course->softwares as $software)
                 <a target="_blank"
                   href="{{ route('home.show', [$software->slug, $software->id]) }}"><em>{{ $software->title }}</em></a>

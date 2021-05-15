@@ -1,4 +1,3 @@
-
 .vertical-center {
     margin: 0;
     position: absolute;
@@ -1603,10 +1602,18 @@ a {
 }
 
 .course-title {
-    font-size: 1.5rem;
-    color: #333;
-    font-family: IranSANS, serif;
-    text-shadow: 1px 1px #555;
+    /* font-size: 1.5rem; */
+    font: 700 1.5em/1.3 IranSANS, Arial, Helvetica, sans-serif;
+    word-spacing: -3px;
+    text-shadow: 0 0 3px #b9d5f5;
+    padding: 3px 0 0;
+    color: #134888;
+}
+@media (min-width: 576px) {
+    .course-title {
+        font-size: 1.6em;
+        line-height: 1.3;
+    }
 }
 
 *:not("a"):not("span") {
