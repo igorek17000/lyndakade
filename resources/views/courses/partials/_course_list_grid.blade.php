@@ -35,6 +35,7 @@
           </div>
         @endif
       </div>
+
       <div class="col-12 px-0">
         <a href="{{ courseURL($course) }}">
           <strong>
@@ -45,6 +46,13 @@
           </span>
         </a>
       </div>
+
+      @if ($course->persian_subtitle_id == 1)
+        <div
+          style="color: white; font-weight: 600; bottom: 20%; font-size: 13px; left: 25%; position: absolute; background-color: darkgoldenrod; padding: 2px 15px; border-radius: 5px;">
+          با زیرنویس فارسی
+        </div>
+      @endif
     </div>
     <div class="card-footer d-flex">
       <div class="row w-100 align-items-center">

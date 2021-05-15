@@ -14,20 +14,17 @@
   <div class="row mx-0 justify-content-center">
     <aside class="col-md-10">
       <div class="section-module">
-        <div class="current-page-path">
+        {{-- <div class="current-page-path">
           <a href="{{ route('root.home') }}"><span>صفحه اصلی</span></a>
-          {{-- <i class="lyndacon arrow-left"></i>
-
-          <a href="{{ route('home.show', [$course->subjects[0]->slug, $course->subjects[0]->id]) }}">
-            <span>{{ $course->subjects[0]->title }}</span>
-          </a> --}}
-
           <i class="lyndacon arrow-left"></i>
           <span>{{ $course->title }}</span>
-        </div>
+        </div> --}}
 
         <div class="panel-title">
           <span class="course-title">{{ $course->title }}</span>
+          @if ($course->persian_subtitle_id == 1)
+            (<span style="color: green">با زیر نویس فارسی</span>)
+          @endif
         </div>
         <div class="panel-title text-left" style="direction: ltr;">
           <span class="course-title">{{ $course->titleEng }}</span>
@@ -345,7 +342,6 @@
               <textarea rows="5" name="report_text" id="report_text" class="form-control col-12"
                 placeholder="متن را اینجا بنویسید ..."> </textarea>
             </div>
-
             <div class="form-group">
               <label for="report_type">
                 دلیل خرابی:
