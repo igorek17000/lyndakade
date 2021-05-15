@@ -74,7 +74,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
   <script src="{{ mix('js/app.js') }}"></script>
   <script src="{{ mix('js/all.js') }}"></script>
   <script async src="{{ asset('js/lazysizes.min.js') }}"></script>
-
+  <script src="{{ asset('js/toastr.min.js') }}"></script>
   @if (Session::has('message'))
     <script>
       toastr.info("{{ Session::get('message') }}");
