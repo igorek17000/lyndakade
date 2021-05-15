@@ -75,21 +75,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
   <script src="{{ mix('js/all.js') }}"></script>
   <script async src="{{ asset('js/lazysizes.min.js') }}"></script>
   <script src="{{ asset('js/toastr.min.js') }}"></script>
-  @if (Session::has('message'))
-    <script>
-      toastr.info("{{ Session::get('message') }}");
-      //   var alertType = {!! json_encode(Session::get('alert-type', 'info')) !!};
-      //   var alertMessage = {!! json_encode(Session::get('message')) !!};
-      //   var alerter = toastr[alertType];
-
-      //   if (alerter) {
-      //     alerter(alertMessage);
-      //   } else {
-      //     toastr.error("toastr alert-type " + alertType + " is unknown");
-      //   }
-
-    </script>
-  @endif
 
   @yield('script_head')
   @stack('css_head')
@@ -412,6 +397,21 @@ session(['redirectToAfterLogin' => url()->previous()]);
     <!--Footer End-->
   </div>
 
+  @if (Session::has('message'))
+    <script>
+      toastr.info("{{ Session::get('message') }}");
+      //   var alertType = {!! json_encode(Session::get('alert-type', 'info')) !!};
+      //   var alertMessage = {!! json_encode(Session::get('message')) !!};
+      //   var alerter = toastr[alertType];
+
+      //   if (alerter) {
+      //     alerter(alertMessage);
+      //   } else {
+      //     toastr.error("toastr alert-type " + alertType + " is unknown");
+      //   }
+
+    </script>
+  @endif
   <style>
     .twitter-typeahead {
       width: 100% !important;
