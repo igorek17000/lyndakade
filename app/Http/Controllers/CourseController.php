@@ -561,16 +561,20 @@ class CourseController extends Controller
     public function report_issues(Request $request)
     {
         $course_id  = $request->get('id');
-        $report_text  = $request->get('report_text');
-        $report_type  = $request->get('report_type');
+        $course = Course::firstWhere('id', $course_id);
+        if ($course) {
+            $report_text  = $request->get('report_text');
+            $report_type  = $request->get('report_type');
 
-        $issue = new Issue();
-        $issue->type = $report_type;
-        $issue->text = $report_text;
-        $issue->course_id = $course_id;
+            $issue = new Issue();
+            $issue->type = $report_type;
+            $issue->text = $report_text;
+            $issue->course->associate($course);
+            // $issue->course_id = $course_id;
 
-        if ($issue->save()) {
-            return back()->with('message', 'گزارش با موفقیت ارسال شد.');
+            if ($issue->save()) {
+                return back()->with('message', 'گزارش با موفقیت ارسال شد.');
+            }
         }
         return back()->with('message', 'در ارسال گزارش، مشکلی رخ داده است، لطفا دوباره تلاش کنید.');
     }
