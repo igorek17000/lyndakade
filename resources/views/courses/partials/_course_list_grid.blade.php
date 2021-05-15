@@ -48,8 +48,8 @@
       </div>
 
       @if ($course->persian_subtitle_id == 1)
-        <div
-          style="color: white; font-weight: 600; bottom: 20%; font-size: 13px; left: 25%; position: absolute; background-color: darkgoldenrod; padding: 2px 15px; border-radius: 5px;">
+        <div class="course-grid persian-subtitle"
+          style="color: white; font-weight: 600; bottom: 20%; font-size: 13px; width: 130px; position: absolute; background-color: darkgoldenrod; padding: 2px 15px; border-radius: 5px;left: 0; right: 0; margin: auto;">
           با زیرنویس فارسی
         </div>
       @endif
