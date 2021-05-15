@@ -275,18 +275,19 @@ session(['redirectToAfterLogin' => url()->previous()]);
         </div>
       </div>
     </div>
+
     <div id="notifications">
-      <div class="container">
-        @foreach (\App\Notification::all() as $notification)
-          @if ($notification->expire > date(now()))
-            <div class="alert alert-danger">
-              <h3>{{ $notification->title }}</h3>
+      <div class="" style="background-color: orange; padding: 15px;">
+        <div class="container">
+          @foreach (\App\Notification::all() as $notification)
+            @if ($notification->expire > date(now()))
               <h5>{!! $notification->message !!}</h5>
-            </div>
-          @endif
-        @endforeach
+            @endif
+          @endforeach
+        </div>
       </div>
     </div>
+
     <main id="app">
       @yield('content')
 
