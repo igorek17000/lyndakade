@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Author;
 use App\Bookmark;
 use App\Course;
+use App\Issue;
 use App\LearnPath;
 use App\Library;
 use App\Paid;
@@ -563,6 +564,14 @@ class CourseController extends Controller
         $report_text  = $request->get('report_text');
         $report_type  = $request->get('report_type');
 
-        return [$course_id, $report_text, $report_type]; // with success
+        $issue = new Issue();
+        $issue->type = $report_type;
+        $issue->text = $report_text;
+        $issue->course_id = $course_id;
+
+        if ($issue->save()) {
+            return back()->with('message', 'گزارش با موفقیت ارسال شد.');
+        }
+        return back()->with('message', 'در ارسال گزارش، مشکلی رخ داده است، لطفا دوباره تلاش کنید.');
     }
 }
