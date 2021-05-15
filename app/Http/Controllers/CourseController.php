@@ -569,7 +569,7 @@ class CourseController extends Controller
             $issue = new Issue();
             $issue->type = $report_type;
             $issue->text = $report_text;
-            $issue->course->associate($course);
+            $issue->course()->associate($course);
             // $issue->course_id = $course_id;
 
             if ($issue->save()) {
