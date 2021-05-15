@@ -49,7 +49,8 @@
 
 @if ($course->persianSubtitleFile && count(json_decode($course->persianSubtitleFile)) > 0)
   @foreach (json_decode($course->persianSubtitleFile) as $file)
-    <a href="{{ fromDLHost($file->download_link) }}" class="btn btn-download align-self-center">
+    <a href="{{ route('courses.download', [$course->id, hash('md5', 'persianSubtitleFile') => hash('sha256', auth()->id())]) }}"
+      class="btn btn-download align-self-center">
       {{-- <a href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}" --}}
       فایل زیرنویس فارسی دوره
     </a>

@@ -419,6 +419,10 @@ class CourseController extends Controller
         if ($courseFile && hash('sha256', auth()->id()) == $courseFile) {
             return get_file_from_ftp($course, 'courseFile');
         }
+        $persianSubtitleFile = $request->input(hash('md5', 'persianSubtitleFile'));
+        if ($persianSubtitleFile && hash('sha256', auth()->id()) == $persianSubtitleFile) {
+            return get_file_from_ftp($course, 'persianSubtitleFile');
+        }
         $exFiles = $request->input(hash('md5', 'exFiles'));
         if ($exFiles && hash('sha256', auth()->id()) == $exFiles) {
             $filename = $request->get('filename');
