@@ -109,11 +109,14 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 aria-haspopup="true" aria-expanded="false">
                 کتابخانه <span class="caret"></span>
               </a>
+              @php
+                  $libraries = \App\Library::all();
+              @endphp
               <div class="dropdown-menu container-fluid bg-transparent border-0">
                 <div class="row bg-transparent dropdown-menu-content">
                   <div class="col-sm-4 col-12 dropdown-title-bg">
                     <ul id="libraries-sub-menu">
-                      @foreach (\App\Library::all() as $library)
+                      @foreach ($libraries as $library)
                         <li class="dropdown-item dropdown-title" data-id="tab-{{ $library->id }}">
                           <a class="" style="color: #fff;"
                             href="{{ route('home.show', [$library->slug, $library->id]) }}">
@@ -126,7 +129,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                     </ul>
                   </div>
                   <div class="col-sm-8 hidden-xs dropdown-content-bg">
-                    @foreach (\App\Library::all() as $library)
+                    @foreach ($libraries as $library)
                       <div class="row dropdown-content{{ $loop->first ? ' active' : '' }}"
                         id="tab-{{ $library->id }}">
                         <div class="col-md-4">
