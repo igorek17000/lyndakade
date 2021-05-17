@@ -94,15 +94,7 @@ class HomeController extends Controller
         return redirect()->route('root.home');
     }
 
-    public function search_page(Request $request)
-    {
-
-        $query = $request->get('q');
-        if (!$query) {
-            return redirect('/');
-        }
-
-        function show_first_object($obj, $type, $_this, $request)
+        function show_first_object($obj, $type, $request)
         {
             $query = $request->get('q');
             if ($request->ajax()) {
@@ -136,7 +128,7 @@ class HomeController extends Controller
                 // return $result;
             }
 
-            $details = $_this->prepare_for_search_page($request, $obj->courses);
+            $details = $this->prepare_for_search_page($request, $obj->courses);
 
             $filtered_items = $details['filtered_items'];
             $courses = $details['courses'];
@@ -156,20 +148,27 @@ class HomeController extends Controller
                 'categories_filter' => $categories_filter,
             ]);
         }
+    public function search_page(Request $request)
+    {
+
+        $query = $request->get('q');
+        if (!$query) {
+            return redirect('/');
+        }
 
         $author = Author::firstWhere('name', $query);
         if ($author) {
-            return show_first_object($author, 'مدرس', $this, $request);
+            return show_first_object($author, 'مدرس', $request);
         }
 
         $software = Software::where('title', $query)->orWhere('titleper', $query)->first();
         if ($software) {
-            return show_first_object($software, 'نرم افزار', $this, $request);
+            return show_first_object($software, 'نرم افزار', $request);
         }
 
         $subject = Subject::where('title', $query)->orWhere('titleper', $query)->first();
         if ($subject) {
-            return show_first_object($subject, 'دسته', $this, $request);
+            return show_first_object($subject, 'دسته', $request);
         }
 
 
