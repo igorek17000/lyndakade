@@ -97,11 +97,84 @@ class HomeController extends Controller
     public function search_page(Request $request)
     {
 
-        $query = $request->get('q', '');
+        $query = $request->get('q');
+        if (!$query) {
+            return redirect('/');
+        }
+
+        function show_first_object($obj, $type, $_this, $request)
+        {
+            $query = $request->get('q');
+            if ($request->ajax()) {
+                $count = 5;
+                $searched = $obj->courses;
+                $searched = $searched->toArray();
+                if (count($searched) > 0) {
+                    return $searched;
+                }
+                $learn_paths = LearnPath::with('library')->search($query)->distinct('learn_paths.id')->get();
+                $searched = $learn_paths->toArray();
+                if (count($searched) > 0) {
+                    return $searched;
+                }
+
+                $authors = Author::with('courses')->search($query)->distinct('authors.id')->get();
+                $searched = $authors->toArray();
+
+                if (count($searched) > 0) {
+                    return $searched;
+                }
+                return [];
+
+                // $subjects = Subject::with('courses')->search($query)->distinct('subjects.id')->get();
+                // $result = array_merge($result, $subjects->toArray());
+                // if (count($result) > $count) {
+                //     return $result;
+                // }
+                // $software = Software::with('courses')->search($query)->distinct('software.id')->get();
+                // $result = array_merge($result, $software->toArray());
+                // return $result;
+            }
+
+            $details = $_this->prepare_for_search_page($request, $obj->courses);
+
+            $filtered_items = $details['filtered_items'];
+            $courses = $details['courses'];
+            $categories_filter = $details['categories_filter'];
+
+            return view('search.search', [
+                'q' => $request->get('q'),
+                'object' => [
+                    'type' => $type,
+                    'img' => $obj->img ?? null,
+                    'title' => $obj->name ?? $obj->title,
+                    'description' => $obj->description,
+                ],
+                'filtered_items' => $filtered_items,
+                'result_count' => count($courses),
+                'courses' => count($courses) > 20 ? $courses->take(20) : $courses,
+                'categories_filter' => $categories_filter,
+            ]);
+        }
+
+        $author = Author::firstWhere('name', $query);
+        if ($author) {
+            return show_first_object($author, 'مدرس', $this, $request);
+        }
+
+        $software = Software::where('title', $query)->orWhere('titleper', $query)->first();
+        if ($software) {
+            return show_first_object($software, 'نرم افزار', $this, $request);
+        }
+
+        $subject = Subject::where('title', $query)->orWhere('titleper', $query)->first();
+        if ($subject) {
+            return show_first_object($subject, 'دسته', $this, $request);
+        }
+
 
         $searched = Course::with(['subjects', 'authors'])
             ->search($query)->distinct('courses.id')->get();
-
         $courses_id = [];
         foreach ($searched as $course) {
             array_push($courses_id, $course->id);

@@ -72,7 +72,6 @@
                     </div>
                 </nav>
             </aside>
-
             <section class="col-xs-12 col-md-10 search-results-cont pull-left">
                 <div class="row">
                     <section id="search-results-bar">
@@ -123,10 +122,31 @@
                             @endif
                         </div>
                     </section>
+                    @if(isset($object))
+                        <div class="card flex-row flex-wrap w-100 py-3">
+                            @if($object['img'])
+                                <div class="card-header border-0" style="
+                                    max-width: 160px;
+                                    background: transparent;
+                                ">
+                                    <img src="{{ fromDLHost($object['img']) }}" alt="" style="
+                                    width: 100%;
+                                    border-radius: 50%;
+                                ">
+                                </div>
+                            @endif
+                            <div class="card-block px-2" style="max-width: 70%;">
+                                <span class="card-title mb-2">{{ $object['type'] }}</span><p></p>
+                                <h4 class="card-title">{{ $object['title'] }}</h4>
+                                <p class="card-text">{{ $object['description'] }}</p>
+                            </div>
+                            <div class="w-100"></div>
+                        </div>
+                    @endif
                     <section id="search-results">
                         <div class="row mx-1" id="search-results-list">
                             @if(count($courses) == 0)
-
+                                نتیجه ای یافت نشد.
                             @endif
                             @foreach($courses as $course)
                                     @include ('.courses.partials._course_list_grid', ['course' => $course, 'col' => 'col-lg-4'])
