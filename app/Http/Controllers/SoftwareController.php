@@ -50,6 +50,7 @@ class SoftwareController extends Controller
         $title = $request->get('title');
         $slug = $request->get('slug');
         $description = $request->get('description');
+        $library_id = $request->get('library_id');
         $software = Software::where($search_key, $search_value);
         if (count($software->get()) == 0)
             return new JsonResponse([
@@ -65,6 +66,8 @@ class SoftwareController extends Controller
             $software->update(['description' => $description]);
         if ($id)
             $software->update(['id' => $id]);
+        if ($library_id)
+            $software->update(['library_id' => $library_id]);
         return new JsonResponse([
             'status' => 'success',
             'message' => $slug . ' is updated',

@@ -325,7 +325,7 @@
 
   <div id="report-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="report-modal-title"
     aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-dialog  modal-dialog-centered  modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title w-100" id="report-modal-title">
@@ -350,8 +350,8 @@
                 دلیل خرابی:
               </label>
               <select name="report_type" id="report_type">
-                <option value="links-{{ $course->id }}">لینک</option>
-                <option value="details-{{ $course->id }}">جزئیات</option>
+                <option value="links-{{ $course->id }}">لینک فایل</option>
+                <option value="details-{{ $course->id }}">مشخصات دوره</option>
                 <option value="others-{{ $course->id }}">سایر</option>
               </select>
             </div>
