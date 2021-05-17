@@ -158,17 +158,17 @@ class HomeController extends Controller
 
         $author = Author::firstWhere('name', $query);
         if ($author) {
-            return show_first_object($author, 'مدرس', $request);
+            return $this->show_first_object($author, 'مدرس', $request);
         }
 
         $software = Software::where('title', $query)->orWhere('titleper', $query)->first();
         if ($software) {
-            return show_first_object($software, 'نرم افزار', $request);
+            return $this->show_first_object($software, 'نرم افزار', $request);
         }
 
         $subject = Subject::where('title', $query)->orWhere('titleper', $query)->first();
         if ($subject) {
-            return show_first_object($subject, 'دسته', $request);
+            return $this->show_first_object($subject, 'دسته', $request);
         }
 
 
