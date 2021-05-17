@@ -27,7 +27,7 @@ class Author extends Model
          */
         'columns' => [
             'authors.name' => 10,
-            'authors.description' => 4,
+            // 'authors.description' => 4,
         ],
     ];
 
