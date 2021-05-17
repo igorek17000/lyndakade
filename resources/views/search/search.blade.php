@@ -123,7 +123,7 @@
                         </div>
                     </section>
                     @if(isset($object))
-                        <div class="card flex-row flex-wrap w-100 py-3">
+                        <div class="card flex-row flex-wrap w-100 py-3 {{ $object['img'] ? ' px-2 ' : '' }}">
                             @if($object['img'])
                                 <div class="card-header border-0" style="
                                     max-width: 160px;
@@ -135,10 +135,10 @@
                                 ">
                                 </div>
                             @endif
-                            <div class="card-block px-2" style="max-width: 70%;">
+                            <div class="card-block px-2" style="{{ $object['img'] ? ' max-width: 70%; ' : '' }}">
                                 <span class="card-title mb-2">{{ $object['type'] }}</span><p></p>
                                 <h4 class="card-title">{{ $object['title'] }}</h4>
-                                <p class="card-text">{{ $object['description'] }}</p>
+                                <p class="card-text text-justify">{{ $object['description'] }}</p>
                             </div>
                             <div class="w-100"></div>
                         </div>
