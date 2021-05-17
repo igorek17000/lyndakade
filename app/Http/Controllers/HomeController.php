@@ -94,60 +94,60 @@ class HomeController extends Controller
         return redirect()->route('root.home');
     }
 
-        function show_first_object($obj, $type, $request)
-        {
-            $query = $request->get('q');
-            if ($request->ajax()) {
-                $count = 5;
-                $searched = $obj->courses;
-                $searched = $searched->toArray();
-                if (count($searched) > 0) {
-                    return $searched;
-                }
-                $learn_paths = LearnPath::with('library')->search($query)->distinct('learn_paths.id')->get();
-                $searched = $learn_paths->toArray();
-                if (count($searched) > 0) {
-                    return $searched;
-                }
-
-                $authors = Author::with('courses')->search($query)->distinct('authors.id')->get();
-                $searched = $authors->toArray();
-
-                if (count($searched) > 0) {
-                    return $searched;
-                }
-                return [];
-
-                // $subjects = Subject::with('courses')->search($query)->distinct('subjects.id')->get();
-                // $result = array_merge($result, $subjects->toArray());
-                // if (count($result) > $count) {
-                //     return $result;
-                // }
-                // $software = Software::with('courses')->search($query)->distinct('software.id')->get();
-                // $result = array_merge($result, $software->toArray());
-                // return $result;
+    function show_first_object($obj, $type, $request)
+    {
+        $query = $request->get('q');
+        if ($request->ajax()) {
+            $count = 5;
+            $searched = $obj->courses;
+            $searched = $searched->toArray();
+            if (count($searched) > 0) {
+                return $searched;
+            }
+            $learn_paths = LearnPath::with('library')->search($query)->distinct('learn_paths.id')->get();
+            $searched = $learn_paths->toArray();
+            if (count($searched) > 0) {
+                return $searched;
             }
 
-            $details = $this->prepare_for_search_page($request, $obj->courses);
+            $authors = Author::with('courses')->search($query)->distinct('authors.id')->get();
+            $searched = $authors->toArray();
 
-            $filtered_items = $details['filtered_items'];
-            $courses = $details['courses'];
-            $categories_filter = $details['categories_filter'];
+            if (count($searched) > 0) {
+                return $searched;
+            }
+            return [];
 
-            return view('search.search', [
-                'q' => $request->get('q'),
-                'object' => [
-                    'type' => $type,
-                    'img' => $obj->img ?? null,
-                    'title' => $obj->name ?? $obj->title,
-                    'description' => $obj->description,
-                ],
-                'filtered_items' => $filtered_items,
-                'result_count' => count($courses),
-                'courses' => count($courses) > 20 ? $courses->take(20) : $courses,
-                'categories_filter' => $categories_filter,
-            ]);
+            // $subjects = Subject::with('courses')->search($query)->distinct('subjects.id')->get();
+            // $result = array_merge($result, $subjects->toArray());
+            // if (count($result) > $count) {
+            //     return $result;
+            // }
+            // $software = Software::with('courses')->search($query)->distinct('software.id')->get();
+            // $result = array_merge($result, $software->toArray());
+            // return $result;
         }
+
+        $details = $this->prepare_for_search_page($request, $obj->courses);
+
+        $filtered_items = $details['filtered_items'];
+        $courses = $details['courses'];
+        $categories_filter = $details['categories_filter'];
+
+        return view('search.search', [
+            'q' => $request->get('q'),
+            'object' => [
+                'type' => $type,
+                'img' => $obj->img ?? null,
+                'title' => $obj->name ?? ($obj->titleper ?? $obj->title),
+                'description' => $obj->description,
+            ],
+            'filtered_items' => $filtered_items,
+            'result_count' => count($courses),
+            'courses' => count($courses) > 20 ? $courses->take(20) : $courses,
+            'categories_filter' => $categories_filter,
+        ]);
+    }
     public function search_page(Request $request)
     {
 
