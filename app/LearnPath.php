@@ -30,17 +30,17 @@ class LearnPath extends Model
         'columns' => [
             'learn_paths.title' => 10,
             'learn_paths.titleEng' => 10,
-            'learn_paths.description' => 4,
-            'learn_paths.descriptionEng' => 4,
-            'courses.title' => 10,
-            'courses.titleEng' => 10,
-            'libraries.title' => 4,
-            'libraries.titleEng' => 4,
+            // 'learn_paths.description' => 4,
+            // 'learn_paths.descriptionEng' => 4,
+            // 'courses.title' => 10,
+            // 'courses.titleEng' => 10,
+            // 'libraries.title' => 4,
+            // 'libraries.titleEng' => 4,
         ],
         'joins' => [
-            'libraries' => ['learn_paths.library_id','libraries.id'],
-            'course_learn_path' => ['course_learn_path.learn_path_id','learn_paths.id'],
-            'courses' => ['courses.id','course_learn_path.course_id'],
+            // 'libraries' => ['learn_paths.library_id','libraries.id'],
+            // 'course_learn_path' => ['course_learn_path.learn_path_id','learn_paths.id'],
+            // 'courses' => ['courses.id','course_learn_path.course_id'],
         ],
     ];
 

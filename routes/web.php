@@ -32,7 +32,9 @@ Route::post('/report-issues/courses', 'CourseController@report_issues')->name('c
 Route::get('/c/{id}', function ($id) {
     $course = Course::firstWhere('id', $id);
     // ;
-    return redirect()->route('courses.show', [$course->slug_url, $course->slug, $course->id]);
+    if ($course)
+        return redirect()->route('courses.show', [$course->slug_url, $course->slug, $course->id]);
+    abort(404);
 });
 
 // Route::get('authors/json', 'HomeController@json_data_authors')->name('authors.json');

@@ -28,14 +28,14 @@ class Software extends Model
          */
         'columns' => [
             'software.title' => 10,
-            'courses.title' => 10,
-            'courses.titleEng' => 10,
+            // 'courses.title' => 10,
+            // 'courses.titleEng' => 10,
             // 'libraries.title' => 4,
             // 'libraries.titleEng' => 4,
         ],
         'joins' => [
-            'course_software' => ['course_software.software_id', 'software.id'],
-            'courses' => ['courses.id', 'course_software.course_id'],
+            // 'course_software' => ['course_software.software_id', 'software.id'],
+            // 'courses' => ['courses.id', 'course_software.course_id'],
             // 'libraries' => ['software.library_id','libraries.id'],
         ],
     ];

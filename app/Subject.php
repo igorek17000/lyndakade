@@ -28,14 +28,14 @@ class Subject extends Model
          */
         'columns' => [
             'subjects.title' => 10,
-            'courses.title' => 10,
-            'courses.titleEng' => 10,
+            // 'courses.title' => 10,
+            // 'courses.titleEng' => 10,
             // 'libraries.title' => 4,
             // 'libraries.titleEng' => 4,
         ],
         'joins' => [
-            'course_subject' => ['course_subject.subject_id','subjects.id'],
-            'courses' => ['courses.id','course_subject.course_id'],
+            // 'course_subject' => ['course_subject.subject_id','subjects.id'],
+            // 'courses' => ['courses.id','course_subject.course_id'],
             // 'libraries' => ['subjects.library_id','libraries.id'],
         ],
     ];

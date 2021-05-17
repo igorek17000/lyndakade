@@ -34,22 +34,22 @@ class Course extends Model
         'columns' => [
             'courses.title' => 10,
             'courses.titleEng' => 10,
-            'courses.description' => 3,
-            'courses.descriptionEng' => 3,
-            'subjects.title' => 6,
-            'software.title' => 6,
-            'authors.name' => 6,
+            // 'courses.description' => 3,
+            // 'courses.descriptionEng' => 3,
+            // 'subjects.title' => 6,
+            // 'software.title' => 6,
+            // 'authors.name' => 6,
             // 'libraries.title' => 4,
             // 'libraries.titleEng' => 4,
         ],
         'joins' => [
             // 'libraries' => ['courses.library_id','libraries.id'],
-            'course_subject' => ['course_subject.course_id', 'courses.id'],
-            'subjects' => ['subjects.id', 'course_subject.subject_id'],
-            'course_software' => ['course_software.course_id', 'courses.id'],
-            'software' => ['software.id', 'course_software.software_id'],
-            'author_course' => ['author_course.course_id', 'courses.id'],
-            'authors' => ['authors.id', 'author_course.author_id'],
+            // 'course_subject' => ['course_subject.course_id', 'courses.id'],
+            // 'subjects' => ['subjects.id', 'course_subject.subject_id'],
+            // 'course_software' => ['course_software.course_id', 'courses.id'],
+            // 'software' => ['software.id', 'course_software.software_id'],
+            // 'author_course' => ['author_course.course_id', 'courses.id'],
+            // 'authors' => ['authors.id', 'author_course.author_id'],
         ],
     ];
 
@@ -144,10 +144,10 @@ class Course extends Model
         return $this->created_at->diffForHumans();
     }
 
-    public function getBodyHtmlAttribute()
-    {
-        return \Parsedown::instance()->text($this->description);
-    }
+    // public function getBodyHtmlAttribute()
+    // {
+    //     return \Parsedown::instance()->text($this->description);
+    // }
 
     public function getTableColumns()
     {
