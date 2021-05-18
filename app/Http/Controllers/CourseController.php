@@ -65,7 +65,7 @@ class CourseController extends Controller
         foreach ($free_courses_ids as $free_course) {
             $ids[] = $free_course['id'];
         }
-        $free_courses = Course::whereIn('id', $ids)->get();
+        $free_courses = Course::with('authors')->whereIn('id', $ids)->get();
 
         $free_courses->sortByDesc(function ($model) use ($ids) {
             return array_search($model->getKey(), $ids);
@@ -82,13 +82,13 @@ class CourseController extends Controller
             $ids[] = $latest_course['id'];
         }
 
-        $latest_courses = Course::whereIn('id', $ids)->get();
+        $latest_courses = Course::with('authors')->whereIn('id', $ids)->get();
 
         $latest_courses->sortByDesc(function ($model) use ($ids) {
             return array_search($model->getKey(), $ids);
         });
 
-        $popular_courses = Course::orderBy('views', 'DESC')
+        $popular_courses = Course::with('authors')->orderBy('views', 'DESC')
             ->limit(4)->get();
 
         $paths = LearnPath::limit(6)->get();
@@ -116,7 +116,7 @@ class CourseController extends Controller
      */
     public function show(Request $request, $subject, $slug, $my_id)
     {
-        $course = Course::find($my_id);
+        $course = Course::with(['authors', 'subjects', 'software'])->find($my_id);
         if ($course) {
             if ($course->slug == $slug) {
                 $course->increment('views');
@@ -170,7 +170,7 @@ class CourseController extends Controller
                 }
                 $ids = array_values(array_unique($ids));
 
-                $related_courses = Course::orderBy('views', 'DESC')->whereIn('id', $ids)->limit(50)->get();
+                $related_courses = Course::with('authors')->orderBy('views', 'DESC')->whereIn('id', $ids)->limit(50)->get();
 
                 $courses = array();
                 foreach ($related_courses as $related_course) {
@@ -249,7 +249,7 @@ class CourseController extends Controller
 
     public function course_api($id)
     {
-        $course = Course::find($id);
+        $course = Course::with(['authors', 'subjects', 'software'])->find($id);
         if (!$course) {
             return new JsonResponse([
                 'data' => []
@@ -263,7 +263,7 @@ class CourseController extends Controller
 
     public function courses_api()
     {
-        $courses = Course::orderBy('created_at', 'desc')->limit(20)->get();
+        $courses = Course::with(['authors', 'subjects', 'software'])->orderBy('created_at', 'desc')->limit(20)->get();
         if (!$courses) {
             return new JsonResponse([
                 'data' => []
@@ -444,7 +444,7 @@ class CourseController extends Controller
 
     public function newest(Request $request)
     {
-        $courses = \App\Course::orderBy('created_at', 'DESC')->get();
+        $courses = \App\Course::with(['authors', 'subjects', 'software'])->orderBy('created_at', 'DESC')->get();
 
         if ($request->ajax()) {
             $page = $request->get('page', null);
@@ -462,7 +462,7 @@ class CourseController extends Controller
 
     public function best(Request $request)
     {
-        $courses = \App\Course::orderBy('views', 'desc')->get();
+        $courses = \App\Course::with(['authors', 'subjects', 'software'])->orderBy('views', 'desc')->get();
 
         if ($request->ajax()) {
             $page = $request->get('page', null);
@@ -480,7 +480,7 @@ class CourseController extends Controller
 
     public function free(Request $request)
     {
-        $courses = \App\Course::where('price', 0)->get();
+        $courses = \App\Course::with(['authors', 'subjects', 'software'])->where('price', 0)->get();
         if ($request->ajax()) {
             $page = $request->get('page', null);
             if (!$page) {
@@ -542,7 +542,7 @@ class CourseController extends Controller
 
     public function courses_all_api(Request $request)
     {
-        $courses =  Course::orderBy('created_at', 'desc')->get();
+        $courses =  Course::with(['authors', 'subjects', 'software'])->orderBy('created_at', 'desc')->get();
 
         $page = intval($request->get('page', 1));
         $perPage = intval($request->get('perPage', 15));

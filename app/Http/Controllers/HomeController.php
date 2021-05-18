@@ -69,11 +69,11 @@ class HomeController extends Controller
      */
     public function show(Request $request, $slug, $id)
     {
-        $sub = Subject::where('id', $id)->where('slug', $slug)->get()->first();
+        $sub = Subject::with('courses')->where('id', $id)->where('slug', $slug)->get()->first();
         if (!$sub)
-            $sub = Library::where('id', $id)->where('slug', $slug)->get()->first();
+            $sub = Library::with('courses')->where('id', $id)->where('slug', $slug)->get()->first();
         if (!$sub)
-            $sub = Software::where('slug', $slug)->get()->first();
+            $sub = Software::with('courses')->where('slug', $slug)->get()->first();
 
         if ($sub) {
             $courses = $sub->courses;
@@ -156,29 +156,28 @@ class HomeController extends Controller
             return redirect('/');
         }
 
-        $author = Author::firstWhere('name', $query);
+        $author = Author::with('courses')->firstWhere('name', $query);
         if ($author) {
             return $this->show_first_object($author, 'مدرس', $request);
         }
 
-        $software = Software::where('title', $query)->orWhere('titleper', $query)->first();
+        $software = Software::with('courses')->where('title', $query)->orWhere('titleper', $query)->first();
         if ($software) {
             return $this->show_first_object($software, 'نرم افزار', $request);
         }
 
-        $subject = Subject::where('title', $query)->orWhere('titleper', $query)->first();
+        $subject = Subject::with('courses')->where('title', $query)->orWhere('titleper', $query)->first();
         if ($subject) {
             return $this->show_first_object($subject, 'دسته', $request);
         }
 
 
-        $searched = Course::with(['subjects', 'authors'])
-            ->search($query)->distinct('courses.id')->get();
-        $courses_id = [];
-        foreach ($searched as $course) {
-            array_push($courses_id, $course->id);
-        }
-        $searched = Course::find(array_unique($courses_id));
+        $searched = Course::with(['subjects', 'authors'])->search($query)->distinct('courses.id')->get();
+        // $courses_id = [];
+        // foreach ($searched as $course) {
+        //     array_push($courses_id, $course->id);
+        // }
+        // $searched = Course::find(array_unique($courses_id));
 
         if ($request->ajax()) {
             $count = 5;
