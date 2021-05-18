@@ -116,7 +116,7 @@ class CourseController extends Controller
      */
     public function show(Request $request, $subject, $slug, $my_id)
     {
-        $course = Course::find($my_id);
+        $course = Course::with(['authors', 'subjects', 'softwares'])->find($my_id);
         if ($course) {
             if ($course->slug == $slug) {
                 $course->increment('views');
@@ -249,7 +249,7 @@ class CourseController extends Controller
 
     public function course_api($id)
     {
-        $course = Course::with(['authors', 'subjects', 'software'])->find($id);
+        $course = Course::with(['authors', 'subjects', 'softwares'])->find($id);
         if (!$course) {
             return new JsonResponse([
                 'data' => []
@@ -263,7 +263,7 @@ class CourseController extends Controller
 
     public function courses_api()
     {
-        $courses = Course::with(['authors', 'subjects', 'software'])->orderBy('created_at', 'desc')->limit(20)->get();
+        $courses = Course::with(['authors', 'subjects', 'softwares'])->orderBy('created_at', 'desc')->limit(20)->get();
         if (!$courses) {
             return new JsonResponse([
                 'data' => []
@@ -444,7 +444,7 @@ class CourseController extends Controller
 
     public function newest(Request $request)
     {
-        $courses = \App\Course::with(['authors', 'subjects', 'software'])->orderBy('created_at', 'DESC')->get();
+        $courses = \App\Course::with(['authors', 'subjects', 'softwares'])->orderBy('created_at', 'DESC')->get();
 
         if ($request->ajax()) {
             $page = $request->get('page', null);
@@ -462,7 +462,7 @@ class CourseController extends Controller
 
     public function best(Request $request)
     {
-        $courses = \App\Course::with(['authors', 'subjects', 'software'])->orderBy('views', 'desc')->get();
+        $courses = \App\Course::with(['authors', 'subjects', 'softwares'])->orderBy('views', 'desc')->get();
 
         if ($request->ajax()) {
             $page = $request->get('page', null);
@@ -480,7 +480,7 @@ class CourseController extends Controller
 
     public function free(Request $request)
     {
-        $courses = \App\Course::with(['authors', 'subjects', 'software'])->where('price', 0)->get();
+        $courses = \App\Course::with(['authors', 'subjects', 'softwares'])->where('price', 0)->get();
         if ($request->ajax()) {
             $page = $request->get('page', null);
             if (!$page) {
@@ -542,7 +542,7 @@ class CourseController extends Controller
 
     public function courses_all_api(Request $request)
     {
-        $courses =  Course::with(['authors', 'subjects', 'software'])->orderBy('created_at', 'desc')->get();
+        $courses =  Course::with(['authors', 'subjects', 'softwares'])->orderBy('created_at', 'desc')->get();
 
         $page = intval($request->get('page', 1));
         $perPage = intval($request->get('perPage', 15));
