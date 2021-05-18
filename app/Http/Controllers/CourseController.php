@@ -116,7 +116,7 @@ class CourseController extends Controller
      */
     public function show(Request $request, $subject, $slug, $my_id)
     {
-        $course = Course::with(['authors', 'subjects', 'software'])->find($my_id);
+        $course = Course::find($my_id);
         if ($course) {
             if ($course->slug == $slug) {
                 $course->increment('views');
