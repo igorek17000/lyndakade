@@ -13,7 +13,7 @@
     <div class="container search-page">
         @if (isset($shown_item))
             <div class="row mb-5 justify-content-center shown-item">
-                <div class="col-xs-12 col-md-6 subject-img" style="background-image: url({{ fromDLHost($shown_item->img) }});" >
+                <div class="col-xs-12 col-md-6 subject-img" style="background-image: url({{ fromDLHost($shown_item->img) }});background-size: cover;" >
 
                 </div>
                 <div class="col-xs-12 col-md-6 subject-details">

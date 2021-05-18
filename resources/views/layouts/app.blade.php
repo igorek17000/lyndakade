@@ -97,6 +97,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         <a class="navbar-brand" href="{{ route('root.home') }}">
           <img draggable="false" class="img-logo m-0 p-0" src="{{ asset('image/logoedit2.png') }}" title="لینداکده"
             alt="لینداکده" />
+          <span class="hidden-md hidden-lg">لیندا کده</span>
         </a>
         <button class="btn btn-mobile hidden-sm hidden-md hidden-lg" data-toggle="collapse"
           data-target=".nav-main-collapse">
@@ -110,7 +111,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 کتابخانه <span class="caret"></span>
               </a>
               @php
-                  $libraries = \App\Library::all();
+                $libraries = \App\Library::with(['subjects', 'software', 'paths'])->get();
               @endphp
               <div class="dropdown-menu container-fluid bg-transparent border-0">
                 <div class="row bg-transparent dropdown-menu-content">
