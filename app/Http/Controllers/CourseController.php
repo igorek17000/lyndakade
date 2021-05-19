@@ -546,8 +546,8 @@ class CourseController extends Controller
 
         $page = intval($request->get('page', 1));
         $perPage = intval($request->get('perPage', 15));
-        if ($perPage > 50)
-            $perPage = 50;
+        if ($perPage > 200)
+            $perPage = 200;
         $n = count($courses) / $perPage;
         if ($n - (int)$n > 0)
             $n = (int)$n + 1;
