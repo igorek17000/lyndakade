@@ -562,6 +562,23 @@ class CourseController extends Controller
         ], 200);
     }
 
+    public function courses_api_set(Request $request)
+    {
+        $id = $request->get('id');
+        $course = Course::where('id', $id);
+        if ($course->get()->first()) {
+            $course->update($request->only(['thumbnail']));
+            return new JsonResponse([
+                'message' => 'course has been updated',
+                'status' => 'success',
+            ], 200);
+        }
+        return new JsonResponse([
+            'message' => 'course was not found',
+            'status' => 'error',
+        ], 404);
+    }
+
     public function report_issues(Request $request)
     {
         $course_id  = $request->get('id');
