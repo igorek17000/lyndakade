@@ -21,6 +21,9 @@ function get_course_state($course)
     $found = false;
     if (Auth::check()) {
         foreach (Auth::user()->paids as $paid) {
+            if ($found) {
+                break;
+            }
             if ($paid->type == '1') {
                 if ($paid->item_id == $course->id) {
                     $found = true;

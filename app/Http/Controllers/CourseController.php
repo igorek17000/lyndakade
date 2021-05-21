@@ -44,7 +44,7 @@ class CourseController extends Controller
         // $this->middleware('auth', ['except' => ['index', 'show', 'load_more_new', 'load_more_popular', 'load_more_all', 'course_api', 'courses_api', 'subtitle_content']]);
     }
 
-/*
+    /*
     private function sort_courses_by_releasedate_or_updatedate($courses)
     {
         $courses = $courses->map(function ($c) {
@@ -126,7 +126,7 @@ class CourseController extends Controller
             'free_courses' => $free_courses,
             'latest_courses' => $latest_courses,
             'popular_courses' => $popular_courses,
-            'dubbed_courses'=> $dubbed_courses,
+            'dubbed_courses' => $dubbed_courses,
             'paths' => $paths,
             'page_tabs' => $page_tabs,
         ]);
@@ -569,7 +569,8 @@ class CourseController extends Controller
 
     public function courses_all_api(Request $request)
     {
-        $courses =  Course::with(['authors', 'subjects', 'softwares'])->orderBy('created_at', 'desc')->get();
+        $courses =  Course::with(['authors', 'subjects', 'softwares'])->orderBy('created_at', 'desc')
+            ->get(['id', 'slug_url', 'slug', 'title', 'titleEng', 'thumbnail', 'img', 'previewFile']);
 
         $page = intval($request->get('page', 1));
         $perPage = intval($request->get('perPage', 15));
