@@ -181,7 +181,8 @@
     </div>
   </div>
 
-  @if (isset($dubbed_courses) && count(dubbed_courses) > 0)
+  @if (isset($dubbed_courses))
+  @if(count($dubbed_courses) > 0)
     <div class="row card mx-0 latest-courses border-0">
       <div class="col-12 card-body">
         <div class="container">
@@ -200,6 +201,7 @@
         </div>
       </div>
     </div>
+  @endif
   @endif
 
   <div class="row card mx-0 latest-courses border-0">
