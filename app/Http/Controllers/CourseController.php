@@ -126,7 +126,7 @@ class CourseController extends Controller
             'free_courses' => $free_courses,
             'latest_courses' => $latest_courses,
             'popular_courses' => $popular_courses,
-            ''=>$,
+            'dubbed_courses'=>$dubbed_courses,
             'paths' => $paths,
             'page_tabs' => $page_tabs,
         ]);
