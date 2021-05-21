@@ -181,6 +181,27 @@
     </div>
   </div>
 
+  @if (isset($dubbed_courses) && count(dubbed_courses) > 0)
+    <div class="row card mx-0 latest-courses border-0">
+      <div class="col-12 card-body">
+        <div class="container">
+          <h5>
+            <i class="fas fa-plus-square"></i>
+            دوره های آموزشی دوبله شده
+            (تعداد دوره ها {{ count($dubbed_courses) }})
+            <a class="btn btn-primary my-2" href="{{ route('courses.free') }}">مشاهده بیشتر</a>
+          </h5>
+          <hr style="border-top: 1px solid  #f8ba16">
+          <div class="row d-flex ">
+            @foreach ($dubbed_courses as $course)
+              @include('courses.partials._course_list_grid', ['course' => $course])
+            @endforeach
+          </div>
+        </div>
+      </div>
+    </div>
+  @endif
+
   <div class="row card mx-0 latest-courses border-0">
     <div class="col-12 card-body">
       <div class="container">

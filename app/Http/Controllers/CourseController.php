@@ -44,6 +44,29 @@ class CourseController extends Controller
         // $this->middleware('auth', ['except' => ['index', 'show', 'load_more_new', 'load_more_popular', 'load_more_all', 'course_api', 'courses_api', 'subtitle_content']]);
     }
 
+/*
+    private function sort_courses_by_releasedate_or_updatedate($courses)
+    {
+        $courses = $courses->map(function ($c) {
+            return ['id' => $c->id, 'date' => $c->updateDate ?? $c->releaseDate,];
+        })->sortByDesc(function ($c) {
+            return verta($c['date']);
+        })->take(4);
+        $ids = [];
+        foreach ($courses as $course) {
+            $ids[] = $course['id'];
+        }
+        $courses = Course::with('authors')->whereIn('id', $ids)->get();
+
+        $courses->sortByDesc(function ($model) use ($ids) {
+            return array_search($model->getKey(), $ids);
+        });
+
+
+
+        return $courses;
+    }*/
+
     /**
      * Display a listing of the resource.
      *
@@ -53,6 +76,7 @@ class CourseController extends Controller
     public function index()
     {
         $free_courses_count = Course::where('price', 0)->count();
+        // $free_courses = $this->sort_courses_by_releasedate_or_updatedate(Course::where('price', 0)->get(['releaseDate', 'updateDate', 'id']));
 
         $free_courses_ids = Course::where('price', 0)
             ->get(['releaseDate', 'updateDate', 'id'])
@@ -88,6 +112,8 @@ class CourseController extends Controller
             return array_search($model->getKey(), $ids);
         });
 
+        $dubbed_courses = Course::with('authors')->where('dubbed_id', 1)->limit(4)->get();
+
         $popular_courses = Course::with('authors')->orderBy('views', 'DESC')
             ->limit(4)->get();
 
@@ -100,6 +126,7 @@ class CourseController extends Controller
             'free_courses' => $free_courses,
             'latest_courses' => $latest_courses,
             'popular_courses' => $popular_courses,
+            ''=>$,
             'paths' => $paths,
             'page_tabs' => $page_tabs,
         ]);

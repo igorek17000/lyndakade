@@ -9,7 +9,21 @@
     <div class="card-body row mx-0 pt-3 pb-0" style="max-height: 160px; min-height: 160px;">
       <div class="col-12 px-0 text-right mb-2" style="color: green;position: relative;font-size: 15px;">
         <span style="opacity: 0;">1</span>
-        <div style="
+        @if ($course->price == 0)
+          <div style="
+                color: white;
+                font-weight: 600;
+                top: 0;
+                left: 0;
+                position: absolute;
+                background-color: #cc2222;
+                padding: 0 9px;
+                border-radius: 5px;
+            ">
+            رایگان
+          </div>
+        @else
+          <div style="
                 color: white;
                 font-weight: 600;
                 top: 0;
@@ -19,8 +33,9 @@
                 padding: 0 9px;
                 border-radius: 5px;
             ">
-          {{ $course->price == 0 ? 'رایگان' : number_format($course->price) . ' تومان' }}
-        </div>
+            {{ number_format($course->price) . ' تومان' }}
+          </div>
+        @endif
         @if ($course->updateDate)
           <div style="
                 color: white;
@@ -46,9 +61,13 @@
           </span>
         </a>
       </div>
-
-      @if ($course->persian_subtitle_id == 1)
-        <div class="course-grid persian-subtitle"
+      @if ($course->dubbed_id == 1)
+        <div class="course-grid persian-subtitle text-center"
+          style="color: white; font-weight: 600; bottom: 20%; font-size: 13px; width: 130px; position: absolute; background-color: darkgreen; padding: 2px 15px; border-radius: 5px;left: 0; right: 0; margin: auto;">
+          دوبله فارسی
+        </div>
+      @elseif ($course->persian_subtitle_id == 1)
+        <div class="course-grid persian-subtitle  text-center"
           style="color: white; font-weight: 600; bottom: 20%; font-size: 13px; width: 130px; position: absolute; background-color: darkgoldenrod; padding: 2px 15px; border-radius: 5px;left: 0; right: 0; margin: auto;">
           با زیرنویس فارسی
         </div>
