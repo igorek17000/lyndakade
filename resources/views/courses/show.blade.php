@@ -4,8 +4,7 @@
   'image' => fromDLHost($course->img),
   'title' => $course->title . ' - ' . $course->titleEng . ' - لیندا کده',
   'description' => $course->description . ' - ' . $course->descriptionEng,
-  'keywords' => $course->title . ', ' . $course->titleEng . ', ' . join(', ', explode(' ', $course->title)) . ', ' .
-  join(', ', explode(' ', $course->titleEng)) . ' , ' . get_seo_keywords(),
+  'keywords' => $course->title . ', ' . $course->titleEng . ' , ' . get_seo_keywords(),
   ])
 @endpush
 
