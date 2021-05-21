@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @push('meta.in.head')
-  @include('meta::manager',[
+  <link rel="canonical" href="https://lyndakade.ir">
+  <link rel="alternate" hreflang="fa" href="https://lyndakade.ir">
+
+@include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
   'title' => ' لیندا کده | بروز ترین سایت آموزشی',
   'keywords' => get_seo_keywords(),
