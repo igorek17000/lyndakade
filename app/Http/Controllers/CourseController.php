@@ -591,6 +591,7 @@ class CourseController extends Controller
 
     public function courses_api_set(Request $request)
     {
+        dd($request);
         $id = $request->get('id');
         $course = Course::where('id', $id);
         if ($course->get()->first()) {
