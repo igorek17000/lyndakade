@@ -589,10 +589,8 @@ class CourseController extends Controller
         ], 200);
     }
 
-    public function courses_api_set(Request $request)
+    public function courses_api_set(Request $request, $id)
     {
-        dd($request);
-        $id = $request->get('id');
         $course = Course::where('id', $id);
         if ($course->get()->first()) {
             $course->update(['thumbnail' => $request->get('thumbnail')]);
