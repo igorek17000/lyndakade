@@ -6,6 +6,7 @@
   'description' => $course->description . ' - ' . $course->descriptionEng,
   'keywords' => $course->title . ', ' . $course->titleEng . ' , ' . get_seo_keywords(),
   ])
+  <link rel="canonical" href="{{ request()->url() }}" />
 @endpush
 
 @section('content')
