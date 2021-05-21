@@ -42,7 +42,7 @@
                 font-weight: 600;
                 top: 0;
                 position: absolute;
-                background-color: red;
+                background-color: orange;
                 padding: 0 9px;
                 border-radius: 5px;
             ">
