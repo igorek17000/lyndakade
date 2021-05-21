@@ -594,7 +594,7 @@ class CourseController extends Controller
         $id = $request->get('id');
         $course = Course::where('id', $id);
         if ($course->get()->first()) {
-            $course->update($request->only(['thumbnail']));
+            $course->update(['thumbnail' => $request->get('thumbnail')]);
             return new JsonResponse([
                 'message' => 'course has been updated',
                 'status' => 'success',
