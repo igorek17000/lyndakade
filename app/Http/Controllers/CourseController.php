@@ -569,8 +569,7 @@ class CourseController extends Controller
 
     public function courses_all_api(Request $request)
     {
-        $courses =  Course::with(['authors', 'subjects', 'softwares'])->orderBy('created_at', 'desc')
-            ->get(['id', 'slug_url', 'slug', 'title', 'titleEng', 'thumbnail', 'img', 'previewFile']);
+        $courses =  Course::with(['authors', 'subjects', 'softwares'])->orderBy('created_at', 'desc')->get();
 
         $page = intval($request->get('page', 1));
         $perPage = intval($request->get('perPage', 15));
