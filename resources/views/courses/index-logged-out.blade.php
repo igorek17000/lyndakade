@@ -19,7 +19,7 @@
         </div> --}}
         <h1 style="font-size: 2.25rem;">
           آموزش های وبسایت
-          <a href="https://www.lynda.com/" style="color: orange">لیندا</a>
+          <a href="https://www.linkedin.com/" style="color: orange">لینکدین</a>
           به همراه زیرنویس
         </h1>
         @guest
@@ -27,7 +27,7 @@
         @endguest
         <div style="margin-top: 5%; margin-bottom: 2%;">
           برای جستجوی درس مربوطه کافی است لینک مربوط به درس را که در
-          <a href="https://www.lynda.com/" style="color: orange">سایت لیندا</a>
+          <a href="https://www.linkedin.com/" style="color: orange">سایت لینکدین</a>
           است را وارد کنید
         </div>
         <div class="row m-0 p-0">
@@ -36,7 +36,7 @@
               <div class="row justify-content-center">
                 <div class="col-12">
                   <input id="url" name="url" type="text" class="form-control"
-                    placeholder="https://www.lynda.com/Business-tutorials/Writing-Articles/2823292-2.html" dir="ltr">
+                    placeholder="https://www.linkedin.com/learning/writing-articles-2" dir="ltr">
                 </div>
                 <button type="submit" class="btn btn-primary">ارسال</button>
               </div>

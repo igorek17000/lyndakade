@@ -390,20 +390,13 @@ class CourseController extends Controller
         ], 200);
     }
 
-    private function find_id_from_link($link)
+    private function find_slug_linkedin_from_link($link)
     {
-        if ($idx = strpos($link, 'lynda.com')) {
-            $link = substr($link, $idx);
-        }
-        if ($idx = strpos($link, 'lyndakade.ir')) {
-            $link = substr($link, $idx);
+        if (!strpos($link, 'linkedin.com')) {
+            return false;
         }
         try {
-            $id = explode("/", $link)[3];
-            if ($idx = strpos($id, '-')) {
-                $id = substr($id, 0, $idx);
-            }
-            return $id;
+            return explode("/", $link)[4];
         } catch (\Throwable $th) {
             return false;
         }
@@ -419,14 +412,14 @@ class CourseController extends Controller
                 'status' => 'link is required',
             ], 200);
         }
-        $id = $this->find_id_from_link($link);
-        if (!$id) {
+        $slug_linkedin = $this->find_slug_linkedin_from_link($link);
+        if (!$slug_linkedin) {
             return new JsonResponse([
                 'data' => [],
                 'status' => 'link is not valid',
             ], 200);
         }
-        $course = Course::find($id);
+        $course = Course::firstWhere('slug_linkedin', $slug_linkedin);
         if (!$course) {
             return new JsonResponse([
                 'data' => [],
