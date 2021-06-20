@@ -3,7 +3,7 @@
   <link rel="canonical" href="https://lyndakade.ir">
   <link rel="alternate" hreflang="fa" href="https://lyndakade.ir">
 
-@include('meta::manager',[
+  @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
   'title' => ' لیندا کده | بروز ترین سایت آموزشی',
   'keywords' => get_seo_keywords(),
@@ -185,26 +185,26 @@
   </div>
 
   @if (isset($dubbed_courses))
-  @if(count($dubbed_courses) > 0)
-    <div class="row card mx-0 latest-courses border-0">
-      <div class="col-12 card-body">
-        <div class="container">
-          <h5>
-            <i class="fas fa-plus-square"></i>
-            دوره های آموزشی دوبله شده
-            (تعداد دوره ها {{ count($dubbed_courses) }})
-            <a class="btn btn-primary my-2" href="{{ route('courses.free') }}">مشاهده بیشتر</a>
-          </h5>
-          <hr style="border-top: 1px solid  #f8ba16">
-          <div class="row d-flex ">
-            @foreach ($dubbed_courses as $course)
-              @include('courses.partials._course_list_grid', ['course' => $course])
-            @endforeach
+    @if (count($dubbed_courses) > 0)
+      <div class="row card mx-0 latest-courses border-0">
+        <div class="col-12 card-body">
+          <div class="container">
+            <h5>
+              <i class="fas fa-plus-square"></i>
+              دوره های آموزشی دوبله شده
+              (تعداد دوره ها {{ count($dubbed_courses) }})
+              <a class="btn btn-primary my-2" href="{{ route('courses.free') }}">مشاهده بیشتر</a>
+            </h5>
+            <hr style="border-top: 1px solid  #f8ba16">
+            <div class="row d-flex ">
+              @foreach ($dubbed_courses as $course)
+                @include('courses.partials._course_list_grid', ['course' => $course])
+              @endforeach
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  @endif
+    @endif
   @endif
 
   <div class="row card mx-0 latest-courses border-0">
@@ -439,6 +439,7 @@
             'link': url
           },
           success: (result) => {
+            console.log("result", result);
             if (result.status == 'success') {
               // $('#url').val('');
               window.location.href = result.url;
@@ -464,7 +465,6 @@
         return false;
       };
     });
-
   </script>
 
 @endsection
