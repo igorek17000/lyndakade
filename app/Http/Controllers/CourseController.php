@@ -567,6 +567,44 @@ class CourseController extends Controller
         ], 200);
     }
 
+    public function courses_set_slug_linkedin(Request $request)
+    {
+        $course_id = $request->input('course_id');
+        if (!$course_id) {
+            return new JsonResponse([
+                'message' => 'course id is required',
+                'status' => 'error',
+            ], 500);
+        }
+
+        $slug_linkedin = $request->input('slug_linkedin');
+        if (!$slug_linkedin) {
+            return new JsonResponse([
+                'message' => 'slug linkedin is required',
+                'status' => 'error',
+            ], 500);
+        }
+
+        $course = Course::find($course_id);
+
+        return new JsonResponse([
+            'course' => $course,
+            'slug_linkedin' => $slug_linkedin,
+        ], 200);
+
+        if ($course) {
+            $course->update(['slug_linkedin' => $slug_linkedin]);
+            return new JsonResponse([
+                'message' => 'course has been updated',
+                'status' => 'success',
+            ], 200);
+        }
+        return new JsonResponse([
+            'message' => 'course was not found',
+            'status' => 'error',
+        ], 404);
+    }
+
     public function courses_all_api(Request $request)
     {
         $courses =  Course::with(['authors', 'subjects', 'softwares'])->orderBy('created_at', 'desc')->get();
