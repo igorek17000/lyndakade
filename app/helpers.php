@@ -13,11 +13,11 @@ function zerofill($num, $zerofill = 2)
 
 function courseURL($course)
 {
-    return route('courses.show.linkedin', [$course->slug_linkedin]);
-    // if ($course->slug_linkedin) {
-    //     return route('courses.show.linkedin', [$course->slug_linkedin]);
-    // }
-    // return route('courses.show', [$course->slug_url, $course->slug, $course->id]);
+    // return route('courses.show.linkedin', [$course->slug_linkedin]);
+    if ($course->slug_linkedin) {
+        return route('courses.show.linkedin', [$course->slug_linkedin]);
+    }
+    return route('courses.show', [$course->slug_url, $course->slug, $course->id]);
 }
 
 function get_course_state($course)
