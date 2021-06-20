@@ -224,18 +224,19 @@
           </div>
           <div class="tab-pane fade" id="nav-download-links" role="tabpanel" aria-labelledby="nav-download-links-tab">
             <div class="row">
-              <div class="col-12 text-center">
+                @include('courses.partials._project_files', ['course' => $course])
+              
+              {{-- <div class="col-12 text-center">
                 <i class="lyndacon download align-self-center p-2" style="font-size: 24px;"></i>
                 <br>
                 برای تماشا بصورت آفلاین، این درس را {{ $course->price > 0 ? 'خریداری' : 'دانلود' }} کنید.
 
                 <br>
                 @include('courses.partials._link_btn', ['course' => $course])
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
-
       </div>
     </aside>
   </div>
@@ -374,6 +375,5 @@
         keyboard: false,
       })
     })
-
   </script>
 @endsection
