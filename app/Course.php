@@ -15,7 +15,7 @@ class Course extends Model
 {
     // use InteractsWithViews;
     use SearchableTrait;
-    protected $fillable = ['title', 'titleEng', 'description'];
+    protected $fillable = ['title', 'titleEng', 'description', 'releaseDate', 'updateDate', 'slug_linkedin'];
     // protected $with = ['authors'];
 
     /**
