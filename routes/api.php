@@ -22,7 +22,7 @@ Route::middleware('guest')->get('/courses/set/{id}', 'CourseController@courses_a
 Route::middleware('guest')->get('/courses', 'CourseController@courses_api')->name('courses.api');
 Route::middleware('guest')->get('/courses/{id}', 'CourseController@course_api')->name('course.api');
 Route::middleware('guest')->post('/courses/with-link', 'CourseController@courses_with_link_api')->name('course.api.with-link');
-Route::middleware('guest')->post('/courses/set-slug-linkedin', 'CourseController@courses_set_slug_linkedin')->name('course.api.with-link');
+Route::middleware('guest')->post('/courses/set-slug-linkedin', 'CourseController@courses_set_slug_linkedin')->name('course.api.set-slug-linkedin');
 Route::middleware('guest')->get('/courses/add-view/{id}', 'CourseController@add_view')->name('courses.add-view.api');
 Route::middleware('guest')->get('/courses/add-views/{id}/{count}', 'CourseController@add_views')->name('courses.add-views.api');
 Route::middleware('guest')->get('/courses-all', 'CourseController@courses_all_api')->name('courses.all.api');
