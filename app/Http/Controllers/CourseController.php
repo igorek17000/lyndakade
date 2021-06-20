@@ -587,10 +587,10 @@ class CourseController extends Controller
 
         $course = Course::find($course_id);
 
-        return new JsonResponse([
-            'course' => $course,
-            'slug_linkedin' => $slug_linkedin,
-        ], 200);
+        // return new JsonResponse([
+        //     'course' => $course,
+        //     'slug_linkedin' => $slug_linkedin,
+        // ], 200);
 
         if ($course) {
             $course->update(['slug_linkedin' => $slug_linkedin]);
