@@ -13,6 +13,9 @@ function zerofill($num, $zerofill = 2)
 
 function courseURL($course)
 {
+    if ($course->slug_linkedin) {
+        return route('courses.show.linkedin', [$course->slug_linkedin]);
+    }
     return route('courses.show', [$course->slug_url, $course->slug, $course->id]);
 }
 

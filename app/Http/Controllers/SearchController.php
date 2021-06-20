@@ -17,154 +17,6 @@ use function Clue\StreamFilter\fun;
 
 class SearchController extends Controller
 {
-    /**
-     * @param Request $request
-     * @return Application|ResponseFactory|Response
-     * @throws Throwable
-     */
-    public function search(Request $request)
-    {
-        $search_text = $request->get('q');
-        if ($search_text) {
-            $search_text = trim($search_text);
-
-            // search while typing  OR  get next page
-            if ($request->ajax()) {
-                $page = $request->get('page');
-
-                // get next page
-                if ($page) {
-                    $courses = Course::query()
-                        ->where('title', 'LIKE', "%{$search_text}%")
-                        ->orWhere('titleEng', 'LIKE', "%{$search_text}%")
-                        ->get()
-                        ->sortBy('views', SORT_DESC, true)
-                        ->forPage($page, 15);
-                    $output = "";
-                    if ($courses) {
-                        $output = view('search.search', [
-                            'courses' => $courses,
-                        ])->render();
-//
-//                        foreach ($courses as $course) {
-//                            $output .= '<hr>';
-//                            $output .= view('courses.partials._course_list', [
-//                                'course' => $course,
-//                            ])->render();
-//                        }
-                        $page++;
-                        if ($page < 3) {
-                            $output .=
-                                '<div id="load-more"
-                                     class="btn form-control text-center"
-                                     data-id="' . $page . '">
-                                    موارد بیشتر
-                                </div>';
-                        }
-                    } else {
-                        $output = "";
-                    }
-                    return Response($output);
-
-                } // search while typing
-                else {
-                    $courses = Course::query()
-                        ->where('title', 'LIKE', "%{$search_text}%")
-                        ->orWhere('titleEng', 'LIKE', "%{$search_text}%")
-                        ->get()
-                        ->take(2);
-                    $subjects = Subject::query()
-                        ->where('title', 'LIKE', "%{$search_text}%")
-                        ->get()
-                        ->take(2);
-                    $learnPaths = LearnPath::query()
-                        ->where('title', 'LIKE', "%{$search_text}%")
-                        ->orWhere('titleEng', 'LIKE', "%{$search_text}%")
-                        ->get()
-                        ->take(2);
-                    $output = "";
-                    $i = 0;
-                    if ($courses) {
-                        foreach ($courses as $key => $item) {
-                            $output .=
-                                '<li>
-                                    <a id="header-search-result-' . $i++ . '"
-                                       href="' .
-                                route('courses.show', [$item->subjects[0]->slug, $item->slug, $item->id, rand(0, 1)])
-                                . '"
-                                       role="option" aria-selected="false">
-                                        <span class="icon" aria-hidden="true"></span>
-                                        <span class="term">' . $item->title . '</span>
-                                    </a>
-                                </li>';
-                        }
-                    }
-                    if ($subjects) {
-                        foreach ($subjects as $key => $item) {
-                            $output .=
-                                '<li>
-                                    <a id="header-search-result-' . $i++ . '"
-                                       href="' . route('home.show', [$item->slug, $item->id]) . '"
-                                       role="option" aria-selected="false">
-                                        <span class="icon" aria-hidden="true"></span>
-                                        <span class="term">' . $item->title . '</span>
-                                    </a>
-                                </li>';
-                        }
-                    }
-                    if ($learnPaths) {
-                        foreach ($learnPaths as $key => $item) {
-                            $output .=
-                                '<li>
-                                    <a id="header-search-result-' . $i++ . '"
-                                       href="' .
-                                route('learn.paths.show', [$item->library->slug, $item->slug])
-                                . '"
-                                       role="option" aria-selected="false">
-                                        <span class="icon" aria-hidden="true"></span>
-                                        <span class="term">' . $item->title . '</span>
-                                    </a>
-                                </li>';
-                        }
-                    }
-                    if (strlen($output) < 2) {
-                        $output = "";
-                    }
-                    return Response($output);
-                }
-            } // search when button pressed
-            else {
-                $courses = Course::query()
-                    ->where('title', 'LIKE', "%{$search_text}%")
-                    ->orWhere('titleEng', 'LIKE', "%{$search_text}%")
-                    ->get()
-                    ->sortBy('views', SORT_DESC, true)
-                    ->take(15);
-//                dd($courses, $search_text);
-                $output = "";
-                if ($courses) {
-                    foreach ($courses as $course) {
-//                        $output .= '<hr>';
-                        $output .= view('courses.partials._course_list', [
-                            'course' => $course,
-                        ])->render();
-                    }
-                    $output .=
-                        '<div id="load-more"
-                         class="btn form-control text-center"
-                         data-id="1">
-                        موارد بیشتر
-                    </div>';
-                } else {
-                    $output = "";
-                }
-
-                return Response($output);
-            }
-        }
-        return Response('');
-    }
-
     private function prepare_categories_filter_item(Request $request, $title, $search_key, $collection, $courses_id)
     {
         $item = [];
@@ -210,7 +62,6 @@ class SearchController extends Controller
     {
         $search_text = $request->has('q') ? $request->get('q') : '';
 
-//        if ($search_text) {
         $categories_filter = [];
 
         $courses = Course::query()
@@ -371,8 +222,5 @@ class SearchController extends Controller
             'courses' => count($courses) > 15 ? $courses->take(15) : $courses,
             'categories_filter' => $categories_filter,
         ]);
-//        } else {
-//            return Response('404');
-//        }
     }
 }

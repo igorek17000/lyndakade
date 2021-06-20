@@ -232,6 +232,95 @@ class CourseController extends Controller
         return redirect()->route('root.home');
     }
 
+    public function show_linkedin(Request $request, $slug_linkedin)
+    {
+        $course = Course::with(['authors', 'subjects', 'softwares'])->firstWhere('slug_linkedin', $slug_linkedin);
+        if ($course) {
+            $course->increment('views');
+            $my_id = $course->id;
+
+            $view = new \App\View([
+                'course_id' => $course->id,
+                'user_id' => auth()->check() ? auth()->id() : null,
+                'ip' => $request->ip(),
+            ]);
+            $view->save();
+
+            // $date  = Carbon::now()->subMonths(2);
+            // \App\View::where('created_at', '<=', $date)->delete();
+
+            /*
+                 * getting courses id related to subjects
+                 */
+            $subjects = $course->subjects;
+            $subjects_id = array();
+            foreach ($subjects as $subject) {
+                array_push($subjects_id, $subject->id);
+            }
+            $courses_id = DB::table('course_subject')
+                ->whereIn('subject_id', $subjects_id)
+                ->get('course_id');
+
+            $ids = array();
+            foreach ($courses_id as $id) {
+                array_push($ids, $id->course_id);
+            }
+
+            /*
+                 * getting courses id related to software
+                 */
+            $softwares = $course->softwares;
+            $softwares_id = array();
+            foreach ($softwares as $software) {
+                array_push($softwares_id, $software->course_id);
+            }
+            $courses_id = DB::table('course_software')
+                ->whereIn('software_id', $softwares_id)
+                ->get('course_id');
+
+            foreach ($courses_id as $id) {
+                array_push($ids, $id->course_id);
+            }
+
+            while (($key = array_search($my_id, $ids)) !== false) {
+                unset($ids[$key]);
+            }
+            $ids = array_values(array_unique($ids));
+
+            $related_courses = Course::with('authors')->orderBy('views', 'DESC')->whereIn('id', $ids)->limit(50)->get();
+
+            $courses = array();
+            foreach ($related_courses as $related_course) {
+                array_push($courses, $related_course);
+            }
+
+            $skillEng = SkillLevel::find($course->skillLevel)->titleEng;
+            $skill = SkillLevel::find($course->skillLevel)->title;
+
+            $has_subtitle = true;
+            try {
+                foreach (json_decode($course->previewSubtitle) as $subtitle) {
+                }
+                if (json_decode($course->previewSubtitle) == 0) {
+                    $has_subtitle = false;
+                }
+            } catch (Exception $e) {
+                $has_subtitle = false;
+            }
+
+            return view('courses.show', [
+                'skill' => $skill,
+                'skillEng' => $skillEng,
+                'course' => $course,
+                'has_subtitle' => $has_subtitle,
+                'related_courses' => $courses,
+                'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
+            ]);
+        }
+        abort(404);
+        return redirect()->route('root.home');
+    }
+
     public function not_found()
     {
         return abort(404);

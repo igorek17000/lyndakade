@@ -26,14 +26,19 @@ Auth::routes();
 // courses
 Route::get('/', 'CourseController@index')->name('root.home');
 Route::get('/{slug_url}/{slug}/{id}-2.html', 'CourseController@show')->name('courses.show');
+Route::get('/learning/{slug_linkedin}', 'CourseController@show_linkedin')->name('courses.show.linkedin');
 Route::get('/ajax/player/transcript', 'CourseController@subtitle_content')->name('courses.subtitle_content');
 Route::get('courses/download/{id}', 'CourseController@download_course')->name('courses.download');
 Route::post('/report-issues/courses', 'CourseController@report_issues')->name('courses.report-issues');
 Route::get('/c/{id}', function ($id) {
     $course = Course::firstWhere('id', $id);
     // ;
-    if ($course)
+    if ($course) {
+        if ($course->slug_linkedin) {
+            return redirect()->route('courses.show.linkedin', [$course->slug_linkedin]);
+        }
         return redirect()->route('courses.show', [$course->slug_url, $course->slug, $course->id]);
+    }
     abort(404);
 });
 
