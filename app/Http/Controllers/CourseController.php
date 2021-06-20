@@ -674,7 +674,7 @@ class CourseController extends Controller
             ], 500);
         }
 
-        $course = Course::find($course_id);
+        $course = Course::where('id', $course_id);
 
         // return new JsonResponse([
         //     'course' => $course,

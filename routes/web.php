@@ -32,7 +32,6 @@ Route::get('courses/download/{id}', 'CourseController@download_course')->name('c
 Route::post('/report-issues/courses', 'CourseController@report_issues')->name('courses.report-issues');
 Route::get('/c/{id}', function ($id) {
     $course = Course::firstWhere('id', $id);
-    // ;
     if ($course) {
         if ($course->slug_linkedin) {
             return redirect()->route('courses.show.linkedin', [$course->slug_linkedin]);
