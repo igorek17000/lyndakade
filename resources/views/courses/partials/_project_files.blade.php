@@ -19,7 +19,7 @@
   </div>
 @else
   <div class="col-lg-2 text-center">
-    <i class="lyndacon project-files" style="font-size: 120px;"></i>
+    <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
   </div>
   <div class="col-lg-10">
     <div></div>
@@ -40,7 +40,7 @@
             <li role="presentation">
               <a role="link"
                 href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
-                <i class="lyndacon unlock"></i>
+                <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
                   فایل دوره آموزشی
                 </span>
