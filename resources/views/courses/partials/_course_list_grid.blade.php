@@ -74,8 +74,10 @@
           با زیرنویس فارسی
         </div>
       @else
-        <div class="course-grid persian-subtitle  text-center"
-          style="color: white; font-weight: 600; bottom: 20%; font-size: 13px; width: 130px; position: absolute; background-color: magenta; padding: 2px 15px; border-radius: 5px;left: 0; right: 0; margin: auto;">
+        <div class="course-grid persian-subtitle  text-center" style="color: white; font-weight: 600; bottom: 20%; font-size: 13px;
+    width: 140px;
+    position: absolute;
+    background-color: limegreen; padding: 2px 15px; border-radius: 5px;left: 0; right: 0; margin: auto;">
           با زیرنویس انگلیسی
         </div>
 
