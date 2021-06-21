@@ -65,16 +65,16 @@
       </div>
       @if ($course->dubbed_id == 1)
         <div class="course-grid persian-subtitle text-center"
-          style="color: white; font-weight: 600; bottom: 20%; font-size: 13px; width: 130px; position: absolute; background-color: darkgreen; padding: 2px 15px; border-radius: 5px;left: 0; right: 0; margin: auto;">
+          style="color: white; font-weight: 600; bottom: 76px; font-size: 13px; width: 130px; position: absolute; background-color: darkgreen; padding: 2px 15px; border-radius: 5px;left: 0; right: 0; margin: auto;">
           دوبله فارسی
         </div>
       @elseif ($course->persian_subtitle_id == 1)
         <div class="course-grid persian-subtitle  text-center"
-          style="color: white; font-weight: 600; bottom: 20%; font-size: 13px; width: 130px; position: absolute; background-color: darkgoldenrod; padding: 2px 15px; border-radius: 5px;left: 0; right: 0; margin: auto;">
+          style="color: white; font-weight: 600; bottom: 76px; font-size: 13px; width: 130px; position: absolute; background-color: darkgoldenrod; padding: 2px 15px; border-radius: 5px;left: 0; right: 0; margin: auto;">
           با زیرنویس فارسی
         </div>
       @else
-        <div class="course-grid persian-subtitle  text-center" style="color: white; font-weight: 600; bottom: 20%; font-size: 13px;
+        <div class="course-grid persian-subtitle  text-center" style="color: white; font-weight: 600; bottom: 76px; font-size: 13px;
     width: 140px;
     position: absolute;
     background-color: limegreen; padding: 2px 15px; border-radius: 5px;left: 0; right: 0; margin: auto;">
