@@ -10,7 +10,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
   <meta charset="UTF-8" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
+
   <link rel="canonical" href="{{ request()->url() }}" />
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -24,7 +24,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
     gtag('js', new Date());
 
     gtag('config', 'G-SB27JF9C9Y');
-
   </script>
   <meta name="google-site-verification" content="TPdR7eAXlaJ5SPRxpwWcQbG7yNX3s-DS3tLUHlOp9RY" />
   @stack('meta.in.head')
@@ -269,7 +268,8 @@ session(['redirectToAfterLogin' => url()->previous()]);
                   </li>
                   @if (Route::has('register'))
                     <li class="nav-item">
-                      <a class="nav-link" href="{{ route('register') }}">{{ __('msg.Register') }}</a>
+                      <a class="nav-link" style="background-color: #008cc9;"
+                        href="{{ route('register') }}">{{ __('msg.Register') }}</a>
                     </li>
                   @endif
                 @endif
@@ -280,6 +280,120 @@ session(['redirectToAfterLogin' => url()->previous()]);
         </div>
       </div>
     </div>
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark w-100 py-0">
+      <a class="navbar-brand" href="https://lyndakade.ir">
+        <img draggable="false" class="img-logo m-0 p-0" src="https://lyndakade.ir/image/logoedit2.png" title="لینداکده"
+          alt="لینداکده">
+        <span class="hidden-md hidden-lg">لیندا کده</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              کتابخانه
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              @foreach (\App\Library::get() as $library)
+                <a class="dropdown-item" href="{{ route('home.show', [$library->slug, $library->id]) }}">
+                  <i class="lyndacon cat-{{ $library->slug }} category-icons" title="{{ $library->title }}"
+                    aria-hidden="true"></i>
+                  {{ $library->title }}
+                  <br>
+                  <small>{{ $library->titleEng }}</small>
+                </a>
+              @endforeach
+            </div>
+          </li>
+          @if (\App\LearnPath::count() == 0)
+            <li class="nav-item">
+              <a class="nav-link" href="#" title="به زودی اضافه میشود">
+                مسیرهای آموزشی
+              </a>
+            </li>
+          @else
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                مسیرهای آموزشی
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                @foreach (\App\LearnPath::get() as $path)
+                  <a class="dropdown-item" style="color: #fff;"
+                    href="{{ route('learn.paths.show', [$path->library->slug, $path->slug]) }}">
+                    {{ $path->title }}
+                  </a>
+                @endforeach
+              </div>
+            </li>
+          @endif
+          <li class="nav-item">
+            <a class="nav-link" href="#">درخواست دوره</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">تماس با ما</a>
+          </li>
+        </ul>
+        @if (Auth::check())
+          <div class="dropdown">
+            <a id="navbarUser" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="account-name">سلام {{ Auth::user()->name }}
+              </span>
+              <div class="photo">
+                <img src="#" class="lazyload" data-src="{{ fromDLHost(Auth::user()->avatar) }}"
+                  alt="{{ __('Profile Photo') }}">
+              </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarUser">
+              @if (Auth::user()->isAdmin())
+                <li>
+                  <a class="dropdown-item" href="{{ route('voyager.dashboard') }}">{{ __('msg.Dashboard') }}</a>
+                </li>
+              @else
+                <li>
+                  <a class="dropdown-item" href="{{ route('courses.mycourses') }}">دروس خریداری شده</a>
+                </li>
+              @endif
+              <li>
+                <a class="dropdown-item" href="{{ route('my-profile') }}">{{ __('msg.Profile') }}</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  {{ __('msg.Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
+              </li>
+            </ul>
+          </div>
+        @else
+          <div class="nav-item">
+            <a class="nav-link btn btn-outline-primary" href="{{ route('login') }}">{{ __('msg.Login') }}</a>
+          </div>
+          @if (Route::has('register'))
+            <div class="nav-item">
+              <a class="nav-link btn btn-outline-primary" style="background-color: #008cc9;"
+                href="{{ route('register') }}">{{ __('msg.Register') }}</a>
+            </div>
+          @endif
+        @endif
+        <form class="form-inline my-2 my-lg-0">
+          <input type="search" name="q" class="form-control mr-sm-2" role="combobox" value=""
+            style="font-size: 13px;border: 0;text-align: right;padding: 0;padding-right: 5px;min-width: 320px;border-radius: 5px;"
+            placeholder="نرم افزار یا مهارتی که میخواهید یاد بگیرید را جستجو کنید" autocomplete="off">
+
+          {{-- <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">جستجو</button> --}}
+        </form>
+      </div>
+    </nav>
 
     <div id="notifications">
       <div class="" style="background-color: orange; padding: 15px;">
@@ -417,7 +531,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
       //   } else {
       //     toastr.error("toastr alert-type " + alertType + " is unknown");
       //   }
-
     </script>
   @endif
   <style>
@@ -596,7 +709,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
       // });
       // $('.toast').toast('show');
     });
-
   </script>
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
 </body>

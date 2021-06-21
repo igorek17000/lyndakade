@@ -19,7 +19,7 @@
         </div> --}}
         <h1 style="font-size: 2.25rem;">
           آموزش های وبسایت
-          <a href="https://www.linkedin.com/" style="color: orange">لینکدین</a>
+          <a href="https://www.linkedin.com/" style="color: #2977c9;">لینکدین</a>
           به همراه زیرنویس
         </h1>
         @guest
@@ -27,7 +27,7 @@
         @endguest
         <div style="margin-top: 5%; margin-bottom: 2%;">
           برای جستجوی درس مربوطه کافی است لینک مربوط به درس را که در
-          <a href="https://www.linkedin.com/" style="color: orange">سایت لینکدین</a>
+          <a href="https://www.linkedin.com/" style="color: #2977c9;">سایت لینکدین</a>
           است را وارد کنید
         </div>
         <div class="row m-0 p-0">

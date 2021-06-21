@@ -4819,3 +4819,59 @@ button.load-more:not(:disabled) .text-t {
 .search-page .subject-description {
     font-size: 1.1rem;
 }
+
+.navbar.sticky-top .nav-item .nav-link:hover {
+    background-color: #3470ac;
+}
+
+nav.sticky-top ul > li > a {
+    transition: all 0.2s linear 0s;
+}
+nav.sticky-top ul li a:before {
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    content: "";
+    box-shadow: 0 0 7px #00bffe;
+    -moz-box-shadow: 0 0 7px #00bffe;
+    -webkit-box-shadow: 0 0 7px #00bffe;
+    background-color: #00bffe;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+}
+
+nav.sticky-top ul > li:hover > a:before {
+    width: 100%;
+}
+
+nav.sticky-top ul > li > a {
+    font-size: 14px;
+    color: #fff;
+    line-height: 25px;
+    padding-bottom: 35px;
+    position: relative;
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: #333;
+    font-size: 14px;
+}
+
+.navbar-nav .dropdown-menu a.dropdown-item {
+    color: whitesmoke;
+    padding-bottom: 0;
+    padding-top: 0;
+    border-bottom: 2px solid blue;
+}
+
+.navbar-nav .dropdown-menu a.dropdown-item:last-child {
+    border: 0;
+}
+
+.navbar-nav .dropdown-menu a.dropdown-item:hover {
+    color: white;
+    background-color: #2977c9;
+}

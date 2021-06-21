@@ -60,7 +60,7 @@
             <li role="presentation">
               <a role="link"
                 href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
-                <i class="lyndacon unlock"></i>
+                <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
                   فایل تمرینی {{ $idx }}
                 </span>
@@ -75,7 +75,7 @@
             <li role="presentation">
               <a role="link"
                 href="{{ route('courses.download', [$course->id, hash('md5', 'persianSubtitleFile') => hash('sha256', auth()->id())]) }}">
-                <i class="lyndacon unlock"></i>
+                <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
                   فایل زیرنویس فارسی دوره
                 </span>
