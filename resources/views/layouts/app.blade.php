@@ -340,16 +340,16 @@ session(['redirectToAfterLogin' => url()->previous()]);
             <a class="nav-link" href="{{ route('root.contact.us') }}">تماس با ما</a>
           </li>
         </ul>
-        <div class="dropdown">
-          <a class="nav-link" id="cart-list" data-toggle="dropdown" role="button" aria-expanded="false">
-            <img class="justify-content-center" src="{{ asset('smart-cart.png') }}" width="18" height="18">
-          </a>
-          <div class="dropdown-menu dropdown-cart dropdown-menu-center p-1 text-center" role="menu" id="cart-list-item"
-            style="width: 400px!important;color: white;">
-            @include('carts.partials._cart_list')
-          </div>
-        </div>
         @if (Auth::check())
+          <div class="dropdown">
+            <a class="nav-link" id="cart-list" data-toggle="dropdown" role="button" aria-expanded="false">
+              <img class="justify-content-center" src="{{ asset('smart-cart.png') }}" width="18" height="18">
+            </a>
+            <div class="dropdown-menu dropdown-cart dropdown-menu-center p-1 text-center" role="menu"
+              id="cart-list-item" style="width: 400px!important;color: white;">
+              @include('carts.partials._cart_list')
+            </div>
+          </div>
           <div class="dropdown">
             <a id="navbarUser" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="account-name">سلام {{ Auth::user()->name }}
