@@ -4855,23 +4855,23 @@ nav.sticky-top ul > li > a {
     position: relative;
 }
 
-.navbar-nav .dropdown-menu {
+nav.navbar .dropdown-menu {
     background-color: #333;
     font-size: 14px;
 }
 
-.navbar-nav .dropdown-menu a.dropdown-item {
+nav.navbar .dropdown-menu a.dropdown-item {
     color: whitesmoke;
     padding-bottom: 0;
     padding-top: 0;
     border-bottom: 2px solid blue;
 }
 
-.navbar-nav .dropdown-menu a.dropdown-item:last-child {
+nav.navbar .dropdown-menu a.dropdown-item:last-child {
     border: 0;
 }
 
-.navbar-nav .dropdown-menu a.dropdown-item:hover {
+nav.navbar .dropdown-menu a.dropdown-item:hover {
     color: white;
     background-color: #2977c9;
 }
