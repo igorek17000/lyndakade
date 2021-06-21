@@ -4847,14 +4847,6 @@ nav.sticky-top ul > li:hover > a:before {
     width: 100%;
 }
 
-nav.sticky-top ul > li > a {
-    font-size: 14px;
-    color: #fff;
-    line-height: 25px;
-    padding-bottom: 35px;
-    position: relative;
-}
-
 nav.navbar .dropdown-menu {
     background-color: #333;
     font-size: 14px;

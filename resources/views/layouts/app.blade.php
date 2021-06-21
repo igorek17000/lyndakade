@@ -299,7 +299,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
               aria-haspopup="true" aria-expanded="false">
               کتابخانه
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdownMenuLink">
               @foreach (\App\Library::get() as $library)
                 <a class="dropdown-item" href="{{ route('home.show', [$library->slug, $library->id]) }}">
                   <i class="lyndacon cat-{{ $library->slug }} category-icons" title="{{ $library->title }}"
@@ -323,7 +323,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 aria-haspopup="true" aria-expanded="false">
                 مسیرهای آموزشی
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div class="dropdown-menu  dropdown-menu-center" aria-labelledby="navbarDropdownMenuLink">
                 @foreach (\App\LearnPath::get() as $path)
                   <a class="dropdown-item" style="color: #fff;"
                     href="{{ route('learn.paths.show', [$path->library->slug, $path->slug]) }}">
