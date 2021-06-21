@@ -505,12 +505,12 @@ session(['redirectToAfterLogin' => url()->previous()]);
               <p>لینداکده-1400</p>
             </div>
             <div class="social pull-left flip">
-              {{-- <a rel="noreferrer" href="http://www.Instagram.com/lyndakadeh" target="_blank"> <img data-toggle="tooltip"
+              <a rel="noreferrer" href="http://www.Instagram.com/lyndakade.ir" target="_blank"> <img data-toggle="tooltip"
                   src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram" title="اینستاگرام"
-                  class="icon-instagram"></a> --}}
-              <a rel="noreferrer" href="http://www.T.me/LyndaKade" target="_blank"> <img data-toggle="tooltip"
+                  class="icon-instagram"></a>
+              {{-- <a rel="noreferrer" href="http://www.T.me/LyndaKade" target="_blank"> <img data-toggle="tooltip"
                   src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram" title="کانال تلگرام"
-                  class="icon-telegram"> </a>
+                  class="icon-telegram"> </a> --}}
               <a rel="noreferrer" href="http://www.T.me/LyndaKadeSupport" target="_blank"> <img data-toggle="tooltip"
                   src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram" title="پیشتبانی تلگرام"
                   class="icon-telegram"> </a>
