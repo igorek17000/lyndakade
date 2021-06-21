@@ -81,6 +81,23 @@ session(['redirectToAfterLogin' => url()->previous()]);
 
   @csrf
 
+  <script>
+    function toggleDropdown(e) {
+      const _d = $(e.target).closest('.dropdown'),
+        _m = $('.dropdown-menu', _d);
+      setTimeout(function() {
+        const shouldOpen = e.type !== 'click' && _d.is(':hover');
+        _m.toggleClass('show', shouldOpen);
+        _d.toggleClass('show', shouldOpen);
+        $('[data-toggle="dropdown"]', _d).attr('aria-expanded', shouldOpen);
+      }, e.type === 'mouseleave' ? 200 : 0);
+    }
+
+    $('body')
+      .on('mouseenter mouseleave', '.dropdown', toggleDropdown)
+      .on('click', '.dropdown-menu a', toggleDropdown);
+  </script>
+
 </head>
 
 <body>
@@ -91,8 +108,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
     background-image: linear-gradient(to bottom,#f7f7f7 0,#e5e5e5 100%);">
 
     @include('go-to-top-btn')
-
-    <div class="navbar sticky-top navbar-expand-md navbar-dark bg-dark shadow-sm" style="padding: 0!important;">
+    {{-- <div class="navbar sticky-top navbar-expand-md navbar-dark bg-dark shadow-sm" style="padding: 0!important;">
       <div class="container">
         <a class="navbar-brand" href="{{ route('root.home') }}">
           <img draggable="false" class="img-logo m-0 p-0" src="{{ asset('image/logoedit2.png') }}" title="لینداکده"
@@ -279,7 +295,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
           </ul>
         </div>
       </div>
-    </div>
+    </div> --}}
 
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark w-100 py-0">
       <a class="navbar-brand" href="https://lyndakade.ir">
