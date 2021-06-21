@@ -403,18 +403,19 @@ session(['redirectToAfterLogin' => url()->previous()]);
         </form>
       </div>
     </nav>
-
-    <div id="notifications">
-      <div class="" style="background-color: orange; padding: 15px;">
-        <div class="container">
-          @foreach (\App\Notification::all() as $notification)
-            @if ($notification->expire > date(now()))
-              <h5>{!! $notification->message !!}</h5>
-            @endif
-          @endforeach
+    @if (\App\Notification::count() > 0)
+      <div id="notifications">
+        <div class="" style="background-color: orange; padding: 15px;">
+          <div class="container">
+            @foreach (\App\Notification::all() as $notification)
+              @if ($notification->expire > date(now()))
+                <h5>{!! $notification->message !!}</h5>
+              @endif
+            @endforeach
+          </div>
         </div>
       </div>
-    </div>
+    @endif
 
     <main id="app">
       @yield('content')
