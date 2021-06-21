@@ -334,13 +334,12 @@ session(['redirectToAfterLogin' => url()->previous()]);
             </li>
           @endif
           <li class="nav-item">
-            <a class="nav-link" href="#">درخواست دوره</a>
+            <a class="nav-link" href="{{ route('demands.create') }}">درخواست دوره</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">تماس با ما</a>
+            <a class="nav-link" href="{{ route('root.contact.us') }}">تماس با ما</a>
           </li>
         </ul>
-
         <div class="dropdown">
           <a class="nav-link" id="cart-list" data-toggle="dropdown" role="button" aria-expanded="false">
             <img class="justify-content-center" src="{{ asset('smart-cart.png') }}" width="18" height="18">
