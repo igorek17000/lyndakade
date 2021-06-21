@@ -282,7 +282,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
     </div> --}}
 
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark w-100 py-0">
-      <a class="navbar-brand" href="https://lyndakade.ir">
+      <a class="navbar-brand mb-1" href="https://lyndakade.ir">
         <img draggable="false" class="img-logo m-0 p-0" src="https://lyndakade.ir/image/logoedit2.png" title="لینداکده"
           alt="لینداکده">
         <span class="hidden-md hidden-lg">لیندا کده</span>
@@ -345,8 +345,8 @@ session(['redirectToAfterLogin' => url()->previous()]);
           <a class="nav-link" id="cart-list" data-toggle="dropdown" role="button" aria-expanded="false">
             <img class="justify-content-center" src="{{ asset('smart-cart.png') }}" width="18" height="18">
           </a>
-          <div class="dropdown-menu dropdown-cart dropdown-menu-center p-1" role="menu" id="cart-list-item"
-            style="width: 400px!important;">
+          <div class="dropdown-menu dropdown-cart dropdown-menu-center p-1 text-center" role="menu" id="cart-list-item"
+            style="width: 400px!important;color: white;">
             @include('carts.partials._cart_list')
           </div>
         </div>
