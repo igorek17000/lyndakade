@@ -403,7 +403,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         </form>
       </div>
     </nav>
-    @if (\App\Notification::count() > 0)
+    @if (\App\Notification::where('expire', '>=', date(now()))->count() > 0)
       <div id="notifications">
         <div class="" style="background-color: orange; padding: 15px;">
           <div class="container">
@@ -413,7 +413,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
               @endif
             @endforeach
           </div>
-        </div> 
+        </div>
       </div>
     @endif
 
