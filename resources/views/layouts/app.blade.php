@@ -413,7 +413,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
               @endif
             @endforeach
           </div>
-        </div>
+        </div> 
       </div>
     @endif
 
