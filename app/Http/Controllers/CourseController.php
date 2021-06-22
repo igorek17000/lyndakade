@@ -404,7 +404,12 @@ class CourseController extends Controller
     }
     public function course_api_get_for_aparat(Request $request)
     {
-        $skipped_ids = $request->get('skipped_ids', []);
+        $skipped_ids = $request->get('skipped_ids');
+        if (!$skipped_ids) {
+            $skipped_ids = [];
+        } else {
+            $skipped_ids = explode(',', $skipped_ids);
+        }
         $start_date = $request->get('start_date', '2021-04-01');
         $limit = intval($request->get('limit', 20));
         $courses = Course::with(['authors', 'subjects', 'softwares'])
