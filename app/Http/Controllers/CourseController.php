@@ -412,7 +412,7 @@ class CourseController extends Controller
             ->whereNotIn('id', $skipped_ids)
             ->orderBy('created_at', 'asc')
             ->limit($limit)
-            ->get(['id', 'title', 'titleEng', 'description', 'previewFile', 'previewSubtitle', 'img']);
+            ->get(['id', 'title', 'titleEng', 'description', 'previewFile', 'previewSubtitle', 'img', 'persian_subtitle_id']);
         return new JsonResponse([
             'data' => $courses->toArray(),
             'status' => 'success',
