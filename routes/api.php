@@ -21,6 +21,7 @@ Route::middleware('guest')->post('/set-software', 'SoftwareController@set_softwa
 Route::middleware('guest')->get('/courses/set/{id}', 'CourseController@courses_api_set')->name('courses.set.api');
 Route::middleware('guest')->get('/courses', 'CourseController@courses_api')->name('courses.api');
 Route::middleware('guest')->get('/courses/{id}', 'CourseController@course_api')->name('course.api');
+Route::middleware('guest')->post('/courses/get-for-aparat', 'CourseController@course_api_get_for_aparat')->name('course.api.get-for-aparat');
 Route::middleware('guest')->post('/courses/with-link', 'CourseController@courses_with_link_api')->name('course.api.with-link');
 Route::middleware('guest')->post('/courses/set-slug-linkedin', 'CourseController@courses_set_slug_linkedin')->name('course.api.set-slug-linkedin');
 Route::middleware('guest')->get('/courses/add-view/{id}', 'CourseController@add_view')->name('courses.add-view.api');

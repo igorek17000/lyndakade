@@ -402,6 +402,22 @@ class CourseController extends Controller
         }
         return false;
     }
+    public function course_api_get_for_aparat(Request $request)
+    {
+        $skipped_ids = $request->get('skipped_ids', []);
+        $start_date = $request->get('start_date', '2021-04-01');
+        $limit = intval($request->get('limit', 20));
+        $courses = Course::with(['authors', 'subjects', 'softwares'])
+            ->where('releaseDate', '>=', $start_date)
+            ->whereNotIn('id', $skipped_ids)
+            ->orderBy('created_at', 'asc')
+            ->limit($limit)
+            ->get();
+        return new JsonResponse([
+            'data' => $courses->toArray(),
+            'status' => 'success',
+        ], 200);
+    }
 
     public function courses_with_link_api(Request $request)
     {
