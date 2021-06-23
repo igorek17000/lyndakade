@@ -130,7 +130,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-3 col-md-3 col-lg-2">
+              <div class="col-sm-3 col-md-3 col-lg-2 text-center">
                 <div class="course-info-stat-cont">
                   <span class="course-info-stat skill-levels clearfix">
                     <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
@@ -154,6 +154,10 @@
                   <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
                   <h6>بازدید</h6>
                 </div>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                  گزارش خرابی
+                </button>
               </div>
             </div>
           </div>
@@ -195,7 +199,7 @@
                   {!! nl2br(e($course->descriptionEng)) !!}
                 </div>
               </div>
-              <div class="col-sm-3 col-md-3 col-lg-2">
+              <div class="col-sm-3 col-md-3 col-lg-2 text-center">
                 <div class="course-info-stat-cont">
                   <span class="course-info-stat skill-levels clearfix">
                     <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
@@ -219,13 +223,17 @@
                   <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
                   <h6>Views</h6>
                 </div>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                  Report
+                </button>
               </div>
             </div>
           </div>
           <div class="tab-pane fade" id="nav-download-links" role="tabpanel" aria-labelledby="nav-download-links-tab">
             <div class="row">
-                @include('courses.partials._project_files', ['course' => $course])
-              
+              @include('courses.partials._project_files', ['course' => $course])
+
               {{-- <div class="col-12 text-center">
                 <i class="lyndacon download align-self-center p-2" style="font-size: 24px;"></i>
                 <br>
@@ -306,23 +314,6 @@
       </div>
     </aside>
   </div>
-
-  <style>
-    .report-modal-btn {
-      margin: 0;
-      position: absolute;
-      top: 50%;
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
-      left: 30px;
-      z-index: 100;
-    }
-
-  </style>
-
-  {{-- <button type="button" class="btn btn-primary report-modal-btn" data-toggle="modal" data-target="#report-modal">
-    ارسال گزارش خرابی
-  </button> --}}
 
   <div id="report-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="report-modal-title"
     aria-hidden="true">

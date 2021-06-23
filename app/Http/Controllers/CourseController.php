@@ -424,6 +424,11 @@ class CourseController extends Controller
         ], 200);
     }
 
+    public function course_api_check_token(Request $request)
+    {
+        
+    }
+
     public function courses_with_link_api(Request $request)
     {
         $link = $request->get('link');
