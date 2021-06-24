@@ -17,9 +17,9 @@
         <div>
           {{ request()->ip() }}
         </div>
-        <div>
+        {{-- <div>
         {{ exec('getmac') }}
-        </div>
+        </div> --}}
         {{-- <div>
           <img style="width: 100px;" src="{{ asset('image/logoedit2.png') }}" alt="Lyndakade Logo">
         </div> --}}
