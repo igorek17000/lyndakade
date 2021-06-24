@@ -434,7 +434,7 @@ class CourseController extends Controller
         if (!$token || !$file || !$course) {
             return null;
         }
-        return false;
+        return true;
 
         // if (!HashedData::firstWhere('hashed', $token)
         //     || !HashedData::firstWhere('hashed', $file)
