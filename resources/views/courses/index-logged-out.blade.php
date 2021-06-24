@@ -14,12 +14,6 @@
   <div class="row m-0 home-page">
     <div class="col-12 hero-space">
       <div class="hero-text">
-        <div>
-          {{ request()->ip() }}
-        </div>
-        {{-- <div>
-        {{ exec('getmac') }}
-        </div> --}}
         {{-- <div>
           <img style="width: 100px;" src="{{ asset('image/logoedit2.png') }}" alt="Lyndakade Logo">
         </div> --}}

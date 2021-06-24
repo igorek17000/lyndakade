@@ -50,7 +50,7 @@
                                                     <strong>{{ $item['title'] }}<span class="result-count">({{ $item['count'] }})</span></strong>
                                                 </span>
                                                     @else
-                                                        <a class="filter ga ga-multiple"
+                                                        <a class="filter ga ga-multiple" rel="nofollow"
                                                            href="{{ $item['link'] }}"> {{ $item['title'] }}<span
                                                                 class="result-count">&nbsp;({{ $item['count'] }})</span>
                                                         </a>

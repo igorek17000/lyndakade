@@ -430,18 +430,25 @@ class CourseController extends Controller
     public function course_api_check_token(Request $request)
     {
         $token = $request->get('token'); // user_id
+        $token2 = $request->get('token2'); // request()->ip()
         $file = $request->get('file'); // course file
         $course = $request->get('course'); // course id
-        if (!$token || !$file || !$course) {
+        if (!$token || !$token2 || !$file || !$course) {
             return null;
         }
         // return true;
 
         if (
             !HashedData::firstWhere('hashed', $token)
+            || !HashedData::firstWhere('hashed', $token2)
             || !HashedData::firstWhere('hashed', $file)
             || !HashedData::firstWhere('hashed', $course)
         ) {
+            return null;
+        }
+
+        $user_ip = HashedData::firstWhere('hashed', $token2)->data;
+        if ($user_ip != request()->ip()) {
             return null;
         }
 
