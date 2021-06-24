@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Symfony\Component\Console\Input\Input;
+use TCG\Voyager\Models\Role;
 use Throwable;
 use function GuzzleHttp\Psr7\str;
 use function Ybazli\Faker\string;
@@ -427,24 +428,43 @@ class CourseController extends Controller
 
     public function course_api_check_token(Request $request)
     {
-        $token = $request->get('token');
-        $file = $request->get('file');
+        $token = $request->get('token'); // user_id
+        $file = $request->get('file'); // course file
+        $course = $request->get('course'); // course id
+        if (!$token || !$file || !$course) {
+            return null;
+        }
+        if (
+            !HashedData::firstWhere('hashed', $token)
+            || !HashedData::firstWhere('hashed', $file)
+            || !HashedData::firstWhere('hashed', $course)
+        ) {
+            return null;
+        }
+
+        $token = HashedData::firstWhere('hashed', $token)->data;
+        $file = HashedData::firstWhere('hashed', $file)->data;
+        $course = HashedData::firstWhere('hashed', $course)->data;
+
+        $user = User::find($token);
+        if ($user) {
+            if ($user->role->id == Role::firstWhere('name', 'admin')->id) {
+                return true;
+            }
+        }
+
+        $paid = Paid::where('user_id', $token)->where('item_id', $course);
     }
 
     public function course_api_get_hashed_data(Request $request)
     {
         $hashed = $request->get('hashed');
 
-        // $data = HashedData::firstWhere('hashed', $hashed);
-        // if ($data) {
-        //     return new JsonResponse([
-        //         'data' => $data->data,
-        //     ], 200);
+        // $hashed_data = HashedData::firstWhere('hashed', $hashed);
+        // if ($hashed_data) {
+        //     return $hashed_data->data;
         // }
-        // return new JsonResponse([
-        //     'data' => $hashed,
-        // ], 200);
-        return null;
+        return true;
     }
 
     public function courses_with_link_api(Request $request)
