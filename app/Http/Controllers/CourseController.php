@@ -77,14 +77,6 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courseFile = HashedData::firstWhere('data', 'courseFile');
-        if (!$courseFile) {
-            $hashed_data = new HashedData();
-            $hashed_data->data = 'courseFile';
-            $hashed_data->hashed = hash('sha256', 'courseFile');
-            $hashed_data->save();
-        }
-
 
         $free_courses_count = Course::where('price', 0)->count();
         // $free_courses = $this->sort_courses_by_releasedate_or_updatedate(Course::where('price', 0)->get(['releaseDate', 'updateDate', 'id']));
@@ -443,7 +435,7 @@ class CourseController extends Controller
         if (!$token || !$file || !$course) {
             return null;
         }
-        return true;
+        // return true;
 
         if (
             !HashedData::firstWhere('hashed', $token)
@@ -453,18 +445,32 @@ class CourseController extends Controller
             return null;
         }
 
-        $token = HashedData::firstWhere('hashed', $token)->data;
-        $file = HashedData::firstWhere('hashed', $file)->data;
-        $course = HashedData::firstWhere('hashed', $course)->data;
+        $user_id = HashedData::firstWhere('hashed', $token)->data;
+        $course_id = HashedData::firstWhere('hashed', $course)->data;
 
-        $user = User::find($token);
+        $course = Course::find($course_id);
+        if ($course) {
+            if ($course->price == 0) {
+                return true;
+            }
+        } else {
+            return null;
+        }
+
+        $user = User::find($user_id);
         if ($user) {
             if ($user->role->id == Role::firstWhere('name', 'admin')->id) {
                 return true;
             }
+        } else {
+            return null;
         }
 
-        $paid = Paid::where('user_id', $token)->where('item_id', $course)->get();
+        $paid = Paid::where('user_id', $user_id)->where('item_id', $course_id)->get()->first();
+        if ($paid) {
+            return true;
+        }
+        return null;
     }
 
     public function course_api_get_hashed_data(Request $request)
@@ -510,6 +516,7 @@ class CourseController extends Controller
 
     public function download_course(Request $request, $id)
     {
+
         $course = Course::find($id);
 
         function fix_path_link($file_path)
@@ -539,58 +546,12 @@ class CourseController extends Controller
                 $file_name = 'previewSubtitle.srt';
             }
 
+            create_hashed_data_if_not_exists($file_path);
+
             return redirect(fromDLHost($file_path) . '?' . hash('sha512', Uuid::uuid()));
-
-            // $ftp = Storage::createFtpDriver([
-            //     'host'     => 'dl.lyndakade.ir',
-            //     'username' => 'pz11914',
-            //     'password' => 'ashkan1996',
-            //     'port'     => '21',
-            //     'timeout'  => 9999999,
-            //     'root' => 'public_html',
-            //     'disable_asserts' => true,
-            // ]);
-            // return $ftp->download('./' . $file_path);
-
-            // return $ftp->response($file_path, $file_name, [], 'attachment');
-
-
-            // return Storage::disk('FTP')->download('/' . $file_path, $file_name, [
-            //     'Accept-Ranges' => 'bytes',
-            //     // 'Content-Disposition' => 'inline',
-            //     // 'Content-Type' => 'application/octet-stream',
-            // ]);
-
-
-            // return response()->stream(function () use ($file_path) {
-            //     echo file_get_contents(fromDLHost($file_path));
-            // }, 200, ['Accept-Ranges' => 'bytes']);
-
-
-            // return response()->download(fromDLHost($file_path), $file_name, [
-            //     'Accept-Ranges' => 'bytes',
-            //     'Content-Disposition' => 'inline',
-            //     'Content-Type' => 'application/octet-stream',
-            // ]);
-
-
-            // $fs = Storage::disk('FTP');
-            // // dd($fs->allFiles($file_path_clone));
-            // $stream = $fs->readStream('/' . $file_path);
-            // $mime = explode('.', $file_name);
-            // $mime = $mime[count($mime) - 1];
-            // return response()->stream(
-            //     function () use ($stream) {
-            //         fpassthru($stream);
-            //     },
-            //     200,
-            //     [
-            //         'Accept-Ranges' => 'bytes',
-            //         'Content-Type' => $mime,
-            //         'Content-disposition' => 'attachment; filename="' . $file_name . '"',
-            //     ]
-            // );
         }
+
+
         $previewFile = $request->input(hash('md5', 'previewFile'));
         if ($previewFile && hash('sha256', auth()->id()) == $previewFile) {
             return get_file_from_ftp($course, 'previewFile');

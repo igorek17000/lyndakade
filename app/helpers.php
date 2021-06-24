@@ -1,10 +1,24 @@
 <?php
 
 use App\CourseStatus;
+use App\HashedData;
 use App\Http\Controllers\CartController;
 use App\LearnPath;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
+function create_hashed_data_if_not_exists($data)
+{
+    $hashed_data = HashedData::firstWhere('data', $data);
+    $hashed = hash('sha256', $data);
+    if (!$hashed_data) {
+        $hashed_data = new HashedData();
+        $hashed_data->data = $data;
+        $hashed_data->hashed = $hashed;
+        $hashed_data->save();
+    }
+    return $hashed;
+}
 
 function zerofill($num, $zerofill = 2)
 {
