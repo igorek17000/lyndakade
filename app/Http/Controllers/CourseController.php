@@ -83,6 +83,7 @@ class CourseController extends Controller
                 'data' => 'courseFile',
                 'hashed' => hash('sha256', 'courseFile')
             ]);
+            $hashed_data->save();
         }
 
 
