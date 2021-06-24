@@ -83,17 +83,12 @@ session(['redirectToAfterLogin' => url()->previous()]);
 
 <style>
     .fab-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  user-select: none;
-  position: absolute;
-  bottom: 30px;
-  left: 30px;
-}
-.fab-container:hover {
-    height: 100%;
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    bottom: 30px;
+    left: 30px;
+    z-index: 2000;
 }
 
 .fab-container:hover .sub-button:nth-child(2) {
@@ -115,7 +110,9 @@ session(['redirectToAfterLogin' => url()->previous()]);
     }
 
 .fab-container .fab {
-    position: relative;
+  position: absolute;
+    left: 0;
+    top: 0;
     height: 70px;
     width: 70px;
     background-color: #465773;
@@ -137,10 +134,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
       height: 100%; width: 100%;
       border-radius: 50%;
       }
-.fab-container .fab-content  .material-icons {
-     color: white;
-     font-size: 48px;
-}
 .fab-container .sub-button {
     position: absolute;
     display: flex;
@@ -157,10 +150,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
 }
 .fab-container .sub-button:hover {
       cursor: pointer;
-    }
-.fab-container .sub-button .material-icons {
-      color: white;
-      padding-top: 6px;
     }
     </style>
 </head>
