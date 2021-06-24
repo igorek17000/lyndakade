@@ -79,10 +79,9 @@ class CourseController extends Controller
     {
         $courseFile = HashedData::firstWhere('data', 'courseFile');
         if (!$courseFile) {
-            $hashed_data = new HashedData([
-                'data' => 'courseFile',
-                'hashed' => hash('sha256', 'courseFile')
-            ]);
+            $hashed_data = new HashedData();
+            $hashed_data->data = 'courseFile';
+            $hashed_data->hashed = hash('sha256', 'courseFile');
             $hashed_data->save();
         }
 
