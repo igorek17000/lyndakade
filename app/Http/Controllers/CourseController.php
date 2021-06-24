@@ -434,26 +434,27 @@ class CourseController extends Controller
         if (!$token || !$file || !$course) {
             return null;
         }
-        if (
-            !HashedData::firstWhere('hashed', $token)
-            || !HashedData::firstWhere('hashed', $file)
-            || !HashedData::firstWhere('hashed', $course)
-        ) {
-            return null;
-        }
+        return false;
 
-        $token = HashedData::firstWhere('hashed', $token)->data;
-        $file = HashedData::firstWhere('hashed', $file)->data;
-        $course = HashedData::firstWhere('hashed', $course)->data;
+        // if (!HashedData::firstWhere('hashed', $token)
+        //     || !HashedData::firstWhere('hashed', $file)
+        //     || !HashedData::firstWhere('hashed', $course)
+        // ) {
+        //     return null;
+        // }
 
-        $user = User::find($token);
-        if ($user) {
-            if ($user->role->id == Role::firstWhere('name', 'admin')->id) {
-                return true;
-            }
-        }
+        // $token = HashedData::firstWhere('hashed', $token)->data;
+        // $file = HashedData::firstWhere('hashed', $file)->data;
+        // $course = HashedData::firstWhere('hashed', $course)->data;
 
-        $paid = Paid::where('user_id', $token)->where('item_id', $course);
+        // $user = User::find($token);
+        // if ($user) {
+        //     if ($user->role->id == Role::firstWhere('name', 'admin')->id) {
+        //         return true;
+        //     }
+        // }
+
+        // $paid = Paid::where('user_id', $token)->where('item_id', $course);
     }
 
     public function course_api_get_hashed_data(Request $request)
@@ -464,7 +465,7 @@ class CourseController extends Controller
         // if ($hashed_data) {
         //     return $hashed_data->data;
         // }
-        return true;
+        return null;
     }
 
     public function courses_with_link_api(Request $request)
