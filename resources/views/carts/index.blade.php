@@ -26,13 +26,15 @@
                 <tr>
                   @if ($cart->course)
                     <td>
-                      <img src="#" data-src="{{ fromDLHost($cart->course->img) }}" class="lazyload" width="50" height="50" alt="" />
+                      <img src="#" data-src="{{ fromDLHost($cart->course->img) }}" class="lazyload" width="50"
+                        height="50" alt="" />
                     </td>
                     <td>{{ $cart->course->title }}</td>
                     <td>{{ $cart->course->price }}</td>
                   @else
                     <td>
-                      <img src="#" data-src="{{ fromDLHost($cart->learn_path->img) }}" class="lazyload" width="50" height="50" alt="" />
+                      <img src="#" data-src="{{ fromDLHost($cart->learn_path->img) }}" class="lazyload" width="50"
+                        height="50" alt="" />
                     </td>
                     <td>{{ $cart->learn_path->title }}</td>
                     <td>{{ $cart->learn_path->price }}</td>
@@ -55,6 +57,7 @@
           </table>
         </div>
         <a class="btn btn-primary" href="{{ route('payment.send') }}">عملیات پرداخت</a>
+        <b> قبل از ادامه، از خاموش بودن فیلترشکن اطمینان حاصل نمایید. </b>
       </div>
     </div>
   </div>
