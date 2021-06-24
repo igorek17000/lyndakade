@@ -441,9 +441,10 @@ class CourseController extends Controller
         //         'data' => $data->data,
         //     ], 200);
         // }
-        return new JsonResponse([
-            'data' => $hashed,
-        ], 200);
+        // return new JsonResponse([
+        //     'data' => $hashed,
+        // ], 200);
+        return $hashed;
     }
 
     public function courses_with_link_api(Request $request)
