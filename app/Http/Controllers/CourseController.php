@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Author;
 use App\Bookmark;
 use App\Course;
+use App\HashedData;
 use App\Issue;
 use App\LearnPath;
 use App\Library;
@@ -426,7 +427,23 @@ class CourseController extends Controller
 
     public function course_api_check_token(Request $request)
     {
-        
+        $token = $request->get('token');
+        $file = $request->get('file');
+    }
+
+    public function course_api_get_hashed_data(Request $request)
+    {
+        $hashed = $request->get('hashed');
+
+        // $data = HashedData::firstWhere('hashed', $hashed);
+        // if ($data) {
+        //     return new JsonResponse([
+        //         'data' => $data->data,
+        //     ], 200);
+        // }
+        return new JsonResponse([
+            'data' => $hashed,
+        ], 200);
     }
 
     public function courses_with_link_api(Request $request)
