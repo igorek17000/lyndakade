@@ -77,6 +77,15 @@ class CourseController extends Controller
      */
     public function index()
     {
+        $courseFile = HashedData::firstWhere('data', 'courseFile');
+        if (!$courseFile) {
+            $hashed_data = new HashedData([
+                'data' => 'courseFile',
+                'hashed' => hash('sha256', 'courseFile')
+            ]);
+        }
+
+
         $free_courses_count = Course::where('price', 0)->count();
         // $free_courses = $this->sort_courses_by_releasedate_or_updatedate(Course::where('price', 0)->get(['releaseDate', 'updateDate', 'id']));
 
@@ -436,25 +445,26 @@ class CourseController extends Controller
         }
         return true;
 
-        // if (!HashedData::firstWhere('hashed', $token)
-        //     || !HashedData::firstWhere('hashed', $file)
-        //     || !HashedData::firstWhere('hashed', $course)
-        // ) {
-        //     return null;
-        // }
+        if (
+            !HashedData::firstWhere('hashed', $token)
+            || !HashedData::firstWhere('hashed', $file)
+            || !HashedData::firstWhere('hashed', $course)
+        ) {
+            return null;
+        }
 
-        // $token = HashedData::firstWhere('hashed', $token)->data;
-        // $file = HashedData::firstWhere('hashed', $file)->data;
-        // $course = HashedData::firstWhere('hashed', $course)->data;
+        $token = HashedData::firstWhere('hashed', $token)->data;
+        $file = HashedData::firstWhere('hashed', $file)->data;
+        $course = HashedData::firstWhere('hashed', $course)->data;
 
-        // $user = User::find($token);
-        // if ($user) {
-        //     if ($user->role->id == Role::firstWhere('name', 'admin')->id) {
-        //         return true;
-        //     }
-        // }
+        $user = User::find($token);
+        if ($user) {
+            if ($user->role->id == Role::firstWhere('name', 'admin')->id) {
+                return true;
+            }
+        }
 
-        // $paid = Paid::where('user_id', $token)->where('item_id', $course);
+        $paid = Paid::where('user_id', $token)->where('item_id', $course)->get();
     }
 
     public function course_api_get_hashed_data(Request $request)
