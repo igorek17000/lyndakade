@@ -17,7 +17,10 @@ function courseURL($course)
     if ($course->slug_linkedin) {
         return route('courses.show.linkedin', [$course->slug_linkedin]);
     }
-    return route('courses.show', [$course->slug_url, $course->slug, $course->id]);
+    if ($course->slug && $course->slug_url && $course->id) {
+        return route('courses.show', [$course->slug_url, $course->slug, $course->id]);
+    }
+    return '#';
 }
 
 function get_course_state($course)
