@@ -460,10 +460,10 @@ class CourseController extends Controller
             return 2;
         }
 
-        $user_ip = HashedData::firstWhere('hashed', $token2)->data;
-        if ($user_ip != request()->ip()) {
-            return 3;
-        }
+        // $user_ip = HashedData::firstWhere('hashed', $token2)->data;
+        // if ($user_ip != request()->ip()) {
+        //     return 3;
+        // }
 
         $user_id = HashedData::firstWhere('hashed', $token)->data;
         $course_id = HashedData::firstWhere('hashed', $course)->data;
