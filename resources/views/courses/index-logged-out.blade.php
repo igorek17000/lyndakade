@@ -310,60 +310,22 @@
         <li class="nav-item flex-sm-fill">
           <a id="{{ $tab[0] }}-tab" data-toggle="tab" href="#{{ $tab[0] }}" role="tab"
             aria-controls="{{ $tab[0] }}" aria-selected="true"
-            class="nav-link border-0 text-uppercase font-weight-bold {{ $tab[3] }}">{{ $tab[2] }}</a>
+            class="nav-link border-0 text-uppercase font-weight-bold {{ $loop->first ? 'active' : '' }}">{{ $tab[1] }}</a>
         </li>
       @endforeach
     </ul>
     <div id="myTabContent" class="tab-content">
       @foreach ($page_tabs as $tab)
         <div id="{{ $tab[0] }}" role="tabpanel" aria-labelledby="{{ $tab[0] }}-tab"
-          class="tab-pane fade p-0 {{ $tab[3] == 'active' ? 'show' : '' }} {{ $tab[3] }}">
+          class="tab-pane fade p-0 {{ $loop->first ? 'show active' : '' }}">
           <div class="row card mx-0 latest-courses border-0">
             <div class="col-12 card-body">
               <div class="container">
-                <div class="row d-flex ">
-                  @php
-                    $tabs2 = [[$tab[0] . '-newest', 'جدیدترین', 'active'], [$tab[0] . '-best', 'محبوب ترین', '']];
-                    $tab_courses = get_courses_for_library($tab[1]);
-                  @endphp
-                  <ul id="{{ $tab[0] }}Tab" role="tablist"
-                    class="nav nav-tabs nav-pills flex-column flex-sm-row text-center border-0 rounded-nav">
-                    @foreach ($tabs2 as $tab2)
-                      <li class="nav-item flex-sm-fill">
-                        <a id="{{ $tab2[0] }}-tab" data-toggle="tab" href="#{{ $tab2[0] }}" role="tab"
-                          aria-controls="{{ $tab2[0] }}" aria-selected="true"
-                          class="nav-link border-0 text-uppercase font-weight-bold {{ $tab2[2] }}">
-                          {{ $tab2[1] }}
-                        </a>
-                      </li>
-                    @endforeach
-                  </ul>
+                <div class="row d-flex">
+                  @foreach ($tab[2]->sortByDesc('created_at')->take(4) as $course)
+                    @include('courses.partials._course_list_grid', ['course' => $course])
+                  @endforeach
 
-                  <div id="{{ $tab[0] }}TabContent" class="tab-content">
-                    @foreach ($tabs2 as $tab2)
-                      <div id="{{ $tab2[0] }}" role="tabpanel" aria-labelledby="{{ $tab2[0] }}-tab"
-                        class="tab-pane fade p-0 {{ $tab2[2] == 'active' ? 'show' : '' }} {{ $tab2[2] }}">
-
-                        <div class="row card mx-0 latest-courses border-0">
-                          <div class="col-12 card-body">
-                            <div class="container">
-                              <div class="row d-flex ">
-                                @if (strpos($tab2[0], 'best'))
-                                  @foreach ($tab_courses->sortByDesc('views')->take(4) as $course)
-                                    @include('courses.partials._course_list_grid', ['course' => $course])
-                                  @endforeach
-                                @else
-                                  @foreach ($tab_courses->sortByDesc('created_at')->take(4) as $course)
-                                    @include('courses.partials._course_list_grid', ['course' => $course])
-                                  @endforeach
-                                @endif
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    @endforeach
-                  </div>
                 </div>
               </div>
             </div>

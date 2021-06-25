@@ -124,7 +124,7 @@ function get_course_status_state($id)
 
 function get_courses_for_library($id)
 {
-    $lib = \App\Library::find($id);
+    $lib = \App\Library::with(['software.courses', 'subjects.courses'])->find($id);
     if ($lib) {
         $ids = [];
         foreach ($lib->software as $soft) {

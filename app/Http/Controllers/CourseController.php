@@ -122,7 +122,20 @@ class CourseController extends Controller
 
         $paths = LearnPath::limit(6)->get();
 
-        $page_tabs = [['3D-Animation', 1, 'آموزش انیمیشن سه بعدی', 'active'], ['Audio-Music', 1665, 'صوتی + موسیقی', ''], ['Business', 29, 'کسب و کار', ''], ['Design', 40, 'طراحی', ''], ['Developer', 50, 'توسعه دهنده', ''], ['Photography', 70, 'عکاسی', ''], ['Video', 78, 'ویدئو', ''], ['Web', 88, 'وب', ''], ['CAD', 1665, 'CAD', ''], ['Education-Elearning', 1792, 'یادگیری الکترونیکی', ''], ['IT', 2057, 'IT', ''], ['Marketing', 2058, 'بازاریابی', '']];
+        $page_tabs = [
+            [1, 'آموزش انیمیشن سه بعدی', get_courses_for_library(1)],
+            [20, 'صوتی + موسیقی', get_courses_for_library(20)],
+            [29, 'کسب و کار', get_courses_for_library(29)],
+            [40, 'طراحی', get_courses_for_library(40)],
+            [50, 'توسعه دهنده', get_courses_for_library(50)],
+            [70, 'عکاسی', get_courses_for_library(70)],
+            [78, 'ویدئو', get_courses_for_library(78)],
+            [88, 'وب', get_courses_for_library(88)],
+            [1665, 'CAD', get_courses_for_library(1665)],
+            [1792, 'یادگیری الکترونیکی', get_courses_for_library(1792)],
+            [2057, 'IT', get_courses_for_library(2057)],
+            [2058, 'بازاریابی', get_courses_for_library(2058)]
+        ];
 
         return view('courses.index-logged-out', [
             'free_courses_count' => $free_courses_count,
