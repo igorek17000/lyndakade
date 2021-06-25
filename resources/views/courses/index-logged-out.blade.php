@@ -308,15 +308,15 @@
     <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center border-0 rounded-nav">
       @foreach ($page_tabs as $tab)
         <li class="nav-item flex-sm-fill">
-          <a id="{{ $tab[0] }}-tab" data-toggle="tab" href="#{{ $tab[0] }}" role="tab"
-            aria-controls="{{ $tab[0] }}" aria-selected="true"
+          <a id="lib-{{ $tab[0] }}-tab" data-toggle="tab" href="#lib-{{ $tab[0] }}" role="tab"
+            aria-controls="lib-{{ $tab[0] }}" aria-selected="true"
             class="nav-link border-0 text-uppercase font-weight-bold {{ $loop->first ? 'active' : '' }}">{{ $tab[1] }}</a>
         </li>
       @endforeach
     </ul>
     <div id="myTabContent" class="tab-content">
       @foreach ($page_tabs as $tab)
-        <div id="{{ $tab[0] }}" role="tabpanel" aria-labelledby="{{ $tab[0] }}-tab"
+        <div id="lib-{{ $tab[0] }}" role="tabpanel" aria-labelledby="lib-{{ $tab[0] }}-tab"
           class="tab-pane fade p-0 {{ $loop->first ? 'show active' : '' }}">
           <div class="row card mx-0 latest-courses border-0">
             <div class="col-12 card-body">
