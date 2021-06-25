@@ -107,6 +107,9 @@
             حذف از سبد خرید
           </a>
         </div>
+        <a href="https://lyndakade.ir/cart" style="background-color: #ddd;" class="btn btn-light mt-2">
+          مشاهده سبد خرید
+        </a>
       @elseif($course_state == '3')
         <div class="col-12 px-0 mb-2" style="color: green; font-size: 2rem;">
           <p>
@@ -118,6 +121,9 @@
             افزودن به سبد خرید
           </a>
         </div>
+        <a href="https://lyndakade.ir/cart" style="background-color: #ddd;" class="btn btn-light mt-2">
+          مشاهده سبد خرید
+        </a>
       @endif
     </ul>
   </div>
