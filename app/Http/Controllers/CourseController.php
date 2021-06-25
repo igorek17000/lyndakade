@@ -447,7 +447,7 @@ class CourseController extends Controller
         $file = $request->get('file'); // course file
         $course = $request->get('course'); // course id
         if (!$token || !$token2 || !$file || !$course) {
-            return 1;
+            return null;
         }
         // return true;
 
@@ -457,12 +457,12 @@ class CourseController extends Controller
             || !HashedData::firstWhere('hashed', $file)
             || !HashedData::firstWhere('hashed', $course)
         ) {
-            return 2;
+            return null;
         }
 
         // $user_ip = HashedData::firstWhere('hashed', $token2)->data;
         // if ($user_ip != request()->ip()) {
-        //     return 3;
+        //     return null;
         // }
 
         $user_id = HashedData::firstWhere('hashed', $token)->data;
@@ -471,26 +471,26 @@ class CourseController extends Controller
         $course = Course::find($course_id);
         if ($course) {
             if ($course->price == 0) {
-                return 4;
+                return true;
             }
         } else {
-            return 5;
+            return null;
         }
 
         $user = User::find($user_id);
         if ($user) {
             if ($user->role->id == Role::firstWhere('name', 'admin')->id) {
-                return 6;
+                return true;
             }
         } else {
-            return 7;
+            return null;
         }
 
         $paid = Paid::where('user_id', $user_id)->where('item_id', $course_id)->get()->first();
         if ($paid) {
-            return 8;
+            return true;
         }
-        return 9;
+        return null;
     }
 
     public function course_api_get_hashed_data(Request $request)
