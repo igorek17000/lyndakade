@@ -29,20 +29,20 @@
         @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
           @foreach (json_decode($course->courseFile) as $file)
             <li role="presentation">
-              {{-- <a role="link"
+              <a role="link"
                 href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
                 <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
                   فایل دوره آموزشی
                 </span>
-              </a> --}}
-              <a role="link"
+              </a>
+              {{-- <a role="link"
                 href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
                 <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
                   فایل دوره آموزشی
                 </span>
-              </a>
+              </a> --}}
             </li>
           @endforeach
         @endif
@@ -56,20 +56,20 @@
               $idx = $idx + 1;
             @endphp
             <li role="presentation">
-              {{-- <a role="link"
+              <a role="link"
                 href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
                 <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
                   فایل تمرینی {{ $idx }}
                 </span>
-              </a> --}}
-              <a role="link"
+              </a>
+              {{-- <a role="link"
                 href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
                 <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
                   فایل تمرینی {{ $idx }}
                 </span>
-              </a>
+              </a> --}}
             </li>
           @endforeach
         @endif
@@ -78,20 +78,20 @@
           @foreach (json_decode($course->persianSubtitleFile) as $file)
 
             <li role="presentation">
-              {{-- <a role="link"
+              <a role="link"
                 href="{{ route('courses.download', [$course->id, hash('md5', 'persianSubtitleFile') => hash('sha256', auth()->id())]) }}">
                 <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
                   فایل زیرنویس فارسی دوره
                 </span>
-              </a> --}}
-              <a role="link"
+              </a>
+              {{-- <a role="link"
                 href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
                 <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
                   فایل زیرنویس فارسی دوره
                 </span>
-              </a>
+              </a> --}}
             </li>
           @endforeach
         @endif
