@@ -497,10 +497,10 @@ class CourseController extends Controller
     {
         $hashed = $request->get('hashed');
 
-        // $hashed_data = HashedData::firstWhere('hashed', $hashed);
-        // if ($hashed_data) {
-        //     return $hashed_data->data;
-        // }
+        $hashed_data = HashedData::firstWhere('hashed', $hashed);
+        if ($hashed_data) {
+            return $hashed_data->data;
+        }
         return null;
     }
 
