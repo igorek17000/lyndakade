@@ -745,24 +745,50 @@ class CourseController extends Controller
 
     public function courses_all_api(Request $request)
     {
-        $courses =  Course::with(['authors', 'subjects', 'softwares'])->orderBy('created_at', 'desc')->get();
+        $with = $request->has('with') ? explode(',', $request->get('with')) : null;
+        if ($with) {
+            $courses =  Course::with($with)->orderBy('created_at', 'desc');
+        } else {
+            $courses =  Course::orderBy('created_at', 'desc');
+        }
+
+        if ($request->has('cols')) {
+            $cols = explode(',', $request->get('cols'));
+            $courses = $courses->get($cols);
+        } else {
+            $courses = $courses->get();
+        }
 
         $page = intval($request->get('page', 1));
-        $perPage = intval($request->get('perPage', 15));
-        if ($perPage > 200)
-            $perPage = 200;
-        $n = count($courses) / $perPage;
-        if ($n - (int)$n > 0)
-            $n = (int)$n + 1;
-        if ($page > $n)
-            $page = $n;
-        $courses = $courses->forPage($page, $perPage);
-        return new JsonResponse([
-            'data' => $courses->toArray(),
-            'page' => $page,
-            'perPage' => $perPage,
-            'total_pages' => $n,
-        ], 200);
+        $perPage = $request->has('perPage') ? intval($request->get('perPage')) : null;
+
+        $res = [
+            'data' => null,
+            'count' => null,
+        ];
+
+        if ($perPage) {
+            if ($perPage < 1) {
+                $perPage = 1;
+            }
+            $n = count($courses) / $perPage;
+            if ($n - (int)$n > 0) {
+                $n = (int)$n + 1;
+            }
+            if ($page > $n) {
+                $page = $n;
+            }
+            $courses = $courses->forPage($page, $perPage);
+
+            $res['page'] = $page;
+            $res['perPage'] = $perPage;
+            $res['total_pages'] = $n;
+        }
+
+        $res['data'] = $courses->toArray();
+        $res['count'] = count($courses);
+
+        return new JsonResponse($res, 200);
     }
 
     public function courses_api_set(Request $request, $id)
