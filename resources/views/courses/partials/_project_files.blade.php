@@ -1,16 +1,15 @@
 @if (!auth()->check())
   <div class="col-12 text-center">
     <i class="lyndacon download align-self-center p-2" style="font-size: 24px;"></i>
+    {{-- برای تماشای آفلاین، این درس را خریداری و دانلود کنید. --}}
     <br>
-    برای تماشای آفلاین، این درس را خریداری و دانلود کنید.
-    <br>
-    <div class="col-12 px-0 mb-2" style="color: green; font-size: 2rem;">
+    <div class="col-12 px-0 mb-2 mt-2" style="color: green; font-size: 2rem;">
       <p>
         {{ $course->price == 0 ? 'رایگان' : number_format($course->price) . ' تومان' }}
       </p>
     </div>
     <div>
-      برای خرید این دوره آموزشی باید
+      برای دانلود این دوره آموزشی باید
       <a href="{{ route('login') }}" style="color: blue;">
         وارد حساب کاربری
       </a>
@@ -33,8 +32,11 @@
                 href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
                 <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
-                  فایل دوره آموزشی
+                  {{ $file->original_name }}
                 </span>
+                {{-- <span>
+                  فایل دوره آموزشی
+                </span> --}}
               </a>
               {{-- <a role="link"
                 href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
@@ -60,8 +62,11 @@
                 href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
                 <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
-                  فایل تمرینی {{ $idx }}
+                  {{ $file->original_name }}
                 </span>
+                {{-- <span>
+                  فایل تمرینی {{ $idx }}
+                </span> --}}
               </a>
               {{-- <a role="link"
                 href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
