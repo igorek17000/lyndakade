@@ -238,14 +238,10 @@
             <div class="tab-pane fade" id="nav-concepts" role="tabpanel" aria-labelledby="nav-concepts-tab">
               <div class="row" style="font-size: 1.3em;">
                 <div class="col-sm-6">
-                  <pre>
-                            {!! $course->concepts !!}
-                        </pre>
+                  <pre>{!! $course->concepts !!}</pre>
                 </div>
                 <div class="col-sm-6 text-left" dir="ltr">
-                  <pre>
-                            {!! $course->conceptsEng !!}
-                        </pre>
+                  <pre>{!! $course->conceptsEng !!}</pre>
                 </div>
               </div>
             </div>
