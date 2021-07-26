@@ -237,7 +237,7 @@
           @if ($course->concepts)
             <div class="tab-pane fade" id="nav-concepts" role="tabpanel" aria-labelledby="nav-concepts-tab">
               <div class="row" style="font-size: 1.3em;">
-                <div class="col-sm-6">
+                <div class="col-sm-6" style="font-family: 'IranSANS'; overflow: hidden; line-height: 1.5;">
                   <pre>{!! $course->concepts !!}</pre>
                 </div>
                 <div class="col-sm-6 text-left" dir="ltr">
