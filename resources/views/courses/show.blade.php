@@ -59,6 +59,10 @@
               role="tab" aria-controls="nav-description" aria-selected="true">توضیحات</a>
             <a class="nav-item nav-link" id="nav-overview-tab" data-toggle="tab" href="#nav-overview" role="tab"
               aria-controls="nav-overview" aria-selected="false">Overview</a>
+            @if ($course->concepts)
+              <a class="nav-item nav-link" id="nav-concepts-tab" data-toggle="tab" href="#nav-concepts" role="tab"
+                aria-controls="nav-concepts" aria-selected="false">سرفصل ها</a>
+            @endif
             <a class="nav-item nav-link" id="nav-download-links-tab" data-toggle="tab" href="#nav-download-links"
               role="tab" aria-controls="nav-download-links" aria-selected="false">لینک های دانلود</a>
           </div>
@@ -230,6 +234,22 @@
               </div>
             </div>
           </div>
+          @if ($course->concepts)
+            <div class="tab-pane fade" id="nav-concepts" role="tabpanel" aria-labelledby="nav-concepts-tab">
+              <div class="row" style="font-size: 1.3em;">
+                <div class="col-sm-6">
+                  <pre>
+                            {!! $course->concepts !!}
+                        </pre>
+                </div>
+                <div class="col-sm-6 text-left" dir="ltr">
+                  <pre>
+                            {!! $course->conceptsEng !!}
+                        </pre>
+                </div>
+              </div>
+            </div>
+          @endif
           <div class="tab-pane fade" id="nav-download-links" role="tabpanel" aria-labelledby="nav-download-links-tab">
             <div class="row">
               @include('courses.partials._project_files', ['course' => $course])
