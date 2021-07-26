@@ -237,11 +237,11 @@
           @if ($course->concepts)
             <div class="tab-pane fade" id="nav-concepts" role="tabpanel" aria-labelledby="nav-concepts-tab">
               <div class="row" style="font-size: 1.3em;">
-                <div class="col-sm-6" style="font-family: 'IranSANS'; overflow-y: hidden; line-height: 1.5;">
-                  <pre>{!! $course->concepts !!}</pre>
+                <div class="col-sm-6">
+                  <pre style="font-family: 'IranSANS'; overflow-y: hidden; line-height: 1.5;">{!! $course->concepts !!}</pre>
                 </div>
-                <div class="col-sm-6 text-left" dir="ltr" style="overflow-y: hidden; line-height: 1.5;">
-                  <pre>{!! $course->conceptsEng !!}</pre>
+                <div class="col-sm-6 text-left" dir="ltr">
+                  <pre style="overflow-y: hidden; line-height: 1.5;">{!! $course->conceptsEng !!}</pre>
                 </div>
               </div>
             </div>
