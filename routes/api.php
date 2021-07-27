@@ -18,7 +18,7 @@ Route::middleware('guest')->get('/subjects', 'SubjectController@subjects_api')->
 Route::middleware('guest')->get('/software', 'SoftwareController@software_api')->name('software.api');
 Route::middleware('guest')->get('/software/has-courses', 'SoftwareController@software_has_api')->name('software.api');
 Route::middleware('guest')->post('/set-software', 'SoftwareController@set_software_api')->name('software.set.api');
-Route::middleware('guest')->get('/courses/set/{id}', 'CourseController@courses_api_set')->name('courses.set.api');
+Route::middleware('guest')->post('/courses/set', 'CourseController@courses_api_set')->name('courses.set.api');
 Route::middleware('guest')->get('/courses', 'CourseController@courses_api')->name('courses.api');
 Route::middleware('guest')->get('/courses/{id}', 'CourseController@course_api')->name('course.api');
 Route::middleware('guest')->post('/courses/get-for-aparat', 'CourseController@course_api_get_for_aparat')->name('course.api.get-for-aparat');

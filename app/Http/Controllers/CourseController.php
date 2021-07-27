@@ -791,11 +791,12 @@ class CourseController extends Controller
         return new JsonResponse($res, 200);
     }
 
-    public function courses_api_set(Request $request, $id)
+    public function courses_api_set(Request $request)
     {
-        $course = Course::where('id', $id);
+        $course = Course::where('id', $request->input('id'));
         if ($course->get()->first()) {
-            $course->update(['thumbnail' => $request->get('thumbnail')]);
+            $course->update(['courseFile' => $request->get('courseFile')]);
+            $course->update(['exerciseFile' => $request->get('exerciseFile')]);
             return new JsonResponse([
                 'message' => 'course has been updated',
                 'status' => 'success',
