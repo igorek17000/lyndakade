@@ -20,6 +20,20 @@ function create_hashed_data_if_not_exists($data)
     return $hashed;
 }
 
+function formatBytes($bytes, $precision = 2)
+{
+    $units = array('B', 'KB', 'MB', 'GB', 'TB');
+    $bytes = max($bytes, 0);
+    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+    $pow = min($pow, count($units) - 1);
+
+    // Uncomment one of the following alternatives
+    // $bytes /= pow(1024, $pow);
+    // $bytes /= (1 << (10 * $pow));
+
+    return round($bytes, $precision) . ' ' . $units[$pow];
+}
+
 function zerofill($num, $zerofill = 2)
 {
     return str_pad($num, $zerofill, '0', STR_PAD_LEFT);

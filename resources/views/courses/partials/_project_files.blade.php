@@ -32,7 +32,7 @@
                 href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
                 <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
-                  {{ $file->original_name }}
+                  {{ $file->original_name }} @if(isset($file->size)) ({{ formatBytes($file->size) }}) @endif
                 </span>
                 {{-- <span>
                   فایل دوره آموزشی
@@ -62,7 +62,7 @@
                 href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
                 <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                 <span>
-                  {{ $file->original_name }}
+                  {{ $file->original_name }} @if(isset($file->size)) ({{ formatBytes($file->size) }}) @endif
                 </span>
                 {{-- <span>
                   فایل تمرینی {{ $idx }}
