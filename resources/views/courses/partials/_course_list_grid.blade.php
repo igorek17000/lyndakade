@@ -12,7 +12,7 @@
       <div class="col-12 px-0 text-right mb-2" style="color: green;position: relative;font-size: 15px;">
         <span style="opacity: 0;">1</span>
         @if ($course->isPaid())
-          @if (!User::find(auth()->id())->isAdmin())
+          @if (!\App\User::find(auth()->id())->isAdmin())
             <div style="
                 color: white;
                 font-weight: 600;
