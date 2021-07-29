@@ -54,7 +54,7 @@ class LearnPath extends Model
         return $this->belongsTo(Library::class);
     }
 
-    public function scopeDurationHours()
+    public function durationHours()
     {
         $courses = js_to_courses($this->courses);
         $res = 0;
@@ -64,7 +64,7 @@ class LearnPath extends Model
         return (int)($res / 60);
     }
 
-    public function scopeDurationMinutes()
+    public function durationMinutes()
     {
         $courses = js_to_courses($this->courses);
         $res = 0;
@@ -74,7 +74,7 @@ class LearnPath extends Model
         return (int)($res % 60);
     }
 
-    public function scopePrice()
+    public function price()
     {
         $courses = js_to_courses($this->courses);
         $res = 0;
