@@ -207,6 +207,31 @@
     @endif
   @endif
 
+  @if (count($paths) > 0)
+    <div class="container my-3 photo-gallery">
+      <h2>مسیرهای آموزشی</h2>
+      <div class="row d-flex">
+        @foreach ($paths as $path)
+          <div class="col-12 col-md-4 col-lg-4 mb-4 mt-2">
+            <div class="card h-100  border-light  bg-light shadow">
+              <a href="{{ route('learn.paths.show', [$path->library->slug, $path->slug]) }}"
+                class="row card-body photo-frame d-flex align-items-center">
+                <div class="col-12 state-thumb">
+                  <img src="#" data-src="{{ fromDLHost($path->img) }}" class="img-fluid lazyload">
+                </div>
+                <div class="col-12 tile-text text-center">
+                  <span class="tile-name">{{ $path->title }}</span>
+                  <br>
+                  <span class="tile-heading">تعداد دروس {{ count(js_to_courses($path->courses)) }}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        @endforeach
+      </div>
+    </div>
+  @endif
+
   <div class="row card mx-0 latest-courses border-0">
     <div class="col-12 card-body">
       <div class="container">
@@ -276,31 +301,6 @@
       </div>
     </div>
   </div>
-
-  @if (count($paths) > 0)
-    <div class="container my-3 photo-gallery">
-      <h2>مسیرهای آموزشی</h2>
-      <div class="row d-flex">
-        @foreach ($paths as $path)
-          <div class="col-12 col-md-4 col-lg-4 mb-4 mt-2">
-            <div class="card h-100  border-light  bg-light shadow">
-              <a href="{{ route('learn.paths.show', [$path->library->slug, $path->slug]) }}"
-                class="row card-body photo-frame d-flex align-items-center">
-                <div class="col-12 state-thumb">
-                  <img src="#" data-src="{{ fromDLHost($path->img) }}" class="img-fluid lazyload">
-                </div>
-                <div class="col-12 tile-text text-center">
-                  <span class="tile-name">{{ $path->title }}</span>
-                  <br>
-                  <span class="tile-heading">تعداد دروس {{ count(js_to_courses($path->courses)) }}</span>
-                </div>
-              </a>
-            </div>
-          </div>
-        @endforeach
-      </div>
-    </div>
-  @endif
 
 
   {{-- p-5 bg-white rounded shadow --}}
