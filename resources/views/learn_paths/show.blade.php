@@ -28,8 +28,8 @@
               </div>
               <h1>{{ $path->title }}</h1>
               <div class="col-md-6 path-description text-justify">
-                {{ nl2br(e($path->description)) }}
-                {{-- {!! $path->description !!} --}}
+                {{-- {{ nl2br(e($path->description)) }} --}}
+                {!! $path->description !!}
               </div>
             </div>
           </div>

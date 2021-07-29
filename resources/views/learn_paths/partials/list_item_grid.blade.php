@@ -18,6 +18,8 @@
             {{ $path->durationMinutes() }}
             دقیقه
           @endif
+          <br>
+          <span class="btn btn-secondary px-1">{{ $path->price() }} تومان</span>
         </div>
       </div>
     </a>

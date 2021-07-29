@@ -81,10 +81,17 @@ class LearnPath extends Model
         foreach ($courses as $course) {
             $res += $course->price;
         }
-        return [
-            $res * 0.70,
-            $res
-        ];
+        return $res * 0.70;
+    }
+
+    public function old_price()
+    {
+        $courses = js_to_courses($this->courses);
+        $res = 0;
+        foreach ($courses as $course) {
+            $res += $course->price;
+        }
+        return $res;
     }
 
     public function getTableColumns()
