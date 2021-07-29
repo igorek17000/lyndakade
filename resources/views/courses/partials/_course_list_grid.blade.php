@@ -11,7 +11,20 @@
     <div class="card-body row mx-0 pt-3 pb-0" style="max-height: 160px; min-height: 160px;">
       <div class="col-12 px-0 text-right mb-2" style="color: green;position: relative;font-size: 15px;">
         <span style="opacity: 0;">1</span>
-        @if ($course->price == 0)
+        @if ($course->isPaid())
+          <div style="
+                color: white;
+                font-weight: 600;
+                top: 0;
+                left: 0;
+                position: absolute;
+                background-color: rgb(0, 167, 0);
+                padding: 0 9px;
+                border-radius: 5px;
+            ">
+            خریداری شده
+          </div>
+        @elseif ($course->price == 0)
           <div style="
                 color: white;
                 font-weight: 600;
@@ -31,7 +44,7 @@
                 top: 0;
                 left: 0;
                 position: absolute;
-                background-color: green;
+                background-color: rgb(0, 2, 128);
                 padding: 0 9px;
                 border-radius: 5px;
             ">

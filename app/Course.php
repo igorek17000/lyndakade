@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Controllers\PaidController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -131,6 +132,18 @@ class Course extends Model
     public function course_parts()
     {
         return $this->hasMany(CoursePart::class);
+    }
+
+    public function isPaid()
+    {
+        if (auth()->check()) {
+            if (User::find(auth()->id())->isAdmin())
+                return true;
+            if ((new PaidController)->isPaid($this->id, auth()->id(), '1')) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public function setTitleEngAttribute($value)
