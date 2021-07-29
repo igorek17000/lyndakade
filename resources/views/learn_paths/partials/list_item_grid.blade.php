@@ -19,23 +19,7 @@
             دقیقه
           @endif
           <br>
-          <style>
-            .amount {
-              position: relative;
-            }
-
-            .amount::after {
-              content: "";
-              width: 100%;
-              height: 1px;
-              background: black;
-              position: absolute;
-              bottom: -10px;
-              left: 0;
-            }
-
-          </style>
-          <span class="btn btn-success px-1 amount">{{ $path->old_price() }} تومان</span>
+          <del class="btn btn-secondary px-1">{{ $path->old_price() }} تومان</del>
           <span class="btn btn-success px-1">{{ $path->price() }} تومان</span>
         </div>
       </div>
