@@ -80,7 +80,7 @@ class LearnPathController extends Controller
             }
             $authors = Author::find($authors);
             $authors = array_values($authors->all());
-            if ((new PaidController)->isPaid($course->id, auth()->id(), '2')) {
+            if ((new PaidController)->isPaid($path->id, auth()->id(), '2')) {
                 $path_state = '3';
             } else {
                 $path_state = (new CartController())->isAdded('2-' . $path->id) ? '2' : '1';
