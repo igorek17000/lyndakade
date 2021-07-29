@@ -224,7 +224,7 @@
                   <br>
                   <span class="tile-name">{{ $path->titleEng }}</span>
                   <br>
-                  <span class="tile-heading">تعداد دروس {{ count(js_to_courses($path->courses)) }}</span>
+                  <span class="tile-heading pt-2">تعداد دروس {{ count(js_to_courses($path->courses)) }}</span>
                 </div>
               </a>
             </div>
