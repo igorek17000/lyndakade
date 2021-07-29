@@ -37,7 +37,7 @@
                         height="50" alt="" />
                     </td>
                     <td>{{ $cart->learn_path->title }}</td>
-                    <td>{{ $cart->learn_path->price }}</td>
+                    <td>{{ $cart->learn_path->price() }}</td>
                   @endif
                   <td>
                     <button data-id="{{ $cart->item_id }}" class="btn btn-danger cart-remove-btn">حذف از سبد
