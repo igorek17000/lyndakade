@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Controllers\PaidController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -79,7 +80,13 @@ class LearnPath extends Model
         $courses = js_to_courses($this->courses);
         $res = 0;
         foreach ($courses as $course) {
-            $res += $course->price;
+            if (auth()->check()) {
+                if (!(new PaidController)->isPaid($course->id, auth()->id(), '2')) {
+                    $res += $course->price;
+                }
+            } else {
+                $res += $course->price;
+            }
         }
         return $res * 0.70;
     }
@@ -89,7 +96,13 @@ class LearnPath extends Model
         $courses = js_to_courses($this->courses);
         $res = 0;
         foreach ($courses as $course) {
-            $res += $course->price;
+            if (auth()->check()) {
+                if (!(new PaidController)->isPaid($course->id, auth()->id(), '2')) {
+                    $res += $course->price;
+                }
+            } else {
+                $res += $course->price;
+            }
         }
         return $res;
     }

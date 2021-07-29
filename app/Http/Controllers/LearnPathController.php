@@ -80,12 +80,16 @@ class LearnPathController extends Controller
             }
             $authors = Author::find($authors);
             $authors = array_values($authors->all());
-            $path_state = (new CartController())->isAdded('2-' . $path->id);
+            if ((new PaidController)->isPaid($course->id, auth()->id(), '2')) {
+                $path_state = '3';
+            } else {
+                $path_state = (new CartController())->isAdded('2-' . $path->id) ? '2' : '1';
+            }
             return view('learn_paths.show', [
                 'path' => $path,
                 'courses' => $courses,
                 'authors' => $authors,
-                'path_state' => $path_state,
+                'path_state' => $path_state, // 1 show add button, 2 show remove button, 3 has been paid
             ]);
         }
         abort(404);

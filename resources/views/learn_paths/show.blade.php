@@ -12,10 +12,10 @@
   <div id="learn-path-top" class="px-0 pt-0">
     <div class="row m-0">
       <div class="path-big-img" style="
-                                                                           max-width: 100%;
-                                                                           width: 100%;
-                                                                           background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
-                                                                           url({{ fromDLHost($path->img) }})">
+                                                                                 max-width: 100%;
+                                                                                 width: 100%;
+                                                                                 background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
+                                                                                 url({{ fromDLHost($path->img) }})">
         <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
         <div class="path-big-img-over"></div>
       </div>
@@ -46,14 +46,16 @@
         <div class="row position-relative m-0">
           @if (\Illuminate\Support\Facades\Auth::check())
             <div id="cart-btn">
-              @if ($path_state)
+              @if ($path_state == '2')
                 <a data-id="2-{{ $path->id }}" class="btn btn-danger align-self-center cart-remove-btn">
                   حذف از سبد خرید
                 </a>
-              @else
+              @elseif($path_state == '1')
                 <a data-id="2-{{ $path->id }}" class="btn btn-download align-self-center cart-add-btn">
                   افزودن به سبد خرید
                 </a>
+              @elseif($path_state == '3')
+                خریداری شده است.
               @endif
             </div>
           @else
@@ -95,15 +97,15 @@
               </div>
               <div class="col-md-9  col-sm-12">
                 <p class="mt-md-3" style="
-                                                  word-break: break-word;
-                                                  overflow: hidden;
-                                                  text-overflow: ellipsis;
-                                                  display: -webkit-box;
-                                                  line-height: 2; /* fallback */
-                                                  /* fallback */
-                                                  -webkit-line-clamp: 3; /* number of lines to show */
-                                                  -webkit-box-orient: vertical;
-                                              ">
+                                                        word-break: break-word;
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
+                                                        display: -webkit-box;
+                                                        line-height: 2; /* fallback */
+                                                        /* fallback */
+                                                        -webkit-line-clamp: 3; /* number of lines to show */
+                                                        -webkit-box-orient: vertical;
+                                                    ">
                   {!! $course->description !!}
                 </p>
                 <div class="row">
