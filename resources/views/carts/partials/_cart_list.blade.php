@@ -29,7 +29,7 @@
             <td>
               <span>{{ $cart->learn_path->title }}</span>
             </td>
-            <td>{{ $cart->learn_path->price }}</td>
+            <td>{{ $cart->learn_path->price() }}</td>
           @endif
           <td>
             <button data-id="{{ $cart->item_id }}" class="btn btn-danger cart-remove-btn">حذف از سبد
