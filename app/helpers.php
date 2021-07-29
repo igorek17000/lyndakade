@@ -81,7 +81,7 @@ function get_course_state($course)
                 }
             } else {
                 $learn_path = LearnPath::find($paid->item_id);
-                foreach ($learn_path->courses as $current_course) {
+                foreach (js_to_courses($learn_path->courses) as $current_course) {
                     if ($current_course->id == $course->id) {
                         $found = true;
                         break;
