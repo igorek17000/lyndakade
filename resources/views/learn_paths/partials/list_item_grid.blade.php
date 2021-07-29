@@ -10,12 +10,12 @@
         <h4>{{ $path->title }}</h4>
         <div style="font-size: .8rem; font-weight: 400;">
           زمان کل مسیر آموزشی
-          @if ($path->durationHours > 0)
-            {{ $path->durationHours }}
+          @if ($path->durationHours() > 0)
+            {{ $path->durationHours() }}
             ساعت
           @endif
-          @if ($path->durationMinutes > 0)
-            {{ $path->durationMinutes }}
+          @if ($path->durationMinutes() > 0)
+            {{ $path->durationMinutes() }}
             دقیقه
           @endif
         </div>
