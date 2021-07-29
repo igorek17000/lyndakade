@@ -89,7 +89,7 @@
             </div>
             <div class="timeline-body text-justify">
               <p>
-                {{ nl2br(e($course->description)) }}
+                {!! $course->description !!}
               </p>
             </div>
           </a>
