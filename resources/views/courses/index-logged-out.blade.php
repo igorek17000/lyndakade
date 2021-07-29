@@ -222,6 +222,8 @@
                 <div class="col-12 tile-text text-center">
                   <span class="tile-name">{{ $path->title }}</span>
                   <br>
+                  <span class="tile-name">{{ $path->titleEng }}</span>
+                  <br>
                   <span class="tile-heading">تعداد دروس {{ count(js_to_courses($path->courses)) }}</span>
                 </div>
               </a>
