@@ -19,8 +19,10 @@
             دقیقه
           @endif
           <br>
-          <del class="btn btn-secondary px-1">{{ $path->old_price() }} تومان</del>
-          <span class="btn btn-success px-1">{{ $path->price() }} تومان</span>
+          <del style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ $path->old_price() }}
+            تومان</del>
+          <span style="background-color: lightgreen;padding: 3px 4px;border-radius: 5px;">{{ $path->price() }}
+            تومان</span>
         </div>
       </div>
     </a>
