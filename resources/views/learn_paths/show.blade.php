@@ -12,10 +12,10 @@
   <div id="learn-path-top" class="px-0 pt-0">
     <div class="row m-0">
       <div class="path-big-img" style="
-                                                                         max-width: 100%;
-                                                                         width: 100%;
-                                                                         background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
-                                                                         url({{ fromDLHost($path->img) }})">
+                                                                           max-width: 100%;
+                                                                           width: 100%;
+                                                                           background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
+                                                                           url({{ fromDLHost($path->img) }})">
         <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
         <div class="path-big-img-over"></div>
       </div>
@@ -95,15 +95,15 @@
               </div>
               <div class="col-md-9  col-sm-12">
                 <p class="mt-md-1" style="
-                                                word-break: break-word;
-                                                overflow: hidden;
-                                                text-overflow: ellipsis;
-                                                display: -webkit-box;
-                                                line-height: 2; /* fallback */
-                                                /* fallback */
-                                                -webkit-line-clamp: 3; /* number of lines to show */
-                                                -webkit-box-orient: vertical;
-                                            ">
+                                                  word-break: break-word;
+                                                  overflow: hidden;
+                                                  text-overflow: ellipsis;
+                                                  display: -webkit-box;
+                                                  line-height: 2; /* fallback */
+                                                  /* fallback */
+                                                  -webkit-line-clamp: 3; /* number of lines to show */
+                                                  -webkit-box-orient: vertical;
+                                              ">
                   {!! $course->description !!}
                 </p>
                 <div class="row">
@@ -126,6 +126,9 @@
                     <b>زیرنویس:</b>
                     @if (get_course_status_state($course->dubbed_id))
                       <span>دوبله شده</span>
+                    @elseif (get_course_status_state($course->persian_subtitle_id) &&
+                      get_course_status_state($course->english_subtitle_id))
+                      <span>انگلیسی و فارسی</span>
                     @elseif (get_course_status_state($course->persian_subtitle_id))
                       <span>فارسی</span>
                     @elseif (get_course_status_state($course->english_subtitle_id))
