@@ -156,9 +156,8 @@ class PaidController extends Controller
 
     public function isPaid($item_id, $user_id, $type)
     {
-        return Paid::all()
-            ->where('user_id', $user_id)
+        return Paid::where('user_id', $user_id)
             ->where('item_id', $item_id)
-            ->where('type', $type);
+            ->where('type', $type)->get()->first;
     }
 }
