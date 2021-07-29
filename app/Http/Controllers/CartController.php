@@ -37,7 +37,7 @@ class CartController extends Controller
             if ($cart->course) {
                 $total_price += $cart->course->price;
             } else if ($cart->learn_path) {
-                $total_price += $cart->learn_path->price;
+                $total_price += $cart->learn_path->price();
             }
         }
         if ($request->ajax()) {
@@ -137,7 +137,7 @@ class CartController extends Controller
             if ($cart->course)
                 $amount += $cart->course->price;
             else
-                $amount += $cart->learn_path->price;
+                $amount += $cart->learn_path->price();
         }
 
         // $callback = route('payment.callback');
@@ -165,7 +165,7 @@ class CartController extends Controller
                         $item_type = 1;
                         $item_id = $cart->course->id;
                     } else {
-                        $amount = $cart->learn_path->price;
+                        $amount = $cart->learn_path->price();
                         $item_type = 2;
                         $item_id = $cart->learn_path->id;
                     }
