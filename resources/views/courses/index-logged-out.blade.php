@@ -224,7 +224,7 @@
                   <br>
                   <span class="tile-name">{{ $path->titleEng }}</span>
                   <br>
-                  <span class="tile-heading pt-2">تعداد دروس {{ count(js_to_courses($path->courses)) }}</span>
+                  <span class="tile-heading py-2">تعداد دروس {{ count(js_to_courses($path->courses)) }}</span>
                   <br>
                   <del style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ $path->old_price() }}
                     تومان</del>
