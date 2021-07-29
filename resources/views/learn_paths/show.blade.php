@@ -12,10 +12,10 @@
   <div id="learn-path-top" class="px-0 pt-0">
     <div class="row m-0">
       <div class="path-big-img" style="
-                                             max-width: 100%;
-                                             width: 100%;
-                                             background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
-                                             url({{ fromDLHost($path->img) }})">
+                                               max-width: 100%;
+                                               width: 100%;
+                                               background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
+                                               url({{ fromDLHost($path->img) }})">
         <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
         <div class="path-big-img-over"></div>
       </div>
@@ -76,21 +76,23 @@
           <div class="timeline-badge">{{ $index + 1 }}</div>
           <a href="{{ courseURL($course) }}" class="timeline-panel">
             <div class="timeline-heading">
-              <img src="#" class="lazyload" data-src="{{ fromDLHost($course->img) }}" style="max-height: 150px;" />
-              <p style="text-align: center">
-                @foreach ($course->authors as $author)
-                  <small class="text-muted">
-                    <i class="glyphicon glyphicon-time"></i>
-                    {{ $author->name }}
-                  </small>
-                @endforeach
-              </p>
               <h4 class="timeline-title">{{ $course->title }}</h4>
             </div>
-            <div class="timeline-body text-justify">
-              <p>
-                {!! $course->description !!}
-              </p>
+            <div class="timeline-body text-justify row">
+              <div class="col-md-3 col-sm-12">
+                <img src="#" class="lazyload" data-src="{{ fromDLHost($course->img) }}" style="max-height: 150px;" />
+                <p style="text-align: center">
+                  @foreach ($course->authors as $author)
+                    <small class="text-muted">
+                      <i class="glyphicon glyphicon-time"></i>
+                      {{ $author->name }}
+                    </small>
+                  @endforeach
+                </p>
+              </div>
+              <div class="col-md-9  col-sm-12">
+                <p>{!! $course->description !!}</p>
+              </div>
             </div>
           </a>
         </li>
@@ -150,19 +152,19 @@
                     @for ($i = $index; $i < count($authors); $i++)
                       @include('authors.partials._item-grid', ['author' => $authors[$i]])
                       @if (($i + 1) % 3 == 0)
-                        @break
-                      @endif
-                    @endfor
-                  </div>
-                </div>
-              @endif
-            @endforeach
+                      @break
+                    @endif
+              @endfor
           </div>
-          <!--.carousel-inner-->
         </div>
-        <!--.Carousel-->
+        @endif
+        @endforeach
       </div>
+      <!--.carousel-inner-->
     </div>
+    <!--.Carousel-->
+  </div>
+  </div>
   </div>
 @endsection
 @section('script_body')
@@ -242,6 +244,5 @@
         });
       });
     })
-
   </script>
 @endsection
