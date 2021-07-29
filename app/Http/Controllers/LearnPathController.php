@@ -65,10 +65,17 @@ class LearnPathController extends Controller
             // $view = new \App\View(['type' => 2, 'item_id' => $path->id]);
             // $view->save();
 
+            $js_courses = json_decode($path->courses);
+            $courses = array();
             $authors = array();
-            foreach ($path->courses as $course) {
-                foreach ($course->authors as $author) {
-                    array_push($authors, $author->id);
+            foreach ($js_courses as $c) {
+                $course_id = $c['id'];
+                $course = Course::find($course_id);
+                if ($course) {
+                    array_push($courses, $course);
+                    foreach ($course->authors as $author) {
+                        array_push($authors, $author->id);
+                    }
                 }
             }
             $authors = Author::find($authors);
@@ -76,7 +83,7 @@ class LearnPathController extends Controller
             $path_state = (new CartController())->isAdded('2-' . $path->id);
             return view('learn_paths.show', [
                 'path' => $path,
-                'courses' => $path->courses,
+                'courses' => $courses,
                 'authors' => $authors,
                 'path_state' => $path_state,
             ]);
@@ -84,5 +91,4 @@ class LearnPathController extends Controller
         abort(404);
         return redirect()->route('root.home');
     }
-
 }
