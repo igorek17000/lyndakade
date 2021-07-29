@@ -12,10 +12,10 @@
   <div id="learn-path-top" class="px-0 pt-0">
     <div class="row m-0">
       <div class="path-big-img" style="
-                                                                     max-width: 100%;
-                                                                     width: 100%;
-                                                                     background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
-                                                                     url({{ fromDLHost($path->img) }})">
+                                                                         max-width: 100%;
+                                                                         width: 100%;
+                                                                         background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
+                                                                         url({{ fromDLHost($path->img) }})">
         <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
         <div class="path-big-img-over"></div>
       </div>
@@ -95,32 +95,46 @@
               </div>
               <div class="col-md-9  col-sm-12">
                 <p class="mt-md-1" style="
-                                            word-break: break-word;
-                                            overflow: hidden;
-                                            text-overflow: ellipsis;
-                                            display: -webkit-box;
-                                            line-height: 2; /* fallback */
-                                            /* fallback */
-                                            -webkit-line-clamp: 3; /* number of lines to show */
-                                            -webkit-box-orient: vertical;
-                                        ">
+                                                word-break: break-word;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                display: -webkit-box;
+                                                line-height: 2; /* fallback */
+                                                /* fallback */
+                                                -webkit-line-clamp: 3; /* number of lines to show */
+                                                -webkit-box-orient: vertical;
+                                            ">
                   {!! $course->description !!}
                 </p>
                 <div class="row">
-                  <div class="col-md-4 col-sm-6">
+                  <div class="col-md-3 col-sm-6">
                     <b>مدت زمان:</b>
                     {{ $course->durationHours ? $course->durationHours . 'h ' : '' }}
                     {{ $course->durationMinutes ? $course->durationMinutes . 'm' : '' }}
                   </div>
-                  <div class="col-md-4 col-sm-6">
+                  <div class="col-md-3 col-sm-6">
                     <b>سطح:</b>
 
                   </div>
-                  <div class="col-md-4 col-sm-6">
+                  <div class="col-md-3 col-sm-6">
                     <b>تاریخ انتشار:</b>
                     <span id="release-date" title="در لیندا {{ date('Y/m/d', strtotime($course->releaseDate)) }}">
                       {{ date('Y/m/d', strtotime($course->releaseDate)) }}
                     </span>
+                  </div>
+                  <div class="col-md-3 col-sm-6">
+                    <b>زیرنویس:</b>
+                    @if (get_course_status_state($course->dubbed_id))
+                      <span>دوبله شده</span>
+                    @elseif (get_course_status_state($course->persian_subtitle_id))
+                      <span>فارسی</span>
+                    @elseif (get_course_status_state($course->english_subtitle_id))
+                      <span>انگلیسی</span>
+                    @else
+                      <span style="color: red">
+                        ندارد
+                      </span>
+                    @endif
                   </div>
                 </div>
               </div>
