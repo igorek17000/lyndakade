@@ -1,5 +1,6 @@
 <?php
 
+use App\Course;
 use App\CourseStatus;
 use App\HashedData;
 use App\Http\Controllers\CartController;
@@ -18,6 +19,20 @@ function create_hashed_data_if_not_exists($data)
         $hashed_data->save();
     }
     return $hashed;
+}
+
+function js_to_courses($courses)
+{
+    $js_courses = json_decode($courses);
+    $res = array();
+    foreach ($js_courses as $c) {
+        $course_id = $c->id;
+        $course = Course::find($course_id);
+        if ($course) {
+            array_push($res, $course);
+        }
+    }
+    return $res;
 }
 
 function formatBytes($bytes, $precision = 2)

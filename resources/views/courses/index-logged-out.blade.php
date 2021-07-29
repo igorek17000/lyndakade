@@ -276,7 +276,7 @@
       </div>
     </div>
   </div>
-{{--
+
   @if (count($paths) > 0)
     <div class="container my-3 photo-gallery">
       <h2>مسیرهای آموزشی</h2>
@@ -292,7 +292,7 @@
                 <div class="col-12 tile-text text-center">
                   <span class="tile-name">{{ $path->title }}</span>
                   <br>
-                  <span class="tile-heading">تعداد دروس {{ count($path->courses) }}</span>
+                  <span class="tile-heading">تعداد دروس {{ count(js_to_courses($path->courses)) }}</span>
                 </div>
               </a>
             </div>
@@ -300,7 +300,7 @@
         @endforeach
       </div>
     </div>
-  @endif --}}
+  @endif
 
 
   {{-- p-5 bg-white rounded shadow --}}

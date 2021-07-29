@@ -45,16 +45,6 @@ class LearnPath extends Model
     ];
 
     /**
-     * A LearnPath belong to many courses
-     *
-     * @return BelongsToMany
-     */
-    public function courses()
-    {
-        return $this->belongsToMany(Course::class);
-    }
-
-    /**
      * A LearnPath belong to a library
      *
      * @return BelongsTo
@@ -64,10 +54,37 @@ class LearnPath extends Model
         return $this->belongsTo(Library::class);
     }
 
-    public function setTitleEngAttribute($value)
+    public function scopeDurationHours()
     {
-        $this->attributes['titleEng'] = $value;
-        $this->attributes['slug'] = Str::slug($value);
+        $courses = js_to_courses($this->courses);
+        $res = 0;
+        foreach ($courses as $course) {
+            $res += ($course->durationHours * 60) + $course->durationMinutes;
+        }
+        return (int)($res / 60);
+    }
+
+    public function scopeDurationMinutes()
+    {
+        $courses = js_to_courses($this->courses);
+        $res = 0;
+        foreach ($courses as $course) {
+            $res += ($course->durationHours * 60) + $course->durationMinutes;
+        }
+        return (int)($res % 60);
+    }
+
+    public function scopePrice()
+    {
+        $courses = js_to_courses($this->courses);
+        $res = 0;
+        foreach ($courses as $course) {
+            $res += $course->price;
+        }
+        return [
+            $res * 0.70,
+            $res
+        ];
     }
 
     public function getTableColumns()
