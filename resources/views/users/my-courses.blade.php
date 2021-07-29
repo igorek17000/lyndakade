@@ -76,11 +76,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @if (count($learn_paths) > 0)
+                  @if (count($paths) > 0)
                     @php
                       $i = 1;
                     @endphp
-                    @foreach ($learn_paths as $path)
+                    @foreach ($paths as $path)
                       <tr>
                         <th scope="row">@php echo $i;@endphp</th>
                         <td>{{ $path->title }}</td>

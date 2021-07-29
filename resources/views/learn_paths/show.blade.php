@@ -94,7 +94,7 @@
                 </p>
               </div>
               <div class="col-md-9  col-sm-12">
-                <p class="mt-md-1" style="
+                <p class="mt-md-3" style="
                                                   word-break: break-word;
                                                   overflow: hidden;
                                                   text-overflow: ellipsis;

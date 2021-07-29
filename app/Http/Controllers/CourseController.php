@@ -345,15 +345,14 @@ class CourseController extends Controller
     public function mycourses()
     {
         $courses_id = [];
+        $paths = [];
 
         foreach (Auth::user()->paids as $paid) {
             if ($paid->type == '1') {
                 array_push($courses_id, $paid->item_id);
             } else {
                 $learn_path = LearnPath::find($paid->item_id);
-                foreach ($learn_path->courses as $course) {
-                    array_push($courses_id, $course->id);
-                }
+                array_push($paths, $learn_path);
             }
         }
         $courses_id = array_unique($courses_id);
@@ -362,6 +361,7 @@ class CourseController extends Controller
 
         return view('courses.my-courses', [
             'courses' => $courses,
+            'paths' => $paths
         ]);
     }
 
