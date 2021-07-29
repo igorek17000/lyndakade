@@ -276,7 +276,7 @@
       </div>
     </div>
   </div>
-
+{{--
   @if (count($paths) > 0)
     <div class="container my-3 photo-gallery">
       <h2>مسیرهای آموزشی</h2>
@@ -300,7 +300,7 @@
         @endforeach
       </div>
     </div>
-  @endif
+  @endif --}}
 
 
   {{-- p-5 bg-white rounded shadow --}}
