@@ -69,7 +69,7 @@ class LearnPathController extends Controller
             $courses = array();
             $authors = array();
             foreach ($js_courses as $c) {
-                $course_id = $c['id'];
+                $course_id = $c->id;
                 $course = Course::find($course_id);
                 if ($course) {
                     array_push($courses, $course);
