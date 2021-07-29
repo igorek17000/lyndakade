@@ -157,10 +157,8 @@ class PaidController extends Controller
 
     public function isPaid($item_id, $user_id, $type)
     {
-        if (auth()->check()) {
-            if (User::find(auth()->id())->isAdmin())
-                return true;
-        }
+        if (User::find($user_id)->isAdmin())
+            return true;
         return Paid::where('user_id', $user_id)
             ->where('item_id', $item_id)
             ->where('type', $type)->count() > 0;
