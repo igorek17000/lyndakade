@@ -11,21 +11,26 @@
     <div class="card-body row mx-0 pt-3 pb-0" style="max-height: 160px; min-height: 160px;">
       <div class="col-12 px-0 text-right mb-2" style="color: green;position: relative;font-size: 15px;">
         <span style="opacity: 0;">1</span>
-        @if ($course->isPaid())
-          @if (!\App\User::find(auth()->id())->isAdmin())
-            <div style="
-                color: white;
-                font-weight: 600;
-                top: 0;
-                left: 0;
-                position: absolute;
-                background-color: rgb(0, 167, 0);
-                padding: 0 9px;
-                border-radius: 5px;
-            ">
-              خریداری شده
-            </div>
-          @endif
+        @php
+          if (!auth()->check()) {
+              $isAdmin = false;
+          } else {
+              $isAdmin = \App\User::find(auth()->id())->isAdmin();
+          }
+        @endphp
+        @if ($course->isPaid() && !$isAdmin)
+          <div style="
+            color: white;
+            font-weight: 600;
+            top: 0;
+            left: 0;
+            position: absolute;
+            background-color: rgb(0, 167, 0);
+            padding: 0 9px;
+            border-radius: 5px;
+        ">
+            خریداری شده
+          </div>
         @elseif ($course->price == 0)
           <div style="
                 color: white;
