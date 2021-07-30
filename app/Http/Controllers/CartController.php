@@ -265,16 +265,16 @@ class CartController extends Controller
             $factorId = $receipt->getReferenceId();
             foreach (Auth::user()->carts as $cart) {
                 if ($cart->learn_path) {
-                    foreach (js_to_courses($cart->learn_path->courses) as $course) {
-                        $paid = new Paid([
-                            'factorId' => $factorId,
-                            'type' => 1,
-                            'item_id' => $course->id,
-                            'user_id' => $payment->user->id,
-                            'price' => $course->price,
-                        ]);
-                        $paid->save();
-                    }
+                    // foreach (js_to_courses($cart->learn_path->courses) as $course) {
+                    //     $paid = new Paid([
+                    //         'factorId' => $factorId,
+                    //         'type' => 1,
+                    //         'item_id' => $course->id,
+                    //         'user_id' => $payment->user->id,
+                    //         'price' => $course->price,
+                    //     ]);
+                    //     $paid->save();
+                    // }
                     $paid = new Paid([
                         'factorId' => $factorId,
                         'type' => 2,
