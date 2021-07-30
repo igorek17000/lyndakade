@@ -220,15 +220,18 @@ class CartController extends Controller
 
         $authority = request()->query('Authority');
 
-        $payment = Payment::firstWhere('transactionId', $authority);
+        $payments = Payment::where('transactionId', $authority)->get();
 
-        if (!$payment) {
+        if (count($payments)  == 0) {
             return redirect()->route('root.home')->with('alerts', [
                 'alert-type' => 'error',
                 'message' => 'no payment found',
             ]);
         }
-        $amount = $payment->amount;
+        $amount = 0;
+        foreach ($payments as $payment) {
+            $amount += $payment->amount;
+        }
 
         if (!$amount) {
             return redirect()->route('root.home')->with('alerts', [
@@ -279,7 +282,7 @@ class CartController extends Controller
                         'factorId' => $factorId,
                         'type' => 2,
                         'item_id' => $cart->learn_path->id,
-                        'user_id' => $payment->user->id,
+                        'user_id' => $payments[0]->user->id,
                         'price' => $cart->learn_path->price(),
                     ]);
                     $paid->save();
@@ -288,7 +291,7 @@ class CartController extends Controller
                         'factorId' => $factorId,
                         'type' => 1,
                         'item_id' => $cart->course->id,
-                        'user_id' => $payment->user->id,
+                        'user_id' => $payments[0]->user->id,
                         'price' => $cart->course->price,
                     ]);
                     $paid->save();
@@ -304,10 +307,10 @@ class CartController extends Controller
         return view('carts.factor', [
             'referenceId' => $factorId,
             'total_price' => $amount,
-            'date' => $payment->created_at,
+            'date' => $payments[0]->created_at,
             'paymentMethod' => 'پرداخت آنلاین زرین پال',
             'paymentStatus' => $status,
-            'paymentId' => $payment->id,
+            'paymentId' => $payments[0]->id,
         ]);
     }
 }
