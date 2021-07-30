@@ -275,6 +275,14 @@ class CartController extends Controller
                         ]);
                         $paid->save();
                     }
+                    $paid = new Paid([
+                        'factorId' => $factorId,
+                        'type' => 2,
+                        'item_id' => $cart->learn_path->id,
+                        'user_id' => $payment->user->id,
+                        'price' => $cart->learn_path->price(),
+                    ]);
+                    $paid->save();
                 } else {
                     $paid = new Paid([
                         'factorId' => $factorId,
