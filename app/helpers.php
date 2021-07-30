@@ -81,10 +81,12 @@ function get_course_state($course)
                 }
             } else {
                 $learn_path = LearnPath::find($paid->item_id);
-                foreach (js_to_courses($learn_path->courses) as $current_course) {
-                    if ($current_course->id == $course->id) {
-                        $found = true;
-                        break;
+                if ($learn_path) {
+                    foreach (js_to_courses($learn_path->courses) as $current_course) {
+                        if ($current_course->id == $course->id) {
+                            $found = true;
+                            break;
+                        }
                     }
                 }
             }

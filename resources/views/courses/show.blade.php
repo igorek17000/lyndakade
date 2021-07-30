@@ -65,6 +65,8 @@
             @endif
             <a class="nav-item nav-link" id="nav-download-links-tab" data-toggle="tab" href="#nav-download-links"
               role="tab" aria-controls="nav-download-links" aria-selected="false">لینک های دانلود</a>
+            <a class="nav-item nav-link mr-md-auto ml-md-5" id="nav-download-links-tab" data-toggle="tab"
+              href="#nav-download-links" role="tab" aria-controls="nav-download-links" aria-selected="false">!</a>
           </div>
         </nav>
 
@@ -238,7 +240,8 @@
             <div class="tab-pane fade" id="nav-concepts" role="tabpanel" aria-labelledby="nav-concepts-tab">
               <div class="row" style="font-size: 1.3em;">
                 <div class="col-sm-6">
-                  <pre style="font-family: 'IranSANS'; overflow-y: hidden; line-height: 1.5;">{!! $course->concepts !!}</pre>
+                  <pre
+                    style="font-family: 'IranSANS'; overflow-y: hidden; line-height: 1.5;">{!! $course->concepts !!}</pre>
                 </div>
                 <div class="col-sm-6 text-left" dir="ltr">
                   <pre style="overflow-y: hidden; line-height: 1.5;">{!! $course->conceptsEng !!}</pre>

@@ -13,10 +13,10 @@
     <div class="row m-0">
       <div class="path-big-img"
         style="
-                                                                                       max-width: 100%;
-                                                                                       width: 100%;
-                                                                                       background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
-                                                                                       url({{ fromDLHost($path->img) }})">
+                                                                                           max-width: 100%;
+                                                                                           width: 100%;
+                                                                                           background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
+                                                                                           url({{ fromDLHost($path->img) }})">
         <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
         <div class="path-big-img-over"></div>
       </div>
@@ -27,14 +27,32 @@
               <div class="current-page-path path-big-img-path"><a href="{{ route('learn.paths.index') }}">مسیرهای
                   یادگیری</a> <i class="lyndacon arrow-left"></i>
               </div>
-              <h1>{{ $path->title }}</h1>
+              <h1 class="pt-3">{{ $path->title }}</h1>
               <div class="col-md-6 path-description text-justify">
                 {{-- {{ nl2br(e($path->description)) }} --}}
                 {!! $path->description !!}
               </div>
             </div>
           </div>
-          <div class="path-btns">
+          <div class="row pt-md-5">
+            <div class="col-md-6 col-sm-12">
+              <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                  duration
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                  price (old price)
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                  courses count
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                  authors count
+                </div>
+              </div>
+            </div>
+          </div>
+          {{-- <div class="path-btns">
             <button class="btn ga btn-preview-first" data-title="{{ $courses[0]->title }}"
               data-video-url="{{ fromDLHost($courses[0]->previewFile) }}"
               data-subtitle-url="{{ fromDLHost($courses[0]->previewSubtitle) }}"
@@ -42,7 +60,7 @@
               اجرای پیش نمایش اولین درس
               <i class="lyndacon ad-play"></i>
             </button>
-          </div>
+          </div> --}}
         </div>
         <div class="row position-relative m-0">
           @if (\Illuminate\Support\Facades\Auth::check())
@@ -98,15 +116,15 @@
               </div>
               <div class="col-md-9  col-sm-12">
                 <p class="mt-md-3" style="
-                                                              word-break: break-word;
-                                                              overflow: hidden;
-                                                              text-overflow: ellipsis;
-                                                              display: -webkit-box;
-                                                              line-height: 2; /* fallback */
-                                                              /* fallback */
-                                                              -webkit-line-clamp: 3; /* number of lines to show */
-                                                              -webkit-box-orient: vertical;
-                                                          ">
+                                                                  word-break: break-word;
+                                                                  overflow: hidden;
+                                                                  text-overflow: ellipsis;
+                                                                  display: -webkit-box;
+                                                                  line-height: 2; /* fallback */
+                                                                  /* fallback */
+                                                                  -webkit-line-clamp: 3; /* number of lines to show */
+                                                                  -webkit-box-orient: vertical;
+                                                              ">
                   {!! $course->description !!}
                 </p>
                 <div class="row">
