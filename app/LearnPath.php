@@ -88,7 +88,7 @@ class LearnPath extends Model
                 $res += $course->price;
             }
         }
-        return $res * 0.70;
+        return (int)($res * 0.70);
     }
 
     public function old_price()
