@@ -193,7 +193,7 @@ return [
             'zaringateApiPaymentUrl' => 'https://www.zarinpal.com/pg/StartPay/:authority/ZarinGate',
             'zaringateApiVerificationUrl' => 'https://ir.zarinpal.com/pg/services/WebGate/wsdl',
 
-            'mode' => 'zaringate', // can be normal, sandbox, zaringate
+            'mode' => 'sandbox', // can be normal, sandbox, zaringate
             'merchantId' => 'd469a65e-9997-11e9-8cae-000c29344814',
             'callbackUrl' => env('APP_URL', 'http://lyndakade.ir') . '/payment/callback',
             'description' => 'پرداخت در ' . config('app.name'),
