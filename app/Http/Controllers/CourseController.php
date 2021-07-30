@@ -372,9 +372,12 @@ class CourseController extends Controller
         $course = Course::find($course_id);
         $subtitle = json_decode($course->previewSubtitle);
 
-        foreach ($subtitle as $file) {
-            $content = Storage::disk('FTP')->get($file->download_link);
-            return '<pre>' . $content . '</pre>';
+        try {
+            foreach ($subtitle as $file) {
+                $content = Storage::disk('FTP')->get($file->download_link);
+                return '<pre>' . $content . '</pre>';
+            }
+        } catch (Exception $e) {
         }
         return '';
     }
