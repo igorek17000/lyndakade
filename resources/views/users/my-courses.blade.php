@@ -46,7 +46,7 @@
                             echo gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/');
                           @endphp
                         </td>
-                        <td><a href="{{ courseURL($course) }}">لینک دوره</a></td>
+                        <td><a href="{{ courseURL($course) }}">لینک</a></td>
                       </tr>
                       @php
                         $i += 1;
@@ -94,7 +94,7 @@
                             echo date('Y/m/d', strtotime($paid->created_at));
                           @endphp
                         </td>
-                        <td><a href="{{ route('learn.paths.show', [$path->library->slug, $path->slug]) }}">لینک دوره</a>
+                        <td><a href="{{ route('learn.paths.show', [$path->library->slug, $path->slug]) }}">لینک</a>
                         </td>
                       </tr>
                       @php
