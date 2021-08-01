@@ -94,6 +94,6 @@
 
 @section('javascript')
   <script src="{{ asset('black/js/plugins/chartjs.min.js') }}"></script>
-  <script src="{{ asset('black/js/initChart.js') }}"></script>
+  <script async src="{{ asset('black/js/initChart.js') }}"></script>
 
 @stop
