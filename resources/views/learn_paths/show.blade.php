@@ -24,7 +24,7 @@
         <div class="container-fluid" style="height: 400px; overflow: hidden;">
           <div class="row">
             <div class="col-xs-12 col-md-12 path-title-desc">
-              <div class="current-page-path path-big-img-path"><a href="{{ route('learn.paths.index') }}">مسیرهای
+              <div class="current-page-path path-big-img-path" style="width: -moz-fit-content;"><a href="{{ route('learn.paths.index') }}">مسیرهای
                   یادگیری</a> <i class="lyndacon arrow-left"></i>
               </div>
               <h1 class="pt-3">{{ $path->title }}</h1>
