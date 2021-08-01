@@ -36,13 +36,13 @@
           </div>
           <div class="row pt-md-5">
             <div class="col-md-6 col-sm-12">
-              <div class="row">
+              <div class="row"style="font-size: 1.25em;">
                 <div class="col-sm-6 col-xs-12">
-                  مدت زمان: {{ $path->durationHours() ? $path->durationHours() . 'h' : '' }}
+                  <b>مدت زمان: </b>{{ $path->durationHours() ? $path->durationHours() . 'h' : '' }}
                   {{ $path->durationMinutes() ? $path->durationMinutes() . 'm' : '' }}
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                  قیمت:
+                  <b>قیمت:</b>
                   @if ($path->price() == 0)
                     <span style="color: darkgreen">رایگان</span>
                   @else
@@ -50,10 +50,10 @@
                   @endif
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                  تعداد دوره ها: {{ count(js_to_courses($path->courses)) }}
+                  <b>تعداد دوره ها: </b>{{ count(js_to_courses($path->courses)) }}
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                  تعداد مدرسین: {{ count($authors) }}
+                  <b>تعداد مدرسین: </b>{{ count($authors) }}
                 </div>
               </div>
             </div>
