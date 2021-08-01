@@ -20,18 +20,17 @@
           <span>{{ $course->title }}</span>
         </div> --}}
 
-        <div class="panel-title">
+        <h1 class="panel-title" style="font-size: 1em;">
           <span class="course-title">
             {{ $course->title }}
             @if ($course->persian_subtitle_id == 1)
               (<span style="color: green">با زیر نویس فارسی</span>)
             @endif
           </span>
-
-        </div>
-        <div class="panel-title text-left" style="direction: ltr;">
+        </h1>
+        <h1 class="panel-title text-left" style="direction: ltr; font-size: 1em;">
           <span class="course-title">{{ $course->titleEng }}</span>
-        </div>
+        </h1>
         <div class="video-player">
           <video controls {{-- id="my-player" --}} class="w-100" {{-- preload="auto" --}}
             poster="{{ fromDLHost($course->img) }}" {{-- data-setup='{ "fluid" : true , "controls": true, "autoplay": false, "preload": "auto", "seek": true  }' --}} {{-- data-setup='{ "fluid" : true , "preload" : "auto"}' --}}>
