@@ -48,7 +48,7 @@
                   تعداد دوره ها: {{ count(js_to_courses($path->courses)) }}
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                  تعداد مدرسین: {{ count($path->authors) }}
+                  تعداد مدرسین: {{ count($authors) }}
                 </div>
               </div>
             </div>
