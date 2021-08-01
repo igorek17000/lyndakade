@@ -13,10 +13,10 @@
     <div class="row m-0">
       <div class="path-big-img"
         style="
-                                                                                             max-width: 100%;
-                                                                                             width: 100%;
-                                                                                             background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
-                                                                                             url({{ fromDLHost($path->img) }})">
+                                                                                                 max-width: 100%;
+                                                                                                 width: 100%;
+                                                                                                 background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
+                                                                                                 url({{ fromDLHost($path->img) }})">
         <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
         <div class="path-big-img-over"></div>
       </div>
@@ -42,7 +42,12 @@
                   {{ $path->durationMinutes() ? $path->durationMinutes() . 'm' : '' }}
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                  قیمت: {{ $path->price() }} <span class="text-muted">({{ $path->old_price() }})</span>
+                  قیمت:
+                  @if ($path->price() == 0)
+                    <span style="color: darkgreen">رایگان</span>
+                  @else
+                    {{ $path->price() }} <span class="text-muted">({{ $path->old_price() }})</span>
+                  @endif
                 </div>
                 <div class="col-sm-6 col-xs-12">
                   تعداد دوره ها: {{ count(js_to_courses($path->courses)) }}
@@ -117,15 +122,15 @@
               </div>
               <div class="col-md-9  col-sm-12">
                 <p class="mt-md-3" style="
-                                                                    word-break: break-word;
-                                                                    overflow: hidden;
-                                                                    text-overflow: ellipsis;
-                                                                    display: -webkit-box;
-                                                                    line-height: 2; /* fallback */
-                                                                    /* fallback */
-                                                                    -webkit-line-clamp: 3; /* number of lines to show */
-                                                                    -webkit-box-orient: vertical;
-                                                                ">
+                                                                        word-break: break-word;
+                                                                        overflow: hidden;
+                                                                        text-overflow: ellipsis;
+                                                                        display: -webkit-box;
+                                                                        line-height: 2; /* fallback */
+                                                                        /* fallback */
+                                                                        -webkit-line-clamp: 3; /* number of lines to show */
+                                                                        -webkit-box-orient: vertical;
+                                                                    ">
                   {!! $course->description !!}
                 </p>
                 <div class="row">
