@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\Library;
 use App\Software;
 use App\Subject;
 use Illuminate\Contracts\View\Factory;
@@ -58,5 +59,21 @@ class SubjectController extends Controller
         return new JsonResponse([
             'data' => $subjects->toArray(),
         ], 200);
+    }
+
+    public function subject_add_api(Request $request)
+    {
+        $subject_name = $request->input('title');
+        $lib_name = $request->input('lib');
+        $sub = Subject::firstWhere('title', $subject_name);
+        if (!$sub) {
+            $lib = Library::firstWhere('titleEng', $lib_name);
+            $sub = new Subject();
+            $sub->title = $subject_name;
+
+            $sub->description = '';
+            $sub->save();
+            $sub->library()->associate($lib);
+        }
     }
 }

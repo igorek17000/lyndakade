@@ -165,12 +165,12 @@ class CourseController extends Controller
                 $course->increment('views');
                 // views($course)->record();
 
-                $view = new \App\View([
-                    'course_id' => $course->id,
-                    'user_id' => auth()->check() ? auth()->id() : null,
-                    'ip' => $request->ip(),
-                ]);
-                $view->save();
+                // $view = new \App\View([
+                //     'course_id' => $course->id,
+                //     'user_id' => auth()->check() ? auth()->id() : null,
+                //     'ip' => $request->ip(),
+                // ]);
+                // $view->save();
 
                 // $date  = Carbon::now()->subMonths(2);
                 // \App\View::where('created_at', '<=', $date)->delete();
@@ -380,6 +380,12 @@ class CourseController extends Controller
         } catch (Exception $e) {
         }
         return '';
+    }
+
+    public function course_subject_set_api(Request $request)
+    {
+        $course_id = $request->input('course_id');
+        $subjects_name = $request->input('subjects');
     }
 
     public function course_api($id)

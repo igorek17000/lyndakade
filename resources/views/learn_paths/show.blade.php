@@ -46,7 +46,7 @@
                   @if ($path->price() == 0)
                     <span style="color: darkgreen">رایگان</span>
                   @else
-                    {{ $path->price() }} <span class="text-muted">({{ $path->old_price() }})</span>
+                    {{ $path->price() }} <del class="text-muted">({{ $path->old_price() }})</del>
                   @endif
                 </div>
                 <div class="col-sm-6 col-xs-12">
