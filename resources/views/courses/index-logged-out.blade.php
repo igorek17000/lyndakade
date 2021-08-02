@@ -329,7 +329,7 @@
             <div class="col-12 card-body">
               <div class="container">
                 <div class="row d-flex">
-                  @foreach ($tab[2]->sortByDesc('created_at')->take(4) as $course)
+                  @foreach ($tab[2] as $course)
                     @include('courses.partials._course_list_grid', ['course' => $course])
                   @endforeach
 
