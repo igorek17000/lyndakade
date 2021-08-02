@@ -400,10 +400,19 @@ class CourseController extends Controller
     {
         $course_id = $request->input('course_id');
         $subject = $request->input('subject');
+        $course = Course::find($course_id);
+        if ($course && $subject) {
+            $subject = Subject::firstWhere('title', $subject);
+            if ($subject) {
+                $course->subjects()->attach([$subject->id]);
+            }
+            return new JsonResponse([
+                'message' => 'success',
+            ], 200);
+        }
         return new JsonResponse([
-            'course_id' => $course_id,
-            'subject' => $subject,
-        ], 200);
+            'message' => 'failed',
+        ], 400);
     }
 
     public function course_api($id)
