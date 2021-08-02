@@ -261,10 +261,9 @@ class CourseController extends Controller
             if ($view) {
                 $view->increment('view');
             } else {
-                $view = new \App\View([
-                    'date' => $view_date,
-                    'view' => 1,
-                ]);
+                $view = new \App\View();
+                $view->date = $view_date;
+                $view->view = 1;
                 $view->save();
             }
 

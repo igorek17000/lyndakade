@@ -95,8 +95,7 @@ class ChartDataController extends Controller
         $listed = 0;
         while ($i--) {
             $eventsForThisDay = DB::select('select * from views' .
-                ' where views.created_at<"' . Carbon::tomorrow()->subDays($i)->toDateString() . '"' .
-                ' and views.created_at>="' . Carbon::today()->subDays($i)->toDateString() . '"');
+                ' where views.created_at = "' . Carbon::today()->subDays($i)->toDateString() . '"');
             $data = count($eventsForThisDay);
             $response['data'][$days - $i] = $data;
             $response['label'][$days - $i] = Carbon::today()->subDays($i)->toDateString();
