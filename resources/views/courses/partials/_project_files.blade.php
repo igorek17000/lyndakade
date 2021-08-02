@@ -5,7 +5,7 @@
     <br>
     <div class="col-12 px-0 mb-2 mt-2" style="color: green; font-size: 2rem;">
       <p>
-        {{ $course->price == 0 ? 'رایگان' : number_format($course->price) . ' تومان' }}
+        {{ $course->price == 0 ? 'رایگان' : nPersian(number_format($course->price)) . ' تومان' }}
       </p>
     </div>
     <div>

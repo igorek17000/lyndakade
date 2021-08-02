@@ -86,20 +86,20 @@
                 </div>
               </div>
               <div class="col-sm-7 col-md-6 col-lg-8 course-description" role="contentinfo">
-                <h6 title="در لیندا {{ date('Y/m/d', strtotime($course->releaseDate)) }}">
+                <h6 title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
                   تاریخ
                   انتشار</h6>
-                <span id="release-date" title="در لیندا {{ date('Y/m/d', strtotime($course->releaseDate)) }}">
-                  <b>{{ date('Y/m/d', strtotime($course->releaseDate)) }}</b>
+                <span id="release-date" title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
+                  <b>{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}</b>
                 </span>
                 {{-- {{ $course->created_at->format('Y/m/d') }}</span> --}}
                 <i class="lyndacon closed-captioning" title="زیرنویس"></i>
                 @if ($course->updateDate)
-                  <h6 title="در لیندا {{ date('Y/m/d', strtotime($course->updateDate)) }}">
+                  <h6 title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
                     تاریخ
                     بروزرسانی</h6>
-                  <span id="release-date" title="در لیندا {{ date('Y/m/d', strtotime($course->updateDate)) }}">
-                    <b>{{ date('Y/m/d', strtotime($course->updateDate)) }}</b>
+                  <span id="release-date" title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
+                    <b>{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}</b>
                   </span>
                   {{-- {{ $course->created_at->format('Y/m/d') }}</span> --}}
                   <i class="lyndacon closed-captioning" title="زیرنویس"></i>

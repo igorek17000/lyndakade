@@ -55,7 +55,7 @@
                 padding: 0 9px;
                 border-radius: 5px;
             ">
-            {{ number_format($course->price) . ' تومان' }}
+            {{ nPersian(number_format($course->price)) . ' تومان' }}
           </div>
         @endif
         @if ($course->updateDate)
