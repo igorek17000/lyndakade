@@ -259,7 +259,7 @@ class CourseController extends Controller
             $view_date = $view_dt->format('Y-m-d');
             $view = \App\View::firstWhere('date', $view_date);
             if ($view) {
-                $view->increment('view');
+                $view->increment('views');
             } else {
                 $view = new \App\View();
                 $view->date = $view_date;
