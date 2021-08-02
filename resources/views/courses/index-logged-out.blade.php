@@ -140,7 +140,7 @@
       <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
-            <h3 class="counter" style="color: black">{{ nPersian(get_number_of_all_courses()) }} </h3>
+            <h3 class="counter" style="color: black">{{ get_number_of_all_courses() }} </h3>
             <p style="color: black"> تعداد کل دوره‌های آموزشی سایت </p>
           </div>
           <div class="icon">
@@ -151,7 +151,7 @@
       <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
-            <h3 class="counter" style="color: black"> {{ nPersian(get_sum_of_all_courses_part_numbers()) }} </h3>
+            <h3 class="counter" style="color: black"> {{ get_sum_of_all_courses_part_numbers() }} </h3>
             <p style="color: black"> تعداد کل ویدیوهای آموزشی </p>
           </div>
           <div class="icon">
@@ -162,7 +162,7 @@
       <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
-            <h3 class="counter" style="color: black"> {{ nPersian(get_sum_of_all_courses_time()) }} </h3>
+            <h3 class="counter" style="color: black"> {{ get_sum_of_all_courses_time() }} </h3>
             <p style="color: black"> زمان کل آموزشهای سایت (دقیقه)</p>
           </div>
           <div class="icon">
@@ -173,7 +173,7 @@
       <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
-            <h3 class="counter" style="color: black"> {{ nPersian(get_number_of_authors_has_at_least_one_course()) }} </h3>
+            <h3 class="counter" style="color: black"> {{ get_number_of_authors_has_at_least_one_course() }} </h3>
             <p style="color: black">تعداد مدرسان </p>
           </div>
           <div class="icon">
@@ -365,16 +365,35 @@
 
 @section('script_body')
   <script>
-    $(document).ready(function() {
+    function perToEng(str) {
+      var
+        persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
+        arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g],
+        if (typeof str === 'string') {
+          for (var i = 0; i < 10; i++) {
+            str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+          }
+        }
+      return str;
+    }
 
+    function engToPer(n) {
+      const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+
+      return n
+        .toString()
+        .replace(/\d/g, x => farsiDigits[x]);
+    }
+
+    $(document).ready(function() {
       $('.counter').each(function() {
         $(this).prop('Counter', 0).animate({
-          Counter: $(this).text()
+          Counter: perToEng($(this).text())
         }, {
           duration: 5000,
           easing: 'swing',
           step: function(now) {
-            $(this).text(Math.ceil(now));
+            $(this).text(engToPer(Math.ceil(now)));
           }
         });
       });
