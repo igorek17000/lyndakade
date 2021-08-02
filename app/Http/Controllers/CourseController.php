@@ -398,17 +398,12 @@ class CourseController extends Controller
 
     public function course_subject_set_api(Request $request)
     {
-        try {
-            $course_id = $request->input('course_id');
-            $subjects_name = $request->input('subjects');
-            return new JsonResponse([
-                'data' => $subjects_name,
-            ], 200);
-        } catch (Exception $e) {
-            return new JsonResponse([
-                'data' => $e,
-            ], 200);
-        }
+        $course_id = $request->input('course_id');
+        $subject = $request->input('subject');
+        return new JsonResponse([
+            'course_id' => $course_id,
+            'subject' => $subject,
+        ], 200);
     }
 
     public function course_api($id)
