@@ -14,9 +14,9 @@
         @if (isset($shown_item))
             <div class="row mb-5 justify-content-center shown-item">
                 @if(isset($shown_item->img))
-                <div class="col-xs-12 col-md-6 subject-img" style="background-image: url({{ fromDLHost($shown_item->img) }});background-size: cover;" >
-                    @endif
-                </div>
+                    <div class="col-xs-12 col-md-6 subject-img" style="background-image: url({{ fromDLHost($shown_item->img) }});background-size: cover;" >
+                    </div>
+                @endif
                 <div class="col-xs-12 col-md-6 subject-details">
                     <h2 class="subject-title">
                         {{ $shown_item->title }}
