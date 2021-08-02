@@ -64,16 +64,32 @@ class SubjectController extends Controller
     public function subject_add_api(Request $request)
     {
         $subject_name = $request->input('title');
+        $subject_desc = $request->input('desc');
         $lib_name = $request->input('lib');
         $sub = Subject::firstWhere('title', $subject_name);
         if (!$sub) {
             $lib = Library::firstWhere('titleEng', $lib_name);
             $sub = new Subject();
             $sub->title = $subject_name;
-
-            $sub->description = '';
+            $sub->description = $subject_desc;
             $sub->save();
             $sub->library()->associate($lib);
+            return new JsonResponse([
+                'message' => 'success'
+            ], 200);
+        } else {
+            $sub->update([
+                'title' => $subject_name,
+                'description' => $subject_desc,
+            ]);
+            $lib = Library::firstWhere('titleEng', $lib_name);
+            $sub->library()->associate($lib);
+            return new JsonResponse([
+                'message' => 'updated'
+            ], 200);
         }
+        return new JsonResponse([
+            'message' => 'failed'
+        ], 200);
     }
 }
