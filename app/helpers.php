@@ -8,6 +8,15 @@ use App\LearnPath;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+function nPersian($string)
+{
+    $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    $english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    // $output = str_replace($persian, $english, $string);
+    $output = str_replace($english, $persian, $string);
+    return $output;
+}
+
 function create_hashed_data_if_not_exists($data)
 {
     $hashed_data = HashedData::firstWhere('data', $data);

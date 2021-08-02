@@ -126,12 +126,12 @@
               $jalaliDate = implode('/', $jalaliDate);
             @endphp
             <span title="{{ $release_title }}">
-              {{ $jalaliDate }}
+              {{ nPersian($jalaliDate) }}
             </span>
             {{-- <span>{{ $course->created_at->diffForHumans() }}</span> --}}
           </span>
           <span class="meta-left">
-            <span>{{ number_format($course->views) }}</span>
+            <span>{{ nPersian(number_format($course->views)) }}</span>
             <i class="ti-eye"></i>
           </span>
         </div>

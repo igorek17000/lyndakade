@@ -140,7 +140,7 @@
       <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
-            <h3 class="counter" style="color: black">{{ get_number_of_all_courses() }} </h3>
+            <h3 class="counter" style="color: black">{{ nPersian(get_number_of_all_courses()) }} </h3>
             <p style="color: black"> تعداد کل دوره‌های آموزشی سایت </p>
           </div>
           <div class="icon">
@@ -151,7 +151,7 @@
       <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
-            <h3 class="counter" style="color: black"> {{ get_sum_of_all_courses_part_numbers() }} </h3>
+            <h3 class="counter" style="color: black"> {{ nPersian(get_sum_of_all_courses_part_numbers()) }} </h3>
             <p style="color: black"> تعداد کل ویدیوهای آموزشی </p>
           </div>
           <div class="icon">
@@ -162,7 +162,7 @@
       <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
-            <h3 class="counter" style="color: black"> {{ get_sum_of_all_courses_time() }} </h3>
+            <h3 class="counter" style="color: black"> {{ nPersian(get_sum_of_all_courses_time()) }} </h3>
             <p style="color: black"> زمان کل آموزشهای سایت (دقیقه)</p>
           </div>
           <div class="icon">
@@ -173,7 +173,7 @@
       <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
-            <h3 class="counter" style="color: black"> {{ get_number_of_authors_has_at_least_one_course() }} </h3>
+            <h3 class="counter" style="color: black"> {{ nPersian(get_number_of_authors_has_at_least_one_course()) }} </h3>
             <p style="color: black">تعداد مدرسان </p>
           </div>
           <div class="icon">
@@ -192,7 +192,7 @@
             <h5>
               <i class="fas fa-plus-square"></i>
               دوره های آموزشی دوبله شده
-              (تعداد دوره ها {{ count($dubbed_courses) }})
+              (تعداد دوره ها {{ nPersian(count($dubbed_courses)) }})
               <a class="btn btn-primary my-2" href="{{ route('courses.free') }}">مشاهده بیشتر</a>
             </h5>
             <hr style="border-top: 1px solid  #f8ba16">
