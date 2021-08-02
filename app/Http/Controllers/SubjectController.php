@@ -6,6 +6,7 @@ use App\Course;
 use App\Library;
 use App\Software;
 use App\Subject;
+use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -64,32 +65,38 @@ class SubjectController extends Controller
     public function subject_add_api(Request $request)
     {
         $subject_name = $request->input('title');
+        $subject_slug = $request->input('slug');
         $subject_desc = $request->input('desc');
         $lib_name = $request->input('lib');
         $sub = Subject::firstWhere('title', $subject_name);
-        if (!$sub) {
-            $lib = Library::firstWhere('titleEng', $lib_name);
-            $sub = new Subject();
-            $sub->title = $subject_name;
-            $sub->description = $subject_desc;
-            $sub->library()->associate($lib);
-            $sub->save();
+        try {
+            if (!$sub) {
+                $lib = Library::firstWhere('titleEng', $lib_name);
+                $sub = new Subject();
+                $sub->title = $subject_name;
+                $sub->slug = $subject_slug;
+                $sub->description = $subject_desc;
+                $sub->library()->associate($lib);
+                $sub->save();
+                return new JsonResponse([
+                    'message' => 'success'
+                ], 200);
+            } else {
+                $sub->update([
+                    'title' => $subject_name,
+                    'slug' => $subject_slug,
+                    'description' => $subject_desc,
+                ]);
+                $lib = Library::firstWhere('titleEng', $lib_name);
+                $sub->library()->associate($lib);
+                return new JsonResponse([
+                    'message' => 'updated'
+                ], 200);
+            }
+        } catch (Exception $e) {
             return new JsonResponse([
-                'message' => 'success'
-            ], 200);
-        } else {
-            $sub->update([
-                'title' => $subject_name,
-                'description' => $subject_desc,
-            ]);
-            $lib = Library::firstWhere('titleEng', $lib_name);
-            $sub->library()->associate($lib);
-            return new JsonResponse([
-                'message' => 'updated'
-            ], 200);
+                'message' => $e,
+            ], 400);
         }
-        return new JsonResponse([
-            'message' => 'failed'
-        ], 200);
     }
 }
