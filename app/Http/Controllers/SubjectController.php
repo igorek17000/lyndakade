@@ -72,8 +72,8 @@ class SubjectController extends Controller
             $sub = new Subject();
             $sub->title = $subject_name;
             $sub->description = $subject_desc;
-            $sub->save();
             $sub->library()->associate($lib);
+            $sub->save();
             return new JsonResponse([
                 'message' => 'success'
             ], 200);
