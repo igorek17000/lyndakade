@@ -255,12 +255,12 @@ class CourseController extends Controller
             $course->increment('views');
             $my_id = $course->id;
 
-            $view = new \App\View([
-                'course_id' => $course->id,
-                'user_id' => auth()->check() ? auth()->id() : null,
-                'ip' => $request->ip(),
-            ]);
-            $view->save();
+            // $view = new \App\View([
+            //     'course_id' => $course->id,
+            //     'user_id' => auth()->check() ? auth()->id() : null,
+            //     'ip' => $request->ip(),
+            // ]);
+            // $view->save();
 
             // $date  = Carbon::now()->subMonths(2);
             // \App\View::where('created_at', '<=', $date)->delete();
