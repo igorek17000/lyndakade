@@ -13,10 +13,10 @@
     <div class="row m-0">
       <div class="path-big-img"
         style="
-                                                                                                     max-width: 100%;
-                                                                                                     width: 100%;
-                                                                                                     background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
-                                                                                                     url({{ fromDLHost($path->img) }})">
+                                                                                                             max-width: 100%;
+                                                                                                             width: 100%;
+                                                                                                             background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
+                                                                                                             url({{ fromDLHost($path->img) }})">
         <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
         <div class="path-big-img-over"></div>
       </div>
@@ -30,14 +30,14 @@
               </div>
               <h1 class="pt-md-3" style="padding-top: 30px;">{{ $path->title }}</h1>
               <p class="col-md-6 path-description text-justify" style="
-                                                                            word-break: break-word;
-                                                                            overflow: hidden;
-                                                                            text-overflow: ellipsis;
-                                                                            display: -webkit-box;
-                                                                            line-height: 1.5;
-                                                                            -webkit-line-clamp: 4;
-                                                                            -webkit-box-orient: vertical;
-                                                                        ">
+                                                                                    word-break: break-word;
+                                                                                    overflow: hidden;
+                                                                                    text-overflow: ellipsis;
+                                                                                    display: -webkit-box;
+                                                                                    line-height: 1.5;
+                                                                                    -webkit-line-clamp: 4;
+                                                                                    -webkit-box-orient: vertical;
+                                                                                ">
                 {{-- {{ nl2br(e($path->description)) }} --}}
                 {!! $path->description !!}
               </p>
@@ -48,8 +48,15 @@
               <b>مدت زمان: </b>{{ $path->durationHours() ? $path->durationHours() . 'h' : '' }}
               {{ $path->durationMinutes() ? $path->durationMinutes() . 'm' : '' }}
             </div>
+            @if ($path->price() > 0)
+              <div class="col-12 my-md-1">
+                <b>مجموع قیمت:</b>
+                <del class="text-muted">({{ $path->old_price() }})</del>
+              </div>
+            @endif
             <div class="col-12 my-md-1">
-              <b>قیمت:</b>
+              <b>قیمت: @if ($path->price() > 0) با 30% تخفیف @endif
+                </b>
               @if ($path->price() == 0)
                 <span style="color: darkgreen">رایگان</span>
               @else
@@ -120,15 +127,15 @@
               </div>
               <div class="col-md-9  col-sm-12">
                 <p class="mt-md-3" style="
-                                                                            word-break: break-word;
-                                                                            overflow: hidden;
-                                                                            text-overflow: ellipsis;
-                                                                            display: -webkit-box;
-                                                                            line-height: 2; /* fallback */
-                                                                            /* fallback */
-                                                                            -webkit-line-clamp: 3; /* number of lines to show */
-                                                                            -webkit-box-orient: vertical;
-                                                                        ">
+                                                                                    word-break: break-word;
+                                                                                    overflow: hidden;
+                                                                                    text-overflow: ellipsis;
+                                                                                    display: -webkit-box;
+                                                                                    line-height: 2; /* fallback */
+                                                                                    /* fallback */
+                                                                                    -webkit-line-clamp: 3; /* number of lines to show */
+                                                                                    -webkit-box-orient: vertical;
+                                                                                ">
                   {!! $course->description !!}
                 </p>
                 <div class="row">
