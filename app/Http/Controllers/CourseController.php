@@ -400,6 +400,9 @@ class CourseController extends Controller
     {
         $course_id = $request->input('course_id');
         $subjects_name = $request->input('subjects');
+        return new JsonResponse([
+            'data' => $subjects_name,
+        ], 200);
     }
 
     public function course_api($id)
