@@ -122,20 +122,25 @@ class CourseController extends Controller
 
         $paths = LearnPath::limit(6)->get();
 
-        $page_tabs = [
-            [1, 'آموزش انیمیشن سه بعدی', get_courses_for_library(1)],
-            [20, 'صوتی + موسیقی', get_courses_for_library(20)],
-            [29, 'کسب و کار', get_courses_for_library(29)],
-            [40, 'طراحی', get_courses_for_library(40)],
-            [50, 'توسعه دهنده', get_courses_for_library(50)],
-            [70, 'عکاسی', get_courses_for_library(70)],
-            [78, 'ویدئو', get_courses_for_library(78)],
-            [88, 'وب', get_courses_for_library(88)],
-            [1665, 'CAD', get_courses_for_library(1665)],
-            [1792, 'یادگیری الکترونیکی', get_courses_for_library(1792)],
-            [2057, 'IT', get_courses_for_library(2057)],
-            [2058, 'بازاریابی', get_courses_for_library(2058)]
-        ];
+        $libs = Library::orderBy('id', 'asc')->get();
+        $page_tabs = [];
+        foreach($libs as $lib){
+            $page_tabs[] = [$lib->slug, $lib->title, get_courses_for_library($lib->id)];
+        }
+        // $page_tabs = [
+        //     [1, 'آموزش انیمیشن سه بعدی', get_courses_for_library(1)],
+        //     [20, 'صوتی + موسیقی', get_courses_for_library(20)],
+        //     [29, 'کسب و کار', get_courses_for_library(29)],
+        //     [40, 'طراحی', get_courses_for_library(40)],
+        //     [50, 'توسعه دهنده', get_courses_for_library(50)],
+        //     [70, 'عکاسی', get_courses_for_library(70)],
+        //     [78, 'ویدئو', get_courses_for_library(78)],
+        //     [88, 'وب', get_courses_for_library(88)],
+        //     [1665, 'CAD', get_courses_for_library(1665)],
+        //     [1792, 'یادگیری الکترونیکی', get_courses_for_library(1792)],
+        //     [2057, 'IT', get_courses_for_library(2057)],
+        //     [2058, 'بازاریابی', get_courses_for_library(2058)]
+        // ];
 
         return view('courses.index-logged-out', [
             'free_courses_count' => $free_courses_count,
