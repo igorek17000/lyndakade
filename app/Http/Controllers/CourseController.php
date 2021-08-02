@@ -405,10 +405,10 @@ class CourseController extends Controller
                 'data' => $subjects_name,
             ], 200);
         } catch (Exception $e) {
+            return new JsonResponse([
+                'data' => $e,
+            ], 200);
         }
-        return new JsonResponse([
-            'data' => '123',
-        ], 200);
     }
 
     public function course_api($id)
