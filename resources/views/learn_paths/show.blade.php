@@ -43,7 +43,7 @@
               </p>
             </div>
           </div>
-          <div class="row pt-md-5" style="font-size: 1.25em;">
+          <div class="row pt-md-3" style="font-size: 1.25em;">
             <div class="col-12 my-md-1">
               <b>مدت زمان: </b>{{ $path->durationHours() ? $path->durationHours() . 'h' : '' }}
               {{ $path->durationMinutes() ? $path->durationMinutes() . 'm' : '' }}
