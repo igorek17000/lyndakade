@@ -29,7 +29,15 @@
                   یادگیری</a> <i class="lyndacon arrow-left"></i>
               </div>
               <h1 class="pt-md-3" style="padding-top: 30px;">{{ $path->title }}</h1>
-              <p class="col-md-6 path-description text-justify">
+              <p class="col-md-6 path-description text-justify" style="
+                                                                            word-break: break-word;
+                                                                            overflow: hidden;
+                                                                            text-overflow: ellipsis;
+                                                                            display: -webkit-box;
+                                                                            line-height: 1.5;
+                                                                            -webkit-line-clamp: 4;
+                                                                            -webkit-box-orient: vertical;
+                                                                        ">
                 {{-- {{ nl2br(e($path->description)) }} --}}
                 {!! $path->description !!}
               </p>
