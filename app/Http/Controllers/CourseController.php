@@ -263,7 +263,7 @@ class CourseController extends Controller
             } else {
                 $view = new \App\View();
                 $view->date = $view_date;
-                $view->view = 1;
+                $view->views = 1;
                 $view->save();
             }
 
