@@ -75,7 +75,6 @@ class SubjectController extends Controller
                 $sub = new Subject();
                 $sub->title = $subject_name;
                 $sub->slug = $subject_slug;
-                $sub->description = $subject_desc;
                 $sub->library()->associate($lib);
                 $sub->save();
                 return new JsonResponse([
@@ -85,7 +84,6 @@ class SubjectController extends Controller
                 $sub->update([
                     'title' => $subject_name,
                     'slug' => $subject_slug,
-                    'description' => $subject_desc,
                 ]);
                 $lib = Library::firstWhere('titleEng', $lib_name);
                 $sub->library()->associate($lib);
