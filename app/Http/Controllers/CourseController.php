@@ -186,7 +186,7 @@ class CourseController extends Controller
                     $view->views = 1;
                     $view->save();
                 }
-                
+
                 /*
                  * getting courses id related to subjects
                  */

@@ -13,10 +13,10 @@
     <div class="row m-0">
       <div class="path-big-img"
         style="
-                                                                                                 max-width: 100%;
-                                                                                                 width: 100%;
-                                                                                                 background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
-                                                                                                 url({{ fromDLHost($path->img) }})">
+                                                                                                   max-width: 100%;
+                                                                                                   width: 100%;
+                                                                                                   background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
+                                                                                                   url({{ fromDLHost($path->img) }})">
         <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
         <div class="path-big-img-over"></div>
       </div>
@@ -24,7 +24,8 @@
         <div class="container-fluid" style="height: 400px; overflow: hidden;">
           <div class="row">
             <div class="col-xs-12 col-md-12 path-title-desc">
-              <div class="current-page-path path-big-img-path" style="width: -moz-fit-content;"><a href="{{ route('learn.paths.index') }}">مسیرهای
+              <div class="current-page-path path-big-img-path" style="width: -moz-fit-content;"><a
+                  href="{{ route('learn.paths.index') }}">مسیرهای
                   یادگیری</a> <i class="lyndacon arrow-left"></i>
               </div>
               <h1 class="pt-3">{{ $path->title }}</h1>
@@ -34,64 +35,53 @@
               </div>
             </div>
           </div>
-          <div class="row pt-md-5">
-            <div class="col-md-6 col-sm-12">
-              <div class="row"style="font-size: 1.25em;">
-                <div class="col-sm-6 col-xs-12">
-                  <b>مدت زمان: </b>{{ $path->durationHours() ? $path->durationHours() . 'h' : '' }}
-                  {{ $path->durationMinutes() ? $path->durationMinutes() . 'm' : '' }}
-                </div>
-                <div class="col-sm-6 col-xs-12">
-                  <b>قیمت:</b>
-                  @if ($path->price() == 0)
-                    <span style="color: darkgreen">رایگان</span>
-                  @else
-                    {{ $path->price() }} <del class="text-muted">({{ $path->old_price() }})</del>
-                  @endif
-                </div>
-                <div class="col-sm-6 col-xs-12">
-                  <b>تعداد دوره ها: </b>{{ count(js_to_courses($path->courses)) }}
-                </div>
-                <div class="col-sm-6 col-xs-12">
-                  <b>تعداد مدرسین: </b>{{ count($authors) }}
-                </div>
-              </div>
+          <div class="row pt-md-5" style="font-size: 1.25em;">
+            <div class="col-12 my-md-1">
+              <b>مدت زمان: </b>{{ $path->durationHours() ? $path->durationHours() . 'h' : '' }}
+              {{ $path->durationMinutes() ? $path->durationMinutes() . 'm' : '' }}
             </div>
-          </div>
-          {{-- <div class="path-btns">
-            <button class="btn ga btn-preview-first" data-title="{{ $courses[0]->title }}"
-              data-video-url="{{ fromDLHost($courses[0]->previewFile) }}"
-              data-subtitle-url="{{ fromDLHost($courses[0]->previewSubtitle) }}"
-              data-poster-url="{{ fromDLHost($courses[0]->img) }}">
-              اجرای پیش نمایش اولین درس
-              <i class="lyndacon ad-play"></i>
-            </button>
-          </div> --}}
-        </div>
-        <div class="row position-relative m-0">
-          @if (\Illuminate\Support\Facades\Auth::check())
-            <div id="cart-btn">
-              @if ($path_state == '2')
-                <a data-id="2-{{ $path->id }}" class="btn btn-danger align-self-center cart-remove-btn">
-                  حذف از سبد خرید
-                </a>
-              @elseif($path_state == '1')
-                <a data-id="2-{{ $path->id }}" class="btn btn-download align-self-center cart-add-btn">
-                  افزودن به سبد خرید
-                </a>
-              @elseif($path_state == '3')
-                خریداری شده است.
+            <div class="col-12 my-md-1">
+              <b>قیمت:</b>
+              @if ($path->price() == 0)
+                <span style="color: darkgreen">رایگان</span>
+              @else
+                {{ $path->price() }} <del class="text-muted">({{ $path->old_price() }})</del>
               @endif
             </div>
-          @else
-            <div>
-              برای خرید این مسیر آموزشی باید
-              <a href="{{ route('login') }}" style="color: orange">
-                وارد حساب کاربری
-              </a>
-              خود شوید.
+            <div class="col-12 my-md-1">
+              <b>تعداد دوره ها: </b>{{ count(js_to_courses($path->courses)) }}
             </div>
-          @endif
+            <div class="col-12 my-md-1">
+              <b>تعداد مدرسین: </b>{{ count($authors) }}
+            </div>
+            <div class="col-12 my-md-1">
+              @if (\Illuminate\Support\Facades\Auth::check())
+                <div id="cart-btn">
+                  @if ($path_state == '2')
+                    <a data-id="2-{{ $path->id }}" class="btn btn-danger align-self-center cart-remove-btn">
+                      حذف از سبد خرید
+                    </a>
+                  @elseif($path_state == '1')
+                    <a data-id="2-{{ $path->id }}" class="btn btn-download align-self-center cart-add-btn">
+                      افزودن به سبد خرید
+                    </a>
+                  @elseif($path_state == '3')
+                    خریداری شده است.
+                  @endif
+                </div>
+              @else
+                <div>
+                  برای خرید این مسیر آموزشی باید
+                  <a href="{{ route('login') }}" style="color: orange">
+                    وارد حساب کاربری
+                  </a>
+                  خود شوید.
+                </div>
+              @endif
+            </div>
+          </div>
+        </div>
+        <div class="row position-relative m-0">
         </div>
       </div>
     </div>
@@ -122,15 +112,15 @@
               </div>
               <div class="col-md-9  col-sm-12">
                 <p class="mt-md-3" style="
-                                                                        word-break: break-word;
-                                                                        overflow: hidden;
-                                                                        text-overflow: ellipsis;
-                                                                        display: -webkit-box;
-                                                                        line-height: 2; /* fallback */
-                                                                        /* fallback */
-                                                                        -webkit-line-clamp: 3; /* number of lines to show */
-                                                                        -webkit-box-orient: vertical;
-                                                                    ">
+                                                                          word-break: break-word;
+                                                                          overflow: hidden;
+                                                                          text-overflow: ellipsis;
+                                                                          display: -webkit-box;
+                                                                          line-height: 2; /* fallback */
+                                                                          /* fallback */
+                                                                          -webkit-line-clamp: 3; /* number of lines to show */
+                                                                          -webkit-box-orient: vertical;
+                                                                      ">
                   {!! $course->description !!}
                 </p>
                 <div class="row">
