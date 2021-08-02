@@ -179,7 +179,7 @@ function get_courses_for_library($id)
             }
         }
         $ids = array_unique($ids);
-        return \App\Course::whereIn('id', $ids)->get();
+        return \App\Course::orderBy('releaseDate', 'desc')->whereIn('id', $ids)->get();
     }
     return collect([]);
 }
