@@ -94,13 +94,17 @@ class ChartDataController extends Controller
         $i = $days;
         $listed = 0;
         while ($i--) {
-            $eventsForThisDay = DB::select('select * from views' .
-                ' where views.created_at = "' . Carbon::today()->subDays($i)->toDateString() . '"');
-            $data = count($eventsForThisDay);
+            $view = \App\View::firstWhere('date', Carbon::today()->subDays($i)->toDateString());
+            if($view){
+                $view = $view->views;
+            }else{
+                $view = 0;
+            }
+            $data = $view;
             $response['data'][$days - $i] = $data;
             $response['label'][$days - $i] = Carbon::today()->subDays($i)->toDateString();
 //            $response['label'][$days - $i] = Carbon::today()->subDays($i)->dayName;
-            $listed += count($eventsForThisDay);
+            $listed += $view;
         }
         $response['total'] = $listed;
         return response()->json($response);

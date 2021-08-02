@@ -175,6 +175,18 @@ class CourseController extends Controller
                 // $date  = Carbon::now()->subMonths(2);
                 // \App\View::where('created_at', '<=', $date)->delete();
 
+                $view_dt = Carbon::now();
+                $view_date = $view_dt->format('Y-m-d');
+                $view = \App\View::firstWhere('date', $view_date);
+                if ($view) {
+                    $view->increment('views');
+                } else {
+                    $view = new \App\View();
+                    $view->date = $view_date;
+                    $view->views = 1;
+                    $view->save();
+                }
+                
                 /*
                  * getting courses id related to subjects
                  */
