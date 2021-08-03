@@ -34,6 +34,7 @@ Route::middleware('guest')->get('/authors/has-courses', 'AuthorController@author
 Route::middleware('guest')->post('/authors/update/{id}', 'AuthorController@update_api')->name('authors.update.api');
 Route::middleware('guest')->get('/views', 'DataController@views_api')->name('authors.api');
 
+Route::middleware('guest')->post('/courses/update-view-from-linkedin', 'CourseController@course_update_view_from_linkedin_api')->name('course.update.view.api');
 Route::middleware('guest')->post('/course-subject/set', 'CourseController@course_subject_set_api')->name('course.subject.set.api');
 Route::middleware('guest')->post('/subjects/add', 'SubjectController@subject_add_api')->name('subjects.add.api');
 

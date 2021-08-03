@@ -124,7 +124,7 @@ class CourseController extends Controller
 
         $libs = Library::orderBy('id', 'asc')->get();
         $page_tabs = [];
-        foreach($libs as $lib){
+        foreach ($libs as $lib) {
             $page_tabs[] = [$lib->slug, $lib->title, get_courses_for_library($lib->id)];
         }
         // $page_tabs = [
@@ -167,7 +167,8 @@ class CourseController extends Controller
         $course = Course::with(['authors', 'subjects', 'softwares'])->find($my_id);
         if ($course) {
             if ($course->slug == $slug) {
-                $course->increment('views');
+                // $course->increment('views');
+
                 // views($course)->record();
 
                 // $view = new \App\View([
@@ -269,7 +270,8 @@ class CourseController extends Controller
     {
         $course = Course::with(['authors', 'subjects', 'softwares'])->firstWhere('slug_linkedin', $slug_linkedin);
         if ($course) {
-            $course->increment('views');
+            // $course->increment('views');
+
             $my_id = $course->id;
 
             $view_dt = Carbon::now();
@@ -399,6 +401,22 @@ class CourseController extends Controller
         } catch (Exception $e) {
         }
         return '';
+    }
+
+    public function course_update_view_from_linkedin_api(Request $request)
+    {
+        $view = $request->input('view');
+        $course_slug = $request->input('course_slug');
+        $course = Course::firstWhere('slug', $course_slug);
+        if ($course) {
+            $course->update(['views' => $view]);
+            return new JsonResponse([
+                'message' => 'success',
+            ], 200);
+        }
+        return new JsonResponse([
+            'message' => 'failed',
+        ], 400);
     }
 
     public function course_subject_set_api(Request $request)
