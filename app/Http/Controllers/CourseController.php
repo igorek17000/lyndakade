@@ -405,7 +405,7 @@ class CourseController extends Controller
 
     public function course_update_view_from_linkedin_api(Request $request)
     {
-        $view = $request->input('view');
+        $view = intval($request->input('view'));
         $course_slug = $request->input('course_slug');
         $course = Course::firstWhere('slug_linkedin', $course_slug);
         if ($course) {
