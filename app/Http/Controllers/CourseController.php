@@ -407,7 +407,7 @@ class CourseController extends Controller
     {
         $view = $request->input('view');
         $course_slug = $request->input('course_slug');
-        $course = Course::firstWhere('slug', $course_slug);
+        $course = Course::firstWhere('slug_linkedin', $course_slug);
         if ($course) {
             $course->update(['views' => $view]);
             return new JsonResponse([
