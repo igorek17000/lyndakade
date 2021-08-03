@@ -161,12 +161,12 @@ class HomeController extends Controller
             return $this->show_first_object($author, 'مدرس', $request);
         }
 
-        $software = Software::with('courses')->where('title', $query)->orWhere('titleper', $query)->first();
+        $software = Software::with('courses')->where('title', $query)->first();
         if ($software) {
             return $this->show_first_object($software, 'نرم افزار', $request);
         }
 
-        $subject = Subject::with('courses')->where('title', $query)->orWhere('titleper', $query)->first();
+        $subject = Subject::with('courses')->where('title', $query)->first();
         if ($subject) {
             return $this->show_first_object($subject, 'دسته', $request);
         }
