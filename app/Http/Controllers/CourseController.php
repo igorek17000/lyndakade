@@ -167,7 +167,7 @@ class CourseController extends Controller
         $course = Course::with(['authors', 'subjects', 'softwares'])->find($my_id);
         if ($course) {
             if ($course->slug == $slug) {
-                // $course->increment('views');
+                $course->increment('views');
 
                 // views($course)->record();
 
@@ -270,7 +270,7 @@ class CourseController extends Controller
     {
         $course = Course::with(['authors', 'subjects', 'softwares'])->firstWhere('slug_linkedin', $slug_linkedin);
         if ($course) {
-            // $course->increment('views');
+            $course->increment('views');
 
             $my_id = $course->id;
 
