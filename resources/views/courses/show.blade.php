@@ -276,7 +276,7 @@
               <h5 class="course-title" style="font-size: 1.2rem;">عناوین مرتبط</h5>
               @foreach ($course->subjects as $subject)
                 <a target="_blank"
-                  href="{{ route('home.show', [$subject->slug, $subject->id]) }}"><em>{{ $subject->title }}</em></a>
+                  href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title }}</em></a>
               @endforeach
             </div>
           @endif
@@ -286,7 +286,7 @@
               <h5 class="course-title" style="font-size: 1.2rem;">نرم افزارهای مرتبط</h5>
               @foreach ($course->softwares as $software)
                 <a target="_blank"
-                  href="{{ route('home.show', [$software->slug, $software->id]) }}"><em>{{ $software->title }}</em></a>
+                  href="{{ route('home.show', [$software->slug]) }}"><em>{{ $software->title }}</em></a>
               @endforeach
             </div>
           @endif

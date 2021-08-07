@@ -188,7 +188,7 @@ function get_library_link($id)
 {
     $lib = \App\Library::find($id);
     if ($lib)
-        return route('home.show', [$lib->slug, $lib->id]);
+        return route('home.show', [$lib->slug]);
     return '#';
 }
 

@@ -10,7 +10,7 @@
                             @foreach($courses->first()->subjects->first()->library->subjects as $item)
                                 <li tabindex="0">
                                     <a class="filter ga ga-multiple"
-                                       href="{{ route('home.show', [$item->slug, $item->id]) }}">
+                                       href="{{ route('home.show', [$item->slug]) }}">
                                         {{ $item->title }}<span>&nbsp;({{ count($item->courses) }})</span>
                                     </a>
                                 </li>

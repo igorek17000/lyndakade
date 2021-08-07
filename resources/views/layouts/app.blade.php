@@ -397,7 +397,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
             </a>
             <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdownMenuLink">
               @foreach (\App\Library::get() as $library)
-                <a class="dropdown-item text-center" href="{{ route('home.show', [$library->slug, $library->id]) }}">
+                <a class="dropdown-item text-center" href="{{ route('home.show', [$library->slug]) }}">
                   <i class="category-icons" aria-hidden="true">
                     @if($library->slug == "business")
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" width="24" height="24" focusable="false">

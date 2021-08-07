@@ -42,7 +42,7 @@
                                     <a href="@if($pageSlug == 'course') {{courseURL($item)}}
                                     @elseif($pageSlug == 'learnpath') {{route('learn.paths.show', [$item->library->slug, $item->slug])}}
                                     @elseif($pageSlug == 'user') {{route('admins.user.show', [$item->username])}}
-                                    @elseif(in_array($pageSlug, ['library', 'subject', 'software'])) {{route('home.show', [$item->slug, $item->id])}}
+                                    @elseif(in_array($pageSlug, ['library', 'subject', 'software'])) {{route('home.show', [$item->slug])}}
                                     @endif">{{ $item->titleEng ?? $item->title ?? $item->firstName . ' ' . $item->lastName }}</a>
                                 </td>
                                 <td>{{ $item->created_at }}</td>
