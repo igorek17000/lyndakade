@@ -50,7 +50,7 @@ Route::get('/c/{id}', function ($id) {
 
 
 // authors
-Route::get('/learning/instructors', 'AuthorController@index')->name('authors.index');
+Route::get('/authors', 'AuthorController@index')->name('authors.index');
 Route::get('/learning/instructors/{slug}', 'AuthorController@show')->name('authors.show');
 
 
