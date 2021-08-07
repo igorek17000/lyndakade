@@ -67,11 +67,11 @@ class HomeController extends Controller
      * @param $id
      * @return Application|Factory|View|string
      */
-    public function show(Request $request, $slug, $id)
+    public function show(Request $request, $slug)
     {
-        $sub = Library::with('courses')->where('id', $id)->where('slug', $slug)->get()->first();
+        $sub = Library::with('courses')->where('slug', $slug)->get()->first();
         if (!$sub)
-            $sub = Subject::with('courses')->where('id', $id)->where('slug', $slug)->get()->first();
+            $sub = Subject::with('courses')->where('slug', $slug)->get()->first();
         // if (!$sub)
         //     $sub = Software::with('courses')->where('slug', $slug)->get()->first();
 

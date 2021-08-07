@@ -50,12 +50,12 @@ Route::get('/c/{id}', function ($id) {
 
 
 // authors
-Route::get('/authors', 'AuthorController@index')->name('authors.index');
-Route::get('{name}/{id}-1.html', 'AuthorController@show')->name('authors.show');
+Route::get('/learning/instructors', 'AuthorController@index')->name('authors.index');
+Route::get('/learning/instructors/{slug}', 'AuthorController@show')->name('authors.show');
 
 
 // subjects & software & libraries
-Route::get('/{slug}/{id}-0.html', 'HomeController@show')->name('home.show');
+Route::get('/learning/topics/{slug}', 'HomeController@show')->name('home.show');
 
 
 // needs to be logged in, for request course
@@ -67,10 +67,10 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 // learning paths
-Route::get('learning-path/', 'LearnPathController@index')->name('learn.paths.index');
-Route::get('learning-path/{library_slug}/{learn_path_slug}', 'LearnPathController@show')->name('learn.paths.show');
+Route::get('/learning/learning-path/', 'LearnPathController@index')->name('learn.paths.index');
+Route::get('/learning/learning-path/{library_slug}/{learn_path_slug}', 'LearnPathController@show')->name('learn.paths.show');
 // "see all" button, for each library, in navbar
-Route::get('learning-path/{library_slug}', 'LearnPathController@show_category')->name('learn.paths.show_category');
+Route::get('/learning/learning-path/{library_slug}', 'LearnPathController@show_category')->name('learn.paths.show_category');
 
 // logging with google account
 Route::get('auth/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
@@ -120,9 +120,9 @@ Route::post('profile/edit', 'UserController@update')->name('my-profile.update');
 
 Route::post('users/username/check', 'UserController@username_check')->name('users.username-check');
 
-Route::get('courses/newest', 'CourseController@newest')->name('courses.newest');
-Route::get('courses/best', 'CourseController@best')->name('courses.best');
-Route::get('courses/free', 'CourseController@free')->name('courses.free');
+Route::get('/learning/courses/newest', 'CourseController@newest')->name('courses.newest');
+Route::get('/learning/courses/best', 'CourseController@best')->name('courses.best');
+Route::get('/learning/courses/free', 'CourseController@free')->name('courses.free');
 
 Route::get('/454247.txt', function () {
     $fileText = "";

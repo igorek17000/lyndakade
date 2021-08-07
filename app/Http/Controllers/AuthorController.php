@@ -65,7 +65,7 @@ class AuthorController extends Controller
      */
     public function show($slug)
     {
-        $author = Author::all()->where('slug', '=', $slug)->first();
+        $author = Author::all()->where('slug', $slug)->first();
         if ($author) {
             $courses = $author->courses;
             return view('authors.show', [
