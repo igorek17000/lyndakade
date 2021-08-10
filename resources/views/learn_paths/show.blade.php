@@ -11,12 +11,9 @@
 
   <div id="learn-path-top" class="px-0 pt-0">
     <div class="row m-0">
-      <div class="path-big-img"
-        style="
-                                                                                                               max-width: 100%;
-                                                                                                               width: 100%;
-                                                                                                               background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
-                                                                                                               url({{ fromDLHost($path->img) }})">
+      <div class="path-big-img" style="max-width: 100%;width: 100%;
+                      background:linear-gradient(to left, #fff 36%, rgba(255, 255, 255, 0) 60%, #fff 96%),
+                      url({{ fromDLHost($path->img) }})">
         <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
         <div class="path-big-img-over"></div>
       </div>
@@ -29,17 +26,10 @@
                   یادگیری</a> <i class="lyndacon arrow-left"></i>
               </div>
               <h1 class="pt-md-3" style="padding-top: 30px;">{{ $path->title }}</h1>
-              <p class="col-md-6 path-description text-justify" style="
-                                                                                      word-break: break-word;
-                                                                                      overflow: hidden;
-                                                                                      text-overflow: ellipsis;
-                                                                                      display: -webkit-box;
-                                                                                      line-height: 1.5;
-                                                                                      -webkit-line-clamp: 4;
-                                                                                      -webkit-box-orient: vertical;
-                                                                                  ">
+              <p class="col-md-6 path-description text-justify"
+                style="word-break: break-word;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;line-height: 1.5;-webkit-line-clamp: 4;-webkit-box-orient: vertical;">
                 {{-- {{ nl2br(e($path->description)) }} --}}
-                {!! $path->description !!}
+                {!! nPersian($path->description) !!}
               </p>
             </div>
           </div>
@@ -51,7 +41,7 @@
             @if ($path->price() > 0)
               <div class="col-12 my-md-1">
                 <b>مجموع قیمت:</b>
-                <del class="text-muted">({{ $path->old_price() }})</del>
+                <del class="text-muted">({{ nPersian($path->old_price()) }})</del>
               </div>
             @endif
             <div class="col-12 my-md-1">
@@ -60,7 +50,7 @@
               @if ($path->price() == 0)
                 <span style="color: darkgreen">رایگان</span>
               @else
-                {{ $path->price() }}
+                {{ nPersian($path->price()) }}
               @endif
             </div>
             <div class="col-12 my-md-1">
@@ -127,15 +117,15 @@
               </div>
               <div class="col-md-9  col-sm-12">
                 <p class="mt-md-3" style="
-                                                                                      word-break: break-word;
-                                                                                      overflow: hidden;
-                                                                                      text-overflow: ellipsis;
-                                                                                      display: -webkit-box;
-                                                                                      line-height: 2; /* fallback */
-                                                                                      /* fallback */
-                                                                                      -webkit-line-clamp: 3; /* number of lines to show */
-                                                                                      -webkit-box-orient: vertical;
-                                                                                  ">
+                                                                                            word-break: break-word;
+                                                                                            overflow: hidden;
+                                                                                            text-overflow: ellipsis;
+                                                                                            display: -webkit-box;
+                                                                                            line-height: 2; /* fallback */
+                                                                                            /* fallback */
+                                                                                            -webkit-line-clamp: 3; /* number of lines to show */
+                                                                                            -webkit-box-orient: vertical;
+                                                                                        ">
                   {!! $course->description !!}
                 </p>
                 <div class="row">
@@ -258,73 +248,73 @@
         keyboard: false,
       });
 
-      $('.btn-buy').click(function(event) {
-        console.log(event);
-      });
+      // $('.btn-buy').click(function(event) {
+      //   console.log(event);
+      // });
 
-      $('.btn-preview-first').click(function(event) {
-        var modal = $('#exampleModalCenter');
-        event.stopPropagation();
-        var video_url = $(this).attr('data-video-url');
-        var title = $(this).attr('data-title');
-        var subtitle_url = $(this).attr('data-subtitle-url');
-        var poster_url = $(this).attr('data-poster-url');
+      // $('.btn-preview-first').click(function(event) {
+      //   var modal = $('#exampleModalCenter');
+      //   event.stopPropagation();
+      //   var video_url = $(this).attr('data-video-url');
+      //   var title = $(this).attr('data-title');
+      //   var subtitle_url = $(this).attr('data-subtitle-url');
+      //   var poster_url = $(this).attr('data-poster-url');
 
-        var body = '<div class="video-player" style="width: 100%;">' +
-          '   <video \n' +
-          '       style="width: 100%;"' +
-          '       controls\n' +
-          '       preload="auto"\n' +
-          '       poster="' + poster_url + '">' +
-          '       <source type="video/mp4" src="' + video_url + '"/>' +
-          '       <track\n' +
-          '           default\n' +
-          '           kind="captions"\n' +
-          '           srclang="en"\n' +
-          '           label="Persian"\n' +
-          '           src="' + subtitle_url + '"/>' +
-          '   </video>' +
-          '</div>';
+      //   var body = '<div class="video-player" style="width: 100%;">' +
+      //     '   <video \n' +
+      //     '       style="width: 100%;"' +
+      //     '       controls\n' +
+      //     '       preload="auto"\n' +
+      //     '       poster="' + poster_url + '">' +
+      //     '       <source type="video/mp4" src="' + video_url + '"/>' +
+      //     '       <track\n' +
+      //     '           default\n' +
+      //     '           kind="captions"\n' +
+      //     '           srclang="en"\n' +
+      //     '           label="Persian"\n' +
+      //     '           src="' + subtitle_url + '"/>' +
+      //     '   </video>' +
+      //     '</div>';
 
-        // var body = '<div class="video-player" style="padding: 0; margin: 0;">\n' +
-        //     '                            <video\n' +
-        //     '                                id="preview-player"\n' +
-        //     '                                class="video-js vjs-big-play-centered vjs-16-9"\n' +
-        //     '                                controls\n' +
-        //     '                                preload="auto"\n' +
-        //     '                                poster="' + poster_url + '"\n' +
-        //     '                                data-setup=\'{ "fluid" : true , "controls": true, "autoplay": false, "preload": "auto", "seek": true  }\'>\n' +
-        //     '                                <source type="video/mp4" src="/' + video_url + '"/>\n' +
-        //     '\n' +
-        //     '                                <track\n' +
-        //     '                                    default\n' +
-        //     '                                    kind="captions"\n' +
-        //     '                                    srclang="en"\n' +
-        //     '                                    label="Persian"\n' +
-        //     '                                    src="' + subtitle_url + '"/>\n' +
-        //     '\n' +
-        //     '                                <p class="vjs-no-js">\n' +
-        //     '                                    To view this video please enable JavaScript, and consider upgrading to a\n' +
-        //     '                                    web browser that\n' +
-        //     '                                    <a href="https://videojs.com/html5-video-support/" target="_blank">\n' +
-        //     '                                        supports HTML5 video\n' +
-        //     '                                    </a>\n' +
-        //     '                                </p>\n' +
-        //     '                            </video>\n' +
-        //     '                        </div>'
+      //   // var body = '<div class="video-player" style="padding: 0; margin: 0;">\n' +
+      //   //     '                            <video\n' +
+      //   //     '                                id="preview-player"\n' +
+      //   //     '                                class="video-js vjs-big-play-centered vjs-16-9"\n' +
+      //   //     '                                controls\n' +
+      //   //     '                                preload="auto"\n' +
+      //   //     '                                poster="' + poster_url + '"\n' +
+      //   //     '                                data-setup=\'{ "fluid" : true , "controls": true, "autoplay": false, "preload": "auto", "seek": true  }\'>\n' +
+      //   //     '                                <source type="video/mp4" src="/' + video_url + '"/>\n' +
+      //   //     '\n' +
+      //   //     '                                <track\n' +
+      //   //     '                                    default\n' +
+      //   //     '                                    kind="captions"\n' +
+      //   //     '                                    srclang="en"\n' +
+      //   //     '                                    label="Persian"\n' +
+      //   //     '                                    src="' + subtitle_url + '"/>\n' +
+      //   //     '\n' +
+      //   //     '                                <p class="vjs-no-js">\n' +
+      //   //     '                                    To view this video please enable JavaScript, and consider upgrading to a\n' +
+      //   //     '                                    web browser that\n' +
+      //   //     '                                    <a href="https://videojs.com/html5-video-support/" target="_blank">\n' +
+      //   //     '                                        supports HTML5 video\n' +
+      //   //     '                                    </a>\n' +
+      //   //     '                                </p>\n' +
+      //   //     '                            </video>\n' +
+      //   //     '                        </div>'
 
-        modal.find('.modal-title').text(title);
-        $('.modal-body .video-player').remove();
-        modal.find('.modal-body')[0].innerHTML = body;
-        modal.modal('toggle');
-        //var player = videojs('preview-player');
+      //   modal.find('.modal-title').text(title);
+      //   $('.modal-body .video-player').remove();
+      //   modal.find('.modal-body')[0].innerHTML = body;
+      //   modal.modal('toggle');
+      //   //var player = videojs('preview-player');
 
-        modal.on('hidden.bs.modal', function(e) {
-          // console.log(e)
-          $('.modal-body .video-player').remove();
-          // modal.find('.modal-body')[0].innerHTML = "";
-        });
-      });
+      //   modal.on('hidden.bs.modal', function(e) {
+      //     // console.log(e)
+      //     $('.modal-body .video-player').remove();
+      //     // modal.find('.modal-body')[0].innerHTML = "";
+      //   });
+      // });
     })
   </script>
 @endsection
