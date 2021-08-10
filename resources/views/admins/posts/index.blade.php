@@ -40,7 +40,7 @@
                                 <th scope="row">{{ (($listItems->currentPage() - 1) * $listItems->perPage()) + $loop->index + 1 }}</th>
                                 <td>
                                     <a href="@if($pageSlug == 'course') {{courseURL($item)}}
-                                    @elseif($pageSlug == 'learnpath') {{route('learn.paths.show', [$item->library->slug, $item->slug])}}
+                                    @elseif($pageSlug == 'learnpath') {{route('learn.paths.show', [$item->slug])}}
                                     @elseif($pageSlug == 'user') {{route('admins.user.show', [$item->username])}}
                                     @elseif(in_array($pageSlug, ['library', 'subject', 'software'])) {{route('home.show', [$item->slug])}}
                                     @endif">{{ $item->titleEng ?? $item->title ?? $item->firstName . ' ' . $item->lastName }}</a>

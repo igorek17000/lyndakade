@@ -1,6 +1,6 @@
 <div class="col-sm-12 col-md-6 col-lg-3 p-2">
   <div class="card">
-    <a class="card-content" href="{{ route('learn.paths.show', [$path->library->slug, $path->slug]) }}">
+    <a class="card-content" href="{{ route('learn.paths.show', [$path->slug]) }}">
       <div class="card-img">
         <img src="#" class="lazyload card-img" height="150" data-src="{{ fromDLHost($path->img) }}" />
       </div>

@@ -94,7 +94,7 @@
                             echo date('Y/m/d', strtotime($paid->created_at));
                           @endphp
                         </td>
-                        <td><a href="{{ route('learn.paths.show', [$path->library->slug, $path->slug]) }}">لینک</a>
+                        <td><a href="{{ route('learn.paths.show', [$path->slug]) }}">لینک</a>
                         </td>
                       </tr>
                       @php

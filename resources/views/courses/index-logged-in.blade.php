@@ -48,7 +48,7 @@
           <div class="row">
             @foreach ($paths as $path)
               <div class="tile col-xs-6 col-sm-4 col-md-4">
-                <a class="tile-text" href="{{ route('learn.paths.show', [$path->library->slug, $path->slug]) }}" style="
+                <a class="tile-text" href="{{ route('learn.paths.show', [$path->slug]) }}" style="
                                          background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('{{ asset($path->img) }}');
                                          ">
                   <span class="tile-name">{{ $path->title }}</span>

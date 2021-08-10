@@ -214,7 +214,7 @@
         @foreach ($paths as $path)
           <div class="col-12 col-md-4 col-lg-4 mb-4 mt-2">
             <div class="card h-100  border-light  bg-light shadow">
-              <a href="{{ route('learn.paths.show', [$path->library->slug, $path->slug]) }}"
+              <a href="{{ route('learn.paths.show', [$path->slug]) }}"
                 class="row card-body photo-frame d-flex align-items-center">
                 <div class="col-12 state-thumb">
                   <img src="#" data-src="{{ fromDLHost($path->img) }}" class="img-fluid lazyload">

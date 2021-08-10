@@ -274,7 +274,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                           <ul>
                             @foreach ($library->paths->take(5) as $path)
                               <li class="dropdown-item dropdown-content-item">
-                                <a href="{{ route('learn.paths.show', [$library->slug, $path->slug]) }}">
+                                <a href="{{ route('learn.paths.show', [$path->slug]) }}">
                                   {{ $path->title }}
                                 </a>
                               </li>
