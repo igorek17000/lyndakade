@@ -51,11 +51,11 @@ Route::get('/c/{id}', function ($id) {
 
 // authors
 Route::get('/authors', 'AuthorController@index')->name('authors.index');
-Route::get('/learning/instructors/{slug}', 'AuthorController@show')->name('authors.show');
+Route::get('/instructors/{slug}', 'AuthorController@show')->name('authors.show');
 
 
 // subjects & software & libraries
-Route::get('/learning/topics/{slug}', 'HomeController@show')->name('home.show');
+Route::get('/topics/{slug}', 'HomeController@show')->name('home.show');
 
 
 // needs to be logged in, for request course
