@@ -7,7 +7,7 @@
 
       <div class="card-img-overlay text-center">
         {{-- <div class="card-img-overlay text-center vertical-center"> --}}
-        <h4>{{ $path->title }}</h4>
+        <h5 style="height: 42px !important;">{{ $path->title }}</h5>
         <div style="font-size: .8rem; font-weight: 400;">
           زمان کل مسیر آموزشی
           @if ($path->durationHours() > 0)
@@ -18,7 +18,7 @@
             {{ $path->durationMinutes() }}
             دقیقه
           @endif
-          <br>
+          <hr>
           <del style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ $path->old_price() }}
             تومان</del>
           <span style="background-color: lightgreen;padding: 3px 4px;border-radius: 5px;">{{ $path->price() }}
