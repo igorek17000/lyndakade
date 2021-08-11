@@ -135,16 +135,15 @@ Route::get('/454247.txt', function () {
     return response()->make($fileText, 200, $headers);
 });
 
-// Route::get('/sitemap.xml', function () {
-//     $fileText = file_get_contents(public_path('sitemap.xml'));
-//     $myName = "sitemap.xml";
-//     $headers = [
-//         'Content-type' => 'text/plain',
-//         'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
-//         'Content-Length' => strlen($fileText)
-//     ];
-//     return response()->make($fileText, 200, $headers);
-// });
+Route::get('/sitemap.xml', 'SiteMapController@sitemap');
+
+Route::get('/sitemap-authors.xml', 'SiteMapController@sitemap_authors');
+
+Route::get('/sitemap-partials.xml', 'SiteMapController@sitemap_partials');
+
+Route::get('/sitemap-subjects.xml', 'SiteMapController@sitemap_subjects');
+
+Route::get('/sitemap-courses-{year}-{month}.xml', 'SiteMapController@sitemap_courses');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

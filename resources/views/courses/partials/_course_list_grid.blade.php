@@ -138,7 +138,7 @@
         <div class="p-3 col-12">
           {{-- <a class="meta-right" href="#"> --}}
           <a class="meta-right"
-            href="{{ count($course->authors) > 0 ? route('authors.show', [$course->authors[0]->slug, $course->authors[0]->id]) : '#' }}">
+            href="{{ count($course->authors) > 0 ? route('authors.show', [$course->authors[0]->slug]) : '#' }}">
             <i class="ti-user"></i>
             <span style="max-height: 20px; overflow-y: hidden; ">
               @foreach ($course->authors as $author)

@@ -5,7 +5,7 @@
             <h4>{{ $author->name }}</h4>
             <p>{{ $author->description }}</p>
         </div>
-        <a class="author-link ga" href="{{ route('authors.show', [$author->slug, $author->id]) }}">
+        <a class="author-link ga" href="{{ route('authors.show', [$author->slug]) }}">
             <span>مشاهده پروفایل
                 <i class="lyndacon arrow-left"></i>
             </span>

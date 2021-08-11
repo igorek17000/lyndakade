@@ -77,7 +77,7 @@
                 <div class="author-thumb">
                   <h5>مدرس</h5>
                   @foreach ($course->authors as $author)
-                    <a href="{{ route('authors.show', [$author->slug, $author->id]) }}">
+                    <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img src="#" class="lazyload" width="100" height="100" data-src="{{ fromDLHost($author->img) }}"
                         alt="image of author {{ $author->name }}">
                       <cite>{{ $author->name }}</cite>
@@ -172,7 +172,7 @@
                 <div class="author-thumb">
                   <h5>Author</h5>
                   @foreach ($course->authors as $author)
-                    <a href="{{ route('authors.show', [$author->slug, $author->id]) }}">
+                    <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img src="#" class="lazyload" width="100" height="100" data-src="{{ fromDLHost($author->img) }}"
                         alt="image of author {{ $author->name }}">
                       <cite>{{ $author->name }}</cite>

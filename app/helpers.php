@@ -8,6 +8,18 @@ use App\LearnPath;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+function sendDemand()
+{
+    $token = "YOUR_BOT's_TOKEN";
+
+    $data = [
+        'text' => 'your message here',
+        'chat_id' => 'the_chat_id_here'
+    ];
+
+    file_get_contents("https://api.telegram.org/bot$token/sendMessage?" . http_build_query($data));
+}
+
 function nPersian($string)
 {
     $string = strval($string);

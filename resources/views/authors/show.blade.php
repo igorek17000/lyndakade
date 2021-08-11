@@ -21,7 +21,7 @@
   <div class="container">
     <div class="title-banner">
       <div class="container" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-        <link itemprop="url" href="{{ route('authors.show', [$author->slug, $author->id]) }}" rel="author">
+        <link itemprop="url" href="{{ route('authors.show', [$author->slug]) }}" rel="author">
         <div class="row">
           <div class="col-xs-12">
             <div class="current-page-path">

@@ -49,7 +49,7 @@
       <div class="row mt-30 mb-5">
         @foreach ($authors[$key] as $author)
           <div class="col-md-2 col-sm-4">
-            <a href="{{ route('authors.show', [$author->slug, $author->id]) }}">
+            <a href="{{ route('authors.show', [$author->slug]) }}">
               <div class="box2 m-0 mt-1" style="border-radius: 20px">
                 <img src="#" data-src="{{ fromDLHost($author->img) }}" class="lazyload">
                 <div class="box-content">
