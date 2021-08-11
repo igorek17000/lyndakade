@@ -35,7 +35,10 @@ class SiteMapController extends Controller
                 <lastmod>" . $today_date  . "</lastmod>
             </sitemap>";
 
-        $courses_dates = Course::get(['releaseDate'])->map(function ($c) { $ee = explode('-', $c->releaseDate); return $ee[0] . '-' . $ee[1]; })->toArray();
+        $courses_dates = Course::get(['releaseDate'])->map(function ($c) {
+            $ee = explode('-', $c->releaseDate);
+            return $ee[0] . '-' . $ee[1];
+        })->toArray();
         $courses_dates = array_unique($courses_dates);
         sort($courses_dates);
 
@@ -196,12 +199,11 @@ class SiteMapController extends Controller
     public function sitemap_courses($year, $month)
     {
         $today_date = \Carbon\Carbon::now()->toDateString();
-        $res = "";
-        $courses = Course::where('releaseDate', 'LIKE', "$year-$month%")->get(['slug_linkedin', 'img', 'title', 'description', 'releaseDate']);
-
         $res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
         <!-- generated-on=\"" . \Carbon\Carbon::now()->toDateTimeString() . "\" -->
         <urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
+
+        $courses = Course::where('releaseDate', 'LIKE', "$year-$month%")->get(['slug_linkedin', 'img', 'title', 'description', 'releaseDate']);
 
         foreach ($courses as $course) {
             $res .= "
@@ -211,7 +213,9 @@ class SiteMapController extends Controller
                 <priority>0.9</priority>
                 <lastmod>" . $today_date  . "</lastmod>
                 <video:video>
-                    " . fromDLHost($course->img)  . "
+                    <video:thumbnail_loc>
+                        " . fromDLHost($course->img)  . "
+                    </video:thumbnail_loc>
                     <video:title>
                         <![CDATA[ " . $course->title  . " ]]>
                     </video:title>
