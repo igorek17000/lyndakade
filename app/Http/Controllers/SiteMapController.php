@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Author;
 use App\Course;
 use App\Subject;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class SiteMapController extends Controller
@@ -123,7 +124,8 @@ class SiteMapController extends Controller
             'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
             'Content-Length' => strlen($res)
         ];
-        return response()->make($res, 200, $headers);
+        return new JsonResponse($res, 200);
+        // return response()->make($res, 200, $headers);
     }
 
     public function sitemap_partials()
@@ -185,10 +187,11 @@ class SiteMapController extends Controller
 
         $myName = "sitemap-partials.xml";
         $headers = [
-            'Content-type' => 'application/xml',
+            'Content-type' => 'text/plain',
             'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
             'Content-Length' => strlen($res)
         ];
+        // return new JsonResponse($res, 200);
         return response()->make($res, 200, $headers);
     }
 
@@ -225,10 +228,11 @@ class SiteMapController extends Controller
         $res .= "</urlset>";
         $myName = "sitemap-courses-" . $year . "-" . $month . ".xml";
         $headers = [
-            'Content-type' => 'application/xml',
+            'Content-type' => 'text/plain',
             'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
             'Content-Length' => strlen($res)
         ];
-        return response()->make($res, 200, $headers);
+        return new JsonResponse($res, 200);
+        // return response()->make($res, 200, $headers);
     }
 }
