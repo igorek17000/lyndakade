@@ -2,22 +2,45 @@
 
 use App\Course;
 use App\CourseStatus;
+use App\Demand;
 use App\HashedData;
 use App\Http\Controllers\CartController;
 use App\LearnPath;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-function sendDemand($message)
+function sendDemand(Demand $demand)
 {
+    $message = "new course request ON www.LyndaKade.ir";
+    if ($demand->title && $demand->author) {
+        $message .= "
+
+Course Title: " . $demand->title . "
+Course Author: " . $demand->author;
+    } else {
+        $message .= "
+
+Link: $demand->link";
+    }
+
+    $message .=  "
+
+Requested by " . $demand->user->name . " (user id: " . $demand->user->id . ")";
+
     $token = "1729049302:AAEMNCgF12whsXvjRoBvkKqssTxe4vTicBk";
 
-    $data = [
-        'text' => $message,
-        'chat_id' => '117727943'
-    ];
+    foreach ([
+        '1601410204', // lyndakadeSupport
+        '117727943', // hadi
+    ] as $chat_id) {
+        $data = [
+            'text' => $message,
+            'chat_id' => $chat_id
+        ];
 
-    file_get_contents("https://api.telegram.org/bot$token/sendMessage?" . http_build_query($data));
+        file_get_contents("https://api.telegram.org/bot$token/sendMessage?" . http_build_query($data));
+    }
+    return $message;
 }
 
 function nPersian($string)

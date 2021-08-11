@@ -67,6 +67,7 @@ class DemandController extends Controller
         $d->save();
         // dd($request, $title, $author, $link, $d);
 
+        sendDemand($d);
         // sending email
         $email = env('DEMAND_RECEIVER');
         if ($email)
