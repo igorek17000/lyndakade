@@ -8,13 +8,13 @@ use App\LearnPath;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-function sendDemand()
+function sendDemand($message)
 {
-    $token = "YOUR_BOT's_TOKEN";
+    $token = "1729049302:AAEMNCgF12whsXvjRoBvkKqssTxe4vTicBk";
 
     $data = [
-        'text' => 'your message here',
-        'chat_id' => 'the_chat_id_here'
+        'text' => $message,
+        'chat_id' => '117727943'
     ];
 
     file_get_contents("https://api.telegram.org/bot$token/sendMessage?" . http_build_query($data));
