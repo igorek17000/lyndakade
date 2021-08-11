@@ -53,7 +53,7 @@ class SiteMapController extends Controller
 
         $myName = "sitemap.xml";
         $headers = [
-            'Content-type' => 'application/xml',
+            'Content-type' => 'text/plain',
             'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
             'Content-Length' => strlen($res)
         ];
@@ -87,7 +87,7 @@ class SiteMapController extends Controller
 
         $myName = "sitemap-authors.xml";
         $headers = [
-            'Content-type' => 'application/xml',
+            'Content-type' => 'text/plain',
             'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
             'Content-Length' => strlen($res)
         ];
@@ -120,12 +120,11 @@ class SiteMapController extends Controller
         $res .= "</urlset>";
         $myName = "sitemap-subjects.xml";
         $headers = [
-            'Content-type' => 'application/xml',
+            'Content-type' => 'text/plain',
             'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
             'Content-Length' => strlen($res)
         ];
-        return new JsonResponse($res, 200);
-        // return response()->make($res, 200, $headers);
+        return response()->make($res, 200, $headers);
     }
 
     public function sitemap_partials()
@@ -191,7 +190,6 @@ class SiteMapController extends Controller
             'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
             'Content-Length' => strlen($res)
         ];
-        // return new JsonResponse($res, 200);
         return response()->make($res, 200, $headers);
     }
 
@@ -232,7 +230,6 @@ class SiteMapController extends Controller
             'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
             'Content-Length' => strlen($res)
         ];
-        return new JsonResponse($res, 200);
-        // return response()->make($res, 200, $headers);
+        return response()->make($res, 200, $headers);
     }
 }
