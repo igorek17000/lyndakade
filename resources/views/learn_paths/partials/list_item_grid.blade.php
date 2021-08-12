@@ -11,17 +11,19 @@
         <div style="font-size: .8rem; font-weight: 400;">
           زمان کل مسیر آموزشی
           @if ($path->durationHours() > 0)
-            {{ $path->durationHours() }}
+            {{ nPersian($path->durationHours()) }}
             ساعت
           @endif
           @if ($path->durationMinutes() > 0)
-            {{ $path->durationMinutes() }}
+            {{ nPersian($path->durationMinutes()) }}
             دقیقه
           @endif
           <hr>
-          <del style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ $path->old_price() }}
+          <del
+            style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->old_price()) }}
             تومان</del>
-          <span style="background-color: lightgreen;padding: 3px 4px;border-radius: 5px;">{{ $path->price() }}
+          <span
+            style="background-color: lightgreen;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->price()) }}
             تومان</span>
         </div>
       </div>
