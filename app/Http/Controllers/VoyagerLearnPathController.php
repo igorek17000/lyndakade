@@ -80,6 +80,17 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
 
         event(new BreadDataAdded($dataType, $data));
 
+        // if ($request->get('sendMessageToPaidUsers', false)) {
+        //     $course_id = $data->id;
+        //     $course = Course::find($course_id);
+        //     $paids = Paid::where('type', '1')->where('item_id', $course_id)->get();
+        //     foreach ($paids as $paid) {
+        //         $email = $paid->user->email;
+        //         if ($email)
+        //             Mail::to($email)->send(new CourseUpdatedMailer($course));
+        //     }
+        // }
+
         if (!$request->has('_tagging')) {
             if (auth()->user()->can('browse', $data)) {
                 $redirect = redirect()->route("voyager.{$dataType->slug}.index");
