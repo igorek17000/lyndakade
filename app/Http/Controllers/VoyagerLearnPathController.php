@@ -6,6 +6,7 @@ use App\Course;
 use App\LearnPath;
 use App\Mail\CourseAdded;
 use App\Mail\CourseUpdatedMailer;
+use App\Mail\LearnPathAdded;
 use App\Paid;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
@@ -86,7 +87,7 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
             foreach ($path->users as $user) {
                 $email = $user->email;
                 if ($email)
-                    Mail::to($email)->send(new CourseAdded($path));
+                    Mail::to($email)->send(new LearnPathAdded($path));
             }
         }
 
