@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\LearnPath;
 use App\Mail\CourseAdded;
 use App\Mail\CourseUpdatedMailer;
 use App\Paid;
@@ -80,16 +81,14 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
 
         event(new BreadDataAdded($dataType, $data));
 
-        // if ($request->get('sendMessageToPaidUsers', false)) {
-        //     $course_id = $data->id;
-        //     $course = Course::find($course_id);
-        //     $paids = Paid::where('type', '1')->where('item_id', $course_id)->get();
-        //     foreach ($paids as $paid) {
-        //         $email = $paid->user->email;
-        //         if ($email)
-        //             Mail::to($email)->send(new CourseUpdatedMailer($course));
-        //     }
-        // }
+        $path = LearnPath::find($data->id);
+        if ($path->users) {
+            foreach ($path->users as $user) {
+                $email = $user->email;
+                if ($email)
+                    Mail::to($email)->send(new CourseAdded($path));
+            }
+        }
 
         if (!$request->has('_tagging')) {
             if (auth()->user()->can('browse', $data)) {

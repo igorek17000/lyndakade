@@ -69,9 +69,14 @@ class DemandController extends Controller
 
         // sendDemand($d);
         // sending email
-        $email = env('DEMAND_RECEIVER');
-        if ($email)
-            Mail::to($email)->send(new DemandMailer($d));
+        foreach ([
+            'kamiabzarezadeh@gmail.com',
+            'zarehadi2@gmail.com',
+            'courses@lyndakade.ir',
+        ] as $email) {
+            if ($email)
+                Mail::to($email)->send(new DemandMailer($d));
+        }
         $email = Auth::user()->email;
         if ($email)
             Mail::to($email)->send(new DemandMailer($d, Auth::user()));

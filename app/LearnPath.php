@@ -55,6 +55,11 @@ class LearnPath extends Model
         return $this->belongsTo(Library::class);
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
     public function durationHours()
     {
         $courses = js_to_courses($this->courses);

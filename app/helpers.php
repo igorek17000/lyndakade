@@ -46,6 +46,10 @@ Requested by " . $demand->user->name . " (user id: " . $demand->user->id . ")";
 function nPersian($string)
 {
     $string = strval($string);
+    if(is_numeric($string)){
+        $string = number_format($string);
+    }
+
     $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
     $english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     // $output = str_replace($persian, $english, $string);
