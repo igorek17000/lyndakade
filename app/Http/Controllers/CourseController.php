@@ -482,20 +482,21 @@ class CourseController extends Controller
     {
         if ($request->has('courses')) {
             $courses = explode(',', $request->get('courses'));
-
             if (count($courses) > 0) {
+                $messages = [];
                 foreach ($courses as $course) {
                     $course_id = explode('|', $course)[0];
                     $view_count = explode('|', $course)[1];
                     $course = Course::where('id', $course_id);
                     if ($course) {
                         $course->update(['views' => $view_count]);
-                        return new JsonResponse([
-                            'message' => "course [" . $course->first()->titleEng . "] view is updated",
-                            'status' => 'success',
-                        ], 200);
+                        $messages[] = "course [" . $course->first()->titleEng . "] view is updated";
                     }
                 }
+                return new JsonResponse([
+                    'message' => $messages,
+                    'status' => 'success',
+                ], 200);
             }
         }
         return new JsonResponse([
