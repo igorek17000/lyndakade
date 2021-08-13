@@ -130,7 +130,7 @@
             </span>
             {{-- <span>{{ $course->created_at->diffForHumans() }}</span> --}}
           </span>
-          <span class="meta-left">
+          <span class="meta-left" title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
             <span>{{ nPersian(number_format($course->views)) }}</span>
             <i class="ti-eye"></i>
           </span>

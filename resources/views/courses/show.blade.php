@@ -155,9 +155,9 @@
                   </span>
                   <h6>مدت زمان دوره</h6>
                 </div>
-                <div class="course-info-stat-cont viewers">
+                <div class="course-info-stat-cont viewers" title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
                   <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
-                  <h6>بازدید</h6>
+                  <h6>تعدادی افرادی که این دوره را مشاهده کردند</h6>
                 </div>
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
                   <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -224,9 +224,9 @@
                   </span>
                   <h6>Duration</h6>
                 </div>
-                <div class="course-info-stat-cont viewers">
+                <div class="course-info-stat-cont viewers" title="Number of people watched this course (from linkedin)">
                   <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
-                  <h6>Views</h6>
+                  <h6>People watched this course</h6>
                 </div>
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
                   <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
