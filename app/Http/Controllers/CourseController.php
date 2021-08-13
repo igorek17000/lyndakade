@@ -480,19 +480,24 @@ class CourseController extends Controller
 
     public function course_set_view_api(Request $request)
     {
-        $course_id = $request->get('course_id');
-        $view_count = $request->get('view_count');
-        if ($course_id && $view_count != null) {
-            $course = Course::where('id', $course_id);
-            if ($course) {
-                $course->update(['views' => $view_count]);
-                return new JsonResponse([
-                    'message' => "course [" . $course->first()->titleEng . "] view is updated",
-                    'status' => 'success',
-                ], 200);
+        if ($request->has('courses')) {
+            $courses = explode(',', $request->get('courses'));
+
+            if (count($courses) > 0) {
+                foreach ($courses as $course) {
+                    $course_id = explode('|', $course)[0];
+                    $view_count = explode('|', $course)[1];
+                    $course = Course::where('id', $course_id);
+                    if ($course) {
+                        $course->update(['views' => $view_count]);
+                        return new JsonResponse([
+                            'message' => "course [" . $course->first()->titleEng . "] view is updated",
+                            'status' => 'success',
+                        ], 200);
+                    }
+                }
             }
         }
-
         return new JsonResponse([
             'message' => 'parameters are not valid',
             'status' => 'error',
