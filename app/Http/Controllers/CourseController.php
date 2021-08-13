@@ -266,7 +266,7 @@ class CourseController extends Controller
         return redirect()->route('root.home');
     }
 
-    public function show_linkedin(Request $request, $slug_linkedin, $video_slug='')
+    public function show_linkedin(Request $request, $slug_linkedin)
     {
         $course = Course::with(['authors', 'subjects', 'softwares'])->firstWhere('slug_linkedin', $slug_linkedin);
         if ($course) {

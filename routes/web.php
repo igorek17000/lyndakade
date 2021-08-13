@@ -27,7 +27,7 @@ Auth::routes();
 Route::get('/', 'CourseController@index')->name('root.home');
 Route::get('/{slug_url}/{slug}/{id}-2.html', 'CourseController@show')->name('courses.show');
 Route::get('/learning/{slug_linkedin}', 'CourseController@show_linkedin')->name('courses.show.linkedin');
-Route::get('/learning/{slug_linkedin}/{video_slug}', 'CourseController@show_linkedin')->name('courses.show.linkedin');
+Route::get('/learning/{slug_linkedin}/{video_slug}', 'CourseController@show_linkedin')->name('courses.show.linkedin.video');
 Route::get('/ajax/player/transcript', 'CourseController@subtitle_content')->name('courses.subtitle_content');
 Route::get('courses/download/{id}', 'CourseController@download_course')->name('courses.download');
 Route::post('/report-issues/courses', 'CourseController@report_issues')->name('courses.report-issues');
