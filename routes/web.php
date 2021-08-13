@@ -23,6 +23,12 @@ use TCG\Voyager\Facades\Voyager;
 
 Auth::routes();
 
+// learning paths
+Route::get('/learning-paths/', 'LearnPathController@index')->name('learn.paths.index');
+Route::get('/learning/paths/{learn_path_slug}', 'LearnPathController@show')->name('learn.paths.show');
+// "see all" button, for each library, in navbar
+// Route::get('/learning/paths/{library_slug}', 'LearnPathController@show_category')->name('learn.paths.show_category');
+
 // courses
 Route::get('/', 'CourseController@index')->name('root.home');
 Route::get('/{slug_url}/{slug}/{id}-2.html', 'CourseController@show')->name('courses.show');
@@ -66,12 +72,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/request-course', 'DemandController@store')->name('store');
     });
 });
-
-// learning paths
-Route::get('/learning-paths/', 'LearnPathController@index')->name('learn.paths.index');
-Route::get('/learning/paths/{learn_path_slug}', 'LearnPathController@show')->name('learn.paths.show');
-// "see all" button, for each library, in navbar
-// Route::get('/learning/paths/{library_slug}', 'LearnPathController@show_category')->name('learn.paths.show_category');
 
 // logging with google account
 Route::get('auth/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
