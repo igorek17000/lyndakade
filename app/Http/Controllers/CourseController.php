@@ -487,7 +487,7 @@ class CourseController extends Controller
             if ($course) {
                 $course->update(['views' => $view_count]);
                 return new JsonResponse([
-                    'message' => "course [$course->titleEng] view is updated",
+                    'message' => "course [" . $course->first()->titleEng . "] view is updated",
                     'status' => 'success',
                 ], 200);
             }
