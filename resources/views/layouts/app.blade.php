@@ -427,10 +427,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
             مسیرهای آموزشی
             </a>
             <div class="dropdown-menu  dropdown-menu-center" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" style="color: #fff;"
-              href="{{ route('learn.paths.index') }}">
-                همه
-              </a>
+
             @foreach (\App\Library::get() as $lib)
                 <a class="dropdown-item  text-center" style="color: #fff;"
                 href="{{ route('learn.paths.show', [$lib->slug]) }}">
@@ -454,6 +451,10 @@ session(['redirectToAfterLogin' => url()->previous()]);
                   <small>{{ $lib->titleEng }}</small>
                 </a>
             @endforeach
+            <a class="dropdown-item text-center" style="color: #fff;"
+              href="{{ route('learn.paths.index') }}">
+                همه مسیرهای آموزشی
+              </a>
             </div>
         </li>
           <li class="nav-item">
