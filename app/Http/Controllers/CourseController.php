@@ -483,11 +483,11 @@ class CourseController extends Controller
         $course_id = $request->get('course_id');
         $view_count = $request->get('view_count');
         if ($course_id && $view_count != null) {
-            $course = Course::find($course_id);
+            $course = Course::where('id', $course_id);
             if ($course) {
                 $course->update(['views' => $view_count]);
                 return new JsonResponse([
-                    'message' => "course [$course->title] view is updated",
+                    'message' => "course [$course->titleEng] view is updated",
                     'status' => 'success',
                 ], 200);
             }
