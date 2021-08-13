@@ -477,6 +477,27 @@ class CourseController extends Controller
         }
         return false;
     }
+
+    public function course_set_view_api(Request $request)
+    {
+        $course_id = $request->get('course_id');
+        $view_count = $request->get('view_count');
+        if ($course_id && $view_count != null) {
+            $course = Course::find($course_id);
+            if ($course) {
+                $course->update(['views' => $view_count]);
+                return new JsonResponse([
+                    'message' => "course [$course->title] view is updated",
+                    'status' => 'success',
+                ], 200);
+            }
+        }
+
+        return new JsonResponse([
+            'message' => 'parameters are not valid',
+            'status' => 'error',
+        ], 404);
+    }
     public function course_api_get_for_aparat(Request $request)
     {
         $skipped_ids = $request->get('skipped_ids');
