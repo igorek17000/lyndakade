@@ -29,6 +29,10 @@ Route::get('/learning/paths/{learn_path_slug}', 'LearnPathController@show')->nam
 // "see all" button, for each library, in navbar
 // Route::get('/learning/paths/{library_slug}', 'LearnPathController@show_category')->name('learn.paths.show_category');
 
+Route::get('/learning/courses/newest', 'CourseController@newest')->name('courses.newest');
+Route::get('/learning/courses/best', 'CourseController@best')->name('courses.best');
+Route::get('/learning/courses/free', 'CourseController@free')->name('courses.free');
+
 // courses
 Route::get('/', 'CourseController@index')->name('root.home');
 Route::get('/{slug_url}/{slug}/{id}-2.html', 'CourseController@show')->name('courses.show');
@@ -120,10 +124,6 @@ Route::get('profile/edit', 'UserController@edit')->name('my-profile.edit');
 Route::post('profile/edit', 'UserController@update')->name('my-profile.update');
 
 Route::post('users/username/check', 'UserController@username_check')->name('users.username-check');
-
-Route::get('/learning/courses/newest', 'CourseController@newest')->name('courses.newest');
-Route::get('/learning/courses/best', 'CourseController@best')->name('courses.best');
-Route::get('/learning/courses/free', 'CourseController@free')->name('courses.free');
 
 Route::get('/454247.txt', function () {
     $fileText = "";
