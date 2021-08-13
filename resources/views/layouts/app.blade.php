@@ -432,7 +432,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 همه
               </a>
             @foreach (\App\Library::get() as $lib)
-                <a class="dropdown-item" style="color: #fff;"
+                <a class="dropdown-item  text-center" style="color: #fff;"
                 href="{{ route('learn.paths.show', [$lib->slug]) }}">
                   <i class="category-icons" aria-hidden="true">
                     @if($lib->slug == "business")
