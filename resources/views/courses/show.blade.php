@@ -89,7 +89,8 @@
                 <h6 title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
                   تاریخ
                   انتشار</h6>
-                <span id="release-date" title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
+                <span id="release-date"
+                  title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
                   <b>{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}</b>
                 </span>
                 {{-- {{ $course->created_at->format('Y/m/d') }}</span> --}}
@@ -98,7 +99,8 @@
                   <h6 title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
                     تاریخ
                     بروزرسانی</h6>
-                  <span id="release-date" title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
+                  <span id="release-date"
+                    title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
                     <b>{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}</b>
                   </span>
                   {{-- {{ $course->created_at->format('Y/m/d') }}</span> --}}
@@ -155,10 +157,13 @@
                   </span>
                   <h6>مدت زمان دوره</h6>
                 </div>
-                <div class="course-info-stat-cont viewers" title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
-                  <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
-                  <h6>تعدادی افرادی که این دوره را مشاهده کردند</h6>
-                </div>
+                @if ($course->views > 0)
+                  <div class="course-info-stat-cont viewers"
+                    title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
+                    <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
+                    <h6>تعدادی افرادی که این دوره را مشاهده کردند</h6>
+                  </div>
+                @endif
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
                   <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                   گزارش خرابی
@@ -224,10 +229,13 @@
                   </span>
                   <h6>Duration</h6>
                 </div>
-                <div class="course-info-stat-cont viewers" title="Number of people watched this course (from linkedin)">
-                  <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
-                  <h6>People watched this course</h6>
-                </div>
+
+                @if ($course->views > 0)
+                  <div class="course-info-stat-cont viewers" title="Number of people watched this course (from linkedin)">
+                    <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
+                    <h6>People watched this course</h6>
+                  </div>
+                @endif
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
                   <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                   Report

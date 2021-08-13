@@ -130,10 +130,15 @@
             </span>
             {{-- <span>{{ $course->created_at->diffForHumans() }}</span> --}}
           </span>
-          <span class="meta-left" title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
-            <span>{{ nPersian(number_format($course->views)) }}</span>
-            <i class="ti-eye"></i>
-          </span>
+          @if ($course->views == 0)
+            <span class="meta-left">
+            </span>
+          @else
+            <span class="meta-left" title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
+              <span>{{ nPersian(number_format($course->views)) }}</span>
+              <i class="ti-eye"></i>
+            </span>
+          @endif
         </div>
         <div class="p-3 col-12">
           {{-- <a class="meta-right" href="#"> --}}
