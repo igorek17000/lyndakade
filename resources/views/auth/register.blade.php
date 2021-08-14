@@ -14,6 +14,7 @@
 @endsection
 
 @section('content')
+  <h1 class="sr-only">{{ __('msg.Register') }}</h1>
   <div class="container d-flex align-items-center register-page">
     <div class="row justify-content-center m-4">
       <div class="col-md-6">

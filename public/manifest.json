@@ -23,7 +23,7 @@
             "name": "دوره های آموزشی رایگان",
             "short_name": "رایگان ها",
             "description": "نمایش دوره های آموزشی رایگان وبسایت",
-            "url": "/courses/free",
+            "url": "/learning/courses/free",
             "icons": [
                 {
                     "src": "/image/logo192x192.png",
@@ -35,7 +35,7 @@
             "name": "جدیدترین دوره های آموزشی",
             "short_name": "جدیدترین ها",
             "description": "نمایش جدیدترین دوره های آموزشی وبسایت",
-            "url": "/courses/newest",
+            "url": "/learning/courses/newest",
             "icons": [
                 {
                     "src": "/image/logo192x192.png",
@@ -47,7 +47,7 @@
             "name": "محبوبترین دوره های آموزشی",
             "short_name": "محبوبترین ها",
             "description": "نمایش محبوبترین دوره های آموزشی وبسایت",
-            "url": "/courses/best",
+            "url": "/learning/courses/best",
             "icons": [
                 {
                     "src": "/image/logo192x192.png",

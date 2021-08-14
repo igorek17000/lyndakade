@@ -165,7 +165,7 @@ class SiteMapController extends Controller
                 </url>
                 <url>
                     <loc>
-                        https://lyndakade.ir/courses/free
+                        https://lyndakade.ir/learning/courses/free
                     </loc>
                     <lastmod>
                         " . $today_date  . "
@@ -173,7 +173,7 @@ class SiteMapController extends Controller
                 </url>
                 <url>
                     <loc>
-                        https://lyndakade.ir/courses/newest
+                        https://lyndakade.ir/learning/courses/newest
                     </loc>
                     <lastmod>
                         " . $today_date  . "
@@ -181,7 +181,7 @@ class SiteMapController extends Controller
                 </url>
                 <url>
                     <loc>
-                        https://lyndakade.ir/courses/best
+                        https://lyndakade.ir/learning/courses/best
                     </loc>
                     <lastmod>
                         " . $today_date  . "

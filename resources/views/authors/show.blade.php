@@ -29,16 +29,14 @@
               <i class="lyndacon arrow-left"></i>
               <span>{{ $author->name }}</span>
             </div>
-            <h1 itemprop="name" content=""></h1>
           </div>
         </div>
-
         <div class="row author-details">
           <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
             <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($author->img) }}" alt="">
           </div>
           <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
-            <h2>درباره مدرس</h2>
+            <h1>درباره مدرس {{ $author->name }}</h1>
             <p id="author-bio" class="text-justify">
               {{-- {{ $author->description }} --}}
               {{-- {!! $author->description !!} --}}

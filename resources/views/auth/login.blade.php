@@ -9,6 +9,7 @@
 @endpush
 @section('content')
   <input type="hidden" name="abcd" value="{{ url()->previous() }}" />
+  <h1 class="sr-only">{{ __('msg.Login') }}</h1>
   <div class="container d-flex align-items-center login-page">
     <div class="row justify-content-center">
       <div class="col-md-6">

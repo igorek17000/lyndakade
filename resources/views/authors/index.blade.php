@@ -15,10 +15,10 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12" style="border-bottom: 10px solid #ffca08;margin-top: 15px">
-        <h3 class="text-center"> مدرسین لیندا </h3>
+        <h1 class="text-center" style="font-size: 1.5rem"> مدرسین لیندا </h1>
       </div>
     </div>
-    <div class="category-details">
+    {{-- <div class="category-details">
       <div class="category-more-details mt-4" STYLE="border-radius: 20px">
         <div class="category-description" style="padding-top: 5px;padding-bottom: 2px">
           <div class="container">
@@ -30,7 +30,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
 
     <ul class="alpha-nav" style="">
       @foreach (array_keys($authors) as $key)

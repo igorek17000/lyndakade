@@ -14,7 +14,7 @@
         <div class="col-lg-12 social-box"
           style="border-radius: 20px;background-color: orange;margin-bottom: 20px;padding-top: 5px">
           <div class="col-lg-12">
-            <h6>راه های ارتباطی</h6>
+            <h1 style="font-size: 1.15rem;">راه های ارتباطی</h1>
             <hr>
           </div>
           <div class="row text-center">

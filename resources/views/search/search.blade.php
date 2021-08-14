@@ -18,9 +18,9 @@
                     </div>
                 @endif
                 <div class="col-xs-12 col-md-6 subject-details">
-                    <h2 class="subject-title">
+                    <h1 class="subject-title">
                         {{ $shown_item->title }}
-                    </h2>
+                    </h1>
                     @if($shown_item->description)
                         <p class="subject-description text-justify">
                             {{ $shown_item->description }}
@@ -41,7 +41,7 @@
                             @if(isset($categories_filter) && count($categories_filter) > 0)
                                 @foreach($categories_filter as $category)
                                     <li class="nav-item">
-                                        <h3>{{ $category['title'] }}</h3>
+                                        <span style="font-size: 1rem;"><b>{{ $category['title'] }}</b></span>
                                         <ul>
                                             @foreach($category['items'] as $index => $item)
                                                 <li class="filter-item"
@@ -81,7 +81,7 @@
                                 <div class="results-heading col-xs-12 col-sm-8">
                                     {{ $result_count }}
                                     مورد برای
-                                    <h1 class="term">{{ $q }}</h1>
+                                    <span class="term">{{ $q }}</span>
                                     {{ count($_GET) > 1 ? ' و موارد انتخاب شده ' : '' }}
                                     یافته شد
                                 </div>
@@ -102,7 +102,7 @@
                             @if(isset($filtered_items) && count($filtered_items) > 0)
                                 <div class="col-xs-12 pills">
                                     <div class="selected-filters">
-                                        <h3 class="filtered-title">موارد انتخاب شده</h3>
+                                        <span class="filtered-title">موارد انتخاب شده</span>
                                         <ul class="active-filters">
                                             @foreach($filtered_items as $filtered_item)
                                                 <li>
@@ -138,7 +138,7 @@
                             @endif
                             <div class="card-block px-2" style="{{ $object['img'] ? ' max-width: 70%; ' : '' }}">
                                 <span class="card-title mb-2">{{ $object['type'] }}</span><p></p>
-                                <h4 class="card-title">{{ $object['title'] }}</h4>
+                                <h2 class="card-title">{{ $object['title'] }}</h2>
                                 <p class="card-text text-justify">{{ $object['description'] }}</p>
                             </div>
                             <div class="w-100"></div>

@@ -59,7 +59,7 @@
     </div>
   </div>
 
-  <div class="container mt-5 home-page">
+  {{-- <div class="container mt-5 home-page">
     <section class="row mx-0" id="top-level-sections">
       <div class="col-xs-12 col-sm-6 col-md-6" id="software">
         <a href="{{ get_library_link(50) }}" class="card h-100 border-0 rounded-20 text-light overflow zoom">
@@ -69,8 +69,6 @@
             <div class="card-title col-12" style="text-align: center;">
               <h3>توسعه نرم افزار</h3>
               <p class="mb-0">حدود {{ count(get_courses_for_library(50)) }} دوره</p>
-              {{-- <button class="button-1 align-items-center btn-subject-preview"> Previwe Subject <i
-                  class="fas fa-play-circle"></i></button> --}}
             </div>
           </div>
         </a>
@@ -84,8 +82,6 @@
                 <div class="card-title col-12" style="text-align: center;">
                   <h3>طراحی</h3>
                   <p class="mb-0">حدود {{ count(get_courses_for_library(40)) }} دوره</p>
-                  {{-- <button class="button-1 align-items-center btn-subject-preview"> Previwe Subject <i
-                      class="fas fa-play-circle"></i></button> --}}
                 </div>
               </div>
             </a>
@@ -97,8 +93,6 @@
                 <div class="card-title col-12" style="text-align: center;">
                   <h3>بازار کار</h3>
                   <p class="mb-0">حدود {{ count(get_courses_for_library(29)) }} دوره</p>
-                  {{-- <button class="button-1 align-items-center btn-subject-preview"> Previwe Subject <i
-                      class="fas fa-play-circle"></i></button> --}}
                 </div>
               </div>
             </a>
@@ -111,8 +105,6 @@
                 <div class="card-title col-12" style="text-align: center;">
                   <h3>طراحی وب</h3>
                   <p class="mb-0">حدود {{ count(get_courses_for_library(88)) }} دوره</p>
-                  {{-- <button class="button-1 align-items-center btn-subject-preview"> Previwe Subject <i
-                      class="fas fa-play-circle"></i></button> --}}
                 </div>
               </div>
             </a>
@@ -124,8 +116,6 @@
                 <div class="card-title col-12" style="text-align: center;">
                   <h3>عکاسی</h3>
                   <p class="mb-0">حدود {{ count(get_courses_for_library(70)) }} دوره</p>
-                  {{-- <button class="button-1 align-items-center btn-subject-preview"> Previwe Subject <i
-                      class="fas fa-play-circle"></i></button> --}}
                 </div>
               </div>
             </a>
@@ -133,7 +123,7 @@
         </div>
       </div>
     </section>
-  </div>
+  </div> --}}
 
   <div class="container my-3">
     <div class="row">

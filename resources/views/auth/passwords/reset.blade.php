@@ -1,5 +1,14 @@
 @extends('layouts.app')
+@push('meta.in.head')
+  @include('meta::manager',[
+  'image' => 'https://lyndakade.ir/image/logo.png',
+  'title' => ' لیندا کده | فراموشی کلمه عبور' ,
+  'keywords' => get_seo_keywords() . ' , فراموشی کلمه عبور, فراموشی رمز عبور, reset password',
+  'description' => ' صفحه فراموشی کلمه عبور | ' . get_seo_description(),
+  ])
+@endpush
 @section('content')
+  <h1 class="sr-only">{{ __('Reset Password') }}</h1>
   <div class="container d-flex align-items-center reset-password-page">
     <div class="row justify-content-center">
       <div class="col-md-8">
