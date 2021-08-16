@@ -11,10 +11,14 @@
           {{ fromDLHost($item->img) }}
         </video:thumbnail_loc>
         <video:title>
-          <![CDATA[ {{ $item->title }} ]]>
+        @php
+            echo "<![CDATA[". $item->title . " }} ]]>";
+        @endphp
         </video:title>
         <video:description>
-          <![CDATA[ {{ $item->description }} ]]>
+        @php
+            echo "<![CDATA[". $item->description . " }} ]]>";
+        @endphp
         </video:description>
         <video:publication_date>{{ $item->releaseDate }}</video:publication_date>
       </video:video>
