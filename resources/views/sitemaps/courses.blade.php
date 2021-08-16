@@ -6,22 +6,22 @@
       <lastmod>{{ $today_date }}</lastmod>
       <changefreq>daily</changefreq>
       <priority>{{ $priority }}</priority>
-      <video:video>
-        <video:thumbnail_loc>
-          {{ fromDLHost($item->img) }}
-        </video:thumbnail_loc>
-        <video:title>
         @php
-            echo "<![CDATA[". $item->title . " }} ]]>";
+            echo "<video:video>
+            <video:thumbnail_loc>
+            " . fromDLHost($item->img) . "
+            </video:thumbnail_loc>
+            <video:title>
+            " . $item->title . "
+            </video:title>
+            <video:description>
+            " . $item->description . "
+            </video:description>
+            <video:publication_date>
+            " . $item->releaseDate . "
+            </video:publication_date>
+            </video:video>";
         @endphp
-        </video:title>
-        <video:description>
-        @php
-            echo "<![CDATA[". $item->description . " }} ]]>";
-        @endphp
-        </video:description>
-        <video:publication_date>{{ $item->releaseDate }}</video:publication_date>
-      </video:video>
     </url>
   @endforeach
 </urlset>
