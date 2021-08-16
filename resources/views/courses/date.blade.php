@@ -8,7 +8,15 @@
   ])
 @endpush
 @section('content')
-
+  <h1 class="sr-only">
+    @if ($coursetype == 'newest')
+      جدیدترین دوره های آموزشی
+    @elseif ($coursetype == "best")
+      محبوب دوره های آموزشی
+    @elseif ($coursetype == "free")
+      دوره های آموزشی رایگان
+    @endif
+  </h1>
   @csrf
   <div class="row mx-0 justify-content-center">
     <aside class="col-md-10">
@@ -57,6 +65,5 @@
         });
       })
     });
-
   </script>
 @endpush

@@ -64,8 +64,6 @@
             @endif
             <a class="nav-item nav-link" id="nav-download-links-tab" data-toggle="tab" href="#nav-download-links"
               role="tab" aria-controls="nav-download-links" aria-selected="false">لینک های دانلود</a>
-            <a class="nav-item nav-link mr-md-auto ml-md-5" id="nav-download-links-tab" data-toggle="tab"
-              href="#nav-download-links" role="tab" aria-controls="nav-download-links" aria-selected="false">!</a>
           </div>
         </nav>
 
