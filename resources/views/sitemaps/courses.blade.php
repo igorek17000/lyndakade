@@ -1,6 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
+<?php echo '<?xml version="1.0" encoding="UTF-8" xmlns:xhtml="http://www.w3.org/1999/xhtml"?>'; ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   @foreach ($items as $item)
     <url>
