@@ -275,7 +275,7 @@ class SiteMapController extends Controller
         return response()->make($res, 200, $headers);
 */
 
-        return response()->view('sitemaps.sitemap', [
+        return response()->view('sitemaps.courses', [
             'route_name' => 'courses.show.linkedin',
             'today_date' => now(),
             'priority' => 1,
