@@ -278,7 +278,7 @@ class SiteMapController extends Controller
         return response()->view('sitemaps.sitemap', [
             'route_name' => 'courses.show.linkedin',
             'today_date' => now(),
-            'priority' => 0.7,
+            'priority' => 1,
             'items' => $courses,
         ])->header('Content-Type', 'text/xml');
     }
