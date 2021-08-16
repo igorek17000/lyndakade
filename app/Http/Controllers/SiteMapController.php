@@ -17,9 +17,9 @@ class SiteMapController extends Controller
 
     public function sitemap()
     {
-        $today_date = \Carbon\Carbon::now()->toDateString();
+        // $today_date = \Carbon\Carbon::now()->toDateString();
 
-        $res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+        /*$res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
         <!-- generated-on=\"" . \Carbon\Carbon::now()->toDateTimeString() . "\" -->
             <sitemapindex xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd\" xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">
             <sitemap>
@@ -34,6 +34,7 @@ class SiteMapController extends Controller
                 <loc>" . $this->get_link("sitemap-subjects.xml") . "</loc>
                 <lastmod>" . $today_date  . "</lastmod>
             </sitemap>";
+        */
 
         $courses_dates = Course::get(['releaseDate'])->map(function ($c) {
             $ee = explode('-', $c->releaseDate);
@@ -42,72 +43,82 @@ class SiteMapController extends Controller
         $courses_dates = array_unique($courses_dates);
         sort($courses_dates);
 
-        foreach ($courses_dates as $c_d) {
-            $filename = "sitemap-courses-" . $c_d . ".xml";
-            $res .= "
-            <sitemap>
-                <loc>" . $this->get_link($filename) . "</loc>
-                <lastmod>" . $today_date  . "</lastmod>
-            </sitemap>";
-        }
+        // foreach ($courses_dates as $c_d) {
+        //     $filename = "sitemap-courses-" . $c_d . ".xml";
+        //     $res .= "
+        //     <sitemap>
+        //         <loc>" . $this->get_link($filename) . "</loc>
+        //         <lastmod>" . $today_date  . "</lastmod>
+        //     </sitemap>";
+        // }
 
-        $res .= "
-        </sitemapindex>";
+        // $res .= "
+        // </sitemapindex>";
 
-        $myName = "sitemap.xml";
-        $headers = [
-            // 'Content-type' => 'text/plain',
-            'Content-type' => 'application/xml',
-            'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
-            'Content-Length' => strlen($res)
-        ];
-        return response()->make($res, 200, $headers);
+        // $myName = "sitemap.xml";
+        // $headers = [
+        //     // 'Content-type' => 'text/plain',
+        //     'Content-type' => 'application/xml',
+        //     'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
+        //     'Content-Length' => strlen($res)
+        // ];
+        // return response()->make($res, 200, $headers);
+        return response()->view('sitemaps.index', [
+            'today_date' => now(),
+            'courses_dates' => $courses_dates,
+        ])->header('Content-Type', 'text/xml');
     }
 
     public function sitemap_authors()
     {
-        $today_date = \Carbon\Carbon::now()->toDateString();
+        /*$today_date = \Carbon\Carbon::now()->toDateString();
         $res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
         <!-- generated-on=\"" . \Carbon\Carbon::now()->toDateTimeString() . "\" -->
         <urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
+*/
+        // $authors = Author::get(['slug']);
 
-        $authors = Author::get(['slug']);
+        // foreach ($authors as $author) {
+        //     $res .= "
+        //     <url>
+        //         <loc>
+        //             " . route('authors.show', [$author->slug]) . "
+        //         </loc>
+        //         <lastmod>
+        //             " . $today_date  . "
+        //         </lastmod>
+        //         <changefreq>weekly</changefreq>
+        //         <priority>0.7</priority>
+        //     </url>";
+        // }
 
-        foreach ($authors as $author) {
-            $res .= "
-            <url>
-                <loc>
-                    " . route('authors.show', [$author->slug]) . "
-                </loc>
-                <lastmod>
-                    " . $today_date  . "
-                </lastmod>
-                <changefreq>weekly</changefreq>
-                <priority>0.7</priority>
-            </url>";
-        }
+        // $res .= "</urlset>";
 
-        $res .= "</urlset>";
-
-        $myName = "sitemap-authors.xml";
-        $headers = [
-            // 'Content-type' => 'text/plain',
-            'Content-type' => 'application/xml',
-            'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
-            'Content-Length' => strlen($res)
-        ];
-        return response()->make($res, 200, $headers);
+        // $myName = "sitemap-authors.xml";
+        // $headers = [
+        //     // 'Content-type' => 'text/plain',
+        //     'Content-type' => 'application/xml',
+        //     'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
+        //     'Content-Length' => strlen($res)
+        // ];
+        // return response()->make($res, 200, $headers);
+        return response()->view('sitemaps.sitemap', [
+            'route_name' => 'authors.show',
+            'today_date' => now(),
+            'priority' => 0.7,
+            'items' => Author::get(['slug']),
+        ])->header('Content-Type', 'text/xml');
     }
 
     public function sitemap_subjects()
     {
-        $today_date = \Carbon\Carbon::now()->toDateString();
+        /*$today_date = \Carbon\Carbon::now()->toDateString();
         $res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
         <!-- generated-on=\"" . \Carbon\Carbon::now()->toDateTimeString() . "\" -->
         <urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
-
-        $subjects = Subject::get(['slug']);
-
+*/
+        // $subjects = Subject::get(['slug']);
+        /*
         foreach ($subjects as $subject) {
             $res .= "
             <url>
@@ -130,12 +141,19 @@ class SiteMapController extends Controller
             'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
             'Content-Length' => strlen($res)
         ];
-        return response()->make($res, 200, $headers);
+        return response()->make($res, 200, $headers);*/
+
+        return response()->view('sitemaps.sitemap', [
+            'route_name' => 'home.show',
+            'today_date' => now(),
+            'priority' => 0.7,
+            'items' => Subject::get(['slug']),
+        ])->header('Content-Type', 'text/xml');
     }
 
     public function sitemap_partials()
     {
-        $today_date = \Carbon\Carbon::now()->toDateString();
+        /*$today_date = \Carbon\Carbon::now()->toDateString();
         $res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
         <!-- generated-on=\"" . \Carbon\Carbon::now()->toDateTimeString() . "\" -->
         <urlset xmlns:video=\"http://www.google.com/schemas/sitemap-video/1.1\" xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">
@@ -197,18 +215,34 @@ class SiteMapController extends Controller
             'Content-Disposition' => sprintf('attachment; filename="%s"', $myName),
             'Content-Length' => strlen($res)
         ];
-        return response()->make($res, 200, $headers);
+        return response()->make($res, 200, $headers);*/
+
+        return response()->view('sitemaps.partials', [
+            'route_name' => 'home.show',
+            'today_date' => now(),
+            'priority' => 1,
+            'items' => [
+                route('root.home'),
+                route('root.contact.us'),
+                route('demands.create'),
+                route('courses.newest'),
+                route('courses.best'),
+                route('courses.free'),
+            ],
+        ])->header('Content-Type', 'text/xml');
     }
 
     public function sitemap_courses($year, $month)
     {
+        /*
         $today_date = \Carbon\Carbon::now()->toDateString();
         $res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
         <!-- generated-on=\"" . \Carbon\Carbon::now()->toDateTimeString() . "\" -->
         <urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"  xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">";
-
+*/
         $courses = Course::where('releaseDate', 'LIKE', "$year-$month%")->get(['slug_linkedin', 'img', 'title', 'description', 'releaseDate']);
 
+/*
         foreach ($courses as $course) {
             $res .= "
             <url>
@@ -230,7 +264,6 @@ class SiteMapController extends Controller
                 </video:video>
             </url>";
         }
-
         $res .= "</urlset>";
         $myName = "sitemap-courses-" . $year . "-" . $month . ".xml";
         $headers = [
@@ -240,5 +273,13 @@ class SiteMapController extends Controller
             'Content-Length' => strlen($res)
         ];
         return response()->make($res, 200, $headers);
+*/
+
+        return response()->view('sitemaps.sitemap', [
+            'route_name' => 'courses.show.linkedin',
+            'today_date' => now(),
+            'priority' => 0.7,
+            'items' => $courses,
+        ])->header('Content-Type', 'text/xml');
     }
 }
