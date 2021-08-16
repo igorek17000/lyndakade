@@ -64,7 +64,7 @@ class SiteMapController extends Controller
         // ];
         // return response()->make($res, 200, $headers);
         return response()->view('sitemaps.index', [
-            'today_date' => now(),
+            'today_date' => \Carbon\Carbon::now()->toDateString(),
             'courses_dates' => $courses_dates,
         ])->header('Content-Type', 'text/xml');
     }
@@ -104,7 +104,7 @@ class SiteMapController extends Controller
         // return response()->make($res, 200, $headers);
         return response()->view('sitemaps.sitemap', [
             'route_name' => 'authors.show',
-            'today_date' => now(),
+            'today_date' => \Carbon\Carbon::now()->toDateString(),
             'priority' => 0.7,
             'items' => Author::get(['slug']),
         ])->header('Content-Type', 'text/xml');
@@ -145,7 +145,7 @@ class SiteMapController extends Controller
 
         return response()->view('sitemaps.sitemap', [
             'route_name' => 'home.show',
-            'today_date' => now(),
+            'today_date' => \Carbon\Carbon::now()->toDateString(),
             'priority' => 0.7,
             'items' => Subject::get(['slug']),
         ])->header('Content-Type', 'text/xml');
@@ -219,7 +219,7 @@ class SiteMapController extends Controller
 
         return response()->view('sitemaps.partials', [
             'route_name' => 'home.show',
-            'today_date' => now(),
+            'today_date' => \Carbon\Carbon::now()->toDateString(),
             'priority' => 1,
             'items' => [
                 route('root.home'),
@@ -277,7 +277,7 @@ class SiteMapController extends Controller
 
         return response()->view('sitemaps.courses', [
             'route_name' => 'courses.show.linkedin',
-            'today_date' => now(),
+            'today_date' => \Carbon\Carbon::now()->toDateString(),
             'priority' => 1,
             'items' => $courses,
         ])->header('Content-Type', 'text/xml');

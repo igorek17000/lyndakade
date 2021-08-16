@@ -20,7 +20,8 @@
             <video:publication_date>
             " . $item->releaseDate . "
             </video:publication_date>
-            </video:video>";
+            </video:video>
+            ";
         @endphp
     </url>
   @endforeach
