@@ -6,7 +6,7 @@
       <lastmod>{{ $today_date }}</lastmod>
       <changefreq>daily</changefreq>
       <priority>{{ $priority }}</priority>
-        {{-- @php
+        @php
             echo "<video:video>
             <video:thumbnail_loc>
             " . fromDLHost($item->img) . "
@@ -21,7 +21,7 @@
             " . $item->releaseDate . "
             </video:publication_date>
             </video:video>";
-        @endphp --}}
+        @endphp
     </url>
   @endforeach
 </urlset>
