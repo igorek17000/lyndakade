@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-test')
 @section('content')
     <div class="container" id="search-page">
         <div class="row my-3 justify-content-center">

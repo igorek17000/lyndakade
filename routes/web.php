@@ -23,6 +23,10 @@ use TCG\Voyager\Facades\Voyager;
 
 Auth::routes();
 
+Route::get('/test', function(){
+    return response()->view('test', []);
+});
+
 // learning paths
 Route::get('/learning-paths/', 'LearnPathController@index')->name('learn.paths.index');
 Route::get('/learning/paths/{learn_path_slug}', 'LearnPathController@show')->name('learn.paths.show');
