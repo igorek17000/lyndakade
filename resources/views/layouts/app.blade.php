@@ -633,7 +633,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
           </div>
         </div>
       </div>
-      <div class="fpart-second mb-md-0" style="margin-bottom: 100px;">
+      <div class="fpart-second pb-md-0" style="padding-bottom: 100px;">
         <div class="container">
           <div id="powered" class="clearfix">
             <div class="powered_text pull-right flip">
