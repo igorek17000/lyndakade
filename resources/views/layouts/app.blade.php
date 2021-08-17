@@ -601,7 +601,12 @@ session(['redirectToAfterLogin' => url()->previous()]);
     {{-- Launch demo modal --}}
     {{-- </button> --}}
     <!--Footer Start-->
-    <footer id="footer">
+    <style>
+        footer ul > li > a {
+            color: #ccc;
+        }
+    </style>
+    <footer id="footer" class="bg-dark text-muted p-md-5">
       <div class="fpart-first">
         <div class="container">
           <div class="row">
@@ -628,7 +633,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
           </div>
         </div>
       </div>
-      <div class="fpart-second">
+      <div class="fpart-second mb-md-0" style="margin-bottom: 100px;">
         <div class="container">
           <div id="powered" class="clearfix">
             <div class="powered_text pull-right flip">
