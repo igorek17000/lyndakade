@@ -401,7 +401,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
               aria-haspopup="true" aria-expanded="false">
               کتابخانه
             </a>
-            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdownMenuLink">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               @foreach (\App\Library::get() as $library)
                 <a class="dropdown-item text-center" href="{{ route('home.show', [$library->slug]) }}">
                   <i class="category-icons" aria-hidden="true">
@@ -432,7 +432,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
             aria-haspopup="true" aria-expanded="false">
             مسیرهای آموزشی
             </a>
-            <div class="dropdown-menu  dropdown-menu-center" aria-labelledby="navbarDropdownMenuLink">
+            <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
 
             @foreach (\App\Library::get() as $lib)
                 <a class="dropdown-item  text-center" style="color: #fff;"
