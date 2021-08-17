@@ -602,11 +602,11 @@ session(['redirectToAfterLogin' => url()->previous()]);
     {{-- </button> --}}
     <!--Footer Start-->
     <style>
-        footer ul > li > a {
+        footer ul > li > a, footer p {
             color: #ccc;
         }
     </style>
-    <footer id="footer" class="bg-dark text-muted p-md-5">
+    <footer id="footer" class="bg-dark text-muted p-md-5 pt-4">
       <div class="fpart-first">
         <div class="container">
           <div class="row">
