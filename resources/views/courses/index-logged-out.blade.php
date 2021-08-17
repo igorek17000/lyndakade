@@ -302,7 +302,7 @@
 
   {{-- p-5 bg-white rounded shadow --}}
   <div class="row card mx-0 latest-courses border-0">
-    <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-md-row text-center border-0 rounded-nav">
+    <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-md-row text-center border-0 rounded-nav d-flex justify-content-center">
       @foreach ($page_tabs as $tab)
         <li class="nav-item flex-md-fill">
           <a id="{{ $tab[0] }}-tab" data-toggle="tab" href="#{{ $tab[0] }}" role="tab"
