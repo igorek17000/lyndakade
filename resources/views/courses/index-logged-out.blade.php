@@ -316,7 +316,7 @@
         <div id="{{ $tab[0] }}" role="tabpanel" aria-labelledby="{{ $tab[0] }}-tab"
           class="tab-pane fade p-0 {{ $loop->first ? 'show active' : '' }}">
           <div class="row card mx-0 latest-courses border-0">
-            <div class="col-12 card-body">
+            <div class="col-12 card-body px-0">
               <div class="container">
                 <div class="row d-flex">
                   @foreach ($tab[2] as $course)
