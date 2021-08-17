@@ -30,7 +30,7 @@
             </div>
         @endif
         <div class="row my-3 justify-content-center">
-            <aside id="search-filters" class=" col-md-2 search-filter-cont">
+            <aside id="search-filters" class="col-md-2 hidden-xs hiddem-sm search-filter-cont">
                 <button class="btn btn-mobile" data-toggle="collapse" data-target="#search-sidebar">
                     <i class="fa fa-bars"></i>
                 </button>
