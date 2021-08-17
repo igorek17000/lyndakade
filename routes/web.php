@@ -23,7 +23,7 @@ use TCG\Voyager\Facades\Voyager;
 
 Auth::routes();
 
-Route::get('/test', function(){
+Route::get('/tests', function(){
     return response()->view('test', []);
 });
 
