@@ -54,31 +54,4 @@
 @endsection
 @push('js')
 
-    <link type="text/css" href="{{asset('jplayer/skin/pink.flag/css/jplayer.pink.flag.css')}}" rel="stylesheet"/>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="{{ asset('jplayer/jplayer/jquery.jplayer.min.js') }}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#jquery_jplayer_1").jPlayer({
-                ready: function () {
-                    $(this).jPlayer("setMedia", {
-                        title: "Big Buck Bunny Trailer",
-                        m4v: "http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v",
-                        ogv: "http://www.jplayer.org/video/ogv/Big_Buck_Bunny_Trailer.ogv",
-                        poster: "http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
-                    });
-                },
-                cssSelectorAncestor: "#jp_container_1",
-                swfPath: "/jplayer/jplayer",
-                supplied: "m4v, ogv",
-                useStateClassSkin: true,
-                autoBlur: false,
-                smoothPlayBar: true,
-                keyEnabled: true,
-                remainingDuration: true,
-                toggleDuration: true
-            });
-        });
-    </script>
 @endpush
