@@ -20,7 +20,7 @@
   @endif
   <p>Requested by
     <a href="{{ route('voyager.users.show', [$demand->user->id]) }}">
-      {{ $demand->user->name }}
+      {{ $demand->user->username }}
     </a>
   </p>
 </body>

@@ -428,6 +428,16 @@ class CourseController extends Controller
             $subject = Subject::firstWhere('title', $subject);
             if ($subject) {
                 $course->subjects()->attach([$subject->id]);
+            }else {
+                $lib = Library::firstWhere('titleEng', $lib_name);
+                $sub = new Subject();
+                $sub->title = $subject_name;
+                $sub->slug = $subject_slug;
+                $sub->library()->associate($lib);
+                $sub->save();
+                return new JsonResponse([
+                    'message' => 'success'
+                ], 200);
             }
             return new JsonResponse([
                 'message' => 'success',
