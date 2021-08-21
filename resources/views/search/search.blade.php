@@ -151,7 +151,14 @@
                             @if(count($courses) == 0)
                                 نتیجه ای یافت نشد.
                             @endif
-
+                            <style>
+                                .timeline > li > .timeline-panel {
+                                    width: calc(100% - 15px) !important;
+                                }
+                                .timeline:before {
+                                    width: 0 !important;
+                                }
+                            </style>
                         <ul class="timeline">
                             @foreach ($courses as $course)
                                 <li>
@@ -227,7 +234,7 @@
                                 </li>
                             @endforeach
                         </ul>
-            
+
                             {{-- @foreach($courses as $course)
                                     @include ('.courses.partials._course_list_grid', ['course' => $course, 'col' => 'col-lg-4'])
                             @endforeach --}}
