@@ -40,6 +40,9 @@ class CartController extends Controller
                 $total_price += $cart->learn_path->price();
             }
         }
+
+        $total_price = check_off_for_user($total_price);
+
         if ($request->ajax()) {
             $outputs = '';
             $outputs .= view('carts.partials._cart_list', [
@@ -139,6 +142,7 @@ class CartController extends Controller
             else
                 $amount += $cart->learn_path->price();
         }
+        $amount = check_off_for_user($amount);
 
         // $callback = route('payment.callback');
         // $description = 'lyndakade.ir';
@@ -169,6 +173,8 @@ class CartController extends Controller
                         $item_type = 2;
                         $item_id = $cart->learn_path->id;
                     }
+
+                    $amount = check_off_for_user($amount);
 
                     $payment = new Payment([
                         'transactionId' => $transactionId,
@@ -274,7 +280,7 @@ class CartController extends Controller
                     //         'type' => 1,
                     //         'item_id' => $course->id,
                     //         'user_id' => $payment->user->id,
-                    //         'price' => $course->price,
+                    //         'price' => check_off_for_user($course->price),
                     //     ]);
                     //     $paid->save();
                     // }
@@ -283,7 +289,7 @@ class CartController extends Controller
                         'type' => 2,
                         'item_id' => $cart->learn_path->id,
                         'user_id' => $payments[0]->user->id,
-                        'price' => $cart->learn_path->price(),
+                        'price' => check_off_for_user($cart->learn_path->price()),
                     ]);
                     $paid->save();
                 } else {
@@ -292,7 +298,7 @@ class CartController extends Controller
                         'type' => 1,
                         'item_id' => $cart->course->id,
                         'user_id' => $payments[0]->user->id,
-                        'price' => $cart->course->price,
+                        'price' => check_off_for_user($cart->course->price),
                     ]);
                     $paid->save();
                 }

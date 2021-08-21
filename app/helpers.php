@@ -9,6 +9,33 @@ use App\LearnPath;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+function percent_off_for_user()
+{
+    $total_paid_by_this_user = 0;
+    foreach (auth()->user()->paids as $paid) {
+        $total_paid_by_this_user += $paid->price;
+    }
+    $res = 1;
+    if ($total_paid_by_this_user >= 1000000) {
+        $res = .75;
+    } else if ($total_paid_by_this_user >= 800000) {
+        $res = .8;
+    } else if ($total_paid_by_this_user >= 600000) {
+        $res = .85;
+    } else if ($total_paid_by_this_user >= 400000) {
+        $res = .9;
+    } else if ($total_paid_by_this_user >= 200000) {
+        $res = .95;
+    }
+    return $res;
+}
+
+function check_off_for_user(Int $amount)
+{
+    return intval($amount * percent_off_for_user() / 100) * 100;
+}
+
+
 function sendDemand(Demand $demand)
 {
     $message = "new course request ON www.LyndaKade.ir";
@@ -46,7 +73,7 @@ Requested by " . $demand->user->name . " (user id: " . $demand->user->id . ")";
 function nPersian($string)
 {
     $string = strval($string);
-    if(is_numeric($string)){
+    if (is_numeric($string)) {
         $string = number_format($string);
     }
 

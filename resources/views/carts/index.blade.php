@@ -48,7 +48,13 @@
               <tr>
                 <td></td>
                 <td>جمع کل</td>
-                <td>{{ $total_price }}</td>
+                <td>
+                  @if (percent_off_for_user() == 1)
+                    {{ $total_price }}
+                  @else
+                    با {{ (1 - percent_off_for_user()) * 100 }} تخفیف {{ $total_price }}
+                  @endif
+                </td>
                 <td>
                   <button class="btn btn-danger">حذف همه موارد</button>
                 </td>
