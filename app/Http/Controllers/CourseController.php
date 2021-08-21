@@ -421,10 +421,10 @@ class CourseController extends Controller
 
     public function courses_find_api(Request $request)
     {
-        if(!$request->has('slugs')) {
+        if(!$request->input('slugs')) {
             return new JsonResponse([
                 'status' => 'failed',
-            ], 205);
+            ], 400);
         }
         $slugs = explode(',', $request->input('slugs'));
         $courses_id = [];
@@ -441,7 +441,7 @@ class CourseController extends Controller
         } else {
             return new JsonResponse([
                 'status' => 'failed',
-            ], 205);
+            ], 400);
         }
     }
 
