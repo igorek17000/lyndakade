@@ -421,11 +421,6 @@ class CourseController extends Controller
 
     public function courses_find_api(Request $request)
     {
-        if(!$request->input('slugs')) {
-            return new JsonResponse([
-                'status' => 'failed',
-            ], 400);
-        }
         $slugs = explode(',', $request->input('slugs'));
         $courses_id = [];
         foreach ($slugs as $slug) {
