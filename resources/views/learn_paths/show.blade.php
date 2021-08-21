@@ -106,7 +106,7 @@
                 <p style="text-align: center">
                   @foreach ($course->authors as $author)
                     <small class="text-muted">
-                      <i class="glyphicon glyphicon-time"></i>
+                      {{-- <i class="glyphicon glyphicon-time"></i> --}}
                       {{ $author->name }}
                     </small>
                     @if (!$loop->last)
