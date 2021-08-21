@@ -98,22 +98,26 @@
           <div class="timeline-badge">{{ $index + 1 }}</div>
           <a href="{{ courseURL($course) }}" class="timeline-panel">
             <div class="timeline-heading">
-              <h4 class="timeline-title">{{ $course->title }}</h4>
+              <h4 class="timeline-title">{{ $course->title }}
+              
+                <small class="text-muted">
+                    توسط 
+                    <span class="text-left" dir="ltr">
+                        @foreach ($course->authors as $author)
+                            {{-- <i class="glyphicon glyphicon-time"></i> --}}
+                            {{ $author->name }}
+                            @if (!$loop->last)
+                            , 
+                            @endif
+                        @endforeach
+                    </span>
+                </small>
+              </h4>
             </div>
             <div class="timeline-body text-justify row">
               <div class="col-md-3 col-sm-12 text-center">
                 <img src="#" class="lazyload" data-src="{{ fromDLHost($course->img) }}" style="max-height: 150px;" />
-                <p style="text-align: center">
-                  @foreach ($course->authors as $author)
-                    <small class="text-muted">
-                      {{-- <i class="glyphicon glyphicon-time"></i> --}}
-                      {{ $author->name }}
-                    </small>
-                    @if (!$loop->last)
-                      <br>
-                    @endif
-                  @endforeach
-                </p>
+                
               </div>
               <div class="col-md-9  col-sm-12">
                 <p class="mt-md-3" style="
