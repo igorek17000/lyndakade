@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html dir="rtl">
 
 <head>
   <title>خرید شما با موفقیت انجام شد.</title>
