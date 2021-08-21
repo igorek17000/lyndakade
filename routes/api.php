@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware('guest')->get('/courses/find', 'CourseController@courses_find_api')->name('courses.find.api');
 Route::middleware('guest')->get('/subjects', 'SubjectController@subjects_api')->name('subjects.api');
 Route::middleware('guest')->get('/software', 'SoftwareController@software_api')->name('software.api');
 Route::middleware('guest')->get('/software/has-courses', 'SoftwareController@software_has_api')->name('software.api');
