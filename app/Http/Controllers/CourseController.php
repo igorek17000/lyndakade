@@ -423,18 +423,40 @@ class CourseController extends Controller
     {
         $course_id = $request->input('course_id');
         $subjects = $request->input('subjects');
-
+        try {
+            $subjects = json_decode($subjects);
+            $course = Course::find($course_id);
+            if ($course && $subjects) {
+                foreach ($subjects as $sub) {
+                    $subject_name = $sub['name'];
+                    $subject_slug = $sub['slug'];
+                    $lib_name = $sub['lib'];
+                    if ($subject_name && $subject_slug && $lib_name) {
+                        $subject = Subject::firstWhere('title', $subject_name);
+                        if ($subject) {
+                            $course->subjects()->attach([$subject->id]);
+                        } else {
+                            $lib = Library::firstWhere('titleEng', $lib_name);
+                            if ($lib) {
+                                $sub = new Subject();
+                                $sub->title = $subject_name;
+                                $sub->slug = $subject_slug;
+                                $sub->library()->associate($lib);
+                                $sub->save();
+                                $course->subjects()->attach([$sub->id]);
+                            }
+                        }
+                    }
+                }
+                return new JsonResponse([
+                    'message' => 'success',
+                ], 200);
+            }
+        } catch (Exception $e) {
+        }
         return new JsonResponse([
-            'course_id' => [
-                'data' => $course_id,
-                'type' => gettype($course_id)
-            ],
-            'subjects' => [
-                'data' => $subjects,
-                'json' => json_decode($subjects),
-                'type' => gettype($subjects)
-            ],
-        ], 200);
+            'status' => 'failed',
+        ], 205);
     }
     public function course_subject_set_api(Request $request)
     {
