@@ -421,6 +421,9 @@ class CourseController extends Controller
 
     public function courses_find_api(Request $request)
     {
+        return new JsonResponse([
+            'status' => $request->has('slugs'),
+        ], 205);
         if(!$request->has('slugs')) {
             return new JsonResponse([
                 'status' => 'failed',
