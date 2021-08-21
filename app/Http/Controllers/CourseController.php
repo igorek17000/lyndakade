@@ -419,29 +419,52 @@ class CourseController extends Controller
         ], 400);
     }
 
+    public function test_api(Request $request)
+    {
+        $course_id = $request->input('course_id');
+        $subjects = $request->input('subjects');
+
+        return new JsonResponse([
+            'course_id' => [
+                'data' => $course_id,
+                'type' => gettype($course_id)
+            ],
+            'subjects' => [
+                'data' => $subjects,
+                'type' => gettype($subjects)
+            ],
+        ], 200);
+    }
     public function course_subject_set_api(Request $request)
     {
         $course_id = $request->input('course_id');
-        $subject = $request->input('subject');
+        $subjects = $request->input('subjects');
+
+        $subject_name = $request->input('subject_name');
+        $subject_slug = $request->input('subject_slug');
+        $lib_name = $request->input('lib_name');
         $course = Course::find($course_id);
-        if ($course && $subject) {
-            $subject = Subject::firstWhere('title', $subject);
+        if ($course && $subject_name) {
+            $subject = Subject::firstWhere('title', $subject_name);
             if ($subject) {
                 $course->subjects()->attach([$subject->id]);
-            }else {
-                $lib = Library::firstWhere('titleEng', $lib_name);
-                $sub = new Subject();
-                $sub->title = $subject_name;
-                $sub->slug = $subject_slug;
-                $sub->library()->associate($lib);
-                $sub->save();
                 return new JsonResponse([
-                    'message' => 'success'
+                    'message' => 'success',
                 ], 200);
+            } else {
+                $lib = Library::firstWhere('titleEng', $lib_name);
+                if ($lib) {
+                    $sub = new Subject();
+                    $sub->title = $subject_name;
+                    $sub->slug = $subject_slug;
+                    $sub->library()->associate($lib);
+                    $sub->save();
+                    $course->subjects()->attach([$sub->id]);
+                    return new JsonResponse([
+                        'message' => 'success',
+                    ], 200);
+                }
             }
-            return new JsonResponse([
-                'message' => 'success',
-            ], 200);
         }
         return new JsonResponse([
             'message' => 'failed',
