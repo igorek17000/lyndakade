@@ -424,14 +424,10 @@ class CourseController extends Controller
         $slugs = explode(',', $request->input('slugs'));
         $courses_id = [];
         foreach ($slugs as $slug) {
-            $course = Course::firstWhere('slug', $slug);
+            $course = Course::firstWhere('slug_linkedin', $slug);
             if ($course)
                 $courses_id[] = $course->id;
         }
-        return new JsonResponse([
-            'courses' => $courses_id,
-            'status' => 'success',
-        ], 200);
         if (count($slugs) == count($courses_id)) {
             return new JsonResponse([
                 'courses' => $courses_id,
