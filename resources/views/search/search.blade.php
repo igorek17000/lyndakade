@@ -167,13 +167,15 @@
                                         <h4 class="timeline-title">{{ $course->title }}
                                             <small class="text-muted">
                                                 توسط 
-                                                @foreach ($course->authors as $author)
-                                                    {{-- <i class="glyphicon glyphicon-time"></i> --}}
-                                                    {{ $author->name }}
-                                                    @if (!$loop->last)
-                                                    , 
-                                                    @endif
-                                                @endforeach
+                                                <span class="text-left" dir="ltr">
+                                                    @foreach ($course->authors as $author)
+                                                        {{-- <i class="glyphicon glyphicon-time"></i> --}}
+                                                        {{ $author->name }}
+                                                        @if (!$loop->last)
+                                                        , 
+                                                        @endif
+                                                    @endforeach
+                                                </span>
                                             </small>
                                         </h4>
                                     </div>
