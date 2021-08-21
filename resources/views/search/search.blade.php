@@ -164,25 +164,44 @@
                                 <li>
                                 <a href="{{ courseURL($course) }}" class="timeline-panel">
                                     <div class="timeline-heading">
-                                        <h4 class="timeline-title">{{ $course->title }}
+                                        <h2 class="timeline-title" style="font-size: 1.25rem;">
+                                            <p>
+                                            {{ $course->title }}
                                             <small class="text-muted">
-                                                توسط 
+                                                توسط
                                                 <span class="text-left" dir="ltr">
                                                     @foreach ($course->authors as $author)
                                                         {{-- <i class="glyphicon glyphicon-time"></i> --}}
                                                         {{ $author->name }}
                                                         @if (!$loop->last)
-                                                        , 
+                                                        ,
                                                         @endif
                                                     @endforeach
                                                 </span>
                                             </small>
-                                        </h4>
+                                        </p>
+                                        <p dir="ltr" class="text-left">
+                                            {{ $course->titleEng }}
+                                            <small class="text-muted">
+                                                by
+                                                <span>
+                                                    @foreach ($course->authors as $author)
+                                                        {{-- <i class="glyphicon glyphicon-time"></i> --}}
+                                                        {{ $author->name }}
+                                                        @if (!$loop->last)
+                                                        ,
+                                                        @endif
+                                                    @endforeach
+                                                </span>
+                                            </small>
+
+    </p>
+                                        </h2>
                                     </div>
                                     <div class="timeline-body text-justify row">
                                     <div class="col-md-3 col-sm-12 text-center">
                                         <img src="#" class="lazyload" data-src="{{ fromDLHost($course->img) }}" style="max-height: 150px;" />
-                                        
+
                                     </div>
                                     <div class="col-md-9  col-sm-12">
                                         <p class="mt-md-3" style="
