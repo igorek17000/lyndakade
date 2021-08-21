@@ -423,7 +423,7 @@ class CourseController extends Controller
     {
         return new JsonResponse([
             'status' => $request->has('slugs'),
-        ], 205);
+        ], 200);
         if(!$request->has('slugs')) {
             return new JsonResponse([
                 'status' => 'failed',
