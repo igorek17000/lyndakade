@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\Course;
 use App\LearnPath;
+use App\Mail\FactorMailer;
 use App\Paid;
 use App\Payment;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Throwable;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
@@ -273,6 +275,7 @@ class CartController extends Controller
 
         $factorId = -1;
         $status = 'موفق';
+        $paymentMethod = 'پرداخت آنلاین زرین پال';
         try {
             $receipt = \Shetabit\Payment\Facade\Payment::amount(intval($amount))->transactionId($authority)->verify();
             $factorId = $receipt->getReferenceId();
@@ -306,6 +309,11 @@ class CartController extends Controller
                     ]);
                     $paid->save();
                 }
+            }
+
+            Mail::to(Auth::user()->email)->send(new FactorMailer(Auth::user()->carts, $amount, $factorId, $status, $paymentMethod, $payments[0]->created_at, $authority));
+
+            foreach (Auth::user()->carts as $cart) {
                 $cart->delete();
             }
             // echo $receipt->getReferenceId();
@@ -318,9 +326,9 @@ class CartController extends Controller
             'referenceId' => $factorId,
             'total_price' => $amount,
             'date' => $payments[0]->created_at,
-            'paymentMethod' => 'پرداخت آنلاین زرین پال',
+            'paymentMethod' => $paymentMethod,
             'paymentStatus' => $status,
-            'paymentId' => $payments[0]->id,
+            'paymentId' => $authority,
         ]);
     }
 }
