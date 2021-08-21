@@ -129,22 +129,22 @@
                   {!! $course->description !!}
                 </p>
                 <div class="row">
-                  <div class="col-md-3 col-sm-6">
+                  <div class="col-md-3 col-6 pb-1">
                     <b>مدت زمان:</b>
                     {{ $course->durationHours ? $course->durationHours . 'h ' : '' }}
                     {{ $course->durationMinutes ? $course->durationMinutes . 'm' : '' }}
                   </div>
-                  <div class="col-md-3 col-sm-6">
+                  <div class="col-md-3 col-6">
                     <b>سطح:</b>
                     {{ \App\SkillLevel::find($course->skillLevel)->title }}
                   </div>
-                  <div class="col-md-3 col-sm-6">
+                  <div class="col-md-3 col-6">
                     <b>تاریخ انتشار:</b>
                     <span id="release-date" title="در لیندا {{ date('Y/m/d', strtotime($course->releaseDate)) }}">
                       {{ date('Y/m/d', strtotime($course->releaseDate)) }}
                     </span>
                   </div>
-                  <div class="col-md-3 col-sm-6">
+                  <div class="col-md-3 col-6">
                     <b>زیرنویس:</b>
                     @if (get_course_status_state($course->dubbed_id))
                       <span>دوبله شده</span>
