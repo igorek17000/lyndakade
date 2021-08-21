@@ -167,7 +167,7 @@
                                         <h4 class="timeline-title">{{ $course->title }}</h4>
                                     </div>
                                     <div class="timeline-body text-justify row">
-                                    <div class="col-md-3 col-sm-12">
+                                    <div class="col-md-3 col-sm-12 text-center">
                                         <img src="#" class="lazyload" data-src="{{ fromDLHost($course->img) }}" style="max-height: 150px;" />
                                         <p style="text-align: center">
                                         @foreach ($course->authors as $author)
