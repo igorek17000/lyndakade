@@ -419,6 +419,27 @@ class CourseController extends Controller
         ], 400);
     }
 
+    public function courses_find_api(Request $request)
+    {
+        $slugs = $request->input('slugs');
+        $courses_id = [];
+        foreach ($slugs as $slug) {
+            $course = Course::firstWhere('slug', $slug);
+            if ($course)
+                $courses_id[] = $course->id;
+        }
+        if (count($slugs) == count($courses_id)) {
+            return new JsonResponse([
+                'courses' => $courses_id,
+                'status' => 'success',
+            ], 200);
+        } else {
+            return new JsonResponse([
+                'status' => 'failed',
+            ], 205);
+        }
+    }
+
     public function test_api(Request $request)
     {
         $course_id = $request->input('course_id');

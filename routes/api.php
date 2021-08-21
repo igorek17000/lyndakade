@@ -42,6 +42,8 @@ Route::middleware('guest')->post('/subjects/add', 'SubjectController@subject_add
 
 Route::middleware('guest')->post('/test', 'CourseController@test_api')->name('subjects.add.api');
 
+Route::middleware('guest')->post('/courses/find', 'CourseController@courses_find_api')->name('courses.find.api');
+
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
