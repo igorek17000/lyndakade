@@ -23,6 +23,8 @@ use TCG\Voyager\Facades\Voyager;
 
 Auth::routes();
 
+Route::get('/courses/find', 'CourseController@courses_find_api')->name('courses.find.api');
+
 Route::get('/tests', function(){
     return response()->view('test', []);
 });
