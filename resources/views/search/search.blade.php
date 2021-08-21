@@ -165,18 +165,16 @@
                                 <a href="{{ courseURL($course) }}" class="timeline-panel">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title">{{ $course->title }}</h4>
-                                        <p style="text-align: center">
+                                        <small class="text-muted">
                                             توسط 
                                             @foreach ($course->authors as $author)
-                                                <small class="text-muted">
                                                 {{-- <i class="glyphicon glyphicon-time"></i> --}}
                                                 {{ $author->name }}
-                                                </small>
                                                 @if (!$loop->last)
-                                                <br>
+                                                   , 
                                                 @endif
                                             @endforeach
-                                        </p>
+                                        </small>
                                     </div>
                                     <div class="timeline-body text-justify row">
                                     <div class="col-md-3 col-sm-12 text-center">
