@@ -421,7 +421,12 @@ class CourseController extends Controller
 
     public function courses_find_api(Request $request)
     {
-        $slugs = $request->input('slugs');
+        if($request->has('slugs')) {
+            return new JsonResponse([
+                'status' => 'failed',
+            ], 205);
+        }
+        $slugs = explode(',', $request->input('slugs'));
         $courses_id = [];
         foreach ($slugs as $slug) {
             $course = Course::firstWhere('slug', $slug);
