@@ -431,6 +431,7 @@ class CourseController extends Controller
             ],
             'subjects' => [
                 'data' => $subjects,
+                'json' => json_decode($subjects),
                 'type' => gettype($subjects)
             ],
         ], 200);
