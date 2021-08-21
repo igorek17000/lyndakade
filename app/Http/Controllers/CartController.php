@@ -70,9 +70,13 @@ class CartController extends Controller
             $item = null;
             if ($id[0] == '1') {
                 $item = Course::find(substr($id, 2));
+                if ($this->isAdded($item->id))
+                    return false;
                 $cart->course()->associate($item);
             } else if ($id[0] == '2') {
                 $item = LearnPath::find(substr($id, 2));
+                if ($this->isAdded($item->id))
+                    return false;
                 $cart->learn_path()->associate($item);
             }
             if ($item == null)
