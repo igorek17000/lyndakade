@@ -52,7 +52,7 @@
                   @if (percent_off_for_user() == 1)
                     {{ $total_price }}
                   @else
-                    با {{ (1 - percent_off_for_user()) * 100 }} تخفیف {{ $total_price }}
+                    با {{ (1 - percent_off_for_user()) * 100 }}% تخفیف {{ $total_price }}
                   @endif
                 </td>
                 <td>
