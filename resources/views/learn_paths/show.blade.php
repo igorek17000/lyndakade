@@ -98,20 +98,39 @@
           <div class="timeline-badge">{{ $index + 1 }}</div>
           <a href="{{ courseURL($course) }}" class="timeline-panel">
             <div class="timeline-heading">
-              <h2 class="timeline-title" style="font-size: 1.25rem;">{{ $course->title }}
-                <small class="text-muted">
-                    توسط
-                    <span class="text-left" dir="ltr">
-                        @foreach ($course->authors as $author)
-                            {{-- <i class="glyphicon glyphicon-time"></i> --}}
-                            {{ $author->name }}
-                            @if (!$loop->last)
-                            ,
-                            @endif
-                        @endforeach
-                    </span>
-                </small>
-              </h2>
+                <h2 class="timeline-title" style="font-size: 1.25rem;">
+                    <p class="m-0">
+                        {{ $course->title }}
+                        <small class="text-muted">
+                            توسط
+                            <span class="text-left" dir="ltr">
+                                @foreach ($course->authors as $author)
+                                    {{-- <i class="glyphicon glyphicon-time"></i> --}}
+                                    {{ $author->name }}
+                                    @if (!$loop->last)
+                                    ,
+                                    @endif
+                                @endforeach
+                            </span>
+                        </small>
+                    </p>
+                    <p dir="ltr" class="text-left m-0">
+                        {{ $course->titleEng }}
+                        <small class="text-muted">
+                            by
+                            <span>
+                                @foreach ($course->authors as $author)
+                                    {{-- <i class="glyphicon glyphicon-time"></i> --}}
+                                    {{ $author->name }}
+                                    @if (!$loop->last)
+                                    ,
+                                    @endif
+                                @endforeach
+                            </span>
+                        </small>
+
+                    </p>
+                </h2>
             </div>
             <div class="timeline-body text-justify row">
               <div class="col-md-3 col-sm-12 text-center">

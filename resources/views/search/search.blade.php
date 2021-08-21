@@ -165,7 +165,7 @@
                                 <a href="{{ courseURL($course) }}" class="timeline-panel">
                                     <div class="timeline-heading">
                                         <h2 class="timeline-title" style="font-size: 1.25rem;">
-                                            <p>
+                                            <p class="m-0">
                                             {{ $course->title }}
                                             <small class="text-muted">
                                                 توسط
@@ -180,7 +180,7 @@
                                                 </span>
                                             </small>
                                         </p>
-                                        <p dir="ltr" class="text-left">
+                                        <p dir="ltr" class="text-left m-0">
                                             {{ $course->titleEng }}
                                             <small class="text-muted">
                                                 by
