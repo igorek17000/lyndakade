@@ -110,9 +110,9 @@
                   $paids = \App\Paid::orderBy('totalprice', 'desc')
                       ->latest()
                       ->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))
-
+                      ->groupBy('user_id')
                       ->limit(20)
-                      ->get()->groupBy('user_id');
+                      ->get();
                 @endphp
                 @foreach ($paids as $index => $paid)
                   <tr>
