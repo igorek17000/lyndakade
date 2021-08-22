@@ -28,6 +28,8 @@ Route::get('/tests', function(){
     return response()->view('test', []);
 });
 
+Route::get('/packages', 'PackageController@index')->name('packages.index');
+
 // learning paths
 Route::get('/learning-paths/', 'LearnPathController@index')->name('learn.paths.index');
 Route::get('/learning/paths/{learn_path_slug}', 'LearnPathController@show')->name('learn.paths.show');

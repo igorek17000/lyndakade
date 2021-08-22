@@ -45,6 +45,15 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
 
         event(new BreadDataUpdated($dataType, $data));
 
+        $course = Course::find($data->id);
+        if ($course->users) {
+            foreach ($course->users as $user) {
+                $email = $user->email;
+                if ($email)
+                    Mail::to($email)->send(new CourseAdded($course));
+            }
+        }
+
         if ($request->get('sendMessageToPaidUsers', false)) {
             $course_id = $data->id;
             $course = Course::find($course_id);
