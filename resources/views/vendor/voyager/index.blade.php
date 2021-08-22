@@ -107,11 +107,11 @@
               </thead>
               <tbody>
                   @php
-                    $paids = \App\Paid::orderBy('total', 'desc')->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))->groupBy('user_id')->get();
+                    $paids = \App\Paid::orderBy('totalprice', 'desc')->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))->groupBy('user_id')->get();
                   @endphp
                   @foreach ($paids as $index => $paid)
                     <tr>
-                        <th scope="row">{{ $index }}</th>
+                        <th scope="row">{{ $index+1 }}</th>
                         <td>{{ $paid->user->username }}</td>
                         <td>{{ $paid->totalprice }}</td>
                         <td>{{ $paid->total }}</td>
