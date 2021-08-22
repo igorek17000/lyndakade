@@ -93,40 +93,34 @@
     <div class="container">
       <div class="card">
         <div class="card-body">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
+          <h2 class="card-title text-center">MOST PAID USERS</h2>
+          <div class="card-text">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Username</th>
+                  <th scope="col">Total Payments</th>
+                  <th scope="col">Number Of Payments</th>
+                  <th scope="col">Last Payment</th>
+                </tr>
+              </thead>
+              <tbody>
+                  @php
+                    $paids = Paid::orderBy('total', 'desc')->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))->groupBy('user_id')->get();
+                  @endphp
+                  @foreach ($paids as $index = $paid)
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>{{$paid->user->username}}</td>
+                        <td>{{$paid->totalprice}}</td>
+                        <td>{{$paid->total}}</td>
+                        <td>{{$paid->created_at}}</td>
+                    </tr>
+                  @endforeach
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -139,3 +133,7 @@
   <script async src="{{ asset('black/js/initChart.js') }}"></script>
 
 @stop
+{{-- $user_info = Paid::orderBy('total', 'desc')->select('*', DB::raw('count(*) as total'))->groupBy('user_id')->get();
+
+
+$quy = Paid::query()->leftJoin('users', 'paids.user_id', '=', 'users.id')->select('paids.user_id', 'users.username')->selectRaw('count(paids.user_id) as total')->groupby('paids.user_id')->orderby('total')->get(); --}}
