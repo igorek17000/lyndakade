@@ -119,7 +119,7 @@
                     <td>{{ $paid->user->username }}</td>
                     <td>{{ number_format($paid->totalprice) }}</td>
                     <td>{{ number_format($paid->total) }}</td>
-                    <td>{{ $paid->user->paids->latest()->first()->created_at }}</td>
+                    <td>{{ $paid->user->paids->first()->created_at }}</td>
                   </tr>
                 @endforeach
               </tbody>
