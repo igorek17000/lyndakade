@@ -103,7 +103,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function paids()
     {
-        return $this->hasMany(Paid::class);
+        return $this->hasMany(Paid::class)->latest();
     }
 
     /**
