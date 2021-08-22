@@ -90,7 +90,7 @@ class ChartDataController extends Controller
         $days = $request->get('days', 7);
         // $views = View::query()->whereDate('created_at', '>=', Carbon::today()->subDays($days));
         $response = array();
-        $response['all_time'] = View::count();
+        $response['all_time'] = View::sum('views');
         $i = $days;
         $listed = 0;
         while ($i--) {
