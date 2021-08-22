@@ -107,7 +107,7 @@
               </thead>
               <tbody>
                 @php
-                  $paids = \App\Paid::lastest()
+                  $paids = \App\Paid::latest()
                       ->orderBy('totalprice', 'desc')
                       // ->orderBy('created_at', 'desc')
                       ->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))
