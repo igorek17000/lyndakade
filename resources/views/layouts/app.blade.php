@@ -382,7 +382,11 @@ session(['redirectToAfterLogin' => url()->previous()]);
         </div>
       </div>
     </div> --}}
-
+    <style>
+        .navbar.sticky-top ul li a {
+            position: relative !important;
+        }
+    </style>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark w-100 py-0">
       <a class="navbar-brand mb-1" href="https://lyndakade.ir">
         <img draggable="false" class="img-logo m-0 p-0" src="https://lyndakade.ir/image/logoedit2.png" title="لینداکده"
