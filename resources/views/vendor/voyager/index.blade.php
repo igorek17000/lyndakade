@@ -108,7 +108,6 @@
               <tbody>
                 @php
                   $paids = \App\Paid::orderBy('totalprice', 'desc')
-                      ->latest()
                       ->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))
                       ->groupBy('user_id')
                       ->limit(20)
@@ -120,7 +119,7 @@
                     <td>{{ $paid->user->username }}</td>
                     <td>{{ number_format($paid->totalprice) }}</td>
                     <td>{{ number_format($paid->total) }}</td>
-                    <td>{{ $paid->created_at }}</td>
+                    <td>{{ $paid->user->paids->latest()->first()->created_at }}</td>
                   </tr>
                 @endforeach
               </tbody>
