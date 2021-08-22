@@ -106,18 +106,22 @@
                 </tr>
               </thead>
               <tbody>
-                  @php
-                    $paids = \App\Paid::orderBy('totalprice', 'desc')->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))->groupBy('user_id')->get();
-                  @endphp
-                  @foreach ($paids as $index => $paid)
-                    <tr>
-                        <th scope="row">{{ $index+1 }}</th>
-                        <td>{{ $paid->user->username }}</td>
-                        <td>{{ $paid->totalprice }}</td>
-                        <td>{{ $paid->total }}</td>
-                        <td>{{ $paid->created_at }}</td>
-                    </tr>
-                  @endforeach
+                @php
+                  $paids = \App\Paid::orderBy('totalprice', 'desc')
+                      ->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))
+                      ->groupBy('user_id')
+                      ->limit(20)
+                      ->get();
+                @endphp
+                @foreach ($paids as $index => $paid)
+                  <tr>
+                    <th scope="row">{{ $index + 1 }}</th>
+                    <td>{{ $paid->user->username }}</td>
+                    <td>{{ number_format($paid->totalprice) }}</td>
+                    <td>{{ number_format($paid->total) }}</td>
+                    <td>{{ $paid->created_at }}</td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
