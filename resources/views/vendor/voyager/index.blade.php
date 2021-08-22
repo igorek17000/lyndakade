@@ -111,11 +111,11 @@
                   @endphp
                   @foreach ($paids as $index = $paid)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>{{$paid->user->username}}</td>
-                        <td>{{$paid->totalprice}}</td>
-                        <td>{{$paid->total}}</td>
-                        <td>{{$paid->created_at}}</td>
+                        <th scope="row">{{ $index }}</th>
+                        <td>{{ $paid->user->username }}</td>
+                        <td>{{ $paid->totalprice }}</td>
+                        <td>{{ $paid->total }}</td>
+                        <td>{{ $paid->created_at }}</td>
                     </tr>
                   @endforeach
               </tbody>
@@ -133,7 +133,3 @@
   <script async src="{{ asset('black/js/initChart.js') }}"></script>
 
 @stop
-{{-- $user_info = Paid::orderBy('total', 'desc')->select('*', DB::raw('count(*) as total'))->groupBy('user_id')->get();
-
-
-$quy = Paid::query()->leftJoin('users', 'paids.user_id', '=', 'users.id')->select('paids.user_id', 'users.username')->selectRaw('count(paids.user_id) as total')->groupby('paids.user_id')->orderby('total')->get(); --}}
