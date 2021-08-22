@@ -95,7 +95,7 @@
         <div class="card-body">
           <h2 class="card-title text-center">MOST PAID USERS</h2>
           <div class="card-text">
-            <table class="table">
+            <table class="table table-hover">
               <thead>
                 <tr>
                   <th scope="col">#</th>
