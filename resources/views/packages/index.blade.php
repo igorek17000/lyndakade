@@ -13,6 +13,10 @@
       user-select: none;
     }
 
+    .w-20 .card-body {
+      transition-duration: 200ms;
+    }
+
     .w-20 .card-body:hover {
       background-color: #00a9d3 !important;
       color: #fff !important;
