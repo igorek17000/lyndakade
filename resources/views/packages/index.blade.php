@@ -10,20 +10,26 @@
 @section('content')
   <style>
     .w-20 {
-        user-select: none;
+      user-select: none;
     }
 
-    @media(min-width: 768px) {
+    .w-20 .card-body:hover {
+      background-color: #00c0ef !important;
+    }
+
+
+    @media(max-width: 768px) {
       .w-20 {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 20% !important;
         flex: 0 0 20% !important;
         max-width: 20%;
       }
-    }
 
-    .w-20 .card-body:hover {
-      background-color: #00c0ef !important;
+      .w-20 .card-body {
+        background-color: #00c0ef !important;
+      }
+
     }
 
   </style>
