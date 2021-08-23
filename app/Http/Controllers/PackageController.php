@@ -61,6 +61,19 @@ class PackageController extends Controller
         $invoice->detail('email', $email);
         $invoice->detail('mobile', $mobile);
 
+        // We can store $transactionId in database.
+        $payment = new Payment([
+            'transactionId' => '1234567898765',
+            'amount' => $amount,
+            'email' => $email,
+            'mobile' => $mobile,
+            'user_id' => $user_id,
+            'item_type' => "3",
+            'item_id' => $pack->id,
+        ]);
+        $payment->save();
+        return redirect()->route('');
+
         // Purchase method accepts a callback function.
         return \Shetabit\Payment\Facade\Payment::callbackUrl(route('packages.callback'))
             ->purchase($invoice, function ($driver, $transactionId) use ($email, $mobile, $user_id, $amount, $pack) {
@@ -103,26 +116,39 @@ class PackageController extends Controller
         $factorId = -1;
         $status = 'موفق';
         $paymentMethod = 'پرداخت آنلاین زرین پال';
-        try {
-            $receipt = \Shetabit\Payment\Facade\Payment::amount(intval($amount))->transactionId($authority)->verify();
-            $factorId = $receipt->getReferenceId();
-            $pack = Package::find($payment->item_id);
-            $paid = new Paid([
-                'factorId' => $factorId,
-                'type' => 3,
-                'item_id' => $payment->item_id,
-                'user_id' => $payment->user->id,
-                'price' => $amount,
-            ]);
-            $paid->save();
+        $authority = '1234567898765';
+        // try {
+        //     $receipt = \Shetabit\Payment\Facade\Payment::amount(intval($amount))->transactionId($authority)->verify();
+        //     $factorId = $receipt->getReferenceId();
+        //     $pack = Package::find($payment->item_id);
+        //     $paid = new Paid([
+        //         'factorId' => $factorId,
+        //         'type' => 3,
+        //         'item_id' => $payment->item_id,
+        //         'user_id' => $payment->user->id,
+        //         'price' => $amount,
+        //     ]);
+        //     $paid->save();
 
-            Mail::to(Auth::user()->email)->send(new PackageFactorMailer($pack, $amount, $factorId, $status, $paymentMethod, $payment->created_at, $authority));
+        //     Mail::to(Auth::user()->email)->send(new PackageFactorMailer($pack, $amount, $factorId, $status, $paymentMethod, $payment->created_at, $authority));
 
-            // echo $receipt->getReferenceId();
-        } catch (InvalidPaymentException $exception) {
-            $status = $exception->getMessage();
-            // echo $exception->getMessage();
-        }
+        //     // echo $receipt->getReferenceId();
+        // } catch (InvalidPaymentException $exception) {
+        //     $status = $exception->getMessage();
+        //     // echo $exception->getMessage();
+        // }
+
+        $pack = Package::find($payment->item_id);
+        $paid = new Paid([
+            'factorId' => $factorId,
+            'type' => 3,
+            'item_id' => $payment->item_id,
+            'user_id' => $payment->user->id,
+            'price' => $amount,
+        ]);
+        $paid->save();
+
+        Mail::to(Auth::user()->email)->send(new PackageFactorMailer($pack, $amount, $factorId, $status, $paymentMethod, $payment->created_at, $authority));
 
         return view('carts.factor', [
             'referenceId' => $factorId,
