@@ -94,11 +94,11 @@ class PackageController extends Controller
 
     public function callback()
     {
-        $authority = request()->query('Authority');
+        $authority = '1234567898765';
 
         $payment = Payment::firstWhere('transactionId', $authority);
 
-        if ($payment) {
+        if (!$payment) {
             return redirect()->route('root.home')->with('alerts', [
                 'alert-type' => 'error',
                 'message' => 'no payment found',
