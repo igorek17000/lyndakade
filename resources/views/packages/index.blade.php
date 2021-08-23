@@ -44,7 +44,7 @@
     <div class="row d-flex justify-content-center text-center mx-md-5 mt-3" style="font-size: 1.2em;">
       @foreach ($packages as $package)
         <a href="#" class="w-20 col-sm-4 mb-4 mx-md-auto mx-5">
-          <div class="card-body" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
+          <div class="card-body p-0" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
             <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
             <p>{{ nPersian($package['days']) }} روزه</p>
             <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
