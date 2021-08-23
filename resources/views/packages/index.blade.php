@@ -14,7 +14,11 @@
     }
 
     .w-20 .card-body:hover {
-      background-color: #00c0ef !important;
+      background-color: #00a9d3 !important;
+    }
+
+    a.w-20:hover{
+        color: #ccc;
     }
 
 
@@ -30,7 +34,7 @@
     @media(max-width: 768px) {
 
       .w-20 .card-body {
-        background-color: #00c0ef !important;
+        background-color: #00a9d3 !important;
       }
 
     }
