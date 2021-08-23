@@ -17,7 +17,7 @@ class PackageFactorMailer extends Mailable
      *
      * @return void
      */
-    public function __construct($pack, $amount, $factorId, $status, $paymentMethod, $created_date, $authority)
+    public function __construct($pack, $amount, $factorId, $status, $paymentMethod, $created_date, $paymentId)
     {
         $this->pack = $pack;
         $this->amount = $amount;
@@ -25,7 +25,7 @@ class PackageFactorMailer extends Mailable
         $this->status = $status;
         $this->paymentMethod = $paymentMethod;
         $this->created_date = $created_date;
-        $this->authority = $authority;
+        $this->paymentId = $paymentId;
     }
 
     /**
