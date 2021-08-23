@@ -33,7 +33,7 @@ Route::get('/packages', 'PackageController@index')->name('packages.index');
 Route::group(
     ['middleware' => 'auth'],
     function () {
-        Route::get('/packages/payment', 'PackageController@payment')->name('packages.index');
+        Route::get('/packages/payment', 'PackageController@payment')->name('packages.payment');
         Route::get('/packages/redirect', 'PackageController@redirect')->name('packages.redirect');
         Route::get('/packages/callback', 'PackageController@callback')->name('packages.callback');
     }
