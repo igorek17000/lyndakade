@@ -37,7 +37,7 @@ class PackageFactorMailer extends Mailable
     {
         return $this->subject('خرید پکیج با موفقیت انجام شد.')
             ->view('emails.package-factor', [
-                'date' => $this->date,
+                'date' => $this->created_date,
                 'package' => $this->pack,
                 'amount' => $this->amount,
                 'factorId' => $this->factorId,
