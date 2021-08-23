@@ -107,6 +107,25 @@ class PackageController extends Controller
             $receipt = \Shetabit\Payment\Facade\Payment::amount(intval($amount))->transactionId($authority)->verify();
             $factorId = $receipt->getReferenceId();
             $pack = Package::find($payment->item_id);
+
+            // 
+
+            // $user_paids = Paid::where('type', 3)->where('user_id', $payment->user->id)->get();
+            // $last_paid = null;
+            // if (count($user_paids) > 0) {
+            //     $last_date = now()->subCentury();
+            //     foreach ($user_paids as $user_paid) {
+            //         if ($user_paid->start_date > $last_date) {
+            //             $last_paid = $user_paid;
+            //             $last_date = $user_paid->start_date;
+            //         }
+            //     }
+            // }
+            // if (!$last_paid)
+            //     $start_date = now();
+            // else
+            //     $start_date = $last_paid; // + Package::find($last_paid->item_id)->days;
+
             $paid = new Paid([
                 'factorId' => $factorId,
                 'type' => 3,
