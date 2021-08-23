@@ -6,6 +6,7 @@ use App\HashedData;
 use App\Package;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Shetabit\Multipay\Invoice;
 
 class PackageController extends Controller
 {
@@ -29,26 +30,21 @@ class PackageController extends Controller
     {
         $code = $request->get('code');
 
-        return view('carts.redirectForm', [
-            'action' => route('payment.redirect'),
-            'method' => 'post',
-            'inputs' => [],
-        ]);
-    }
-
-    public function redirect()
-    {
-        $amount = 0;
-        foreach (Auth::user()->carts as $cart) {
-            if ($cart->course)
-                $amount += $cart->course->price;
-            else
-                $amount += $cart->learn_path->price();
+        $hashedData = HashedData::firstWhere('hashed', $code);
+        if (!$hashedData) {
+            abort(404);
+            return '404';
         }
-        $amount = check_off_for_user($amount);
 
-        // $callback = route('payment.callback');
-        // $description = 'lyndakade.ir';
+        $pack = Package::find($hashedData->data);
+        if (!$pack) {
+            abort(404);
+            return '404';
+        }
+        return $pack->price;
+
+        $amount = $pack->price;
+
         $email = Auth::user()->email;
         $mobile = Auth::user()->mobile;
         $user_id = Auth::user()->id;
@@ -91,7 +87,21 @@ class PackageController extends Controller
                     $payment->save();
                 }
             })->pay()->render();
+    }
 
+    public function redirect()
+    {
+        $amount = 0;
+        foreach (Auth::user()->carts as $cart) {
+            if ($cart->course)
+                $amount += $cart->course->price;
+            else
+                $amount += $cart->learn_path->price();
+        }
+        $amount = check_off_for_user($amount);
+
+        // $callback = route('payment.callback');
+        // $description = 'lyndakade.ir';
         /*
         // $zarinpal = zarinpal()
         //     ->amount($amount)
