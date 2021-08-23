@@ -18,13 +18,16 @@
     }
 
 
-    @media(max-width: 768px) {
+    @media(min-width: 768px) {
       .w-20 {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 20% !important;
         flex: 0 0 20% !important;
         max-width: 20%;
       }
+    }
+
+    @media(max-width: 768px) {
 
       .w-20 .card-body {
         background-color: #00c0ef !important;
