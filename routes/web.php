@@ -24,11 +24,20 @@ use TCG\Voyager\Facades\Voyager;
 Auth::routes();
 
 
-Route::get('/tests', function(){
+Route::get('/tests', function () {
     return response()->view('test', []);
 });
 
 Route::get('/packages', 'PackageController@index')->name('packages.index');
+
+Route::group(
+    ['middleware' => 'auth'],
+    function () {
+        Route::get('/packages/payment', 'PackageController@index')->name('packages.index');
+        Route::get('/packages/redirect', 'PackageController@redirect')->name('packages.redirect');
+        Route::get('/packages/callback', 'PackageController@callback')->name('packages.callback');
+    }
+);
 
 // learning paths
 Route::get('/learning-paths/', 'LearnPathController@index')->name('learn.paths.index');

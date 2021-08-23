@@ -15,7 +15,7 @@
     </p>
     <div class="row d-flex justify-content-center text-center">
       @foreach ($packages as $package)
-        <div class="col-md-3 col-sm-6 mb-4">
+        <div class="col-md-2 col-sm-4 mb-4">
           <div class="card-body" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
             <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
             <p>{{ nPersian($package['days']) }} روزه</p>
