@@ -20,6 +20,10 @@
       }
     }
 
+    .w-20 .card-body:hover {
+      background-color: #00c0ef !important;
+    }
+
   </style>
   <div class="container card mt-0 my-md-5 py-3 ">
     <h1>خرید اشتراک</h1>
