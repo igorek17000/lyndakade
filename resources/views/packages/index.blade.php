@@ -9,11 +9,15 @@
 @endpush
 @section('content')
   <style>
-    .w-20 {
-      -webkit-box-flex: 0;
-      -ms-flex: 0 0 20% !important;
-      flex: 0 0 20% !important;
-      max-width: 20%;
+    .w-20 {}
+
+    @media(min-width: 768px) {
+      .w-20 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 20% !important;
+        flex: 0 0 20% !important;
+        max-width: 20%;
+      }
     }
 
   </style>
