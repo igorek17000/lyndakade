@@ -72,7 +72,7 @@ class PackageController extends Controller
             'item_id' => $pack->id,
         ]);
         $payment->save();
-        return redirect()->route('');
+        return redirect()->route('packages.callback');
 
         // Purchase method accepts a callback function.
         return \Shetabit\Payment\Facade\Payment::callbackUrl(route('packages.callback'))
@@ -92,7 +92,7 @@ class PackageController extends Controller
             })->pay()->render();
     }
 
-    public function pay_callback()
+    public function callback()
     {
         $authority = request()->query('Authority');
 
