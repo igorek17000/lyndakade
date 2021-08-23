@@ -15,12 +15,8 @@
 
     .w-20 .card-body:hover {
       background-color: #00a9d3 !important;
+      color: #ddd !important;
     }
-
-    a.w-20:hover{
-        color: #ddd;
-    }
-
 
     @media(min-width: 768px) {
       .w-20 {
