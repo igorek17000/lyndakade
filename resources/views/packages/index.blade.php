@@ -18,7 +18,7 @@
     }
 
     a.w-20:hover{
-        color: #ccc;
+        color: #ddd;
     }
 
 
