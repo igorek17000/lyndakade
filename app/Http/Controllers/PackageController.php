@@ -28,7 +28,7 @@ class PackageController extends Controller
             create_hashed_data_if_not_exists($pack->id);
         }
 
-        Mail::to(Auth::user()->email)->send(new PackageFactorMailer($pack, '$amount', '$factorId', '$status', '$paymentMethod', '$payment->created_at', '$authority'));
+        Mail::to('zarehadi2@gmail.com')->send(new PackageFactorMailer($pack, '$amount', '$factorId', '$status', '$paymentMethod', '$payment->created_at', '$authority'));
 
         return view('packages.index', [
             'packages' => $packs,
