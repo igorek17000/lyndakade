@@ -9,11 +9,15 @@
 @endpush
 @section('content')
   <div class="container">
+    <h1>خرید اشتراک</h1>
+    <p>
+      با خرید اشتراک، در مدت زمان مورد نظر، میتوانید به تعداد دوره طرح، دوره هارو بصورت رایگان باز کنید و دانلود کنید.
+    </p>
     <div class="row d-flex justify-content-center">
       @foreach ($packages as $package)
         <div class="col-md-3 col-sm-6">
           <h3>{{ $package['title'] }}</h3>
-            
+
         </div>
       @endforeach
     </div>
