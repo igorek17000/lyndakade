@@ -9,7 +9,9 @@
 @endpush
 @section('content')
   <style>
-    .w-20 {}
+    .w-20 {
+        user-select: none;
+    }
 
     @media(min-width: 768px) {
       .w-20 {
