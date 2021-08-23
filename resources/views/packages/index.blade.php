@@ -41,7 +41,7 @@
     <p>
       با خرید اشتراک، در مدت زمان مورد نظر، میتوانید به تعداد دوره طرح، دوره هارو بصورت رایگان باز کنید و دانلود کنید.
     </p>
-    <div class="row d-flex justify-content-center text-center mx-md-5" style="font-size: 1.2em;">
+    <div class="row d-flex justify-content-center text-center mx-md-5 mt-3" style="font-size: 1.2em;">
       @foreach ($packages as $package)
         <div class="w-20 col-sm-4 mb-4 mx-md-auto mx-5">
           <div class="card-body" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
