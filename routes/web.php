@@ -32,7 +32,7 @@ Route::get('/faq', function () {
     return response()->view('faq', []);
 })->name('faq');
 
-// Route::get('/packages', 'PackageController@index')->name('packages.index');
+Route::get('/packages', 'PackageController@index')->name('packages.index');
 
 // Route::group(
 //     ['middleware' => 'auth'],
