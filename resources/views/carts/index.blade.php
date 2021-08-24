@@ -14,13 +14,14 @@
         <article class="card">
           <div class="filter-content">
             <div class="card-body clearfix">
-              <h2 class="text-center">لیست دوره های خریداری شده</h2>
+              <h2 class="text-center">سبد خرید شما</h2>
               <table class="table table-bordered table-sm text-center">
                 <thead>
                   <tr>
-                    <th scope="col">سطح</th>
-                    <th scope="col">مجموع خرید</th>
-                    <th scope="col">درصد تخفیف (برای تمامی خریدها)</th>
+                    <th>#</th>
+                    <th scope="col">نام محصول</th>
+                    <th scope="col">قیمت</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
 
@@ -71,6 +72,20 @@
             <b> قبل از ادامه، از خاموش بودن فیلترشکن اطمینان حاصل نمایید. </b>
           </div>
         </article>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row my-3">
+      <div class="col-12 justify-content-center">
+        <div class="row">
+          <table class="table table-bordered table-sm">
+            <thead class="thead-dark">
+              <tr>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </div>
     </div>
   </div>
