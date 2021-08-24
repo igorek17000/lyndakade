@@ -35,8 +35,8 @@
                         <td>
                           <img src="#" data-src="{{ fromDLHost($cart->course->img) }}" class="lazyload" width="80"
                             alt="{{ $cart->course->title }}" />
-                          <h4>{{ $cart->course->title }}</h4>
-                          <h4>{{ $cart->course->titleEng }}</h4>
+                          <h6>{{ $cart->course->title }}</h6>
+                          <h6>{{ $cart->course->titleEng }}</h6>
                         </td>
                         <td>{{ nPersian(number_format($cart->course->price)) }} تومان</td>
                       @else
@@ -46,8 +46,8 @@
                         <td>
                           <img src="#" data-src="{{ fromDLHost($cart->learn_path->img) }}" class="lazyload" width="80"
                             alt="{{ $cart->learn_path->title }}" />
-                          <h4>{{ $cart->learn_path->title }}</h4>
-                          <h4>{{ $cart->learn_path->titleEng }}</h4>
+                          <h6>{{ $cart->learn_path->title }}</h6>
+                          <h6>{{ $cart->learn_path->titleEng }}</h6>
                         </td>
                         <td>{{ nPersian(number_format($cart->learn_path->price())) }} تومان</td>
                       @endif

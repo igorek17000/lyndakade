@@ -35,8 +35,8 @@
                       <tr>
                         <th scope="row">@php echo $i;@endphp</th>
                         <td>
-                            <h4>{{ $course->title }}</h4>
-                            <h4>{{ $course->titleEng }}</h4>
+                            <h6>{{ $course->title }}</h6>
+                            <h6>{{ $course->titleEng }}</h6>
                         </td>
                         <td>
                           @php
@@ -100,8 +100,8 @@
                       <tr>
                         <th scope="row">@php echo $i;@endphp</th>
                         <td>
-                            <h4>{{ $path->title }}</h4>
-                            <h4>{{ $path->titleEng }}</h4>
+                            <h6>{{ $path->title }}</h6>
+                            <h6>{{ $path->titleEng }}</h6>
                         </td>
                         <td>
                           @php
