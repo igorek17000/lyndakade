@@ -79,20 +79,6 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="row my-3">
-      <div class="col-12 justify-content-center">
-        <div class="row">
-          <table class="table table-bordered table-sm">
-            <thead class="thead-dark">
-              <tr>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
 @endsection
 @push('js')
 
