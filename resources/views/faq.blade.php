@@ -31,15 +31,15 @@
             <div class="card-header p-2">
               <h5 class="mb-0">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" aria-expanded="false">
-                  سوال شماره یک؟
+                  سوال شماره دو؟
                 </button>
               </h5>
             </div>
             <div class="collapse" data-parent="#faqExample">
               <div class="card-body">
                 {{-- <b>Answer:</b> --}}
-                جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال
-                شماره یک جواب سوال شماره یک
+                جواب سوال شماره دو جواب سوال شماره دو جواب سوال شماره دو جواب سوال شماره دو جواب سوال شماره دو جواب سوال
+                شماره دو جواب سوال شماره دو
               </div>
             </div>
           </div>
