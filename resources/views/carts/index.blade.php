@@ -15,7 +15,7 @@
           <div class="filter-content">
             <div class="card-body clearfix">
               <h2 class="text-center">سبد خرید شما</h2>
-              <table class="table table-bordered table-sm text-center">
+              <table class="table table-bordered text-center">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -26,14 +26,17 @@
                 </thead>
 
                 <tbody id="card-list">
-                  @foreach ($carts as $cart)
+                  @foreach ($carts as $index => $cart)
                     <tr>
                       @if ($cart->course)
                         <td>
-                          <img src="#" data-src="{{ fromDLHost($cart->course->img) }}" class="lazyload" width="50"
-                            height="50" alt="" />
+                          {{ $index + 1 }}
                         </td>
-                        <td>{{ $cart->course->title }}</td>
+                        <td>
+                          <img src="#" data-src="{{ fromDLHost($cart->course->img) }}" class="lazyload" width="80"
+                            alt="{{ $cart->course->title }}" />
+                          {{ $cart->course->title }}
+                        </td>
                         <td>{{ $cart->course->price }}</td>
                       @else
                         <td>
