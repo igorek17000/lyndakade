@@ -137,7 +137,7 @@
           <div class="filter-content">
             <div class="card-body clearfix">
               <h2 class="text-center">تخفیفات براساس میزان خرید</h2>
-              <table class="table">
+              <table class="table table-bordered  text-center">
                 <thead>
                   <tr>
                     <th scope="col">سطح</th>
