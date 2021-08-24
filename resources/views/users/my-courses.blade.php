@@ -148,13 +148,15 @@
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td>بین {{ nPersian(number_format(200000)) }} تا {{ nPersian(number_format(400000 - 1000)) }} تومان
+                    <td>بین {{ nPersian(number_format(200000)) }} تا {{ nPersian(number_format(400000 - 1000)) }}
+                      تومان
                     </td>
                     <td>{{ nPersian(number_format(5)) }}%</td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
-                    <td>بین {{ nPersian(number_format(400000)) }} تا {{ nPersian(number_format(600000 - 1000)) }} تومان
+                    <td>بین {{ nPersian(number_format(400000)) }} تا {{ nPersian(number_format(600000 - 1000)) }}
+                      تومان
                     </td>
                     <td>{{ nPersian(number_format(10)) }}%</td>
                   </tr>
@@ -179,7 +181,8 @@
                   </tr>
                   <tr>
                     @if (check_user_level_up() < 5)
-                      <th colspan="12">شما {{ left_to_next_level() }} نیاز دارید به سطح
+                      <th colspan="12"> مجموع خرید شما {{ auth()->user()->paids->sum('price') }} و به
+                        {{ left_to_next_level() }} نیاز دارید به سطح
                         {{ check_user_level_up() + 1 }} برسید</th>
                     @else
                       <th colspan="12">شما هم اکنون در سطح آخر قرار دارید و در هر خرید {{ nPersian(25) }}% تخفیف خواهید
