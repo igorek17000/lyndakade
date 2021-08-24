@@ -44,6 +44,7 @@
                                 ->first();
                             echo nPersian($paid->price);
                           @endphp
+                          تومان
                         </td>
                         <td>
                           @php
@@ -105,6 +106,7 @@
                                 ->first();
                             echo nPersian(number_format($paid->price));
                           @endphp
+                          تومان
                         </td>
                         <td>
                           @php
