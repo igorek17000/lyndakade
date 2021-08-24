@@ -140,7 +140,7 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">سطح</th>
                     <th scope="col">مجموع خرید</th>
                     <th scope="col">درصد تخفیف</th>
                   </tr>
@@ -172,6 +172,15 @@
                     <th scope="row">5</th>
                     <td>{{ nPersian(number_format(1000000)) }} تومان به بالا</td>
                     <td>{{ nPersian(number_format(5)) }}%</td>
+                  </tr>
+                  <tr>
+                    @if (check_user_level_up() < 5)
+                      <th colspan="12">شما {{ left_to_next_level() }} نیاز دارید به سطح
+                        {{ check_user_level_up() + 1 }} برسید</th>
+                    @else
+                      <th colspan="12">شما هم اکنون در سطح آخر قرار دارید و در هر خرید {{ nPersian(25) }}% تخفیف خواهید
+                        داشت.</th>
+                    @endif
                   </tr>
                 </tbody>
               </table>
