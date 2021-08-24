@@ -181,9 +181,14 @@
                   </tr>
                   <tr>
                     @if (check_user_level_up() < 5)
-                      <th colspan="12"> مجموع خرید شما <b>{{ auth()->user()->paids->sum('price') }}</b> میباشد و به
-                        <b>{{ left_to_next_level() }}</b> نیاز دارید به سطح
-                        <b>{{ check_user_level_up() + 1 }}</b> برسید
+                      <th colspan="12"> مجموع خرید شما
+                        <b>{{ nPersian(
+    number_format(
+        auth()->user()->paids->sum('price'),
+    ),
+) }}</b> میباشد و به
+                        <b>{{ nPersian(number_format(left_to_next_level())) }}</b> نیاز دارید به سطح
+                        <b>{{ nPersian(check_user_level_up() + 1) }}</b> برسید
                       </th>
                     @else
                       <th colspan="12">شما هم اکنون در سطح آخر قرار دارید و در هر خرید {{ nPersian(25) }}% تخفیف خواهید
