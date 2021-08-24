@@ -9,16 +9,16 @@
       </div>
       <div class="col-12 mx-auto">
         <div class="accordion" id="faqExample">
+
           <div class="card">
-            <div class="card-header p-2" id="headingOne">
+            <div class="card-header p-2">
               <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne"
-                  aria-expanded="false" aria-controls="collapseOne">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" aria-expanded="false">
                   سوال شماره یک؟
                 </button>
               </h5>
             </div>
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#faqExample" style="">
+            <div class="collapse" data-parent="#faqExample">
               <div class="card-body">
                 {{-- <b>Answer:</b> --}}
                 جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال
@@ -26,60 +26,30 @@
               </div>
             </div>
           </div>
+
           <div class="card">
-            <div class="card-header p-2" id="headingTwo">
+            <div class="card-header p-2">
               <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
-                  aria-expanded="false" aria-controls="collapseTwo">
-                  Q: What is Bootstrap 4?
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" aria-expanded="false">
+                  سوال شماره یک؟
                 </button>
               </h5>
             </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqExample" style="">
+            <div class="collapse" data-parent="#faqExample">
               <div class="card-body">
-                Bootstrap is the most popular CSS framework in the world. The latest version released in 2018 is Bootstrap
-                4. Bootstrap can be used to quickly build responsive websites.
+                {{-- <b>Answer:</b> --}}
+                جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال
+                شماره یک جواب سوال شماره یک
               </div>
             </div>
           </div>
-          <div class="card">
-            <div class="card-header p-2" id="headingThree">
-              <h5 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree"
-                  aria-expanded="true" aria-controls="collapseThree">
-                  Q. What is another question?
-                </button>
-              </h5>
-            </div>
-            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#faqExample"
-              style="">
-              <div class="card-body">
-                The answer to the question can go here.
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-2" id="headingThree">
-              <h5 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree"
-                  aria-expanded="true" aria-controls="collapseThree">
-                  Q. What is the next question?
-                </button>
-              </h5>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqExample">
-              <div class="card-body">
-                The answer to this question can go here. This FAQ example can contain all the Q/A that is needed.
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
   </div>
   <script>
     $(function() {
-      console.log(1111111);
       var idx = 1;
       document.querySelectorAll('#faqExample .card').forEach((el) => {
         var heading_id = 'heading' + idx,
