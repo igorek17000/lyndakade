@@ -9,7 +9,7 @@
       </div>
       <div class="col-12 mx-auto">
         <div class="accordion" id="faqExample">
-          <section>
+          <section class="pt-3">
             <h3>بخش اول</h3>
             <div class="card">
               <div class="card-header p-2">
@@ -46,7 +46,7 @@
             </div>
           </section>
 
-          <section>
+          <section class="pt-3">
             <h3>بخش دوم</h3>
             <div class="card">
               <div class="card-header p-2">
