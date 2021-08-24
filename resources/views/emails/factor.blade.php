@@ -73,10 +73,74 @@
     </ul>
   @endif
 
-  @if ($isFirstPaid)
-
-  @endif
-
+  <div class="card-body clearfix">
+    <h2 class="text-center">تخفیفات براساس میزان خرید</h2>
+    <table class="table table-bordered  text-center">
+      <thead>
+        <tr>
+          <th scope="col" class="align-middle">سطح</th>
+          <th scope="col" class="align-middle">مجموع خرید</th>
+          <th scope="col" class="align-middle">درصد تخفیف (برای تمامی خریدها)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" class="align-middle">1</th>
+          <td class="align-middle">بین {{ nPersian(number_format(200000)) }} تا
+            {{ nPersian(number_format(400000 - 1000)) }}
+            تومان
+          </td>
+          <td class="align-middle">{{ nPersian(number_format(5)) }}%</td>
+        </tr>
+        <tr>
+          <th scope="row" class="align-middle">2</th>
+          <td class="align-middle">بین {{ nPersian(number_format(400000)) }} تا
+            {{ nPersian(number_format(600000 - 1000)) }}
+            تومان
+          </td>
+          <td class="align-middle">{{ nPersian(number_format(10)) }}%</td>
+        </tr>
+        <tr>
+          <th scope="row" class="align-middle">3</th>
+          <td class="align-middle">بین {{ nPersian(number_format(600000)) }} تا
+            {{ nPersian(number_format(800000 - 1000)) }}
+            تومان
+          </td>
+          <td class="align-middle">{{ nPersian(number_format(15)) }}%</td>
+        </tr>
+        <tr>
+          <th scope="row" class="align-middle">4</th>
+          <td class="align-middle">بین {{ nPersian(number_format(800000)) }} تا
+            {{ nPersian(number_format(1000000 - 1000)) }}
+            تومان
+          </td>
+          <td class="align-middle">{{ nPersian(number_format(20)) }}%</td>
+        </tr>
+        <tr>
+          <th scope="row" class="align-middle">5</th>
+          <td class="align-middle">{{ nPersian(number_format(1000000)) }} تومان به بالا</td>
+          <td class="align-middle">{{ nPersian(number_format(25)) }}%</td>
+        </tr>
+        <tr>
+          @if (check_user_level_up() < 5)
+            <th colspan="12" class="align-middle"> مجموع خرید شما
+              <b>{{ nPersian(
+    number_format(
+        auth()->user()->paids->sum('price'),
+    ),
+) }}</b>
+              میباشد و به
+              <b>{{ nPersian(number_format(left_to_next_level())) }}</b> نیاز دارید به سطح
+              <b>{{ nPersian(check_user_level_up() + 1) }}</b> برسید
+            </th>
+          @else
+            <th colspan="12" class="align-middle">شما هم اکنون در سطح آخر قرار دارید و در هر خرید {{ nPersian(25) }}%
+              تخفیف خواهید
+              داشت.</th>
+          @endif
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
-
 </html>
