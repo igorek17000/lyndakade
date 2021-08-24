@@ -77,8 +77,6 @@
       </div>
     </div>
   </div>
-@endsection
-@push('js')
   <script>
     $(function() {
       var idx = 1;
@@ -89,4 +87,4 @@
       });
     });
   </script>
-@endpush
+@endsection
