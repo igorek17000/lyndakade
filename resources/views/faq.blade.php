@@ -82,9 +82,21 @@
       console.log(1111111);
       var idx = 1;
       document.querySelectorAll('#faqExample .card').forEach((el) => {
+        var heading_id = 'heading' + idx,
+          collapse_id = 'collapse' + idx;
+
+        var heading = el.querySelector('.card-header');
+        heading.setAttribute('id', heading_id);
+
         var btn = el.querySelector('button');
-        var content = el.querySelector('.card-body');
-        console.log(idx++, btn, content);
+        btn.setAttribute('data-target', '#' + collapse_id);
+        btn.setAttribute('aria-controls', collapse_id);
+
+        var content = el.querySelector('.collapse');
+        content.setAttribute('id', collapse_id);
+        content.setAttribute('aria-labelledby', heading_id);
+
+        idx++;
       });
     });
   </script>
