@@ -279,6 +279,7 @@ class CartController extends Controller
         try {
             $receipt = \Shetabit\Payment\Facade\Payment::amount(intval($amount))->transactionId($authority)->verify();
             $factorId = $receipt->getReferenceId();
+            $isFirstPaid = Auth::user()->paids->count() == 0;
             foreach (Auth::user()->carts as $cart) {
                 if ($cart->learn_path) {
                     // foreach (js_to_courses($cart->learn_path->courses) as $course) {
@@ -311,7 +312,7 @@ class CartController extends Controller
                 }
             }
 
-            Mail::to(Auth::user()->email)->send(new FactorMailer(Auth::user()->carts, $amount, $factorId, $status, $paymentMethod, $payments[0]->created_at, $authority));
+            Mail::to(Auth::user()->email)->send(new FactorMailer(Auth::user()->carts, $amount, $factorId, $status, $paymentMethod, $payments[0]->created_at, $authority, $isFirstPaid));
 
             foreach (Auth::user()->carts as $cart) {
                 $cart->delete();

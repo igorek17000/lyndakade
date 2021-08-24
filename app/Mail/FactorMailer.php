@@ -18,14 +18,14 @@ class FactorMailer extends Mailable
     public $status;
     public $paymentMethod;
     public $date;
-    public $paymentId;
+    public $paymentId, $isFirstPaid;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($carts, $amount, $factorId, $status, $paymentMethod, $date, $paymentId)
+    public function __construct($carts, $amount, $factorId, $status, $paymentMethod, $date, $paymentId, $isFirstPaid)
     {
         $this->carts = $carts;
         $this->amount = $amount;
@@ -34,6 +34,7 @@ class FactorMailer extends Mailable
         $this->paymentMethod = $paymentMethod;
         $this->date = $date;
         $this->paymentId = $paymentId;
+        $this->isFirstPaid = $isFirstPaid;
     }
 
     /**
@@ -62,6 +63,7 @@ class FactorMailer extends Mailable
                 'status' => $this->status,
                 'paymentMethod' => $this->paymentMethod,
                 'paymentId' => $this->paymentId,
+                'isFirstPaid' => $this->isFirstPaid,
             ]);
     }
 }

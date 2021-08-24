@@ -21,6 +21,7 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">عنوان دوره</th>
+                    <th scope="col">میزان پرداختی</th>
                     <th scope="col">تاریخ خرید</th>
                     <th scope="col">لینک دوره</th>
                   </tr>
@@ -34,6 +35,16 @@
                       <tr>
                         <th scope="row">@php echo $i;@endphp</th>
                         <td>{{ $course->title }}</td>
+                        <td>
+                          @php
+                            $paid = \App\Paid::all()
+                                ->where('user_id', auth()->id())
+                                ->where('type', '1')
+                                ->where('item_id', $course->id)
+                                ->first();
+                            echo $paid->price;
+                          @endphp
+                        </td>
                         <td>
                           @php
                             $paid = \App\Paid::all()
@@ -71,6 +82,7 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">عنوان مسیر آموزشی</th>
+                    <th scope="col">میزان پرداختی</th>
                     <th scope="col">تاریخ خرید</th>
                     <th scope="col">لینک مسیر آموزشی</th>
                   </tr>
@@ -84,6 +96,16 @@
                       <tr>
                         <th scope="row">@php echo $i;@endphp</th>
                         <td>{{ $path->title }}</td>
+                        <td>
+                          @php
+                            $paid = \App\Paid::all()
+                                ->where('user_id', auth()->id())
+                                ->where('type', '2')
+                                ->where('item_id', $path->id)
+                                ->first();
+                            echo $paid->price;
+                          @endphp
+                        </td>
                         <td>
                           @php
                             $paid = \App\Paid::all()
@@ -106,6 +128,51 @@
                       <th colspan="12">هیچ مسیر آموزشی ای خریداری نشده است</th>
                     </tr>
                   @endif
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+        <article class="card mt-3">
+          <div class="filter-content">
+            <div class="card-body clearfix">
+              <h2 class="text-center">تخفیفات براساس میزان خرید</h2>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">مجموع خرید</th>
+                    <th scope="col">درصد تخفیف</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>بین {{ nPersian(number_format(200000)) }} تا {{ nPersian(number_format(400000)) }} تومان</td>
+                    <td>{{ nPersian(number_format(5)) }}%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>بین {{ nPersian(number_format(400000)) }} تا {{ nPersian(number_format(600000)) }} تومان</td>
+                    <td>{{ nPersian(number_format(5)) }}%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>بین {{ nPersian(number_format(600000)) }} تا {{ nPersian(number_format(800000)) }} تومان
+                    </td>
+                    <td>{{ nPersian(number_format(5)) }}%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>بین {{ nPersian(number_format(800000)) }} تا {{ nPersian(number_format(1000000)) }} تومان
+                    </td>
+                    <td>{{ nPersian(number_format(5)) }}%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">5</th>
+                    <td>{{ nPersian(number_format(1000000)) }} تومان به بالا</td>
+                    <td>{{ nPersian(number_format(5)) }}%</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

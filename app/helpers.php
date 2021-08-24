@@ -9,8 +9,52 @@ use App\LearnPath;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+function left_to_next_level()
+{
+    $total_paid_by_this_user = 0;
+    foreach (auth()->user()->paids as $paid) {
+        $total_paid_by_this_user += $paid->price;
+    }
+
+    if ($total_paid_by_this_user >= 1000000) {
+        return 0;
+    } else if ($total_paid_by_this_user >= 800000) {
+        return 1000000 - $total_paid_by_this_user;
+    } else if ($total_paid_by_this_user >= 600000) {
+        return 800000 - $total_paid_by_this_user;
+    } else if ($total_paid_by_this_user >= 400000) {
+        return 600000 - $total_paid_by_this_user;
+    } else if ($total_paid_by_this_user >= 200000) {
+        return 400000 - $total_paid_by_this_user;
+    }
+    return 200000 - $total_paid_by_this_user;
+}
+
+function check_user_level_up()
+{
+    $total_paid_by_this_user = 0;
+    foreach (auth()->user()->paids as $paid) {
+        $total_paid_by_this_user += $paid->price;
+    }
+
+    if ($total_paid_by_this_user >= 1000000) {
+        return 5;
+    } else if ($total_paid_by_this_user >= 800000) {
+        return 4;
+    } else if ($total_paid_by_this_user >= 600000) {
+        return 3;
+    } else if ($total_paid_by_this_user >= 400000) {
+        return 2;
+    } else if ($total_paid_by_this_user >= 200000) {
+        return 1;
+    }
+    return 0;
+}
+
 function percent_off_for_user()
 {
+    // $user_level = check_user_level_up();
+    // return 1 - (0.05 * $user_level);
     $total_paid_by_this_user = 0;
     foreach (auth()->user()->paids as $paid) {
         $total_paid_by_this_user += $paid->price;

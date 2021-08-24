@@ -73,6 +73,10 @@
     </ul>
   @endif
 
+  @if ($isFirstPaid)
+
+  @endif
+
 </body>
 
 </html>
