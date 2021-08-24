@@ -16,7 +16,7 @@
           <div class="filter-content">
             <div class="card-body clearfix">
               <h2 class="text-center">لیست دوره های خریداری شده</h2>
-              <table class="table">
+              <table class="table table-bordered  text-center">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -77,7 +77,7 @@
           <div class="filter-content">
             <div class="card-body clearfix">
               <h2 class="text-center">لیست مسیرهای آموزشی خریداری شده</h2>
-              <table class="table">
+              <table class="table table-bordered  text-center">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
