@@ -34,7 +34,9 @@
                     @foreach ($courses as $course)
                       <tr>
                         <th scope="row">@php echo $i;@endphp</th>
-                        <td>{{ $course->title }}</td>
+                        <td>
+                            <h4>{{ $course->title }}</h4>
+                            <h4>{{ $course->titleEng }}</h4></td>
                         <td>
                           @php
                             $paid = \App\Paid::all()
@@ -96,7 +98,10 @@
                     @foreach ($learn_paths as $path)
                       <tr>
                         <th scope="row">@php echo $i;@endphp</th>
-                        <td>{{ $path->title }}</td>
+                        <td>
+                            <h4>{{ $path->title }}</h4>
+                            <h4>{{ $path->titleEng }}</h4>
+                        </td>
                         <td>
                           @php
                             $paid = \App\Paid::all()
