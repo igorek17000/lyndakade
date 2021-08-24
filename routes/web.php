@@ -28,6 +28,10 @@ Route::get('/tests', function () {
     return response()->view('test', []);
 });
 
+Route::get('/faq', function () {
+    return response()->view('faq', []);
+});
+
 // Route::get('/packages', 'PackageController@index')->name('packages.index');
 
 // Route::group(

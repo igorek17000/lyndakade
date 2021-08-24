@@ -401,10 +401,10 @@ session(['redirectToAfterLogin' => url()->previous()]);
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('root.home') }}">صفحه اصلی</a>
+            <a class="nav-link px-md-0" href="{{ route('root.home') }}">صفحه اصلی</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            <a class="nav-link dropdown-toggle px-md-0" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               کتابخانه
             </a>
@@ -435,7 +435,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
             </div>
           </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle px-md-0" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 مسیرهای آموزشی
                 </a>
@@ -471,13 +471,13 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 </div>
             </li>
           {{-- <li class="nav-item">
-            <a class="nav-link" href="{{ route('packages.index') }}">خرید اشتراک</a>
+            <a class="nav-link px-md-0" href="{{ route('packages.index') }}">خرید اشتراک</a>
           </li> --}}
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('demands.create') }}">درخواست دوره</a>
+            <a class="nav-link px-md-0" href="{{ route('demands.create') }}">درخواست دوره</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('root.contact.us') }}">تماس با ما</a>
+            <a class="nav-link px-md-0" href="{{ route('root.contact.us') }}">تماس با ما</a>
           </li>
         </ul>
         @if (Auth::check())
