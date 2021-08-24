@@ -470,11 +470,14 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 </a>
                 </div>
             </li>
-          {{-- <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link px-md-0" href="{{ route('packages.index') }}">خرید اشتراک</a>
-          </li> --}}
+          </li>
           <li class="nav-item">
             <a class="nav-link px-md-0" href="{{ route('demands.create') }}">درخواست دوره</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-md-0" href="{{ route('faq') }}">سوالات متداول</a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-md-0" href="{{ route('root.contact.us') }}">تماس با ما</a>
@@ -885,3 +888,4 @@ session(['redirectToAfterLogin' => url()->previous()]);
 </body>
 
 </html>
+                    

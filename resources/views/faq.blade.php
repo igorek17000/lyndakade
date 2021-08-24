@@ -10,7 +10,7 @@
 @section('content')
   <div class="container">
     <div class="row my-4 justify-content-center">
-      <div class="col-12">
+      <div class="col-12 text-center">
         <h1>
           سوالات متداول
         </h1>
