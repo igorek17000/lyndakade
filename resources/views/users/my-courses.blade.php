@@ -36,7 +36,8 @@
                         <th scope="row">@php echo $i;@endphp</th>
                         <td>
                             <h4>{{ $course->title }}</h4>
-                            <h4>{{ $course->titleEng }}</h4></td>
+                            <h4>{{ $course->titleEng }}</h4>
+                        </td>
                         <td>
                           @php
                             $paid = \App\Paid::all()
