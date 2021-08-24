@@ -18,10 +18,10 @@
               <table class="table table-bordered text-center">
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th scope="col">نام محصول</th>
-                    <th scope="col">قیمت</th>
-                    <th scope="col"></th>
+                    <th class="align-middle">#</th>
+                    <th scope="col" class="align-middle">نام محصول</th>
+                    <th scope="col" class="align-middle">قیمت</th>
+                    <th scope="col" class="align-middle"></th>
                   </tr>
                 </thead>
 
@@ -29,38 +29,38 @@
                   @foreach ($carts as $index => $cart)
                     <tr>
                       @if ($cart->course)
-                        <td>
+                        <td class="align-middle">
                           {{ $index + 1 }}
                         </td>
-                        <td>
+                        <td class="align-middle">
                           <img src="#" data-src="{{ fromDLHost($cart->course->img) }}" class="lazyload" width="80"
                             alt="{{ $cart->course->title }}" />
                           <h6>{{ $cart->course->title }}</h6>
                           <h6>{{ $cart->course->titleEng }}</h6>
                         </td>
-                        <td>{{ nPersian(number_format($cart->course->price)) }} تومان</td>
+                        <td class="align-middle">{{ nPersian(number_format($cart->course->price)) }} تومان</td>
                       @else
-                        <td>
+                        <td class="align-middle">
                           {{ $index + 1 }}
                         </td>
-                        <td>
+                        <td class="align-middle">
                           <img src="#" data-src="{{ fromDLHost($cart->learn_path->img) }}" class="lazyload" width="80"
                             alt="{{ $cart->learn_path->title }}" />
                           <h6>{{ $cart->learn_path->title }}</h6>
                           <h6>{{ $cart->learn_path->titleEng }}</h6>
                         </td>
-                        <td>{{ nPersian(number_format($cart->learn_path->price())) }} تومان</td>
+                        <td class="align-middle">{{ nPersian(number_format($cart->learn_path->price())) }} تومان</td>
                       @endif
-                      <td>
+                      <td class="align-middle">
                         <button data-id="{{ $cart->item_id }}" class="btn btn-danger cart-remove-btn">حذف از سبد
                         </button>
                       </td>
                     </tr>
                   @endforeach
                   <tr>
-                    <td></td>
-                    <td>جمع کل</td>
-                    <td>
+                    <td class="align-middle"></td>
+                    <td class="align-middle">جمع کل</td>
+                    <td class="align-middle">
                       @if (percent_off_for_user() == 1)
                         {{ nPersian(number_format($total_price)) }} تومان
                       @else
@@ -68,7 +68,7 @@
                         {{ nPersian(number_format($total_price)) }} تومان
                       @endif
                     </td>
-                    <td>
+                    <td class="align-middle">
                       <button class="btn btn-danger">حذف همه موارد</button>
                     </td>
                   </tr>
