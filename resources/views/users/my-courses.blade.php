@@ -19,11 +19,11 @@
               <table class="table table-bordered  text-center">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">عنوان دوره</th>
-                    <th scope="col">میزان پرداختی</th>
-                    <th scope="col">تاریخ خرید</th>
-                    <th scope="col">لینک دوره</th>
+                    <th scope="col" class="align-middle">#</th>
+                    <th scope="col" class="align-middle">عنوان دوره</th>
+                    <th scope="col" class="align-middle">میزان پرداختی</th>
+                    <th scope="col" class="align-middle">تاریخ خرید</th>
+                    <th scope="col" class="align-middle">لینک دوره</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -33,12 +33,12 @@
                     @endphp
                     @foreach ($courses as $course)
                       <tr>
-                        <th scope="row">@php echo $i;@endphp</th>
-                        <td>
+                        <th scope="row" class="align-middle">@php echo $i;@endphp</th>
+                        <td class="align-middle">
                             <h6>{{ $course->title }}</h6>
                             <h6>{{ $course->titleEng }}</h6>
                         </td>
-                        <td>
+                        <td class="align-middle">
                           @php
                             $paid = \App\Paid::all()
                                 ->where('user_id', auth()->id())
@@ -49,7 +49,7 @@
                           @endphp
                           تومان
                         </td>
-                        <td>
+                        <td class="align-middle">
                           @php
                             $paid = \App\Paid::all()
                                 ->where('user_id', auth()->id())
@@ -61,7 +61,7 @@
                             echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                           @endphp
                         </td>
-                        <td><a href="{{ courseURL($course) }}">لینک</a></td>
+                        <td class="align-middle"><a href="{{ courseURL($course) }}">لینک</a></td>
                       </tr>
                       @php
                         $i += 1;
@@ -69,7 +69,7 @@
                     @endforeach
                   @else
                     <tr>
-                      <th colspan="12">هیچ دوره ای خریداری نشده است</th>
+                      <th colspan="12" class="align-middle">هیچ دوره ای خریداری نشده است</th>
                     </tr>
                   @endif
                 </tbody>
@@ -84,11 +84,11 @@
               <table class="table table-bordered  text-center">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">عنوان مسیر آموزشی</th>
-                    <th scope="col">میزان پرداختی</th>
-                    <th scope="col">تاریخ خرید</th>
-                    <th scope="col">لینک مسیر آموزشی</th>
+                    <th scope="col" class="align-middle">#</th>
+                    <th scope="col" class="align-middle">عنوان مسیر آموزشی</th>
+                    <th scope="col" class="align-middle">میزان پرداختی</th>
+                    <th scope="col" class="align-middle">تاریخ خرید</th>
+                    <th scope="col" class="align-middle">لینک مسیر آموزشی</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -98,12 +98,12 @@
                     @endphp
                     @foreach ($learn_paths as $path)
                       <tr>
-                        <th scope="row">@php echo $i;@endphp</th>
-                        <td>
+                        <th scope="row" class="align-middle">@php echo $i;@endphp</th>
+                        <td class="align-middle">
                             <h6>{{ $path->title }}</h6>
                             <h6>{{ $path->titleEng }}</h6>
                         </td>
-                        <td>
+                        <td class="align-middle">
                           @php
                             $paid = \App\Paid::all()
                                 ->where('user_id', auth()->id())
@@ -114,7 +114,7 @@
                           @endphp
                           تومان
                         </td>
-                        <td>
+                        <td class="align-middle">
                           @php
                             $paid = \App\Paid::all()
                                 ->where('user_id', auth()->id())
@@ -124,7 +124,7 @@
                             echo nPersian(date('Y/m/d', strtotime($paid->created_at)));
                           @endphp
                         </td>
-                        <td><a href="{{ route('learn.paths.show', [$path->slug]) }}">لینک</a>
+                        <td class="align-middle"><a href="{{ route('learn.paths.show', [$path->slug]) }}">لینک</a>
                         </td>
                       </tr>
                       @php
@@ -133,7 +133,7 @@
                     @endforeach
                   @else
                     <tr>
-                      <th colspan="12">هیچ مسیر آموزشی ای خریداری نشده است</th>
+                      <th colspan="12" class="align-middle">هیچ مسیر آموزشی ای خریداری نشده است</th>
                     </tr>
                   @endif
                 </tbody>
@@ -148,48 +148,48 @@
               <table class="table table-bordered  text-center">
                 <thead>
                   <tr>
-                    <th scope="col">سطح</th>
-                    <th scope="col">مجموع خرید</th>
-                    <th scope="col">درصد تخفیف (برای تمامی خریدها)</th>
+                    <th scope="col" class="align-middle">سطح</th>
+                    <th scope="col" class="align-middle">مجموع خرید</th>
+                    <th scope="col" class="align-middle">درصد تخفیف (برای تمامی خریدها)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>بین {{ nPersian(number_format(200000)) }} تا {{ nPersian(number_format(400000 - 1000)) }}
+                    <th scope="row" class="align-middle">1</th>
+                    <td class="align-middle">بین {{ nPersian(number_format(200000)) }} تا {{ nPersian(number_format(400000 - 1000)) }}
                       تومان
                     </td>
-                    <td>{{ nPersian(number_format(5)) }}%</td>
+                    <td class="align-middle">{{ nPersian(number_format(5)) }}%</td>
                   </tr>
                   <tr>
-                    <th scope="row">2</th>
-                    <td>بین {{ nPersian(number_format(400000)) }} تا {{ nPersian(number_format(600000 - 1000)) }}
+                    <th scope="row" class="align-middle">2</th>
+                    <td class="align-middle">بین {{ nPersian(number_format(400000)) }} تا {{ nPersian(number_format(600000 - 1000)) }}
                       تومان
                     </td>
-                    <td>{{ nPersian(number_format(10)) }}%</td>
+                    <td class="align-middle">{{ nPersian(number_format(10)) }}%</td>
                   </tr>
                   <tr>
-                    <th scope="row">3</th>
-                    <td>بین {{ nPersian(number_format(600000)) }} تا {{ nPersian(number_format(800000 - 1000)) }}
+                    <th scope="row" class="align-middle">3</th>
+                    <td class="align-middle">بین {{ nPersian(number_format(600000)) }} تا {{ nPersian(number_format(800000 - 1000)) }}
                       تومان
                     </td>
-                    <td>{{ nPersian(number_format(15)) }}%</td>
+                    <td class="align-middle">{{ nPersian(number_format(15)) }}%</td>
                   </tr>
                   <tr>
-                    <th scope="row">4</th>
-                    <td>بین {{ nPersian(number_format(800000)) }} تا {{ nPersian(number_format(1000000 - 1000)) }}
+                    <th scope="row" class="align-middle">4</th>
+                    <td class="align-middle">بین {{ nPersian(number_format(800000)) }} تا {{ nPersian(number_format(1000000 - 1000)) }}
                       تومان
                     </td>
-                    <td>{{ nPersian(number_format(20)) }}%</td>
+                    <td class="align-middle">{{ nPersian(number_format(20)) }}%</td>
                   </tr>
                   <tr>
-                    <th scope="row">5</th>
-                    <td>{{ nPersian(number_format(1000000)) }} تومان به بالا</td>
-                    <td>{{ nPersian(number_format(25)) }}%</td>
+                    <th scope="row" class="align-middle">5</th>
+                    <td class="align-middle">{{ nPersian(number_format(1000000)) }} تومان به بالا</td>
+                    <td class="align-middle">{{ nPersian(number_format(25)) }}%</td>
                   </tr>
                   <tr>
                     @if (check_user_level_up() < 5)
-                      <th colspan="12"> مجموع خرید شما
+                      <th colspan="12" class="align-middle"> مجموع خرید شما
                         <b>{{ nPersian(
     number_format(
         auth()->user()->paids->sum('price'),
@@ -200,7 +200,7 @@
                         <b>{{ nPersian(check_user_level_up() + 1) }}</b> برسید
                       </th>
                     @else
-                      <th colspan="12">شما هم اکنون در سطح آخر قرار دارید و در هر خرید {{ nPersian(25) }}% تخفیف خواهید
+                      <th colspan="12" class="align-middle">شما هم اکنون در سطح آخر قرار دارید و در هر خرید {{ nPersian(25) }}% تخفیف خواهید
                         داشت.</th>
                     @endif
                   </tr>
