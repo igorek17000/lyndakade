@@ -81,10 +81,11 @@
 @push('js')
   <script>
     $(function() {
+      var idx = 1;
       document.querySelectorAll('#faqExample card').forEach((el) => {
         var btn = el.querySelector('button');
         var content = el.querySelector('.card-body');
-        console.log(btn, content);
+        console.log(idx++, btn, content);
       });
     });
   </script>
