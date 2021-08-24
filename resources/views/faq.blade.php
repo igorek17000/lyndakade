@@ -1,4 +1,12 @@
 @extends('layouts.app')
+@push('meta.in.head')
+  @include('meta::manager',[
+  'image' => 'https://lyndakade.ir/image/logo.png',
+  'title' => 'لیندا کده | سوالات متداول',
+  'keywords' => get_seo_keywords() . ' , سوالات متداول , faq, questions, ticket, تیکت ',
+  'description' => 'مشاهده لیست سوالات متداول کاربران. | ' . get_seo_description(),
+  ])
+@endpush
 @section('content')
   <div class="container">
     <div class="row my-4 justify-content-center">
