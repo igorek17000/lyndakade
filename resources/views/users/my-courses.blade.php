@@ -42,7 +42,7 @@
                                 ->where('type', '1')
                                 ->where('item_id', $course->id)
                                 ->first();
-                            echo $paid->price;
+                            echo nPersian($paid->price);
                           @endphp
                         </td>
                         <td>
@@ -54,7 +54,7 @@
                                 ->first();
                             $d = date('Y/m/d', strtotime($paid->created_at));
                             $d = explode('/', $d);
-                            echo gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/');
+                            echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                           @endphp
                         </td>
                         <td><a href="{{ courseURL($course) }}">لینک</a></td>
@@ -103,7 +103,7 @@
                                 ->where('type', '2')
                                 ->where('item_id', $path->id)
                                 ->first();
-                            echo $paid->price;
+                            echo nPersian(number_format($paid->price));
                           @endphp
                         </td>
                         <td>
@@ -113,7 +113,7 @@
                                 ->where('type', '2')
                                 ->where('item_id', $path->id)
                                 ->first();
-                            echo date('Y/m/d', strtotime($paid->created_at));
+                            echo nPersian(date('Y/m/d', strtotime($paid->created_at)));
                           @endphp
                         </td>
                         <td><a href="{{ route('learn.paths.show', [$path->slug]) }}">لینک</a>
@@ -186,7 +186,8 @@
     number_format(
         auth()->user()->paids->sum('price'),
     ),
-) }}</b> میباشد و به
+) }}</b>
+                        میباشد و به
                         <b>{{ nPersian(number_format(left_to_next_level())) }}</b> نیاز دارید به سطح
                         <b>{{ nPersian(check_user_level_up() + 1) }}</b> برسید
                       </th>
