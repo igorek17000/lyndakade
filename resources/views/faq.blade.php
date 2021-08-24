@@ -9,40 +9,79 @@
       </div>
       <div class="col-12 mx-auto">
         <div class="accordion" id="faqExample">
-
-          <div class="card">
-            <div class="card-header p-2">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" aria-expanded="false">
-                  سوال شماره یک؟
-                </button>
-              </h5>
-            </div>
-            <div class="collapse" data-parent="#faqExample">
-              <div class="card-body">
-                {{-- <b>Answer:</b> --}}
-                جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال
-                شماره یک جواب سوال شماره یک
+          <section>
+            <h3>بخش اول</h3>
+            <div class="card">
+              <div class="card-header p-2">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" aria-expanded="false">
+                    سوال شماره یک؟
+                  </button>
+                </h5>
+              </div>
+              <div class="collapse" data-parent="#faqExample">
+                <div class="card-body">
+                  {{-- <b>Answer:</b> --}}
+                  جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال
+                  شماره یک جواب سوال شماره یک
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="card">
-            <div class="card-header p-2">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" aria-expanded="false">
-                  سوال شماره دو؟
-                </button>
-              </h5>
-            </div>
-            <div class="collapse" data-parent="#faqExample">
-              <div class="card-body">
-                {{-- <b>Answer:</b> --}}
-                جواب سوال شماره دو جواب سوال شماره دو جواب سوال شماره دو جواب سوال شماره دو جواب سوال شماره دو جواب سوال
-                شماره دو جواب سوال شماره دو
+            <div class="card">
+              <div class="card-header p-2">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" aria-expanded="false">
+                    سوال شماره دو؟
+                  </button>
+                </h5>
+              </div>
+              <div class="collapse" data-parent="#faqExample">
+                <div class="card-body">
+                  {{-- <b>Answer:</b> --}}
+                  جواب سوال شماره دو جواب سوال شماره دو جواب سوال شماره دو جواب سوال شماره دو جواب سوال شماره دو جواب سوال
+                  شماره دو جواب سوال شماره دو
+                </div>
               </div>
             </div>
-          </div>
+          </section>
+
+          <section>
+            <h3>بخش دوم</h3>
+            <div class="card">
+              <div class="card-header p-2">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" aria-expanded="false">
+                    سوال شماره یک؟
+                  </button>
+                </h5>
+              </div>
+              <div class="collapse" data-parent="#faqExample">
+                <div class="card-body">
+                  {{-- <b>Answer:</b> --}}
+                  جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال شماره یک جواب سوال
+                  شماره یک جواب سوال شماره یک
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header p-2">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" aria-expanded="false">
+                    سوال شماره دو؟
+                  </button>
+                </h5>
+              </div>
+              <div class="collapse" data-parent="#faqExample">
+                <div class="card-body">
+                  {{-- <b>Answer:</b> --}}
+                  جواب سوال شماره دو جواب سوال شماره دو جواب سوال شماره دو جواب سوال شماره دو جواب سوال شماره دو جواب سوال
+                  شماره دو جواب سوال شماره دو
+                </div>
+              </div>
+            </div>
+          </section>
 
         </div>
       </div>
