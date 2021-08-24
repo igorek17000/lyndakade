@@ -79,6 +79,7 @@
   </div>
   <script>
     $(function() {
+      console.log(1111111);
       var idx = 1;
       document.querySelectorAll('#faqExample card').forEach((el) => {
         var btn = el.querySelector('button');
