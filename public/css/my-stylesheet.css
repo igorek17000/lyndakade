@@ -4820,14 +4820,14 @@ button.load-more:not(:disabled) .text-t {
     font-size: 1.1rem;
 }
 
-.navbar.sticky-top .nav-item .nav-link:hover {
+.navbar .nav-item .nav-link:hover {
     background-color: #3470ac;
 }
 
-nav.sticky-top ul > li > a {
+nav ul > li > a {
     transition: all 0.2s linear 0s;
 }
-nav.sticky-top ul li a:before {
+nav ul li a:before {
     position: absolute;
     right: 0;
     bottom: -5px;
@@ -4843,7 +4843,7 @@ nav.sticky-top ul li a:before {
     -webkit-border-radius: 25px;
 }
 
-nav.sticky-top ul > li:hover > a:before {
+nav ul > li:hover > a:before {
     width: 100%;
 }
 
