@@ -14,7 +14,7 @@
       <div class="col-12">
         <h1>فرم درخواست دوره یا مسیر آموزشی</h1>
       </div>
-      <div class="col-md-6 com-sm-12">
+      <div class="col-md-6 com-sm-12 pt-3">
         <div class="card" id="card">
           <div class="card-header">
             <h5>
@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 com-sm-12">
+      <div class="col-md-6 com-sm-12 pt-3">
         <div class="card" id="card">
           <div class="card-header">
             <h5>
