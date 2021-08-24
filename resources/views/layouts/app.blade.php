@@ -888,4 +888,3 @@ session(['redirectToAfterLogin' => url()->previous()]);
 </body>
 
 </html>
-                    
