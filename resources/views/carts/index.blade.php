@@ -37,14 +37,14 @@
                             alt="{{ $cart->course->title }}" />
                           {{ $cart->course->title }}
                         </td>
-                        <td>{{ $cart->course->price }}</td>
+                        <td>{{ nPersian(number_format($cart->course->price)) }}</td>
                       @else
                         <td>
                           <img src="#" data-src="{{ fromDLHost($cart->learn_path->img) }}" class="lazyload" width="50"
                             height="50" alt="" />
                         </td>
                         <td>{{ $cart->learn_path->title }}</td>
-                        <td>{{ $cart->learn_path->price() }}</td>
+                        <td>{{ nPersian(number_format($cart->learn_path->price())) }}</td>
                       @endif
                       <td>
                         <button data-id="{{ $cart->item_id }}" class="btn btn-danger cart-remove-btn">حذف از سبد
@@ -57,9 +57,9 @@
                     <td>جمع کل</td>
                     <td>
                       @if (percent_off_for_user() == 1)
-                        {{ $total_price }}
+                        {{ nPersian(number_format($total_price)) }}
                       @else
-                        با {{ (1 - percent_off_for_user()) * 100 }}% تخفیف {{ $total_price }}
+                        با {{ (1 - percent_off_for_user()) * 100 }}% تخفیف {{ nPersian(number_format($total_price)) }}
                       @endif
                     </td>
                     <td>
