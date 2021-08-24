@@ -154,24 +154,24 @@
                   <tr>
                     <th scope="row">2</th>
                     <td>بین {{ nPersian(number_format(400000)) }} تا {{ nPersian(number_format(600000)) }} تومان</td>
-                    <td>{{ nPersian(number_format(5)) }}%</td>
+                    <td>{{ nPersian(number_format(10)) }}%</td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
                     <td>بین {{ nPersian(number_format(600000)) }} تا {{ nPersian(number_format(800000)) }} تومان
                     </td>
-                    <td>{{ nPersian(number_format(5)) }}%</td>
+                    <td>{{ nPersian(number_format(15)) }}%</td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>
                     <td>بین {{ nPersian(number_format(800000)) }} تا {{ nPersian(number_format(1000000)) }} تومان
                     </td>
-                    <td>{{ nPersian(number_format(5)) }}%</td>
+                    <td>{{ nPersian(number_format(20)) }}%</td>
                   </tr>
                   <tr>
                     <th scope="row">5</th>
                     <td>{{ nPersian(number_format(1000000)) }} تومان به بالا</td>
-                    <td>{{ nPersian(number_format(5)) }}%</td>
+                    <td>{{ nPersian(number_format(25)) }}%</td>
                   </tr>
                   <tr>
                     @if (check_user_level_up() < 5)
