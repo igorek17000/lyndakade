@@ -142,7 +142,7 @@
                   <tr>
                     <th scope="col">سطح</th>
                     <th scope="col">مجموع خرید</th>
-                    <th scope="col">درصد تخفیف</th>
+                    <th scope="col">درصد تخفیف (برای تمامی خریدها)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -181,9 +181,10 @@
                   </tr>
                   <tr>
                     @if (check_user_level_up() < 5)
-                      <th colspan="12"> مجموع خرید شما {{ auth()->user()->paids->sum('price') }} و به
-                        {{ left_to_next_level() }} نیاز دارید به سطح
-                        {{ check_user_level_up() + 1 }} برسید</th>
+                      <th colspan="12"> مجموع خرید شما <b>{{ auth()->user()->paids->sum('price') }}</b> میباشد و به
+                        <b>{{ left_to_next_level() }}</b> نیاز دارید به سطح
+                        <b>{{ check_user_level_up() + 1 }}</b> برسید
+                      </th>
                     @else
                       <th colspan="12">شما هم اکنون در سطح آخر قرار دارید و در هر خرید {{ nPersian(25) }}% تخفیف خواهید
                         داشت.</th>
