@@ -20,7 +20,7 @@
             <td>
               <span>{{ $cart->course->title }}</span>
             </td>
-            <td>{{ $cart->course->price }}</td>
+            <td>{{ nPersian(number_format($cart->course->price)) }}</td>
           @else
             <td>
               <img src="#" data-src="{{ fromDLHost($cart->learn_path->img) }}" class="lazyload" width="50" height="50"
@@ -29,7 +29,7 @@
             <td>
               <span>{{ $cart->learn_path->title }}</span>
             </td>
-            <td>{{ $cart->learn_path->price() }}</td>
+            <td>{{ nPersian(number_format($cart->learn_path->price())) }}</td>
           @endif
           <td>
             <button data-id="{{ $cart->item_id }}" class="btn btn-danger cart-remove-btn">حذف از سبد
