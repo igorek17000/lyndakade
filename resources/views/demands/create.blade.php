@@ -11,7 +11,7 @@
   @csrf
   <div class="container">
     <div class="row justify-content-center m-4">
-      <div class="col-12">
+      <div class="col-12 text-center">
         <h1>فرم درخواست دوره یا مسیر آموزشی</h1>
       </div>
       <div class="col-md-6 com-sm-12 pt-3">
