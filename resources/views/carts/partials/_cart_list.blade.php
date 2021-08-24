@@ -18,7 +18,8 @@
                 alt="" />
             </td>
             <td>
-              <span>{{ $cart->course->title }}</span>
+              <span>{{ $cart->course->title }}</span><br />
+              <span>{{ $cart->course->titleEng }}</span>
             </td>
             <td>{{ nPersian(number_format($cart->course->price)) }}</td>
           @else
@@ -27,6 +28,7 @@
                 alt="" />
             </td>
             <td>
+              <span>{{ $cart->learn_path->title }}</span><br />
               <span>{{ $cart->learn_path->title }}</span>
             </td>
             <td>{{ nPersian(number_format($cart->learn_path->price())) }}</td>
