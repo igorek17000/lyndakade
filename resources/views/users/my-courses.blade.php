@@ -148,23 +148,27 @@
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td>بین {{ nPersian(number_format(200000)) }} تا {{ nPersian(number_format(400000)) }} تومان</td>
+                    <td>بین {{ nPersian(number_format(200000)) }} تا {{ nPersian(number_format(400000 - 1000)) }} تومان
+                    </td>
                     <td>{{ nPersian(number_format(5)) }}%</td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
-                    <td>بین {{ nPersian(number_format(400000)) }} تا {{ nPersian(number_format(600000)) }} تومان</td>
+                    <td>بین {{ nPersian(number_format(400000)) }} تا {{ nPersian(number_format(600000 - 1000)) }} تومان
+                    </td>
                     <td>{{ nPersian(number_format(10)) }}%</td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
-                    <td>بین {{ nPersian(number_format(600000)) }} تا {{ nPersian(number_format(800000)) }} تومان
+                    <td>بین {{ nPersian(number_format(600000)) }} تا {{ nPersian(number_format(800000 - 1000)) }}
+                      تومان
                     </td>
                     <td>{{ nPersian(number_format(15)) }}%</td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>
-                    <td>بین {{ nPersian(number_format(800000)) }} تا {{ nPersian(number_format(1000000)) }} تومان
+                    <td>بین {{ nPersian(number_format(800000)) }} تا {{ nPersian(number_format(1000000 - 1000)) }}
+                      تومان
                     </td>
                     <td>{{ nPersian(number_format(20)) }}%</td>
                   </tr>
