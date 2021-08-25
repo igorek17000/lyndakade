@@ -57,7 +57,7 @@
             <tr>
               <td>
                 <b>
-                  توجه داشته باشید، در صورت پایان یافتن این اشتراک، اعتبار دوره آموزشی آن از بین خواهد رفت،
+                  توجه داشته باشید، در صورت پایان یافتن زمان این اشتراک، اعتبار دوره آموزشی آن از بین خواهد رفت،
                   اما در صورت خرید اشتراک دیگر، اعتبار دوره آموزشی فعلی نیز به اشتراک جدید اضافه خواهد شد.
                 </b>
               </td>
@@ -81,7 +81,7 @@
             <p>{{ nPersian($package['days']) }} روزه</p>
             <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
             <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
-            <button class="btn btn-secondary">خرید طرح</button>
+            <button class="btn btn-secondary">خرید اشتراک</button>
           </div>
         </a>
       @endforeach
