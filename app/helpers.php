@@ -44,7 +44,7 @@ function has_any_available_package()
             ->where('end_time', '>=', now())
             ->get()->map(function ($paid) {
                 return ['count' => Package::find($paid->item_id)->count];
-            });
+            })->sum('count');
 
         // get total unlocked count
         $unlocked_count = UnlockedCourse::where('user_id', $user_id)
