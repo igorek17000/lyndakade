@@ -9,6 +9,7 @@ use App\PackagePaid;
 use App\Paid;
 use App\Payment;
 use App\UnlockedCourse;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -170,7 +171,8 @@ class PackageController extends Controller
             $user_package_paid = PackagePaid::where('user_id', $payment->user->id)->first();
 
             if ($user_package_paid) {
-                $end_date = $user_package_paid->end_date->addDays($pack->days);
+                $end_date = Carbon::createFromTimestamp(strtotime($user_package_paid->end_date))
+                    ->addDays($pack->days);
                 if ($user_package_paid->end_time >= now()) {
                     $count = $user_package_paid->count;
                 } else {
