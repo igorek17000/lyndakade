@@ -200,7 +200,7 @@
                                     </div>
                                     <div class="timeline-body text-justify row">
                                     <div class="col-md-3 col-sm-12 text-center">
-                                        <img src="#" class="lazyload" data-src="{{ fromDLHost($course->img) }}" style="max-height: 150px;" />
+                                        <img src="#" class="lazyload" data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}" style="max-height: 150px;" />
 
                                     </div>
                                     <div class="col-md-9  col-sm-12">
