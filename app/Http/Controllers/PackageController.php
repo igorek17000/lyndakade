@@ -75,6 +75,7 @@ class PackageController extends Controller
                         $unlock_course->save();
                     }
                 }
+                $cart->delete();
             }
 
             PackagePaid::where('user_id', $user_id)->update([
