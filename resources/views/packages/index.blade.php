@@ -8,6 +8,7 @@
   ])
 @endpush
 @section('content')
+  <h1 class="sr-only">خرید اشتراک</h1>
   <style>
     .w-20 {
       user-select: none;
@@ -42,7 +43,7 @@
   </style>
   @if (number_of_available_package(auth()->id()) > -1)
     <div class="container card mt-0 my-md-5 py-3 ">
-      <h2 style="font-size: 2.25rem;">اشتراک های فعلی من</h2>
+      <h2>اشتراک های فعلی من</h2>
       <div class="row d-flex justify-content-center text-center mx-md-5 mt-3" style="font-size: 1.2em;">
         <table class="table table-bordered table-sm col-sm-12 col-md-8">
           <tbody>
@@ -76,7 +77,7 @@
     </div>
   @endif
   <div class="container card mt-0 my-md-5 py-3 ">
-    <h1>خرید اشتراک</h1>
+    <h2>خرید اشتراک</h2>
     <p style="font-size: 1.2em;">
       <b>
         با خرید اشتراک، در مدت زمان مورد نظر، میتوانید به تعداد دوره اشتراک، دوره هارو بصورت رایگان باز کنید و دانلود
