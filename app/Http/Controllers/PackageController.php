@@ -88,7 +88,7 @@ class PackageController extends Controller
         } else {
             return redirect()
                 ->route('packages.index')
-                ->with('error', 'اعتبار پکیج کافی نمیباشد.');
+                ->with('error', 'اعتبار اشتراک کافی نمیباشد.');
         }
     }
 
