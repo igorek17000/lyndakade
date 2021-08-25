@@ -8,6 +8,15 @@
         'keywords' => get_seo_keywords() . ' , ' . $shown_item->title . ', ' . $shown_item->titleEng .  join(', ', explode(' ', $shown_item->title)) . ', ' . join(', ', explode(' ', $shown_item->titleEng)),
         ])
     @endpush
+@else
+    @push('meta.in.head')
+        @include('meta::manager',[
+            'image' => 'https://lyndakade.ir/image/logo.png',
+            'title' => 'لیندا کده',
+            'keywords' => get_seo_keywords(),
+            'description' => get_seo_description(),
+        ])
+    @endpush
 @endif
 @section('content')
     <div class="container search-page">
