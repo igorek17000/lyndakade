@@ -13,16 +13,34 @@ use Illuminate\Support\Facades\Storage;
 
 function has_any_available_package()
 {
+    $user_id = auth()->user()->id;
     $user_package = Paid::where('type', 3)
-        ->where('user_id', auth()->user()->id)
+        ->where('user_id', $user_id)
         ->where('start_date', '<=', now())
         ->where('end_date', '>=', now())
         ->first();
 
-    // check counts
-    // UnlockedCourse::where('')
+    // if has valid package for today
+    if ($user_package) {
+        //find oldest user_package which is still available (end_time >= now())
+        $oldest_user_package = Paid::oldest()
+            ->where('type', 3)
+            ->where('user_id', $user_id)
+            ->where('end_time', '>=', now())
+            ->first();
 
-    return $user_package;
+        // check counts
+        UnlockedCourse::where('user_id', $user_id)
+            ->where('created_at', '>=', $oldest_user_package->start_date)
+            ->where('created_at', '<=', $oldest_user_package->end_date)
+            ->count();
+
+
+        return $user_package;
+    }
+
+    // no package is valid for today
+    return false;
 }
 
 function left_to_next_level()

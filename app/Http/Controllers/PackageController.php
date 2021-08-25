@@ -114,7 +114,7 @@ class PackageController extends Controller
                 ->where('end_date', '>=', now())
                 ->first();
             if ($user_last_package) {
-                $start_date = $user_last_package->end_date->addDays(1);
+                $start_date = $user_last_package->end_date;
             } else {
                 $start_date = now();
             }
