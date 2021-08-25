@@ -50,7 +50,14 @@
               <td>
                 از اعتبار اشتراک فعلی شما <b>{{ number_of_available_package(auth()->id()) }}</b>
                 دوره آموزشی باقی مانده است و تا تاریخ
-                <b>{{ nPersian(end_date_of_available_package(auth()->id())->toDateTimeString()) }}</b>
+                <b>
+                  @php
+                    $date = strtotime(end_date_of_available_package(auth()->id())->toDateTimeString());
+                    $d = date('Y/m/d', $date);
+                    $d = explode('/', $d);
+                    echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/')) . ' و ساعت ' . nPersian(date('H:i:s', $date));
+                  @endphp
+                </b>
                 اعتبار دارد.
               </td>
             </tr>
