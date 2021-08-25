@@ -78,20 +78,22 @@ class ProfileController extends Controller
         foreach ($paid_courses as $paid_course) {
             $ids[] = $paid_course->item_id;
         }
-        foreach (UnlockedCourse::where('user_id', $user_id)->get() as $unlocked_course) {
+        foreach (UnlockedCourse::where('user_id', $user_id)->whereNotNull('course_id')->get() as $unlocked_course) {
             $ids[] = $unlocked_course->course_id;
         }
         if (count($ids) > 0)
             $courses = Course::find($ids);
 
         $learn_paths = [];
-        if (count($paid_learn_paths) > 0) {
-            $ids = [];
-            foreach ($paid_learn_paths as $paid_learn_path) {
-                $ids[] = $paid_learn_path->item_id;
-            }
-            $learn_paths = LearnPath::find($ids);
+        $ids = [];
+        foreach ($paid_learn_paths as $paid_learn_path) {
+            $ids[] = $paid_learn_path->item_id;
         }
+        foreach (UnlockedCourse::where('user_id', $user_id)->whereNotNull('learn_path_id')->get() as $unlocked_learn_path) {
+            $ids[] = $unlocked_learn_path->learn_path_id;
+        }
+        if (count($ids) > 0)
+            $learn_paths = LearnPath::find($ids);
 
         return view('users.my-courses', compact(['courses', 'learn_paths']));
     }

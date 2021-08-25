@@ -46,7 +46,7 @@
                                 ->where('item_id', $course->id)
                                 ->first();
                             if ($paid) {
-                                echo nPersian($paid->price) . ' تومان';
+                                echo nPersian(number_format($paid->price)) . ' تومان';
                             } else {
                                 echo 'خرید از طریق اشتراک';
                             }
@@ -127,7 +127,11 @@
                                 ->where('type', '2')
                                 ->where('item_id', $path->id)
                                 ->first();
-                            echo nPersian(number_format($paid->price));
+                            if ($paid) {
+                                echo nPersian(number_format($paid->price)) . ' تومان';
+                            } else {
+                                echo 'خرید از طریق اشتراک';
+                            }
                           @endphp
                           تومان
                         </td>
@@ -138,7 +142,22 @@
                                 ->where('type', '2')
                                 ->where('item_id', $path->id)
                                 ->first();
-                            echo nPersian(date('Y/m/d', strtotime($paid->created_at)));
+                            if ($paid) {
+                                $d = date('Y/m/d', strtotime($paid->created_at));
+                                $d = explode('/', $d);
+                                echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                            } else {
+                                $unlocked_course = \App\UnlockedCourse::where('user_id', auth()->id())
+                                    ->where('learn_path_id', $path->id)
+                                    ->first();
+                                if ($unlock_course) {
+                                    $d = date('Y/m/d', strtotime($unlock_course->created_at));
+                                    $d = explode('/', $d);
+                                    echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                                } else {
+                                    echo 'نامشخص';
+                                }
+                            }
                           @endphp
                         </td>
                         <td class="align-middle"><a href="{{ route('learn.paths.show', [$path->slug]) }}">لینک</a>

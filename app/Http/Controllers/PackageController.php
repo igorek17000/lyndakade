@@ -67,14 +67,10 @@ class PackageController extends Controller
                     ]);
                     $unlock_course->save();
                 } else {
-                    $cart->learn_path;
-                    foreach (js_to_courses($cart->learn_path->courses) as $current_course) {
-                        $unlock_course = new UnlockedCourse([
-                            'user_id' => $user_id,
-                            'course_id' => $current_course->id,
-                        ]);
-                        $unlock_course->save();
-                    }
+                    $unlock_course = new UnlockedCourse([
+                        'user_id' => $user_id,
+                        'learn_path_id' => $cart->learn_path->id,
+                    ]);
                 }
                 $cart->delete();
             }
