@@ -48,7 +48,7 @@
           <tbody>
             <tr>
               <td>
-                از اعتبار اشتراک فعلی شما <b>{{ number_of_available_package(auth()->id()) }}</b>
+                از اعتبار اشتراک فعلی شما <b>{{ nPersian(number_of_available_package(auth()->id())) }}</b>
                 دوره آموزشی باقی مانده است و تا
                 <b>
                   تاریخ
