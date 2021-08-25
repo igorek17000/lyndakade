@@ -24,9 +24,9 @@ class PackageController extends Controller
     public function index()
     {
         $packs = Package::get();
-        // foreach ($packs as $pack) {
-        //     create_hashed_data_if_not_exists($pack->id);
-        // }
+        foreach ($packs as $pack) {
+            create_hashed_data_if_not_exists($pack->id);
+        }
 
         return view('packages.index', [
             'packages' => $packs,
