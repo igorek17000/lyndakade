@@ -41,6 +41,7 @@
 
   </style>
   <div class="container card mt-0 my-md-5 py-3 ">
+      
     @if (number_of_available_package(auth()->user()->id) > 0)
       <p>you already have a package ({{ number_of_available_package(auth()->user()->id) }} courses)</p>
     @endif
