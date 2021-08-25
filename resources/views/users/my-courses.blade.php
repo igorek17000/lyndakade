@@ -69,7 +69,7 @@
                                     ->where('course_id', $course->id)
                                     ->first();
                                 if ($unlock_course) {
-                                    $d = date('Y/m/d', strtotime($paid->created_at));
+                                    $d = date('Y/m/d', strtotime($unlock_course->created_at));
                                     $d = explode('/', $d);
                                     echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                                 } else {
