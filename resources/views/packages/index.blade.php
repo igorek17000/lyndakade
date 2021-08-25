@@ -40,11 +40,30 @@
     }
 
   </style>
+  @if (number_of_available_package(auth()->id()) > -1)
+    <div class="container card mt-0 my-md-5 py-3 ">
+      <h1>اشتراک های فعلی من</h1>
+      <div class="row d-flex justify-content-center text-center mx-md-5 mt-3" style="font-size: 1.2em;">
+        <table class="table table-bordered table-sm col-sm-12 col-md-6">
+          <tbody>
+            <tr>
+              <td>
+                از اعتبار اشتراک فعلی شما {{ number_of_available_package(auth()->id()) }}
+                دوره آموزشی باقی مانده است و تا تاریخ
+                {{ end_date_of_available_package(auth()->id()) }}
+                اعتبار دارد.
+              </td>
+              <td>
+                توجه داشته باشید، در صورت پایان یافتن این اشتراک، اعتبار دوره آموزشی آن از بین خواهد رفت،
+                اما در صورت خرید اشتراک دیگر، اعتبار دوره آموزشی فعلی نیز به اشتراک جدید اضافه خواهد شد.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  @endif
   <div class="container card mt-0 my-md-5 py-3 ">
-      
-    @if (number_of_available_package(auth()->user()->id) > 0)
-      <p>you already have a package ({{ number_of_available_package(auth()->user()->id) }} courses)</p>
-    @endif
     <h1>خرید اشتراک</h1>
     <p>
       با خرید اشتراک، در مدت زمان مورد نظر، میتوانید به تعداد دوره طرح، دوره هارو بصورت رایگان باز کنید و دانلود کنید.

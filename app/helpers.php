@@ -11,8 +11,24 @@ use App\Package;
 use App\PackagePaid;
 use App\Paid;
 use App\UnlockedCourse;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
+function end_date_of_available_package($user_id)
+{
+    $user_package_paid = PackagePaid::where('user_id', $user_id)
+        ->where('end_date', '>=', now())
+        ->first();
+
+    // if has valid package for today
+    if ($user_package_paid) {
+        return Carbon::createFromTimestamp(strtotime($user_package_paid->end_date));
+    }
+    // no package paid is valid for today
+    return null;
+}
+
 
 function number_of_available_package($user_id)
 {
@@ -32,7 +48,7 @@ function number_of_available_package($user_id)
     }
 
     // no package paid is valid for today
-    return 0;
+    return -1;
 }
 
 function left_to_next_level()
