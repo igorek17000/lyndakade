@@ -79,7 +79,7 @@ class PackageController extends Controller
             }
 
             PackagePaid::where('user_id', $user_id)->update([
-                'count' => PackagePaid::where('user_id', $user_id)->first()->count - 1,
+                'count' => PackagePaid::where('user_id', $user_id)->first()->count - $count,
             ]);
 
             return redirect()
