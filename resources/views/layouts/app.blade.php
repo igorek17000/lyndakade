@@ -470,8 +470,9 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 </a>
                 </div>
             </li>
-          <li class="nav-item" style="background-color: darkorange;">
-            <a class="nav-link px-md-0" href="{{ route('packages.index') }}">خرید اشتراک</a>
+          <li class="nav-item">
+            <a class="nav-link px-md-0" href="{{ route('packages.index') }}"
+             style="background-color: darkorange;">خرید اشتراک</a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-md-0" href="{{ route('demands.create') }}">درخواست دوره</a>
