@@ -470,7 +470,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 </a>
                 </div>
             </li>
-          <li class="nav-item">
+          <li class="nav-item" style="background-color: darkorange;">
             <a class="nav-link px-md-0" href="{{ route('packages.index') }}">خرید اشتراک</a>
           </li>
           <li class="nav-item">
