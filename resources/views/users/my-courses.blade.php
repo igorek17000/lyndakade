@@ -35,8 +35,8 @@
                       <tr>
                         <th scope="row" class="align-middle">@php echo $i;@endphp</th>
                         <td class="align-middle">
-                            <h6>{{ $course->title }}</h6>
-                            <h6>{{ $course->titleEng }}</h6>
+                          <h6>{{ $course->title }}</h6>
+                          <h6>{{ $course->titleEng }}</h6>
                         </td>
                         <td class="align-middle">
                           @php
@@ -45,9 +45,12 @@
                                 ->where('type', '1')
                                 ->where('item_id', $course->id)
                                 ->first();
-                            echo nPersian($paid->price);
+                            if ($paid) {
+                                echo nPersian($paid->price) . ' تومان';
+                            } else {
+                                echo 'خرید از طریق اشتراک';
+                            }
                           @endphp
-                          تومان
                         </td>
                         <td class="align-middle">
                           @php
@@ -56,9 +59,23 @@
                                 ->where('type', '1')
                                 ->where('item_id', $course->id)
                                 ->first();
-                            $d = date('Y/m/d', strtotime($paid->created_at));
-                            $d = explode('/', $d);
-                            echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                            
+                            if ($paid) {
+                                $d = date('Y/m/d', strtotime($paid->created_at));
+                                $d = explode('/', $d);
+                                echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                            } else {
+                                $unlock_course = \App\UnlockCourse::where('user_id', auth()->id())
+                                    ->where('course_id', $course->id)
+                                    ->first();
+                                if ($unlock_course) {
+                                    $d = date('Y/m/d', strtotime($paid->created_at));
+                                    $d = explode('/', $d);
+                                    echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                                } else {
+                                    echo 'نامشخص';
+                                }
+                            }
                           @endphp
                         </td>
                         <td class="align-middle"><a href="{{ courseURL($course) }}">لینک</a></td>
@@ -100,8 +117,8 @@
                       <tr>
                         <th scope="row" class="align-middle">@php echo $i;@endphp</th>
                         <td class="align-middle">
-                            <h6>{{ $path->title }}</h6>
-                            <h6>{{ $path->titleEng }}</h6>
+                          <h6>{{ $path->title }}</h6>
+                          <h6>{{ $path->titleEng }}</h6>
                         </td>
                         <td class="align-middle">
                           @php
@@ -156,28 +173,32 @@
                 <tbody>
                   <tr>
                     <th scope="row" class="align-middle">1</th>
-                    <td class="align-middle">بین {{ nPersian(number_format(200000)) }} تا {{ nPersian(number_format(400000 - 1000)) }}
+                    <td class="align-middle">بین {{ nPersian(number_format(200000)) }} تا
+                      {{ nPersian(number_format(400000 - 1000)) }}
                       تومان
                     </td>
                     <td class="align-middle">{{ nPersian(number_format(5)) }}%</td>
                   </tr>
                   <tr>
                     <th scope="row" class="align-middle">2</th>
-                    <td class="align-middle">بین {{ nPersian(number_format(400000)) }} تا {{ nPersian(number_format(600000 - 1000)) }}
+                    <td class="align-middle">بین {{ nPersian(number_format(400000)) }} تا
+                      {{ nPersian(number_format(600000 - 1000)) }}
                       تومان
                     </td>
                     <td class="align-middle">{{ nPersian(number_format(10)) }}%</td>
                   </tr>
                   <tr>
                     <th scope="row" class="align-middle">3</th>
-                    <td class="align-middle">بین {{ nPersian(number_format(600000)) }} تا {{ nPersian(number_format(800000 - 1000)) }}
+                    <td class="align-middle">بین {{ nPersian(number_format(600000)) }} تا
+                      {{ nPersian(number_format(800000 - 1000)) }}
                       تومان
                     </td>
                     <td class="align-middle">{{ nPersian(number_format(15)) }}%</td>
                   </tr>
                   <tr>
                     <th scope="row" class="align-middle">4</th>
-                    <td class="align-middle">بین {{ nPersian(number_format(800000)) }} تا {{ nPersian(number_format(1000000 - 1000)) }}
+                    <td class="align-middle">بین {{ nPersian(number_format(800000)) }} تا
+                      {{ nPersian(number_format(1000000 - 1000)) }}
                       تومان
                     </td>
                     <td class="align-middle">{{ nPersian(number_format(20)) }}%</td>
@@ -200,7 +221,8 @@
                         <b>{{ nPersian(check_user_level_up() + 1) }}</b> برسید
                       </th>
                     @else
-                      <th colspan="12" class="align-middle">شما هم اکنون در سطح آخر قرار دارید و در هر خرید {{ nPersian(25) }}% تخفیف خواهید
+                      <th colspan="12" class="align-middle">شما هم اکنون در سطح آخر قرار دارید و در هر خرید
+                        {{ nPersian(25) }}% تخفیف خواهید
                         داشت.</th>
                     @endif
                   </tr>

@@ -74,7 +74,6 @@ class ProfileController extends Controller
         $paid_learn_paths = Paid::where('user_id', $user_id)->where('type', 2)->get();
 
         $courses = [];
-
         $ids = [];
         foreach ($paid_courses as $paid_course) {
             $ids[] = $paid_course->item_id;
@@ -82,7 +81,6 @@ class ProfileController extends Controller
         foreach (UnlockedCourse::where('user_id', $user_id)->get() as $unlocked_course) {
             $ids[] = $unlocked_course->course_id;
         }
-
         if (count($ids) > 0)
             $courses = Course::find($ids);
 
