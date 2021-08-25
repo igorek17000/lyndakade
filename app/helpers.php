@@ -5,6 +5,7 @@ use App\CourseStatus;
 use App\Demand;
 use App\HashedData;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaidController;
 use App\LearnPath;
 use App\Package;
 use App\PackagePaid;
@@ -209,6 +210,20 @@ function courseURL($course)
         return route('courses.show', [$course->slug_url, $course->slug, $course->id]);
     }
     return '#';
+}
+
+function get_learn_path_state($path)
+{
+    $user_id = auth()->id();
+    if ((new PaidController)->isPaid($path->id, $user_id, '2')) {
+        $path_state = '3';
+    } elseif (UnlockedCourse::where('user_id', $user_id)->where('learn_path_id', $path)->first()) {
+        $path_state = '3';
+    } else {
+        $path_state = (new CartController())->isAdded('2-' . $path->id) ? '2' : '1';
+    }
+
+    return $path_state;
 }
 
 function get_course_state($course)
