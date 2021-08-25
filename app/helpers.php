@@ -7,56 +7,31 @@ use App\HashedData;
 use App\Http\Controllers\CartController;
 use App\LearnPath;
 use App\Package;
+use App\PackagePaid;
 use App\Paid;
 use App\UnlockedCourse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-function has_any_available_package()
+function number_of_available_package($user_id)
 {
-    $user_id = auth()->user()->id;
-    $user_package = Paid::where('type', 3)
-        ->where('user_id', $user_id)
-        ->where('start_date', '<=', now())
+    $user_package_paid = PackagePaid::where('user_id', $user_id)
         ->where('end_date', '>=', now())
         ->first();
 
     // if has valid package for today
-    if ($user_package) {
-        //find oldest user_package which is still available (end_time >= now())
-        $oldest_user_package = Paid::oldest()
-            ->where('type', 3)
-            ->where('user_id', $user_id)
-            ->where('end_time', '>=', now())
-            ->first();
-
-        //find latest user_package which is still available (end_time >= now())
-        // oldest and latest might be different, maybe two packages are bought in
-        $latest_user_package = Paid::latest()
-            ->where('type', 3)
-            ->where('user_id', $user_id)
-            ->where('end_time', '>=', now())
-            ->first();
-
-        // get total available count
-        $total_counts = Paid::where('type', 3)
-            ->where('user_id', $user_id)
-            ->where('end_time', '>=', now())
-            ->get()->map(function ($paid) {
-                return ['count' => Package::find($paid->item_id)->count];
-            })->sum('count');
-
+    if ($user_package_paid) {
         // get total unlocked count
-        $unlocked_count = UnlockedCourse::where('user_id', $user_id)
-            ->where('created_at', '>=', $oldest_user_package->start_date)
-            ->where('created_at', '<=', $latest_user_package->end_date)
-            ->count();
+        // $unlocked_count = UnlockedCourse::where('user_id', $user_id)
+        //     ->where('created_at', '>=', $oldest_user_package->start_date)
+        //     ->where('created_at', '<=', $latest_user_package->end_date)
+        //     ->count();
 
-        return $unlocked_count < $total_counts;
+        return $user_package_paid->count;
     }
 
-    // no package is valid for today
-    return false;
+    // no package paid is valid for today
+    return 0;
 }
 
 function left_to_next_level()
@@ -260,6 +235,13 @@ function get_course_state($course)
                     }
                 }
             }
+        }
+        if (
+            !$found && UnlockedCourse::where('user_id', auth()->id())
+            ->where('course_id', $course->id)
+            ->first()
+        ) {
+            $found = true;
         }
     }
 

@@ -10,14 +10,14 @@ use Illuminate\Queue\SerializesModels;
 class PackageFactorMailer extends Mailable
 {
     use Queueable, SerializesModels;
-    public $pack, $amount, $factorId, $status, $paymentMethod, $created_date, $authority, $start_date, $end_date;
+    public $pack, $amount, $factorId, $status, $paymentMethod, $created_date, $authority, $end_date;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($pack, $amount, $factorId, $status, $paymentMethod, $created_date, $paymentId, $start_date, $end_date)
+    public function __construct($pack, $amount, $factorId, $status, $paymentMethod, $created_date, $paymentId, $end_date)
     {
         $this->pack = $pack;
         $this->amount = $amount;
@@ -26,7 +26,6 @@ class PackageFactorMailer extends Mailable
         $this->paymentMethod = $paymentMethod;
         $this->created_date = $created_date;
         $this->paymentId = $paymentId;
-        $this->start_date = $start_date;
         $this->end_date = $end_date;
     }
 
@@ -46,7 +45,6 @@ class PackageFactorMailer extends Mailable
                 'status' => $this->status,
                 'paymentMethod' => $this->paymentMethod,
                 'paymentId' => $this->paymentId,
-                'start_date' => $this->start_date,
                 'end_date' => $this->end_date,
             ]);
     }

@@ -22,12 +22,6 @@
 
     <p>
       پکیج {{ nPersian($package->days) }} روزه برای شما
-      از تاریخ
-      @php
-        $d = date('Y/m/d', strtotime($start_date));
-        $d = explode('/', $d);
-        echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/')) . ' ' . nPersian(date('H:i:s', strtotime($start_date)));
-      @endphp
       تا تاریخ
       @php
         $d = date('Y/m/d', strtotime($end_date));

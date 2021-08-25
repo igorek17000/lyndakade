@@ -680,6 +680,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
       toastr.options.rtl = true;
       toastr.options.positionClass = 'toast-bottom-left';
       toastr.info("{{ Session::get('message') }}");
+
       //   var alertType = {!! json_encode(Session::get('alert-type', 'info')) !!};
       //   var alertMessage = {!! json_encode(Session::get('message')) !!};
       //   var alerter = toastr[alertType];
@@ -691,6 +692,15 @@ session(['redirectToAfterLogin' => url()->previous()]);
       //   }
     </script>
   @endif
+    @if ($errors->has('message'))
+        <script>
+            toastr.options.rtl = true;
+            toastr.options.positionClass = 'toast-bottom-left';
+            toastr.error("{{ $errors->get('message') }}");
+
+        </script>
+    @endif
+
   <style>
     .twitter-typeahead {
       width: 100% !important;

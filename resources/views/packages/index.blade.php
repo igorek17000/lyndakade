@@ -41,8 +41,8 @@
 
   </style>
   <div class="container card mt-0 my-md-5 py-3 ">
-    @if (has_any_available_package())
-      <p>you already have a package</p>
+    @if (number_of_available_package(auth()->user()->id) > 0)
+      <p>you already have a package ({{ number_of_available_package(auth()->user()->id) }} courses)</p>
     @endif
     <h1>خرید اشتراک</h1>
     <p>

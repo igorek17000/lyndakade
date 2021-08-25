@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\HashedData;
 use App\Mail\PackageFactorMailer;
 use App\Package;
+use App\PackagePaid;
 use App\Paid;
 use App\Payment;
+use App\UnlockedCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -31,6 +33,57 @@ class PackageController extends Controller
         return view('packages.index', [
             'packages' => $packs,
         ]);
+    }
+
+    public function unlock_courses(Request $request)
+    {
+        $user_id = auth()->id();
+        $carts = auth()->user()->carts;
+        $count = 0;
+
+        foreach ($carts as $cart) {
+            if ($cart->course) {
+                $count += 1;
+            } else {
+                foreach (js_to_courses($cart->learn_path->courses) as $current_course) {
+                    $count += 1;
+                }
+            }
+        }
+        if ($count == 0) {
+            return redirect()
+                ->route('cart.index')
+                ->withErrors(['msg', 'هیچ دوره آموزشی ای انتخاب نشده است.']);
+        }
+
+        if (number_of_available_package($user_id) >= $count) {
+            // submit the courses in UnlockCourses
+            foreach ($carts as $cart) {
+                if ($cart->course) {
+                    $unlock_course = new UnlockedCourse([
+                        'user_id' => $user_id,
+                        'course_id' => $cart->course->id,
+                    ]);
+                    $unlock_course->save();
+                } else {
+                    $cart->learn_path;
+                    foreach (js_to_courses($cart->learn_path->courses) as $current_course) {
+                        $unlock_course = new UnlockedCourse([
+                            'user_id' => $user_id,
+                            'course_id' => $current_course->id,
+                        ]);
+                        $unlock_course->save();
+                    }
+                }
+            }
+            return redirect()
+                ->route('courses.mycourses')
+                ->with('message', 'دوره های آموزشی مورد نظر باز شده اند.');
+        } else {
+            return redirect()
+                ->route('cart.index')
+                ->withErrors(['msg', 'اعتبار پکیج کافی نمیباشد.']);
+        }
     }
 
     public function payment(Request $request)
@@ -108,16 +161,31 @@ class PackageController extends Controller
             $factorId = $receipt->getReferenceId();
             $pack = Package::find($payment->item_id);
 
-            $user_last_package = Paid::latest()
-                ->where('type', 3)
-                ->where('user_id', $payment->user->id)
-                ->where('end_date', '>=', now())
-                ->first();
-            if ($user_last_package) {
-                $start_date = $user_last_package->end_date;
+            $user_package_paid = PackagePaid::where('user_id', $payment->user->id)->first();
+
+            if ($user_package_paid) {
+                $start_date = $user_package_paid->end_date;
+                if ($user_package_paid->end_time >= now()) {
+                    $count = $user_package_paid->count;
+                } else {
+                    $count = 0;
+                    $start_date = now();
+                }
+                PackagePaid::where('user_id', $payment->user->id)
+                    ->update([
+                        'end_date' => $start_date->addDays($pack->days),
+                        'count' => $count + $pack->count,
+                    ]);
             } else {
                 $start_date = now();
+                $package_paid = new PackagePaid([
+                    'user_id' => $payment->user->id,
+                    'count' => $pack->count,
+                    'end_date' => $start_date->addDays($pack->days),
+                ]);
+                $package_paid->save();
             }
+
             $end_date = $start_date->addDays($pack->days);
 
             $paid = new Paid([
@@ -125,13 +193,11 @@ class PackageController extends Controller
                 'type' => 3,
                 'item_id' => $payment->item_id,
                 'user_id' => $payment->user->id,
-                'start_date' => $start_date,
-                'end_date' => $end_date,
                 'price' => $amount,
             ]);
             $paid->save();
 
-            Mail::to(Auth::user()->email)->send(new PackageFactorMailer($pack, $amount, $factorId, $status, $paymentMethod, $payment->created_at, $authority, $start_date, $end_date));
+            Mail::to(Auth::user()->email)->send(new PackageFactorMailer($pack, $amount, $factorId, $status, $paymentMethod, $payment->created_at, $authority, $end_date));
 
             // echo $receipt->getReferenceId();
         } catch (InvalidPaymentException $exception) {
