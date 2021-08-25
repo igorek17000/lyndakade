@@ -69,14 +69,21 @@ class HomeController extends Controller
      */
     public function show(Request $request, $slug)
     {
-        $sub = Library::with('courses')->where('slug', $slug)->get()->first();
+        $sub = Library::with('subjects.courses')->where('slug', $slug)->get()->first();
         if (!$sub)
             $sub = Subject::with('courses')->where('slug', $slug)->get()->first();
         // if (!$sub)
         //     $sub = Software::with('courses')->where('slug', $slug)->get()->first();
 
         if ($sub) {
-            $courses = $sub->courses;
+            $subjects = $sub->subjects;
+            $ids = [];
+            foreach ($subjects as $subject) {
+                foreach ($subject->courses as $course) {
+                    $ids[] = $course->id;
+                }
+            }
+            $courses = Course::find($ids);
 
             $details = $this->prepare_for_search_page($request, $courses);
             $filtered_items = $details['filtered_items'];
