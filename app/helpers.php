@@ -27,16 +27,29 @@ function has_any_available_package()
             ->where('type', 3)
             ->where('user_id', $user_id)
             ->where('end_time', '>=', now())
-            ->first();
+            ->get();
 
-        // check counts
-        UnlockedCourse::where('user_id', $user_id)
+        //find latest user_package which is still available (end_time >= now())
+        // oldest and latest might be different, maybe two packages are bought in
+        $latest_user_package = Paid::latest()
+            ->where('type', 3)
+            ->where('user_id', $user_id)
+            ->where('end_time', '>=', now())
+            ->get();
+
+        // get total available count
+        $total_counts = Paid::where('type', 3)
+            ->where('user_id', $user_id)
+            ->where('end_time', '>=', now())
+            ->sum('count');
+
+        // get total unlocked count
+        $unlocked_count = UnlockedCourse::where('user_id', $user_id)
             ->where('created_at', '>=', $oldest_user_package->start_date)
-            ->where('created_at', '<=', $oldest_user_package->end_date)
+            ->where('created_at', '<=', $latest_user_package->end_date)
             ->count();
 
-
-        return $user_package;
+        return $unlocked_count < $total_counts;
     }
 
     // no package is valid for today
