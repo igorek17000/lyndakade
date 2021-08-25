@@ -49,8 +49,9 @@
             <tr>
               <td>
                 از اعتبار اشتراک فعلی شما <b>{{ number_of_available_package(auth()->id()) }}</b>
-                دوره آموزشی باقی مانده است و تا تاریخ
+                دوره آموزشی باقی مانده است و تا
                 <b>
+                  تاریخ
                   @php
                     $date = strtotime(end_date_of_available_package(auth()->id())->toDateTimeString());
                     $d = date('Y/m/d', $date);
