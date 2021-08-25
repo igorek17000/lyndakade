@@ -18,9 +18,9 @@
           <img style="width: 100px;" src="{{ asset('image/logoedit2.png') }}" alt="Lyndakade Logo">
         </div> --}}
         <h1 style="font-size: 2.25rem;">
-          آموزش های وبسایت
+          دانلود آموزش های وبسایت
           <a href="https://www.linkedin.com/" style="color: #2977c9;">لینکدین</a>
-          به همراه زیرنویس
+          به همراه زیرنویس فارسی و انگلیسی
         </h1>
         @guest
           <div>برای خرید و دانلود آموزش ها وارد حساب کاربری خود شوید</div>
@@ -214,11 +214,14 @@
                   <br>
                   <span class="tile-name">{{ $path->titleEng }}</span>
                   <br>
-                  <span class="tile-heading py-2">تعداد دروس {{ nPersian(count(js_to_courses($path->courses))) }}</span>
+                  <span class="tile-heading py-2">تعداد دروس
+                    {{ nPersian(count(js_to_courses($path->courses))) }}</span>
                   <br>
-                  <del style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->old_price()) }}
+                  <del
+                    style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->old_price()) }}
                     تومان</del>
-                  <span style="background-color: lightgreen;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->price()) }}
+                  <span
+                    style="background-color: lightgreen;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->price()) }}
                     تومان</span>
                 </div>
               </a>
@@ -302,7 +305,8 @@
 
   {{-- p-5 bg-white rounded shadow --}}
   <div class="row card mx-0 latest-courses border-0">
-    <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-md-row text-center border-0 rounded-nav d-flex justify-content-center">
+    <ul id="myTab" role="tablist"
+      class="nav nav-tabs nav-pills flex-md-row text-center border-0 rounded-nav d-flex justify-content-center">
       @foreach ($page_tabs as $tab)
         <li class="nav-item flex-md-fill">
           <a id="{{ $tab[0] }}-tab" data-toggle="tab" href="#{{ $tab[0] }}" role="tab"
@@ -359,11 +363,11 @@
       var
         persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
         arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
-        if (typeof str === 'string') {
-          for (var i = 0; i < 10; i++) {
-            str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
-          }
+      if (typeof str === 'string') {
+        for (var i = 0; i < 10; i++) {
+          str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
         }
+      }
       return str;
     }
 

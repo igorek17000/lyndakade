@@ -541,7 +541,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         <form class="form-inline my-2 my-lg-0" role="search" action="{{ route('search') }}">
           <input type="search" name="q" class="form-control mr-sm-2" role="combobox" value="{{ $q ?? '' }}"
             style="font-size: 13px;border: 0;text-align: right;padding: 0;padding-right: 5px;min-width: 320px;border-radius: 5px;"
-            placeholder="نرم افزار یا مهارتی که میخواهید یاد بگیرید را جستجو کنید" autocomplete="off">
+            placeholder="نرم افزار یا مهارتی که میخواهید یاد بگیرید را جستجو کنید">
 
           {{-- <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">جستجو</button> --}}
         </form>
