@@ -41,6 +41,9 @@
 
   </style>
   <div class="container card mt-0 my-md-5 py-3 ">
+    @if (has_any_available_package())
+      <p>you already have a package</p>
+    @endif
     <h1>خرید اشتراک</h1>
     <p>
       با خرید اشتراک، در مدت زمان مورد نظر، میتوانید به تعداد دوره طرح، دوره هارو بصورت رایگان باز کنید و دانلود کنید.
