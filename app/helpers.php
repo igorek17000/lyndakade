@@ -6,8 +6,24 @@ use App\Demand;
 use App\HashedData;
 use App\Http\Controllers\CartController;
 use App\LearnPath;
+use App\Paid;
+use App\UnlockedCourse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
+function has_any_available_package()
+{
+    $user_package = Paid::where('type', 3)
+        ->where('user_id', auth()->user()->id)
+        ->where('start_date', '<=', now())
+        ->where('end_date', '>=', now())
+        ->first();
+
+    // check counts
+    // UnlockedCourse::where('')
+
+    return $user_package;
+}
 
 function left_to_next_level()
 {
