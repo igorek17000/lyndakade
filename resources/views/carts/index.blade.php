@@ -79,7 +79,7 @@
           <div class="card-footer">
             <b> قبل از ادامه، از خاموش بودن فیلترشکن اطمینان حاصل نمایید. </b> <br />
             <a class="btn btn-primary" href="{{ route('payment.send') }}">عملیات پرداخت</a>
-            <a class="btn btn-secondary mr-md-2" href={{ route('packages.unlock_courses') }}>استفاده از پکیج</a>
+            <a class="btn btn-secondary mr-md-2" href={{ route('packages.unlock_courses') }}>استفاده از اشتراک</a>
           </div>
         </article>
       </div>

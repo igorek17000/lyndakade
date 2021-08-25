@@ -81,7 +81,7 @@ class PackageController extends Controller
                 ->with('message', 'دوره های آموزشی مورد نظر باز شده اند.');
         } else {
             return redirect()
-                ->route('cart.index')
+                ->route('packages.index')
                 ->with('error', 'اعتبار پکیج کافی نمیباشد.');
         }
     }
