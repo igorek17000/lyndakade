@@ -27,7 +27,7 @@ function has_any_available_package()
             ->where('type', 3)
             ->where('user_id', $user_id)
             ->where('end_time', '>=', now())
-            ->get();
+            ->first();
 
         //find latest user_package which is still available (end_time >= now())
         // oldest and latest might be different, maybe two packages are bought in
@@ -35,7 +35,7 @@ function has_any_available_package()
             ->where('type', 3)
             ->where('user_id', $user_id)
             ->where('end_time', '>=', now())
-            ->get();
+            ->first();
 
         // get total available count
         $total_counts = Paid::where('type', 3)
