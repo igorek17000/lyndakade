@@ -10,6 +10,7 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use App\LearnPath;
 use App\Paid;
+use App\UnlockedCourse;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -67,21 +68,25 @@ class ProfileController extends Controller
 
     public function my_courses()
     {
-        $paid_courses = Paid::where('user_id', auth()->id())->where('type', 1)->get();
-        $paid_learn_paths = Paid::where('user_id', auth()->id())->where('type', 2)->get();
+        $user_id = auth()->id();
 
-        $courses = [];
+        $paid_courses = Paid::where('user_id', $user_id)->where('type', 1)->get();
+        $paid_learn_paths = Paid::where('user_id', $user_id)->where('type', 2)->get();
 
-        if (count($paid_courses) > 0) {
-            $ids = [];
-            foreach ($paid_courses as $paid_course) {
-                $ids[] = $paid_course->item_id;
-            }
-            $courses = Course::find($ids);
+        $courses = collect([]);
+
+        $ids = [];
+        foreach ($paid_courses as $paid_course) {
+            $ids[] = $paid_course->item_id;
+        }
+        foreach (UnlockedCourse::where('user_id', $user_id)->get() as $unlocked_course) {
+            $ids[] = $unlocked_course->course_id;
         }
 
-        $learn_paths = [];
+        if (count($ids))
+            $courses = Course::find($ids);
 
+        $learn_paths = [];
         if (count($paid_learn_paths) > 0) {
             $ids = [];
             foreach ($paid_learn_paths as $paid_learn_path) {
