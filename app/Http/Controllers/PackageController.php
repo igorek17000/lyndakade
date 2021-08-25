@@ -108,32 +108,30 @@ class PackageController extends Controller
             $factorId = $receipt->getReferenceId();
             $pack = Package::find($payment->item_id);
 
-            $user_paids = Paid::where('type', 3)->where('user_id', $payment->user->id)->latest()->get();
-            // $last_paid = null;
-            // if (count($user_paids) > 0) {
-            //     $last_date = now()->subCentury();
-            //     foreach ($user_paids as $user_paid) {
-            //         if ($user_paid->start_date > $last_date) {
-            //             $last_paid = $user_paid;
-            //             $last_date = $user_paid->start_date;
-            //         }
-            //     }
-            // }
-            // if (!$last_paid)
-            //     $start_date = now();
-            // else
-            //     $start_date = $last_paid; // + Package::find($last_paid->item_id)->days;
+            $user_last_package = Paid::latest()
+                ->where('type', 3)
+                ->where('user_id', $payment->user->id)
+                ->where('end_date', '>=', now())
+                ->first();
+            if ($user_last_package) {
+                $start_date = $user_last_package->end_date->addDays(1);
+            } else {
+                $start_date = now();
+            }
+            $end_date = $start_date->addDays($pack->days);
 
             $paid = new Paid([
                 'factorId' => $factorId,
                 'type' => 3,
                 'item_id' => $payment->item_id,
                 'user_id' => $payment->user->id,
+                'start_date' => $start_date,
+                'end_date' => $end_date,
                 'price' => $amount,
             ]);
             $paid->save();
 
-            Mail::to(Auth::user()->email)->send(new PackageFactorMailer($pack, $amount, $factorId, $status, $paymentMethod, $payment->created_at, $authority));
+            Mail::to(Auth::user()->email)->send(new PackageFactorMailer($pack, $amount, $factorId, $status, $paymentMethod, $payment->created_at, $authority, $start_date, $end_date));
 
             // echo $receipt->getReferenceId();
         } catch (InvalidPaymentException $exception) {

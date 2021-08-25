@@ -21,8 +21,22 @@
     <h1>خرید پکیج با موفقیت انجام شد.</h1>
 
     <p>
-      پکیج {{ nPersian($package->days) }} روزه برای شما فعال شده است. با استفاده از این پکیج میتوانید به تعداد
-      {{ nPersian($package->count) }} دوره آموزشی را بصورت رایگان باز و دانلود کنید.
+      پکیج {{ nPersian($package->days) }} روزه برای شما
+      از تاریخ
+      @php
+        $d = date('Y/m/d', strtotime($start_date));
+        $d = explode('/', $d);
+        echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/')) . ' ' . nPersian(date('H:i:s', strtotime($start_date)));
+      @endphp
+      تا تاریخ
+      @php
+        $d = date('Y/m/d', strtotime($end_date));
+        $d = explode('/', $d);
+        echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/')) . ' ' . nPersian(date('H:i:s', strtotime($end_date)));
+      @endphp
+      فعال میباشد. با استفاده از این پکیج میتوانید به تعداد
+      {{ nPersian($package->count) }}
+      دوره آموزشی را بصورت رایگان باز و دانلود کنید.
     </p>
     <h4>
       توجه داشته باشید در صورت پایان زمان پکیج، تعداد دوره آموزشی آن به پکیج خریداری شده ی بعدی تعلق <b>نخواهد</b> گرفت.
