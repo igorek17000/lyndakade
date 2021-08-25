@@ -13,6 +13,7 @@ use App\Paid;
 use App\SkillLevel;
 use App\Software;
 use App\Subject;
+use App\UnlockedCourse;
 use App\User;
 use Exception;
 use Faker\Provider\Uuid;
@@ -672,8 +673,11 @@ class CourseController extends Controller
             return null;
         }
 
-        $paid = Paid::where('user_id', $user_id)->where('item_id', $course_id)->get()->first();
-        if ($paid) {
+        if (Paid::where('user_id', $user_id)->where('item_id', $course_id)->get()->first()) {
+            return true;
+        }
+
+        if (UnlockedCourse::where('user_id', $user_id)->where('course_id', $course_id)->first()) {
             return true;
         }
         return null;
