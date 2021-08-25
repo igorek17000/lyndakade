@@ -679,7 +679,7 @@ class CourseController extends Controller
 
         $paid_learn_paths = Paid::where('user_id', $user_id)->where('type', 2)->get();
         foreach ($paid_learn_paths as $paid_learn_path) {
-            foreach (js_to_courses(LearnPath::find($paid_learn_paths->item_id)->courses) as $course) {
+            foreach (js_to_courses(LearnPath::find($paid_learn_path->item_id)->courses) as $course) {
                 if ($course->id == $course_id)
                     return true;
             }
