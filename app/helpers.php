@@ -6,6 +6,7 @@ use App\Demand;
 use App\HashedData;
 use App\Http\Controllers\CartController;
 use App\LearnPath;
+use App\Package;
 use App\Paid;
 use App\UnlockedCourse;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,9 @@ function has_any_available_package()
         $total_counts = Paid::where('type', 3)
             ->where('user_id', $user_id)
             ->where('end_time', '>=', now())
-            ->sum('count');
+            ->get()->map(function ($paid) {
+                return ['count' => Package::find($paid->item_id)->count];
+            });
 
         // get total unlocked count
         $unlocked_count = UnlockedCourse::where('user_id', $user_id)
