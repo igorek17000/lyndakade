@@ -71,6 +71,7 @@ class PackageController extends Controller
                         'user_id' => $user_id,
                         'learn_path_id' => $cart->learn_path->id,
                     ]);
+                    $unlock_course->save();
                 }
                 $cart->delete();
             }
