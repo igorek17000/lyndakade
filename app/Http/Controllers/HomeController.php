@@ -93,7 +93,7 @@ class HomeController extends Controller
             return view('search.search', [
                 'shown_item' => $sub,
                 'filtered_items' => $filtered_items,
-                'courses' => $courses,
+                'courses' => $courses->take(20),
                 'categories_filter' => $categories_filter,
             ]);
         }
