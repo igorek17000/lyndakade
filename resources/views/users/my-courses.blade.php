@@ -59,13 +59,13 @@
                                 ->where('type', '1')
                                 ->where('item_id', $course->id)
                                 ->first();
-                            
+
                             if ($paid) {
                                 $d = date('Y/m/d', strtotime($paid->created_at));
                                 $d = explode('/', $d);
                                 echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                             } else {
-                                $unlock_course = \App\UnlockCourse::where('user_id', auth()->id())
+                                $unlock_course = \App\UnlockedCourse::where('user_id', auth()->id())
                                     ->where('course_id', $course->id)
                                     ->first();
                                 if ($unlock_course) {
