@@ -133,7 +133,6 @@
                                 echo 'خرید از طریق اشتراک';
                             }
                           @endphp
-                          تومان
                         </td>
                         <td class="align-middle">
                           @php
