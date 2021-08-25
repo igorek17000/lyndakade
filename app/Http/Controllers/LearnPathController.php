@@ -93,7 +93,7 @@ class LearnPathController extends Controller
                 'path' => $path,
                 'courses' => $courses,
                 'authors' => $authors,
-                'path_state' => get_learn_path_state($path), // 1 show add button, 2 show remove button, 3 has been paid
+                'path_state' => get_learn_path_state($path),
             ]);
         }
         abort(404);

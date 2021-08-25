@@ -215,14 +215,16 @@ function courseURL($course)
 function get_learn_path_state($path)
 {
     $user_id = auth()->id();
-    if ((new PaidController)->isPaid($path->id, $user_id, '2')) {
+    if ($path->price() == 0) {
+        $path_state = '3';
+    } elseif ((new PaidController)->isPaid($path->id, $user_id, '2')) {
         $path_state = '3';
     } elseif (UnlockedCourse::where('user_id', $user_id)->where('learn_path_id', $path->id)->first()) {
         $path_state = '3';
     } else {
         $path_state = (new CartController())->isAdded('2-' . $path->id) ? '2' : '1';
     }
-
+    // 1 show add button, 2 show remove button, 3 has been paid
     return $path_state;
 }
 
