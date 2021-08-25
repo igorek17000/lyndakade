@@ -173,7 +173,7 @@ class PackageController extends Controller
             if ($user_package_paid) {
                 $end_date = Carbon::createFromTimestamp(strtotime($user_package_paid->end_date))
                     ->addDays($pack->days);
-                if ($user_package_paid->end_time >= now()) {
+                if (Carbon::createFromTimestamp(strtotime($user_package_paid->end_date)) >= now()) {
                     $count = $user_package_paid->count;
                 } else {
                     $count = 0;
