@@ -692,11 +692,11 @@ session(['redirectToAfterLogin' => url()->previous()]);
       //   }
     </script>
   @endif
-    @if ($errors->has('message'))
+    @if (Session::has('error'))
         <script>
             toastr.options.rtl = true;
             toastr.options.positionClass = 'toast-bottom-left';
-            toastr.error("{{ $errors->get('message') }}");
+            toastr.error("{{ Session::get('error') }}");
 
         </script>
     @endif

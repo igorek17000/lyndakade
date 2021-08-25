@@ -53,7 +53,7 @@ class PackageController extends Controller
         if ($count == 0) {
             return redirect()
                 ->route('cart.index')
-                ->withErrors(['msg', 'هیچ دوره آموزشی ای انتخاب نشده است.']);
+                ->with('error', 'هیچ دوره آموزشی ای انتخاب نشده است.');
         }
 
         if (number_of_available_package($user_id) >= $count) {
@@ -82,7 +82,7 @@ class PackageController extends Controller
         } else {
             return redirect()
                 ->route('cart.index')
-                ->withErrors(['msg', 'اعتبار پکیج کافی نمیباشد.']);
+                ->with('error', 'اعتبار پکیج کافی نمیباشد.');
         }
     }
 
