@@ -34,13 +34,13 @@ Route::get('/faq', function () {
 
 Route::get('/packages', 'PackageController@index')->name('packages.index');
 
-// Route::group(
-//     ['middleware' => 'auth'],
-//     function () {
-//         Route::get('/packages/payment', 'PackageController@payment')->name('packages.payment');
-//         Route::get('/packages/callback', 'PackageController@callback')->name('packages.callback');
-//     }
-// );
+Route::group(
+    ['middleware' => 'auth'],
+    function () {
+        Route::get('/packages/payment', 'PackageController@payment')->name('packages.payment');
+        Route::get('/packages/callback', 'PackageController@callback')->name('packages.callback');
+    }
+);
 
 // learning paths
 Route::get('/learning-paths/', 'LearnPathController@index')->name('learn.paths.index');

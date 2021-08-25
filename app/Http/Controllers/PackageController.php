@@ -108,9 +108,7 @@ class PackageController extends Controller
             $factorId = $receipt->getReferenceId();
             $pack = Package::find($payment->item_id);
 
-            // 
-
-            // $user_paids = Paid::where('type', 3)->where('user_id', $payment->user->id)->get();
+            $user_paids = Paid::where('type', 3)->where('user_id', $payment->user->id)->latest()->get();
             // $last_paid = null;
             // if (count($user_paids) > 0) {
             //     $last_date = now()->subCentury();
