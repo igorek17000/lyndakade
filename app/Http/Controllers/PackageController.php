@@ -170,29 +170,27 @@ class PackageController extends Controller
             $user_package_paid = PackagePaid::where('user_id', $payment->user->id)->first();
 
             if ($user_package_paid) {
-                $start_date = $user_package_paid->end_date;
+                $end_date = $user_package_paid->end_date->addDays($pack->days);
                 if ($user_package_paid->end_time >= now()) {
                     $count = $user_package_paid->count;
                 } else {
                     $count = 0;
-                    $start_date = now();
+                    $end_date = now()->addDays($pack->days);
                 }
                 PackagePaid::where('user_id', $payment->user->id)
                     ->update([
-                        'end_date' => $start_date->addDays($pack->days),
+                        'end_date' => $end_date,
                         'count' => $count + $pack->count,
                     ]);
             } else {
-                $start_date = now();
+                $end_date = now()->addDays($pack->days);
                 $package_paid = new PackagePaid([
                     'user_id' => $payment->user->id,
                     'count' => $pack->count,
-                    'end_date' => $start_date->addDays($pack->days),
+                    'end_date' => $end_date,
                 ]);
                 $package_paid->save();
             }
-
-            $end_date = $start_date->addDays($pack->days);
 
             $paid = new Paid([
                 'factorId' => $factorId,
