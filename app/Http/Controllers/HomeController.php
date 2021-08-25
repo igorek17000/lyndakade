@@ -87,7 +87,7 @@ class HomeController extends Controller
 
             $details = $this->prepare_for_search_page($request, $courses);
             $filtered_items = $details['filtered_items'];
-            $courses = $details['courses']->sortByDesc('created_at');
+            $courses = $details['courses']->sortByDesc('releaseDate');
             $categories_filter = $details['categories_filter'];
 
             return view('search.search', [
