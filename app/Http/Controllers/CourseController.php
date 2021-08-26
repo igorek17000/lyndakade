@@ -610,9 +610,9 @@ class CourseController extends Controller
         $start_date = $request->get('start_date', '2021-04-01');
         $limit = intval($request->get('limit', 20));
         $courses = Course::with(['authors', 'subjects', 'softwares'])
-            ->where('releaseDate', '>=', $start_date)
+            ->where('created_at', '>=', $start_date)
             ->whereNotIn('id', $skipped_ids)
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'desc')
             ->limit($limit)
             ->get(['id', 'title', 'titleEng', 'description', 'previewFile', 'previewSubtitle', 'img', 'persian_subtitle_id']);
         return new JsonResponse([
