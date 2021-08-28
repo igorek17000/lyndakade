@@ -1,6 +1,7 @@
 <?php
 
 use App\Course;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -55,7 +56,26 @@ Route::get('/learning/courses/free', 'CourseController@free')->name('courses.fre
 
 // courses
 Route::get('/', 'CourseController@index')->name('root.home');
-Route::get('/{slug_url}/{slug}/{id}-2.html', 'CourseController@show')->name('courses.show');
+Route::get('/{slug_url}/{slug}/{id}-2.html', function (Illuminate\Http\Request $request, $slug_url, $slug, $id) {
+    $course = Course::firstWhere('id', $id);
+    if ($course) {
+        if ($course->slug_linkedin) {
+            return redirect()->route('courses.show.linkedin', [$course->slug_linkedin]);
+        }
+        return (new CourseController)->show($request, $slug_url, $slug, $id);
+        // return redirect()->route('courses.show', [$course->slug_url, $course->slug, $course->id]);
+    }
+
+    $course = Course::firstWhere('slug', $slug);
+    if ($course) {
+        if ($course->slug_linkedin) {
+            return redirect()->route('courses.show.linkedin', [$course->slug_linkedin]);
+        }
+        return (new CourseController)->show($request, $slug_url, $slug, $id);
+        // return redirect()->route('courses.show', [$course->slug_url, $course->slug, $course->id]);
+    }
+    abort(404);
+})->name('courses.show');
 Route::get('/learning/{slug_linkedin}', 'CourseController@show_linkedin')->name('courses.show.linkedin');
 Route::get('/learning/{slug_linkedin}/{video_slug}', 'CourseController@show_linkedin')->name('courses.show.linkedin.video');
 Route::get('/ajax/player/transcript', 'CourseController@subtitle_content')->name('courses.subtitle_content');
