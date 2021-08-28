@@ -76,10 +76,16 @@ class HomeController extends Controller
         //     $sub = Software::with('courses')->where('slug', $slug)->get()->first();
 
         if ($sub) {
-            $subjects = $sub->subjects;
             $ids = [];
-            foreach ($subjects as $subject) {
-                foreach ($subject->courses as $course) {
+            if ($sub->subjects) {
+                $subjects = $sub->subjects;
+                foreach ($subjects as $subject) {
+                    foreach ($subject->courses as $course) {
+                        $ids[] = $course->id;
+                    }
+                }
+            } else {
+                foreach ($sub->courses as $course) {
                     $ids[] = $course->id;
                 }
             }
