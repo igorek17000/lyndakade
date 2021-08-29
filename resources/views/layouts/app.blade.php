@@ -156,6 +156,8 @@ session(['redirectToAfterLogin' => url()->previous()]);
       cursor: pointer;
     }
     </style>
+
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="87ad3840-8311-47fb-b849-0eb3e6cc113c";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
 
 <body>
