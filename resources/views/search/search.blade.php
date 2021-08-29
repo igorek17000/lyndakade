@@ -92,7 +92,7 @@
                                     <span>
                                         {{ $shown_item->title }}
                                     </span>
-                                    <span class="text-left" style="float: left;">
+                                    <span class="text-left" style="float: left;" dir="ltr">
                                         {{ $shown_item->titleEng ?? '' }}
                                     </span>
                                 </h1>
