@@ -84,22 +84,32 @@
                 </div>
               </div>
               <div class="col-sm-7 col-md-6 col-lg-8 course-description" role="contentinfo">
-                <h6 title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
+                <h6 title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
                   تاریخ
                   انتشار</h6>
-                <span id="release-date"
-                  title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
-                  <b>{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}</b>
+                <span id="release-date" title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
+                  <b>
+                    @php
+                      $d = date('Y/m/d', strtotime($course->releaseDate));
+                      $d = explode('/', $d);
+                      echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                    @endphp
+                  </b>
                 </span>
                 {{-- {{ $course->created_at->format('Y/m/d') }}</span> --}}
                 <i class="lyndacon closed-captioning" title="زیرنویس"></i>
                 @if ($course->updateDate)
-                  <h6 title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
+                  <h6 title="{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
                     تاریخ
                     بروزرسانی</h6>
-                  <span id="release-date"
-                    title="در لیندا {{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
-                    <b>{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}</b>
+                  <span id="release-date" title="{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
+                    <b>
+                      @php
+                        $d = date('Y/m/d', strtotime($course->updateDate));
+                        $d = explode('/', $d);
+                        echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                      @endphp
+                    </b>
                   </span>
                   {{-- {{ $course->created_at->format('Y/m/d') }}</span> --}}
                   <i class="lyndacon closed-captioning" title="زیرنویس"></i>
@@ -184,19 +194,35 @@
                 </div>
               </div>
               <div class="col-sm-7 col-md-6 col-lg-8 course-description-english" role="contentinfo" dir="ltr">
-                <h6 title="In Lynda {{ date('Y/m/d', strtotime($course->releaseDate)) }}">
+                <h6 title="@php
+                  $d = date('Y/m/d', strtotime($course->releaseDate));
+                  $d = explode('/', $d);
+                  echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                @endphp">
                   Released:
                 </h6>
-                <span id="release-date" title="In Lynda {{ date('Y/m/d', strtotime($course->releaseDate)) }}">
+                <span id="release-date" title="@php
+                  $d = date('Y/m/d', strtotime($course->releaseDate));
+                  $d = explode('/', $d);
+                  echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                @endphp">
                   <b>{{ date('Y/m/d', strtotime($course->releaseDate)) }}</b>
                 </span>
                 {{-- {{ $course->created_at->format('Y/m/d') }}</span> --}}
                 <i class="lyndacon closed-captioning px-1" title="Subtitle"></i>
                 @if ($course->updateDate)
-                  <h6 title="In Lynda {{ date('Y/m/d', strtotime($course->updateDate)) }}">
+                  <h6 title="@php
+                    $d = date('Y/m/d', strtotime($course->updateDate));
+                    $d = explode('/', $d);
+                    echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                  @endphp">
                     Updated:
                   </h6>
-                  <span id="release-date" title="In Lynda {{ date('Y/m/d', strtotime($course->updateDate)) }}">
+                  <span id="release-date" title="@php
+                    $d = date('Y/m/d', strtotime($course->updateDate));
+                    $d = explode('/', $d);
+                    echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                  @endphp">
                     <b>{{ date('Y/m/d', strtotime($course->updateDate)) }}</b>
                   </span>
                   {{-- {{ $course->created_at->format('Y/m/d') }}</span> --}}
