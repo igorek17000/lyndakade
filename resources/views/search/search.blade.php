@@ -87,6 +87,16 @@
                 <div class="row">
                     <section id="search-results-bar">
                         <div class="row mx-1">
+                            <div class="col-xs-12 mb-3">
+                                <h1 class="subject-title w-100">
+                                    <span>
+                                        {{ $shown_item->title }}
+                                    </span>
+                                    <span class="text-left" style="float: left;">
+                                        {{ $shown_item->titleEng ?? '' }}
+                                    </span>
+                                </h1>
+                            </div>
                             <div class="col-xs-12 col-md-6">
                                 <h1 class="subject-title">
                                     {{ $shown_item->title }}
