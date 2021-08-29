@@ -166,7 +166,9 @@ session(['redirectToAfterLogin' => url()->previous()]);
     background-image: -webkit-linear-gradient(top,#f7f7f7 0,#e5e5e5 100%);
     background-image: -o-linear-gradient(top,#f7f7f7 0,#e5e5e5 100%);
     background-image: linear-gradient(to bottom,#f7f7f7 0,#e5e5e5 100%);">
-<div class="fab-container">
+
+    
+{{-- <div class="fab-container">
   <div class="fab shadow">
     <div class="fab-content">
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" style="-ms-transform: rotate(360deg);-webkit-transform: rotate(360deg);transform: rotate(360deg);height: 50px;" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M21 12.22C21 6.73 16.74 3 12 3c-4.69 0-9 3.65-9 9.28c-.6.34-1 .98-1 1.72v2c0 1.1.9 2 2 2h1v-6.1c0-3.87 3.13-7 7-7s7 3.13 7 7V19h-8v2h8c1.1 0 2-.9 2-2v-1.22c.59-.31 1-.92 1-1.64v-2.3c0-.7-.41-1.31-1-1.62z" fill="white"></path><circle cx="9" cy="13" r="1" fill="white"></circle><circle cx="15" cy="13" r="1" fill="white"></circle><path d="M18 11.03A6.04 6.04 0 0 0 12.05 6c-3.03 0-6.29 2.51-6.03 6.45a8.075 8.075 0 0 0 4.86-5.89c1.31 2.63 4 4.44 7.12 4.47z" fill="white"></path></svg>
@@ -194,7 +196,9 @@ session(['redirectToAfterLogin' => url()->previous()]);
     </a>
   </div>
 
-</div>
+</div> --}}
+
+
     @include('go-to-top-btn')
     {{-- <div class="navbar sticky-top navbar-expand-md navbar-dark bg-dark shadow-sm" style="padding: 0!important;">
       <div class="container">
