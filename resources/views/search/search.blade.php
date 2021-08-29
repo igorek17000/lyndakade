@@ -97,11 +97,6 @@
                                     </span>
                                 </h1>
                             </div>
-                            <div class="col-xs-12 col-md-6">
-                                <h1 class="subject-title">
-                                    {{ $shown_item->title }}
-                                </h1>
-                            </div>
                             @if(isset($result_count) && isset($q))
                                 <div class="results-heading col-xs-12 col-sm-8">
                                     {{ $result_count }}
