@@ -15,7 +15,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12" style="border-bottom: 10px solid #ffca08;margin-top: 15px">
-        <h1 class="text-center" style="font-size: 1.5rem"> مدرسین لیندا </h1>
+        <h1 class="text-center" style="font-size: 1.5rem"> مدرسین لینکدین </h1>
       </div>
     </div>
     {{-- <div class="category-details">

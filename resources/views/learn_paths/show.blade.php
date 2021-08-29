@@ -162,7 +162,7 @@
                   </div>
                   <div class="col-md-3 col-6">
                     <b>تاریخ انتشار:</b>
-                    <span id="release-date" title="در لیندا {{ date('Y/m/d', strtotime($course->releaseDate)) }}">
+                    <span id="release-date" title="در لینکدین {{ date('Y/m/d', strtotime($course->releaseDate)) }}">
                       {{ date('Y/m/d', strtotime($course->releaseDate)) }}
                     </span>
                   </div>

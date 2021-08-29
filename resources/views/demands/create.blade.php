@@ -18,7 +18,7 @@
         <div class="card" id="card">
           <div class="card-header">
             <h5>
-              لینک درس یا مسیر آموزشی مطابق با وبسایت لیندا باشد.
+              لینک درس یا مسیر آموزشی مطابق با وبسایت لینکدین باشد.
             </h5>
           </div>
           <div class="card-body">
@@ -28,7 +28,7 @@
                   <form id="method-2" method="POST" action="{{ route('demands.store') }}">
                     @csrf
                     <div class="form-group row">
-                      <label for="link" class="col-md-4 col-form-label text-md-left">لینک درس در لیندا</label>
+                      <label for="link" class="col-md-4 col-form-label text-md-left">لینک درس در لینکدین</label>
                       <div class="col-md-6">
                         <input id="link" type="url" class="form-control @error('link') is-invalid @enderror" name="link"
                           value="{{ old('link') }}" autocomplete="link">
@@ -57,7 +57,7 @@
         <div class="card" id="card">
           <div class="card-header">
             <h5>
-              نام درس و نام مدرس مطابق با وبسایت لیندا باشد.
+              نام درس و نام مدرس مطابق با وبسایت لینکدین باشد.
             </h5>
           </div>
           <div class="card-body">

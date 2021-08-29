@@ -76,7 +76,7 @@
               </td>
               <td class="col-auto">
                 <span class="ml-2"
-                  title="{{ 'تاریخ انتشار در لیندا ' . str_replace('-', '/', $course->releaseDate) }}">
+                  title="{{ 'تاریخ انتشار در لینکدین ' . str_replace('-', '/', $course->releaseDate) }}">
                   <i class="skill-level" style="background-image: url('{{ asset('/image/date-icon.png') }}');"></i>
                   تاریخ انتشار:
                   @if (\Carbon\Carbon::parse($course->created_at) > (new \Illuminate\Support\Carbon())->subDays(2))
