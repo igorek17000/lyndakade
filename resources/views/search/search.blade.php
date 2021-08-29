@@ -20,7 +20,7 @@
 @endif
 @section('content')
     <div class="container search-page">
-        @if (isset($shown_item))
+        {{-- @if (isset($shown_item))
             <div class="row mb-5 justify-content-center shown-item">
                 @if(isset($shown_item->img))
                     <div class="col-xs-12 col-md-6 subject-img" style="background-image: url({{ fromDLHost($shown_item->img) }});background-size: cover;" >
@@ -37,7 +37,7 @@
                     @endif
                 </div>
             </div>
-        @endif
+        @endif --}}
         <div class="row my-3 justify-content-center">
             <aside id="search-filters" class="col-md-2 hidden-xs hiddem-sm search-filter-cont">
                 <button class="btn btn-mobile" data-toggle="collapse" data-target="#search-sidebar">
@@ -83,11 +83,15 @@
                 </nav>
             </aside>
 
-
             <section class="col-xs-12 col-md-10 search-results-cont pull-left">
                 <div class="row">
                     <section id="search-results-bar">
                         <div class="row mx-1">
+                            <div class="col-xs-12 col-md-6">
+                                <h1 class="subject-title">
+                                    {{ $shown_item->title }}
+                                </h1>
+                            </div>
                             @if(isset($result_count) && isset($q))
                                 <div class="results-heading col-xs-12 col-sm-8">
                                     {{ $result_count }}
@@ -213,16 +217,14 @@
 
                                     </div>
                                     <div class="col-md-9  col-sm-12">
-                                        <p class="mt-md-3" style="
-                                                                                                                    word-break: break-word;
-                                                                                                                    overflow: hidden;
-                                                                                                                    text-overflow: ellipsis;
-                                                                                                                    display: -webkit-box;
-                                                                                                                    line-height: 2; /* fallback */
-                                                                                                                    /* fallback */
-                                                                                                                    -webkit-line-clamp: 3; /* number of lines to show */
-                                                                                                                    -webkit-box-orient: vertical;
-                                                                                                                ">
+                                        <p class="mt-md-3" style="word-break: break-word;
+                                                                    overflow: hidden;
+                                                                    text-overflow: ellipsis;
+                                                                    display: -webkit-box;
+                                                                    line-height: 2; /* fallback */
+                                                                    /* fallback */
+                                                                    -webkit-line-clamp: 3; /* number of lines to show */
+                                                                    -webkit-box-orient: vertical;">
                                         {!! $course->description !!}
                                         </p>
                                         <div class="row">

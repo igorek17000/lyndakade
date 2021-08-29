@@ -2,9 +2,8 @@
 session(['redirectToAfterLogin' => url()->previous()]);
 @endphp
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
-{{-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> --}}
 {{-- <html dir="rtl" lang="fa"> --}}
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() == 'fa' ? 'rtl' : 'ltr' }}">
 
 <head>
   <meta charset="UTF-8" />
