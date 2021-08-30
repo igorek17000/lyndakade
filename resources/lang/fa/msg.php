@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'Top' => 'بالا',
     'Name' => 'نام نمایشی',
     'FirstName' => 'نام',
     'LastName' => 'نام خانوادگی',

@@ -84,79 +84,96 @@ session(['redirectToAfterLogin' => url()->previous()]);
 
   @csrf
 
-<style>
-    .fab-container {
-    position: fixed;
-    width: 70px;
-    height: 70px;
-    bottom: 30px;
-    left: 30px;
-    z-index: 2000;
-}
+    <style>
+        .fab-container {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            bottom: 30px;
+            left: 30px;
+            z-index: 2000;
+        }
 
-.fab-container:hover .sub-button:nth-child(2) {
-        transform: translateY(-80px);
-    }
-.fab-container:hover .sub-button:nth-child(3) {
-        transform: translateY(-140px);
-    }
-.fab-container:hover .sub-button:nth-child(4) {
-        transform: translateY(-200px);
-    }
+        .fab-container:hover .sub-button:nth-child(2) {
+            transform: translateY(-80px);
+        }
+        .fab-container:hover .sub-button:nth-child(3) {
+            transform: translateY(-140px);
+        }
+        .fab-container:hover .sub-button:nth-child(4) {
+            transform: translateY(-200px);
+        }
 
-.fab-container:hover  .sub-button:nth-child(5) {
-        transform: translateY(-260px);
-    }
+        .fab-container:hover  .sub-button:nth-child(5) {
+            transform: translateY(-260px);
+        }
 
-.fab-container:hover  .sub-button:nth-child(6) {
-        transform: translateY(-320px);
-    }
+        .fab-container:hover  .sub-button:nth-child(6) {
+            transform: translateY(-320px);
+        }
 
-.fab-container .fab {
-  position: absolute;
-    left: 0;
-    top: 0;
-    height: 70px;
-    width: 70px;
-    background-color: #465773;
-    border-radius: 50%;
-    z-index: 2000;
-}
-.fab-container .fab::before {
-      content: " ";
-      position: absolute;
-      bottom: 0; left: 0;
-      height: 35px; width: 35px;
-      background-color: inherit;
-      border-radius: 0 0 10px 0;
-      z-index: -1;
-    }
-.fab-container .fab-content {
-      display: flex;
-      align-items: center; justify-content: center;
-      height: 100%; width: 100%;
-      border-radius: 50%;
-      }
-.fab-container .sub-button {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    bottom: 10px;
-    left: 10px;
-    height: 50px;
-    width: 50px;
-    background-color: royalblue;
-    border-radius: 50%;
-    transition: all .3s ease;
-    z-index:200;
-}
-.fab-container .sub-button:hover {
-      cursor: pointer;
-    }
+        .fab-container .fab {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 70px;
+            width: 70px;
+            background-color: #465773;
+            border-radius: 50%;
+            z-index: 2000;
+        }
+        .fab-container .fab::before {
+            content: " ";
+            position: absolute;
+            bottom: 0; left: 0;
+            height: 35px; width: 35px;
+            background-color: inherit;
+            border-radius: 0 0 10px 0;
+            z-index: -1;
+        }
+        .fab-container .fab-content {
+            display: flex;
+            align-items: center; justify-content: center;
+            height: 100%; width: 100%;
+            border-radius: 50%;
+        }
+        .fab-container .sub-button {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            bottom: 10px;
+            left: 10px;
+            height: 50px;
+            width: 50px;
+            background-color: royalblue;
+            border-radius: 50%;
+            transition: all .3s ease;
+            z-index:200;
+        }
+        .fab-container .sub-button:hover {
+            cursor: pointer;
+        }
     </style>
 
-    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="87ad3840-8311-47fb-b849-0eb3e6cc113c";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <script type="text/javascript">
+        CRISP_RUNTIME_CONFIG = {
+            locale : "{{ app()->getLocale() }}"
+        };
+
+        window.$crisp=[];
+        window.CRISP_RUNTIME_CONFIG = {
+            locale : "{{ app()->getLocale() }}"
+        };
+        window.CRISP_WEBSITE_ID="87ad3840-8311-47fb-b849-0eb3e6cc113c";
+        (function(){
+            d=document;
+            s=d.createElement("script");
+            s.src="https://client.crisp.chat/l.js";
+            s.async=1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+            })();
+    </script>
 </head>
 
 <body>
@@ -196,7 +213,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
   </div>
 
 </div> --}}
-
 
     @include('go-to-top-btn')
     {{-- <div class="navbar sticky-top navbar-expand-md navbar-dark bg-dark shadow-sm" style="padding: 0!important;">

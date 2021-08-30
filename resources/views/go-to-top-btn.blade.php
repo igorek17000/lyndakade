@@ -1,4 +1,4 @@
-<button class="go-to-top-btn" title="Go to top">Top</button>
+<button class="go-to-top-btn" title="Go to top">{{ __('msg.Top') }}</button>
 @push('js')
 
   <script>
@@ -44,7 +44,6 @@
         return false;
       });
     });
-
   </script>
 
 @endpush

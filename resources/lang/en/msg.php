@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'Top' => 'Top',
     'Name' => 'display name',
     'FirstName' => 'first name',
     'LastName' => 'last name',
