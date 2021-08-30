@@ -130,11 +130,13 @@ class LearnPathController extends Controller
         foreach ($paths as $path) {
             $res[$path->slug] = [];
             $js_courses = json_decode($path->courses);
+            $idx = 0;
             foreach ($js_courses as $c) {
                 $course_id = $c->id;
                 $course = Course::where('id', $course_id)->get(['slug_linkedin'])->first();
                 if ($course) {
-                    $res[$path->slug][] = $course->slug_linkedin;
+                    $idx += 1;
+                    $res[$path->slug][$idx] = $course->slug_linkedin;
                 }
             }
         }
