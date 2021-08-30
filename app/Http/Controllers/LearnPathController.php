@@ -11,6 +11,7 @@ use App\Software;
 use App\Subject;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -98,5 +99,26 @@ class LearnPathController extends Controller
         }
         abort(404);
         return redirect()->route('root.home');
+    }
+
+
+    public function course_list_api(Request $request, $slug)
+    {
+        $path = LearnPath::firstWhere('slug', $slug);
+
+        $js_courses = json_decode($path->courses);
+
+        $res = array();
+        foreach ($js_courses as $c) {
+            $course_id = $c->id;
+            $course = Course::where('id', $course_id)->get(['slug_linkedin', 'title', 'titleEng']);
+            if ($course) {
+                array_push($res, $course);
+            }
+        }
+        return new JsonResponse([
+            'data' => $res,
+            'status' => 'success',
+        ], 200);
     }
 }
