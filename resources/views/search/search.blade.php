@@ -87,6 +87,7 @@
                 <div class="row">
                     <section id="search-results-bar">
                         <div class="row mx-1">
+                            @if (isset($shown_item))
                             <div class="col-xs-12 mb-3">
                                 <h1 class="subject-title w-100">
                                     <span>
@@ -97,6 +98,8 @@
                                     </span>
                                 </h1>
                             </div>
+
+                            @endif
                             @if(isset($result_count) && isset($q))
                                 <div class="results-heading col-xs-12 col-sm-8">
                                     {{ $result_count }}
