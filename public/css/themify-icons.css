@@ -1,8 +1,8 @@
 @font-face {
     font-family: "themify";
     /* src: url('../fonts/themify.eot') format('woff'); */
-    src: url("../fonts/themify.woff?#iefix") format("embedded-opentype"),
-        url("../fonts/themify.eot") format("woff"),
+    src: url("../fonts/themify.woff?#iefix") format("woff"),
+        url("../fonts/themify.eot") format("embedded-opentype"),
         url("../fonts/themify.ttf") format("truetype"),
         url("../fonts/themify.svg") format("svg");
     font-weight: normal;
