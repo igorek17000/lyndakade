@@ -111,7 +111,7 @@ class LearnPathController extends Controller
         $res = [];
         foreach ($js_courses as $c) {
             $course_id = $c->id;
-            $course = Course::where('id', $course_id)->get(['slug_linkedin']);
+            $course = Course::where('id', $course_id)->get(['slug_linkedin'])->first();
             if ($course) {
                 $res [] = $course->slug_linkedin;
             }
