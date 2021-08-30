@@ -43,7 +43,8 @@ Route::middleware('guest')->post('/courses/update-view-from-linkedin', 'CourseCo
 Route::middleware('guest')->post('/course-subject/set', 'CourseController@course_subject_set_api')->name('course.subject.set.api');
 Route::middleware('guest')->post('/subjects/add', 'SubjectController@subject_add_api')->name('subjects.add.api');
 
-Route::middleware('guest')->get('/learn-path/course-list/{slug}', 'LearnPathController@course_list_api')->name('subjects.add.api');
+Route::middleware('guest')->get('/learn-path/get-all', 'LearnPathController@get_all_api')->name('learn-path.get-all.api');
+Route::middleware('guest')->get('/learn-path/course-list/{slug}', 'LearnPathController@course_list_api')->name('learn-path.course-list.api');
 
 Route::middleware('guest')->post('/test', 'CourseController@test_api')->name('subjects.add.api');
 
