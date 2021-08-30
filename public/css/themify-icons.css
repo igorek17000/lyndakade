@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'themify';
-    src: url('../fonts/themify.eot');
+    src: url('../fonts/themify.eot') format('woff');
     src: url('../fonts/themify.woff?#iefix') format('embedded-opentype'),
     url('../fonts/themify.eot') format('woff'),
     url('../fonts/themify.ttf') format('truetype'),
