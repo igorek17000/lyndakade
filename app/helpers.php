@@ -309,12 +309,12 @@ function fromDLHost($path)
 
     if ($json = json_decode($path))
         foreach ($json as $file)
-            return "https://dl.lyndakade.ir/" . $file->download_link;
+            return "http://dl.lyndakade.ir/" . $file->download_link;
 
-    if (strpos($path, 'http')) {
-        return $path->replace('http:', 'https:');
+    if (strpos($path, 'https')) {
+        return $path->replace('https:', 'http:');
     }
-    return "https://dl.lyndakade.ir/" . $path;
+    return "http://dl.lyndakade.ir/" . $path;
 }
 
 function get_number_of_authors_has_at_least_one_course()
