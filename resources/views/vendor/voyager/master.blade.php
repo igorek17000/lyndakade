@@ -20,6 +20,19 @@
   @endif
 
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SB27JF9C9Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-SB27JF9C9Y');
+  </script>
+  <meta name="google-site-verification" content="TPdR7eAXlaJ5SPRxpwWcQbG7yNX3s-DS3tLUHlOp9RY" />
 
   <!-- App CSS -->
   <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
