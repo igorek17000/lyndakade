@@ -12,11 +12,11 @@
       "@type": "ItemList",
       "itemListElement": [
         @foreach ($packages as $package)
-        {
+          {
           "@type":"ListItem",
-          "position":{{ $loop->index+1 }},
-          "url":"{{ route('packages.index') }}"
-        }@if (!$loop->last),
+          "position":{{ $loop->index + 1 }},
+          "url":"{{ route('packages.index', ['id' => $loop->index + 1]) }}"
+          }@if (!$loop->last),
           @endif
         @endforeach
       ]
