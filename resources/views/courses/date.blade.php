@@ -30,7 +30,7 @@
           "name": "{{ $course->titleEng }} - {{ $course->title }}",
           "description": "{{ $course->description }}",
           "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
-      "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm'}}",
+          "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm'}}",
           "provider": [
           @foreach ($course->authors as $author)
             {
