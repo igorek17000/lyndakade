@@ -12,10 +12,10 @@
       "@type": "ItemList",
       "name": "{{ date_get_seo_title($coursetype) }}",
       "itemListElement": [
-        @foreach ($courses as $index => $course)
+        @foreach ($courses as $course)
           {
           "@type": "ListItem",
-          "position": "{{ $index + 1 }}",
+          "position": "{{ $loop->index + 1 }}",
           "item": {
           "@type": "Course",
           "image": "{{ fromDLHost($course->img) }}",
