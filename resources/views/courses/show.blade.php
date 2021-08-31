@@ -19,9 +19,7 @@
           "@type": "Person",
           "name": "{{ $author->name }}",
           "url": {"@id": "{{ route('authors.show', [$author->slug]) }}"}
-          }
-          @if (!$loop->last)
-            ,
+          }@if (!$loop->last),
           @endif
         @endforeach
       ]
