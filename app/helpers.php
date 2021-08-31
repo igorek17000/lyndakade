@@ -306,6 +306,7 @@ function fromDLHost($path)
 {
     if ($path == '')
         return '#';
+    $path = str_replace("\\", "/", $path);
 
     if ($json = json_decode($path))
         foreach ($json as $file)
