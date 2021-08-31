@@ -9,9 +9,9 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
+      "@type": "WebPage",
       "image": "{{ fromDLHost($author->img) }}",
-      "name": "{{ $author->name }}",
+      "headline": "{{ $author->name }}",
       "url": "{{ route('authors.show', [$author->slug]) }}"
     }
     </script>
