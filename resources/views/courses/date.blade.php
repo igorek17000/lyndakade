@@ -6,6 +6,40 @@
   'keywords' => get_seo_keywords() . ' , ' . date_get_seo_keywords($coursetype),
   'description' => date_get_seo_title($coursetype) . ' | ' . get_seo_description(),
   ])
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "{{ date_get_seo_title($coursetype) }}",
+      "itemListElement": [
+        @foreach ($courses as $index => $course)
+          {
+          "@type": "ListItem",
+          "position": "{{ $index + 1 }}",
+          "item": {
+          "@type": "Course",
+          "image": "{{ fromDLHost($course) }}",
+          "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
+          "name": "{{ $course->titleEng }}",
+          "description": "{{ $course->description }}",
+          "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
+          "provider": [
+          @foreach ($course->authors as $author)
+            {
+            "@type": "Person",
+            "name": "{{ $author->name }}",
+            "url": {"@id": "{{ route('authors.show', [$author->slug]) }}"}
+            }@if (!$loop->last),
+            @endif
+          @endforeach
+          ]
+          }
+          }@if (!$loop->last),
+          @endif
+        @endforeach
+      ]
+    }
+  </script>
 @endpush
 @section('content')
   <h1 class="sr-only">

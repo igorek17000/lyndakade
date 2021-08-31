@@ -17,6 +17,7 @@
       "@type": "Course",
       "name": "{{ $course->title }}",
       "description": "{{ $course->description }}",
+      "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
       "provider": [
         @foreach ($course->authors as $author)
           {
