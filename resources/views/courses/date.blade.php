@@ -18,7 +18,7 @@
           "position": "{{ $index + 1 }}",
           "item": {
           "@type": "Course",
-          "image": "{{ fromDLHost($course) }}",
+          "image": "{{ fromDLHost($course->img) }}",
           "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
           "name": "{{ $course->titleEng }}",
           "description": "{{ $course->description }}",
