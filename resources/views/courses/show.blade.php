@@ -21,7 +21,7 @@
       "description": "{{ $course->descriptionEng }} - {{ $course->description }}",
       "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
       "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm'}}",
-      "author": [
+      "provider": [
         @foreach ($course->authors as $author)
           {
           "@type": "Person",
