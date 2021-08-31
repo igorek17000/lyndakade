@@ -155,16 +155,18 @@ session(['redirectToAfterLogin' => url()->previous()]);
             cursor: pointer;
         }
     </style>
+    <script>
 
-    <script type="text/javascript">
         CRISP_RUNTIME_CONFIG = {
             locale : "{{ app()->getLocale() }}"
         };
-
-        window.$crisp=[];
         window.CRISP_RUNTIME_CONFIG = {
             locale : "{{ app()->getLocale() }}"
         };
+
+    </script>
+    <script type="text/javascript">
+        window.$crisp=[];
         window.CRISP_WEBSITE_ID="87ad3840-8311-47fb-b849-0eb3e6cc113c";
         (function(){
             d=document;
