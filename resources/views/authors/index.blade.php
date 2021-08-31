@@ -37,10 +37,8 @@
         <li style="float: left;"><a href="#{{ $key }}">{{ $key }}</a></li>
       @endforeach
     </ul>
-
   </div>
   <div class="container mt-40 text-left" dir="ltr">
-
     @foreach (array_keys($authors) as $key)
       <div id="{{ $key }}">
         <h4>{{ $key }}</h4>

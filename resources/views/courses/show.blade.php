@@ -7,19 +7,26 @@
   'keywords' => $course->title . ', ' . $course->titleEng . ' , ' . get_seo_keywords(),
   ])
   <link rel="canonical" href="{{ request()->url() }}" />
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Course",
-            "name": "{{ $course->title }}",
-            "description": "{{ $course->description }}",
-            "provider": {
-                "@type": "Person",
-                "name": "{{ $course->authors[0]->name }}",
-                "url": {"@id": "/instructors/{{ $course->authors[0]->slug }}"}
-            }
-        }
-    </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "{{ $course->title }}",
+      "description": "{{ $course->description }}",
+      "provider": [
+        @foreach ($course->authors as $author)
+          {
+          "@type": "Person",
+          "name": "{{ $author->name }}",
+          "url": {"@id": "{{ route('authors.show', [$author->slug]) }}"}
+          }
+          @if (!$loop->last)
+            ,
+          @endif
+        @endforeach
+      ]
+    }
+  </script>
 @endpush
 @section('content')
   @csrf
@@ -88,8 +95,8 @@
                   <h5>مدرس</h5>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
-                      <img src="#" class="lazyload" width="100" height="100" data-src="{{ fromDLHost($author->img) }}"
-                        alt="image of author {{ $author->name }}">
+                      <img src="#" class="lazyload" width="100" height="100"
+                        data-src="{{ fromDLHost($author->img) }}" alt="image of author {{ $author->name }}">
                       <cite>{{ $author->name }}</cite>
                     </a>
                   @endforeach
@@ -198,8 +205,8 @@
                   <h5>Author</h5>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
-                      <img src="#" class="lazyload" width="100" height="100" data-src="{{ fromDLHost($author->img) }}"
-                        alt="image of author {{ $author->name }}">
+                      <img src="#" class="lazyload" width="100" height="100"
+                        data-src="{{ fromDLHost($author->img) }}" alt="image of author {{ $author->name }}">
                       <cite>{{ $author->name }}</cite>
                     </a>
                   @endforeach
