@@ -6,6 +6,22 @@
   'keywords' => get_seo_keywords() . ' , ' . 'مدرس ' . $author->name . ' , author ' . $author->name,
   'description' => $author->description . ' | ' . get_seo_description(),
   ])
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "image": "{{ fromDLHost($author->img) }}",
+      "name": "{{ $author->name }}",
+      "url": "{{ route('authors.show', [$author->slug]) }}",
+	    "sameAs" : [
+            "https://www.facebook.com/",
+            "https://www.linkedin.com/",
+            "http://twitter.com/",
+            "http://instagram.com/",
+            "https://plus.google.com/"
+      ]
+    }
+    </script>
 @endpush
 @section('content')
   {{-- <div class="row mx-0 px-0" style="height: 400px; background-color:#fff;"> --}}
