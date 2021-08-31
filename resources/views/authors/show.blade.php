@@ -11,8 +11,8 @@
       "@context": "https://schema.org",
       "@type": "WebPage",
       "headline": "{{ $author->name }}",
-      "url": "{{ route('authors.show', [$author->slug]) }}"
-      "image": "{{ fromDLHost($author->img) }}",
+      "url": "{{ route('authors.show', [$author->slug]) }}",
+      "image": "{{ fromDLHost($author->img) }}"
     }
     </script>
 @endpush
