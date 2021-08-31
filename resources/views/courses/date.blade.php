@@ -6,14 +6,7 @@
   'keywords' => get_seo_keywords() . ' , ' . date_get_seo_keywords($coursetype),
   'description' => date_get_seo_title($coursetype) . ' | ' . get_seo_description(),
   ])
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name" : "{{ date_get_seo_title($coursetype) }} - {{ date_get_seo_title_eng($coursetype) }}",
-      "url": "{{ request()->url() }}"
-    }
-    </script>
+  
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
