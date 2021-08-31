@@ -32,9 +32,9 @@
       </div>
     </div> --}}
 
-    <ul class="alpha-nav" style="">
+    <ul class="alpha-nav">
       @foreach (array_keys($authors) as $key)
-        <li><a href="#{{ $key }}">{{ $key }}</a></li>
+        <li style="float: left;"><a href="#{{ $key }}">{{ $key }}</a></li>
       @endforeach
     </ul>
 
