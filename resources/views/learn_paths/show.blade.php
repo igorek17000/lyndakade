@@ -9,9 +9,22 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
+      "@type": "Course",
+      "image": "{{ fromDLHost($path->img) }}",
       "name" : "{{ $path->titleEng }} - {{ $path->title }}",
       "url": "{{ route('learn.paths.show', [$path->slug]) }}"
+      "description": "{{ $path->descriptionEng }} - {{ $path->description }}",
+      "timeRequired": "{{ $path->durationHours() > 0 ? $path->durationHours() . 'h ' . $path->durationMinutes() . 'm' : $path->durationMinutes() . 'm'}}",
+      "provider": [
+        @foreach ($authors as $author)
+          {
+          "@type": "Person",
+          "name": "{{ $author->name }}",
+          "url": {"@id": "{{ route('authors.show', [$author->slug]) }}"}
+          }@if (!$loop->last),
+          @endif
+        @endforeach
+      ]
     }
     </script>
   <script type="application/ld+json">
@@ -30,7 +43,7 @@
           "name": "{{ $course->titleEng }} - {{ $course->title }}",
           "description": "{{ $course->description }}",
           "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
-          "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm'}}"
+          "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm'}}",
           "provider": [
           @foreach ($course->authors as $author)
             {
