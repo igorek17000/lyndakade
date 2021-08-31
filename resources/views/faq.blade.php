@@ -6,7 +6,7 @@
   'keywords' => get_seo_keywords() . ' , سوالات متداول , faq, questions, ticket, تیکت ',
   'description' => 'مشاهده لیست سوالات متداول کاربران. | ' . get_seo_description(),
   ])
-      <script type="application/ld+json">
+      {{-- <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
@@ -46,7 +46,7 @@
           "text":"Local and State sales tax will be collected if your recipient's mailing address is in: <ul><li>Arizona</li><li>California</li><li>Colorado</li></ul>"}
         }]
     }
-    </script>
+    </script> --}}
 @endpush
 @section('content')
   <div class="container">
