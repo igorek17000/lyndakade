@@ -51,7 +51,7 @@
           <div class="col-md-2 col-sm-4">
             <a href="{{ route('authors.show', [$author->slug]) }}">
               <div class="box2 m-0 mt-1" style="border-radius: 20px">
-                {{-- <img src="#" data-src="{{ fromDLHost($author->img) }}" class="lazyload"> --}}
+                <img src="#" data-src="{{ fromDLHost($author->img) }}" class="lazyload">
                 <div class="box-content">
                   <div class="inner-content">
                     <h3 class="title">{{ $author->name }}</h3>
