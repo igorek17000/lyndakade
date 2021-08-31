@@ -9,6 +9,22 @@
   'keywords' => get_seo_keywords(),
   'description' => get_seo_description(),
   ])
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://lyndakade.ir/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://lyndakade.ir/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 @endpush
 @section('content')
   <div class="row m-0 home-page">
