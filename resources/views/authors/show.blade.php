@@ -12,14 +12,7 @@
       "@type": "Person",
       "image": "{{ fromDLHost($author->img) }}",
       "name": "{{ $author->name }}",
-      "url": "{{ route('authors.show', [$author->slug]) }}",
-	    "sameAs" : [
-            "https://www.facebook.com/",
-            "https://www.linkedin.com/",
-            "http://twitter.com/",
-            "http://instagram.com/",
-            "https://plus.google.com/"
-      ]
+      "url": "{{ route('authors.show', [$author->slug]) }}"
     }
     </script>
 @endpush
