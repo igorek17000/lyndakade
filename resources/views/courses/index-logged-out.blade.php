@@ -14,6 +14,7 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
+      "name" : "Lynda Kade",
       "url": "https://lyndakade.ir/",
       "potentialAction": {
         "@type": "SearchAction",
@@ -23,6 +24,56 @@
         },
         "query-input": "required name=search_term_string"
       }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@id": "https://lyndakade.ir/learning/courses/free",
+                "name": "Free Courses"
+            }
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "@id": "https://lyndakade.ir/learning/courses/newest",
+                "name": "New Courses"
+            }
+        },{
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "@id": "https://lyndakade.ir/learning/courses/best",
+                "name": "Popluar Courses"
+            }
+        },{
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+                "@id": "https://lyndakade.ir/learning-paths",
+                "name": "Learning Paths"
+            }
+        },{
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+                "@id": "https://lyndakade.ir/request-course",
+                "name": "Request Course"
+            }
+        },{
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+                "@id": "https://lyndakade.ir/contact-us",
+                "name": "Contact Us"
+            }
+        }]
     }
     </script>
 @endpush
