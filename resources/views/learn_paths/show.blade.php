@@ -9,27 +9,6 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "image": "{{ fromDLHost($path->img) }}",
-      "headline" : "{{ $path->titleEng }} - {{ $path->title }}",
-      "url": "{{ route('learn.paths.show', [$path->slug]) }}",
-      "description": "{{ $path->descriptionEng }} - {{ $path->description }}",
-      "timeRequired": "{{ $path->durationHours() > 0 ? $path->durationHours() . 'h ' . $path->durationMinutes() . 'm' : $path->durationMinutes() . 'm'}}",
-      "provider": [
-        @foreach ($authors as $author)
-          {
-          "@type": "Person",
-          "name": "{{ $author->name }}",
-          "url": {"@id": "{{ route('authors.show', [$author->slug]) }}"}
-          }@if (!$loop->last),
-          @endif
-        @endforeach
-      ]
-    }
-    </script>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
       "@type": "ItemList",
       "itemListElement": [
         @foreach (js_to_courses($path->courses) as $course)
