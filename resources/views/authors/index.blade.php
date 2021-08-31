@@ -39,7 +39,7 @@
     </ul>
 
   </div>
-  <div class="container mt-40">
+  <div class="container mt-40 text-left" dir="ltr">
 
     @foreach (array_keys($authors) as $key)
       <div id="{{ $key }}">
