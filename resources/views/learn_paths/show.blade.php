@@ -12,7 +12,7 @@
       "@type": "Course",
       "image": "{{ fromDLHost($path->img) }}",
       "name" : "{{ $path->titleEng }} - {{ $path->title }}",
-      "url": "{{ route('learn.paths.show', [$path->slug]) }}"
+      "url": "{{ route('learn.paths.show', [$path->slug]) }}",
       "description": "{{ $path->descriptionEng }} - {{ $path->description }}",
       "timeRequired": "{{ $path->durationHours() > 0 ? $path->durationHours() . 'h ' . $path->durationMinutes() . 'm' : $path->durationMinutes() . 'm'}}",
       "provider": [
