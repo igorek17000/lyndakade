@@ -45,9 +45,9 @@
       <div id="{{ $key }}">
         <h4>{{ $key }}</h4>
       </div>
-      <ul>
+      <ul class="row">
         @foreach ($authors[$key] as $author)
-          <li>
+          <li class="col-12 col-md-4">
             <a href="{{ route('authors.show', [$author->slug]) }}">
               {{ $author->name }}
             </a>
