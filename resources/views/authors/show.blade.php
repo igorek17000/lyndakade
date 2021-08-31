@@ -10,9 +10,9 @@
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "image": "{{ fromDLHost($author->img) }}",
       "headline": "{{ $author->name }}",
       "url": "{{ route('authors.show', [$author->slug]) }}"
+      "image": "{{ fromDLHost($author->img) }}",
     }
     </script>
 @endpush
