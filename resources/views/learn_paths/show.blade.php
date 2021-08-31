@@ -9,7 +9,7 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Course",
+      "@type": "WebPage",
       "image": "{{ fromDLHost($path->img) }}",
       "name" : "{{ $path->titleEng }} - {{ $path->title }}",
       "url": "{{ route('learn.paths.show', [$path->slug]) }}",
