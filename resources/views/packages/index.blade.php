@@ -6,6 +6,22 @@
   'keywords' => get_seo_keywords() . ', خرید اشتراک , buy package , package, lyndakade package',
   'description' => 'خرید اشتراک | ' . get_seo_description(),
   ])
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        @foreach ($packages as $package)
+        {
+          "@type":"ListItem",
+          "position":{{ $loop->index+1 }},
+          "url":"{{ route('packages.index') }}"
+        }@if (!$loop->last),
+          @endif
+        @endforeach
+      ]
+    }
+  </script>
 @endpush
 @section('content')
   <h1 class="sr-only">خرید اشتراک</h1>
