@@ -6,15 +6,6 @@
   'keywords' => get_seo_keywords() . ' , لیست مسیرهای آموزشی , learn path, learn-path, all learn paths ',
   'description' => 'لیست مسیرهای آموزشی  | ' . get_seo_description(),
   ])
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name" : "Learning Paths - مسیرهای آموزشی",
-      "url": "{{ route('learn.paths.index') }}"
-    }
-    </script>
-
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
