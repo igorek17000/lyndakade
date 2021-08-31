@@ -10,6 +10,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Organization",
+      "name": "تماس با ما",
       "url": "{{ route('root.contact.us') }}",
       "logo": "https://lyndakade.ir/image/logo.png"
     }
