@@ -45,8 +45,16 @@
       <div id="{{ $key }}">
         <h4>{{ $key }}</h4>
       </div>
-
-      <div class="row mt-30 mb-5">
+      <ul>
+        @foreach ($authors[$key] as $author)
+          <li>
+            <a href="{{ route('authors.show', [$author->slug]) }}">
+              {{ $author->name }}
+            </a>
+          </li>
+        @endforeach
+      </ul>
+      {{-- <div class="row mt-30 mb-5">
         @foreach ($authors[$key] as $author)
           <div class="col-md-2 col-sm-4">
             <a href="{{ route('authors.show', [$author->slug]) }}">
@@ -56,29 +64,14 @@
                   <div class="inner-content">
                     <h3 class="title">{{ $author->name }}</h3>
                     <span class="post">
-                      {{-- {{ $author->specialty }} --}}
-
-
-                      {{-- @foreach ($author->subjects as $subject)
-                        {{ $subject->title }}
-                        @if ($subject->id != $author->subjects->last()->id)
-                          ,
-                        @endif
-                      @endforeach --}}
                     </span>
-                    {{-- <ul class="icon">
-                                            <li><a href="{{ route('authors.show', [$author->slug, $author->id, rand(0, 20)]) }}"><i class="fa fa-address-card"></i></a></li>
-                                        </ul> --}}
                   </div>
                 </div>
               </div>
             </a>
-            {{-- <div class="row align-items-center d-flex justify-content-center">
-                            <a  href="{{ route('authors.show', [$author->slug, $author->id, rand(0, 20)]) }}"><button  style="border-radius: 20px;background-color:#fdc840;width: 200px;height: 30px;">  بررسی رزومه استاد</button></a>
-                        </div> --}}
           </div>
         @endforeach
-      </div>
+      </div> --}}
     @endforeach
   </div>
 @endsection
