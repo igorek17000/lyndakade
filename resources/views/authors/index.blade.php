@@ -15,7 +15,7 @@
           @foreach ($authors[$key] as $author)
             {
             "@type":"ListItem",
-            "position":{{ $loop->parent->index + $loop->index + 1 }},
+            "position":{{ ($loop->parent->index > 0 ? count($authors[$key]) : 0) + $loop->iteration + 1 }},
             "item": {
             "@type": "Person",
             "image": "{{ fromDLHost($author->img) }}",
