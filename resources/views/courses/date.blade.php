@@ -10,7 +10,7 @@
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      "name": "{{ date_get_seo_title($coursetype) }}",
+      "name": "{{ date_get_seo_title($coursetype) }} - {{ date_get_seo_title_eng($coursetype) }}",
       "itemListElement": [
         @foreach ($courses->take(10) as $course)
           {

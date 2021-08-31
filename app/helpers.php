@@ -389,6 +389,16 @@ function date_get_seo_title($coursetype)
     return 'دوره های آموزشی رایگان';
 }
 
+function date_get_seo_title_eng($coursetype)
+{
+    if ($coursetype === 'newest') {
+        return 'New Courses';
+    } elseif ($coursetype === 'best') {
+        return 'Popular Courses';
+    }
+    return 'Free Courses';
+}
+
 function date_get_seo_keywords($coursetype)
 {
     if ($coursetype === 'newest') {

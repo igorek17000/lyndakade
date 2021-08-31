@@ -35,14 +35,14 @@
             "@type": "ListItem",
             "position": 1,
             "item": {
-                "@id": "https://lyndakade.ir/learning/courses/newest",
+                "@id": "{{ route('courses.newest') }}",
                 "name": "New Courses - جدیدترین دوره ها"
             }
         },{
             "@type": "ListItem",
             "position": 2,
             "item": {
-                "@id": "https://lyndakade.ir/learning-paths",
+                "@id": "{{ route('learn.paths.index') }}",
                 "name": "Learning Paths - مسیر آموزشی"
             }
         },{
@@ -56,14 +56,14 @@
             "@type": "ListItem",
             "position": 4,
             "item": {
-                "@id": "https://lyndakade.ir/request-course",
+                "@id": "{{ route('demands.create') }}",
                 "name": "Request Course - درخواست دوره"
             }
         },{
             "@type": "ListItem",
             "position": 5,
             "item": {
-                "@id": "https://lyndakade.ir/contact-us",
+                "@id": "{{ route('root.contact.us') }}",
                 "name": "Contact Us - تماس با ما"
             }
         },{
