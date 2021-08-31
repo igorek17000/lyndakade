@@ -10,19 +10,25 @@
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      @foreach (array_keys($authors) as $key)
-        @foreach ($authors[$key] as $author)
-          {"@type":"ListItem", "position":{{ $loop->index + 1 }},
-          "item": {
-          "@type": "Person",
-          "image": "{{ fromDLHost($author->img) }}",
-          "name": "{{ $author->name }}",
-          "url":"{{ route('authors.show', [$author->slug]) }}"
-          }
-          }@if (!$loop->last),
-            @endif @endforeach @if (!$loop->last),
+      "itemListElement": [
+        @foreach (array_keys($authors) as $key)
+          @foreach ($authors[$key] as $author)
+            {
+            "@type":"ListItem",
+            "position":{{ $loop->index + 1 }},
+            "item": {
+            "@type": "Person",
+            "image": "{{ fromDLHost($author->img) }}",
+            "name": "{{ $author->name }}",
+            "url":"{{ route('authors.show', [$author->slug]) }}"
+            }
+            }@if (!$loop->last),
             @endif
-          @endforeach]
+          @endforeach
+          @if (!$loop->last),
+          @endif
+        @endforeach
+      ]
     }
   </script>
 @endpush
