@@ -15,13 +15,15 @@
         window.course_author = "{{ $course->authors[0]->name }}";
     </script>
     <script type="application/ld+json">
-        "@context": "https://schema.org",
-        "@type": "Course",
-        "name": window.course_title,
-        "description": window.course_description,
-        "provider": {
-            "@type": "Person",
-            "name": window.course_author
+        {
+            "@context": "https://schema.org",
+            "@type": "Course",
+            "name": window.course_title,
+            "description": window.course_description,
+            "provider": {
+                "@type": "Person",
+                "name": window.course_author
+            }
         }
     </script>
 @endpush
