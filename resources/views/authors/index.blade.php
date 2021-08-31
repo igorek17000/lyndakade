@@ -6,6 +6,9 @@
   'keywords' => get_seo_keywords() . ' , مدرسین , authors ',
   'description' => 'لیست تمامی مدرسین در وبسایت لیندا کده. | ' . get_seo_description(),
   ])
+  @php
+    $index = 1;
+  @endphp
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -15,7 +18,7 @@
           @foreach ($authors[$key] as $author)
             {
             "@type":"ListItem",
-            "position":{{ ($loop->parent->index > 0 ? count($authors[$key]) : 0) + $loop->iteration + 1 }},
+            "position":{{ $index }},
             "item": {
             "@type": "Person",
             "image": "{{ fromDLHost($author->img) }}",
@@ -24,6 +27,9 @@
             }
             }@if (!$loop->last),
             @endif
+            @php
+                $index += 1;
+            @endphp
           @endforeach
           @if (!$loop->last),
           @endif
