@@ -14,7 +14,7 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name" : "Lynda Kade",
+      "name" : "Lynda Kade - لیندا کده",
       "url": "https://lyndakade.ir/",
       "potentialAction": {
         "@type": "SearchAction",
@@ -35,43 +35,43 @@
             "@type": "ListItem",
             "position": 1,
             "item": {
-                "@id": "https://lyndakade.ir/learning-paths",
-                "name": "Learning Paths"
+                "@id": "https://lyndakade.ir/learning/courses/newest",
+                "name": "New Courses - جدیدترین دوره ها"
             }
         },{
             "@type": "ListItem",
             "position": 2,
             "item": {
-                "@id": "https://lyndakade.ir/learning/courses/newest",
-                "name": "New Courses"
+                "@id": "https://lyndakade.ir/learning-paths",
+                "name": "Learning Paths - مسیر آموزشی"
             }
         },{
             "@type": "ListItem",
             "position": 3,
             "item": {
-                "@id": "https://lyndakade.ir/learning/courses/best",
-                "name": "Popluar Courses"
+                "@id": "{{ route('packages.index') }}",
+                "name": "Buy Packages - خرید اشتراک"
             }
         },{
             "@type": "ListItem",
             "position": 4,
             "item": {
-                "@id": "https://lyndakade.ir/learning/courses/free",
-                "name": "Free Courses"
+                "@id": "https://lyndakade.ir/request-course",
+                "name": "Request Course - درخواست دوره"
             }
         },{
             "@type": "ListItem",
             "position": 5,
             "item": {
-                "@id": "https://lyndakade.ir/request-course",
-                "name": "Request Course"
+                "@id": "https://lyndakade.ir/contact-us",
+                "name": "Contact Us - تماس با ما"
             }
         },{
             "@type": "ListItem",
             "position": 6,
             "item": {
-                "@id": "https://lyndakade.ir/contact-us",
-                "name": "Contact Us"
+                "@id": "{{ route('faq') }}",
+                "name": "FAQ - سوالات متداول"
             }
         }]
     }
