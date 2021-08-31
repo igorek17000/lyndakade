@@ -6,6 +6,14 @@
   'keywords' => get_seo_keywords() . ' , درخواست دوره آموزشی , course request, request, demand, course demand ',
   'description' => 'برای درخواست دوره آموزشی از این صفحه اقدام فرمایید. | ' . get_seo_description(),
   ])
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name" : "Course Request - درخواست دوره آموزشی",
+      "url": "{{ route('demands.create') }}"
+    }
+    </script>
 @endpush
 @section('content')
   @csrf

@@ -6,6 +6,43 @@
   'keywords' => get_seo_keywords() . ' , لیست مسیرهای آموزشی , learn path, learn-path, all learn paths ',
   'description' => 'لیست مسیرهای آموزشی  | ' . get_seo_description(),
   ])
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name" : "Learning Paths - مسیرهای آموزشی",
+      "url": "{{ route('learn.paths.index') }}"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@id": "{{ route('learn.paths.show', ['business']) }}",
+                "name": "Business - کسب و کار"
+            }
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "@id": "{{ route('learn.paths.show', ['creative']) }}",
+                "name": "Creative - خلاقیت"
+            }
+        },{
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "@id": "{{ route('learn.paths.show', ['technology']) }}",
+                "name": "Technology - تکنولوژی"
+            }
+        }]
+    }
+    </script>
 @endpush
 @section('content')
     <div id="paths-hero" class="card bg-dark text-white">

@@ -6,6 +6,14 @@
   'keywords' => get_seo_keywords() . ' , ورود , ورود به حساب کاربری , login , sign in , sign-in',
   'description' => ' صفحه ورود به حساب کاربری | ' . get_seo_description(),
   ])
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name" : "Login - ورود",
+      "url": "{{ route('login') }}"
+    }
+    </script>
 @endpush
 @section('content')
   <input type="hidden" name="abcd" value="{{ url()->previous() }}" />

@@ -7,6 +7,14 @@
   'keywords' => get_seo_keywords() . ' , ثبت نام , ثبت نام حساب کاربری , register , sign up , sign-up',
   'description' => ' ثبت نام حساب کاربری | ' . get_seo_description(),
   ])
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name" : "Register - ثبت نام",
+      "url": "{{ route('register') }}"
+    }
+    </script>
 @endpush
 
 @section('script_head')

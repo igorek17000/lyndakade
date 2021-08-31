@@ -15,9 +15,12 @@
     {
       "@context": "https://schema.org",
       "@type": "Course",
+        "image": "{{ fromDLHost($course->img) }}",
       "name": "{{ $course->titleEng }} - {{ $course->title }}",
+        "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
       "description": "{{ $course->descriptionEng }} - {{ $course->description }}",
       "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
+      "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm'}}"
       "provider": [
         @foreach ($course->authors as $author)
           {

@@ -9,8 +9,15 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name" : "{{ date_get_seo_title($coursetype) }} - {{ date_get_seo_title_eng($coursetype) }}",
+      "url": "{{ request()->url() }}"
+    }
+    </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
       "@type": "ItemList",
-      "name": "{{ date_get_seo_title($coursetype) }} - {{ date_get_seo_title_eng($coursetype) }}",
       "itemListElement": [
         @foreach ($courses->take(10) as $course)
           {
@@ -20,9 +27,10 @@
           "@type": "Course",
           "image": "{{ fromDLHost($course->img) }}",
           "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
-          "name": "{{ $course->titleEng }}",
+          "name": "{{ $course->titleEng }} - {{ $course->title }}",
           "description": "{{ $course->description }}",
           "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
+      "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm'}}"
           "provider": [
           @foreach ($course->authors as $author)
             {

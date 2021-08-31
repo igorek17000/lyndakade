@@ -6,6 +6,48 @@
   'keywords' => get_seo_keywords() . ' , لیست مسیر آموزشی , learn path, learn-path, all learn paths ' . $path->title,
   'description' => 'مسیر آموزشی ' . $path->description . '| ' . get_seo_description(),
   ])
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name" : "{{ $path->titleEng }} - {{ $path->title }}",
+      "url": "{{ route('learn.paths.show', [$path->slug]) }}"
+    }
+    </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        @foreach (js_to_courses($path->courses) as $course)
+          {
+          "@type": "ListItem",
+          "position": "{{ $loop->index + 1 }}",
+          "item": {
+          "@type": "Course",
+          "image": "{{ fromDLHost($course->img) }}",
+          "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
+          "name": "{{ $course->titleEng }} - {{ $course->title }}",
+          "description": "{{ $course->description }}",
+          "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
+          "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm'}}"
+          "provider": [
+          @foreach ($course->authors as $author)
+            {
+            "@type": "Person",
+            "name": "{{ $author->name }}",
+            "url": {"@id": "{{ route('authors.show', [$author->slug]) }}"}
+            }@if (!$loop->last),
+            @endif
+          @endforeach
+          ]
+          }
+          }@if (!$loop->last),
+          @endif
+        @endforeach
+      ]
+    }
+  </script>
 @endpush
 @section('content')
 
