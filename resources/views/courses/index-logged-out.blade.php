@@ -35,8 +35,8 @@
             "@type": "ListItem",
             "position": 1,
             "item": {
-                "@id": "https://lyndakade.ir/learning/courses/free",
-                "name": "Free Courses"
+                "@id": "https://lyndakade.ir/learning-paths",
+                "name": "Learning Paths"
             }
         },{
             "@type": "ListItem",
@@ -56,8 +56,8 @@
             "@type": "ListItem",
             "position": 4,
             "item": {
-                "@id": "https://lyndakade.ir/learning-paths",
-                "name": "Learning Paths"
+                "@id": "https://lyndakade.ir/learning/courses/free",
+                "name": "Free Courses"
             }
         },{
             "@type": "ListItem",
