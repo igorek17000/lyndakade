@@ -6,6 +6,14 @@
   'keywords' => get_seo_keywords() . ' , تماس با ما , contact us ',
   'description' => 'برای ارتباط با ما از این صفحه اقدام فرمایید. | ' . get_seo_description(),
   ])
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "{{ route('root.contact.us') }}",
+      "logo": "https://lyndakade.ir/image/logo.png"
+    }
+  </script>
 @endpush
 @section('content')
   <div class="container" style="margin-bottom: 10px">
