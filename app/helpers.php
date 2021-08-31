@@ -306,12 +306,13 @@ function fromDLHost($path)
 {
     if ($path == '')
         return '#';
-    $path = str_replace("\\", "/", $path);
 
     if ($json = json_decode($path))
-        foreach ($json as $file)
-            return "https://dl.lyndakade.ir/" . $file->download_link;
-
+        foreach ($json as $file) {
+            $path = str_replace("\\", "/", $file->download_link);
+            return "https://dl.lyndakade.ir/" . $path;
+        }
+    $path = str_replace("\\", "/", $path);
     if (strpos($path, 'http')) {
         return $path->replace('http:', 'https:');
     }
