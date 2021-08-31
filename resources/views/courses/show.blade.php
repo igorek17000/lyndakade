@@ -6,9 +6,9 @@
   'description' => $course->description . ' - ' . $course->descriptionEng,
   'keywords' => $course->title . ', ' . $course->titleEng . ' , ' . get_seo_keywords(),
   ])
-
-  <link rel="alternate"
-    href="{{ route('courses.show', [$course->slug_url ?? $course->subjects[0]->slug, $course->slug ?? $course->slug_linkedin, $course->id]) }}">
+  @if ($course->slug_url && $course->slug)
+    <link rel="alternate" href="{{ route('courses.show', [$course->slug_url, $course->slug, $course->id]) }}">
+  @endif
   <link rel="alternate" href="{{ route('courses.show.short', [$course->id]) }}">
 
   <script type="application/ld+json">
