@@ -90,7 +90,7 @@ Route::get('/c/{id}', function ($id) {
         return redirect()->route('courses.show', [$course->slug_url, $course->slug, $course->id]);
     }
     abort(404);
-});
+})->name('courses.show.short');
 
 // Route::get('authors/json', 'HomeController@json_data_authors')->name('authors.json');
 // Route::get('courses/json', 'HomeController@json_data_courses')->name('courses.json');

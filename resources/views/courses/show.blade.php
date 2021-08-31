@@ -6,7 +6,11 @@
   'description' => $course->description . ' - ' . $course->descriptionEng,
   'keywords' => $course->title . ', ' . $course->titleEng . ' , ' . get_seo_keywords(),
   ])
-  <link rel="canonical" href="{{ request()->url() }}" />
+
+  <link rel="alternate"
+    href="{{ route('courses.show', [$course->slug_url ?? $course->subjects[0]->slug, $course->slug ?? $course->slug_linkedin, $course->id]) }}">
+  <link rel="alternate" href="{{ route('courses.show.short', [$course->id]) }}">
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
