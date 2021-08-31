@@ -12,7 +12,7 @@
       "@type": "ItemList",
       "name": "{{ date_get_seo_title($coursetype) }}",
       "itemListElement": [
-        @foreach ($courses->take(5) as $course)
+        @foreach ($courses->take(10) as $course)
           {
           "@type": "ListItem",
           "position": "{{ $loop->index + 1 }}",
