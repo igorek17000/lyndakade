@@ -15,7 +15,8 @@
             "description": "{{ $course->description }}",
             "provider": {
                 "@type": "Person",
-                "name": "{{ $course->authors[0]->name }}"
+                "name": "{{ $course->authors[0]->name }}",
+                "url": {"@id": "/instructors/{{ $course->authors[0]->slug }}"}
             }
         }
     </script>
