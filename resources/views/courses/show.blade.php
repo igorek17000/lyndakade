@@ -7,20 +7,15 @@
   'keywords' => $course->title . ', ' . $course->titleEng . ' , ' . get_seo_keywords(),
   ])
   <link rel="canonical" href="{{ request()->url() }}" />
-    <script>
-        window.course_title = "{{ $course->title }}";
-        window.course_description = "{{ $course->description }}";
-        window.course_author = "{{ $course->authors[0]->name }}";
-    </script>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "Course",
-            "name": window.course_title,
-            "description": window.course_description,
+            "name": "{{ $course->title }}",
+            "description": "{{ $course->description }}",
             "provider": {
                 "@type": "Person",
-                "name": window.course_author
+                "name": "{{ $course->authors[0]->name }}"
             }
         }
     </script>
