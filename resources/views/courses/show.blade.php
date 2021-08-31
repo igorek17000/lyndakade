@@ -7,8 +7,6 @@
   'keywords' => $course->title . ', ' . $course->titleEng . ' , ' . get_seo_keywords(),
   ])
   <link rel="canonical" href="{{ request()->url() }}" />
-@endpush
-@push('script_head')
     <script>
         window.course_title = "{{ $course->title }}";
         window.course_description = "{{ $course->description }}";
