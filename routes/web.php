@@ -38,12 +38,16 @@ Route::get('/{slug}/{id}-0.html', function ($slug, $id) {
     if ($sub) {
         return redirect()->route('home.show', [$sub->slug]);
     }
-    $aut = \App\Author::where('slug', $slug)->orWhere('id', $id)->orWhere('name', $title)->first();
-    if ($aut) {
-        return redirect()->route('authors.show', [$sub->slug]);
-    }
     return redirect()->route('search', ['q' => $slug]);
 })->name('home.show.alternate');
+Route::get('/{slug}/{id}-1.html', function ($slug, $id) {
+    $title = str_replace("-", " ", $slug);
+    $aut = \App\Author::where('slug', $slug)->orWhere('id', $id)->orWhere('name', $title)->first();
+    if ($aut) {
+        return redirect()->route('authors.show', [$aut->slug]);
+    }
+    return redirect()->route('search', ['q' => $slug]);
+})->name('author.show.alternate');
 
 
 Route::get('/tests', function () {
