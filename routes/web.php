@@ -34,7 +34,7 @@ Route::get('/{slug}/{id}-0.html', function ($slug, $id) {
     if ($lib) {
         return redirect()->route('home.show', [$lib->slug]);
     }
-    $sub = \App\Subject::where('slug', $slug)->orWhere('id', $id)->orWhere('titleEng', $title)->first();
+    $sub = \App\Subject::where('slug', $slug)->orWhere('id', $id)->orWhere('title', $title)->first();
     if ($sub) {
         return redirect()->route('home.show', [$sub->slug]);
     }
