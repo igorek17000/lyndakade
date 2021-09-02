@@ -14,6 +14,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Mail;
@@ -29,6 +30,22 @@ class HomeController extends Controller
     public function index()
     {
         return view('admins.dashboard');
+    }
+
+
+    /**
+     * Show the application contact_us.
+     *
+     * @return Renderable
+     */
+    public function set_lang(Request $request, $lang)
+    {
+        if (strtolower($lang) == "fa") {
+            App::setLocal('fa');
+        } else {
+            App::setLocal('en');
+        }
+        return redirect()->back();
     }
 
     /**
@@ -69,6 +86,7 @@ class HomeController extends Controller
      */
     public function show(Request $request, $slug)
     {
+        $slug = str_replace("-training-tutorials", "", $slug);
         $sub = Library::with('subjects.courses')->where('slug', $slug)->get()->first();
         if (!$sub)
             $sub = Subject::with('courses')->where('slug', $slug)->get()->first();
@@ -103,8 +121,8 @@ class HomeController extends Controller
                 'categories_filter' => $categories_filter,
             ]);
         }
-        abort(404);
-        return redirect()->route('root.home');
+        // abort(404);
+        return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
     }
 
     function show_first_object($obj, $type, $request)

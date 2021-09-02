@@ -107,6 +107,7 @@ Route::get('/instructors/{slug}', 'AuthorController@show')->name('authors.show')
 
 // subjects & software & libraries
 Route::get('/topics/{slug}', 'HomeController@show')->name('home.show');
+Route::get('/topics/{slug}/{$id}-0.html', 'HomeController@show')->name('home.show');
 
 
 // needs to be logged in, for request course
