@@ -24,33 +24,6 @@ use TCG\Voyager\Facades\Voyager;
 
 Auth::routes();
 
-
-Route::get('/{slug}/{id}-0.html', function ($slug, $id) {
-    $slug = str_replace("-training-tutorials", "", $slug);
-    $slug = str_replace("-tutorials", "", $slug);
-    $title = str_replace("-", " ", $slug);
-
-    $lib = \App\Library::where('slug', $slug)->orWhere('id', $id)->orWhere('titleEng', $title)->first();
-    if ($lib) {
-        return redirect()->route('home.show', [$lib->slug]);
-    }
-    $sub = \App\Subject::where('slug', $slug)->orWhere('id', $id)->orWhere('title', $title)->first();
-    if ($sub) {
-        return redirect()->route('home.show', [$sub->slug]);
-    }
-    return redirect()->route('search', ['q' => $slug]);
-})->name('home.show.alternate');
-
-Route::get('/{slug}/{id}-1.html', function ($slug, $id) {
-    $title = str_replace("-", " ", $slug);
-    $aut = \App\Author::where('slug', $slug)->orWhere('id', $id)->orWhere('name', $title)->first();
-    if ($aut) {
-        return redirect()->route('authors.show', [$aut->slug]);
-    }
-    return redirect()->route('search', ['q' => $slug]);
-})->name('author.show.alternate');
-
-
 Route::get('/tests', function () {
     return response()->view('test', []);
 });
@@ -71,8 +44,8 @@ Route::group(
 );
 
 // learning paths
-Route::get('/learning-paths/{learn_path_slug}', 'LearnPathController@show')->name('learn.paths.show');
 Route::get('/learning-paths/', 'LearnPathController@index')->name('learn.paths.index');
+Route::get('/learning-paths/{learn_path_slug}', 'LearnPathController@show')->name('learn.paths.show');
 // "see all" button, for each library, in navbar
 // Route::get('/learning/paths/{library_slug}', 'LearnPathController@show_category')->name('learn.paths.show_category');
 
@@ -80,8 +53,55 @@ Route::get('/learning/courses/newest', 'CourseController@newest')->name('courses
 Route::get('/learning/courses/best', 'CourseController@best')->name('courses.best');
 Route::get('/learning/courses/free', 'CourseController@free')->name('courses.free');
 
+
 // courses
 Route::get('/', 'CourseController@index')->name('root.home');
+Route::get('/learning/{slug_linkedin}', 'CourseController@show_linkedin')->name('courses.show.linkedin');
+Route::get('/learning/{slug_linkedin}/{video_slug}', 'CourseController@show_linkedin')->name('courses.show.linkedin.video');
+Route::get('/ajax/player/transcript', 'CourseController@subtitle_content')->name('courses.subtitle_content');
+Route::get('courses/download/{id}', 'CourseController@download_course')->name('courses.download');
+Route::post('/report-issues/courses', 'CourseController@report_issues')->name('courses.report-issues');
+Route::get('/c/{id}', function ($id) {
+    $course = Course::firstWhere('id', $id);
+    if ($course) {
+        if ($course->slug_linkedin) {
+            return redirect()->route('courses.show.linkedin', [$course->slug_linkedin]);
+        }
+        return redirect()->route('courses.show', [$course->slug_url, $course->slug, $course->id]);
+    }
+    // abort(404);
+    return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
+})->name('courses.show.short');
+
+// /{slug}/{id}-0.html
+Route::get('/{slug}/{id}-0.html', function ($slug, $id) {
+    $slug = str_replace("-training-tutorials", "", $slug);
+    $slug = str_replace("-tutorials", "", $slug);
+    $title = str_replace("-", " ", $slug);
+
+    $lib = \App\Library::where('slug', $slug)->orWhere('id', $id)->orWhere('titleEng', $title)->first();
+    if ($lib) {
+        return redirect()->route('home.show', [$lib->slug]);
+    }
+    $sub = \App\Subject::where('slug', $slug)->orWhere('id', $id)->orWhere('title', $title)->first();
+    if ($sub) {
+        return redirect()->route('home.show', [$sub->slug]);
+    }
+    return redirect()->route('search', ['q' => $slug]);
+})->where('id', '[0-9]+')->name('home.show.alternate');
+
+
+// /{slug}/{id}-1.html
+Route::get('/{slug}/{id}-1.html', function ($slug, $id) {
+    $title = str_replace("-", " ", $slug);
+    $aut = \App\Author::where('slug', $slug)->orWhere('id', $id)->orWhere('name', $title)->first();
+    if ($aut) {
+        return redirect()->route('authors.show', [$aut->slug]);
+    }
+    return redirect()->route('search', ['q' => $slug]);
+})->where('id', '[0-9]+')->name('author.show.alternate');
+
+// /{slug}/{id}-2.html
 Route::get('/{slug_url}/{slug}/{id}-2.html', function (Illuminate\Http\Request $request, $slug_url, $slug, $id) {
     $course = Course::firstWhere('id', $id);
     if ($course) {
@@ -103,22 +123,6 @@ Route::get('/{slug_url}/{slug}/{id}-2.html', function (Illuminate\Http\Request $
     // abort(404);
     return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
 })->name('courses.show');
-Route::get('/learning/{slug_linkedin}', 'CourseController@show_linkedin')->name('courses.show.linkedin');
-Route::get('/learning/{slug_linkedin}/{video_slug}', 'CourseController@show_linkedin')->name('courses.show.linkedin.video');
-Route::get('/ajax/player/transcript', 'CourseController@subtitle_content')->name('courses.subtitle_content');
-Route::get('courses/download/{id}', 'CourseController@download_course')->name('courses.download');
-Route::post('/report-issues/courses', 'CourseController@report_issues')->name('courses.report-issues');
-Route::get('/c/{id}', function ($id) {
-    $course = Course::firstWhere('id', $id);
-    if ($course) {
-        if ($course->slug_linkedin) {
-            return redirect()->route('courses.show.linkedin', [$course->slug_linkedin]);
-        }
-        return redirect()->route('courses.show', [$course->slug_url, $course->slug, $course->id]);
-    }
-    // abort(404);
-    return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
-})->name('courses.show.short');
 
 // Route::get('authors/json', 'HomeController@json_data_authors')->name('authors.json');
 // Route::get('courses/json', 'HomeController@json_data_courses')->name('courses.json');
@@ -174,12 +178,10 @@ Route::group(['middleware' => 'auth'], function () {
 //    $course = new CourseController();
 //    return $course->not_found();
 //});
-Route::fallback('CourseController@not_found');
+
 
 // Route::view('/contactUs', 'contactUs')->name('');
-
 // Route::view('/aboutUs', 'aboutUs');
-
 // Route::view('/payment', 'payment');
 
 // get data for charts in admin dashboard
@@ -213,6 +215,8 @@ Route::get('/sitemap-partials.xml', 'SiteMapController@sitemap_partials');
 Route::get('/sitemap-subjects.xml', 'SiteMapController@sitemap_subjects');
 
 Route::get('/sitemap-courses-{year}-{month}.xml', 'SiteMapController@sitemap_courses');
+
+Route::fallback('CourseController@not_found');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
