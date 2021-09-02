@@ -25,7 +25,7 @@ use TCG\Voyager\Facades\Voyager;
 Auth::routes();
 
 
-Route::get('/{slug}/{$id}-0.html', function ($slug, $id) {
+Route::get('/{slug}/{id}-0.html', function ($slug, $id) {
     return redirect()->route('root.home')->with('error', 'hey there');
 
     $slug = str_replace("-training-tutorials", "", $slug);
