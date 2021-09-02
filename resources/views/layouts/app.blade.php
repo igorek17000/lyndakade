@@ -2,8 +2,8 @@
 session(['redirectToAfterLogin' => url()->previous()]);
 @endphp
 <!DOCTYPE html>
-{{-- <html dir="rtl" lang="fa"> --}}
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->isLocale('fa') ? 'rtl' : 'ltr' }}">
+<html dir="rtl" lang="fa">
+{{-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->isLocale('fa') ? 'rtl' : 'ltr' }}"> --}}
 
 <head>
   <meta charset="UTF-8" />
@@ -410,7 +410,8 @@ session(['redirectToAfterLogin' => url()->previous()]);
             position: relative !important;
         }
     </style>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0" @if(app()->isLocal('en')) dir="ltr" @endif>
+    {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0" @if(app()->isLocal('en')) dir="ltr" @endif> --}}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0">
       <a class="navbar-brand mb-1" href="https://lyndakade.ir">
         <img draggable="false" class="img-logo m-0 p-0" src="https://lyndakade.ir/image/logoedit2.png" title="لینداکده"
           alt="لینداکده" style="width: 60px; height: 55px;">
@@ -643,7 +644,8 @@ session(['redirectToAfterLogin' => url()->previous()]);
             color: #ccc;
         }
     </style>
-    <footer id="footer" class="bg-dark text-muted p-md-5 pt-4 @if(app()->isLocal('en')) text-left @endif"  @if(app()->isLocal('en')) dir="ltr" @endif>
+    {{-- <footer id="footer" class="bg-dark text-muted p-md-5 pt-4 @if(app()->isLocal('en')) text-left @endif"  @if(app()->isLocal('en')) dir="ltr" @endif> --}}
+    <footer id="footer" class="bg-dark text-muted p-md-5 pt-4">
       <div class="fpart-first">
         <div class="container">
           <div class="row">
