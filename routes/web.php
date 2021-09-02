@@ -110,6 +110,8 @@ Route::get('/instructors/{slug}', 'AuthorController@show')->name('authors.show')
 // subjects & software & libraries
 Route::get('/topics/{slug}', 'HomeController@show')->name('home.show');
 Route::get('/{slug}/{$id}-0.html', function ($slug, $id) {
+    return redirect()->route('root.home')->with('error', 'hey there');
+
     $slug = str_replace("-training-tutorials", "", $slug);
     $slug = str_replace("-tutorials", "", $slug);
     $title = str_replace("-", " ", $slug);
