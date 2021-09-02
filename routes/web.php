@@ -214,6 +214,8 @@ Route::get('/sitemap-partials.xml', 'SiteMapController@sitemap_partials');
 
 Route::get('/sitemap-subjects.xml', 'SiteMapController@sitemap_subjects');
 
+Route::get('/sitemap-learn-paths.xml', 'SiteMapController@sitemap_learn_paths');
+
 Route::get('/sitemap-courses-{year}-{month}.xml', 'SiteMapController@sitemap_courses');
 
 Route::fallback('CourseController@not_found');

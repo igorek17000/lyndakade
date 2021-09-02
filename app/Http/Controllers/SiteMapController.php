@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Author;
 use App\Course;
+use App\LearnPath;
 use App\Subject;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -151,6 +152,16 @@ class SiteMapController extends Controller
         ])->header('Content-Type', 'text/xml');
     }
 
+    public function sitemap_learn_paths()
+    {
+        return response()->view('sitemaps.sitemap', [
+            'route_name' => 'learn.paths.show',
+            'today_date' => \Carbon\Carbon::now()->toDateString(),
+            'priority' => 1,
+            'items' => LearnPath::get(['slug']),
+        ])->header('Content-Type', 'text/xml');
+    }
+
     public function sitemap_partials()
     {
         /*$today_date = \Carbon\Carbon::now()->toDateString();
@@ -242,7 +253,7 @@ class SiteMapController extends Controller
 */
         $courses = Course::where('releaseDate', 'LIKE', "$year-$month%")->get(['slug_linkedin', 'img', 'title', 'description', 'releaseDate']);
 
-/*
+        /*
         foreach ($courses as $course) {
             $res .= "
             <url>
