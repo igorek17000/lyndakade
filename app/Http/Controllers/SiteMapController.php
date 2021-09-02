@@ -235,6 +235,7 @@ class SiteMapController extends Controller
             'items' => [
                 route('root.home'),
                 route('root.contact.us'),
+                route('learn.paths.index'),
                 route('demands.create'),
                 route('courses.newest'),
                 route('courses.best'),

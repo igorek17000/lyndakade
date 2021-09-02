@@ -4,6 +4,9 @@ require("./bootstrap");
 require("jquery-typeahead");
 window.toastr = require("toastr");
 
+require("./my-js");
+require("./search");
+
 // window.Vue = require('vue');
 
 /**
