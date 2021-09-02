@@ -96,12 +96,14 @@ class PackageController extends Controller
 
         $hashedData = HashedData::firstWhere('hashed', $code);
         if (!$hashedData) {
+            return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
             abort(404);
             return '404';
         }
 
         $pack = Package::find($hashedData->data);
         if (!$pack) {
+            return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
             abort(404);
             return '404';
         }

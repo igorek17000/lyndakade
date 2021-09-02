@@ -97,6 +97,7 @@ class LearnPathController extends Controller
                 'path_state' => get_learn_path_state($path),
             ]);
         }
+        return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
         abort(404);
         return redirect()->route('root.home');
     }

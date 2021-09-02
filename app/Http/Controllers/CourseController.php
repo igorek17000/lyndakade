@@ -263,8 +263,8 @@ class CourseController extends Controller
                 ]);
             }
         }
-        abort(404);
-        return redirect()->route('root.home');
+        // abort(404);
+        return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
     }
 
     public function show_linkedin(Request $request, $slug_linkedin)
@@ -355,12 +355,14 @@ class CourseController extends Controller
                 'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
             ]);
         }
+        return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
         abort(404);
         return redirect()->route('root.home');
     }
 
     public function not_found()
     {
+        return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
         return abort(404);
     }
 

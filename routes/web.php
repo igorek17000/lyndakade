@@ -74,7 +74,8 @@ Route::get('/{slug_url}/{slug}/{id}-2.html', function (Illuminate\Http\Request $
         return (new CourseController)->show($request, $slug_url, $slug, $id);
         // return redirect()->route('courses.show', [$course->slug_url, $course->slug, $course->id]);
     }
-    abort(404);
+    // abort(404);
+    return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
 })->name('courses.show');
 Route::get('/learning/{slug_linkedin}', 'CourseController@show_linkedin')->name('courses.show.linkedin');
 Route::get('/learning/{slug_linkedin}/{video_slug}', 'CourseController@show_linkedin')->name('courses.show.linkedin.video');
@@ -89,7 +90,8 @@ Route::get('/c/{id}', function ($id) {
         }
         return redirect()->route('courses.show', [$course->slug_url, $course->slug, $course->id]);
     }
-    abort(404);
+    // abort(404);
+    return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
 })->name('courses.show.short');
 
 // Route::get('authors/json', 'HomeController@json_data_authors')->name('authors.json');
