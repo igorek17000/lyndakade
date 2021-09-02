@@ -40,6 +40,7 @@ Route::get('/{slug}/{id}-0.html', function ($slug, $id) {
     }
     return redirect()->route('search', ['q' => $slug]);
 })->name('home.show.alternate');
+
 Route::get('/{slug}/{id}-1.html', function ($slug, $id) {
     $title = str_replace("-", " ", $slug);
     $aut = \App\Author::where('slug', $slug)->orWhere('id', $id)->orWhere('name', $title)->first();
@@ -70,8 +71,8 @@ Route::group(
 );
 
 // learning paths
+Route::get('/learning-paths/{learn_path_slug}', 'LearnPathController@show')->name('learn.paths.show');
 Route::get('/learning-paths/', 'LearnPathController@index')->name('learn.paths.index');
-Route::get('/learning/paths/{learn_path_slug}', 'LearnPathController@show')->name('learn.paths.show');
 // "see all" button, for each library, in navbar
 // Route::get('/learning/paths/{library_slug}', 'LearnPathController@show_category')->name('learn.paths.show_category');
 
