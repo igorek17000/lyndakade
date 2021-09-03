@@ -498,16 +498,16 @@ class CourseController extends Controller
             if ($course && $subjects) {
                 DB::table('course_subject')->where('course_id', $course_id)->delete();
 
-                foreach ($subjects['subjects'] as $subject) {
-                    $subject = Subject::firstWhere('title', $subject['name']);
+                foreach ($subjects['subjects'] as $subb) {
+                    $subject = Subject::firstWhere('title', $subb['title']);
                     if ($subject) {
                         $course->subjects()->attach([$subject->id]);
                     } else {
                         $lib = Library::firstWhere('titleEng', $lib_name);
                         if ($lib) {
                             $sub = new Subject([
-                                'title' => $subject['title'],
-                                'slug' => $subject['slug'],
+                                'title' => $subb['title'],
+                                'slug' => $subb['slug'],
                                 'library_id' => $lib->id,
                             ]);
                             // $sub->title = $subject['name'];
