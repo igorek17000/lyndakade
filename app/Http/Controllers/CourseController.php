@@ -508,11 +508,11 @@ class CourseController extends Controller
                             $sub = new Subject([
                                 'title' => $subb['title'],
                                 'slug' => $subb['slug'],
-                                'library_id' => $lib->id,
+                                // 'library_id' => $lib->id,
                             ]);
                             // $sub->title = $subject['name'];
                             // $sub->slug = $subject['slug'];
-                            // $sub->library()->associate($lib);
+                            $sub->library()->associate($lib);
                             $sub->save();
                             $course->subjects()->attach([$sub->id]);
                         }
