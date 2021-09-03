@@ -481,14 +481,17 @@ class CourseController extends Controller
             'status' => 'failed',
         ], 205);
     }
+
     public function course_subject_set_api(Request $request)
     {
         $course_id = $request->input('course_id');
         $subjects = $request->input('subjects');
 
-        $subject_name = $request->input('subject_name');
-        $subject_slug = $request->input('subject_slug');
+        $subject_name = $request->input('subject');
+        // $subject_slug = $request->input('subject_slug');
+
         $lib_name = $request->input('lib_name');
+
         $course = Course::find($course_id);
         if ($course && $subject_name) {
             $subject = Subject::firstWhere('title', $subject_name);
@@ -502,7 +505,7 @@ class CourseController extends Controller
                 if ($lib) {
                     $sub = new Subject();
                     $sub->title = $subject_name;
-                    $sub->slug = $subject_slug;
+                    // $sub->slug = $subject_slug;
                     $sub->library()->associate($lib);
                     $sub->save();
                     $course->subjects()->attach([$sub->id]);
