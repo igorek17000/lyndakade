@@ -506,12 +506,13 @@ class CourseController extends Controller
                         $lib = Library::firstWhere('titleEng', $lib_name);
                         if ($lib) {
                             $sub = new Subject([
-                                'title' => $subject['name'],
+                                'title' => $subject['title'],
                                 'slug' => $subject['slug'],
+                                'library_id' => $lib->id,
                             ]);
                             // $sub->title = $subject['name'];
                             // $sub->slug = $subject['slug'];
-                            $sub->library()->associate($lib);
+                            // $sub->library()->associate($lib);
                             $sub->save();
                             $course->subjects()->attach([$sub->id]);
                         }
