@@ -484,42 +484,48 @@ class CourseController extends Controller
 
     public function course_subject_set_api(Request $request)
     {
-        $course_id = $request->input('course_id');
-        $subjects = $request->input('subjects');
-        $subjects = json_decode($subjects, true);
+        try {
+            $course_id = $request->input('course_id');
+            $subjects = $request->input('subjects');
+            $subjects = json_decode($subjects, true);
 
-        // $subject_name = $request->input('subject_name');
-        // $subject_slug = $request->input('subject_slug');
+            // $subject_name = $request->input('subject_name');
+            // $subject_slug = $request->input('subject_slug');
 
-        $lib_name = $request->input('lib_name');
+            $lib_name = $request->input('lib_name');
 
-        $course = Course::find($course_id);
-        if ($course && $subjects) {
-            DB::table('course_subject')->where('course_id', $course_id)->delete();
+            $course = Course::find($course_id);
+            if ($course && $subjects) {
+                DB::table('course_subject')->where('course_id', $course_id)->delete();
 
-            foreach ($subjects['subjects'] as $subject) {
-                $subject = Subject::firstWhere('title', $subject['name']);
-                if ($subject) {
-                    $course->subjects()->attach([$subject->id]);
-                } else {
-                    $lib = Library::firstWhere('titleEng', $lib_name);
-                    if ($lib) {
-                        $sub = new Subject();
-                        $sub->title = $subject['name'];
-                        $sub->slug = $subject['slug'];
-                        $sub->library()->associate($lib);
-                        $sub->save();
-                        $course->subjects()->attach([$sub->id]);
+                foreach ($subjects['subjects'] as $subject) {
+                    $subject = Subject::firstWhere('title', $subject['name']);
+                    if ($subject) {
+                        $course->subjects()->attach([$subject->id]);
+                    } else {
+                        $lib = Library::firstWhere('titleEng', $lib_name);
+                        if ($lib) {
+                            $sub = new Subject();
+                            $sub->title = $subject['name'];
+                            $sub->slug = $subject['slug'];
+                            $sub->library()->associate($lib);
+                            $sub->save();
+                            $course->subjects()->attach([$sub->id]);
+                        }
                     }
                 }
+                return new JsonResponse([
+                    'message' => 'success',
+                ], 200);
             }
             return new JsonResponse([
-                'message' => 'success',
-            ], 200);
+                'message' => 'failed',
+            ], 400);
+        } catch (Exception $e) {
+            return new JsonResponse([
+                'message' => $e,
+            ], 500);
         }
-        return new JsonResponse([
-            'message' => 'failed',
-        ], 400);
     }
 
     public function course_api($id)
