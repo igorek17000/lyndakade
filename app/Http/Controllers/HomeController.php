@@ -86,10 +86,9 @@ class HomeController extends Controller
      */
     public function show(Request $request, $slug)
     {
-        $slug = str_replace("-training-tutorials", "", $slug);
-        $sub = Library::with('subjects.courses')->where('slug', $slug)->get()->first();
+        $sub = Library::with('subjects.courses')->where('slug', $slug)->orWhere('slug', str_replace("-training-tutorials", "", $slug))->get()->first();
         if (!$sub)
-            $sub = Subject::with('courses')->where('slug', $slug)->get()->first();
+            $sub = Subject::with('courses')->where('slug', $slug)->orWhere('slug', str_replace("-training-tutorials", "", $slug))->get()->first();
         // if (!$sub)
         //     $sub = Software::with('courses')->where('slug', $slug)->get()->first();
 
