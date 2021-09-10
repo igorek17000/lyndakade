@@ -61,12 +61,17 @@ class PackageController extends Controller
             // submit the courses in UnlockCourses
             foreach ($carts as $cart) {
                 if ($cart->course) {
+                    if (UnlockedCourse::where('user_id', $user_id)->where('course_id', $cart->course->id)->first())
+                        continue;
                     $unlock_course = new UnlockedCourse([
                         'user_id' => $user_id,
                         'course_id' => $cart->course->id,
                     ]);
                     $unlock_course->save();
                 } else {
+                    if (UnlockedCourse::where('user_id', $user_id)->where('learn_path_id', $cart->learn_path->id)->first())
+                        continue;
+
                     $unlock_course = new UnlockedCourse([
                         'user_id' => $user_id,
                         'learn_path_id' => $cart->learn_path->id,
