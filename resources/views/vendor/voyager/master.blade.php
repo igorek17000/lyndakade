@@ -69,7 +69,10 @@
     .page-content.edit-add input:not(:focus), .page-content.edit-add select:not(:focus){
         border-color: #a4aaac !important;
     }
-    
+    .page-content.edit-add input:focus, .page-content.edit-add select:focus{
+        border-width: 2px;
+    }
+
   </style>
 
   @if (!empty(config('voyager.additional_css')))
