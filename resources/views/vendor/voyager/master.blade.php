@@ -66,6 +66,10 @@
       color: {{ config('voyager.primary_color', '#22A7F0') }};
     }
 
+    .page-content.edit-add input:not(:focus), .page-content.edit-add select:not(:focus){
+        border-color: #a4aaac !important;
+    }
+    
   </style>
 
   @if (!empty(config('voyager.additional_css')))
