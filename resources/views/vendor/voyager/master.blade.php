@@ -72,7 +72,9 @@
     .page-content.edit-add input:focus, .page-content.edit-add select:focus{
         border-width: 2px;
     }
-
+    .page-content.edit-add .form-control{
+        color: #000;
+    }
   </style>
 
   @if (!empty(config('voyager.additional_css')))
