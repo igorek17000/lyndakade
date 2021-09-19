@@ -110,7 +110,7 @@
                   $paids = \App\Paid::orderBy('totalprice', 'desc')
                       ->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))
                       ->groupBy('user_id')
-                      ->limit(20)
+                      ->limit(10)
                       ->get();
                 @endphp
                 @foreach ($paids as $index => $paid)
@@ -120,6 +120,36 @@
                     <td>{{ number_format($paid->totalprice) }}</td>
                     <td>{{ number_format($paid->total) }}</td>
                     <td>{{ $paid->user->paids->first()->created_at }}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">MOST PAID COURSES</h2>
+          <div class="card-text">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Course Title</th>
+                  <th scope="col">Total Sells</th>
+                  <th scope="col">Last Sell</th>
+                </tr>
+              </thead>
+              <tbody>
+                @php
+                    $courses = \App\Course::query()->leftJoin('paids','paids.item_id','=','courses.id')->select('courses.id', 'courses.titleEng', DB::raw('count(*) as total'))->groupBy('paids.item_id')->orderBy('total','desc')->whereNotNull('paids.item_id')->take(5)->get();
+                @endphp
+                @foreach ($courses as $index => $course)
+                  <tr>
+                    <th scope="row">{{ $index + 1 }}</th>
+                    <td>{{ $course->titleEng }}</td>
+                    <td>{{ number_format($course->total) }}</td>
+                    <td>{{ \App\Paid::where('item_id', $course->id)->where('type', '1')->latest()->first()->created_at }}</td>
                   </tr>
                 @endforeach
               </tbody>
