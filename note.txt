@@ -1,0 +1,5 @@
+window.history.pushState({page: "another"}, "another page", "/home");
+
+const url = new URL(window.location);
+url.searchParams.set('foo', 'bar');
+window.history.pushState({}, '', url);

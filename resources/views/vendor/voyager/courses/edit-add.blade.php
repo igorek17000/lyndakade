@@ -38,7 +38,7 @@ $add = is_null($dataTypeContent->getKey());
                     </div> --}}
 
           <!-- form start -->
-          <form role="form" class="form-edit-add" id="form-tag"
+          <form role="form" class="form-edit-add" id="form-tag" autocomplete="off"
             action="{{ $edit ? route('voyager.' . $dataType->slug . '.update', $dataTypeContent->getKey()) : route('voyager.' . $dataType->slug . '.store') }}"
             method="POST" enctype="multipart/form-data">
             <!-- PUT Method if we are editing -->
