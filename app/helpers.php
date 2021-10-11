@@ -305,8 +305,8 @@ function get_course_state($course)
 function urlencoding($url)
 {
     // Add your custom encoding
-    $entities = ['%27', '%2F', '%3F', '%25', '%23', '%5B', '%5D'];
-    $replacements = ["'", "/", "?", "%", "#", "[", "]"];
+    $entities = ['%3A', '%27', '%2F', '%3F', '%25', '%23', '%5B', '%5D'];
+    $replacements = [":", "'", "/", "?", "%", "#", "[", "]"];
     return str_replace($entities, $replacements, urlencode($url));
 }
 
