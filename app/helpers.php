@@ -302,6 +302,14 @@ function get_course_state($course)
     return $course_state;
 }
 
+function urlencoding($url)
+{
+    // Add your custom encoding
+    $entities = ['%27', '%2F', '%3F', '%25', '%23', '%5B', '%5D'];
+    $replacements = ["'", "/", "?", "%", "#", "[", "]"];
+    return str_replace($entities, $replacements, urlencode($url));
+}
+
 function fromDLHost($path)
 {
     if ($path == '')
@@ -310,13 +318,13 @@ function fromDLHost($path)
     if ($json = json_decode($path))
         foreach ($json as $file) {
             $path = str_replace("\\", "/", $file->download_link);
-            return urlencode("https://dl.lyndakade.ir/" . $path);
+            return urlencoding("https://dl.lyndakade.ir/" . $path);
         }
     $path = str_replace("\\", "/", $path);
     if (strpos($path, 'http')) {
-        return urlencode($path->replace('http:', 'https:'));
+        return urlencoding($path->replace('http:', 'https:'));
     }
-    return urlencode("https://dl.lyndakade.ir/" . $path);
+    return urlencoding("https://dl.lyndakade.ir/" . $path);
 }
 
 function get_number_of_authors_has_at_least_one_course()
