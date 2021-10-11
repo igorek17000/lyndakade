@@ -310,13 +310,13 @@ function fromDLHost($path)
     if ($json = json_decode($path))
         foreach ($json as $file) {
             $path = str_replace("\\", "/", $file->download_link);
-            return "https://dl.lyndakade.ir/" . $path;
+            return urlencode("https://dl.lyndakade.ir/" . $path);
         }
     $path = str_replace("\\", "/", $path);
     if (strpos($path, 'http')) {
-        return $path->replace('http:', 'https:');
+        return urlencode($path->replace('http:', 'https:'));
     }
-    return "https://dl.lyndakade.ir/" . $path;
+    return urlencode("https://dl.lyndakade.ir/" . $path);
 }
 
 function get_number_of_authors_has_at_least_one_course()
