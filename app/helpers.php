@@ -307,7 +307,10 @@ function urlencoding($url)
     // Add your custom encoding
     $entities = ['%3A', '%27', '%2F', '%3F'];
     $replacements = [":", "'", "/", "?"];
-    return str_replace($entities, $replacements, urlencode($url));
+
+    $entities = ["#", "'"];
+    $replacements = ["%23", "%27"];
+    return str_replace($entities, $replacements, $url);
 }
 
 function fromDLHost($path)
