@@ -80,23 +80,30 @@
                     <td class="align-middle">
                       تعداد دوره های موجود در سبد خرید
                     </td>
-                    <td class="align-middle"><b>{{ nPersian(number_of_courses_in_cart($carts)) }}</b> دوره آموزشی</td>
+                    <td class="align-middle"><b>{{ nPersian(number_of_courses_in_cart($carts)) }}</b> دوره آموزشی
+                    </td>
                   </tr>
                   <tr>
                     <td class="align-middle">اعتبار اشتراک شما</td>
                     <td class="align-middle">
-                      از اعتبار اشتراک فعلی شما <b>{{ nPersian(number_of_available_package(auth()->id())) }}</b>
-                      دوره آموزشی باقی مانده است و تا
-                      <b>
-                        تاریخ
-                        @php
-                          $date = strtotime(end_date_of_available_package(auth()->id())->toDateTimeString());
-                          $d = date('Y/m/d', $date);
-                          $d = explode('/', $d);
-                          echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/')) . ' و ساعت ' . nPersian(date('H:i:s', $date));
-                        @endphp
-                      </b>
-                      اعتبار دارد.
+                      @if (number_of_available_package(auth()->id()) > -1)
+                        از اعتبار اشتراک فعلی شما <b>{{ nPersian(number_of_available_package(auth()->id())) }}</b>
+                        دوره آموزشی باقی مانده است و تا
+                        <b>
+                          تاریخ
+                          @php
+                            $date = strtotime(end_date_of_available_package(auth()->id())->toDateTimeString());
+                            $d = date('Y/m/d', $date);
+                            $d = explode('/', $d);
+                            echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/')) . ' و ساعت ' . nPersian(date('H:i:s', $date));
+                          @endphp
+                        </b>
+                        اعتبار دارد.
+                      @else
+                        هیچ اشتراکی برای شما فعال نمی‌باشد. جهت خرید اشتراک از این
+                        <a href="{{ route('packages.index') }}">لینک</a>
+                        اقدام کنید.
+                      @endif
                     </td>
                   </tr>
                 </tbody>
