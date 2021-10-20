@@ -106,15 +106,14 @@
             <button class="btn btn-secondary">خرید اشتراک</button>
           </div>
         </a> --}}
-        <button  class="w-20 col-sm-4 mb-4 mx-md-auto mx-5" data-toggle="modal"
-          data-target="#modal{{ $package->id }}">
+        <span class="w-20 col-sm-4 mb-4 mx-md-auto mx-5" data-toggle="modal" data-target="#modal{{ $package->id }}">
           <div class="card-body p-0" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
             <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
             <p>{{ nPersian($package['days']) }} روزه</p>
             <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
             <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
           </div>
-        </button>
+        </span>
       @endforeach
     </div>
   </div>
@@ -138,7 +137,8 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
-            <a class="btn btn-primary" href="{{ route('packages.payment', ['code' => hash('sha256', $package->id)]) }}">خرید اشتراک</a>
+            <a class="btn btn-primary"
+              href="{{ route('packages.payment', ['code' => hash('sha256', $package->id)]) }}">خرید اشتراک</a>
           </div>
         </div>
       </div>
