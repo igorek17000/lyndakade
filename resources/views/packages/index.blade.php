@@ -118,7 +118,7 @@
     </div>
   </div>
   @foreach ($packages as $package)
-    <div class="modal fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
+    <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
       aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
