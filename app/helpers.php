@@ -1,5 +1,6 @@
 <?php
 
+use App\Cart;
 use App\Course;
 use App\CourseStatus;
 use App\Demand;
@@ -14,6 +15,21 @@ use App\UnlockedCourse;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
+function number_of_courses_in_cart($carts)
+{
+    $res = 0;
+    foreach ($carts as $cart) {
+        if ($cart->course) {
+            $res += 1;
+        } else if ($cart->learn_path) {
+            foreach (js_to_courses($cart->learn_path->courses) as $c) {
+                $res += 1;
+            }
+        }
+    }
+    return $res;
+}
 
 function end_date_of_available_package($user_id)
 {

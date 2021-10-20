@@ -44,8 +44,8 @@
                           {{ $index + 1 }}
                         </td>
                         <td class="align-middle">
-                          <img src="#" data-src="{{ fromDLHost($cart->learn_path->img) }}" class="lazyload" width="80"
-                            alt="{{ $cart->learn_path->title }}" />
+                          <img src="#" data-src="{{ fromDLHost($cart->learn_path->img) }}" class="lazyload"
+                            width="80" alt="{{ $cart->learn_path->title }}" />
                           <h6>{{ $cart->learn_path->title }}</h6>
                           <h6>{{ $cart->learn_path->titleEng }}</h6>
                         </td>
@@ -70,6 +70,33 @@
                     </td>
                     <td class="align-middle">
                       <button class="btn btn-danger">حذف همه موارد</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-bordered text-center">
+                <tbody>
+                  <tr>
+                    <td class="align-middle">
+                      تعداد دوره های موجود در سبد خرید
+                    </td>
+                    <td class="align-middle">{{ nPersian(number_of_courses_in_cart($carts)) }} دوره آموزشی</td>
+                  </tr>
+                  <tr>
+                    <td class="align-middle">اعتبار اشتراک شما</td>
+                    <td class="align-middle">
+                      از اعتبار اشتراک فعلی شما <b>{{ nPersian(number_of_available_package(auth()->id())) }}</b>
+                      دوره آموزشی باقی مانده است و تا
+                      <b>
+                        تاریخ
+                        @php
+                          $date = strtotime(end_date_of_available_package(auth()->id())->toDateTimeString());
+                          $d = date('Y/m/d', $date);
+                          $d = explode('/', $d);
+                          echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/')) . ' و ساعت ' . nPersian(date('H:i:s', $date));
+                        @endphp
+                      </b>
+                      اعتبار دارد.
                     </td>
                   </tr>
                 </tbody>
