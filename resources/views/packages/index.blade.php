@@ -113,7 +113,6 @@
             <p>{{ nPersian($package['days']) }} روزه</p>
             <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
             <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
-            <button class="btn btn-secondary">خرید اشتراک</button>
           </div>
         </button>
       @endforeach
@@ -135,13 +134,12 @@
               <p>{{ nPersian($package['days']) }} روزه</p>
               <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
               <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
-              <a href="{{ route('packages.payment', ['code' => hash('sha256', $package->id)]) }}"
-                class="btn btn-secondary">خرید اشتراک</a>
+              <a href="{{ route('packages.payment', ['code' => hash('sha256', $package->id)]) }}">خرید اشتراک</a>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
-            <button type="button" class="btn btn-primary">رفتن به درگاه پرداخت</button>
+            <a class="btn btn-primary" href="{{ route('packages.payment', ['code' => hash('sha256', $package->id)]) }}">خرید اشتراک</a>
           </div>
         </div>
       </div>
