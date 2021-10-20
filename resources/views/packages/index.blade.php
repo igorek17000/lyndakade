@@ -96,7 +96,7 @@
     <h2>خرید اشتراک</h2>
     <div class="row d-flex justify-content-center text-center mx-md-5 mt-3" style="font-size: 1.2em;">
       @foreach ($packages as $package)
-        <a href="{{ route('packages.payment', ['code' => hash('sha256', $package->id)]) }}"
+        {{-- <a href="{{ route('packages.payment', ['code' => hash('sha256', $package->id)]) }}"
           class="w-20 col-sm-4 mb-4 mx-md-auto mx-5">
           <div class="card-body p-0" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
             <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
@@ -105,8 +105,46 @@
             <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
             <button class="btn btn-secondary">خرید اشتراک</button>
           </div>
-        </a>
+        </a> --}}
+        <button type="button" class="w-20 col-sm-4 mb-4 mx-md-auto mx-5" data-toggle="modal"
+          data-target="#modal{{ $package->id }}">
+          <div class="card-body p-0" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
+            <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
+            <p>{{ nPersian($package['days']) }} روزه</p>
+            <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
+            <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
+            <button class="btn btn-secondary">خرید اشتراک</button>
+          </div>
+        </button>
       @endforeach
     </div>
   </div>
+  @foreach ($packages as $package)
+    <div class="modal fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
+      aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel{{ $package->id }}">{{ $package['title'] }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card-body p-0" style="height: 300px !important;">
+              <p>{{ nPersian($package['days']) }} روزه</p>
+              <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
+              <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
+              <a href="{{ route('packages.payment', ['code' => hash('sha256', $package->id)]) }}"
+                class="btn btn-secondary">خرید اشتراک</a>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+            <button type="button" class="btn btn-primary">رفتن به درگاه پرداخت</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endforeach
 @endsection
