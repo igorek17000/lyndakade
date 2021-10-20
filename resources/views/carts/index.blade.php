@@ -80,7 +80,7 @@
                     <td class="align-middle">
                       تعداد دوره های موجود در سبد خرید
                     </td>
-                    <td class="align-middle">{{ nPersian(number_of_courses_in_cart($carts)) }} دوره آموزشی</td>
+                    <td class="align-middle"><b>{{ nPersian(number_of_courses_in_cart($carts)) }}</b> دوره آموزشی</td>
                   </tr>
                   <tr>
                     <td class="align-middle">اعتبار اشتراک شما</td>
