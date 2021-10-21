@@ -125,23 +125,12 @@ class LearnPathController extends Controller
 
     public function get_all_api(Request $request)
     {
-        $paths = LearnPath::get(['slug']);
+        $paths = LearnPath::get(['slug', 'courses']);
 
         $res = [];
         foreach ($paths as $path) {
             $res[$path->slug] = [];
-            $courses = $path->courses;
-            $courses = str_replace("'", "\"", $courses);
-            $js_courses = json_decode($courses);
-            if ($js_courses == null) {
-                return new JsonResponse([
-                    '$js_courses' => $js_courses,
-                    '$res' => $res,
-                    '$paths' => $paths,
-                    '$path' => $path,
-                    'status' => 'failed',
-                ], 203);
-            }
+            $js_courses = json_decode($path->courses);
             $idx = 0;
             foreach ($js_courses as $c) {
                 $course_id = $c->id;
