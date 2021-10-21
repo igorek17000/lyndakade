@@ -185,7 +185,7 @@ class LearnPathController extends Controller
         ]);
 
         return new JsonResponse([
-            'message' => 'updated ' . $path->titleEng,
+            'message' => 'updated ' . LearnPath::find($id)->titleEng,
             'status' => 'success',
         ], 200);
     }
