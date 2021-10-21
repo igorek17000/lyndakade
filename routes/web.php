@@ -47,6 +47,7 @@ Route::group(
 Route::get('/learning-paths/', 'LearnPathController@index')->name('learn.paths.index');
 Route::get('/learning/paths/', 'LearnPathController@index')->name('learn.paths.index.clone');
 Route::get('/learning-paths/{learn_path_slug}', 'LearnPathController@show')->name('learn.paths.show');
+Route::get('/learning/paths/{learn_path_slug}', 'LearnPathController@show')->name('learn.paths.show.clone');
 // "see all" button, for each library, in navbar
 // Route::get('/learning/paths/{library_slug}', 'LearnPathController@show_category')->name('learn.paths.show_category');
 
