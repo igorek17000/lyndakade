@@ -147,4 +147,36 @@ class LearnPathController extends Controller
             'status' => 'success',
         ], 200);
     }
+
+    public function set_img_api(Request $request)
+    {
+        $id = $request->get('id');
+        $img = $request->get('img');
+
+        if (!$id) {
+            return new JsonResponse([
+                'message' => 'need id',
+                'status' => 'failed',
+            ], 404);
+        }
+        if (!$img) {
+            return new JsonResponse([
+                'message' => 'need img',
+                'status' => 'failed',
+            ], 404);
+        }
+        $path = LearnPath::find($id);
+        if (!$path) {
+            return new JsonResponse([
+                'message' => 'id is not valid',
+                'status' => 'failed',
+            ], 404);
+        }
+        $path = LearnPath::where('id', $id)->update(['img' => $img]);
+
+        return new JsonResponse([
+            'message' => 'updated ' . $path->titleEng,
+            'status' => 'success',
+        ], 200);
+    }
 }
