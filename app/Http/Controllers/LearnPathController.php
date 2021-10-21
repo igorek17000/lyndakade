@@ -130,7 +130,9 @@ class LearnPathController extends Controller
         $res = [];
         foreach ($paths as $path) {
             $res[$path->slug] = [];
-            $js_courses = json_decode($path->courses);
+            $courses = $path->courses;
+            $courses = str_replace("'", "\"", $courses);
+            $js_courses = json_decode($courses);
             if ($js_courses == null) {
                 return new JsonResponse([
                     '$js_courses' => $js_courses,
