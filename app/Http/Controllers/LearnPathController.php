@@ -152,6 +152,7 @@ class LearnPathController extends Controller
     {
         $id = $request->get('id');
         $img = $request->get('img');
+        $thumbnail = $request->get('thumbnail');
 
         if (!$id) {
             return new JsonResponse([
@@ -165,6 +166,12 @@ class LearnPathController extends Controller
                 'status' => 'failed',
             ], 404);
         }
+        if (!$thumbnail) {
+            return new JsonResponse([
+                'message' => 'need thumbnail',
+                'status' => 'failed',
+            ], 404);
+        }
         $path = LearnPath::find($id);
         if (!$path) {
             return new JsonResponse([
@@ -172,7 +179,10 @@ class LearnPathController extends Controller
                 'status' => 'failed',
             ], 404);
         }
-        $path = LearnPath::where('id', $id)->update(['img' => $img]);
+        $path = LearnPath::where('id', $id)->update([
+            'img' => $img,
+            'thumbnail' => $thumbnail
+        ]);
 
         return new JsonResponse([
             'message' => 'updated ' . $path->titleEng,
