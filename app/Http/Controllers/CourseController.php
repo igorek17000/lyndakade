@@ -590,6 +590,25 @@ class CourseController extends Controller
         ], 404);
     }
 
+    public function course_set_img_thumbnail_api(Request $request)
+    {
+        $course_id = $request->get('course_id');
+        $img = $request->get('img');
+        $thumbnail = $request->get('thumbnail');
+        if ($course_id && $thumbnail && $img) {
+            $course = Course::where('id', $course_id);
+            $course->update(['thumbnail' => $thumbnail, 'img' => $img]);
+            return new JsonResponse([
+                'message' => $course->first()->titleEng . "] thumbnail and img is updated",
+                'status' => 'success',
+            ], 200);
+        }
+        return new JsonResponse([
+            'message' => 'parameters are not valid',
+            'status' => 'error',
+        ], 404);
+    }
+
     public function course_set_view_api(Request $request)
     {
         if ($request->has('courses')) {

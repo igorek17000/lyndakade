@@ -38,6 +38,7 @@ Route::middleware('guest')->post('/authors/update/{id}', 'AuthorController@updat
 Route::middleware('guest')->get('/views', 'DataController@views_api')->name('views.api');
 Route::middleware('guest')->get('/course-set-view', 'CourseController@course_set_view_api')->name('courses.set-view.api');
 Route::middleware('guest')->post('/course-set-thumbnail', 'CourseController@course_set_thumbnail_api')->name('courses.set-view.api');
+Route::middleware('guest')->post('/course-set-img-thumbnail', 'CourseController@course_set_img_thumbnail_api')->name('courses.set-img-thumbnail.api');
 
 Route::middleware('guest')->post('/courses/update-view-from-linkedin', 'CourseController@course_update_view_from_linkedin_api')->name('course.update.view.api');
 Route::middleware('guest')->post('/course-subject/set', 'CourseController@course_subject_set_api')->name('course.subject.set.api');
