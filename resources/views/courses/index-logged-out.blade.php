@@ -14,7 +14,7 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name" : "Lynda Kade - لیندا کده",
+      "name": "Lynda Kade - لیندا کده",
       "url": "https://lyndakade.ir/",
       "potentialAction": {
         "@type": "SearchAction",
@@ -25,57 +25,57 @@
         "query-input": "required name=search_term_string"
       }
     }
-    </script>
+  </script>
 
-    <script type="application/ld+json">
+  <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [{
-            "@type": "ListItem",
-            "position": 1,
-            "item": {
-                "@id": "{{ route('courses.newest') }}",
-                "name": "New Courses - جدیدترین دوره ها"
-            }
-        },{
-            "@type": "ListItem",
-            "position": 2,
-            "item": {
-                "@id": "{{ route('learn.paths.index') }}",
-                "name": "Learning Paths - مسیر آموزشی"
-            }
-        },{
-            "@type": "ListItem",
-            "position": 3,
-            "item": {
-                "@id": "{{ route('packages.index') }}",
-                "name": "Buy Packages - خرید اشتراک"
-            }
-        },{
-            "@type": "ListItem",
-            "position": 4,
-            "item": {
-                "@id": "{{ route('demands.create') }}",
-                "name": "Request Course - درخواست دوره"
-            }
-        },{
-            "@type": "ListItem",
-            "position": 5,
-            "item": {
-                "@id": "{{ route('root.contact.us') }}",
-                "name": "Contact Us - تماس با ما"
-            }
-        },{
-            "@type": "ListItem",
-            "position": 6,
-            "item": {
-                "@id": "{{ route('faq') }}",
-                "name": "FAQ - سوالات متداول"
-            }
-        }]
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "{{ route('courses.newest') }}",
+          "name": "New Courses - جدیدترین دوره ها"
+        }
+      }, {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@id": "{{ route('learn.paths.index') }}",
+          "name": "Learning Paths - مسیر آموزشی"
+        }
+      }, {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "{{ route('packages.index') }}",
+          "name": "Buy Packages - خرید اشتراک"
+        }
+      }, {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@id": "{{ route('demands.create') }}",
+          "name": "Request Course - درخواست دوره"
+        }
+      }, {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@id": "{{ route('root.contact.us') }}",
+          "name": "Contact Us - تماس با ما"
+        }
+      }, {
+        "@type": "ListItem",
+        "position": 6,
+        "item": {
+          "@id": "{{ route('faq') }}",
+          "name": "FAQ - سوالات متداول"
+        }
+      }]
     }
-    </script>
+  </script>
 @endpush
 @section('content')
   <div class="row m-0 home-page">
@@ -274,7 +274,7 @@
               <a href="{{ route('learn.paths.show', [$path->slug]) }}"
                 class="row card-body photo-frame d-flex align-items-center">
                 <div class="col-12 state-thumb">
-                  <img src="#" data-src="{{ fromDLHost($path->img) }}" class="img-fluid lazyload">
+                  <img src="#" data-src="{{ fromDLHost($path->thumbnail) }}" class="img-fluid lazyload">
                 </div>
                 <div class="col-12 tile-text text-center">
                   <span class="tile-name">{{ $path->title }}</span>

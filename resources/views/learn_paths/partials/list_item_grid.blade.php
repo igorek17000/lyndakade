@@ -7,7 +7,8 @@
 
       <div class="card-img-overlay text-center">
         {{-- <div class="card-img-overlay text-center vertical-center"> --}}
-        <h5 style="height: 42px !important; font-size: initial;">{{ $path->title }}</h5>
+        <h5 class="titlePer" style="height: 42px !important; font-size: initial; display: block;">{{ $path->title }}</h5>
+        <h5 class="titleEng" style="height: 42px !important; font-size: initial; display: none;">{{ $path->titleEng }}</h5>
         <div style="font-size: .8rem; font-weight: 400;">
           زمان کل مسیر آموزشی
           @if ($path->durationHours() > 0)

@@ -1002,6 +1002,22 @@ nav bar ends
     opacity: 1;
 }
 
+#learn-path-page .card-content h5.titlePer {
+    display: block;
+}
+
+#learn-path-page .card-content h5.titleEng {
+    display: none;
+}
+
+#learn-path-page .card-content:hover h5.titlePer {
+    display: none;
+}
+
+#learn-path-page .card-content:hover h5.titleEng {
+    display: block;
+}
+
 #learn-path-page .card-content .card-img:after {
     content: "\A";
     position: absolute;
