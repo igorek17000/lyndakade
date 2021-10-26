@@ -50,7 +50,7 @@ Route::middleware('guest')->get('/learn-path/course-list/{slug}', 'LearnPathCont
 
 Route::middleware('guest')->post('/test', 'CourseController@test_api')->name('subjects.add.api');
 
-Route::middleware('guest')->post('/test/urls', 'CourseController@test_urls_api')->name('courses.test.urls.api');
+Route::middleware('guest')->get('/test/urls', 'CourseController@test_urls_api')->name('courses.test.urls.api');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
