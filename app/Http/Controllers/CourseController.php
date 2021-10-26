@@ -441,6 +441,31 @@ class CourseController extends Controller
             'status' => 'failed',
         ], 404);
     }
+    public function test_urls_api(Request $request)
+    {
+        if (!$request->has("slugs")) {
+            return new JsonResponse([
+                'message' => 'invalid parameters',
+                'status' => 'failed',
+            ], 404);
+        }
+        $slugs = explode("|", $request->get("slugs", ""));
+        $messages = [];
+        $messages['errors'] = [];
+        $messages['okays'] = [];
+        foreach ($slugs as $idx => $slug) {
+            $course = Course::where('slug_linkedin', $slug)->first();
+            if ($course) {
+                $messages['okays'][] = $slug;
+            } else {
+                $messages['errors'][] = $slug;
+            }
+        }
+        return new JsonResponse([
+            'message' => $messages,
+            'status' => 'success',
+        ], 200);
+    }
 
     public function test_api(Request $request)
     {
