@@ -451,15 +451,9 @@ class CourseController extends Controller
         }
         $slugs = explode("|", $request->get("slugs", ""));
         $messages = [];
-        $messages['errors'] = [];
         $messages['okays'] = [];
-        foreach ($slugs as $idx => $slug) {
-            $course = Course::where('slug_linkedin', $slug)->first();
-            if ($course) {
-                $messages['okays'][] = $slug;
-            } else {
-                $messages['errors'][] = $slug;
-            }
+        foreach(Course::whereIn('slug_linkedin', $slugs)->get('slug_linkedin') as $course){
+            $messages['okays'][] = $course->slug_linkedin;
         }
         return new JsonResponse([
             'message' => $messages,
