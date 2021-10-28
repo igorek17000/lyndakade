@@ -657,7 +657,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
             </div>
             <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
 
-    <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
+    {{-- <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script> --}}
             </div>
             <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
             </div>
