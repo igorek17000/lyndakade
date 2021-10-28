@@ -5,7 +5,23 @@
         @foreach (json_decode($course->courseFile) as $file)
           <div>
             <span>
-              <i class="lyndacon unlock align-self-center m-1" style="font-size: 16px;"></i>
+              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+              {{ prepare_course_file_name($file->original_name) }}
+            </span>
+            @if (isset($file->size))
+              <span class="text-muted small">
+                ({{ formatBytes($file->size) }})
+              </span>
+            @endif
+          </div>
+        @endforeach
+      @endif
+
+      @if ($course->exerciseFile && count(json_decode($course->exerciseFile)) > 0)
+        @foreach (json_decode($course->exerciseFile) as $file)
+          <div>
+            <span>
+              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
               {{ prepare_course_file_name($file->original_name) }}
             </span>
             @if (isset($file->size))
