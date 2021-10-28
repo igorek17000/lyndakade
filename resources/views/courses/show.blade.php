@@ -102,7 +102,7 @@
                     {{ $course->price == 0 ? 'رایگان' : nPersian(number_format($course->price)) . ' تومان' }}
                   </span>
                 </div>
-                @if (auth()->check())
+                @if (auth()->check() && $course->price > 0)
                   @if ($course_state == '1')
                     <div id="cart-btn">
                       <span class="btn btn-secondary align-self-center m-0 mb-2 w-100">
