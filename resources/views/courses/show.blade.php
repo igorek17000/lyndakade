@@ -235,7 +235,13 @@
                   </span>
                 </div>
                 @if (auth()->check())
-                  @if ($course_state == '2')
+                  @if ($course_state == '1')
+                    <div id="cart-btn">
+                      <span class="btn btn-secondary align-self-center m-0 mb-2 w-100">
+                        Purchased
+                      </span>
+                    </div>
+                  @elseif ($course_state == '2')
                     <div id="cart-btn">
                       <a data-id="1-{{ $course->id }}"
                         class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
@@ -486,8 +492,7 @@
               </div>
             @endif
 
-{{--
-            @if (!auth()->check())
+            {{-- @if (!auth()->check())
             @elseif (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state
               == '1'
               || $course->price == 0)
