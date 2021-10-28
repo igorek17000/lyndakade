@@ -190,11 +190,6 @@
                   </span>
                   <h6>مدت زمان دوره</h6>
                 </div>
-                <div class="course-info-stat-cont">
-                  <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
-                    {{ $course->price == 0 ? 'رایگان' : nPersian(number_format($course->price)) . ' تومان' }}
-                  </span>
-                </div>
                 @if ($course->views > 0)
                   <div class="course-info-stat-cont viewers"
                     title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
@@ -212,6 +207,24 @@
           <div class="tab-pane fade" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab">
             <div class="row">
               <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
+                <div class="course-info-stat-cont m-0 mb-2 w-100">
+                  <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
+                    {{ $course->price == 0 ? 'رایگان' : nPersian(number_format($course->price)) . ' تومان' }}
+                  </span>
+                </div>
+                @if ($course_state == '2')
+                  <div id="cart-btn">
+                    <a data-id="1-{{ $course->id }}" class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
+                      حذف از سبد خرید
+                    </a>
+                  </div>
+                @elseif($course_state == '3')
+                  <div id="cart-btn">
+                    <a data-id="1-{{ $course->id }}" class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
+                      افزودن به سبد خرید
+                    </a>
+                  </div>
+                @endif
                 <div class="author-thumb">
                   <h5>Author</h5>
                   @foreach ($course->authors as $author)
@@ -316,16 +329,173 @@
             </div>
           @endif
           <div class="tab-pane fade" id="nav-download-links" role="tabpanel" aria-labelledby="nav-download-links-tab">
-              @include('courses.partials._project_files', ['course' => $course])
+            @php
+              $user_role_id = Auth::check() ? Auth::user()->role->id : -1;
+            @endphp
+            @if ($user_role_id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0)
+              <div class="row justify-content-center text-left" dir="ltr">
+                <div class="col-lg-2 text-center">
+                  <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
+                </div>
+                <div class="col-lg-10">
+                  <div></div>
+                  <p></p>
+                  <ul class="exercise-files-popover">
+                    @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
+                      @foreach (json_decode($course->courseFile) as $file)
+                        <li role="presentation">
+                          <a role="link"
+                            href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
+                            <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                            <span>
+                              {{ $file->original_name }}
+                            </span>
+                            @if (isset($file->size))
+                              <span class="text-muted small">
+                                ({{ formatBytes($file->size) }})
+                              </span>
+                            @endif
+                          </a>
+                          {{-- <a role="link"
+                                        href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
+                                        <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                                        <span>
+                                        فایل دوره آموزشی
+                                        </span>
+                                    </a> --}}
+                        </li>
+                      @endforeach
+                    @endif
 
-              {{-- <div class="col-12 text-center">
-                <i class="lyndacon download align-self-center p-2" style="font-size: 24px;"></i>
-                <br>
-                برای تماشا بصورت آفلاین، این درس را {{ $course->price > 0 ? 'خریداری' : 'دانلود' }} کنید.
+                    @if ($course->exerciseFile && count(json_decode($course->exerciseFile)) > 0)
+                      @php
+                        $idx = 0;
+                      @endphp
+                      @foreach (json_decode($course->exerciseFile) as $file)
+                        @php
+                          $idx = $idx + 1;
+                        @endphp
+                        <li role="presentation">
+                          <a role="link"
+                            href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
+                            <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                            <span>
+                              {{ $file->original_name }}
+                            </span>
+                            @if (isset($file->size))
+                              <span class="text-muted small">
+                                ({{ formatBytes($file->size) }})
+                              </span>
+                            @endif
+                          </a>
+                          {{-- <a role="link"
+                                href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
+                                <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                                <span>
+                                فایل تمرینی {{ $idx }}
+                                </span>
+                            </a> --}}
+                        </li>
+                      @endforeach
+                    @endif
 
-                <br>
-                @include('courses.partials._link_btn', ['course' => $course])
-              </div> --}}
+                    @if ($course->persianSubtitleFile && count(json_decode($course->persianSubtitleFile)) > 0)
+                      @foreach (json_decode($course->persianSubtitleFile) as $file)
+
+                        <li role="presentation">
+                          <a role="link"
+                            href="{{ route('courses.download', [$course->id, hash('md5', 'persianSubtitleFile') => hash('sha256', auth()->id())]) }}">
+                            <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                            <span>
+                              فایل زیرنویس فارسی دوره
+                            </span>
+                          </a>
+                          {{-- <a role="link"
+                                href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
+                                <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                                <span>
+                                فایل زیرنویس فارسی دوره
+                                </span>
+                            </a> --}}
+                        </li>
+                      @endforeach
+                    @endif
+
+                  @elseif ($course_state == '2')
+                    <div class="col-12 px-0 mb-2" style="color: green; font-size: 2rem;">
+                      <p>
+                        {{ $course->price == 0 ? 'رایگان' : number_format($course->price) . ' تومان' }}
+                      </p>
+                    </div>
+                    <div id="cart-btn">
+                      <a data-id="1-{{ $course->id }}" class="btn btn-danger align-self-center cart-remove-btn">
+                        حذف از سبد خرید
+                      </a>
+                    </div>
+                    <a href="https://lyndakade.ir/cart" style="background-color: #ddd;" class="btn btn-light mt-2">
+                      مشاهده سبد خرید
+                    </a>
+                  @elseif($course_state == '3')
+                    <div class="col-12 px-0 mb-2" style="color: green; font-size: 2rem;">
+                      <p>
+                        {{ $course->price == 0 ? 'رایگان' : number_format($course->price) . ' تومان' }}
+                      </p>
+                    </div>
+                    <div id="cart-btn">
+                      <a data-id="1-{{ $course->id }}" class="btn btn-download align-self-center cart-add-btn">
+                        افزودن به سبد خرید
+                      </a>
+                    </div>
+                    <a href="https://lyndakade.ir/cart" style="background-color: #ddd;" class="btn btn-light mt-2">
+                      مشاهده سبد خرید
+                    </a>
+                  </ul>
+                </div>
+              </div>
+            @else
+              @if (!auth()->check())
+                <div class="row justify-content-center text-left" dir="ltr">
+                  <div class="col-lg-2 text-center">
+                    <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
+                  </div>
+                  <div class="col-lg-10">
+                    <div></div>
+                    <p></p>
+                    <div class="col-lg-10">
+                      @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
+                        @foreach (json_decode($course->courseFile) as $file)
+                          <div>
+                            <span>
+                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                              {{ prepare_course_file_name($file->original_name) }}
+                            </span>
+                            @if (isset($file->size))
+                              <span class="text-muted small">
+                                ({{ formatBytes($file->size) }})
+                              </span>
+                            @endif
+                          </div>
+                        @endforeach
+                      @endif
+
+                      @if ($course->exerciseFile && count(json_decode($course->exerciseFile)) > 0)
+                        @foreach (json_decode($course->exerciseFile) as $file)
+                          <div>
+                            <span>
+                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                              {{ prepare_course_file_name($file->original_name) }}
+                            </span>
+                            @if (isset($file->size))
+                              <span class="text-muted small">
+                                ({{ formatBytes($file->size) }})
+                              </span>
+                            @endif
+                          </div>
+                        @endforeach
+                      @endif
+                    </div>
+                  </div>
+              @endif
           </div>
         </div>
       </div>
