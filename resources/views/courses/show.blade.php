@@ -97,6 +97,28 @@
             aria-labelledby="nav-description-tab">
             <div class="row">
               <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
+                <div class="course-info-stat-cont m-0 mb-2 w-100">
+                  <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
+                    {{ $course->price == 0 ? 'رایگان' : nPersian(number_format($course->price)) . ' تومان' }}
+                  </span>
+                </div>
+                @if (auth()->check())
+                  @if ($course_state == '2')
+                    <div id="cart-btn">
+                      <a data-id="1-{{ $course->id }}"
+                        class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
+                        حذف از سبد خرید
+                      </a>
+                    </div>
+                  @elseif($course_state == '3')
+                    <div id="cart-btn">
+                      <a data-id="1-{{ $course->id }}"
+                        class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
+                        افزودن به سبد خرید
+                      </a>
+                    </div>
+                  @endif
+                @endif
                 <div class="author-thumb">
                   <h5>مدرس</h5>
                   @foreach ($course->authors as $author)
@@ -209,7 +231,7 @@
               <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
                 <div class="course-info-stat-cont m-0 mb-2 w-100">
                   <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
-                    {{ $course->price == 0 ? 'رایگان' : nPersian(number_format($course->price)) . ' تومان' }}
+                    {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
                   </span>
                 </div>
                 @if (auth()->check())
@@ -217,14 +239,14 @@
                     <div id="cart-btn">
                       <a data-id="1-{{ $course->id }}"
                         class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
-                        حذف از سبد خرید
+                        Remove From Cart
                       </a>
                     </div>
                   @elseif($course_state == '3')
                     <div id="cart-btn">
                       <a data-id="1-{{ $course->id }}"
                         class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
-                        افزودن به سبد خرید
+                        Add To Cart
                       </a>
                     </div>
                   @endif
