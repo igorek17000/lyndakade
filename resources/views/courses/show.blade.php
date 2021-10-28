@@ -461,7 +461,11 @@
                 </div>
                 <div class="col-lg-10">
                   <div></div>
-                  <p class="text-center">برای دانلود، باید وارد حساب کاربری شوید</p>
+                  @if ($course->price == 0)
+                    <p class="text-center">برای دانلود، باید وارد حساب کاربری شوید</p>
+                  @else
+                    <p></p>
+                  @endif
                   <div class="col-lg-10">
                     @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
                       @foreach (json_decode($course->courseFile) as $file)
