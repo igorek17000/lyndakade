@@ -278,6 +278,8 @@ function get_learn_path_state($path)
 function get_course_state($course)
 {
     $user_id = auth()->id();
+    if (auth()->user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id)
+        return "1";
     $found = false;
     if (Auth::check()) {
         foreach (Auth::user()->paids as $paid) {
