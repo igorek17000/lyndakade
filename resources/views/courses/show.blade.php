@@ -461,7 +461,7 @@
                 </div>
                 <div class="col-lg-10">
                   <div></div>
-                  @if ($course->price == 0)
+                  @if (!auth()->check())
                     <p class="text-center">برای دانلود، باید وارد حساب کاربری شوید</p>
                   @else
                     <p></p>
