@@ -456,8 +456,7 @@
                   </ul>
                 </div>
               </div>
-            @else
-              @if (!auth()->check())
+            @elseif (!auth()->check())
                 <div class="row justify-content-center text-left" dir="ltr">
                   <div class="col-lg-2 text-center">
                     <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
@@ -499,7 +498,7 @@
                       @endif
                     </div>
                   </div>
-              @endif
+            @endif
           </div>
         </div>
       </div>
