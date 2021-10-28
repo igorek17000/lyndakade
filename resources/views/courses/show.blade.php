@@ -440,35 +440,6 @@
                         </li>
                       @endforeach
                     @endif
-
-                  @elseif ($course_state == '2')
-                    <div class="col-12 px-0 mb-2" style="color: green; font-size: 2rem;">
-                      <p>
-                        {{ $course->price == 0 ? 'رایگان' : number_format($course->price) . ' تومان' }}
-                      </p>
-                    </div>
-                    <div id="cart-btn">
-                      <a data-id="1-{{ $course->id }}" class="btn btn-danger align-self-center cart-remove-btn">
-                        حذف از سبد خرید
-                      </a>
-                    </div>
-                    <a href="https://lyndakade.ir/cart" style="background-color: #ddd;" class="btn btn-light mt-2">
-                      مشاهده سبد خرید
-                    </a>
-                  @elseif($course_state == '3')
-                    <div class="col-12 px-0 mb-2" style="color: green; font-size: 2rem;">
-                      <p>
-                        {{ $course->price == 0 ? 'رایگان' : number_format($course->price) . ' تومان' }}
-                      </p>
-                    </div>
-                    <div id="cart-btn">
-                      <a data-id="1-{{ $course->id }}" class="btn btn-download align-self-center cart-add-btn">
-                        افزودن به سبد خرید
-                      </a>
-                    </div>
-                    <a href="https://lyndakade.ir/cart" style="background-color: #ddd;" class="btn btn-light mt-2">
-                      مشاهده سبد خرید
-                    </a>
                   </ul>
                 </div>
               </div>
