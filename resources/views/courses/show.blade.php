@@ -1,10 +1,25 @@
 @extends('layouts.app')
+
+@php
+$keyword_subs = '';
+if (count($course->subjects) > 0) {
+    foreach ($course->subjects as $subject) {
+        $keyword_subs .= 'آموزش های ' . $subject->title;
+        if (!$loop->last) {
+            $keyword_subs .= ', ';
+        }
+    }
+}
+@endphp
+
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img),
   'title' => $course->title . ' - ' . $course->titleEng . ' - لیندا کده',
   'description' => $course->description . ' - ' . $course->descriptionEng,
-  'keywords' => $course->title . ', ' . $course->titleEng . ' , ' . get_seo_keywords(),
+  'keywords' => 'دانلود ' . $course->title . ', ' .'دانلود ' . $course->titleEng . ' , ' . 'دانلود دوره ' . $course->title
+  . ', ' .'دانلود دوره ' . $course->titleEng . ' , ' . 'دانلود دوره آموزشی ' . $course->title . ', ' .'دانلود دوره آموزشی
+  ' . $course->titleEng . ' , ' . $keyword_subs . get_seo_keywords(),
   ])
   @if ($course->slug_url && $course->slug)
     <link rel="alternate" href="{{ route('courses.show', [$course->slug_url, $course->slug, $course->id]) }}">
