@@ -253,7 +253,7 @@ if (count($course->subjects) > 0) {
                     {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
                   </span>
                 </div>
-                @if (auth()->check())
+                @if (auth()->check() && $course->price > 0)
                   @if ($course_state == '1')
                     <div id="cart-btn">
                       <span class="btn btn-secondary align-self-center m-0 mb-2 w-100">
