@@ -51,7 +51,7 @@
     </div>
   </div> --}}
 @else
-  <div class="row justify-content-center">
+  <div class="row justify-content-center text-left" dir="ltr">
     <div class="col-lg-2 text-center">
       <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
     </div>
@@ -67,11 +67,13 @@
                   href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
                   <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                   <span>
-                    {{ $file->original_name }} @if (isset($file->size)) ({{ formatBytes($file->size) }}) @endif
+                    {{ $file->original_name }}
                   </span>
-                  {{-- <span>
-                  فایل دوره آموزشی
-                </span> --}}
+                  @if (isset($file->size))
+                    <span class="text-muted small">
+                      ({{ formatBytes($file->size) }})
+                    </span>
+                  @endif
                 </a>
                 {{-- <a role="link"
                 href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
@@ -97,11 +99,13 @@
                   href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
                   <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                   <span>
-                    {{ $file->original_name }} @if (isset($file->size)) ({{ formatBytes($file->size) }}) @endif
+                    {{ $file->original_name }}
                   </span>
-                  {{-- <span>
-                  فایل تمرینی {{ $idx }}
-                </span> --}}
+                  @if (isset($file->size))
+                    <span class="text-muted small">
+                      ({{ formatBytes($file->size) }})
+                    </span>
+                  @endif
                 </a>
                 {{-- <a role="link"
                 href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
