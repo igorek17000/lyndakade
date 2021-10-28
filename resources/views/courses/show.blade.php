@@ -235,7 +235,7 @@
           <div class="tab-pane fade" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab">
             <div class="row">
               <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
-                <div class="course-info-stat-cont m-0 mb-2 w-100">
+                <div class="course-info-stat-cont m-0 mb-2 w-100 text-left" dir="ltr">
                   <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
                     {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
                   </span>

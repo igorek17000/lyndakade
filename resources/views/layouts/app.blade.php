@@ -644,6 +644,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
             color: #ccc;
         }
     </style>
+
     {{-- <footer id="footer" class="bg-dark text-muted p-md-5 pt-4 @if(app()->isLocal('en')) text-left @endif"  @if(app()->isLocal('en')) dir="ltr" @endif> --}}
     <footer id="footer" class="bg-dark text-muted p-md-5 pt-4">
       <div class="fpart-first">
@@ -655,6 +656,8 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد. </p>
             </div>
             <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
+
+    <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
             </div>
             <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
             </div>
