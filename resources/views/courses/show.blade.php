@@ -322,12 +322,6 @@
                   </span>
                   <h6>Duration</h6>
                 </div>
-
-                <div class="course-info-stat-cont">
-                  <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
-                    {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
-                  </span>
-                </div>
                 @if ($course->views > 0)
                   <div class="course-info-stat-cont viewers" title="Number of people watched this course (from linkedin)">
                     <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
