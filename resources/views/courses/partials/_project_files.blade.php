@@ -1,6 +1,12 @@
 @if (!auth()->check())
   <div class="row justify-content-center">
-    <div class="col-12 col-md-8 text-left" dir="ltr">
+      <div class="col-lg-2 text-center">
+      <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
+    </div>
+    <div class="col-lg-10">
+      <div></div>
+      <p></p>
+    <div class="col-lg-10 text-left" dir="ltr">
       @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
         @foreach (json_decode($course->courseFile) as $file)
           <div>
