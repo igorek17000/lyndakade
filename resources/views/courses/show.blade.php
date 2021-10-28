@@ -5,9 +5,7 @@ $keyword_subs = '';
 if (count($course->subjects) > 0) {
     foreach ($course->subjects as $subject) {
         $keyword_subs .= 'آموزش های ' . $subject->title;
-        if (!$loop->last) {
-            $keyword_subs .= ', ';
-        }
+        $keyword_subs .= ', ';
     }
 }
 @endphp
