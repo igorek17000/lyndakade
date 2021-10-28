@@ -356,7 +356,7 @@
                 </div>
                 <div class="col-lg-10">
                   <div></div>
-                  <p></p>
+                  <p class="text-center">برای دانلود، باید وارد حساب کاربری شوید</p>
                   <div class="col-lg-10">
                     @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
                       @foreach (json_decode($course->courseFile) as $file)
