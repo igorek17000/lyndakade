@@ -103,7 +103,13 @@
                   </span>
                 </div>
                 @if (auth()->check())
-                  @if ($course_state == '2')
+                  @if ($course_state == '1')
+                    <div id="cart-btn">
+                      <span class="btn btn-secondary align-self-center m-0 mb-2 w-100">
+                        خریداری شده
+                      </span>
+                    </div>
+                  @elseif ($course_state == '2')
                     <div id="cart-btn">
                       <a data-id="1-{{ $course->id }}"
                         class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
