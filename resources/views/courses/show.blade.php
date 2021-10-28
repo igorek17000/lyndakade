@@ -349,10 +349,51 @@
             </div>
           @endif
           <div class="tab-pane fade" id="nav-download-links" role="tabpanel" aria-labelledby="nav-download-links-tab">
-            @php
-              $user_role_id = Auth::check() ? Auth::user()->role->id : -1;
-            @endphp
-            @if ($user_role_id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0)
+            @if (!auth()->check())
+              <div class="row justify-content-center text-left" dir="ltr">
+                <div class="col-lg-2 text-center">
+                  <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
+                </div>
+                <div class="col-lg-10">
+                  <div></div>
+                  <p></p>
+                  <div class="col-lg-10">
+                    @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
+                      @foreach (json_decode($course->courseFile) as $file)
+                        <div>
+                          <span>
+                            <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                            {{ prepare_course_file_name($file->original_name) }}
+                          </span>
+                          @if (isset($file->size))
+                            <span class="text-muted small">
+                              ({{ formatBytes($file->size) }})
+                            </span>
+                          @endif
+                        </div>
+                      @endforeach
+                    @endif
+
+                    @if ($course->exerciseFile && count(json_decode($course->exerciseFile)) > 0)
+                      @foreach (json_decode($course->exerciseFile) as $file)
+                        <div>
+                          <span>
+                            <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                            {{ prepare_course_file_name($file->original_name) }}
+                          </span>
+                          @if (isset($file->size))
+                            <span class="text-muted small">
+                              ({{ formatBytes($file->size) }})
+                            </span>
+                          @endif
+                        </div>
+                      @endforeach
+                    @endif
+                  </div>
+                </div>
+              </div>
+            @elseif (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1'
+              || $course->price == 0)
               <div class="row justify-content-center text-left" dir="ltr">
                 <div class="col-lg-2 text-center">
                   <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
@@ -443,49 +484,7 @@
                   </ul>
                 </div>
               </div>
-            @elseif (!auth()->check())
-              <div class="row justify-content-center text-left" dir="ltr">
-                <div class="col-lg-2 text-center">
-                  <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
-                </div>
-                <div class="col-lg-10">
-                  <div></div>
-                  <p></p>
-                  <div class="col-lg-10">
-                    @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
-                      @foreach (json_decode($course->courseFile) as $file)
-                        <div>
-                          <span>
-                            <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
-                            {{ prepare_course_file_name($file->original_name) }}
-                          </span>
-                          @if (isset($file->size))
-                            <span class="text-muted small">
-                              ({{ formatBytes($file->size) }})
-                            </span>
-                          @endif
-                        </div>
-                      @endforeach
-                    @endif
 
-                    @if ($course->exerciseFile && count(json_decode($course->exerciseFile)) > 0)
-                      @foreach (json_decode($course->exerciseFile) as $file)
-                        <div>
-                          <span>
-                            <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
-                            {{ prepare_course_file_name($file->original_name) }}
-                          </span>
-                          @if (isset($file->size))
-                            <span class="text-muted small">
-                              ({{ formatBytes($file->size) }})
-                            </span>
-                          @endif
-                        </div>
-                      @endforeach
-                    @endif
-                  </div>
-                </div>
-              </div>
             @endif
           </div>
         </div>
