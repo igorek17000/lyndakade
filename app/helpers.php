@@ -16,6 +16,21 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+function prepare_course_file_name($filename)
+{
+    preg_match('/-\d{3,}.rar/', strtolower($filename), $matches);
+    if ($matches) {
+        return str_replace($matches[0], ".rar", $filename);
+    }
+
+    preg_match('/-\d{3,}.zip/', strtolower($filename), $matches);
+    if ($matches) {
+        return str_replace($matches[0], ".zip", $filename);
+    }
+
+    return $filename;
+}
+
 function number_of_courses_in_cart($carts)
 {
     $res = 0;

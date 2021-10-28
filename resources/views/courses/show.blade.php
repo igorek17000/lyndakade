@@ -15,12 +15,12 @@
     {
       "@context": "https://schema.org",
       "@type": "Course",
-        "image": "{{ fromDLHost($course->img) }}",
+      "image": "{{ fromDLHost($course->img) }}",
       "name": "{{ $course->titleEng }} - {{ $course->title }}",
-        "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
+      "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
       "description": "{{ $course->descriptionEng }} - {{ $course->description }}",
       "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
-      "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm'}}",
+      "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm' }}",
       "provider": [
         @foreach ($course->authors as $author)
           {
@@ -190,6 +190,11 @@
                   </span>
                   <h6>مدت زمان دوره</h6>
                 </div>
+                <div class="course-info-stat-cont">
+                  <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
+                    {{ $course->price == 0 ? 'رایگان' : nPersian(number_format($course->price)) . ' تومان' }}
+                  </span>
+                </div>
                 @if ($course->views > 0)
                   <div class="course-info-stat-cont viewers"
                     title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
@@ -279,6 +284,11 @@
                   <h6>Duration</h6>
                 </div>
 
+                <div class="course-info-stat-cont">
+                  <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
+                    {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
+                  </span>
+                </div>
                 @if ($course->views > 0)
                   <div class="course-info-stat-cont viewers" title="Number of people watched this course (from linkedin)">
                     <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
@@ -306,7 +316,6 @@
             </div>
           @endif
           <div class="tab-pane fade" id="nav-download-links" role="tabpanel" aria-labelledby="nav-download-links-tab">
-            <div class="row">
               @include('courses.partials._project_files', ['course' => $course])
 
               {{-- <div class="col-12 text-center">
@@ -317,7 +326,6 @@
                 <br>
                 @include('courses.partials._link_btn', ['course' => $course])
               </div> --}}
-            </div>
           </div>
         </div>
       </div>
