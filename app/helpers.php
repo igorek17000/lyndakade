@@ -281,7 +281,7 @@ function get_course_state($course)
         return "3";
     }
     $user_id = auth()->id();
-    if (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course->price == 0)
+    if (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id)
         return "1";
     $found = false;
     if (Auth::check()) {
