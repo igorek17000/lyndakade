@@ -368,7 +368,7 @@
                             href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
                             <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                             <span>
-                              {{ $file->original_name }}
+                              {{ prepare_course_file_name($file->original_name) }}
                             </span>
                             @if (isset($file->size))
                               <span class="text-muted small">
@@ -400,7 +400,7 @@
                             href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
                             <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                             <span>
-                              {{ $file->original_name }}
+                              {{ prepare_course_file_name($file->original_name) }}
                             </span>
                             @if (isset($file->size))
                               <span class="text-muted small">
