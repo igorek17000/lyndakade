@@ -475,7 +475,8 @@ if (count($course->subjects) > 0) {
                 <div class="col-lg-10">
                   <div></div>
                   @if (!auth()->check())
-                    <p class="text-center">برای دانلود، باید وارد حساب کاربری شوید</p>
+                    <p class="text-center">برای دانلود، لطفا <a href="{{ route('login') }}">وارد حساب کاربری</a>
+                      شوید</p>
                   @else
                     <p></p>
                   @endif

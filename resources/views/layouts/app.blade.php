@@ -596,7 +596,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد. </p>
             </div>
             <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-
+<img referrerpolicy='origin' id = 'nbqejzpeapfujxlzsizpesgt' style = 'cursor:pointer' onclick = 'window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
     {{-- <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script> --}}
             </div>
             <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
@@ -657,7 +657,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
   <link rel="stylesheet" type="text/css" href="{{ asset('css/lyndacon.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/my-stylesheet.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
-  
+
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
