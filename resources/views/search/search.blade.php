@@ -320,9 +320,8 @@
               // console.log(res);
               course_list.insertAdjacentHTML('beforeend', res)
             }
-            $(el).prop('disabled', false);
-            if(!result.hasMore){
-                $(el).remove();
+            if(result.hasMore){
+                $(el).prop('disabled', false);
             }
           },
           errors: function(xhr) {
