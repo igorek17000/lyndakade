@@ -182,7 +182,9 @@
                             </style>
                         <ul class="timeline pb-0" id="course-list">
                             @foreach ($courses as $course)
-                            <li class="course">
+                                @include('courses.partials._course_list_timeline', ['course'=> $course])
+
+                            {{-- <li class="course">
                                 <a href="{{ courseURL($course) }}" class="timeline-panel">
                                     <div class="timeline-heading">
                                         <h2 class="timeline-title" style="font-size: 1.25rem;">
@@ -192,7 +194,6 @@
                                                 توسط
                                                 <span class="text-left" dir="ltr">
                                                     @foreach ($course->authors as $author)
-                                                        {{-- <i class="glyphicon glyphicon-time"></i> --}}
                                                         {{ $author->name }}
                                                         @if (!$loop->last)
                                                         ,
@@ -207,7 +208,6 @@
                                                     by
                                                     <span>
                                                         @foreach ($course->authors as $author)
-                                                            {{-- <i class="glyphicon glyphicon-time"></i> --}}
                                                             {{ $author->name }}
                                                             @if (!$loop->last)
                                                             ,
@@ -271,7 +271,7 @@
                                     </div>
                                     </div>
                                 </a>
-                            </li>
+                            </li> --}}
                             @endforeach
                         </ul>
 
@@ -294,38 +294,41 @@
 @push('js')
     <script>
 
-    // $(function() {
-    //   $('.load-more').click(function(e) {
-    //     var page = ($('#course-list .course').length / 20) + 1;
-    //     var el = this;
-    //     $(el).prop('disabled', true);
-    //     urlObject = new URL(document.location.href);
-    //     params = urlObject.searchParams;
-    //     for(let item of params){
-    //         console.log(item);
-    //     }
-    //     $.ajax({
-    //       url: document.location.toString(),
-    //       method: 'get',
-    //       data: {
-    //         _token: $('[name="_token"]').val(),
-    //         page: page,
-    //       },
-    //       success: function(result) {
-    //         var course_list = document.getElementById('course-list');
-    //         for (let res of result) {
-    //           // console.log(res);
-    //           course_list.insertAdjacentHTML('beforeend', res)
-    //         }
-    //         $(el).prop('disabled', false);
-    //       },
-    //       errors: function(xhr) {
-    //         console.log(xhr);
-    //         $(el).prop('disabled', false);
-    //       }
-    //     });
-    //   })
-    // });
+    $(function() {
+      $('.load-more').click(function(e) {
+        var page = ($('#course-list .course').length / 20) + 1;
+        var el = this;
+        $(el).prop('disabled', true);
+        urlObject = new URL(document.location.href);
+        params = urlObject.searchParams;
+        let data = {
+            _token: $('[name="_token"]').val(),
+            page: page,
+        }
+        for(let item of params){
+            let pa = item[0], pb = item[1];
+            console.log(pa, pb);
+            data[pa] = pb;
+        }
+        $.ajax({
+          url: window.location.href.split('?')[0],
+          method: 'get',
+          data,
+          success: function(result) {
+            var course_list = document.getElementById('course-list');
+            for (let res of result) {
+              // console.log(res);
+              course_list.insertAdjacentHTML('beforeend', res)
+            }
+            $(el).prop('disabled', false);
+          },
+          errors: function(xhr) {
+            console.log(xhr);
+            $(el).prop('disabled', false);
+          }
+        });
+      })
+    });
 
     </script>
 @endpush

@@ -124,33 +124,29 @@ class HomeController extends Controller
         return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
     }
 
-    function prepare_ajax_result($request, $courses){
-
-    }
-
     function show_first_object($obj, $type, $request)
     {
         $query = $request->get('q');
         if ($request->ajax()) {
-            $count = 5;
             $searched = $obj->courses;
             $searched = $searched->toArray();
             if (count($searched) > 0) {
                 return $searched;
             }
-            $learn_paths = LearnPath::with('library')->search($query)->distinct('learn_paths.id')->get();
-            $searched = $learn_paths->toArray();
-            if (count($searched) > 0) {
-                return $searched;
-            }
 
-            $authors = Author::with('courses')->search($query)->distinct('authors.id')->get();
-            $searched = $authors->toArray();
+            // $learn_paths = LearnPath::with('library')->search($query)->distinct('learn_paths.id')->get();
+            // $searched = $learn_paths->toArray();
+            // if (count($searched) > 0) {
+            //     return $searched;
+            // }
 
-            if (count($searched) > 0) {
-                return $searched;
-            }
-            return [];
+            // $authors = Author::with('courses')->search($query)->distinct('authors.id')->get();
+            // $searched = $authors->toArray();
+
+            // if (count($searched) > 0) {
+            //     return $searched;
+            // }
+            // return [];
 
             // $subjects = Subject::with('courses')->search($query)->distinct('subjects.id')->get();
             // $result = array_merge($result, $subjects->toArray());
@@ -183,9 +179,16 @@ class HomeController extends Controller
         ]);
     }
 
+    public function get_course_timeline($course_id)
+    {
+        $course = Course::find($course_id);
+        if ($course)
+            return view('courses.partials._course_list_grid', ['course' => $course])->render();
+        return 'not found';
+    }
+
     public function search_page(Request $request)
     {
-
         $query = $request->get('q');
         if (!$query) {
             return redirect('/');
@@ -215,10 +218,17 @@ class HomeController extends Controller
         // $searched = Course::find(array_unique($courses_id));
 
         if ($request->ajax()) {
-            $count = 5;
-            $searched = $searched->toArray();
-            if (count($searched) > 0) {
-                return $searched;
+            $courses = $searched->toArray();
+            if (count($courses) > 0) {
+                $page = $request->get('page', null);
+                if (!$page) {
+                    return [];
+                }
+                $res = [];
+                foreach ($courses->forPage(intval($page), 20) as $course) {
+                    $res[] = $this->get_course_timeline($course->id);
+                }
+                return $res;
             }
 
             // $learn_paths = LearnPath::with('library')->search($query)->distinct('learn_paths.id')->get();
