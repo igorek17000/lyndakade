@@ -80,14 +80,14 @@
                     @include('courses.partials._course_list_timeline', ['course'=> $course])
                   @endforeach
                 </ul>
-
-                <div class="col-12 mb-4 mt-2">
-                  <button class="btn btn-light load-more w-100" coursetype="button" style="margin: auto;">
-                    <span class="text-t">نمایش موارد بیشتر</span>
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                      style="margin: auto;"></span>
-                  </button>
-                </div>
+                @if ($hasMore)
+                    <div class="col-12 mb-4 mt-2">
+                        <button class="btn btn-light load-more w-100" coursetype="button" style="margin: auto;">
+                        <span class="text-t">نمایش موارد بیشتر</span>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="margin: auto;"></span>
+                        </button>
+                    </div>
+                @endif
               </div>
             </div>
           </div>

@@ -92,6 +92,7 @@ class AuthorController extends Controller
                 'author' => $author,
                 'courses' => $courses->take(20),
                 'total_courses' => count($courses),
+                'hasMore' => count($courses) > 20
             ]);
         }
         return redirect()->route('authors.index')->with('error', 'Author Not found');
@@ -104,7 +105,7 @@ class AuthorController extends Controller
             return view('courses.partials._course_list_timeline', ['course' => $course])->render();
         return 'not found';
     }
-    
+
     public function authors_api()
     {
         $authors = Author::get();

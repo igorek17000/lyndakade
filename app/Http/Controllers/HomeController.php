@@ -190,6 +190,7 @@ class HomeController extends Controller
             'result_count' => count($courses),
             'courses' => count($courses) > 20 ? $courses->take(20) : $courses,
             'categories_filter' => $categories_filter,
+            'hasMore' => count($courses) > 20
         ]);
     }
 
@@ -286,6 +287,7 @@ class HomeController extends Controller
             'result_count' => count($courses),
             'courses' => count($courses) > 20 ? $courses->take(20) : $courses,
             'categories_filter' => $categories_filter,
+            'hasMore' => count($courses) > 20
         ]);
     }
 
