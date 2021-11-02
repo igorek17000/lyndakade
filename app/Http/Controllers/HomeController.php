@@ -183,7 +183,7 @@ class HomeController extends Controller
     {
         $course = Course::find($course_id);
         if ($course)
-            return view('courses.partials._course_list_grid', ['course' => $course])->render();
+            return view('courses.partials._course_list_timeline', ['course' => $course])->render();
         return 'not found';
     }
 
