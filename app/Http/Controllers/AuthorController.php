@@ -63,11 +63,31 @@ class AuthorController extends Controller
      * @param $slug
      * @return Factory|RedirectResponse|Redirector|View
      */
-    public function show($slug)
+    public function show(Request $request, $slug)
     {
         $author = Author::all()->where('slug', $slug)->first();
         if ($author) {
             $courses = $author->courses;
+            if($request->ajax()){
+                $res = [
+                    'courses' => [],
+                    'hasMore' => false,
+                ];
+                if (count($courses) > 0) {
+                    $page = $request->get('page', null);
+                    if (!$page) {
+                        return $res;
+                    }
+                    if (intval($courses->count() / 20) + 1 < intval($page)) {
+                        return $res;
+                    }
+                    foreach ($courses->forPage(intval($page), 20) as $course) {
+                        $res['courses'][] = $this->get_course_timeline($course->id);
+                    }
+                    $res['hasMore'] = intval($courses->count() / 20) + 1 >= intval($page) + 1;
+                    return $res;
+                }
+            }
             return view('authors.show', [
                 'author' => $author,
                 'courses' => $courses->take(20),
@@ -77,6 +97,14 @@ class AuthorController extends Controller
         return redirect()->route('authors.index')->with('error', 'Author Not found');
     }
 
+    public function get_course_timeline($course_id)
+    {
+        $course = Course::find($course_id);
+        if ($course)
+            return view('courses.partials._course_list_timeline', ['course' => $course])->render();
+        return 'not found';
+    }
+    
     public function authors_api()
     {
         $authors = Author::get();

@@ -14,7 +14,7 @@
       "url": "{{ route('authors.show', [$author->slug]) }}",
       "image": "{{ fromDLHost($author->img) }}"
     }
-    </script>
+  </script>
 @endpush
 @section('content')
   {{-- <div class="row mx-0 px-0" style="height: 400px; background-color:#fff;"> --}}
@@ -65,9 +65,29 @@
             </div>
             <div class="card-body clearfix" id="list-items">
               <div class="row d-flex ">
-                @foreach ($courses as $course)
-                  @include('courses.partials._course_list_grid', ['course' => $course])
-                @endforeach
+                <style>
+                  .timeline>li>.timeline-panel {
+                    width: calc(100% - 15px) !important;
+                  }
+
+                  .timeline:before {
+                    width: 0 !important;
+                  }
+
+                </style>
+                <ul class="timeline pb-0" id="course-list">
+                  @foreach ($courses as $course)
+                    @include('courses.partials._course_list_timeline', ['course'=> $course])
+                  @endforeach
+                </ul>
+
+                <div class="col-12 mb-4 mt-2">
+                  <button class="btn btn-light load-more w-100" coursetype="button" style="margin: auto;">
+                    <span class="text-t">نمایش موارد بیشتر</span>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                      style="margin: auto;"></span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -77,3 +97,44 @@
 
   </div>
 @endsection
+
+@push('js')
+  <script>
+    $(function() {
+      $('.load-more').click(function(e) {
+        var page = ($('#course-list .course').length / 20) + 1;
+        var el = this;
+        $(el).prop('disabled', true);
+        urlObject = new URL(document.location.href);
+        params = urlObject.searchParams;
+        let data = {
+          _token: $('[name="_token"]').val(),
+          page: page,
+        }
+        $.ajax({
+          url: window.location.href.split('?')[0],
+          method: 'get',
+          data,
+          success: function(result) {
+            var course_list = document.getElementById('course-list');
+            for (let res of result.courses) {
+              // console.log(res);
+              course_list.insertAdjacentHTML('beforeend', res)
+            }
+            if (result.hasMore) {
+              $(el).prop('disabled', false);
+            } else {
+              setTimeout(() => {
+                $(el).remove();
+              }, 600);
+            }
+          },
+          errors: function(xhr) {
+            console.log(xhr);
+            $(el).prop('disabled', false);
+          }
+        });
+      })
+    });
+  </script>
+@endpush
