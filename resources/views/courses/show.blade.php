@@ -481,7 +481,14 @@ if (count($course->subjects) > 0) {
                     <p></p>
                   @endif
                   <p class="text-center">
-                    این دوره شامل 19 ویدئو آموزشی به همراه زیرنویس فارسی میباشد
+                    این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
+                    @if($course->persian_subtitle_id == 1)
+                    به همراه زیرنویس فارسی و انگلیسی می‌باشد.
+                    @elseif ($course->english_subtitle_id == 1)
+                    به همراه زیرنویس انگلیسی می‌باشد.
+                    @else
+                    دارای زیرنویس نمی‌باشد.
+                    @endif
                   </p>
                   <div class="col-lg-10">
                     @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
