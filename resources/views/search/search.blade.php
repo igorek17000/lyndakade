@@ -307,9 +307,9 @@
         }
         for(let item of params){
             let pa = item[0], pb = item[1];
-            console.log(pa, pb);
             data[pa] = pb;
         }
+        console.log(data);
         $.ajax({
           url: window.location.href.split('?')[0],
           method: 'get',

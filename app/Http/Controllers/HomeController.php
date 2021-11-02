@@ -217,8 +217,12 @@ class HomeController extends Controller
         // }
         // $searched = Course::find(array_unique($courses_id));
 
+        $details = $this->prepare_for_search_page($request, $searched);
+        $filtered_items = $details['filtered_items'];
+        $courses = $details['courses'];
+        $categories_filter = $details['categories_filter'];
+
         if ($request->ajax()) {
-            $courses = $searched->toArray();
             if (count($courses) > 0) {
                 $page = $request->get('page', null);
                 if (!$page) {
@@ -254,11 +258,6 @@ class HomeController extends Controller
             // // $result = array_merge($result, $software->toArray());
             // // return $result;
         }
-
-        $details = $this->prepare_for_search_page($request, $searched);
-        $filtered_items = $details['filtered_items'];
-        $courses = $details['courses'];
-        $categories_filter = $details['categories_filter'];
 
         return view('search.search', [
             'q' => $request->get('q'),
