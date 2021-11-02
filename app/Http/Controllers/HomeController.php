@@ -146,13 +146,13 @@ class HomeController extends Controller
                 if (!$page) {
                     return $res;
                 }
-                if (!($courses->count() / 20 <= intval($page))) {
+                if (intval($courses->count() / 20) + 1 < intval($page)) {
                     return $res;
                 }
                 foreach ($courses->forPage(intval($page), 20) as $course) {
                     $res['courses'][] = $this->get_course_timeline($course->id);
                 }
-                $res['hasMore'] = $courses->count() / 20 >= intval($page) + 1;
+                $res['hasMore'] = intval($courses->count() / 20) + 1 >= intval($page) + 1;
                 return $res;
             }
 
@@ -250,13 +250,13 @@ class HomeController extends Controller
                 if (!$page) {
                     return $res;
                 }
-                if (!($courses->count() / 20 <= intval($page))) {
+                if (intval($courses->count() / 20) + 1 < intval($page)) {
                     return $res;
                 }
                 foreach ($courses->forPage(intval($page), 20) as $course) {
                     $res['courses'][] = $this->get_course_timeline($course->id);
                 }
-                $res['hasMore'] = $courses->count() / 20 >= intval($page)+1;
+                $res['hasMore'] = intval($courses->count() / 20) + 1 >= intval($page) + 1;
                 return $res;
             }
 
