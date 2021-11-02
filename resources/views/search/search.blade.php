@@ -309,14 +309,12 @@
             let pa = item[0], pb = item[1];
             data[pa] = pb;
         }
-        console.log(data);
         $.ajax({
           url: window.location.href.split('?')[0],
           method: 'get',
           data,
           success: function(result) {
             var course_list = document.getElementById('course-list');
-            console.log('result', result);
             for (let res of result.courses) {
               // console.log(res);
               course_list.insertAdjacentHTML('beforeend', res)
