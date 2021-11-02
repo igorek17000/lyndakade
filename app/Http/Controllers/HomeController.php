@@ -230,15 +230,28 @@ class HomeController extends Controller
         $categories_filter = $details['categories_filter'];
 
         if ($request->ajax()) {
+            $res = [
+                'courses' => [],
+                'hasMore' => false,
+            ];
             if (count($courses) > 0) {
                 $page = $request->get('page', null);
                 if (!$page) {
-                    return [];
+                    return [
+                        'courses' => [],
+                        'hasMore' => false,
+                    ];
                 }
-                $res = [];
+                if (!($courses->count() / 20 >= intval($page))) {
+                    return [
+                        'courses' => [],
+                        'hasMore' => false,
+                    ];
+                }
                 foreach ($courses->forPage(intval($page), 20) as $course) {
-                    $res[] = $this->get_course_timeline($course->id);
+                    $res['courses'][] = $this->get_course_timeline($course->id);
                 }
+                $res['hasMore'] = $courses->count() / 20 >= intval($page);
                 return $res;
             }
 
