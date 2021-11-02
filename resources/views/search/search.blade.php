@@ -316,6 +316,7 @@
           data,
           success: function(result) {
             var course_list = document.getElementById('course-list');
+            console.log('result', result);
             for (let res of result.courses) {
               // console.log(res);
               course_list.insertAdjacentHTML('beforeend', res)
