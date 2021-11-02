@@ -141,8 +141,6 @@ class HomeController extends Controller
             ];
             if (count($courses) > 0) {
                 $page = $request->get('page', null);
-                $res['courses_count'] = $courses->count();
-                $res['page'] = $page;
                 if (!$page) {
                     return $res;
                 }
@@ -245,8 +243,6 @@ class HomeController extends Controller
             ];
             if (count($courses) > 0) {
                 $page = $request->get('page', null);
-                $res['courses_count'] = $courses->count();
-                $res['page'] = $page;
                 if (!$page) {
                     return $res;
                 }
