@@ -194,7 +194,8 @@ return [
             'zaringateApiVerificationUrl' => 'https://ir.zarinpal.com/pg/services/WebGate/wsdl',
 
             'mode' => 'normal', // can be normal, sandbox, zaringate
-            'merchantId' => 'd469a65e-9997-11e9-8cae-000c29344814',
+            // 'merchantId' => 'd469a65e-9997-11e9-8cae-000c29344814', // mahdi
+            'merchantId' => '194df5a9-e0c6-4147-be27-e5b51563a413',
             'callbackUrl' => env('APP_URL', 'http://lyndakade.ir') . '/payment/callback',
             'description' => 'پرداخت در ' . config('app.name'),
         ],

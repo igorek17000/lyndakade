@@ -55,7 +55,6 @@ Route::get('/learning/courses/newest', 'CourseController@newest')->name('courses
 Route::get('/learning/courses/best', 'CourseController@best')->name('courses.best');
 Route::get('/learning/courses/free', 'CourseController@free')->name('courses.free');
 
-
 // courses
 Route::get('/', 'CourseController@index')->name('root.home');
 Route::get('/learning/{slug_linkedin}', 'CourseController@show_linkedin')->name('courses.show.linkedin');

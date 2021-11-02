@@ -480,6 +480,9 @@ if (count($course->subjects) > 0) {
                   @else
                     <p></p>
                   @endif
+                  <p class="text-center">
+                    این دوره شامل 19 ویدئو آموزشی به همراه زیرنویس فارسی میباشد
+                  </p>
                   <div class="col-lg-10">
                     @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
                       @foreach (json_decode($course->courseFile) as $file)

@@ -180,9 +180,9 @@
                                     width: 0 !important;
                                 }
                             </style>
-                        <ul class="timeline">
+                        <ul class="timeline pb-0" id="course-list">
                             @foreach ($courses as $course)
-                                <li>
+                            <li class="course">
                                 <a href="{{ courseURL($course) }}" class="timeline-panel">
                                     <div class="timeline-heading">
                                         <h2 class="timeline-title" style="font-size: 1.25rem;">
@@ -200,23 +200,22 @@
                                                     @endforeach
                                                 </span>
                                             </small>
-                                        </p>
-                                        <p dir="ltr" class="text-left m-0">
-                                            {{ $course->titleEng }}
-                                            <small class="text-muted">
-                                                by
-                                                <span>
-                                                    @foreach ($course->authors as $author)
-                                                        {{-- <i class="glyphicon glyphicon-time"></i> --}}
-                                                        {{ $author->name }}
-                                                        @if (!$loop->last)
-                                                        ,
-                                                        @endif
-                                                    @endforeach
-                                                </span>
-                                            </small>
-
-    </p>
+                                            </p>
+                                            <p dir="ltr" class="text-left m-0">
+                                                {{ $course->titleEng }}
+                                                <small class="text-muted">
+                                                    by
+                                                    <span>
+                                                        @foreach ($course->authors as $author)
+                                                            {{-- <i class="glyphicon glyphicon-time"></i> --}}
+                                                            {{ $author->name }}
+                                                            @if (!$loop->last)
+                                                            ,
+                                                            @endif
+                                                        @endforeach
+                                                    </span>
+                                                </small>
+                                            </p>
                                         </h2>
                                     </div>
                                     <div class="timeline-body text-justify row">
@@ -272,22 +271,20 @@
                                     </div>
                                     </div>
                                 </a>
-                                </li>
+                            </li>
                             @endforeach
                         </ul>
 
                             {{-- @foreach($courses as $course)
                                     @include ('.courses.partials._course_list_grid', ['course' => $course, 'col' => 'col-lg-4'])
                             @endforeach --}}
-
-                        </div>
-                        {{-- <div class="show-more-container">
-                            <button class="show-more bottom-btn ga"
-                                    data-ga-action="click" data-ga-label="show-more: Filter All">
-                                <span class="sr-only">Show More All Results</span>
-                                <span aria-hidden="true">Show More<i class="lyndacon arrow-down"></i></span>
+                        <div class="col-12 mb-4 mt-2">
+                            <button class="btn btn-light load-more w-100" coursetype="button" style="margin: auto;">
+                            <span class="text-t">نمایش موارد بیشتر</span>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="margin: auto;"></span>
                             </button>
-                        </div> --}}
+                        </div>
+                        </div>
                     </section>
                 </div>
             </section>
@@ -295,5 +292,40 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('js/search.js') }}"></script>
+    <script>
+
+    // $(function() {
+    //   $('.load-more').click(function(e) {
+    //     var page = ($('#course-list .course').length / 20) + 1;
+    //     var el = this;
+    //     $(el).prop('disabled', true);
+    //     urlObject = new URL(document.location.href);
+    //     params = urlObject.searchParams;
+    //     for(let item of params){
+    //         console.log(item);
+    //     }
+    //     $.ajax({
+    //       url: document.location.toString(),
+    //       method: 'get',
+    //       data: {
+    //         _token: $('[name="_token"]').val(),
+    //         page: page,
+    //       },
+    //       success: function(result) {
+    //         var course_list = document.getElementById('course-list');
+    //         for (let res of result) {
+    //           // console.log(res);
+    //           course_list.insertAdjacentHTML('beforeend', res)
+    //         }
+    //         $(el).prop('disabled', false);
+    //       },
+    //       errors: function(xhr) {
+    //         console.log(xhr);
+    //         $(el).prop('disabled', false);
+    //       }
+    //     });
+    //   })
+    // });
+
+    </script>
 @endpush
