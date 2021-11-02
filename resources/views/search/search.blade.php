@@ -316,11 +316,14 @@
           data,
           success: function(result) {
             var course_list = document.getElementById('course-list');
-            for (let res of result) {
+            for (let res of result.courses) {
               // console.log(res);
               course_list.insertAdjacentHTML('beforeend', res)
             }
             $(el).prop('disabled', false);
+            if(!result.hasMore){
+                $(el).remove();
+            }
           },
           errors: function(xhr) {
             console.log(xhr);
@@ -330,6 +333,6 @@
       })
     });
 
-    
+
     </script>
 @endpush
