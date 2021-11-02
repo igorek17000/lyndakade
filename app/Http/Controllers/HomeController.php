@@ -127,11 +127,24 @@ class HomeController extends Controller
     function show_first_object($obj, $type, $request)
     {
         $query = $request->get('q');
+
+        $details = $this->prepare_for_search_page($request, $obj->courses);
+
+        $filtered_items = $details['filtered_items'];
+        $courses = $details['courses'];
+        $categories_filter = $details['categories_filter'];
+
         if ($request->ajax()) {
-            $searched = $obj->courses;
-            $searched = $searched->toArray();
-            if (count($searched) > 0) {
-                return $searched;
+            if (count($courses) > 0) {
+                $page = $request->get('page', null);
+                if (!$page) {
+                    return [];
+                }
+                $res = [];
+                foreach ($courses->forPage(intval($page), 20) as $course) {
+                    $res[] = $this->get_course_timeline($course->id);
+                }
+                return $res;
             }
 
             // $learn_paths = LearnPath::with('library')->search($query)->distinct('learn_paths.id')->get();
@@ -157,12 +170,6 @@ class HomeController extends Controller
             // $result = array_merge($result, $software->toArray());
             // return $result;
         }
-
-        $details = $this->prepare_for_search_page($request, $obj->courses);
-
-        $filtered_items = $details['filtered_items'];
-        $courses = $details['courses'];
-        $categories_filter = $details['categories_filter'];
 
         return view('search.search', [
             'q' => $request->get('q'),
