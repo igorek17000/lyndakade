@@ -322,6 +322,11 @@
             if(result.hasMore){
                 $(el).prop('disabled', false);
             }
+            else{
+                setTimeout(() => {
+                    $(el).remove();
+                }, 600);
+            }
           },
           errors: function(xhr) {
             console.log(xhr);
