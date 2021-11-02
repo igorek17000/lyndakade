@@ -141,22 +141,18 @@ class HomeController extends Controller
             ];
             if (count($courses) > 0) {
                 $page = $request->get('page', null);
+                $res['courses_count'] = $courses->count();
+                $res['page'] = $page;
                 if (!$page) {
-                    return [
-                        'courses' => [],
-                        'hasMore' => false,
-                    ];
+                    return $res;
                 }
                 if (!($courses->count() / 20 <= intval($page))) {
-                    return [
-                        'courses' => [],
-                        'hasMore' => false,
-                    ];
+                    return $res;
                 }
                 foreach ($courses->forPage(intval($page), 20) as $course) {
                     $res['courses'][] = $this->get_course_timeline($course->id);
                 }
-                $res['hasMore'] = $courses->count() / 20 <= intval($page);
+                $res['hasMore'] = $courses->count() / 20 >= intval($page) + 1;
                 return $res;
             }
 
