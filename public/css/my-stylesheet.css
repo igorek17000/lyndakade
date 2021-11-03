@@ -1010,12 +1010,26 @@ nav bar ends
     display: none;
 }
 
-#learn-path-page .card-content:hover h5.titlePer {
-    display: none;
+@media (min-width: 768px)
+{
+    #learn-path-page .card-content:hover h5.titlePer {
+        display: none;
+    }
+
+    #learn-path-page .card-content:hover h5.titleEng {
+        display: block;
+    }
 }
 
-#learn-path-page .card-content:hover h5.titleEng {
-    display: block;
+@media (max-width: 767px)
+{
+    #learn-path-page .card-content h5.titlePer {
+        display: block;
+    }
+
+    #learn-path-page .card-content h5.titleEng {
+        display: block;
+    }
 }
 
 #learn-path-page .card-content .card-img:after {
