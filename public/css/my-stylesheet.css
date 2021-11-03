@@ -1032,6 +1032,10 @@ nav bar ends
     }
 }
 
+#learn-path-page .card-content {
+    height: 200px !important;
+}
+
 #learn-path-page .card-content .card-img:after {
     content: "\A";
     position: absolute;
