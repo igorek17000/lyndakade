@@ -1002,12 +1002,12 @@ nav bar ends
     opacity: 1;
 }
 
-@media (max-width: 767px)
+/* @media (max-width: 767px)
 {
     #learn-path-page .card-content .card-img {
         opacity: 1 !important;
     }
-}
+} */
 
 #learn-path-page .card-content h5.titlePer {
     display: block;
