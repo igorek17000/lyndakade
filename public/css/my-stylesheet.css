@@ -1002,6 +1002,13 @@ nav bar ends
     opacity: 1;
 }
 
+@media (max-width: 767px)
+{
+    #learn-path-page .card-content .card-img {
+        opacity: 1 !important;
+    }
+}
+
 #learn-path-page .card-content h5.titlePer {
     display: block;
 }
@@ -1030,7 +1037,7 @@ nav bar ends
     #learn-path-page .card-content h5.titleEng {
         display: block;
     }
-    
+
     #learn-path-page .card-content {
         height: 200px !important;
     }
