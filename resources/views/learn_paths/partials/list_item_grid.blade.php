@@ -19,7 +19,7 @@
             {{ nPersian($path->durationMinutes()) }}
             دقیقه
           @endif
-          <hr>
+          <p class="mb-2 mt-2">تعداد دروس {{ nPersian(count(js_to_courses($path->courses))) }}</p>
           <del
             style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->old_price()) }}
             تومان</del>
