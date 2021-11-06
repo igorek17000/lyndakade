@@ -102,7 +102,7 @@ $questions = [
                     </div>
                     <div class="collapse" data-parent="#faqExample">
                         <div class="card-body">
-                            {!! $question['answer'] !!}
+                            {!! str_replace('\n', '<br />', $question['answer']) !!}
                         </div>
                     </div>
                 </div>
