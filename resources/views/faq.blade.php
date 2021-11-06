@@ -68,7 +68,7 @@ $questions = [
     ],
     [
         'question' => 'چرا فیلم دوره‌ها پخش نمی‌شوند؟',
-        'answer' => 'بدلیل حجیم بودن فیلم‌های هر دوره، ما آنها را بصورتی فشرده سازی کرده‌ایم که، سبب کاهش حجم چشمیگیری شده است، که این موضوع باعث صرفه جویی در مدت زمان و میزان حجم مصرفی شما می‌شود، به همین دلیل فیلم‌ها توسط برنامه‌های pot player، km player ، vlc media player و سایر مدیا پلیرهایی که قابلیت نصب codec بروی آنها وجود دارد، قابل اجرا هستند.',
+        'answer' => 'بدلیل حجیم بودن فیلم‌های هر دوره، ما آنها را بصورتی فشرده سازی کرده‌ایم که، سبب کاهش حجم چشمیگیری شده است، که این موضوع باعث صرفه جویی در مدت زمان و میزان حجم مصرفی شما می‌شود، به همین دلیل فیلم‌ها توسط برنامه‌های <a href="https://soft98.ir/multi-media/player/2438-potplayer.html"> Pot Player </a>، <a href="https://soft98.ir/multi-media/video-player/278-kmplayer-free.html"> KM Player </a> ، <a href="https://soft98.ir/multi-media/video-player/496-vlc-media-player.html"> VLC Media Player </a> و سایر مدیا پلیرهایی که قابلیت نصب <a href="https://codecpack.co/download/PotPlayer.html"> Codec </a> بروی آنها وجود دارد، قابل اجرا هستند.',
     ],
     [
         'question' => 'تخفیفات براساس میزان خرید؟',
