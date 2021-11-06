@@ -278,7 +278,7 @@
                             {{-- @foreach($courses as $course)
                                     @include ('.courses.partials._course_list_grid', ['course' => $course, 'col' => 'col-lg-4'])
                             @endforeach --}}
-                            @if ($hasMore)
+                            @if ($hasMore??false)
 
                         <div class="col-12 mb-4 mt-2">
                             <button class="btn btn-light load-more w-100" coursetype="button" style="margin: auto;">
