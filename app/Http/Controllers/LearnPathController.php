@@ -125,7 +125,13 @@ class LearnPathController extends Controller
 
     public function get_all_api(Request $request)
     {
-        $paths = LearnPath::get();
+        if ($request->has('cols')) {
+            $cols = explode(',', $request->get('cols'));
+            $paths = LearnPath::get($cols);
+        } else {
+            $paths = LearnPath::get();
+        }
+
         // $paths = LearnPath::get(['slug', 'courses']);
 
         // $res = [];
