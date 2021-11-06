@@ -129,9 +129,9 @@ class LearnPathController extends Controller
 
         if ($request->has('cols')) {
             $cols = explode(',', $request->get('cols'));
-            $path = $path->get($cols);
+            $path = $path->get($cols)->first();
         } else {
-            $path = $path->get();
+            $path = $path->first();
         }
         if (!$path) {
             return new JsonResponse([
