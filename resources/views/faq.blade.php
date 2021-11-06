@@ -28,6 +28,7 @@ $questions = [
 @endphp
 
 @extends('layouts.app')
+
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
@@ -87,8 +88,8 @@ $questions = [
       </div>
       <div class="col-12 mx-auto">
         <div class="accordion" id="faqExample">
-          <section class="pt-3">
-            <h3>بخش اول</h3>
+          {{-- <section class="pt-3"> --}}
+            {{-- <h3>بخش اول</h3> --}}
 
             @foreach ($questions as $question)
                 <div class="card">
@@ -341,7 +342,7 @@ $questions = [
                 </div>
               </div>
             </div>
-          </section>
+          {{-- </section> --}}
         </div>
       </div>
     </div>
