@@ -72,8 +72,7 @@ $questions = [
     ],
     [
         'question' => 'تخفیفات براساس میزان خرید؟',
-        'answer' => 'برای هر حساب کاربری، بر اساس میزان کل هزینه‌های پرداخت شده، در خریدهای بعدی میزان درصد تخفیفی نیز در نظر گرفته می‌شود که در جدول زیر قرار دارند.
-        <table class="table table-bordered  text-center">
+        'answer' => 'برای هر حساب کاربری، بر اساس میزان کل هزینه‌های پرداخت شده، در خریدهای بعدی میزان درصد تخفیفی نیز در نظر گرفته می‌شود که در جدول زیر قرار دارند. <br><br><table class="table table-bordered  text-center">
                 <thead>
                   <tr>
                     <th scope="col" class="align-middle">سطح</th>
