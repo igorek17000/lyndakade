@@ -124,17 +124,6 @@ class LearnPathController extends Controller
     }
 
     public function get_api(Request $request){
-
-        if ($request->has('cols')) {
-            $cols = explode(',', $request->get('cols'));
-            $paths = LearnPath::get($cols);
-        } else {
-            $paths = LearnPath::get();
-        }
-
-    }
-    public function get_all_api(Request $request)
-    {
         $path = LearnPath::where('id', $request->get('id'));
 
         if ($request->has('cols')) {
@@ -146,6 +135,36 @@ class LearnPathController extends Controller
 
         return new JsonResponse([
             'data' => $path,
+            'status' => 'success',
+        ], 200);
+    }
+    public function get_all_api(Request $request)
+    {
+        if ($request->has('cols')) {
+            $cols = explode(',', $request->get('cols'));
+            $paths = LearnPath::get($cols);
+        } else {
+            $paths = LearnPath::get();
+        }
+
+        // $paths = LearnPath::get(['slug', 'courses']);
+
+        // $res = [];
+        // foreach ($paths as $path) {
+        //     $res[$path->slug] = [];
+        //     $js_courses = json_decode($path->courses);
+        //     $idx = 0;
+        //     foreach ($js_courses as $c) {
+        //         $course_id = $c->id;
+        //         $course = Course::where('id', $course_id)->get(['slug_linkedin'])->first();
+        //         if ($course) {
+        //             $idx += 1;
+        //             $res[$path->slug][$idx] = $course->slug_linkedin;
+        //         }
+        //     }
+        // }
+        return new JsonResponse([
+            'data' => $paths,
             'status' => 'success',
         ], 200);
     }
