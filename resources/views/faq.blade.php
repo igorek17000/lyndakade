@@ -89,6 +89,25 @@ $questions = [
         <div class="accordion" id="faqExample">
           <section class="pt-3">
             <h3>بخش اول</h3>
+
+            @foreach ($questions as $question)
+                <div class="card">
+                    <div class="card-header p-2">
+                        <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" aria-expanded="false">
+                            {{ $question['question'] }}
+                        </button>
+                        </h5>
+                    </div>
+                    <div class="collapse" data-parent="#faqExample">
+                        <div class="card-body">
+                            {!! $question['answer'] !!}
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+
             <div class="card">
               <div class="card-header p-2">
                 <h5 class="mb-0">
