@@ -52,7 +52,10 @@ $questions = [
     ],
     [
         'question' => 'درخواست دوره آموزشی؟',
-        'answer' => 'در صورتی که با استفاده از روش دوم جستجو، قادر به یافتن دوره آموزشی مورد نظر نبوده‌اید، می‌توانید پس از ورود به حساب کاربری، به صفحه <a href="' . route('demands.create') . '"> درخواست دوره </a> مراجعه کنید و به یکی از دو روش، درخواست دوره ارسال نمایید:
+        'answer' =>
+            'در صورتی که با استفاده از روش دوم جستجو، قادر به یافتن دوره آموزشی مورد نظر نبوده‌اید، می‌توانید پس از ورود به حساب کاربری، به صفحه <a href="' .
+            route('demands.create') .
+            '"> درخواست دوره </a> مراجعه کنید و به یکی از دو روش، درخواست دوره ارسال نمایید:
 1- با استفاده از نام درس و نام مدرس برای دوره آموزشی مربوطه در وبسایت لینکدین
 2- با استفاده از لینک دوره آموزشی مربوطه در وبسایت لینکدین
 توجه داشته باشید، در صورت قرار دادن دوره آموزشی مورد نظر شما در وبسایت ما، از طریق ایمیل وارد شده در حساب کاربری، به شما اطلاع رسانی خواهد شد.',
@@ -72,7 +75,8 @@ $questions = [
     ],
     [
         'question' => 'تخفیفات براساس میزان خرید؟',
-        'answer' => 'برای هر حساب کاربری، بر اساس میزان کل هزینه‌های پرداخت شده، در خریدهای بعدی میزان درصد تخفیفی نیز در نظر گرفته می‌شود که در جدول زیر قرار دارند.
+        'answer' =>
+            'برای هر حساب کاربری، بر اساس میزان کل هزینه‌های پرداخت شده، در خریدهای بعدی میزان درصد تخفیفی نیز در نظر گرفته می‌شود که در جدول زیر قرار دارند.
 توجه داشته باشید، میزان کل هزینه‌های پرداخت شده، شامل خرید دوره‌های آموزشی، خرید مسیرهای آموزشی، خرید اشتراک می‌باشد.
         <table class="table table-bordered  text-center">
                 <thead>
@@ -85,40 +89,68 @@ $questions = [
                 <tbody>
                   <tr>
                     <th scope="row" class="align-middle">1</th>
-                    <td class="align-middle">بین ' . nPersian(number_format(200000)) . ' تا
-                      ' . nPersian(number_format(400000 - 1000)) . '
+                    <td class="align-middle">بین ' .
+            nPersian(number_format(200000)) .
+            ' تا
+                      ' .
+            nPersian(number_format(400000 - 1000)) .
+            '
                       تومان
                     </td>
-                    <td class="align-middle">' . nPersian(number_format(5)) . '%</td>
+                    <td class="align-middle">' .
+            nPersian(number_format(5)) .
+            '%</td>
                   </tr>
                   <tr>
                     <th scope="row" class="align-middle">2</th>
-                    <td class="align-middle">بین ' . nPersian(number_format(400000)) . ' تا
-                      ' . nPersian(number_format(600000 - 1000)) . '
+                    <td class="align-middle">بین ' .
+            nPersian(number_format(400000)) .
+            ' تا
+                      ' .
+            nPersian(number_format(600000 - 1000)) .
+            '
                       تومان
                     </td>
-                    <td class="align-middle">' . nPersian(number_format(10)) . '%</td>
+                    <td class="align-middle">' .
+            nPersian(number_format(10)) .
+            '%</td>
                   </tr>
                   <tr>
                     <th scope="row" class="align-middle">3</th>
-                    <td class="align-middle">بین ' . nPersian(number_format(600000)) . ' تا
-                      ' . nPersian(number_format(800000 - 1000)) . '
+                    <td class="align-middle">بین ' .
+            nPersian(number_format(600000)) .
+            ' تا
+                      ' .
+            nPersian(number_format(800000 - 1000)) .
+            '
                       تومان
                     </td>
-                    <td class="align-middle">' . nPersian(number_format(15)) . '%</td>
+                    <td class="align-middle">' .
+            nPersian(number_format(15)) .
+            '%</td>
                   </tr>
                   <tr>
                     <th scope="row" class="align-middle">4</th>
-                    <td class="align-middle">بین ' . nPersian(number_format(800000)) . ' تا
-                      ' . nPersian(number_format(1000000 - 1000)) . '
+                    <td class="align-middle">بین ' .
+            nPersian(number_format(800000)) .
+            ' تا
+                      ' .
+            nPersian(number_format(1000000 - 1000)) .
+            '
                       تومان
                     </td>
-                    <td class="align-middle">' . nPersian(number_format(20)) . '%</td>
+                    <td class="align-middle">' .
+            nPersian(number_format(20)) .
+            '%</td>
                   </tr>
                   <tr>
                     <th scope="row" class="align-middle">5</th>
-                    <td class="align-middle">' . nPersian(number_format(1000000)) . ' تومان به بالا</td>
-                    <td class="align-middle">' . nPersian(number_format(25)) . '%</td>
+                    <td class="align-middle">' .
+            nPersian(number_format(1000000)) .
+            ' تومان به بالا</td>
+                    <td class="align-middle">' .
+            nPersian(number_format(25)) .
+            '%</td>
                   </tr>
                 </tbody>
               </table>',
