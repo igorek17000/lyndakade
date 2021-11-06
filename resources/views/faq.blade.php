@@ -228,7 +228,7 @@ $questions = [
               </div>
               <div class="collapse" data-parent="#faqExample">
                 <div class="card-body">
-                  {!! nl2br(e($question['answer'])) !!}
+                  {!! nl2br($question['answer']) !!}
                 </div>
               </div>
             </div>
