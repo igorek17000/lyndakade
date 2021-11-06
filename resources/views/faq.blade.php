@@ -95,6 +95,9 @@ $questions = [
       color: blue;
       font-weight: bold;
     }
+    #faqExample .card-body a span {
+      font-weight: bold;
+    }
 
   </style>
   <div class="container">
