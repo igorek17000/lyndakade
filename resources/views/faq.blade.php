@@ -371,4 +371,4 @@ $questions = [
       });
     });
   </script>
-@endsection
+@endpush
