@@ -74,25 +74,18 @@ class LearnPathController extends Controller
 
             // $view = new \App\View(['type' => 2, 'item_id' => $path->id]);
             // $view->save();
-
-            $js_courses = json_decode($path->courses);
-            $courses = array();
             $authors = array();
-            foreach ($js_courses as $c) {
-                $course_id = $c->id;
-                $course = Course::find($course_id);
-                if ($course) {
-                    array_push($courses, $course);
-                    foreach ($course->authors as $author) {
-                        array_push($authors, $author->id);
-                    }
+
+            foreach ($path->courses as $key => $course) {
+                foreach ($course->authors as $author) {
+                    array_push($authors, $author->id);
                 }
             }
             $authors = Author::find($authors);
             $authors = array_values($authors->all());
             return view('learn_paths.show', [
                 'path' => $path,
-                'courses' => $courses,
+                'courses' => $path->courses,
                 'authors' => $authors,
                 'path_state' => get_learn_path_state($path),
             ]);
