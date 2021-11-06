@@ -139,11 +139,15 @@ class LearnPathController extends Controller
                 'status' => 'failed',
             ], 404);
         }
+        if (isset($path->courses)){
+            $path->courses = js_to_courses($path->courses);
+        }
         return new JsonResponse([
             'data' => $path,
             'status' => 'success',
         ], 200);
     }
+
     public function get_all_api(Request $request)
     {
         if ($request->has('cols')) {
