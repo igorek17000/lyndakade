@@ -144,7 +144,7 @@ class LearnPathController extends Controller
         // }
         return new JsonResponse([
             'data' => [
-                'id' => $path->id,
+                'id' => $request->get('id'),
                 'courses' => js_to_courses($path->courses),
             ],
             'status' => 'success',
