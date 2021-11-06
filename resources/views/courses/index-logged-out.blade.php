@@ -194,7 +194,7 @@
 
   <div class="container my-3">
     <div class="row">
-        <div class="col-lg-2 col-sm-6">
+        <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
             <h3 class="counter" style="color: black">{{ get_number_of_all_paths() }}</h3>
@@ -205,7 +205,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-2 col-sm-6">
+      <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
             <h3 class="counter" style="color: black">{{ get_number_of_all_courses() }} </h3>
