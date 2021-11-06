@@ -123,7 +123,8 @@ class LearnPathController extends Controller
         ], 200);
     }
 
-    public function get_api(Request $request){
+    public function get_api(Request $request)
+    {
         $path = LearnPath::where('id', $request->get('id'));
 
         if ($request->has('cols')) {
@@ -132,7 +133,12 @@ class LearnPathController extends Controller
         } else {
             $path = $path->get();
         }
-
+        if (!$path) {
+            return new JsonResponse([
+                'data' => $path,
+                'status' => 'failed',
+            ], 404);
+        }
         return new JsonResponse([
             'data' => $path,
             'status' => 'success',
