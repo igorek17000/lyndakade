@@ -77,83 +77,35 @@ $questions = [
         'question' => 'تخفیفات براساس میزان خرید؟',
         'answer' =>
             'برای هر حساب کاربری، بر اساس میزان کل هزینه‌های پرداخت شده، در خریدهای بعدی میزان درصد تخفیفی نیز در نظر گرفته می‌شود که در جدول زیر قرار دارند.
-توجه داشته باشید، میزان کل هزینه‌های پرداخت شده، شامل خرید دوره‌های آموزشی، خرید مسیرهای آموزشی، خرید اشتراک می‌باشد.
-        <table class="table table-bordered  text-center">
-                <thead>
-                  <tr>
-                    <th scope="col" class="align-middle">سطح</th>
-                    <th scope="col" class="align-middle">مجموع خرید</th>
-                    <th scope="col" class="align-middle">درصد تخفیف (برای تمامی خریدها)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row" class="align-middle">1</th>
-                    <td class="align-middle">بین ' .
+توجه داشته باشید، میزان کل هزینه‌های پرداخت شده، شامل خرید دوره‌های آموزشی، خرید مسیرهای آموزشی، خرید اشتراک می‌باشد. <table class="table table-bordered  text-center"><thead><tr><th scope="col" class="align-middle">سطح</th><th scope="col" class="align-middle">مجموع خرید</th><th scope="col" class="align-middle">درصد تخفیف (برای تمامی خریدها)</th></tr></thead><tbody><tr><th scope="row" class="align-middle">1</th><td class="align-middle">بین ' .
             nPersian(number_format(200000)) .
-            ' تا
-                      ' .
+            ' تا ' .
             nPersian(number_format(400000 - 1000)) .
-            '
-                      تومان
-                    </td>
-                    <td class="align-middle">' .
+            ' تومان </td><td class="align-middle">' .
             nPersian(number_format(5)) .
-            '%</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="align-middle">2</th>
-                    <td class="align-middle">بین ' .
+            '%</td></tr><tr><th scope="row" class="align-middle">2</th><td class="align-middle">بین ' .
             nPersian(number_format(400000)) .
-            ' تا
-                      ' .
+            ' تا ' .
             nPersian(number_format(600000 - 1000)) .
-            '
-                      تومان
-                    </td>
-                    <td class="align-middle">' .
+            ' تومان </td><td class="align-middle">' .
             nPersian(number_format(10)) .
-            '%</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="align-middle">3</th>
-                    <td class="align-middle">بین ' .
+            '%</td></tr><tr><th scope="row" class="align-middle">3</th><td class="align-middle">بین ' .
             nPersian(number_format(600000)) .
-            ' تا
-                      ' .
+            ' تا ' .
             nPersian(number_format(800000 - 1000)) .
-            '
-                      تومان
-                    </td>
-                    <td class="align-middle">' .
+            ' تومان </td><td class="align-middle">' .
             nPersian(number_format(15)) .
-            '%</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="align-middle">4</th>
-                    <td class="align-middle">بین ' .
+            '%</td></tr><tr><th scope="row" class="align-middle">4</th><td class="align-middle">بین ' .
             nPersian(number_format(800000)) .
-            ' تا
-                      ' .
+            ' تا ' .
             nPersian(number_format(1000000 - 1000)) .
-            '
-                      تومان
-                    </td>
-                    <td class="align-middle">' .
+            ' تومان </td><td class="align-middle">' .
             nPersian(number_format(20)) .
-            '%</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="align-middle">5</th>
-                    <td class="align-middle">' .
+            '%</td></tr><tr><th scope="row" class="align-middle">5</th><td class="align-middle">' .
             nPersian(number_format(1000000)) .
-            ' تومان به بالا</td>
-                    <td class="align-middle">' .
+            ' تومان به بالا</td><td class="align-middle">' .
             nPersian(number_format(25)) .
-            '%</td>
-                  </tr>
-                </tbody>
-              </table>',
+            '%</td></tr></tbody></table>',
     ],
     [
         'question' => 'آیا طرح اینترنت نیم‌بها شامل وبسایت لینداکده نیز می‌باشد؟',
