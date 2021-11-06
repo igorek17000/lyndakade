@@ -198,7 +198,7 @@
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
             <h3 class="counter" style="color: black">{{ get_number_of_all_paths() }}</h3>
-            <p style="color: black">تعداد مسیرهای آموزشی</p>
+            <p style="color: black">تعداد کل مسیرهای آموزشی</p>
           </div>
           <div class="icon">
             <i class="fa fa-graduation-cap" aria-hidden="true"></i>
