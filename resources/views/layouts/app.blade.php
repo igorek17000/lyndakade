@@ -442,7 +442,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
             <a class="nav-link px-md-1" href="{{ route('demands.create') }}">درخواست دوره</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link px-md-1" href="{{ route('faq') }}">سوالات متداول</a>
+            <a class="nav-link px-md-1" href="{{ route('faq') }}" style="background-color: darkcyan;">سوالات متداول</a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-md-1" href="{{ route('root.contact.us') }}">تماس با ما</a>
