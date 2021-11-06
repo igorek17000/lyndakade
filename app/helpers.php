@@ -216,6 +216,7 @@ function create_hashed_data_if_not_exists($data)
 
 function js_to_courses($courses)
 {
+    return $courses;
     $js_courses = json_decode($courses);
     $res = array();
     foreach ($js_courses as $c) {

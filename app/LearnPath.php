@@ -45,6 +45,24 @@ class LearnPath extends Model
         ],
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::retrieved(function ($model) {
+            $js_courses = json_decode($model->courses);
+            $res = array();
+            foreach ($js_courses as $c) {
+                $course_id = $c->id;
+                $course = Course::find($course_id);
+                if ($course) {
+                    array_push($res, $course);
+                }
+            }
+            $model->courses = $res;
+        });
+    }
+
     /**
      * A LearnPath belong to a library
      *
