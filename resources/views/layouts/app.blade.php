@@ -450,7 +450,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         </ul>
         @if (Auth::check())
           <div class="dropdown">
-            <a class="nav-link" id="cart-list" data-toggle="dropdown" role="button" aria-expanded="false">
+            <a class="nav-link p-md-0" id="cart-list" data-toggle="dropdown" role="button" aria-expanded="false">
               <img class="justify-content-center" src="{{ asset('smart-cart.png') }}" width="18" height="18">
             </a>
             <div class="dropdown-menu dropdown-cart dropdown-menu-center p-1 text-center" role="menu"
