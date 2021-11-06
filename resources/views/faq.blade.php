@@ -58,6 +58,85 @@ $questions = [
 توجه داشته باشید، در صورت قرار دادن دوره آموزشی مورد نظر شما در وبسایت ما، از طریق ایمیل وارد شده در حساب کاربری، به شما اطلاع رسانی خواهد شد.',
     ],
     [
+        'question' => 'جستجوی دوره آموزشی؟',
+        'answer' => 'جستجوی دوره آموزشی، به دو روش زیر قابل اجرا می‌باشد:
+
+1- با استفاده از فیلد جستجو در بخش بالا صفحه: در اینجا قابلیت جستجو با <span>«نام دوره آموزشی به زبان فارسی یا انگلیسی»</span> و <span>«نام مدرس»</span> و یا <span>«عنوان دسته»</span> مورد نظر را جستجو نمایید.
+
+2- با استفاده از فیلد قرار داده شده در صفحه اصلی وبسایت: در اینجا میتوانید لینک دوره آموزشی مربوطه از وبسایت لینکدین را وارد کرده و دکمه ارسال را انتخاب کنید. در این حالت، شما میتوانید وضعیت موجود بودن دوره آموزشی مورد نظر را بررسی نمایید.
+',
+    ],
+    [
+        'question' => 'چرا فیلم دوره‌ها پخش نمی‌شوند؟',
+        'answer' => 'بدلیل حجیم بودن فیلم‌های هر دوره، ما آنها را بصورتی فشرده سازی کرده‌ایم که، سبب کاهش حجم چشمیگیری شده است، که این موضوع باعث صرفه جویی در مدت زمان و میزان حجم مصرفی شما می‌شود، به همین دلیل فیلم‌ها توسط برنامه‌های pot player، km player ، vlc media player و سایر مدیا پلیرهایی که قابلیت نصب codec بروی آنها وجود دارد، قابل اجرا هستند.',
+    ],
+    [
+        'question' => 'تخفیفات براساس میزان خرید؟',
+        'answer' => 'برای هر حساب کاربری، بر اساس میزان کل هزینه‌های پرداخت شده، در خریدهای بعدی میزان درصد تخفیفی نیز در نظر گرفته می‌شود که در جدول زیر قرار دارند.
+
+              <table class="table table-bordered  text-center">
+                <thead>
+                  <tr>
+                    <th scope="col" class="align-middle">سطح</th>
+                    <th scope="col" class="align-middle">مجموع خرید</th>
+                    <th scope="col" class="align-middle">درصد تخفیف (برای تمامی خریدها)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row" class="align-middle">1</th>
+                    <td class="align-middle">بین ' . nPersian(number_format(200000)) . ' تا
+                      ' . nPersian(number_format(400000 - 1000)) . '
+                      تومان
+                    </td>
+                    <td class="align-middle">' . nPersian(number_format(5)) . '%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="align-middle">2</th>
+                    <td class="align-middle">بین ' . nPersian(number_format(400000)) . ' تا
+                      ' . nPersian(number_format(600000 - 1000)) . '
+                      تومان
+                    </td>
+                    <td class="align-middle">' . nPersian(number_format(10)) . '%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="align-middle">3</th>
+                    <td class="align-middle">بین ' . nPersian(number_format(600000)) . ' تا
+                      ' . nPersian(number_format(800000 - 1000)) . '
+                      تومان
+                    </td>
+                    <td class="align-middle">' . nPersian(number_format(15)) . '%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="align-middle">4</th>
+                    <td class="align-middle">بین ' . nPersian(number_format(800000)) . ' تا
+                      ' . nPersian(number_format(1000000 - 1000)) . '
+                      تومان
+                    </td>
+                    <td class="align-middle">' . nPersian(number_format(20)) . '%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="align-middle">5</th>
+                    <td class="align-middle">' . nPersian(number_format(1000000)) . ' تومان به بالا</td>
+                    <td class="align-middle">' . nPersian(number_format(25)) . '%</td>
+                  </tr>
+                </tbody>
+              </table>
+توجه داشته باشید، میزان کل هزینه‌های پرداخت شده، شامل خرید دوره‌های آموزشی، خرید مسیرهای آموزشی، خرید اشتراک می‌باشد.',
+    ],
+    [
+        'question' => '',
+        'answer' => '',
+    ],
+    [
+        'question' => '',
+        'answer' => '',
+    ],
+    [
+        'question' => '',
+        'answer' => '',
+    ],
+    [
         'question' => '',
         'answer' => '',
     ],
