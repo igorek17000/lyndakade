@@ -157,7 +157,7 @@ $questions = [
     ],
     [
         'question' => 'آیا طرح اینترنت نیم‌بها شامل وبسایت لینداکده نیز می‌باشد؟',
-        'answer' => 'بله. از طریق لینک <a href="https://l2i.ir/qmn3k">https://l2i.ir/qmn3k</a> قابل بررسی می‌باشد.',
+        'answer' => 'بله. از طریق لینک <a href="https://l2i.ir/qmn3k" target="_blank">https://l2i.ir/qmn3k</a> قابل بررسی می‌باشد.',
     ],
     [
         'question' => 'تا چه مدت میتوان دوره های خریداری شده را دانلود کرد؟',
