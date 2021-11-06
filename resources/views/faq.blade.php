@@ -77,7 +77,7 @@ $questions = [
         'question' => 'تخفیفات براساس میزان خرید؟',
         'answer' =>
             'برای هر حساب کاربری، بر اساس میزان کل هزینه‌های پرداخت شده، در خریدهای بعدی میزان درصد تخفیفی نیز در نظر گرفته می‌شود که در جدول زیر قرار دارند.
-توجه داشته باشید، میزان کل هزینه‌های پرداخت شده، شامل خرید دوره‌های آموزشی، خرید مسیرهای آموزشی، خرید اشتراک می‌باشد. <table class="table table-bordered pt-2 text-center"><thead><tr><th scope="col" class="align-middle">سطح</th><th scope="col" class="align-middle">مجموع خرید</th><th scope="col" class="align-middle">درصد تخفیف (برای تمامی خریدها)</th></tr></thead><tbody><tr><th scope="row" class="align-middle">1</th><td class="align-middle">بین ' .
+توجه داشته باشید، میزان کل هزینه‌های پرداخت شده، شامل خرید دوره‌های آموزشی، خرید مسیرهای آموزشی، خرید اشتراک می‌باشد. <table class="table table-bordered mt-2 text-center"><thead><tr><th scope="col" class="align-middle">سطح</th><th scope="col" class="align-middle">مجموع خرید</th><th scope="col" class="align-middle">درصد تخفیف (برای تمامی خریدها)</th></tr></thead><tbody><tr><th scope="row" class="align-middle">1</th><td class="align-middle">بین ' .
             nPersian(number_format(200000)) .
             ' تا ' .
             nPersian(number_format(400000 - 1000)) .
