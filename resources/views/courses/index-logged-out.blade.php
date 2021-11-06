@@ -194,7 +194,18 @@
 
   <div class="container my-3">
     <div class="row">
-      <div class="col-lg-3 col-sm-6">
+        <div class="col-lg-2 col-sm-6">
+        <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
+          <div class="inner">
+            <h3 class="counter" style="color: black">{{ get_number_of_all_paths() }}</h3>
+            <p style="color: black">تعداد مسیرهای آموزشی</p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
             <h3 class="counter" style="color: black">{{ get_number_of_all_courses() }} </h3>
@@ -205,7 +216,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-2 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
             <h3 class="counter" style="color: black"> {{ get_sum_of_all_courses_part_numbers() }} </h3>
@@ -216,7 +227,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-2 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
             <h3 class="counter" style="color: black"> {{ get_sum_of_all_courses_time() }} </h3>
@@ -227,7 +238,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-2 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
             <h3 class="counter" style="color: black"> {{ get_number_of_authors_has_at_least_one_course() }} </h3>
