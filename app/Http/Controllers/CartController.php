@@ -282,7 +282,7 @@ class CartController extends Controller
             $isFirstPaid = Auth::user()->paids->count() == 0;
             foreach (Auth::user()->carts as $cart) {
                 if ($cart->learn_path) {
-                    // foreach (js_to_courses($cart->learn_path->courses) as $course) {
+                    // foreach (js_to_courses($cart->learn_path->_courses) as $course) {
                     //     $paid = new Paid([
                     //         'factorId' => $factorId,
                     //         'type' => 1,

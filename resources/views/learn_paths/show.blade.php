@@ -11,7 +11,7 @@
       "@context": "https://schema.org",
       "@type": "ItemList",
       "itemListElement": [
-        @foreach (js_to_courses($path->courses) as $course)
+        @foreach (js_to_courses($path->_courses) as $course)
           {
           "@type": "ListItem",
           "position": "{{ $loop->index + 1 }}",
@@ -88,7 +88,7 @@
               @endif
             </div>
             <div class="col-12 my-md-1">
-              <b>تعداد دوره ها: </b>{{ count(js_to_courses($path->courses)) }}
+              <b>تعداد دوره ها: </b>{{ count(js_to_courses($path->_courses)) }}
             </div>
             <div class="col-12 my-md-1">
               <b>تعداد مدرسین: </b>{{ count($authors) }}

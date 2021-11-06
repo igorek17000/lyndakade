@@ -59,7 +59,7 @@ class LearnPath extends Model
                     array_push($res, $course);
                 }
             }
-            $model->courses = $res;
+            $model->_courses = $res;
         });
     }
 
@@ -80,7 +80,7 @@ class LearnPath extends Model
 
     public function durationHours()
     {
-        $courses = js_to_courses($this->courses);
+        $courses = js_to_courses($this->_courses);
         $res = 0;
         foreach ($courses as $course) {
             $res += ($course->durationHours * 60) + $course->durationMinutes;
@@ -90,7 +90,7 @@ class LearnPath extends Model
 
     public function durationMinutes()
     {
-        $courses = js_to_courses($this->courses);
+        $courses = js_to_courses($this->_courses);
         $res = 0;
         foreach ($courses as $course) {
             $res += ($course->durationHours * 60) + $course->durationMinutes;
@@ -100,7 +100,7 @@ class LearnPath extends Model
 
     public function price()
     {
-        $courses = js_to_courses($this->courses);
+        $courses = js_to_courses($this->_courses);
         $res = 0;
         foreach ($courses as $course) {
             if (auth()->check()) {
@@ -116,7 +116,7 @@ class LearnPath extends Model
 
     public function old_price()
     {
-        $courses = js_to_courses($this->courses);
+        $courses = js_to_courses($this->_courses);
         $res = 0;
         foreach ($courses as $course) {
             if (auth()->check()) {
