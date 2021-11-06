@@ -139,9 +139,9 @@ class LearnPathController extends Controller
                 'status' => 'failed',
             ], 404);
         }
-        if (isset($path->courses)) {
-            $path->courses = js_to_courses($path->courses);
-        }
+        // if (isset($path->courses)) {
+        //     $path->courses = js_to_courses($path->courses);
+        // }
         return new JsonResponse([
             'data' => [
                 'id' => $path['id'],
