@@ -100,14 +100,10 @@ class LearnPathController extends Controller
     {
         $path = LearnPath::firstWhere('slug', $slug);
 
-        $js_courses = json_decode($path->courses);
-
         $res = [];
-        foreach ($js_courses as $c) {
-            $course_id = $c->id;
-            $course = Course::where('id', $course_id)->get(['slug_linkedin'])->first();
-            if ($course) {
-                $res[] = $course->slug_linkedin;
+        foreach ($path->courses as $c) {
+            if ($c) {
+                $res[] = $c->slug_linkedin;
             }
         }
         return new JsonResponse([
@@ -153,22 +149,6 @@ class LearnPathController extends Controller
             $paths = LearnPath::get();
         }
 
-        // $paths = LearnPath::get(['slug', 'courses']);
-
-        // $res = [];
-        // foreach ($paths as $path) {
-        //     $res[$path->slug] = [];
-        //     $js_courses = json_decode($path->courses);
-        //     $idx = 0;
-        //     foreach ($js_courses as $c) {
-        //         $course_id = $c->id;
-        //         $course = Course::where('id', $course_id)->get(['slug_linkedin'])->first();
-        //         if ($course) {
-        //             $idx += 1;
-        //             $res[$path->slug][$idx] = $course->slug_linkedin;
-        //         }
-        //     }
-        // }
         return new JsonResponse([
             'data' => $paths,
             'status' => 'success',
