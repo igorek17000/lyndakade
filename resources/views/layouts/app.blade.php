@@ -637,12 +637,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد. </p>
             </div>
             <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                <img referrerpolicy='origin' id = 'nbqejzpeapfujxlzsizpesgt' style = 'cursor:pointer' onclick = 'window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
-            </div>
-            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12" id="zarinpal-trust">
-                <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
-            </div>
-            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <h5>ارتباطات</h5>
               <ul>
                 {{-- <li><a href="#"> </a></li> --}}
@@ -652,6 +646,12 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 <li><a href="{{ route('root.contact.us') }}">تماس با ما</a></li>
                 <li><a href="{{ route('demands.create') }}">درخواست دوره آموزشی</a></li>
               </ul>
+            </div>
+            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                <img referrerpolicy='origin' id = 'nbqejzpeapfujxlzsizpesgt' style = 'cursor:pointer' onclick = 'window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
+            </div>
+            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12" id="zarinpal-trust">
+                <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
             </div>
           </div>
         </div>
