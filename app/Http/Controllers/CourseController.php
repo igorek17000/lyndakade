@@ -40,8 +40,6 @@ use function Ybazli\Faker\string;
 
 class CourseController extends Controller
 {
-    public $items_per_page = 10;
-
     public function __construct()
     {
         // $this->middleware('auth', ['except' => ['index', 'show', 'load_more_new', 'load_more_popular', 'load_more_all', 'course_api', 'courses_api', 'subtitle_content']]);

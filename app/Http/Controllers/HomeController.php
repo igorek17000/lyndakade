@@ -139,7 +139,7 @@ class HomeController extends Controller
                 'courses' => [],
                 'hasMore' => false,
             ];
-            if (count($courses) > 0) {
+            if ($courses->count() > 0) {
                 $page = $request->get('page', null);
                 if (!$page) {
                     return $res;
@@ -194,12 +194,9 @@ class HomeController extends Controller
         ]);
     }
 
-    public function get_course_timeline($course_id)
+    public function get_course_timeline($course)
     {
-        $course = Course::find($course_id);
-        if ($course)
-            return view('courses.partials._course_list_timeline', ['course' => $course])->render();
-        return 'not found';
+        return view('courses.partials._course_list_timeline', ['course' => $course])->render();
     }
 
     public function search_page(Request $request)
@@ -251,7 +248,7 @@ class HomeController extends Controller
                     return $res;
                 }
                 foreach ($courses->forPage(intval($page), 20) as $course) {
-                    $res['courses'][] = $this->get_course_timeline($course->id);
+                    $res['courses'][] = $this->get_course_timeline($course);
                 }
                 $res['hasMore'] = intval($courses->count() / 20) + 1 >= intval($page) + 1;
                 return $res;
@@ -312,7 +309,7 @@ class HomeController extends Controller
                 } else {
                     $a['title'] = $subject->name;
                 }
-                $a['count'] = count($subject->courses->whereIn('id', $courses_id));
+                $a['count'] = $subject->courses->whereIn('id', $courses_id)->count();
                 array_push($item['items'], $a);
             }
             $item['hasMore'] = count($collection) > 5;
@@ -340,7 +337,7 @@ class HomeController extends Controller
                     'title' => $skill->title,
                     'titleEng' => $skill->titleEng,
                     'link' => $request->url() . '?' . http_build_query($query),
-                    'count' => count($courses->where('skillLevel', $skill->id)),
+                    'count' => $courses->where('skillLevel', $skill->id)->count(),
                 ]
             );
         }
@@ -376,10 +373,10 @@ class HomeController extends Controller
             $categories_filter,
             prepare_categories_filter_item($request, 'دسته ها', 'subject', $subjects_id, $courses_id)
         );
-        array_push(
-            $categories_filter,
-            prepare_categories_filter_item($request, 'نرم افزار ها', 'software', $softwares_id, $courses_id)
-        );
+        // array_push(
+        //     $categories_filter,
+        //     prepare_categories_filter_item($request, 'نرم افزار ها', 'software', $softwares_id, $courses_id)
+        // );
         array_push(
             $categories_filter,
             prepare_categories_filter_item($request, 'مدرسان', 'author', $authors_id, $courses_id)
