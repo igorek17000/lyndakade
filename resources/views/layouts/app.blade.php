@@ -22,7 +22,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
 
     gtag('config', 'G-SB27JF9C9Y');
   </script>
-  
+
 {{-- <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -598,35 +598,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
 
     {{-- <footer id="footer" class="bg-dark text-muted p-md-5 pt-4 @if(app()->isLocal('en')) text-left @endif"  @if(app()->isLocal('en')) dir="ltr" @endif> --}}
     <footer id="footer" class="bg-dark text-muted p-md-5 pt-4">
-      <div class="fpart-first">
-        <div class="container">
-          <div class="row">
-            <div class="contact col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <h5>درباره ما</h5>
-              <p>لینداکده یک بستر یادگیری پیشرو است که به هر کس کمک می کند تا کسب و کار ، نرم افزار ، فناوری و
-                مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد. </p>
-            </div>
-            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                <img referrerpolicy='origin' id = 'nbqejzpeapfujxlzsizpesgt' style = 'cursor:pointer' onclick = 'window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
-            </div>
-            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
-            </div>
-            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-              <h5>ارتباطات</h5>
-              <ul>
-                {{-- <li><a href="#"> </a></li> --}}
-                {{-- <li><a href="#"></a></li> --}}
-                {{-- <li><a href="#"> </a></li> --}}
-                {{-- <li><a href="#"></a></li> --}}
-                <li><a href="{{ route('root.contact.us') }}">تماس با ما</a></li>
-                <li><a href="{{ route('demands.create') }}">درخواست دوره آموزشی</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="fpart-second pb-md-0" style="padding-bottom: 100px;">
+      <div class="fpart-second">
         <div class="container">
           <div id="powered" class="clearfix">
             <div class="powered_text pull-right flip">
@@ -647,6 +619,35 @@ session(['redirectToAfterLogin' => url()->previous()]);
               </a>
             </div>
             <div class="bottom-row">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fpart-first pb-md-0" style="padding-bottom: 100px;">
+        <div class="container">
+          <div class="row">
+            <div class="contact col-lg-4 col-md-4 col-sm-12 col-xs-12">
+              <h5>درباره ما</h5>
+              <p>لینداکده یک بستر یادگیری پیشرو است که به هر کس کمک می کند تا کسب و کار ، نرم افزار ، فناوری و
+                مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد. </p>
+            </div>
+            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                <img referrerpolicy='origin' id = 'nbqejzpeapfujxlzsizpesgt' style = 'cursor:pointer' onclick = 'window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
+            </div>
+            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                {{-- <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script> --}}
+                <a href="javascript:showZPTrust();" title="دروازه پرداخت معتبر"><img src="https://cdn.zarinpal.com/badges/trustLogo/1.svg" alt="دروازه پرداخت معتبر" style="width: 100px; border:none;"></a>
+            </div>
+            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
+              <h5>ارتباطات</h5>
+              <ul>
+                {{-- <li><a href="#"> </a></li> --}}
+                {{-- <li><a href="#"></a></li> --}}
+                {{-- <li><a href="#"> </a></li> --}}
+                {{-- <li><a href="#"></a></li> --}}
+                <li><a href="{{ route('root.contact.us') }}">تماس با ما</a></li>
+                <li><a href="{{ route('demands.create') }}">درخواست دوره آموزشی</a></li>
+              </ul>
             </div>
           </div>
         </div>
