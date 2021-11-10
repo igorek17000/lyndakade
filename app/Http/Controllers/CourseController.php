@@ -404,6 +404,22 @@ class CourseController extends Controller
         return '';
     }
 
+    public function set_price_api(Request $request)
+    {
+        $id = $request->get('id', null);
+        $price = $request->get('price', null);
+        if ($id != null && $price != null) {
+            $course = Course::where('id', $id);
+            $course->update(['price' => $price]);
+            return new JsonResponse([
+                'message' => 'success',
+            ], 200);
+        }
+        return new JsonResponse([
+            'message' => 'failed',
+        ], 400);
+    }
+
     public function course_update_view_from_linkedin_api(Request $request)
     {
         $view = intval($request->input('view'));
@@ -450,7 +466,7 @@ class CourseController extends Controller
         $slugs = explode("|", $request->get("slugs", ""));
         $messages = [];
         $messages['okays'] = [];
-        foreach(Course::whereIn('slug_linkedin', $slugs)->get('slug_linkedin') as $course){
+        foreach (Course::whereIn('slug_linkedin', $slugs)->get('slug_linkedin') as $course) {
             $messages['okays'][] = $course->slug_linkedin;
         }
         return new JsonResponse([
