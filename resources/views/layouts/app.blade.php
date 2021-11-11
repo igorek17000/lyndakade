@@ -477,7 +477,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                   alt="{{ __('Profile Photo') }}">
               </div>
             </a>
-            <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarUser">
+            <ul class="dropdown-menu dropdown-menu-center text-center" aria-labelledby="navbarUser">
               @if (Auth::user()->isAdmin())
                 <li>
                   <a class="dropdown-item" href="{{ route('voyager.dashboard') }}">{{ __('msg.Dashboard') }}</a>

@@ -4872,7 +4872,7 @@ nav ul > li > a {
 nav ul li a:before {
     position: absolute;
     right: 0;
-    bottom: -5px;
+    bottom: 0;
     width: 0;
     height: 2px;
     content: "";
@@ -4901,9 +4901,9 @@ nav.navbar .dropdown-menu a.dropdown-item {
     border-bottom: 2px solid blue;
 }
 
-nav.navbar .dropdown-menu a.dropdown-item:last-child {
+/* nav.navbar .dropdown-menu a.dropdown-item:last-child {
     border: 0;
-}
+} */
 
 nav.navbar .dropdown-menu a.dropdown-item:hover {
     color: white;
