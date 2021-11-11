@@ -375,14 +375,21 @@ if (count($course->subjects) > 0) {
           @endif
           <div class="tab-pane fade" id="nav-download-links" role="tabpanel" aria-labelledby="nav-download-links-tab">
             @if (auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0))
-
               <div class="row justify-content-center text-left" dir="ltr">
                 <div class="col-lg-2 text-center">
                   <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
                 </div>
                 <div class="col-lg-10">
-                  <div></div>
-                  <p></p>
+                  <p class="text-center">
+                    این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
+                    @if($course->persian_subtitle_id == 1)
+                    به همراه زیرنویس فارسی و انگلیسی می‌باشد.
+                    @elseif ($course->english_subtitle_id == 1)
+                    به همراه زیرنویس انگلیسی می‌باشد.
+                    @else
+                    دارای زیرنویس نمی‌باشد.
+                    @endif
+                  </p>
                   <ul class="exercise-files-popover">
                     @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
                       @foreach (json_decode($course->courseFile) as $file)
@@ -473,7 +480,6 @@ if (count($course->subjects) > 0) {
                   <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
                 </div>
                 <div class="col-lg-10">
-                  <div></div>
                   @if (!auth()->check())
                     <p class="text-center">برای دانلود، لطفا <a href="{{ route('login') }}">وارد حساب کاربری</a>
                       شوید</p>
