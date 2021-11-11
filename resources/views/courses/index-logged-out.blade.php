@@ -194,11 +194,43 @@
 
   <div class="container my-3">
     <div class="row">
-        <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-3 col-sm-6 d-md-block d-none">
+        <div class="card-box pb-2"
+          style="background-color:#00aaca;border-radius: 10px;max-height: 143px;height: 143px !important">
+          <div class="inner pt-0" style="position: relative;">
+            <h3 class="counter"
+              style="color: black;float: left;margin: auto;position: absolute;top: 50%;left: 20px;-ms-transform: translateY(-50%);transform: translateY(-50%);">
+              {{ get_number_of_all_courses() }}</h3>
+            <p style="color: black;width: 60%;" class="text-center"> تعداد دوره‌های آموزشی سایت </p>
+          </div>
+          <div class="inner pt-0" style="position: relative;">
+            <h3 class="counter"
+              style="color: black;float: left;margin: auto;position: absolute;top: 50%;left: 20px;-ms-transform: translateY(-50%);transform: translateY(-50%);">
+              {{ get_number_of_all_paths() }}</h3>
+            <p style="color: black;width: 60%;" class="text-center">تعداد مسیرهای آموزشی سایت</p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 d-md-none">
+        <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
+          <div class="inner">
+            <h3 class="counter" style="color: black">{{ get_number_of_all_courses() }}</h3>
+            <p style="color: black"> تعداد دوره‌های آموزشی سایت </p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 d-md-none">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
             <h3 class="counter" style="color: black">{{ get_number_of_all_paths() }}</h3>
-            <p style="color: black">تعداد کل مسیرهای آموزشی</p>
+            <p style="color: black"> تعداد مسیرهای آموزشی سایت </p>
           </div>
           <div class="icon">
             <i class="fa fa-graduation-cap" aria-hidden="true"></i>
@@ -208,18 +240,7 @@
       <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
-            <h3 class="counter" style="color: black">{{ get_number_of_all_courses() }} </h3>
-            <p style="color: black"> تعداد کل دوره‌های آموزشی سایت </p>
-          </div>
-          <div class="icon">
-            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-2 col-sm-6">
-        <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
-          <div class="inner">
-            <h3 class="counter" style="color: black"> {{ get_sum_of_all_courses_part_numbers() }} </h3>
+            <h3 class="counter" style="color: black">{{ get_sum_of_all_courses_part_numbers() }}</h3>
             <p style="color: black"> تعداد کل ویدیوهای آموزشی </p>
           </div>
           <div class="icon">
@@ -227,10 +248,10 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-2 col-sm-6">
+      <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
-            <h3 class="counter" style="color: black"> {{ get_sum_of_all_courses_time() }} </h3>
+            <h3 class="counter" style="color: black">{{ get_sum_of_all_courses_time() }}</h3>
             <p style="color: black"> زمان کل آموزشهای سایت (دقیقه)</p>
           </div>
           <div class="icon">
@@ -238,10 +259,10 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-2 col-sm-6">
+      <div class="col-lg-3 col-sm-6">
         <div class="card-box" style="background-color:#00aaca;border-radius: 10px">
           <div class="inner">
-            <h3 class="counter" style="color: black"> {{ get_number_of_authors_has_at_least_one_course() }} </h3>
+            <h3 class="counter" style="color: black">{{ get_number_of_authors_has_at_least_one_course() }}</h3>
             <p style="color: black">تعداد مدرسان </p>
           </div>
           <div class="icon">
