@@ -4898,7 +4898,7 @@ nav.navbar .dropdown-menu a.dropdown-item {
     color: whitesmoke;
     padding-bottom: 0;
     padding-top: 0;
-    border-bottom: 2px solid blue;
+    /* border-bottom: 2px solid blue; */
 }
 
 /* nav.navbar .dropdown-menu a.dropdown-item:last-child {
