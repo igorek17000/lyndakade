@@ -51,7 +51,7 @@
                           background: url({{ fromDLHost($path->img) }});
                           background-size: auto;
                           height: 300px !important;">
-        <img src="#" class=" lazyloaded" data-src="{{ fromDLHost($path->img) }}">
+        <img src="#" class=" lazyload" data-src="{{ fromDLHost($path->img) }}">
       </div>
       <div class="path-big-img-content w-100">
         <div class="container-fluid" style="height: 580px;overflow: hidden;">
