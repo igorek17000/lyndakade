@@ -148,7 +148,7 @@ class HomeController extends Controller
                     return $res;
                 }
                 foreach ($courses->forPage(intval($page), 20) as $course) {
-                    $res['courses'][] = $this->get_course_timeline($course->id);
+                    $res['courses'][] = $this->get_course_timeline($course);
                 }
                 $res['hasMore'] = intval($courses->count() / 20) + 1 >= intval($page) + 1;
                 return $res;
