@@ -77,6 +77,17 @@
                   </span>
                 </h1>
                 <div class="row mx-auto">
+                    <div class="col-md-6 path-description text-justify mb-2"
+                    style="word-break: break-word;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;line-height: 1.5;-webkit-line-clamp: 5;-webkit-box-orient: vertical;">
+                    {!! nPersian($path->description) !!}
+                  </div>
+                  <div class="col-md-6 path-description text-justify mb-2 text-left"
+                    style="word-break: break-word;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;line-height: 1.5;-webkit-line-clamp: 5;-webkit-box-orient: vertical;"
+                    dir="ltr">
+                    {!! nPersian($path->descriptionEng) !!}
+                  </div>
+                </div>
+                <div class="row py-md-3 text-center" style="font-size: 1.25em;">
 
                   <div class="col-6 my-md-1">
                     <b>مدت زمان: </b>{{ $path->durationHours() ? $path->durationHours() . 'h' : '' }}
@@ -137,7 +148,7 @@
     </div>
   </div>
 
-{{--
+
   <div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 100px;">
     <div class="row m-0">
       <div class="path-big-img" style="
@@ -238,7 +249,7 @@
         </div>
       </div>
     </div>
-  </div> --}}
+  </div>
 
 
   {{-- <div id="learn-path-top" class="px-0 pt-0">
