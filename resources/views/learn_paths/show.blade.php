@@ -46,10 +46,10 @@
   <div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 150px;">
     <div class="row m-0">
       <div class="path-big-img" style="
-                                  max-width: 100%; width: 100%;
-                                  background: url({{ fromDLHost($path->img) }});
-                                  background-size: auto;
-                                  height: 300px !important;">
+                                                  max-width: 100%; width: 100%;
+                                                  background: url({{ fromDLHost($path->img) }});
+                                                  background-size: auto;
+                                                  height: 300px !important;">
         <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
       </div>
       <div class="path-big-img-content w-100">
@@ -109,6 +109,9 @@
                     <b>مدت زمان: </b>{{ $path->durationHours() ? $path->durationHours() . 'h' : '' }}
                     {{ $path->durationMinutes() ? $path->durationMinutes() . 'm' : '' }}
                   </div>
+                  <div class="col-6 my-md-1">
+                    <b>تعداد دوره ها: </b>{{ count(js_to_courses($path->_courses)) }}
+                  </div>
                   @if ($path->price() > 0)
                     <div class="col-6 my-md-1">
                       <b>مجموع قیمت:</b>
@@ -123,9 +126,6 @@
                     @else
                       {{ nPersian($path->price()) }}
                     @endif
-                  </div>
-                  <div class="col-6 my-md-1">
-                    <b>تعداد دوره ها: </b>{{ count(js_to_courses($path->_courses)) }}
                   </div>
                   <div class="col-6 my-md-1">
                     <b>تعداد مدرسین: </b>{{ count($authors) }}
@@ -398,16 +398,13 @@
 
               </div>
               <div class="col-md-9  col-sm-12">
-                <p class="mt-md-3" style="
-                                                                                                        word-break: break-word;
-                                                                                                        overflow: hidden;
-                                                                                                        text-overflow: ellipsis;
-                                                                                                        display: -webkit-box;
-                                                                                                        line-height: 2; /* fallback */
-                                                                                                        /* fallback */
-                                                                                                        -webkit-line-clamp: 3; /* number of lines to show */
-                                                                                                        -webkit-box-orient: vertical;
-                                                                                                    ">
+                <p class="mt-md-3" style="word-break: break-word;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            display: -webkit-box;
+                                            line-height: 2; /* fallback */
+                                            -webkit-line-clamp: 3; /* number of lines to show */
+                                            -webkit-box-orient: vertical;">
                   {!! $course->description !!}
                 </p>
                 <div class="row">
@@ -423,7 +420,11 @@
                   <div class="col-md-3 col-6">
                     <b>تاریخ انتشار:</b>
                     <span id="release-date" title="در لینکدین {{ date('Y/m/d', strtotime($course->releaseDate)) }}">
-                      {{ date('Y/m/d', strtotime($course->releaseDate)) }}
+                      @php
+                        $d = date('Y/m/d', strtotime($course->releaseDate));
+                        $d = explode('/', $d);
+                        echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                      @endphp
                     </span>
                   </div>
                   <div class="col-md-3 col-6">
@@ -480,6 +481,14 @@
   </div>
   <div id="learning-path">
     <div class="row path-experts mx-0">
+      <div class="col-12">
+        <h5 class="course-title">شما این مسیر آموزشی را با مدرسان زیر میگذرانید</h5>
+      </div>
+      @foreach ($authors as $index => $author)
+        @include('authors.partials._item-grid', ['author' => $authors[$i]])
+      @endforeach
+    </div>
+    {{-- <div class="row path-experts mx-0">
       <div class="col-md-12">
         <div class="row p-0 m-0">
           <div class="col-9">
@@ -518,7 +527,7 @@
     </div>
     <!--.Carousel-->
   </div>
-  </div>
+  </div> --}}
   </div>
 @endsection
 @section('script_body')
