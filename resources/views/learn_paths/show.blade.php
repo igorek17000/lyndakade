@@ -83,7 +83,7 @@
                       <span>
                         {{ $path->title }}
                       </span>
-                      <span class="ml-auto d-none d-md-block">
+                      <span class="ml-auto text-left d-none d-md-block" dir="ltr">
                         {{ $path->titleEng }}
                       </span>
                     </h1>
