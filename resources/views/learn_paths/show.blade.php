@@ -78,7 +78,7 @@
                 </h1> --}}
                 <div class="row mx-auto">
                   <div class="col-md-6">
-                    <h1 class="pt-md-3 container" style="padding-top: 30px;">
+                    <h1>
                       <span>
                         {{ $path->title }}
                       </span>
@@ -87,7 +87,7 @@
                       </span>
                     </h1>
                     <div class="col-md-6 path-description text-justify mb-2"
-                      style="word-break: break-word;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;line-height: 1.5;-webkit-line-clamp: 5;-webkit-box-orient: vertical;">
+                      style="height: 125px !important; word-break: break-word;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;line-height: 1.5;-webkit-line-clamp: 5;-webkit-box-orient: vertical;">
                       {!! nPersian($path->description) !!}
                     </div>
                   </div>
@@ -98,7 +98,7 @@
                       </span>
                     </h1>
                     <div class="col-md-6 path-description text-justify mb-2 text-left"
-                      style="word-break: break-word;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;line-height: 1.5;-webkit-line-clamp: 5;-webkit-box-orient: vertical;"
+                      style="height: 125px !important; word-break: break-word;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;line-height: 1.5;-webkit-line-clamp: 5;-webkit-box-orient: vertical;"
                       dir="ltr">
                       {!! nPersian($path->descriptionEng) !!}
                     </div>
