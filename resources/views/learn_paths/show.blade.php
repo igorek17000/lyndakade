@@ -46,10 +46,10 @@
   <div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 100px;">
     <div class="row m-0">
       <div class="path-big-img" style="
-                            max-width: 100%; width: 100%;
-                            background: url({{ fromDLHost($path->img) }});
-                            background-size: auto;
-                            height: 300px !important;">
+                              max-width: 100%; width: 100%;
+                              background: url({{ fromDLHost($path->img) }});
+                              background-size: auto;
+                              height: 300px !important;">
         <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
       </div>
       <div class="path-big-img-content w-100">
@@ -83,13 +83,16 @@
                       <span>
                         {{ $path->title }}
                       </span>
+                      <span class="ml-auto d-none d-md-block">
+                        {{ $path->titleEng }}
+                      </span>
                     </h1>
                     {!! nPersian($path->description) !!}
                   </div>
                   <div class="col-md-6 path-description text-justify mb-2 text-left"
                     style="word-break: break-word;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;line-height: 1.5;-webkit-line-clamp: 5;-webkit-box-orient: vertical;"
                     dir="ltr">
-                    <h1 class="container text-left" dir="ltr">
+                    <h1 class="container text-left d-none d-md-block" dir="ltr">
                       <span>
                         {{ $path->titleEng }}
                       </span>
@@ -392,15 +395,15 @@
               </div>
               <div class="col-md-9  col-sm-12">
                 <p class="mt-md-3" style="
-                                                                                                  word-break: break-word;
-                                                                                                  overflow: hidden;
-                                                                                                  text-overflow: ellipsis;
-                                                                                                  display: -webkit-box;
-                                                                                                  line-height: 2; /* fallback */
-                                                                                                  /* fallback */
-                                                                                                  -webkit-line-clamp: 3; /* number of lines to show */
-                                                                                                  -webkit-box-orient: vertical;
-                                                                                              ">
+                                                                                                    word-break: break-word;
+                                                                                                    overflow: hidden;
+                                                                                                    text-overflow: ellipsis;
+                                                                                                    display: -webkit-box;
+                                                                                                    line-height: 2; /* fallback */
+                                                                                                    /* fallback */
+                                                                                                    -webkit-line-clamp: 3; /* number of lines to show */
+                                                                                                    -webkit-box-orient: vertical;
+                                                                                                ">
                   {!! $course->description !!}
                 </p>
                 <div class="row">
