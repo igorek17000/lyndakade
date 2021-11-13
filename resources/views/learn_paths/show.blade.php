@@ -43,7 +43,101 @@
   </script>
 @endpush
 @section('content')
+<div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 100px;">
+    <div class="row m-0">
+      <div class="path-big-img" style="
+                          max-width: 100%; width: 100%;
+                          background: url({{ fromDLHost($path->img) }});
+                          background-size: auto;
+                          height: 300px !important;">
+        <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
+      </div>
+      <div class="path-big-img-content w-100">
+        <div class="container-fluid" style="height: 630px;overflow: hidden;">
+          <div class="row">
+            <div class="col-xs-12 col-md-12 path-title-desc ">
+              <div class="container mt-3" style="background-color: #ffffff;border-radius: 5px;">
+                <div class="path-big-img-path pt-3" style="width: -moz-fit-content;">
+                    <a href="{{ route('learn.paths.index') }}">
+                        مسیرهای یادگیری
+                    </a>
+                    <i class="lyndacon arrow-left"></i>
+                </div>
+                <h1 class="pt-md-3 container" style="padding-top: 30px;">
+                  <span>
+                    {{ $path->title }}
+                  </span>
+                  <span style="float: left;" class="ml-auto d-none d-md-block">
+                    {{ $path->titleEng }}
+                  </span>
+                </h1>
+                <h1 class="container text-left d-block d-md-none" dir="ltr">
+                  <span>
+                    {{ $path->titleEng }}
+                  </span>
+                </h1>
+                <div class="row mx-auto">
 
+                  <div class="col-6 my-md-1">
+                    <b>مدت زمان: </b>{{ $path->durationHours() ? $path->durationHours() . 'h' : '' }}
+                    {{ $path->durationMinutes() ? $path->durationMinutes() . 'm' : '' }}
+                  </div>
+                  @if ($path->price() > 0)
+                    <div class="col-6 my-md-1">
+                      <b>مجموع قیمت:</b>
+                      <del class="text-muted">({{ nPersian($path->old_price()) }})</del>
+                    </div>
+                  @endif
+                  <div class="col-6 my-md-1">
+                    <b>قیمت @if ($path->price() > 0) با 30% تخفیف @endif:
+                    </b>
+                    @if ($path->price() == 0)
+                      <span style="color: darkgreen">رایگان</span>
+                    @else
+                      {{ nPersian($path->price()) }}
+                    @endif
+                  </div>
+                  <div class="col-6 my-md-1">
+                    <b>تعداد دوره ها: </b>{{ count(js_to_courses($path->_courses)) }}
+                  </div>
+                  <div class="col-6 my-md-1">
+                    <b>تعداد مدرسین: </b>{{ count($authors) }}
+                  </div>
+                  <div class="col-6 my-md-1">
+                    @if (\Illuminate\Support\Facades\Auth::check())
+                      <div id="cart-btn">
+                        @if ($path_state == '2')
+                          <a data-id="2-{{ $path->id }}" class="btn btn-danger align-self-center cart-remove-btn">
+                            حذف از سبد خرید
+                          </a>
+                        @elseif($path_state == '1')
+                          <a data-id="2-{{ $path->id }}" class="btn btn-download align-self-center cart-add-btn">
+                            افزودن به سبد خرید
+                          </a>
+                        @elseif($path_state == '3')
+                          خریداری شده است.
+                        @endif
+                      </div>
+                    @else
+                      <div>
+                        برای خرید این مسیر آموزشی باید
+                        <a href="{{ route('login') }}" style="color: orange">
+                          وارد حساب کاربری
+                        </a>
+                        خود شوید.
+                      </div>
+                    @endif
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{{--
   <div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 100px;">
     <div class="row m-0">
       <div class="path-big-img" style="
@@ -144,7 +238,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
 
   {{-- <div id="learn-path-top" class="px-0 pt-0">
