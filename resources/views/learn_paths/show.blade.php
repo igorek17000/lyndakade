@@ -78,7 +78,7 @@
                 </h1> --}}
                 <div class="row mx-auto">
                   <div class="col-md-6">
-                    <h1>
+                    <h1 style="min-height: 72px;">
                       <span>
                         {{ $path->title }}
                       </span>
@@ -92,7 +92,7 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <h1 class="container text-left d-none d-md-block" dir="ltr">
+                    <h1 class="container text-left d-none d-md-block" dir="ltr" style="min-height: 72px;">
                       <span>
                         {{ $path->titleEng }}
                       </span>
