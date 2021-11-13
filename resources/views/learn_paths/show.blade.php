@@ -86,7 +86,7 @@
                         {{ $path->titleEng }}
                       </span>
                     </h1>
-                    <div class="col-md-6 path-description text-justify mb-2"
+                    <div class="path-description text-justify mb-2"
                       style="height: 125px !important; word-break: break-word;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;line-height: 1.5;-webkit-line-clamp: 5;-webkit-box-orient: vertical;">
                       {!! nPersian($path->description) !!}
                     </div>
@@ -97,7 +97,7 @@
                         {{ $path->titleEng }}
                       </span>
                     </h1>
-                    <div class="col-md-6 path-description text-justify mb-2 text-left"
+                    <div class="path-description text-justify mb-2 text-left"
                       style="height: 125px !important; word-break: break-word;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;line-height: 1.5;-webkit-line-clamp: 5;-webkit-box-orient: vertical;"
                       dir="ltr">
                       {!! nPersian($path->descriptionEng) !!}
