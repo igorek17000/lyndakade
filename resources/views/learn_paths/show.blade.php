@@ -89,7 +89,7 @@
                   <div class="col-md-6 path-description text-justify mb-2 text-left"
                     style="word-break: break-word;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;line-height: 1.5;-webkit-line-clamp: 5;-webkit-box-orient: vertical;"
                     dir="ltr">
-                    <h1 class="container text-left d-block d-md-none" dir="ltr">
+                    <h1 class="container text-left" dir="ltr">
                       <span>
                         {{ $path->titleEng }}
                       </span>
