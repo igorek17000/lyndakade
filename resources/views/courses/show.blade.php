@@ -387,7 +387,7 @@ if (count($course->subjects) > 0) {
                     @elseif ($course->english_subtitle_id == 1)
                     به همراه زیرنویس انگلیسی می‌باشد.
                     @else
-                    دارای زیرنویس نمی‌باشد.
+                    دارای زیرنویس نمی‌باشد
                     @endif
                   </p>
                   <ul class="exercise-files-popover">
@@ -493,7 +493,7 @@ if (count($course->subjects) > 0) {
                     @elseif ($course->english_subtitle_id == 1)
                     به همراه زیرنویس انگلیسی می‌باشد.
                     @else
-                    دارای زیرنویس نمی‌باشد.
+                    دارای زیرنویس نمی‌باشد
                     @endif
                   </p>
                   <div class="col-lg-10">
