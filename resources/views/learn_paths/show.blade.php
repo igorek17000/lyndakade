@@ -485,7 +485,7 @@
         <h5 class="course-title">شما این مسیر آموزشی را با مدرسان زیر میگذرانید</h5>
       </div>
       @foreach ($authors as $index => $author)
-        @include('authors.partials._item-grid', ['author' => $authors[$i]])
+        @include('authors.partials._item-grid', ['author' => $author])
       @endforeach
     </div>
     {{-- <div class="row path-experts mx-0">
