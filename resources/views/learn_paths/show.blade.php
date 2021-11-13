@@ -148,7 +148,7 @@
     </div>
   </div>
 
-
+{{--
   <div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 100px;">
     <div class="row m-0">
       <div class="path-big-img" style="
@@ -249,7 +249,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
 
   {{-- <div id="learn-path-top" class="px-0 pt-0">
