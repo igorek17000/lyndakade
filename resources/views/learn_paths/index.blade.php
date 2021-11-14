@@ -2,7 +2,7 @@
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => 'لیندا کده | مسیرهای آموزشی',
+  'title' => 'مسیرهای آموزشی - لیندا کده',
   'keywords' => get_seo_keywords() . ' , لیست مسیرهای آموزشی , learn path, learn-path, all learn paths ',
   'description' => 'لیست مسیرهای آموزشی | ' . get_seo_description(),
   ])
