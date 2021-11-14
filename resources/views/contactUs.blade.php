@@ -2,7 +2,7 @@
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => 'لیندا کده | تماس با ما',
+  'title' => 'تماس با ما - لیندا کده',
   'keywords' => get_seo_keywords() . ' , تماس با ما , contact us ',
   'description' => 'برای ارتباط با ما از این صفحه اقدام فرمایید. | ' . get_seo_description(),
   ])

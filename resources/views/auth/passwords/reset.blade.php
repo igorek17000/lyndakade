@@ -2,7 +2,7 @@
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => ' لیندا کده | فراموشی کلمه عبور' ,
+  'title' => 'بازیابی رمز عبور - لیندا کده' ,
   'keywords' => get_seo_keywords() . ' , فراموشی کلمه عبور, فراموشی رمز عبور, reset password',
   'description' => ' صفحه فراموشی کلمه عبور | ' . get_seo_description(),
   ])

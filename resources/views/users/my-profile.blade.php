@@ -2,7 +2,7 @@
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => 'لیندا کده | پروفایل من',
+  'title' => 'پروفایل من - لیندا کده',
   'keywords' => get_seo_keywords() . ' , پروفایل من , my profile, profile',
   'description' => 'صفحه پروفایل من | ' . get_seo_description(),
   ])

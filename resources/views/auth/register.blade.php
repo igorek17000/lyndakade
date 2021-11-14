@@ -3,7 +3,7 @@
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => ' لیندا کده | صفحه ثبت نام' ,
+  'title' => 'ثبت نام - لیندا کده' ,
   'keywords' => get_seo_keywords() . ' , ثبت نام , ثبت نام حساب کاربری , register , sign up , sign-up',
   'description' => ' ثبت نام حساب کاربری | ' . get_seo_description(),
   ])

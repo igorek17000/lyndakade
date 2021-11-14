@@ -2,7 +2,7 @@
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => 'لیندا کده | خرید اشتراک' ,
+  'title' => 'خرید اشتراک - لیندا کده' ,
   'keywords' => get_seo_keywords() . ', خرید اشتراک , buy package , package, lyndakade package',
   'description' => 'خرید اشتراک | ' . get_seo_description(),
   ])

@@ -5,7 +5,7 @@
 
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => ' لیندا کده | بروز ترین سایت آموزشی',
+  'title' => 'لیندا کده بروز ترین وبسایت آموزشی',
   'keywords' => get_seo_keywords(),
   'description' => get_seo_description(),
   ])

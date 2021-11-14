@@ -2,7 +2,7 @@
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => ' لیندا کده | سبد خرید' . ' ',
+  'title' => 'سبد خرید - لیندا کده',
   'keywords' => get_seo_keywords() . ' , ' . 'سبد , سبد خرید ',
   'description' => get_seo_description(),
   ])

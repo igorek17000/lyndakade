@@ -2,7 +2,7 @@
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => fromDLHost($author->img),
-  'title' => ' لیندا کده | مدرس' . ' ' . $author->name,
+  'title' => 'مدرس ' . $author->name . ' - لیندا کده',
   'keywords' => get_seo_keywords() . ' , ' . 'مدرس ' . $author->name . ' , author ' . $author->name,
   'description' => $author->description . ' | ' . get_seo_description(),
   ])

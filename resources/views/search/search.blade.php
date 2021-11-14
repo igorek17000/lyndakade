@@ -12,7 +12,7 @@
     @push('meta.in.head')
         @include('meta::manager',[
             'image' => 'https://lyndakade.ir/image/logo.png',
-            'title' => 'لیندا کده - ' . $q,
+            'title' => $q . ' - لیندا کده',
             'keywords' => get_seo_keywords(),
             'description' => get_seo_description(),
         ])

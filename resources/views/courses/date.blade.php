@@ -2,11 +2,11 @@
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => ' لیندا کده | ' . date_get_seo_title($coursetype),
+  'title' => date_get_seo_title($coursetype) . ' - لیندا کده',
   'keywords' => get_seo_keywords() . ' , ' . date_get_seo_keywords($coursetype),
   'description' => date_get_seo_title($coursetype) . ' | ' . get_seo_description(),
   ])
-  
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",

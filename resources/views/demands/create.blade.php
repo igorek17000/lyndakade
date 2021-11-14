@@ -2,7 +2,7 @@
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => 'لیندا کده | درخواست دوره آموزشی',
+  'title' => 'درخواست دوره آموزشی - لیندا کده',
   'keywords' => get_seo_keywords() . ' , درخواست دوره آموزشی , course request, request, demand, course demand ',
   'description' => 'برای درخواست دوره آموزشی از این صفحه اقدام فرمایید. | ' . get_seo_description(),
   ])

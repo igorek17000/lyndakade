@@ -2,7 +2,7 @@
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => 'لیندا کده | مدرسین',
+  'title' => 'لیست مدرسین - لیندا کده',
   'keywords' => get_seo_keywords() . ' , مدرسین , authors ',
   'description' => 'لیست تمامی مدرسین در وبسایت لیندا کده. | ' . get_seo_description(),
   ])

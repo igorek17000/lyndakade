@@ -2,7 +2,7 @@
 @push('meta.in.head')
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => 'لیندا کده | دروس خریداری شده من',
+  'title' => 'دروس خریداری شده من - لیندا کده',
   'keywords' => get_seo_keywords() . ' , دروس خریداری شده من , my paid courses, my paid courses',
   'description' => 'صفحه دروس خریداری شده من | ' . get_seo_description(),
   ])
