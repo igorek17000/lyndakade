@@ -38,7 +38,6 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
         // Check permission
         $this->authorize('edit', $data);
 
-        $request->request->add(['sortingDate' => $request->get('updateDate') ? $request->updateDate : $request->releaseDate]);
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
