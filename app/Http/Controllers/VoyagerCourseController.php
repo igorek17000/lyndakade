@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Mail;
 class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
 
-
     // POST BR(E)AD
     public function update(Request $request, $id)
     {
@@ -38,6 +37,8 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
 
         // Check permission
         $this->authorize('edit', $data);
+
+        $request->request->add(['sortingDate' => $request->get('updateDate') ? $request->updateDate : $request->releaseDate]);
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
@@ -98,6 +99,8 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
 
         // Check permission
         $this->authorize('add', app($dataType->model_name));
+
+        $request->request->add(['sortingDate' => $request->get('updateDate') ? $request->updateDate : $request->releaseDate]);
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
