@@ -11,11 +11,13 @@ use Illuminate\Support\Str;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
+
 //  implements Viewable
 class Course extends Model
 {
     // use InteractsWithViews;
     use SearchableTrait;
+
     protected $fillable = ['title', 'titleEng', 'description', 'sortingDate', 'releaseDate', 'updateDate', 'slug_linkedin'];
     // protected $with = ['authors'];
 

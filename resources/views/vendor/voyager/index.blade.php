@@ -142,7 +142,7 @@
               </thead>
               <tbody>
                 @php
-                    $courses = \App\Course::query()->leftJoin('paids','paids.item_id','=','courses.id')->select('courses.id', 'courses.titleEng', DB::raw('count(*) as total'))->groupBy('paids.item_id')->orderBy('total','desc')->whereNotNull('paids.item_id')->take(5)->get();
+                    $courses = \App\Course::query()->leftJoin('paids','paids.item_id','=','courses.id')->select('courses.id', 'courses.titleEng', DB::raw('count(*) as total'))->groupBy('paids.item_id')->orderBy('total','desc')->whereNotNull('paids.item_id')->take(15)->get();
                 @endphp
                 @foreach ($courses as $index => $course)
                   <tr>
