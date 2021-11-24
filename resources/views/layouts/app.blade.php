@@ -602,22 +602,22 @@ session(['redirectToAfterLogin' => url()->previous()]);
     <footer id="footer" class="bg-dark text-muted p-md-5 pt-4">
       <div class="container">
         <div class="row">
-          <div class="contact col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="contact col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <h5 class=" text-sm-right text-center">درباره ما</h5>
             <p class="text-white">
               لینداکده یک بستر یادگیری پیشرو است که به هر کس کمک می کند تا کسب و کار ، نرم افزار ، فناوری و
               مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد.
             </p>
           </div>
-          <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12 text-center my-2">
+          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2">
             <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
               <img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD" alt="" style="cursor:pointer; background-color: #fff;" id="PmAs0cswBnOXzNOOqfGD">
             </a>
           </div>
-          <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12 text-center my-2">
+          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2">
             <img referrerpolicy='origin' id='nbqejzpeapfujxlzsizpesgt' style='cursor:pointer; background-color: #fff;' onclick='window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi' src='https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
           </div>
-          <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12 text-center my-2" id="zarinpal-trust">
+          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2" id="zarinpal-trust">
             <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
           </div>
         </div>
