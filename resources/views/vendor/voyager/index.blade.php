@@ -157,6 +157,36 @@
           </div>
         </div>
       </div>
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">MOST UNLOCKED COURSES</h2>
+          <div class="card-text">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Course Title</th>
+                  <th scope="col">Total Unlocks</th>
+                  <th scope="col">Last Sell</th>
+                </tr>
+              </thead>
+              <tbody>
+                @php
+                    $courses = \App\Course::query()->leftJoin('unlocked_courses','unlocked_courses.course_id','=','courses.id')->select('courses.id', 'courses.titleEng', DB::raw('count(*) as total'))->groupBy('unlocked_courses.course_id')->orderBy('total','desc')->whereNotNull('unlocked_courses.course_id')->take(15)->get();
+                @endphp
+                @foreach ($courses as $index => $course)
+                  <tr>
+                    <th scope="row">{{ $index + 1 }}</th>
+                    <td>{{ $course->titleEng }}</td>
+                    <td>{{ number_format($course->total) }}</td>
+                    <td>{{ \App\UnlockedCourse::where('course_id', $course->id)->latest()->first()->created_at }}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
