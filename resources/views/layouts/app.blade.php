@@ -590,78 +590,74 @@ session(['redirectToAfterLogin' => url()->previous()]);
     {{-- </button> --}}
     <!--Footer Start-->
     <style>
-        footer ul > li > a, footer p {
+        /*footer ul > li > a, footer p {
             color: #ccc;
+        }*/
+        #zarinpal-trust img{
+          width: 100px;
         }
     </style>
 
     {{-- <footer id="footer" class="bg-dark text-muted p-md-5 pt-4 @if(app()->isLocal('en')) text-left @endif"  @if(app()->isLocal('en')) dir="ltr" @endif> --}}
     <footer id="footer" class="bg-dark text-muted p-md-5 pt-4">
-      <div class="fpart-second">
-        <div class="container">
-          <div id="powered" class="clearfix">
-            <div class="powered_text pull-right flip">
-              <p>لینداکده-1400</p>
-            </div>
-            <div class="social pull-left flip">
-              <a rel="noreferrer" href="http://www.Instagram.com/lyndakade.ir" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram" title="اینستاگرام"
-                  class="icon-instagram"></a>
-              {{-- <a rel="noreferrer" href="http://www.T.me/LyndaKade" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram" title="کانال تلگرام"
-                  class="icon-telegram"> </a> --}}
-              <a rel="noreferrer" href="http://www.T.me/LyndaKadeSupport" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram" title="پیشتبانی تلگرام"
-                  class="icon-telegram"> </a>
-              <a rel="noreferrer" href="http://www.Aparat.com/LyndaKade.ir" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat" title="آپارات" class="icon-aparat">
-              </a>
-            </div>
-            <div class="bottom-row">
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="contact col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <h5 class=" text-sm-right text-center">درباره ما</h5>
+            <p>
+              لینداکده یک بستر یادگیری پیشرو است که به هر کس کمک می کند تا کسب و کار ، نرم افزار ، فناوری و
+              مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد.
+            </p>
+          </div>
+          <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12 text-center my-2">
+            <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
+              <img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD" alt="" style="cursor:pointer" id="PmAs0cswBnOXzNOOqfGD">
+            </a>
+          </div>
+          <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12 text-center my-2">
+            <img referrerpolicy='origin' id='nbqejzpeapfujxlzsizpesgt' style='cursor:pointer' onclick='window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi' src='https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
+          </div>
+          <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12 text-center my-2" id="zarinpal-trust">
+            <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
           </div>
         </div>
-      </div>
-      <style>
-          #zarinpal-trust img{
-            width: 100px;
-          }
-      </style>
-      <div class="fpart-first pb-md-0" style="padding-bottom: 100px;">
-        <div class="container">
-          <div class="row">
-            <div class="contact col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <h5>درباره ما</h5>
-              <p>لینداکده یک بستر یادگیری پیشرو است که به هر کس کمک می کند تا کسب و کار ، نرم افزار ، فناوری و
-                مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد. </p>
-            </div>
-            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-              <h5>ارتباطات</h5>
-              <ul>
-                {{-- <li><a href="#"> </a></li> --}}
-                {{-- <li><a href="#"></a></li> --}}
-                {{-- <li><a href="#"> </a></li> --}}
-                {{-- <li><a href="#"></a></li> --}}
-                <li><a href="{{ route('root.contact.us') }}">تماس با ما</a></li>
-                <li><a href="{{ route('demands.create') }}">درخواست دوره آموزشی</a></li>
-              </ul>
-            </div>
-            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                              <img referrerpolicy='origin' id = 'nbqejzpeapfujxlzsizpesgt' style = 'cursor:pointer' onclick = 'window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
-            </div>
-            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12" id="zarinpal-trust">
-                <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
-            </div>
-            <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
-                  <img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD" alt="" style="cursor:pointer" id="PmAs0cswBnOXzNOOqfGD">
+        <div class="row">
+          <div class="col-12 text-center">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                لینداکده-1400
+              </li>
+              <li class="list-inline-item">
+                <a href="{{ route('root.contact.us') }}">تماس با ما</a>
+              </li>
+              <li class="list-inline-item">
+                <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.Instagram.com/lyndakade.ir">
+                  <img data-toggle="tooltip"
+                    src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram" title="اینستاگرام"
+                    class="icon-instagram">
                 </a>
-            </div>
+              </li>
+              <li class="list-inline-item">
+                <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.T.me/LyndaKadeSupport">
+                  <img data-toggle="tooltip"
+                    src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram" title="پیشتبانی تلگرام"
+                    class="icon-telegram">
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.Aparat.com/LyndaKade.ir">
+                  <img data-toggle="tooltip"
+                    src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat" title="آپارات" class="icon-aparat">
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-12 text-center">
+            <p class="my-0">کلیه‌ی حقوق مادی و معنوی این سایت متعلق به LyndaKade.ir است</p>
           </div>
         </div>
       </div>
     </footer>
-    <!--Footer End-->
   </div>
 
 
