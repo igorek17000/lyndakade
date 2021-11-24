@@ -590,9 +590,9 @@ session(['redirectToAfterLogin' => url()->previous()]);
     {{-- </button> --}}
     <!--Footer Start-->
     <style>
-        /*footer ul > li > a, footer p {
+        footer ul > li > a, footer p {
             color: #ccc;
-        }*/
+        }
         #zarinpal-trust img{
           width: 100px;
         }
@@ -604,7 +604,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         <div class="row">
           <div class="contact col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <h5 class=" text-sm-right text-center">درباره ما</h5>
-            <p>
+            <p class="text-white">
               لینداکده یک بستر یادگیری پیشرو است که به هر کس کمک می کند تا کسب و کار ، نرم افزار ، فناوری و
               مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد.
             </p>
@@ -624,11 +624,11 @@ session(['redirectToAfterLogin' => url()->previous()]);
         <div class="row">
           <div class="col-12 text-center">
             <ul class="list-inline">
-              <li class="list-inline-item">
+              <li class="list-inline-item text-white">
                 لینداکده-1400
               </li>
               <li class="list-inline-item">
-                <a href="{{ route('root.contact.us') }}">تماس با ما</a>
+                <a class="text-white" href="{{ route('root.contact.us') }}">تماس با ما</a>
               </li>
               <li class="list-inline-item">
                 <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.Instagram.com/lyndakade.ir">
@@ -653,7 +653,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
             </ul>
           </div>
           <div class="col-12 text-center">
-            <p class="my-0">کلیه‌ی حقوق مادی و معنوی این سایت متعلق به LyndaKade.ir است</p>
+            <p class="my-0 text-white">کلیه‌ی حقوق مادی و معنوی این سایت متعلق به LyndaKade.ir است</p>
           </div>
         </div>
       </div>
