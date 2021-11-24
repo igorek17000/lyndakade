@@ -593,7 +593,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         footer ul > li > a, footer p {
             color: #ccc;
         }
-        #footer img{
+        #footer .column img{
           height: 150px;
         }
     </style>
@@ -617,7 +617,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2">
             <img referrerpolicy='origin' id='nbqejzpeapfujxlzsizpesgt' style='cursor:pointer; background-color: #fff;' onclick='window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi' src='https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
           </div>
-          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2" id="zarinpal-trust">
+          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2">
             <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
           </div>
         </div>
