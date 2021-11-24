@@ -593,8 +593,8 @@ session(['redirectToAfterLogin' => url()->previous()]);
         footer ul > li > a, footer p {
             color: #ccc;
         }
-        #zarinpal-trust img{
-          width: 100px;
+        #footer img{
+          height: 150px;
         }
     </style>
 
