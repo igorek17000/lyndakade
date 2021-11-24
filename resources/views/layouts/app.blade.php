@@ -647,9 +647,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
               </ul>
             </div>
             <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-              <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD"><img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD" alt="" style="cursor:pointer" id="PmAs0cswBnOXzNOOqfGD"></a>
-
-                <img referrerpolicy='origin' id = 'nbqejzpeapfujxlzsizpesgt' style = 'cursor:pointer' onclick = 'window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
+                              <img referrerpolicy='origin' id = 'nbqejzpeapfujxlzsizpesgt' style = 'cursor:pointer' onclick = 'window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
             </div>
             <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12" id="zarinpal-trust">
                 <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
