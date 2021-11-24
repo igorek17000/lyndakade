@@ -628,7 +628,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 لینداکده-1400
               </li>
               <li class="list-inline-item">
-                <a class="text-white" href="{{ route('root.contact.us') }}">تماس با ما</a>
+                <a href="{{ route('root.contact.us') }}" style="color: #00aaca;">تماس با ما</a>
               </li>
               <li class="list-inline-item">
                 <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.Instagram.com/lyndakade.ir">
