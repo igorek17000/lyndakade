@@ -608,6 +608,41 @@ session(['redirectToAfterLogin' => url()->previous()]);
               لینداکده یک بستر یادگیری پیشرو است که به هر کس کمک می کند تا کسب و کار ، نرم افزار ، فناوری و
               مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد.
             </p>
+            <div class="row">
+              <div class="col-12 text-center">
+                <ul class="list-inline">
+                  <li class="list-inline-item text-white">
+                    لینداکده-1400
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="{{ route('root.contact.us') }}" style="color: #00aaca;">تماس با ما</a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.Instagram.com/lyndakade.ir">
+                      <img data-toggle="tooltip"
+                        src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram" title="اینستاگرام"
+                        class="icon-instagram">
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.T.me/LyndaKadeSupport">
+                      <img data-toggle="tooltip"
+                        src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram" title="پیشتبانی تلگرام"
+                        class="icon-telegram">
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.Aparat.com/LyndaKade.ir">
+                      <img data-toggle="tooltip"
+                        src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat" title="آپارات" class="icon-aparat">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 text-center">
+                <p class="my-0 text-white">کلیه‌ی حقوق مادی و معنوی این سایت متعلق به LyndaKade.ir است</p>
+              </div>
+            </div>
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2">
             <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
@@ -619,41 +654,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2">
             <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 text-center">
-            <ul class="list-inline">
-              <li class="list-inline-item text-white">
-                لینداکده-1400
-              </li>
-              <li class="list-inline-item">
-                <a href="{{ route('root.contact.us') }}" style="color: #00aaca;">تماس با ما</a>
-              </li>
-              <li class="list-inline-item">
-                <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.Instagram.com/lyndakade.ir">
-                  <img data-toggle="tooltip"
-                    src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram" title="اینستاگرام"
-                    class="icon-instagram">
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.T.me/LyndaKadeSupport">
-                  <img data-toggle="tooltip"
-                    src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram" title="پیشتبانی تلگرام"
-                    class="icon-telegram">
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.Aparat.com/LyndaKade.ir">
-                  <img data-toggle="tooltip"
-                    src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat" title="آپارات" class="icon-aparat">
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-12 text-center">
-            <p class="my-0 text-white">کلیه‌ی حقوق مادی و معنوی این سایت متعلق به LyndaKade.ir است</p>
           </div>
         </div>
       </div>
