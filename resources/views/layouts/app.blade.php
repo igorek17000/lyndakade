@@ -604,7 +604,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         <div class="row">
           <div class="contact col-lg-6 col-md-6 col-sm-12 col-xs-12 text-sm-right text-center">
             <h5 class="pt-1 pb-3" style="color: #00aaca;">درباره ما</h5>
-            <p class="text-white">
+            <p class="text-white pl-md-5 text-justify">
               لینداکده یک بستر یادگیری پیشرو است که به هر کس کمک می کند تا کسب و کار ، نرم افزار ، فناوری و
               مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد.
             </p>
