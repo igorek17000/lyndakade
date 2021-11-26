@@ -41,7 +41,7 @@
 
                   @error('name')
                     <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
+                      <strong>{{ __($message) }}</strong>
                     </span>
                   @enderror
                 </div>
@@ -56,7 +56,7 @@
 
                   @error('firstName')
                     <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
+                      <strong>{{ __($message) }}</strong>
                     </span>
                   @enderror
                 </div>
@@ -71,7 +71,7 @@
 
                   @error('lastName')
                     <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
+                      <strong>{{ __($message) }}</strong>
                     </span>
                   @enderror
                 </div>
@@ -86,7 +86,7 @@
 
                   @error('mobile')
                     <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
+                      <strong>{{ __($message) }}</strong>
                     </span>
                   @enderror
                 </div>
@@ -102,7 +102,7 @@
 
                   @error('username')
                     <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
+                      <strong>{{ __($message) }}</strong>
                     </span>
                   @enderror
                 </div>
@@ -119,7 +119,7 @@
                   </small>
                   @error('email')
                     <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
+                      <strong>{{ __($message) }}</strong>
                     </span>
                   @enderror
                 </div>
@@ -135,7 +135,7 @@
 
                   @error('password')
                     <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
+                      <strong>{{ __($message) }}</strong>
                     </span>
                   @enderror
                 </div>
