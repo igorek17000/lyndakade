@@ -171,12 +171,12 @@ class LearnPathController extends Controller
                 'status' => 'failed',
             ], 404);
         }
-        if (!$thumbnail) {
-            return new JsonResponse([
-                'message' => 'need thumbnail',
-                'status' => 'failed',
-            ], 404);
-        }
+        // if (!$thumbnail) {
+        //     return new JsonResponse([
+        //         'message' => 'need thumbnail',
+        //         'status' => 'failed',
+        //     ], 404);
+        // }
         $path = LearnPath::find($id);
         if (!$path) {
             return new JsonResponse([
