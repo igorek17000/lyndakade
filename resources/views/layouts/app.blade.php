@@ -47,6 +47,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
 
   @yield('script_head')
   @stack('css_head')
@@ -595,6 +596,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         }
         #footer .column img{
           height: 150px;
+          width: 100%;
         }
     </style>
 
@@ -646,7 +648,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2">
             <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
-              <img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD" alt="" style="cursor:pointer; background-color: #fff;" id="PmAs0cswBnOXzNOOqfGD">
+              <img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD" alt=" enamad نماد الکترونیک" style="cursor:pointer; background-color: #fff;" id="PmAs0cswBnOXzNOOqfGD">
             </a>
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2">
@@ -661,7 +663,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
   </div>
 
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/icons.css') }}" />
   <link href="{{ asset('css/googlefont.css') }}" rel="stylesheet" />
