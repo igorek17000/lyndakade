@@ -52,11 +52,13 @@ class LearnPath extends Model
         static::retrieved(function ($model) {
             $js_courses = json_decode($model->courses);
             $res = array();
-            foreach ($js_courses as $c) {
-                $course_id = $c->id;
-                $course = Course::find($course_id);
-                if ($course) {
-                    array_push($res, $course);
+            if ($js_courses){
+                foreach ($js_courses as $c) {
+                    $course_id = $c->id;
+                    $course = Course::find($course_id);
+                    if ($course) {
+                        array_push($res, $course);
+                    }
                 }
             }
             $model->_courses = $res;

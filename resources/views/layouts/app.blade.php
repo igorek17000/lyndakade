@@ -648,7 +648,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2">
             <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
-              <img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD" alt=" enamad نماد الکترونیک" style="cursor:pointer; background-color: #fff;" id="PmAs0cswBnOXzNOOqfGD">
+              <img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD" alt="نماد الکترونیک enamad در صورت اتصال با آی‌پی داخل کشور، نمایش داده خواهد شد." style="cursor:pointer; background-color: #fff;" id="PmAs0cswBnOXzNOOqfGD">
             </a>
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2">
