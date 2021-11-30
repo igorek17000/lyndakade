@@ -6,6 +6,15 @@ session(['redirectToAfterLogin' => url()->previous()]);
 {{-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->isLocale('fa') ? 'rtl' : 'ltr' }}"> --}}
 
 <head>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5V9HN76');</script>
+    <!-- End Google Tag Manager -->
+
   <meta charset="UTF-8" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -131,6 +140,11 @@ session(['redirectToAfterLogin' => url()->previous()]);
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V9HN76"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
   <div class="wrapper-wide" style="    box-shadow: 0 0 4px rgba(0,0,0,.1);
     background: repeat-x #f7f7f7;
     background-image: -webkit-linear-gradient(top,#f7f7f7 0,#e5e5e5 100%);
