@@ -15,7 +15,7 @@
           @if ($cart->course)
             <td>
               <img src="#" data-src="{{ fromDLHost($cart->course->img) }}" class="lazyload" width="50" height="50"
-                alt="" />
+                 alt="دوره آموزشی {{ $cart->course->title }} - Image of Course {{ $cart->course->titleEng }}"  />
             </td>
             <td>
               <span>{{ $cart->course->title }}</span><br />
@@ -25,7 +25,7 @@
           @else
             <td>
               <img src="#" data-src="{{ fromDLHost($cart->learn_path->img) }}" class="lazyload" width="50" height="50"
-                alt="" />
+                 alt="مسیر آموزشی {{ $cart->learn_path->title }} - Image of Learn Path {{ $cart->learn_path->titleEng }}" />
             </td>
             <td>
               <span>{{ $cart->learn_path->title }}</span><br />

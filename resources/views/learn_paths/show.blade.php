@@ -50,7 +50,7 @@
                                                   background: url({{ fromDLHost($path->img) }});
                                                   background-size: auto;
                                                   height: 300px !important;">
-        <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}">
+        <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}" alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
       </div>
       <div class="path-big-img-content w-100">
         <div class="container-fluid" style="height: 630px;overflow: hidden;">
@@ -394,7 +394,7 @@
               <div class="col-md-3 col-sm-12 text-center">
                 <img src="#" class="lazyload"
                   data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
-                  style="max-height: 150px;" />
+                  style="max-height: 150px;"  alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}"  />
 
               </div>
               <div class="col-md-9  col-sm-12">

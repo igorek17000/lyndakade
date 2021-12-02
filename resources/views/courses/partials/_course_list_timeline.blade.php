@@ -38,7 +38,7 @@
       <div class="col-md-3 col-sm-12 text-center">
         <img src="#" class="lazyload"
           data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
-          style="max-height: 150px;" />
+          style="max-height: 150px;"  alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}" />
 
       </div>
       <div class="col-md-9  col-sm-12">

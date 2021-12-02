@@ -42,7 +42,7 @@
         </div>
         <div class="row author-details">
           <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
-            <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($author->img) }}" alt="">
+            <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($author->img) }}" alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
           </div>
           <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
             <h1>درباره مدرس {{ $author->name }}</h1>

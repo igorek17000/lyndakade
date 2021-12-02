@@ -398,7 +398,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0">
       <a class="navbar-brand mb-1" href="https://lyndakade.ir">
         <img draggable="false" class="img-logo m-0 p-0" src="https://lyndakade.ir/image/logoedit2.png" title="لینداکده"
-          alt="لینداکده" style="width: 60px; height: 55px;">
+          alt="لینداکده - LyndaKade - Lynda Kade - LinkedIN" style="width: 60px; height: 55px;">
         <span class="hidden-md hidden-lg">لیندا کده</span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -654,21 +654,21 @@ session(['redirectToAfterLogin' => url()->previous()]);
                   <li class="list-inline-item">
                     <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.Instagram.com/lyndakade.ir">
                       <img data-toggle="tooltip"
-                        data-src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram" title="اینستاگرام"
+                        data-src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram - اینستاگرام" title="اینستاگرام"
                         class="icon-instagram lazyload">
                     </a>
                   </li>
                   <li class="list-inline-item">
                     <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.T.me/LyndaKadeSupport">
                       <img  data-toggle="tooltip"
-                        data-src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram" title="پیشتبانی تلگرام"
+                        data-src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram - پیشتبانی تلگرام" title="پیشتبانی تلگرام"
                         class="icon-telegram lazyload">
                     </a>
                   </li>
                   <li class="list-inline-item">
                     <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.Aparat.com/LyndaKade.ir">
                       <img  data-toggle="tooltip"
-                        data-src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat" title="آپارات"
+                        data-src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat - آپارات" title="آپارات"
                         class="icon-aparat lazyload">
                     </a>
                   </li>
@@ -685,7 +685,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
             </a>
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2">
-            <img  class="lazyload" referrerpolicy='origin' id='nbqejzpeapfujxlzsizpesgt' style='cursor:pointer; background-color: #fff;' onclick='window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi' data-src='https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
+            <img  class="lazyload" referrerpolicy='origin' id='nbqejzpeapfujxlzsizpesgt' style='cursor:pointer; background-color: #fff;' onclick='window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi - لوگو ساماندهی' data-src='https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2">
             <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>

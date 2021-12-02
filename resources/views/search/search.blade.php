@@ -153,7 +153,7 @@
                                     max-width: 160px;
                                     background: transparent;
                                 ">
-                                    <img src="{{ fromDLHost($object['img']) }}" alt="" style="
+                                    <img src="{{ fromDLHost($object['img']) }}" alt="جستجوی {{ $object['title'] }} - search for {{ $object['title'] }}" style="
                                     width: 100%;
                                     border-radius: 50%;
                                 ">

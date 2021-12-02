@@ -4,7 +4,7 @@
                     <div class="row">
                         <div class="col-lg-2"></div>
                         <div class="col-lg-8">
-                            <img src="{{ asset('image/404.gif') }}" width="100%" alt="404Page">
+                            <img src="{{ asset('image/404.gif') }}" width="100%" alt="404 not found - یافت نشد">
                         </div>
                         <div class="col-lg-2"></div>
                     </div>

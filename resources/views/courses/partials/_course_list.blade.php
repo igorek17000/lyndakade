@@ -22,7 +22,7 @@
       </button>
     </div>
     <img src="#" data-src="{{ fromDLHost($course->img) }}" style="height: 100px;" class="card-img lazyload"
-      alt="image">
+       alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}" >
   </div>
   <div class="col-md-8">
     <div class="card-body py-0">

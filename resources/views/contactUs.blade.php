@@ -29,19 +29,19 @@
           <div class="row text-center">
             <div class="col-lg-6 col-xs-6">
               <a rel="noreferrer" href="http://www.T.me/LyndaKadeSupport" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram" title="پیشتبانی تلگرام"
+                  src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram پیشتبانی تلگرام" title="پیشتبانی تلگرام"
                   class="icon-telegram">
                 پیشتبانی تلگرام
               </a>
             </div>
             <div class="col-lg-6 col-xs-6">
               {{-- <a rel="noreferrer" href="http://www.T.me/LyndaKade" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram" title="کانال تلگرام"
+                  src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram کانال تلگرام" title="کانال تلگرام"
                   class="icon-telegram">
                 کانال تلگرام
               </a> --}}
               <a rel="noreferrer" href="http://www.Instagram.com/lyndakade.ir" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram" title="اینستاگرام"
+                  src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram اینستاگرام" title="اینستاگرام"
                   class="icon-instagram">
                 اینستاگرام</a>
             </div>
@@ -116,7 +116,7 @@
           <div class="row text-center">
             <div class="col-lg-4 col-xs-4">
               <a rel="noreferrer" href="http://www.Instagram.com/lyndakade.ir" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram" title="اینستاگرام"
+                  src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram اینستاگرام" title="اینستاگرام"
                   class="icon-instagram">
                 اینستاگرام</a>
             </div>
@@ -134,7 +134,7 @@
             </div> --}}
             <div class="col-lg-4 col-xs-4">
               <a rel="noreferrer" href="http://www.T.me/LyndaKadeSupport" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram" title="پیشتبانی تلگرام"
+                  src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram پیشتبانی تلگرام" title="پیشتبانی تلگرام"
                   class="icon-telegram">
                 پیشتبانی تلگرام
               </a>
@@ -144,7 +144,7 @@
                 <i class="fas fa-envelope fa-2x iconFa"></i>
               </a> --}}
               <a rel="noreferrer" href="http://www.Aparat.com/LyndaKade.ir" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat" title="آپارات" class="icon-aparat">
+                  src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat آپارات" title="آپارات" class="icon-aparat">
                 آپارات
               </a>
             </div>

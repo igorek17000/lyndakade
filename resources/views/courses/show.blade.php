@@ -143,7 +143,7 @@ if (count($course->subjects) > 0) {
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img src="#" class="lazyload" width="100" height="100"
-                        data-src="{{ fromDLHost($author->img) }}" alt="image of author {{ $author->name }}">
+                        data-src="{{ fromDLHost($author->img) }}" alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
                       <cite>{{ $author->name }}</cite>
                     </a>
                   @endforeach
@@ -281,7 +281,7 @@ if (count($course->subjects) > 0) {
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img src="#" class="lazyload" width="100" height="100"
-                        data-src="{{ fromDLHost($author->img) }}" alt="image of author {{ $author->name }}">
+                        data-src="{{ fromDLHost($author->img) }}" alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
                       <cite>{{ $author->name }}</cite>
                     </a>
                   @endforeach

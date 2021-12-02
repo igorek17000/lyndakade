@@ -2,7 +2,7 @@
   <div class="card h-100 border-light  bg-light shadow course-grid">
     <img src="#" alt="{{ $course->title }}"
       data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
-      class="card-img lazyload" />
+      class="card-img lazyload"  alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}" />
     <div class="card-img-overlay">
       <div class="card-title">
         <a href={{ courseURL($course) }} class="text-light">پیش نمایش</a>
