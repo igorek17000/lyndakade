@@ -33,7 +33,7 @@ class LearnPathController extends Controller
      */
     public function index(Request $request)
     {
-        $libraries = Library::with(['learn_paths'])->get();
+        $libraries = Library::with(['paths'])->get();
 
         return view('learn_paths.index', [
             'libraries' => $libraries,
@@ -43,7 +43,7 @@ class LearnPathController extends Controller
 
     public function show_category(Request $request, $library_slug)
     {
-        $libraries = Library::with(['learn_paths'])->get();
+        $libraries = Library::with(['paths'])->get();
 
         return view('learn_paths.index', [
             'libraries' => $libraries,
@@ -62,7 +62,7 @@ class LearnPathController extends Controller
     {
         $lib = Library::firstWhere('slug', $learn_path_slug);
         if ($lib) {
-            $libraries = Library::with(['learn_paths'])->get();
+            $libraries = Library::with(['paths'])->get();
             return view('learn_paths.index', [
                 'libraries' => $libraries,
                 'selected_library' => $learn_path_slug,
