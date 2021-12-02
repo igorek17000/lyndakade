@@ -571,52 +571,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
     <main id="app">
       @yield('content')
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              {{-- <div class="video-player" style="padding: 0; margin: 0;"> --}}
-              {{-- <video --}}
-              {{-- id="preview-player" --}}
-              {{-- class="video-js vjs-big-play-centered vjs-16-9" --}}
-              {{-- controls --}}
-              {{-- preload="auto" --}}
-              {{-- poster="{{  }}" --}}
-              {{-- data-setup='{ "fluid" : true , "controls": true, "autoplay": false, "preload": "auto", "seek": true  }'> --}}
-              {{-- <source type="video/mp4" src="{{  }}"/> --}}
-
-              {{-- <track --}}
-              {{-- default --}}
-              {{-- kind="captions" --}}
-              {{-- srclang="en" --}}
-              {{-- label="Persian" --}}
-              {{-- src="{{  }}"/> --}}
-
-              {{-- <p class="vjs-no-js"> --}}
-              {{-- To view this video please enable JavaScript, and consider upgrading to a --}}
-              {{-- web browser that --}}
-              {{-- <a href="https://videojs.com/html5-video-support/" target="_blank"> --}}
-              {{-- supports HTML5 video --}}
-              {{-- </a> --}}
-              {{-- </p> --}}
-              {{-- </video> --}}
-              {{-- </div> --}}
-            </div>
-            {{-- <div class="modal-footer"> --}}
-            {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
-            {{--  --}}{{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-            {{-- </div> --}}
-          </div>
-        </div>
-      </div>
     </main>
     {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> --}}
     {{-- Launch demo modal --}}
