@@ -54,14 +54,32 @@ session(['redirectToAfterLogin' => url()->previous()]);
   <link rel="manifest" href="/manifest.json">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+  {{-- <link href="{{ mix('css/app.css') }}" rel="stylesheet"> --}}
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
 
+  {{-- <link href="{{ asset('css/font-awesome/all.css') }}" rel="stylesheet" /> --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.0/css/all.min.css" integrity="sha512-ykRBEJhyZ+B/BIJcBuOyUoIxh0OfdICfHPnPfBy7eIiyJv536ojTCsgX8aqrLQ9VJZHGz4tvYyzOM0lkgmQZGw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.0/js/all.min.js" integrity="sha512-kWTrl8apDL/aScTYauVsRnGkZv4n7JpH03mIdTmiELoAvAT+CGmfBQx03EMkTT34f5jvyY0DRa/M/it7iecBKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  {{-- <link href="{{ asset('css/toastr.css') }}" rel="stylesheet"> --}}
+  {{-- <script src="{{ asset('js/toastr.min.js') }}"></script> --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/icons.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/my-stylesheet.css') }}" />
+
+  {{-- <script async src="{{ asset('js/lazysizes.min.js') }}"></script> --}}
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   @yield('script_head')
   @stack('css_head')
-
-
 
   @csrf
 
@@ -677,25 +695,21 @@ session(['redirectToAfterLogin' => url()->previous()]);
   </div>
 
 
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/icons.css') }}" />
-  <link href="{{ asset('css/googlefont.css') }}" rel="stylesheet" />
-  <link href="{{ asset('css/font-awesome/all.css') }}" rel="stylesheet" />
-  <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.transitions.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/themify-icons.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/lyndacon.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/my-stylesheet.css') }}" />
-  <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+  {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/themify-icons.css') }}" /> --}}
+  <link rel="stylesheet" type="text/css" href="https://themify.me/wp-content/themes/themify-v32/themify-icons/themify-icons.css" />
+  <script src="https://themify.me/wp-content/plugins/themify-custom-plugins/js/themify.js"></script>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  {{-- <link href="{{ asset('css/googlefont.css') }}" rel="stylesheet" /> --}}
+
+  {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.transitions.css') }}" /> --}}
+
+
+  {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/lyndacon.css') }}" /> --}}
+  {{-- <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}"> --}}
 
   <script src="{{ mix('js/all.js') }}"></script>
-  <script async src="{{ asset('js/lazysizes.min.js') }}"></script>
-  <script src="{{ asset('js/toastr.min.js') }}"></script>
+  {{-- <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script> --}}
 
     <script>
 
@@ -916,7 +930,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
       .on('mouseenter mouseleave', '.dropdown', toggleDropdown)
       .on('click', '.dropdown-menu a', toggleDropdown);
   </script>
-  <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+
   @yield('script_body')
   @stack('js')
   <script>

@@ -21,7 +21,6 @@
         "guzzlehttp/guzzle": "7.0",
         "hekmatinasser/verta": "^1.10",
         "james-heinrich/getid3": "^1.9",
-        "laravel-frontend-presets/black-dashboard": "^1.0",
         "laravel/framework": "^7.0",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",

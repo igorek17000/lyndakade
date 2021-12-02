@@ -2,10 +2,10 @@
     font-family: IranSANS;
     font-display: auto;
     src: local("IranSANS"),
-    url(../fonts/IRANSansWeb.ttf) format("truetype"),
-    url(../fonts/IRANSansWeb.woff) format("woff"),
-    url(../fonts/IRANSansWeb.woff2) format("woff2"),
-    url(../fonts/IRANSansWeb.eot?#iefix) format("embedded-opentype");
+    url(https://cdn.jsdelivr.net/npm/iransans@1.0.0/ttf/IRANSansWeb.ttf) format("truetype"),
+    url(https://cdn.jsdelivr.net/npm/iransans@1.0.0/woff/IRANSansWeb.woff) format("woff"),
+    url(https://cdn.jsdelivr.net/npm/iransans@1.0.0/woff2/IRANSansWeb.woff2) format("woff2"),
+    url(https://cdn.jsdelivr.net/npm/iransans@1.0.0/eot/IRANSansWeb.eot?#iefix) format("embedded-opentype");
     font-weight: 400;
     font-style: normal
 }
@@ -14,10 +14,10 @@
     font-family: IranSANS;
     font-display: auto;
     src: local("IranSANS"),
-    url(../fonts/IRANSansWeb_Bold.ttf) format("truetype"),
-    url(../fonts/IRANSansWeb_Bold.woff) format("woff"),
-    url(../fonts/IRANSansWeb_Bold.woff2) format("woff2"),
-    url(../fonts/IRANSansWeb_Bold.eot?#iefix) format("embedded-opentype");
+    url(https://cdn.jsdelivr.net/npm/iransans@1.0.0/ttf/IRANSansWeb_Bold.ttf) format("truetype"),
+    url(https://cdn.jsdelivr.net/npm/iransans@1.0.0/woff/IRANSansWeb_Bold.woff) format("woff"),
+    url(https://cdn.jsdelivr.net/npm/iransans@1.0.0/woff2/IRANSansWeb_Bold.woff2) format("woff2"),
+    url(https://cdn.jsdelivr.net/npm/iransans@1.0.0/eot/IRANSansWeb_Bold.eot?#iefix) format("embedded-opentype");
     font-weight: 700;
     font-style: normal
 }
