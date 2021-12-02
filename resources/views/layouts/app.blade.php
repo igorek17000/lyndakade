@@ -77,6 +77,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
 
   {{-- <script async src="{{ asset('js/lazysizes.min.js') }}"></script> --}}
   <script async src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="{{ mix('js/all.js') }}"></script>
 
   @yield('script_head')
   @stack('css_head')
@@ -663,7 +664,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
   {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/lyndacon.css') }}" /> --}}
   {{-- <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}"> --}}
 
-  <script src="{{ mix('js/all.js') }}"></script>
   {{-- <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script> --}}
 
     <script>
