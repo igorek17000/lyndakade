@@ -21,7 +21,7 @@
         پیش نمایش
       </button>
     </div>
-    <img src="#" data-src="{{ fromDLHost($course->img) }}" style="height: 100px;" class="card-img lazyload"
+    <img itemprop="image" src="#" data-src="{{ fromDLHost($course->img) }}" style="height: 100px;" class="card-img lazyload"
        alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}" >
   </div>
   <div class="col-md-8">

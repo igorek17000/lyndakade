@@ -2,7 +2,7 @@
   <div class="card">
     <a class="card-content" href="{{ route('learn.paths.show', [$learn_path->slug]) }}">
       <div class="card-img">
-        <img src="#" class="lazyload card-img" style="height: 150px !important;" data-src="{{ fromDLHost($learn_path->thumbnail) }}"  alt="مسیر آموزشی {{ $learn_path->title }} - Image of Learn Path {{ $learn_path->titleEng }}" />
+        <img itemprop="image" src="#" class="lazyload card-img" style="height: 150px !important;" data-src="{{ fromDLHost($learn_path->thumbnail) }}"  alt="مسیر آموزشی {{ $learn_path->title }} - Image of Learn Path {{ $learn_path->titleEng }}" />
       </div>
 
       <div class="card-img-overlay text-center">

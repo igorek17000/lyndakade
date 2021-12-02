@@ -397,7 +397,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
     {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0" @if(app()->isLocal('en')) dir="ltr" @endif> --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0">
       <a class="navbar-brand mb-1" href="https://lyndakade.ir">
-        <img draggable="false" class="img-logo m-0 p-0" src="https://lyndakade.ir/image/logoedit2.png" title="لینداکده"
+        <img itemprop="image" draggable="false" class="img-logo m-0 p-0" src="https://lyndakade.ir/image/logoedit2.png" title="لینداکده"
           alt="لینداکده - LyndaKade - Lynda Kade - LinkedIN" style="width: 60px; height: 55px;">
         <span class="hidden-md hidden-lg">لیندا کده</span>
       </a>

@@ -33,7 +33,7 @@
                           {{ $index + 1 }}
                         </td>
                         <td class="align-middle">
-                          <img src="#" data-src="{{ fromDLHost($cart->course->img) }}" class="lazyload" width="80"
+                          <img itemprop="image" src="#" data-src="{{ fromDLHost($cart->course->img) }}" class="lazyload" width="80"
                             alt="دوره آموزشی {{ $cart->course->title }} - Image of Course {{ $cart->course->titleEng }}" />
                           <h6>{{ $cart->course->title }}</h6>
                           <h6>{{ $cart->course->titleEng }}</h6>
@@ -44,7 +44,7 @@
                           {{ $index + 1 }}
                         </td>
                         <td class="align-middle">
-                          <img src="#" data-src="{{ fromDLHost($cart->learn_path->img) }}" class="lazyload"
+                          <img itemprop="image" src="#" data-src="{{ fromDLHost($cart->learn_path->img) }}" class="lazyload"
                             width="80" alt="مسیر آموزشی {{ $cart->learn_path->title }} - Image of Learn Path {{ $cart->learn_path->titleEng }}" />
                           <h6>{{ $cart->learn_path->title }}</h6>
                           <h6>{{ $cart->learn_path->titleEng }}</h6>

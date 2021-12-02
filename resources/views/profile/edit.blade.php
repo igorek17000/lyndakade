@@ -85,7 +85,7 @@
                             <div class="block block-three"></div>
                             <div class="block block-four"></div>
                             <a href="#">
-                                <img class="avatar" src="{{ asset('black') }}/img/emilyz.jpg" alt="my photo - عکس من">
+                                <img itemprop="image" class="avatar" src="{{ asset('black') }}/img/emilyz.jpg" alt="my photo - عکس من">
                                 <h5 class="title">{{ auth()->user()->name }}</h5>
                             </a>
                     <p class="description">
