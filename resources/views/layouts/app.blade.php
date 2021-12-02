@@ -696,8 +696,8 @@ session(['redirectToAfterLogin' => url()->previous()]);
 
 
   {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/themify-icons.css') }}" /> --}}
-  <link rel="stylesheet" type="text/css" href="https://themify.me/wp-content/themes/themify-v32/themify-icons/themify-icons.css" />
-  <script src="https://themify.me/wp-content/plugins/themify-custom-plugins/js/themify.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css" />
+  {{-- <script src="https://themify.me/wp-content/plugins/themify-custom-plugins/js/themify.js"></script> --}}
 
   {{-- <link href="{{ asset('css/googlefont.css') }}" rel="stylesheet" /> --}}
 
