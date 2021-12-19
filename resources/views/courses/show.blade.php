@@ -112,6 +112,12 @@ if (count($course->subjects) > 0) {
               <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
                 <div class="course-info-stat-cont m-0 mb-2 w-100">
                   <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
+                    @if (get_course_price($course->price) != $course->price)
+                      <del>
+                        {{ $course->price == 0 ? 'رایگان' : nPersian(number_format(get_course_price($course->price))) . ' تومان' }}
+                      </del>
+                      <br>
+                    @endif
                     {{ $course->price == 0 ? 'رایگان' : nPersian(number_format(get_course_price($course->price))) . ' تومان' }}
                   </span>
                 </div>
@@ -143,7 +149,8 @@ if (count($course->subjects) > 0) {
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img itemprop="image" src="#" class="lazyload" width="100" height="100"
-                        data-src="{{ fromDLHost($author->img) }}" alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
+                        data-src="{{ fromDLHost($author->img) }}"
+                        alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
                       <cite>{{ $author->name }}</cite>
                     </a>
                   @endforeach
@@ -250,6 +257,12 @@ if (count($course->subjects) > 0) {
               <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
                 <div class="course-info-stat-cont m-0 mb-2 w-100 text-left" dir="ltr">
                   <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
+                    @if (get_course_price($course->price) != $course->price)
+                      <del>
+                        {{ $course->price == 0 ? 'FREE' : number_format(get_course_price($course->price)) . ' Toman' }}
+                      </del>
+                      <br>
+                    @endif
                     {{ $course->price == 0 ? 'FREE' : number_format(get_course_price($course->price)) . ' Toman' }}
                   </span>
                 </div>
@@ -281,7 +294,8 @@ if (count($course->subjects) > 0) {
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img itemprop="image" src="#" class="lazyload" width="100" height="100"
-                        data-src="{{ fromDLHost($author->img) }}" alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
+                        data-src="{{ fromDLHost($author->img) }}"
+                        alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
                       <cite>{{ $author->name }}</cite>
                     </a>
                   @endforeach
@@ -382,12 +396,12 @@ if (count($course->subjects) > 0) {
                 <div class="col-lg-10">
                   <p class="text-center text-left" dir="ltr">
                     این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
-                    @if($course->persian_subtitle_id == 1)
-                    به همراه زیرنویس فارسی و انگلیسی می‌باشد.
+                    @if ($course->persian_subtitle_id == 1)
+                      به همراه زیرنویس فارسی و انگلیسی می‌باشد.
                     @elseif ($course->english_subtitle_id == 1)
-                    به همراه زیرنویس انگلیسی می‌باشد.
+                      به همراه زیرنویس انگلیسی می‌باشد.
                     @else
-                    دارای زیرنویس نمی‌باشد
+                      دارای زیرنویس نمی‌باشد
                     @endif
                   </p>
                   <ul class="exercise-files-popover">
@@ -488,12 +502,12 @@ if (count($course->subjects) > 0) {
                   @endif
                   <p class="text-center text-left" dir="ltr">
                     این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
-                    @if($course->persian_subtitle_id == 1)
-                    به همراه زیرنویس فارسی و انگلیسی می‌باشد.
+                    @if ($course->persian_subtitle_id == 1)
+                      به همراه زیرنویس فارسی و انگلیسی می‌باشد.
                     @elseif ($course->english_subtitle_id == 1)
-                    به همراه زیرنویس انگلیسی می‌باشد.
+                      به همراه زیرنویس انگلیسی می‌باشد.
                     @else
-                    دارای زیرنویس نمی‌باشد
+                      دارای زیرنویس نمی‌باشد
                     @endif
                   </p>
                   <div class="col-lg-10">
