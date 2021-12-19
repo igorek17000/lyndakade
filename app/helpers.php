@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Storage;
 function get_course_price($course_price)
 {
     $off_percent = 20 / 100;
-    return $course_price * $off_percent;
+    return intval($course_price * $off_percent);
 }
 
 function prepare_course_file_name($filename)
