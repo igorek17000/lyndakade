@@ -16,6 +16,12 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+function get_course_price($course_price)
+{
+    $off_percent = 20 / 100;
+    return $course_price * $off_percent;
+}
+
 function prepare_course_file_name($filename)
 {
     preg_match('/-\d{3,}.rar/', strtolower($filename), $matches);

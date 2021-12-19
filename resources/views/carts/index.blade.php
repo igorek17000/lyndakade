@@ -38,7 +38,7 @@
                           <h6>{{ $cart->course->title }}</h6>
                           <h6>{{ $cart->course->titleEng }}</h6>
                         </td>
-                        <td class="align-middle">{{ nPersian(number_format($cart->course->price)) }} تومان</td>
+                        <td class="align-middle">{{ nPersian(number_format(get_course_price($cart->course->price))) }} تومان</td>
                       @else
                         <td class="align-middle">
                           {{ $index + 1 }}
@@ -120,6 +120,4 @@
     </div>
   </div>
 @endsection
-@push('js')
 
-@endpush

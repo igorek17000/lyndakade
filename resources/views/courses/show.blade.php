@@ -112,7 +112,7 @@ if (count($course->subjects) > 0) {
               <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
                 <div class="course-info-stat-cont m-0 mb-2 w-100">
                   <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
-                    {{ $course->price == 0 ? 'رایگان' : nPersian(number_format($course->price)) . ' تومان' }}
+                    {{ $course->price == 0 ? 'رایگان' : nPersian(number_format(get_course_price($course->price))) . ' تومان' }}
                   </span>
                 </div>
                 @if (auth()->check() && $course->price > 0)
@@ -250,7 +250,7 @@ if (count($course->subjects) > 0) {
               <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
                 <div class="course-info-stat-cont m-0 mb-2 w-100 text-left" dir="ltr">
                   <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
-                    {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
+                    {{ $course->price == 0 ? 'FREE' : number_format(get_course_price($course->price)) . ' Toman' }}
                   </span>
                 </div>
                 @if (auth()->check() && $course->price > 0)

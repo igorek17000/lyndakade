@@ -7,7 +7,7 @@
   @else
     <div class="col-12 px-0 mb-2" style="color: green; font-size: 2rem;">
       <p>
-        {{ $course->price == 0 ? 'رایگان' : number_format($course->price) . ' تومان' }}
+        {{ $course->price == 0 ? 'رایگان' : number_format(get_course_price($course->price)) . ' تومان' }}
       </p>
     </div>
     @if ($course_state == '2')
@@ -19,7 +19,7 @@
 @else
   <div class="col-12 px-0 mb-2" style="color: green; font-size: 2rem;">
     <p>
-      {{ $course->price == 0 ? 'رایگان' : number_format($course->price) . ' تومان' }}
+      {{ $course->price == 0 ? 'رایگان' : number_format(get_course_price($course->price)) . ' تومان' }}
     </p>
   </div>
   @include('courses.partials._link_signin_btn', ['course' => $course])

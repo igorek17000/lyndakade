@@ -21,7 +21,7 @@
               <span>{{ $cart->course->title }}</span><br />
               <span>{{ $cart->course->titleEng }}</span>
             </td>
-            <td>{{ nPersian(number_format($cart->course->price)) }}</td>
+            <td>{{ nPersian(number_format(get_course_price($cart->course->price))) }}</td>
           @else
             <td>
               <img itemprop="image" src="#" data-src="{{ fromDLHost($cart->learn_path->img) }}" class="lazyload" width="50" height="50"

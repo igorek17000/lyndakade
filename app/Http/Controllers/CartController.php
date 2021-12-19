@@ -37,7 +37,7 @@ class CartController extends Controller
         $total_price = 0;
         foreach ($user->carts as $cart) {
             if ($cart->course) {
-                $total_price += $cart->course->price;
+                $total_price += get_course_price($cart->course->price);
             } else if ($cart->learn_path) {
                 $total_price += $cart->learn_path->price();
             }
@@ -144,7 +144,7 @@ class CartController extends Controller
         $amount = 0;
         foreach (Auth::user()->carts as $cart) {
             if ($cart->course)
-                $amount += $cart->course->price;
+                $amount += get_course_price($cart->course->price);
             else
                 $amount += $cart->learn_path->price();
         }
@@ -171,7 +171,7 @@ class CartController extends Controller
                     $item_type = 0;
                     $item_id = -1;
                     if ($cart->course) {
-                        $amount = $cart->course->price;
+                        $amount = get_course_price($cart->course->price);
                         $item_type = 1;
                         $item_id = $cart->course->id;
                     } else {
@@ -306,7 +306,7 @@ class CartController extends Controller
                         'type' => 1,
                         'item_id' => $cart->course->id,
                         'user_id' => $payments[0]->user->id,
-                        'price' => check_off_for_user($cart->course->price),
+                        'price' => check_off_for_user(get_course_price($cart->course->price)),
                     ]);
                     $paid->save();
                 }

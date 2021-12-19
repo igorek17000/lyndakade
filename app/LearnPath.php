@@ -107,10 +107,10 @@ class LearnPath extends Model
         foreach ($courses as $course) {
             if (auth()->check()) {
                 if (!(new PaidController)->isPaid($course->id, auth()->id(), '2')) {
-                    $res += $course->price;
+                    $res += get_course_price($course->price);
                 }
             } else {
-                $res += $course->price;
+                $res += get_course_price($course->price);
             }
         }
         return (int)($res * 0.70 / 100) * 100;
@@ -123,10 +123,10 @@ class LearnPath extends Model
         foreach ($courses as $course) {
             if (auth()->check()) {
                 if (!(new PaidController)->isPaid($course->id, auth()->id(), '2')) {
-                    $res += $course->price;
+                    $res += get_course_price($course->price);
                 }
             } else {
-                $res += $course->price;
+                $res += get_course_price($course->price);
             }
         }
         return $res;
