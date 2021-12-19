@@ -180,6 +180,15 @@ session(['redirectToAfterLogin' => url()->previous()]);
       </span>
     </div>
     <script>
+
+        function engToPer(n) {
+            const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+
+            return n
+                .toString()
+                .replace(/\d/g, x => farsiDigits[x]);
+        }
+
         var countDownDate = new Date("Dec 25, 2021 03:30:00").getTime();
         var x = setInterval(function() {
         var now = new Date().getTime();
@@ -191,7 +200,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         if(days == 0)
             days = '';
         else {
-            days = days + " روز ";
+            days = engToPer(days) + " روز ";
             if (hours || minutes || seconds){
               days += 'و ';
             }
@@ -199,7 +208,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         if(hours == 0)
             hours = '';
         else{
-            hours = hours + " ساعت ";
+            hours = engToPer(hours) + " ساعت ";
             if (minutes || seconds){
               hours += 'و ';
             }
@@ -207,7 +216,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         if(minutes == 0)
             minutes = '';
         else{
-            minutes = minutes + " دقیقه ";
+            minutes = engToPer(minutes) + " دقیقه ";
             if (seconds){
               minutes += 'و ';
             }
@@ -215,7 +224,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         if(seconds == 0)
             seconds = '';
         else{
-            seconds = seconds + " ثانیه";
+            seconds = engToPer(seconds) + " ثانیه";
         }
         document.getElementById("yalda-counter").innerHTML = days + hours + minutes + seconds;
         if (distance < 0) {
