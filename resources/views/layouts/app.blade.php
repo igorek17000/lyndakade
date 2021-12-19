@@ -642,7 +642,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
             <img  class="lazyload" referrerpolicy='origin' id='nbqejzpeapfujxlzsizpesgt' style='cursor:pointer;' onclick='window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi - لوگو ساماندهی' data-src='https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
           </div>
-          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
+          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 zarinpal-logo">
             <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
           </div>
         </div>
@@ -715,14 +715,18 @@ session(['redirectToAfterLogin' => url()->previous()]);
     @endif
 
   <style>
+      .zarinpal-logo img{
+          max-height: 120px;
+      }
       .enamad-logo img{
-        width: 110px;
-        height: 120px;
+        max-width: 110px;
+        max-height: 120px;
         background-color: #fff;
         padding: 5px;
         border-radius: 8px;
         margin: 2px;
       }
+
     .twitter-typeahead {
       width: 100% !important;
       height: 100% !important;
