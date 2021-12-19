@@ -170,6 +170,61 @@ session(['redirectToAfterLogin' => url()->previous()]);
     background-image: -o-linear-gradient(top,#f7f7f7 0,#e5e5e5 100%);
     background-image: linear-gradient(to bottom,#f7f7f7 0,#e5e5e5 100%);">
 
+  <div class="w-100 " style="height: 190px; background: url(https://lyndakade.ir/yalda.webp)  no-repeat center center; -webkit-background-size: 100% 100%; -moz-background-size: 100% 100%; -o-background-size: 100% 100%; background-size: 100% 100%; position: relative;">
+    <div style="position: absolute;bottom: 5px;" class="p-1 px-2 text-center w-100">
+      <span style="background-color: #fff; border-radius: 5px; font-size: 14px;" class="p-1 px-2 text-center w-100">
+          <span id="yalda-counter">
+
+          </span>
+          تا پایان تخفیفات یلدایی
+      </span>
+    </div>
+    <script>
+        var countDownDate = new Date("Dec 25, 2021 03:30:00").getTime();
+        var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        if(days == 0)
+            days = '';
+        else {
+            days = days + " روز ";
+            if (hours || minutes || seconds){
+              days += 'و ';
+            }
+        }
+        if(hours == 0)
+            hours = '';
+        else{
+            hours = hours + " ساعت ";
+            if (minutes || seconds){
+              hours += 'و ';
+            }
+        }
+        if(minutes == 0)
+            minutes = '';
+        else{
+            minutes = minutes + " دقیقه ";
+            if (seconds){
+              minutes += 'و ';
+            }
+        }
+        if(seconds == 0)
+            seconds = '';
+        else{
+            seconds = seconds + " ثانیه";
+        }
+        document.getElementById("yalda-counter").innerHTML = days + hours + minutes + seconds;
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("yalda-counter").innerHTML = "EXPIRED";
+        }
+        }, 1000);
+    </script>
+  </div>
 
 {{-- <div class="fab-container">
   <div class="fab shadow">
