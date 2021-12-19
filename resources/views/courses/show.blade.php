@@ -114,7 +114,7 @@ if (count($course->subjects) > 0) {
                   <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
                     @if (get_course_price($course->price) != $course->price)
                       <del>
-                        {{ $course->price == 0 ? 'رایگان' : nPersian(number_format(get_course_price($course->price))) . ' تومان' }}
+                        {{ $course->price == 0 ? 'رایگان' : nPersian(number_format($course->price)) . ' تومان' }}
                       </del>
                       <br>
                     @endif
@@ -259,7 +259,7 @@ if (count($course->subjects) > 0) {
                   <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
                     @if (get_course_price($course->price) != $course->price)
                       <del>
-                        {{ $course->price == 0 ? 'FREE' : number_format(get_course_price($course->price)) . ' Toman' }}
+                        {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
                       </del>
                       <br>
                     @endif
