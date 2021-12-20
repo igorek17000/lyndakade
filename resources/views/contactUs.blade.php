@@ -40,9 +40,9 @@
                   class="icon-telegram">
                 کانال تلگرام
               </a> --}}
-              <a rel="noreferrer" href="http://www.Instagram.com/lyndakade.ir" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram اینستاگرام" title="اینستاگرام"
-                  class="icon-instagram">
+              <a rel="noreferrer" href="http://www.Instagram.com/lyndakade.ir" target="_blank">
+                <img data-toggle="tooltip" src="https://lyndakade.ir/image/socialicons/instagram2.png"
+                  alt="Instagram اینستاگرام" title="اینستاگرام" class="icon-instagram" style="height: 40px;">
                 اینستاگرام</a>
             </div>
             <div class="col-lg-4 col-xs-4">
