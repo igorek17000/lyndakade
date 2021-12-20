@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Storage;
 function yalda_time_remaining()
 {
     // $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 00:00:00', 'GMT');
-    $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 00:00:00', 'GMT');
+    $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-22 00:55:00', 'Asia/Tehran');
     $from_date = Carbon::now();
     if ($from_date > $to_date){
         return 0;
@@ -29,7 +29,7 @@ function yalda_time_remaining()
     $hours = floor(($distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     $minutes = floor(($distance % (1000 * 60 * 60)) / (1000 * 60));
     $seconds = floor(($distance % (1000 * 60)) / 1000);
-    return $distance;
+    // return $distance;
     return [
         'distance' => $distance,
         'days' => $days,
@@ -39,20 +39,16 @@ function yalda_time_remaining()
     ];
 }
 
-function is_yalda_discount()
-{
-    return (yalda_time_remaining() > 0);
-}
-
 function get_course_price($course_price)
 {
-    if (is_yalda_discount()) {
+    if (yalda_time_remaining() > 0) {
         $off_percent = 25;
         $off_percent = (100 - $off_percent) / 100;
         return intval($course_price * $off_percent / 1000) * 1000;
     }
     return $course_price;
 }
+
 function prepare_course_file_name($filename)
 {
     preg_match('/-\d{3,}.rar/', strtolower($filename), $matches);
