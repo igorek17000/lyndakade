@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\JsonResponse;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,12 @@ Route::middleware('guest')->post('/course/set-price', 'CourseController@set_pric
 Route::middleware('guest')->post('/test', 'CourseController@test_api')->name('subjects.add.api');
 
 Route::middleware('guest')->get('/test/urls', 'CourseController@test_urls_api')->name('courses.test.urls.api');
+
+Route::middleware('guest')->get('/get-yalda-time', function () {
+    return new JsonResponse([
+        'data' => yalda_time_remaining()
+    ]);
+})->name('get-yalda-time');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();

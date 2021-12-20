@@ -16,9 +16,19 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+function yalda_time_remaining()
+{
+    $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 03:30:00');
+    $from_date = Carbon::now();
+    return $to_date->diffInSeconds($from_date);
+}
+
+function is_yalda_discount()
+{
+}
+
 function get_course_price($course_price)
 {
-
     $off_percent = 25;
     $off_percent = (100 - $off_percent) / 100;
 
