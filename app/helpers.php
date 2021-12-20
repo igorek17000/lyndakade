@@ -21,6 +21,9 @@ function yalda_time_remaining()
     // $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 00:00:00', 'GMT');
     $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 00:00:00', 'GMT');
     $from_date = Carbon::now();
+    if ($from_date > $to_date){
+        return 0;
+    }
     $distance = $to_date->diffInMilliseconds($from_date);
     $days = floor($distance / (1000 * 60 * 60 * 24));
     $hours = floor(($distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
