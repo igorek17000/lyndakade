@@ -190,46 +190,48 @@ session(['redirectToAfterLogin' => url()->previous()]);
                         .replace(/\d/g, x => farsiDigits[x]);
                 }
 
+                var countDownDate = new Date("Dec 25, 2021 03:30:00").getTime();
                 var x = setInterval(function() {
-                    var distance = parseInt('{{ yalda_time_remaining() }}');
-                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    if(days == 0)
-                        days = '';
-                    else {
-                        days = engToPer(days) + " روز ";
-                        if (hours || minutes || seconds){
-                        days += 'و ';
-                        }
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                if(days == 0)
+                    days = '';
+                else {
+                    days = engToPer(days) + " روز ";
+                    if (hours || minutes || seconds){
+                    days += 'و ';
                     }
-                    if(hours == 0)
-                        hours = '';
-                    else{
-                        hours = engToPer(hours) + " ساعت ";
-                        if (minutes || seconds){
-                        hours += 'و ';
-                        }
+                }
+                if(hours == 0)
+                    hours = '';
+                else{
+                    hours = engToPer(hours) + " ساعت ";
+                    if (minutes || seconds){
+                    hours += 'و ';
                     }
-                    if(minutes == 0)
-                        minutes = '';
-                    else{
-                        minutes = engToPer(minutes) + " دقیقه ";
-                        if (seconds){
-                        minutes += 'و ';
-                        }
+                }
+                if(minutes == 0)
+                    minutes = '';
+                else{
+                    minutes = engToPer(minutes) + " دقیقه ";
+                    if (seconds){
+                    minutes += 'و ';
                     }
-                    if(seconds == 0)
-                        seconds = '';
-                    else{
-                        seconds = engToPer(seconds) + " ثانیه";
-                    }
-                    document.getElementById("yalda-counter").innerHTML = days + hours + minutes + seconds;
-                    if (distance < 0) {
-                        clearInterval(x);
-                        document.getElementById("yalda-counter").innerHTML = "EXPIRED";
-                    }
+                }
+                if(seconds == 0)
+                    seconds = '';
+                else{
+                    seconds = engToPer(seconds) + " ثانیه";
+                }
+                document.getElementById("yalda-counter").innerHTML = days + hours + minutes + seconds;
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("yalda-counter").innerHTML = "EXPIRED";
+                }
                 }, 1000);
             </script>
         </div>
