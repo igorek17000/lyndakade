@@ -20,7 +20,17 @@ function yalda_time_remaining()
 {
     $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 03:30:00');
     $from_date = Carbon::now();
-    return $to_date->diffInSeconds($from_date);
+    $distance = $to_date->diffInSeconds($from_date);
+    $days = floor($distance / (1000 * 60 * 60 * 24));
+    $hours = floor(($distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    $minutes = floor(($distance % (1000 * 60 * 60)) / (1000 * 60));
+    $seconds = floor(($distance % (1000 * 60)) / 1000);
+    return [
+        'days' => $days,
+        'hours' => $hours,
+        'minutes' => $minutes,
+        'seconds' => $seconds,
+    ];
 }
 
 function is_yalda_discount()
