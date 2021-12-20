@@ -18,34 +18,29 @@ use Illuminate\Support\Facades\Storage;
 
 function yalda_time_remaining()
 {
-    $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 00:00:00', 'GMT');
-    // $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 03:30:00', 'GMT')->tz('Asia/Tehran');
-    // return $to_date->tz('Asia/Tehran');
+    // $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 00:00:00', 'GMT');
+    $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 20:30:00', 'GMT')->tz('Asia/Tehran');
     $from_date = Carbon::now();
     $distance = $to_date->diffInMilliseconds($from_date);
     $days = floor($distance / (1000 * 60 * 60 * 24));
     $hours = floor(($distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     $minutes = floor(($distance % (1000 * 60 * 60)) / (1000 * 60));
     $seconds = floor(($distance % (1000 * 60)) / 1000);
-    return [
-        'distance' => $distance,
-        'days' => $days,
-        'hours' => $hours,
-        'minutes' => $minutes,
-        'seconds' => $seconds,
-    ];
+    return $distance;
 }
 
 function is_yalda_discount()
 {
+    return (yalda_time_remaining() > 0);
 }
 
 function get_course_price($course_price)
 {
-    $off_percent = 25;
-    $off_percent = (100 - $off_percent) / 100;
-
-    return intval($course_price * $off_percent / 1000) * 1000;
+    if (is_yalda_discount()) {
+        $off_percent = 25;
+        $off_percent = (100 - $off_percent) / 100;
+        return intval($course_price * $off_percent / 1000) * 1000;
+    }
     return $course_price;
 }
 
