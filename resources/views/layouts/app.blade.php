@@ -190,7 +190,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                         .replace(/\d/g, x => farsiDigits[x]);
                 }
 
-                var countDownDate = new Date("Dec 21, 2021 00:00:00").getTime();
+                var countDownDate = new Date("Dec 25, 2021 00:00:00").getTime();
                 var x = setInterval(function() {
                 var now = new Date().getTime();
                 var distance = countDownDate - now;
