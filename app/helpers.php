@@ -20,12 +20,13 @@ function yalda_time_remaining()
 {
     $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 03:30:00', 'GMT');
     $from_date = Carbon::now();
-    $distance = $to_date->diffInSeconds($from_date);
+    $distance = $to_date->diffInMilliseconds($from_date);
     $days = floor($distance / (1000 * 60 * 60 * 24));
     $hours = floor(($distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     $minutes = floor(($distance % (1000 * 60 * 60)) / (1000 * 60));
     $seconds = floor(($distance % (1000 * 60)) / 1000);
     return [
+        'distance' => $distance,
         'days' => $days,
         'hours' => $hours,
         'minutes' => $minutes,
