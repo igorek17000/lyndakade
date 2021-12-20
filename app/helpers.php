@@ -26,7 +26,13 @@ function yalda_time_remaining()
     $hours = floor(($distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     $minutes = floor(($distance % (1000 * 60 * 60)) / (1000 * 60));
     $seconds = floor(($distance % (1000 * 60)) / 1000);
-    return $distance;
+    return [
+        'distance' => $distance,
+        'days' => $days,
+        'hours' => $hours,
+        'minutes' => $minutes,
+        'seconds' => $seconds,
+    ];
 }
 
 function is_yalda_discount()
@@ -43,7 +49,6 @@ function get_course_price($course_price)
     }
     return $course_price;
 }
-
 function prepare_course_file_name($filename)
 {
     preg_match('/-\d{3,}.rar/', strtolower($filename), $matches);
