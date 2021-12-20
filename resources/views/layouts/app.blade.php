@@ -232,7 +232,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                     clearInterval(x);
                     document.getElementById("yalda-counter").innerHTML = "EXPIRED";
                 }
-                }, 1000);
+                }, 700);
             </script>
         </div>
     @endif
