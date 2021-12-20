@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Storage;
 function yalda_time_remaining()
 {
     $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 03:30:00', 'GMT');
-    return $to_date;
+    // $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 03:30:00', 'GMT')->tz('Asia/Tehran');
+    // return $to_date->tz('Asia/Tehran');
     $from_date = Carbon::now();
     $distance = $to_date->diffInMilliseconds($from_date);
     $days = floor($distance / (1000 * 60 * 60 * 24));
