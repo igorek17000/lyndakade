@@ -994,13 +994,19 @@ session(['redirectToAfterLogin' => url()->previous()]);
       });
   </script> --}}
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
-  {{-- <p>
+  <p>
     @foreach (\App\Notification::all() as $notification)
         @if ($notification->expire > date(now()))
             {{ $notification->expire - date(now()) }}
+            @php
+                $date1 = new DateTime(date(now()));
+                $date2 = new DateTime($notification->expire);
+                $interval = $date1->diff($date2);
+                echo "difference " . $interval->y . " years, " . $interval->m." months, ".$interval->d." days ";
+            @endphp
         @endif
     @endforeach
-  </p> --}}
+  </p>
 </body>
 
 </html>
