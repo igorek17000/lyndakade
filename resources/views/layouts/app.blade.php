@@ -995,16 +995,13 @@ session(['redirectToAfterLogin' => url()->previous()]);
   </script> --}}
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
   <p>
-    @foreach (\App\Notification::all() as $notification)
-        @if ($notification->expire > date(now()))
-            @php
-                $date1 = new DateTime(date(now()));
-                $date2 = new DateTime($notification->expire);
-                $interval = $date1->diff($date2);
-                echo "difference " . $interval->y . " years, " . $interval->m." months, ".$interval->d." days ";
-            @endphp
-        @endif
-    @endforeach
+    @php
+        $expire_time = \App\Notification::where('expire', '>=', date(now()))->first()->expire;
+        $expire_time = date('Y-m-d H:i:s', strtotime($expire_time));
+
+        $current_time = \Carbon\Carbon::now()->timestamp;
+
+    @endphp
   </p>
 </body>
 
