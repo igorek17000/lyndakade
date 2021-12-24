@@ -619,7 +619,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         </form>
       </div>
     </nav>
-    
+
     {{-- @if (\App\Notification::where('expire', '>=', date(now()))->count() > 0)
       <div id="notifications">
         <div class="" style="background-color: orange; padding: 15px;">
@@ -994,6 +994,13 @@ session(['redirectToAfterLogin' => url()->previous()]);
       });
   </script> --}}
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
+  <p>
+    @foreach (\App\Notification::all() as $notification)
+        @if ($notification->expire > date(now()))
+            {{ $notification->expire - date(now()) }}
+        @endif
+    @endforeach
+  </p>
 </body>
 
 </html>
