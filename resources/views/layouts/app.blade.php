@@ -994,13 +994,13 @@ session(['redirectToAfterLogin' => url()->previous()]);
       });
   </script> --}}
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
-  <p>
+  {{-- <p>
     @foreach (\App\Notification::all() as $notification)
         @if ($notification->expire > date(now()))
             {{ $notification->expire - date(now()) }}
         @endif
     @endforeach
-  </p>
+  </p> --}}
 </body>
 
 </html>
