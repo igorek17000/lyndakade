@@ -994,7 +994,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
       });
   </script> --}}
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
-  <p>
+  {{-- <p>
     @php
         $expire_time = \App\Notification::where('expire', '>=', date(now()))->first()->expire;
         $expire_time = strtotime($expire_time);
@@ -1004,7 +1004,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
         echo $expire_time - $current_time;
 
     @endphp
-  </p>
+  </p> --}}
 </body>
 
 </html>
