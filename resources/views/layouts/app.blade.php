@@ -169,8 +169,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
     background-image: -webkit-linear-gradient(top,#f7f7f7 0,#e5e5e5 100%);
     background-image: -o-linear-gradient(top,#f7f7f7 0,#e5e5e5 100%);
     background-image: linear-gradient(to bottom,#f7f7f7 0,#e5e5e5 100%);">
-
-    {{-- @if(yalda_time_remaining() > 0) --}}
+    @if (\App\Notification::where('expire', '>=', date(now()))->count() > 0)
         <div class="w-100 " style="height: 190px; background: url(https://lyndakade.ir/yalda.webp)  no-repeat center center; -webkit-background-size: 100% 100%; -moz-background-size: 100% 100%; -o-background-size: 100% 100%; background-size: 100% 100%; position: relative;">
             <div style="position: absolute;bottom: 5px;" class="p-1 px-2 text-center w-100">
             <span style="background-color: #fff; border-radius: 5px; font-size: 14px;" class="p-1 px-2 text-center w-100">
@@ -235,7 +234,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
                 }, 700);
             </script>
         </div>
-    {{-- @endif --}}
+    @endif
 {{-- <div class="fab-container">
   <div class="fab shadow">
     <div class="fab-content">
@@ -620,7 +619,8 @@ session(['redirectToAfterLogin' => url()->previous()]);
         </form>
       </div>
     </nav>
-    @if (\App\Notification::where('expire', '>=', date(now()))->count() > 0)
+    
+    {{-- @if (\App\Notification::where('expire', '>=', date(now()))->count() > 0)
       <div id="notifications">
         <div class="" style="background-color: orange; padding: 15px;">
           <div class="container">
@@ -632,7 +632,7 @@ session(['redirectToAfterLogin' => url()->previous()]);
           </div>
         </div>
       </div>
-    @endif
+    @endif --}}
 
     <main id="app">
       @yield('content')
