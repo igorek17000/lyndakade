@@ -997,7 +997,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
   <p>
     @foreach (\App\Notification::all() as $notification)
         @if ($notification->expire > date(now()))
-            {{ $notification->expire - date(now()) }}
             @php
                 $date1 = new DateTime(date(now()));
                 $date2 = new DateTime($notification->expire);
