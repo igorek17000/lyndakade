@@ -997,10 +997,10 @@ session(['redirectToAfterLogin' => url()->previous()]);
   <p>
     @php
         $expire_time = \App\Notification::where('expire', '>=', date(now()))->first()->expire;
-        $expire_time = date('Y-m-d H:i:s', strtotime($expire_time));
+        $expire_time = strtotime($expire_time);
 
         $current_time = \Carbon\Carbon::now()->timestamp;
-        
+
         echo $expire_time - $current_time;
 
     @endphp
