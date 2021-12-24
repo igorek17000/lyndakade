@@ -46,8 +46,8 @@ function get_course_price($course_price)
 
     $current_time = \Carbon\Carbon::now()->timestamp;
 
-    // if ($expire_time - $current_time){
-    if (\App\Notification::where('expire', '>=', date(now()))->count() > 0){
+    if ($expire_time - $current_time){
+    // if (\App\Notification::where('expire', '>=', date(now()))->count() > 0){
         $off_percent = 25;
         $off_percent = (100 - $off_percent) / 100;
         return intval($course_price * $off_percent / 1000) * 1000;
