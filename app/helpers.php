@@ -41,17 +41,17 @@ function yalda_time_remaining()
 
 function get_course_price($course_price)
 {
-    $expire_time = \App\Notification::where('expire', '>=', date(now()))->first()->expire;
-    $expire_time = strtotime($expire_time);
+    // $expire_time = \App\Notification::where('expire', '>=', date(now()))->first()->expire;
+    // $expire_time = strtotime($expire_time);
 
-    $current_time = \Carbon\Carbon::now()->timestamp;
+    // $current_time = \Carbon\Carbon::now()->timestamp;
 
-    if ($expire_time - $current_time){
-    // if (\App\Notification::where('expire', '>=', date(now()))->count() > 0){
-        $off_percent = 25;
-        $off_percent = (100 - $off_percent) / 100;
-        return intval($course_price * $off_percent / 1000) * 1000;
-    }
+    // if ($expire_time - $current_time){
+    // // if (\App\Notification::where('expire', '>=', date(now()))->count() > 0){
+    //     $off_percent = 25;
+    //     $off_percent = (100 - $off_percent) / 100;
+    //     return intval($course_price * $off_percent / 1000) * 1000;
+    // }
     return $course_price;
 }
 
