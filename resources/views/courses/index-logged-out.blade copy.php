@@ -80,7 +80,10 @@
 @section('content')
   <div class="row m-0 home-page">
     <div class="col-12 hero-space">
-      <div class="hero-text" style="background-color: rgba(255, 255, 255, 0.5) !important;">
+      <div class="hero-text">
+        {{-- <div>
+          <img style="width: 100px;" src="{{ asset('image/logoedit2.png') }}" alt="Lyndakade Logo">
+        </div> --}}
         <h1 style="font-size: 2.25rem;">
           دانلود آموزش های وبسایت
           <a href="https://www.linkedin.com/" style="color: #2977c9;">لینکدین</a>
@@ -107,9 +110,87 @@
             </form>
           </div>
         </div>
+        {{-- <p>
+          @guest
+            <a href="{{ route('register') }}" class="btn btn-sm btn-primary">ایجاد حساب کاربری</a>
+          @endguest
+        </p>
+        <p>
+          @guest
+            حساب کاربری دارید؟
+            <a href="{{ route('login') }}" class="btn btn-sm btn-dark cta">ورود به
+              حساب</a>
+          @endguest
+        </p> --}}
       </div>
     </div>
   </div>
+
+  {{-- <div class="container mt-5 home-page">
+    <section class="row mx-0" id="top-level-sections">
+      <div class="col-xs-12 col-sm-6 col-md-6" id="software">
+        <a href="{{ get_library_link(50) }}" class="card h-100 border-0 rounded-20 text-light overflow zoom">
+          <img src="#" data-src="{{ asset('software development.jpg') }}" alt="software"
+            class="card-img h-100 lazyload" />
+          <div class="card-img-overlay row mx-0 align-items-center">
+            <div class="card-title col-12" style="text-align: center;">
+              <h3>توسعه نرم افزار</h3>
+              <p class="mb-0">حدود {{ count(get_courses_for_library(50)) }} دوره</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="row h-100">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-small">
+            <a href="{{ get_library_link(40) }}" class="card h-100 border-0 rounded-20 text-light overflow zoom">
+              <img src="#" data-src="{{ asset('design.jpg') }}" alt="software" class="card-img h-100 lazyload" />
+              <div class="card-img-overlay row align-items-center">
+                <div class="card-title col-12" style="text-align: center;">
+                  <h3>طراحی</h3>
+                  <p class="mb-0">حدود {{ count(get_courses_for_library(40)) }} دوره</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-small">
+            <a href="{{ get_library_link(29) }}" class="card h-100 border-0 rounded-20 text-light overflow zoom">
+              <img src="#" data-src="{{ asset('business.jpg') }}" alt="software" class="card-img h-100 lazyload" />
+              <div class="card-img-overlay row align-items-center">
+                <div class="card-title col-12" style="text-align: center;">
+                  <h3>بازار کار</h3>
+                  <p class="mb-0">حدود {{ count(get_courses_for_library(29)) }} دوره</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-small">
+            <a href="{{ get_library_link(88) }}" class="card h-100 border-0 rounded-20 text-light overflow zoom">
+              <img src="#" data-src="{{ asset('web development.jpg') }}" alt="software"
+                class="card-img h-100 lazyload" />
+              <div class="card-img-overlay row align-items-center">
+                <div class="card-title col-12" style="text-align: center;">
+                  <h3>طراحی وب</h3>
+                  <p class="mb-0">حدود {{ count(get_courses_for_library(88)) }} دوره</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-small">
+            <a href="{{ get_library_link(70) }}" class="card h-100 border-0 rounded-20 text-light overflow zoom">
+              <img src="#" data-src="{{ asset('photography.jpg') }}" alt="software" class="card-img h-100 lazyload" />
+              <div class="card-img-overlay row align-items-center">
+                <div class="card-title col-12" style="text-align: center;">
+                  <h3>عکاسی</h3>
+                  <p class="mb-0">حدود {{ count(get_courses_for_library(70)) }} دوره</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div> --}}
 
   <div class="container my-3">
     <div class="row">

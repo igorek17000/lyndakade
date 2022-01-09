@@ -495,19 +495,19 @@ if (count($course->subjects) > 0) {
                 </div>
                 <div class="col-lg-10">
                   @if (!auth()->check())
-                    <p class="text-center">برای دانلود، لطفا <a href="{{ route('login') }}">وارد حساب کاربری</a>
-                      شوید</p>
+                    <p class="text-center" dir="rtl">برای دانلود، لطفا <a href="{{ route('login') }}">وارد حساب کاربری</a>
+                      شوید.</p>
                   @else
                     <p></p>
                   @endif
-                  <p class="text-center text-left" dir="ltr">
+                  <p class="text-center text-left" dir="rtl">
                     این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
                     @if ($course->persian_subtitle_id == 1)
                       به همراه زیرنویس فارسی و انگلیسی می‌باشد.
                     @elseif ($course->english_subtitle_id == 1)
                       به همراه زیرنویس انگلیسی می‌باشد.
                     @else
-                      دارای زیرنویس نمی‌باشد
+                      دارای زیرنویس نمی‌باشد.
                     @endif
                   </p>
                   <div class="col-lg-10">
