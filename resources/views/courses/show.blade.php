@@ -405,7 +405,7 @@ if (count($course->subjects) > 0) {
                     @endif
                   </p>
                   <ul class="exercise-files-popover">
-                    @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
+                    @if ($course->courseFile && json_decode($course->courseFile)!= null)
                       @foreach (json_decode($course->courseFile) as $file)
                         <li role="presentation">
                           <a role="link"
@@ -431,7 +431,7 @@ if (count($course->subjects) > 0) {
                       @endforeach
                     @endif
 
-                    @if ($course->exerciseFile && count(json_decode($course->exerciseFile)) > 0)
+                    @if ($course->exerciseFile && json_decode($course->exerciseFile)!= null)
                       @php
                         $idx = 0;
                       @endphp
@@ -463,7 +463,7 @@ if (count($course->subjects) > 0) {
                       @endforeach
                     @endif
 
-                    @if ($course->persianSubtitleFile && count(json_decode($course->persianSubtitleFile)) > 0)
+                    @if ($course->persianSubtitleFile && json_decode($course->persianSubtitleFile)!= null)
                       @foreach (json_decode($course->persianSubtitleFile) as $file)
 
                         <li role="presentation">
@@ -511,7 +511,7 @@ if (count($course->subjects) > 0) {
                     @endif
                   </p>
                   <div class="col-lg-10">
-                    @if ($course->courseFile && count(json_decode($course->courseFile)) > 0)
+                    @if ($course->courseFile && json_decode($course->courseFile)!= null)
                       @foreach (json_decode($course->courseFile) as $file)
                         <div>
                           <span>
@@ -526,7 +526,7 @@ if (count($course->subjects) > 0) {
                         </div>
                       @endforeach
                     @endif
-                    @if ($course->exerciseFile && count(json_decode($course->exerciseFile)) > 0)
+                    @if ($course->exerciseFile && json_decode($course->exerciseFile)!= null)
                       @foreach (json_decode($course->exerciseFile) as $file)
                         <div>
                           <span>
