@@ -673,21 +673,21 @@ session(['redirectToAfterLogin' => url()->previous()]);
                   </li>
                   <li class="list-inline-item">
                     <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.Instagram.com/lyndakade.ir">
-                      <img data-toggle="tooltip"
+                      <img data-toggle="tooltip" src="#"
                         data-src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram - اینستاگرام" title="اینستاگرام"
                         class="icon-instagram lazyload">
                     </a>
                   </li>
                   <li class="list-inline-item">
                     <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.T.me/LyndaKadeSupport">
-                      <img  data-toggle="tooltip"
+                      <img  data-toggle="tooltip" src="#"
                         data-src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram - پیشتبانی تلگرام" title="پیشتبانی تلگرام"
                         class="icon-telegram lazyload">
                     </a>
                   </li>
                   <li class="list-inline-item">
                     <a rel="noreferrer" class="social-icon text-xs-center" target="_blank" href="http://www.Aparat.com/LyndaKade.ir">
-                      <img  data-toggle="tooltip"
+                      <img  data-toggle="tooltip" src="#"
                         data-src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat - آپارات" title="آپارات"
                         class="icon-aparat lazyload">
                     </a>
@@ -701,11 +701,11 @@ session(['redirectToAfterLogin' => url()->previous()]);
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
             <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
-              <img class="lazyload" referrerpolicy="origin" data-src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD" alt="نماد الکترونیک enamad در صورت اتصال با آی‌پی داخل کشور، نمایش داده خواهد شد." style="cursor:pointer;" id="PmAs0cswBnOXzNOOqfGD">
+              <img  src="#" class="lazyload" referrerpolicy="origin" data-src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD" alt="نماد الکترونیک enamad در صورت اتصال با آی‌پی داخل کشور، نمایش داده خواهد شد." style="cursor:pointer;" id="PmAs0cswBnOXzNOOqfGD">
             </a>
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
-            <img  class="lazyload" referrerpolicy='origin' id='nbqejzpeapfujxlzsizpesgt' style='cursor:pointer;' onclick='window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi - لوگو ساماندهی' data-src='https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
+            <img  src="#"  class="lazyload" referrerpolicy='origin' id='nbqejzpeapfujxlzsizpesgt' style='cursor:pointer;' onclick='window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi - لوگو ساماندهی' data-src='https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 zarinpal-logo">
             <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>

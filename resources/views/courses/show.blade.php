@@ -394,7 +394,7 @@ if (count($course->subjects) > 0) {
                   <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
                 </div>
                 <div class="col-lg-10">
-                  <p class="text-center text-left" dir="ltr">
+                  <p class="text-center text-left" dir="rtl">
                     این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
                     @if ($course->persian_subtitle_id == 1)
                       به همراه زیرنویس فارسی و انگلیسی می‌باشد.
