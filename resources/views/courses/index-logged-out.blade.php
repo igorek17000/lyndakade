@@ -220,7 +220,7 @@
       <h2>مسیرهای آموزشی</h2>
       <div class="row d-flex">
         @foreach ($paths as $path)
-          <div class="col-12 col-md-4 col-lg-4 mb-4 mt-2">
+          <div class="col-12 col-md-4 col-lg-4 mb-4 mt-2" itemscope itemtype="http://schema.org/Course">
             <div class="card h-100  border-light  bg-light shadow">
               <a href="{{ route('learn.paths.show', [$path->slug]) }}"
                 class="row card-body photo-frame d-flex align-items-center">
@@ -354,7 +354,7 @@
     </div>
     <!-- End rounded tabs -->
   </div>
-  <div class="modal fade" id="form-link-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  <div class="modal fade" id="form-link-modal" tabindex="-1" role="dialog" aria-labelledby="form-link-modal-title"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content text-center" style="background-color: orange;">

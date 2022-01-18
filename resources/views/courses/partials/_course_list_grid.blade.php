@@ -1,5 +1,12 @@
-<div class="col-12 {{ isset($col) ? $col : 'col-lg-3' }} col-md-6 mb-4 mt-2 course">
+<div class="col-12 {{ isset($col) ? $col : 'col-lg-3' }} col-md-6 mb-4 mt-2 course" itemscope itemtype="http://schema.org/Course">
   <div class="card h-100 border-light  bg-light shadow course-grid">
+      <meta itemprop="name" content="{{ $course->title  }}" lang="fa"/>
+      <meta itemprop="name" content="{{ $course->titleEng  }}" lang="en"/>
+      <meta itemprop="url" content="{{ courseURL($course)  }}"/>
+      <meta itemprop="video" content="{{ fromDLHost($course->previewFile)  }}"/>
+      <meta itemprop="description" content="{{ $course->description  }}" lang="fa"/>
+      <meta itemprop="description" content="{{ $course->descriptionEng  }}" lang="en"/>
+
     <img itemprop="image" src="#"
       data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
       class="card-img lazyload"  alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}" />
@@ -75,7 +82,7 @@
 
       <div class="col-12 px-0">
         <a href="{{ courseURL($course) }}">
-          <strong>
+          <strong itemprop="name">
             {{ $course->title }}
           </strong>
           <span class="text-muted">
