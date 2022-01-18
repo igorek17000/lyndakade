@@ -105,7 +105,7 @@ if (count($course->subjects) > 0) {
           </div>
         </nav>
 
-        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent" itemscope itemtype="http://schema.org/Course">
           <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
             aria-labelledby="nav-description-tab">
             <div class="row">
