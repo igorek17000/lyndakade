@@ -508,11 +508,11 @@ session(['redirectToAfterLogin' => url()->previous()]);
             </div>
           </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle px-md-1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle px-md-1" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 مسیرهای آموزشی
                 </a>
-                <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+                <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink1">
 
                 @foreach (\App\Library::get() as $lib)
                     <a class="dropdown-item  text-center" style="color: #fff;"
