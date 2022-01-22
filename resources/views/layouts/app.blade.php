@@ -1,5 +1,5 @@
 @php
-session(['redirectToAfterLogin' => url()->previous()]);
+//session(['redirectToAfterLogin' => url()->previous()]);
 @endphp
 <!DOCTYPE html>
 <html dir="rtl" lang="fa">

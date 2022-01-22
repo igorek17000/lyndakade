@@ -98,15 +98,16 @@ class LoginController extends Controller
 
         $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         if (Auth::attempt(array($fieldType => $input['username'], 'password' => $input['password']), $request->get('remember', false))) {
-            if (auth()->user()->isAdmin() && !session('redirectToAfterLogin', false)) {
+            if (auth()->user()->isAdmin()) {
                 return redirect()->route('voyager.dashboard');
             }
-            if (strpos(session('redirectToAfterLogin', '/'), 'admin')) {
-                if (auth()->user()->isAdmin())
-                    return redirect()->route('voyager.dashboard');
-                return redirect('/');
-            }
-            return redirect(session('redirectToAfterLogin', '/'));
+            return redirect()->route('root.home');
+            // if (strpos(session('redirectToAfterLogin', '/'), 'admin')) {
+            //     if (auth()->user()->isAdmin())
+            //         return redirect()->route('voyager.dashboard');
+            //     return redirect('/');
+            // }
+            // return redirect(session('redirectToAfterLogin', '/'));
         }
 
         //keep track of login attempts from the user.
