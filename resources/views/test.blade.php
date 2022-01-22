@@ -124,7 +124,7 @@
       </div>
     </div>
   </div>
-  <a href="{{ route('login', ['returnUrl'=>request()->url()]) }}"></a>
+  <a href="{{ route('login', ['returnUrl'=>request()->url()]) }}">123</a>
 {{ request()->url() }}
 @endsection
 
