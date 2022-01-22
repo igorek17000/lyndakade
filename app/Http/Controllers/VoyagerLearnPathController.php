@@ -39,7 +39,6 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
 
         // Check permission
         $this->authorize('edit', $data);
-        dd($request);
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
