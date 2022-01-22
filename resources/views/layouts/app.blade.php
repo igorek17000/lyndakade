@@ -601,7 +601,14 @@
           </div>
         @else
           <div class="nav-item">
-            <a class="nav-link btn btn-outline-primary" href="{{ route('login', ['returnUrl'=>request()->url()]) }}">{{ __('msg.Login') }}</a>
+              @php
+                @if (request()->has('returnUrl'))
+                    $login_link = route('login', ['returnUrl'=>request()->get('returnUrl')]);
+                @else
+                    $login_link = route('login', ['returnUrl'=>request()->url()]);
+                @endif
+              @endphp
+            <a class="nav-link btn btn-outline-primary" href="{{ $login_link }}">{{ __('msg.Login') }}</a>
           </div>
           @if (Route::has('register'))
             <div class="nav-item">
