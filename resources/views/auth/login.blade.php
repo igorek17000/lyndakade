@@ -26,6 +26,9 @@
           <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
               @csrf
+              @if (request()->has('returnUrl'))
+              <input type="hidden" name="returnUrl" value="{{ request()->get('returnUrl') }}"/>
+              @endif
 
               <div class="form-group row">
                 <label for="username" class="col-md-4 col-form-label text-md-left">آدرس ایمیل یا نام
