@@ -45,7 +45,7 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
 
         $data = $data->makeHidden('_courses')->toArray();
 
-        dd($request, $slug, $dataType->editRows, $data);
+        // dd($request, $slug, $dataType->editRows, $data);
 
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
 
