@@ -503,7 +503,7 @@ if (count($course->subjects) > 0) {
                 </div>
                 <div class="col-lg-10">
                   @if (!auth()->check())
-                    <p class="text-center" dir="rtl">برای دانلود، لطفا <a href="{{ route('login') }}">وارد حساب کاربری</a>
+                    <p class="text-center" dir="rtl">برای دانلود، لطفا <a href="{{ route('login', ['returnUrl'=>request()->url()]) }}">وارد حساب کاربری</a>
                       شوید.</p>
                   @else
                     <p></p>

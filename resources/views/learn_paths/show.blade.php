@@ -148,7 +148,7 @@
                     @else
                       <div>
                         برای خرید این مسیر آموزشی باید
-                        <a href="{{ route('login') }}" style="color: orange">
+                        <a href="{{ route('login', ['returnUrl'=>request()->url()]) }}" style="color: orange">
                           وارد حساب کاربری
                         </a>
                         خود شوید.
@@ -250,7 +250,7 @@
                     @else
                       <div>
                         برای خرید این مسیر آموزشی باید
-                        <a href="{{ route('login') }}" style="color: orange">
+                        <a href="{{ route('login', ['returnUrl'=>request()->url()]) }}" style="color: orange">
                           وارد حساب کاربری
                         </a>
                         خود شوید.
@@ -335,7 +335,7 @@
               @else
                 <div>
                   برای خرید این مسیر آموزشی باید
-                  <a href="{{ route('login') }}" style="color: orange">
+                  <a href="{{ route('login', ['returnUrl'=>request()->url()]) }}" style="color: orange">
                     وارد حساب کاربری
                   </a>
                   خود شوید.
@@ -470,7 +470,7 @@
         @else
           <div>
             برای خرید این مسیر آموزشی باید
-            <a href="{{ route('login') }}">
+            <a href="{{ route('login', ['returnUrl'=>request()->url()]) }}">
               وارد حساب کاربری
             </a>
             خود شوید.

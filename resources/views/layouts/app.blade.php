@@ -438,7 +438,7 @@
                   </li>
                 @else
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('msg.Login') }}</a>
+                    <a class="nav-link" href="{{ route('login', ['returnUrl'=>request()->url()]) }}">{{ __('msg.Login') }}</a>
                   </li>
                   @if (Route::has('register'))
                     <li class="nav-item">
@@ -601,7 +601,7 @@
           </div>
         @else
           <div class="nav-item">
-            <a class="nav-link btn btn-outline-primary" href="{{ route('login') }}">{{ __('msg.Login') }}</a>
+            <a class="nav-link btn btn-outline-primary" href="{{ route('login', ['returnUrl'=>request()->url()]) }}">{{ __('msg.Login') }}</a>
           </div>
           @if (Route::has('register'))
             <div class="nav-item">
