@@ -36,7 +36,6 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
         } else {
             $data = $model->findOrFail($id);
         }
-        dd($request);
 
         // Check permission
         $this->authorize('edit', $data);
