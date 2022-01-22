@@ -605,7 +605,7 @@
                 $login_link = route('login', ['returnUrl'=>request()->url()]);
                 if (request()->has('returnUrl'))
                     $login_link = route('login', ['returnUrl'=>request()->get('returnUrl')]);
-                endif
+
               @endphp
             <a class="nav-link btn btn-outline-primary" href="{{ $login_link }}">{{ __('msg.Login') }}</a>
           </div>
