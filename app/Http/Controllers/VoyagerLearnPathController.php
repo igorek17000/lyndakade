@@ -42,12 +42,9 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
-        $data->transform(function (\Illuminate\Database\Eloquent\Model $result){
-            $attributes = $result->getAttributes();
-            unset($attributes['_courses']);
-            $result->setRawAttributes($attributes, true);
-            return $result;
-        });
+
+        $data = $data->makeHidden('_courses')->toArray();
+
         dd($request, $slug, $dataType->editRows, $data);
 
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
