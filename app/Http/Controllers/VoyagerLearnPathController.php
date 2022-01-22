@@ -21,7 +21,6 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
     public function update(Request $request, $id)
     {
         $slug = $this->getSlug($request);
-        dd($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
@@ -37,13 +36,16 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
         } else {
             $data = $model->findOrFail($id);
         }
+        dd($request);
 
         // Check permission
         $this->authorize('edit', $data);
+        dd($request);
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
+        dd($request);
 
         event(new BreadDataUpdated($dataType, $data));
 
