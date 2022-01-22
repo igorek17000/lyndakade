@@ -21,6 +21,7 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
     public function update(Request $request, $id)
     {
         $slug = $this->getSlug($request);
+        dd($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
