@@ -98,9 +98,14 @@ class LoginController extends Controller
 
         $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         if (Auth::attempt(array($fieldType => $input['username'], 'password' => $input['password']), $request->get('remember', false))) {
+
+            if ($request->has('returnUrl') && 'https://lyndakade.ir/' . $request->get('returnUrl') != route('login')) {
+                return redirect('https://lyndakade.ir/' . $request->get('returnUrl'));
+            }
             if (auth()->user()->isAdmin()) {
                 return redirect()->route('voyager.dashboard');
             }
+
             return redirect()->route('root.home');
             // if (strpos(session('redirectToAfterLogin', '/'), 'admin')) {
             //     if (auth()->user()->isAdmin())

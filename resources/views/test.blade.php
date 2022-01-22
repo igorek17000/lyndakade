@@ -124,7 +124,7 @@
       </div>
     </div>
   </div>
-
+{{ request()->url() }}
 @endsection
 
 @section('script_body')
