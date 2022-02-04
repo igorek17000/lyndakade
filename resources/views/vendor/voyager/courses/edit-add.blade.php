@@ -128,13 +128,12 @@ $add = is_null($dataTypeContent->getKey());
                   @endif
                 </div>
               @endforeach
-              <div class="form-group col-md-12">
-                <label for="sendMessageToDemandUsers">
-                  <input class="form-check-input" id="sendMessageToDemandUsers" type="text"
-                    name="sendMessageToDemandUsers" />
-                  Send Message To Demand Users
-                </label>
-              </div>
+
+            <div class="form-group">
+                <label for="sendMessageToDemandUsers">Send Message To Demand Users</label>
+                <input type="number" class="form-control" id="sendMessageToDemandUsers" name="sendMessageToDemandUsers">
+            </div>
+
               @if (!$edit)
                 <div class="form-group col-md-12">
                   <label for="sendMessageToPaidUsers">

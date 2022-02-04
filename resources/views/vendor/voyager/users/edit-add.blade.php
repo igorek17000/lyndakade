@@ -107,9 +107,9 @@
 
                             <div class="form-group">
                                 <label for="dubbed_percent">Dubbed Percent</label>
-                                <input type="dubbed_percent" class="form-control" id="dubbed_percent" name="dubbed_percent" value="{{ old('dubbed_percent', $dataTypeContent->dubbed_percent ?? '') }}">
+                                <input type="number" class="form-control" id="dubbed_percent" name="dubbed_percent" value="{{ old('dubbed_percent', $dataTypeContent->dubbed_percent ?? '') }}">
                             </div>
-                            
+
                             @php
                             if (isset($dataTypeContent->locale)) {
                                 $selected_locale = $dataTypeContent->locale;
