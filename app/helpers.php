@@ -18,10 +18,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 
-function get_dashboard_dubbed_table_data(){
-    $res=[];
+function get_dashboard_dubbed_table_data()
+{
+    $res = [];
+    $all_users_balance = 0;
+    $all_users_courses = 0;
 
-    foreach(User::where(['role_id' => 3])->get() as $dubbed_user){
+    foreach (User::where(['role_id' => 3])->get() as $dubbed_user) {
         $courses = $dubbed_user->courses;
         $user_percent = $dubbed_user->dubbed_percent / 100;
         $total_balance = 0;
@@ -34,7 +37,6 @@ function get_dashboard_dubbed_table_data(){
             $balance_unlocked = $course_total_unlocked * $course->price * $user_percent;
 
             $total_balance += $balance_purchase + $balance_unlocked;
-
         }
 
         $total_received = 0;
@@ -42,6 +44,10 @@ function get_dashboard_dubbed_table_data(){
             $total_received += $invoice->price;
         }
         $total_balance -= $total_received;
+
+        $all_users_balance += $total_balance;
+        
+        $all_users_courses += $dubbed_user->courses()->count();
 
         $res[] = [
             'id' => $dubbed_user->id,
@@ -51,6 +57,12 @@ function get_dashboard_dubbed_table_data(){
         ];
     }
 
+    $res[] = [
+        'id' => -1,
+        'username' => 'Total',
+        'total_courses' => $all_users_courses,
+        'total_balance' => $all_users_balance,
+    ];
     return json_decode(json_encode($res), FALSE);
 }
 
@@ -60,7 +72,7 @@ function yalda_time_remaining()
     // $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-25 00:00:00', 'GMT');
     $to_date = Carbon::createFromFormat('Y-m-d H:s:i', '2021-12-22 00:55:00', 'Asia/Tehran');
     $from_date = Carbon::now();
-    if ($from_date > $to_date){
+    if ($from_date > $to_date) {
         return 0;
     }
     $distance = $to_date->diffInMilliseconds($from_date);
