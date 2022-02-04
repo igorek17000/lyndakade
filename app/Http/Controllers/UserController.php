@@ -153,10 +153,19 @@ class UserController extends Controller
             ];
         }
 
+        $total_received = 0;
+
+        foreach (auth()->user()->invoices as $invoice) {
+            $total_received += $invoice->price;
+        }
+
+        $total_balance -= $total_received;
+
         return view('users.dubbed-courses', [
             'user' => auth()->user(),
             'courses' => json_decode(json_encode($res_courses), FALSE),
             'invoices' => auth()->user()->invoices,
+            'total_received' => $total_received,
             'total_balance' => $total_balance,
         ]);
     }

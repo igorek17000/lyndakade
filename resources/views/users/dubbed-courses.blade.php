@@ -12,7 +12,7 @@
 @section('content')
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-10">
+      <div class="col-md-12">
         <table class="table table-striped">
           <thead class="thead-light">
             <tr>
@@ -26,31 +26,49 @@
             </tr>
           </thead>
           <tbody>
+
             @foreach ($courses as $course)
               <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td><a href="{{ $course->link }}">{{ $course->title }}</a></td>
-                <td>{{ $course->price }}</td>
-                <td>{{ $course->course_total_purchase }}</td>
-                <td>{{ $course->balance_purchase }}</td>
-                <td>{{ $course->course_total_unlocked }}</td>
-                <td>{{ $course->balance_unlocked }}</td>
+                <td class="text-center">{{ $course->price }}</td>
+                <td class="text-center">{{ $course->course_total_purchase }}</td>
+                <td class="text-center">{{ $course->balance_purchase }}</td>
+                <td class="text-center">{{ $course->course_total_unlocked }}</td>
+                <td class="text-center">{{ $course->balance_unlocked }}</td>
+              </tr>
+              @php
+                  $last_iteration = $loop->iteration;
+              @endphp
+            @endforeach
+            <tr>
+                <th scope="row" colspan="2" class="text-center">جمع کل</th>
+                <td colspan="2" class="text-center">{{ $total_balance }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">تاریخ تسویه</th>
+              <th scope="col">مبلغ تسویه</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($invoices as $invoice)
+              <tr>
+                <th scope="row">{{ $loop->iteration }}</th>
+                <td>{{ $invoice->course_total_unlocked }}</td>
+                <td>{{ $invoice->balance_unlocked }}</td>
               </tr>
             @endforeach
           </tbody>
         </table>
-      </div>
-      {{-- <div class="col-md-6">
-          {{ auth()->user()->courses }}
-      </div>
-      <div class="col-md-2">
-          {{ auth()->user()->invoices }}
-      </div> --}}
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-      </div>
-      <div class="col-md-8">
       </div>
     </div>
   </div>
