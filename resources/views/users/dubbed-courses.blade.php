@@ -16,6 +16,7 @@
           {{ auth()->user()->invoices }}
       </div>
       <div class="col-md-6">
+          {{ auth()->user()->courses }}
       </div>
       <div class="col-md-2">
       </div>
