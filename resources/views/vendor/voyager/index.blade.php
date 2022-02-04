@@ -90,46 +90,11 @@
       </div>
     </div>
     <style>
-      .c-tables table {
-        width: 100%;
-      }
-
-      .c-tables thead,
-      .c-tables tbody,
-      .c-tables tr,
-      .c-tables td,
-      .c-tables th {
-        display: block;
-      }
-
-      .c-tables tr:after {
-        content: ' ';
-        display: block;
-        visibility: hidden;
-        clear: both;
-      }
-
-      .c-tables thead th {
-        height: 30px;
-
-        /*text-align: left;*/
-      }
-
-      .c-tables tbody {
-        height: 120px;
-        overflow-y: auto;
-      }
-
-      .c-tables thead {
-        /* fallback */
-      }
-
-      .c-tables tbody td,
-      .c-tables thead th {
-        width: 19.2%;
-        float: left;
-      }
-
+.table-wrapper {
+  max-height: 100px;
+  overflow: auto;
+  display:inline-block;
+}
     </style>
     <div class="container c-tables">
       <div class="row">
@@ -137,7 +102,7 @@
           <div class="card">
             <div class="card-body">
               <h2 class="card-title text-center">MOST PAID USERS</h2>
-              <div class="card-text">
+              <div class="card-text table-wrapper">
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -178,7 +143,7 @@
           <div class="card">
             <div class="card-body">
               <h2 class="card-title text-center">MOST PAID COURSES</h2>
-              <div class="card-text">
+              <div class="card-text table-wrapper">
                 <table class="table table-hover">
                   <thead>
                     <tr>
