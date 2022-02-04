@@ -47,7 +47,7 @@
                   <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td><a href="{{ $course->link }}">{{ $course->title }}</a></td>
-                    <td class="text-center">{{ $course->price }}</td>
+                    <td class="text-center">{{ $course->price }} تومان</td>
                     <td class="text-center hidden-xs">{{ $course->course_total_purchase }}</td>
                     <td class="text-center hidden-xs">{{ $course->balance_purchase }} تومان</td>
                     <td class="text-center hidden-xs">{{ $course->course_total_unlocked }}</td>
@@ -63,7 +63,7 @@
                   <td colspan="5" class="text-center">{{ $total_received }} تومان</td>
                 </tr>
                 <tr>
-                  <th scope="row" colspan="2" class="text-center">جمع کل</th>
+                  <th scope="row" colspan="2" class="text-center">جمع مبلغ قابل برداشت</th>
                   <td colspan="5" class="text-center">{{ $total_balance }} تومان</td>
                 </tr>
               </tbody>
