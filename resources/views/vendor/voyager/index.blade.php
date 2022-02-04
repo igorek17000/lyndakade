@@ -158,12 +158,20 @@
                   </thead>
                   <tbody>
                     @foreach (get_dashboard_dubbed_table_data() as $row)
-                      <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $row->username }}</td>
-                        <td>{{ $row->total_courses }}</td>
-                        <td>{{ $row->total_balance }}</td>
-                      </tr>
+                     @if($row->id != -1)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $row->username }}</td>
+                            <td>{{ $row->total_courses }}</td>
+                            <td>{{ $row->total_balance }}</td>
+                        </tr>
+                      @else
+                        <tr>
+                            <td colspan="2"><b>{{ $row->username }}</b></td>
+                            <td><b>{{ $row->total_courses }}</b></td>
+                            <td><b>{{ $row->total_balance }}</b></td>
+                        </tr>
+                      @endif
                     @endforeach
                   </tbody>
                 </table>
