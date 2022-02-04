@@ -90,11 +90,12 @@
       </div>
     </div>
     <style>
-.table-wrapper {
-  max-height: 100px;
-  overflow: auto;
-  display:inline-block;
-}
+      .table-wrapper {
+        max-height: 250px;
+        overflow: auto;
+        display: inline-block;
+      }
+
     </style>
     <div class="container c-tables">
       <div class="row">
@@ -137,7 +138,42 @@
           </div>
         </div>
         <div class="col-md-6">
-
+          {{-- <div class="card">
+            <div class="card-body">
+              <h2 class="card-title text-center">MOST PAID USERS</h2>
+              <div class="card-text table-wrapper">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">Total Payments</th>
+                      <th scope="col">Number Of Payments</th>
+                      <th scope="col">Last Payment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @php
+                      $paids = \App\Paid::orderBy('totalprice', 'desc')
+                          ->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))
+                          ->groupBy('user_id')
+                          ->limit(10)
+                          ->get();
+                    @endphp
+                    @foreach ($paids as $index => $paid)
+                      <tr>
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{ $paid->user->username }}</td>
+                        <td>{{ number_format($paid->totalprice) }}</td>
+                        <td>{{ number_format($paid->total) }}</td>
+                        <td>{{ $paid->user->paids->first()->created_at }}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div> --}}
         </div>
         <div class="col-md-6">
           <div class="card">
@@ -184,7 +220,7 @@
           <div class="card">
             <div class="card-body">
               <h2 class="card-title text-center">MOST UNLOCKED COURSES</h2>
-              <div class="card-text">
+              <div class="card-text table-wrapper">
                 <table class="table table-hover">
                   <thead>
                     <tr>
