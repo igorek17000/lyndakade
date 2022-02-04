@@ -154,7 +154,7 @@ class UserController extends Controller
 
         return view('users.dubbed-courses', [
             'user' => auth()->user(),
-            'courses' => (object) $res_courses,
+            'courses' => json_decode(json_encode($res_courses), FALSE),
             'invoices' => auth()->user()->invoices,
             'total_balance' => $total_balance,
         ]);
