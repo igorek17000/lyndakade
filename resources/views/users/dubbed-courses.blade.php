@@ -29,7 +29,7 @@
             @foreach ($courses as $course)
               <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
-                <td>{{ $course->title }}</td>
+                <td><a href="{{ $course->link }}">{{ $course->title }}</a></td>
                 <td>{{ $course->price }}</td>
                 <td>{{ $course->course_total_purchase }}</td>
                 <td>{{ $course->balance_purchase }}</td>

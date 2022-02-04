@@ -143,6 +143,7 @@ class UserController extends Controller
             $total_balance += $balance_purchase + $balance_unlocked;
 
             $res_courses[] = [
+                'link' => courseURL($course),
                 'title' => $course->title,
                 'price' => $course->price,
                 'course_total_purchase' => $course_total_purchase,
