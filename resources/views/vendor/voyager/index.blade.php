@@ -96,7 +96,7 @@
         display: inline-block;
       }
 
-      .col-md-6 .card{
+      .col-md-6 .card {
         min-height: 370px;
         max-height: 370px;
       }
@@ -156,20 +156,20 @@
                       <th scope="col">Total Balance</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="text-center">
                     @foreach (get_dashboard_dubbed_table_data() as $row)
-                     @if($row->id != -1)
+                      @if ($row->id != -1)
                         <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $row->username }}</td>
-                            <td>{{ $row->total_courses }}</td>
-                            <td>{{ $row->total_balance }}</td>
+                          <th scope="row">{{ $loop->iteration }}</th>
+                          <td>{{ $row->username }}</td>
+                          <td>{{ $row->total_courses }}</td>
+                          <td>{{ $row->total_balance }}</td>
                         </tr>
                       @else
                         <tr>
-                            <td colspan="2"><b>{{ $row->username }}</b></td>
-                            <td><b>{{ $row->total_courses }}</b></td>
-                            <td><b>{{ $row->total_balance }}</b></td>
+                          <td colspan="2"><b>{{ $row->username }}</b></td>
+                          <td><b>{{ $row->total_courses }}</b></td>
+                          <td><b>{{ $row->total_balance }}</b></td>
                         </tr>
                       @endif
                     @endforeach
