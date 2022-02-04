@@ -44,12 +44,12 @@
         </tbody>
         </table>
       </div>
-      <div class="col-md-6">
+      {{-- <div class="col-md-6">
           {{ auth()->user()->courses }}
       </div>
       <div class="col-md-2">
           {{ auth()->user()->invoices }}
-      </div>
+      </div> --}}
     </div>
     <div class="row">
       <div class="col-md-4">
