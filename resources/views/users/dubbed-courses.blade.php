@@ -12,36 +12,32 @@
 @section('content')
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-10">
         <table class="table table-striped">
-        <thead class="thead-light">
+          <thead class="thead-light">
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+              <th scope="col">#</th>
+              <th scope="col">نام دوره آموزشی</th>
+              <th scope="col">مبلغ دوره</th>
+              <th scope="col">تعداد خرید دوره</th>
+              <th scope="col">جمع کل خرید دوره</th>
+              <th scope="col">تعداد خرید دوره از طریق اشتراک</th>
+              <th scope="col">جمع کل خرید دوره از طریق اشتراک</th>
             </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            </tr>
-            <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            </tr>
-            <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            </tr>
-        </tbody>
+          </thead>
+          <tbody>
+            @foreach ($courses as $course)
+              <tr>
+                <th scope="row">{{ $loop->iteration }}</th>
+                <td>{{ $course->title }}</td>
+                <td>{{ $course->price }}</td>
+                <td>{{ $course->course_total_purchase }}</td>
+                <td>{{ $course->balance_purchase }}</td>
+                <td>{{ $course->course_total_unlocked }}</td>
+                <td>{{ $course->balance_unlocked }}</td>
+              </tr>
+            @endforeach
+          </tbody>
         </table>
       </div>
       {{-- <div class="col-md-6">
@@ -62,7 +58,6 @@
 
 @section('script_body')
   <script>
-    $(document).ready(function() {
-    });
+    $(document).ready(function() {});
   </script>
 @endsection

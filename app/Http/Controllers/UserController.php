@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Requests\UserRequest;
+use App\Paid;
+use App\UnlockedCourse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -122,9 +124,39 @@ class UserController extends Controller
 
     public function dubbedCourses(Request $request)
     {
-        $courses = [];
+        $courses = auth()->user()->courses;
+
+        $user_percent = auth()->user()->dubbed_percent / 100;
+        $res_courses = [];
+
+        $total_balance = 0;
+
+        foreach ($courses as $course) {
+            $course_total_purchase = Paid::where(['item_id' => $course->id, 'type' => 1])->count();
+            $course_total_unlocked = UnlockedCourse::where(['course_id' => $course->id])->count();
+
+            // جمع کل خرید این دوره
+            $balance_purchase = Paid::where(['item_id' => $course->id, 'type' => 1])->sum('price') * $user_percent;
+            // جمع کل خرید این دوره از طریق اشتراک
+            $balance_unlocked = $course_total_unlocked * $course->price * $user_percent;
+
+            $total_balance += $balance_purchase + $balance_unlocked;
+
+            $res_courses[] = [
+                'title' => $course->title,
+                'price' => $course->price,
+                'course_total_purchase' => $course_total_purchase,
+                'balance_purchase' => $balance_purchase,
+                'course_total_unlocked' => $course_total_unlocked,
+                'balance_unlocked' => $balance_unlocked,
+            ];
+        }
+
         return view('users.dubbed-courses', [
-            'courses' => $courses
+            'user' => auth()->user(),
+            'courses' => (object) $res_courses,
+            'invoices' => auth()->user()->invoices,
+            'total_balance' => $total_balance,
         ]);
     }
 }
