@@ -43,6 +43,8 @@ Route::group(
     }
 );
 
+Route::get('/user/dubbed-courses', 'UserController@dubbedCourses')->name('users.dubbed-courses');
+
 // learning paths
 Route::get('/learning-paths/', 'LearnPathController@index')->name('learn.paths.index.clone');
 Route::get('/learning/paths/', 'LearnPathController@index')->name('learn.paths.index');

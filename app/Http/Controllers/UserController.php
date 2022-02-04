@@ -119,4 +119,12 @@ class UserController extends Controller
         }
         return $res;
     }
+
+    public function dubbedCourses(Request $request)
+    {
+        $courses = [];
+        return view('users.dubbed-courses', [
+            'courses' => $courses
+        ]);
+    }
 }
