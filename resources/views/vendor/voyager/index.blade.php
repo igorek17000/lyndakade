@@ -97,8 +97,8 @@
       }
 
       .col-md-6 .card{
-        min-height: 300px;
-        max-height: 300px;
+        min-height: 370px;
+        max-height: 370px;
       }
 
     </style>
