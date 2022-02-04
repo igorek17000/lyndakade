@@ -96,7 +96,7 @@
         display: inline-block;
       }
 
-      .col-md-6 {
+      .col-md-6 .card{
         min-height: 300px;
         max-height: 300px;
       }
