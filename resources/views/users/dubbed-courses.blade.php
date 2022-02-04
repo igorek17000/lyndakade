@@ -38,12 +38,12 @@
                 <td class="text-center">{{ $course->balance_unlocked }}</td>
               </tr>
               @php
-                  $last_iteration = $loop->iteration;
+                $last_iteration = $loop->iteration;
               @endphp
             @endforeach
             <tr>
-                <th scope="row" colspan="2" class="text-center">جمع کل</th>
-                <td colspan="2" class="text-center">{{ $total_balance }}</td>
+              <th scope="row" colspan="2" class="text-center">جمع کل</th>
+              <td colspan="2" class="text-center">{{ $total_balance }}</td>
             </tr>
           </tbody>
         </table>
@@ -63,8 +63,8 @@
             @foreach ($invoices as $invoice)
               <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
-                <td>{{ $invoice->course_total_unlocked }}</td>
-                <td>{{ $invoice->balance_unlocked }}</td>
+                <td>{{ $invoice->created_at }}</td>
+                <td>{{ $invoice->price }}</td>
               </tr>
             @endforeach
           </tbody>
