@@ -33,9 +33,9 @@
                 <td><a href="{{ $course->link }}">{{ $course->title }}</a></td>
                 <td class="text-center">{{ $course->price }}</td>
                 <td class="text-center">{{ $course->course_total_purchase }}</td>
-                <td class="text-center">{{ $course->balance_purchase }}</td>
+                <td class="text-center">{{ $course->balance_purchase }} تومان</td>
                 <td class="text-center">{{ $course->course_total_unlocked }}</td>
-                <td class="text-center">{{ $course->balance_unlocked }}</td>
+                <td class="text-center">{{ $course->balance_unlocked }} تومان</td>
               </tr>
               @php
                 $last_iteration = $loop->iteration;
@@ -43,7 +43,7 @@
             @endforeach
             <tr>
               <th scope="row" colspan="2" class="text-center">جمع کل</th>
-              <td colspan="5" class="text-center">{{ $total_balance }}</td>
+              <td colspan="5" class="text-center">{{ $total_balance }} تومان</td>
             </tr>
           </tbody>
         </table>
@@ -64,7 +64,7 @@
               <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $invoice->created_at }}</td>
-                <td>{{ $invoice->price }}</td>
+                <td>{{ $invoice->price }} تومان</td>
               </tr>
             @endforeach
           </tbody>
