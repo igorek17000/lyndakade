@@ -130,7 +130,7 @@ $add = is_null($dataTypeContent->getKey());
               @endforeach
               <div class="form-group col-md-12">
                 <label for="sendMessageToDemandUsers">
-                  <input class="form-check-input" id="sendMessageToDemandUsers" type="checkbox"
+                  <input class="form-check-input" id="sendMessageToDemandUsers" type="text"
                     name="sendMessageToDemandUsers" />
                   Send Message To Demand Users
                 </label>

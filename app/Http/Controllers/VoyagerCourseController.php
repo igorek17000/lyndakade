@@ -46,7 +46,7 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
 
         event(new BreadDataUpdated($dataType, $data));
 
-        $demanded_users = $request->get('sendMessageToDemandUsers', false);
+        $demanded_users = $request->get('sendMessageToDemandUsers');
         if ($demanded_users){
             $course = Course::find($data->id);
             $demanded_users = explode(",", $demanded_users);
