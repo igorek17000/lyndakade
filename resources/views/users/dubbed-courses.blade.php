@@ -61,10 +61,10 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            <table class="table table-striped">
+            <table class="table table-striped text-center">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col" style="width: 40px;">#</th>
                   <th scope="col">تاریخ تسویه</th>
                   <th scope="col">مبلغ تسویه</th>
                 </tr>
