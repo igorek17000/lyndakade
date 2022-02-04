@@ -15,7 +15,7 @@ $add = is_null($dataTypeContent->getKey());
 @section('page_header')
   <h1 class="page-title">
     <i class="{{ $dataType->icon }}"></i>
-    {{ __('voyager::generic.' . ($edit ? 'edit' : 'add')) . ' ' . $dataType->getTranslatedAttribute('display_name_singular') }}
+    {{ __('voyager::generic.' . ($edit ? 'edit' : 'add')) .' ' .$dataType->getTranslatedAttribute('display_name_singular') }}
   </h1>
   @include('voyager::multilingual.language-selector')
 @stop
@@ -39,7 +39,7 @@ $add = is_null($dataTypeContent->getKey());
 
           <!-- form start -->
           <form role="form" class="form-edit-add" id="form-tag" autocomplete="off"
-            action="{{ $edit ? route('voyager.' . $dataType->slug . '.update', $dataTypeContent->getKey()) : route('voyager.' . $dataType->slug . '.store') }}"
+            action="{{ $edit? route('voyager.' . $dataType->slug . '.update', $dataTypeContent->getKey()): route('voyager.' . $dataType->slug . '.store') }}"
             method="POST" enctype="multipart/form-data">
             <!-- PUT Method if we are editing -->
             @if ($edit)
@@ -101,8 +101,10 @@ $add = is_null($dataTypeContent->getKey());
                     {{ $row->details->legend->text }}</legend>
                 @endif
 
-                <div class="form-group @if ($row->type == 'hidden') hidden @endif col-md-{{ $display_options->width ?? 12 }}
-                  {{ $errors->has($row->field) ? 'has-error' : '' }}" @if (isset($display_options->id)){{ "id=$display_options->id" }}@endif>
+                <div
+                  class="form-group @if ($row->type == 'hidden') hidden @endif col-md-{{ $display_options->width ?? 12 }}
+                  {{ $errors->has($row->field) ? 'has-error' : '' }}"
+                  @if (isset($display_options->id)){{ "id=$display_options->id" }}@endif>
                   {{ $row->slugify }}
                   <label class="control-label" for="name">{{ $row->getTranslatedAttribute('display_name') }}</label>
                   @include('voyager::multilingual.input-hidden-bread-edit-add')
@@ -126,12 +128,19 @@ $add = is_null($dataTypeContent->getKey());
                   @endif
                 </div>
               @endforeach
-              @if ($edit)
+              <div class="form-group col-md-12">
+                <label for="sendMessageToDemandUsers">
+                  <input class="form-check-input" id="sendMessageToDemandUsers" type="checkbox"
+                    name="sendMessageToDemandUsers" />
+                  Send Message To Demand Users
+                </label>
+              </div>
+              @if (!$edit)
                 <div class="form-group col-md-12">
                   <label for="sendMessageToPaidUsers">
                     <input class="form-check-input" id="sendMessageToPaidUsers" type="checkbox"
                       name="sendMessageToPaidUsers" />
-                      Send Message To Paid Users
+                    Send Message To Paid Users
                   </label>
                 </div>
               @endif
@@ -160,49 +169,49 @@ $add = is_null($dataTypeContent->getKey());
             <!-- panel-body -->
 
             <div class="panel-footer">
-              @section('submit-buttons')
-                <button type="submit" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
-              @stop
-              @yield('submit-buttons')
-            </div>
-          </form>
+            @section('submit-buttons')
+              <button type="submit" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
+            @stop
+            @yield('submit-buttons')
+          </div>
+        </form>
 
-          <iframe id="form_target" name="form_target" style="display:none"></iframe>
-          <form id="my_form" action="{{ route('voyager.upload') }}" target="form_target" method="post"
-            enctype="multipart/form-data" style="width:0;height:0;overflow:hidden">
-            <input name="image" id="upload_file" type="file" onchange="$('#my_form').submit();this.value='';">
-            <input type="hidden" name="type_slug" id="type_slug" value="{{ $dataType->slug }}">
-            {{ csrf_field() }}
-          </form>
+        <iframe id="form_target" name="form_target" style="display:none"></iframe>
+        <form id="my_form" action="{{ route('voyager.upload') }}" target="form_target" method="post"
+          enctype="multipart/form-data" style="width:0;height:0;overflow:hidden">
+          <input name="image" id="upload_file" type="file" onchange="$('#my_form').submit();this.value='';">
+          <input type="hidden" name="type_slug" id="type_slug" value="{{ $dataType->slug }}">
+          {{ csrf_field() }}
+        </form>
 
-        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="modal fade modal-danger" id="confirm_delete_modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
+<div class="modal fade modal-danger" id="confirm_delete_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::generic.are_you_sure') }}</h4>
-        </div>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::generic.are_you_sure') }}</h4>
+      </div>
 
-        <div class="modal-body">
-          <h4>{{ __('voyager::generic.are_you_sure_delete') }} '<span class="confirm_delete_name"></span>'</h4>
-        </div>
+      <div class="modal-body">
+        <h4>{{ __('voyager::generic.are_you_sure_delete') }} '<span class="confirm_delete_name"></span>'</h4>
+      </div>
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default"
-            data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-          <button type="button" class="btn btn-danger"
-            id="confirm_delete">{{ __('voyager::generic.delete_confirm') }}</button>
-        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"
+          data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+        <button type="button" class="btn btn-danger"
+          id="confirm_delete">{{ __('voyager::generic.delete_confirm') }}</button>
       </div>
     </div>
   </div>
-  <!-- End Delete File Modal -->
+</div>
+<!-- End Delete File Modal -->
 @stop
 
 @section('javascript')
@@ -568,6 +577,5 @@ $add = is_null($dataTypeContent->getKey());
     ajax_form_init();
 
   });
-
 </script>
 @stop

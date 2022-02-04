@@ -6,6 +6,7 @@ use App\Course;
 use App\Mail\CourseAdded;
 use App\Mail\CourseUpdatedMailer;
 use App\Paid;
+use App\User;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Events\BreadDataUpdated;
@@ -45,14 +46,26 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
 
         event(new BreadDataUpdated($dataType, $data));
 
-        $course = Course::find($data->id);
-        if ($course->users) {
-            foreach ($course->users as $user) {
+        $demanded_users = $request->get('sendMessageToDemandUsers', false);
+        if ($demanded_users){
+            $course = Course::find($data->id);
+            $demanded_users = explode(",", $demanded_users);
+            $users = User::find($demanded_users);
+            foreach ($users as $user) {
                 $email = $user->email;
                 if ($email)
                     Mail::to($email)->send(new CourseAdded($course));
             }
         }
+
+        // $course = Course::find($data->id);
+        // if ($course->users) {
+        //     foreach ($course->users as $user) {
+        //         $email = $user->email;
+        //         if ($email)
+        //             Mail::to($email)->send(new CourseAdded($course));
+        //     }
+        // }
 
         if ($request->get('sendMessageToPaidUsers', false)) {
             $course_id = $data->id;
