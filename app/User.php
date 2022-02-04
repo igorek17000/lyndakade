@@ -47,6 +47,16 @@ class User extends \TCG\Voyager\Models\User
     // protected $with = ['carts', 'demands', 'paids', 'payments'];
 
     /**
+     * A user can have many invoices
+     *
+     * @return HasMany
+     */
+    public function invoices()
+    {
+        return $this->hasMany(DubbedInvoice::class);
+    }
+
+    /**
      * A user can have many messages
      *
      * @return HasMany

@@ -22,6 +22,7 @@ return array(
     'App\\CoursePart' => $baseDir . '/app/CoursePart.php',
     'App\\CourseStatus' => $baseDir . '/app/CourseStatus.php',
     'App\\Demand' => $baseDir . '/app/Demand.php',
+    'App\\DubbedInvoice' => $baseDir . '/app/DubbedInvoice.php',
     'App\\Events\\MyEvent' => $baseDir . '/app/Events/MyEvent.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Exports\\UsersExport' => $baseDir . '/app/Exports/UsersExport.php',

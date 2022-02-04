@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLibrariesTable extends Migration
+class CreateDubbedInvoicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateLibrariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('libraries', function (Blueprint $table) {
+        Schema::create('dubbed_invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('titleEng');
-            $table->string('slug');
+            $table->bigInteger('user_id');
+            $table->smallInteger('price');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateLibrariesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('libraries');
+        Schema::dropIfExists('dubbed_invoices');
     }
 }

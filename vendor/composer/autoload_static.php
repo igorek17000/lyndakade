@@ -885,6 +885,7 @@ class ComposerStaticInitfc294a8ec98e345e71299ea31a100571
         'App\\CoursePart' => __DIR__ . '/../..' . '/app/CoursePart.php',
         'App\\CourseStatus' => __DIR__ . '/../..' . '/app/CourseStatus.php',
         'App\\Demand' => __DIR__ . '/../..' . '/app/Demand.php',
+        'App\\DubbedInvoice' => __DIR__ . '/../..' . '/app/DubbedInvoice.php',
         'App\\Events\\MyEvent' => __DIR__ . '/../..' . '/app/Events/MyEvent.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Exports\\UsersExport' => __DIR__ . '/../..' . '/app/Exports/UsersExport.php',
