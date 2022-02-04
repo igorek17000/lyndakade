@@ -97,13 +97,13 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
-     * A admin created many courses
+     * A User dubbed many courses
      *
-     * @return HasMany
+     * @return belongsToMany
      */
     public function courses()
     {
-        return $this->hasMany(Course::class);
+        return $this->belongsToMany(Course::class);
     }
 
     /**
