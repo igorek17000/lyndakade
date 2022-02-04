@@ -96,6 +96,11 @@
         display: inline-block;
       }
 
+      .col-md-6 {
+        min-height: 300px;
+        max-height: 300px;
+      }
+
     </style>
     <div class="container c-tables">
       <div class="row">
