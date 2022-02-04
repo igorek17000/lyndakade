@@ -84,11 +84,6 @@
                                 <input type="password" class="form-control" id="password" name="password" value="" autocomplete="new-password">
                             </div>
 
-                            <div class="form-group">
-                                <label for="dubbed_percent">Dubbed Percent</label>
-                                <input type="dubbed_percent" class="form-control" id="dubbed_percent" name="dubbed_percent" value="{{ old('dubbed_percent', $dataTypeContent->dubbed_percent ?? '') }}">
-                            </div>
-
                             @can('editRoles', $dataTypeContent)
                                 <div class="form-group">
                                     <label for="default_role">{{ __('voyager::profile.role_default') }}</label>
@@ -109,6 +104,12 @@
                                     @include('voyager::formfields.relationship')
                                 </div>
                             @endcan
+
+                            <div class="form-group">
+                                <label for="dubbed_percent">Dubbed Percent</label>
+                                <input type="dubbed_percent" class="form-control" id="dubbed_percent" name="dubbed_percent" value="{{ old('dubbed_percent', $dataTypeContent->dubbed_percent ?? '') }}">
+                            </div>
+                            
                             @php
                             if (isset($dataTypeContent->locale)) {
                                 $selected_locale = $dataTypeContent->locale;
