@@ -42,7 +42,7 @@ Route::group(
         Route::get('/packages/callback', 'PackageController@callback')->name('packages.callback');
 
 
-        Route::get('/users/dubbed-courses', 'UserController@dubbedCourses')->name('users.dubbed-courses');
+        Route::get('/user/dubbed-courses', 'UserController@dubbedCourses')->name('users.dubbed-courses');
     }
 );
 
