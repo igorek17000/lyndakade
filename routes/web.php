@@ -41,8 +41,8 @@ Route::group(
         Route::get('/packages/payment', 'PackageController@payment')->name('packages.payment');
         Route::get('/packages/callback', 'PackageController@callback')->name('packages.callback');
 
-        
-        Route::get('/user/dubbed-courses', 'UserController@dubbedCourses')->name('users.dubbed-courses');
+
+        Route::get('/users/dubbed-courses', 'UserController@dubbedCourses')->name('users.dubbed-courses');
     }
 );
 
