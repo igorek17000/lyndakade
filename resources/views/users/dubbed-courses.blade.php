@@ -42,6 +42,10 @@
               @endphp
             @endforeach
             <tr>
+              <th scope="row" colspan="2" class="text-center">جمع کل تسویه شده</th>
+              <td colspan="5" class="text-center">{{ $total_received }} تومان</td>
+            </tr>
+            <tr>
               <th scope="row" colspan="2" class="text-center">جمع کل</th>
               <td colspan="5" class="text-center">{{ $total_balance }} تومان</td>
             </tr>
@@ -67,6 +71,10 @@
                 <td>{{ $invoice->price }} تومان</td>
               </tr>
             @endforeach
+            <tr>
+              <th scope="row" colspan="2" class="text-center">جمع کل</th>
+              <td class="text-center">{{ $total_received }} تومان</td>
+            </tr>
           </tbody>
         </table>
       </div>
