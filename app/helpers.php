@@ -12,9 +12,48 @@ use App\Package;
 use App\PackagePaid;
 use App\Paid;
 use App\UnlockedCourse;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
+
+function get_dashboard_dubbed_table_data(){
+    $res=[];
+
+    foreach(User::where(['role_id' => 3])->get() as $dubbed_user){
+        $courses = $dubbed_user->courses;
+        $user_percent = $dubbed_user->dubbed_percent / 100;
+        $total_balance = 0;
+        foreach ($courses as $course) {
+            $course_total_unlocked = UnlockedCourse::where(['course_id' => $course->id])->count();
+
+            // جمع کل خرید این دوره
+            $balance_purchase = Paid::where(['item_id' => $course->id, 'type' => 1])->sum('price') * $user_percent;
+            // جمع کل خرید این دوره از طریق اشتراک
+            $balance_unlocked = $course_total_unlocked * $course->price * $user_percent;
+
+            $total_balance += $balance_purchase + $balance_unlocked;
+
+        }
+
+        $total_received = 0;
+        foreach (auth()->user()->invoices as $invoice) {
+            $total_received += $invoice->price;
+        }
+        $total_balance -= $total_received;
+
+        $res[] = [
+            'id' => $dubbed_user->id,
+            'username' => $dubbed_user->username,
+            'total_courses' => $dubbed_user->courses()->count(),
+            'total_balance' => $total_balance,
+        ];
+    }
+
+    return json_decode(json_encode($res), FALSE);
+}
+
 
 function yalda_time_remaining()
 {

@@ -138,42 +138,33 @@
           </div>
         </div>
         <div class="col-md-6">
-          {{-- <div class="card">
+          <div class="card">
             <div class="card-body">
-              <h2 class="card-title text-center">MOST PAID USERS</h2>
+              <h2 class="card-title text-center">Dubbed Users Balance</h2>
               <div class="card-text table-wrapper">
                 <table class="table table-hover">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Username</th>
-                      <th scope="col">Total Payments</th>
-                      <th scope="col">Number Of Payments</th>
-                      <th scope="col">Last Payment</th>
+                      <th scope="col">Total Dubbed Courses</th>
+                      <th scope="col">Total Balance</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @php
-                      $paids = \App\Paid::orderBy('totalprice', 'desc')
-                          ->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))
-                          ->groupBy('user_id')
-                          ->limit(10)
-                          ->get();
-                    @endphp
-                    @foreach ($paids as $index => $paid)
+                    @foreach (get_dashboard_dubbed_table_data() as $row)
                       <tr>
-                        <th scope="row">{{ $index + 1 }}</th>
-                        <td>{{ $paid->user->username }}</td>
-                        <td>{{ number_format($paid->totalprice) }}</td>
-                        <td>{{ number_format($paid->total) }}</td>
-                        <td>{{ $paid->user->paids->first()->created_at }}</td>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $row->username }}</td>
+                        <td>{{ $row->total_courses }}</td>
+                        <td>{{ $row->total_balance }}</td>
                       </tr>
                     @endforeach
                   </tbody>
                 </table>
               </div>
             </div>
-          </div> --}}
+          </div>
         </div>
         <div class="col-md-6">
           <div class="card">
