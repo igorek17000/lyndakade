@@ -85,7 +85,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="dubbed_percent">{{ __('voyager::generic.dubbed_percent') }}</label>
+                                <label for="dubbed_percent">Dubbed Percent</label>
                                 <input type="dubbed_percent" class="form-control" id="dubbed_percent" name="dubbed_percent" value="{{ old('dubbed_percent', $dataTypeContent->dubbed_percent ?? '') }}">
                             </div>
 
