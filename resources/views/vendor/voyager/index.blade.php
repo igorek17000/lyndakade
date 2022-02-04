@@ -89,101 +89,170 @@
         </div>
       </div>
     </div>
+    <style>
+      .c-tables table {
+        width: 100%;
+      }
 
-    <div class="container">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title text-center">MOST PAID USERS</h2>
-          <div class="card-text">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Username</th>
-                  <th scope="col">Total Payments</th>
-                  <th scope="col">Number Of Payments</th>
-                  <th scope="col">Last Payment</th>
-                </tr>
-              </thead>
-              <tbody>
-                @php
-                  $paids = \App\Paid::orderBy('totalprice', 'desc')
-                      ->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))
-                      ->groupBy('user_id')
-                      ->limit(10)
-                      ->get();
-                @endphp
-                @foreach ($paids as $index => $paid)
-                  <tr>
-                    <th scope="row">{{ $index + 1 }}</th>
-                    <td>{{ $paid->user->username }}</td>
-                    <td>{{ number_format($paid->totalprice) }}</td>
-                    <td>{{ number_format($paid->total) }}</td>
-                    <td>{{ $paid->user->paids->first()->created_at }}</td>
-                  </tr>
-                @endforeach
-              </tbody>
-            </table>
+      .c-tables thead,
+      .c-tables tbody,
+      .c-tables tr,
+      .c-tables td,
+      .c-tables th {
+        display: block;
+      }
+
+      .c-tables tr:after {
+        content: ' ';
+        display: block;
+        visibility: hidden;
+        clear: both;
+      }
+
+      .c-tables thead th {
+        height: 30px;
+
+        /*text-align: left;*/
+      }
+
+      .c-tables tbody {
+        height: 120px;
+        overflow-y: auto;
+      }
+
+      .c-tables thead {
+        /* fallback */
+      }
+
+      .c-tables tbody td,
+      .c-tables thead th {
+        width: 19.2%;
+        float: left;
+      }
+
+    </style>
+    <div class="container c-tables">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title text-center">MOST PAID USERS</h2>
+              <div class="card-text">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">Total Payments</th>
+                      <th scope="col">Number Of Payments</th>
+                      <th scope="col">Last Payment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @php
+                      $paids = \App\Paid::orderBy('totalprice', 'desc')
+                          ->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))
+                          ->groupBy('user_id')
+                          ->limit(10)
+                          ->get();
+                    @endphp
+                    @foreach ($paids as $index => $paid)
+                      <tr>
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{ $paid->user->username }}</td>
+                        <td>{{ number_format($paid->totalprice) }}</td>
+                        <td>{{ number_format($paid->total) }}</td>
+                        <td>{{ $paid->user->paids->first()->created_at }}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title text-center">MOST PAID COURSES</h2>
-          <div class="card-text">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Course Title</th>
-                  <th scope="col">Total Sells</th>
-                  <th scope="col">Last Sell</th>
-                </tr>
-              </thead>
-              <tbody>
-                @php
-                    $courses = \App\Course::query()->leftJoin('paids','paids.item_id','=','courses.id')->select('courses.id', 'courses.titleEng', DB::raw('count(*) as total'))->groupBy('paids.item_id')->orderBy('total','desc')->whereNotNull('paids.item_id')->take(15)->get();
-                @endphp
-                @foreach ($courses as $index => $course)
-                  <tr>
-                    <th scope="row">{{ $index + 1 }}</th>
-                    <td>{{ $course->titleEng }}</td>
-                    <td>{{ number_format($course->total) }}</td>
-                    <td>{{ \App\Paid::where('item_id', $course->id)->where('type', '1')->latest()->first()->created_at }}</td>
-                  </tr>
-                @endforeach
-              </tbody>
-            </table>
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title text-center">MOST PAID COURSES</h2>
+              <div class="card-text">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Course Title</th>
+                      <th scope="col">Total Sells</th>
+                      <th scope="col">Last Sell</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @php
+                      $courses = \App\Course::query()
+                          ->leftJoin('paids', 'paids.item_id', '=', 'courses.id')
+                          ->select('courses.id', 'courses.titleEng', DB::raw('count(*) as total'))
+                          ->groupBy('paids.item_id')
+                          ->orderBy('total', 'desc')
+                          ->whereNotNull('paids.item_id')
+                          ->take(15)
+                          ->get();
+                    @endphp
+                    @foreach ($courses as $index => $course)
+                      <tr>
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{ $course->titleEng }}</td>
+                        <td>{{ number_format($course->total) }}</td>
+                        <td>
+                          {{ \App\Paid::where('item_id', $course->id)->where('type', '1')->latest()->first()->created_at }}
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title text-center">MOST UNLOCKED COURSES</h2>
-          <div class="card-text">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Course Title</th>
-                  <th scope="col">Total Unlocks</th>
-                  <th scope="col">Last Sell</th>
-                </tr>
-              </thead>
-              <tbody>
-                @php
-                    $courses = \App\Course::query()->leftJoin('unlocked_courses','unlocked_courses.course_id','=','courses.id')->select('courses.id', 'courses.titleEng', DB::raw('count(*) as total'))->groupBy('unlocked_courses.course_id')->orderBy('total','desc')->whereNotNull('unlocked_courses.course_id')->take(15)->get();
-                @endphp
-                @foreach ($courses as $index => $course)
-                  <tr>
-                    <th scope="row">{{ $index + 1 }}</th>
-                    <td>{{ $course->titleEng }}</td>
-                    <td>{{ number_format($course->total) }}</td>
-                    <td>{{ \App\UnlockedCourse::where('course_id', $course->id)->latest()->first()->created_at }}</td>
-                  </tr>
-                @endforeach
-              </tbody>
-            </table>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title text-center">MOST UNLOCKED COURSES</h2>
+              <div class="card-text">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Course Title</th>
+                      <th scope="col">Total Unlocks</th>
+                      <th scope="col">Last Sell</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @php
+                      $courses = \App\Course::query()
+                          ->leftJoin('unlocked_courses', 'unlocked_courses.course_id', '=', 'courses.id')
+                          ->select('courses.id', 'courses.titleEng', DB::raw('count(*) as total'))
+                          ->groupBy('unlocked_courses.course_id')
+                          ->orderBy('total', 'desc')
+                          ->whereNotNull('unlocked_courses.course_id')
+                          ->take(15)
+                          ->get();
+                    @endphp
+                    @foreach ($courses as $index => $course)
+                      <tr>
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{ $course->titleEng }}</td>
+                        <td>{{ number_format($course->total) }}</td>
+                        <td>{{ \App\UnlockedCourse::where('course_id', $course->id)->latest()->first()->created_at }}
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
