@@ -199,7 +199,7 @@
                     @foreach ($courses as $index => $course)
                       <tr>
                         <th scope="row">{{ $index + 1 }}</th>
-                        <td>{{ $course->titleEng }}</td>
+                        <td>{{ $course->titleEng . ($course->dubbed_id == 1 ? ' (Dubbed)' : '') }}</td>
                         <td>{{ number_format($course->total) }}</td>
                         <td>
                           {{ \App\Paid::where('item_id', $course->id)->where('type', '1')->latest()->first()->created_at }}
@@ -240,7 +240,7 @@
                     @foreach ($courses as $index => $course)
                       <tr>
                         <th scope="row">{{ $index + 1 }}</th>
-                        <td>{{ $course->titleEng }}</td>
+                        <td>{{ $course->titleEng . ($course->dubbed_id == 1 ? ' (Dubbed)' : '') }}</td>
                         <td>{{ number_format($course->total) }}</td>
                         <td>{{ \App\UnlockedCourse::where('course_id', $course->id)->latest()->first()->created_at }}
                         </td>
