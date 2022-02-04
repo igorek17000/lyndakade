@@ -43,7 +43,7 @@
             @endforeach
             <tr>
               <th scope="row" colspan="2" class="text-center">جمع کل</th>
-              <td colspan="2" class="text-center">{{ $total_balance }}</td>
+              <td colspan="5" class="text-center">{{ $total_balance }}</td>
             </tr>
           </tbody>
         </table>
