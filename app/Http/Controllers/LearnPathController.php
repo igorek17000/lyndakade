@@ -76,10 +76,10 @@ class LearnPathController extends Controller
             // $view->save();
             $authors = array();
 
-            
+            $courses = $path->_courses->with('authors')->get();
 
             // foreach ($path->_courses as $key => $course) {
-            foreach ($path->courses as $key => $course) {
+            foreach ($courses as $key => $course) {
                 foreach ($course->authors as $author) {
                     array_push($authors, $author->id);
                 }
@@ -89,7 +89,7 @@ class LearnPathController extends Controller
             return view('learn_paths.show', [
                 'path' => $path,
                 // 'courses' => $path->_courses,
-                'courses' => $path->courses,
+                'courses' => $courses,
                 'authors' => $authors,
                 'path_state' => get_learn_path_state($path),
             ]);
