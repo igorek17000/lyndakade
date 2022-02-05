@@ -197,7 +197,7 @@
                     @php
                       $courses = \App\Course::query()
                           ->leftJoin('paids', 'paids.item_id', '=', 'courses.id')
-                          ->select('courses.id', 'courses.titleEng', DB::raw('count(*) as total'))
+                          ->select('courses.id', 'courses.dubbed_id', 'courses.titleEng', DB::raw('count(*) as total'))
                           ->groupBy('paids.item_id')
                           ->orderBy('total', 'desc')
                           ->whereNotNull('paids.item_id')
@@ -248,7 +248,6 @@
                     @foreach ($courses as $index => $course)
                       <tr>
                         <th scope="row">{{ $index + 1 }}</th>
-                        <div class="sr-only dubbed_id">{{ $course->dubbed_id }}</div>
                         <td>{{ $course->titleEng }} @if($course->dubbed_id == 1)<b> (Dubbed)</b> @endif</td>
                         <td>{{ number_format($course->total) }}</td>
                         <td>{{ \App\UnlockedCourse::where('course_id', $course->id)->latest()->first()->created_at }}
