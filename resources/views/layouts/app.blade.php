@@ -565,7 +565,7 @@
         </form>
         @if (Auth::check())
           <div class="dropdown pr-md-2">
-            <a class="nav-link p-md-0" id="cart-list" data-toggle="dropdown" role="button" aria-expanded="false">
+            <a class="nav-link p-md-0 text-white" id="cart-list" data-toggle="dropdown" role="button" aria-expanded="false">
               سبد خرید
             </a>
             <div class="dropdown-menu dropdown-cart dropdown-menu-center p-1 text-center" role="menu"
