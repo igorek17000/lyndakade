@@ -254,8 +254,10 @@
                   <br>
                   <span class="tile-name">{{ $path->titleEng }}</span>
                   <br>
+                  {{-- <span class="tile-heading py-2">تعداد دروس
+                    {{ nPersian(count(js_to_courses($path->_courses))) }}</span> --}}
                   <span class="tile-heading py-2">تعداد دروس
-                    {{ nPersian(count(js_to_courses($path->_courses))) }}</span>
+                    {{ nPersian(count(js_to_courses($path->courses))) }}</span>
                   <br>
                   <del
                     style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->old_price()) }}

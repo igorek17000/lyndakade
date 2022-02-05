@@ -766,7 +766,8 @@ class CourseController extends Controller
 
         $paid_learn_paths = Paid::where('user_id', $user_id)->where('type', 2)->get();
         foreach ($paid_learn_paths as $paid_learn_path) {
-            foreach (js_to_courses(LearnPath::find($paid_learn_path->item_id)->_courses) as $course) {
+            // foreach (js_to_courses(LearnPath::find($paid_learn_path->item_id)->_courses) as $course) {
+            foreach (js_to_courses(LearnPath::find($paid_learn_path->item_id)->courses) as $course) {
                 if ($course->id == $course_id)
                     return true;
             }
@@ -779,7 +780,8 @@ class CourseController extends Controller
 
         $user_unlocked_courses = UnlockedCourse::where('user_id', $user_id)->whereNotNull('learn_path_id')->get();
         foreach ($user_unlocked_courses as $user_unlocked_course) {
-            foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->_courses) as $course) {
+            // foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->_courses) as $course) {
+                foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->courses) as $course) {
                 if ($course->id == $course_id)
                     return true;
             }

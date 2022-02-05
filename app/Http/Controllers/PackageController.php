@@ -46,7 +46,8 @@ class PackageController extends Controller
             if ($cart->course) {
                 $count += 1;
             } else {
-                foreach (js_to_courses($cart->learn_path->_courses) as $current_course) {
+                // foreach (js_to_courses($cart->learn_path->_courses) as $current_course) {
+                foreach (js_to_courses($cart->learn_path->courses) as $current_course) {
                     $count += 1;
                 }
             }

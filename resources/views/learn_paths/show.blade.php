@@ -11,7 +11,7 @@
       "@context": "https://schema.org",
       "@type": "ItemList",
       "itemListElement": [
-        @foreach (js_to_courses($path->_courses) as $course)
+        @foreach (js_to_courses($path->courses) as $course)
           {
           "@type": "ListItem",
           "position": "{{ $loop->index + 1 }}",
@@ -110,7 +110,8 @@
                     {{ $path->durationMinutes() ? $path->durationMinutes() . 'm' : '' }}
                   </div>
                   <div class="col-6 my-md-1">
-                    <b>تعداد دوره ها: </b>{{ count(js_to_courses($path->_courses)) }}
+                    {{-- <b>تعداد دوره ها: </b>{{ count(js_to_courses($path->_courses)) }} --}}
+                    <b>تعداد دوره ها: </b>{{ count(js_to_courses($path->courses)) }}
                   </div>
                   @if ($path->price() > 0)
                     <div class="col-6 my-md-1">

@@ -78,10 +78,11 @@
   </script>
 @endpush
 @section('content')
-    <style>
+  <style>
     .hero-space {
-        height: 450px !important;
+      height: 450px !important;
     }
+
     @media (min-width: 426px) {
       .hero-space {
         height: 300px !important;
@@ -99,7 +100,18 @@
         height: 260px !important;
       }
     }
-    </style>
+
+    .show-xs {
+      display: none !important;
+    }
+
+    @media (max-width: 767px) {
+      .show-xs {
+        display: block !important;
+      }
+    }
+
+  </style>
   <div class="row m-0 home-page">
     <div class="col-12 hero-space">
       <div class="hero-text" style="background-color: rgba(255, 255, 255, 0.5) !important;">
@@ -214,6 +226,87 @@
     </div>
   </div>
 
+  @if (count($paths) > 0)
+
+    <div class="row card mx-0">
+      <div class="container">
+        <h5 class="my-0 mt-2"> مسیرهای آموزشی
+          <a class="btn btn-primary btn-xs my-2 mr-3" href="{{ route('learn.paths.index') }}"
+            style="max-width: 110px;">مشاهده بیشتر</a>
+        </h5>
+        <hr style="border-top: 1px solid  #f8ba16" class="my-2">
+        <div class="row">
+          @foreach ($paths as $path)
+            <div class="col-md-3">
+              <a href="{{ route('learn.paths.show', [$path->slug]) }}">
+                <div style="position: relative;">
+                  <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->img) }}"
+                    alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
+                    style="border-radius: 5px; max-height: 143.44px;">
+                  <span
+                    style="position: absolute; right: 0; bottom: 0; background-color: #ccc; border-radius: 3px 3px 5px 3px; padding: 2px 2px 0 2px;">
+                    {{ $path->durationHours() + 1 }}h
+                  </span>
+                </div>
+                <span class="mt-2 d-inline-block pr-2"
+                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
+                  {{ $path->title }}
+                </span>
+                <br />
+                <span class="d-inline-block text-left pl-2"
+                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
+                  {{ $path->titleEng }}
+                </span>
+                <br />
+                <span class="my-2 d-inline-block" style="max-height: 39px;overflow-y: hidden;">
+                  مدرسین:
+
+                </span>
+              </a>
+            </div>
+          @endforeach
+        </div>
+      </div>
+    </div>
+
+    <div class="container my-3 photo-gallery">
+      <h2>مسیرهای آموزشی</h2>
+      <div class="row d-flex">
+        @foreach ($paths as $path)
+          <div class="col-12 col-md-4 col-lg-4 mb-4 mt-2" itemscope itemtype="http://schema.org/Course">
+            <div class="card h-100  border-light  bg-light shadow">
+              <a href="{{ route('learn.paths.show', [$path->slug]) }}"
+                class="row card-body photo-frame d-flex align-items-center">
+                <div class="col-12 state-thumb">
+                  <img itemprop="image" src="#" data-src="{{ fromDLHost($path->thumbnail) }}"
+                    class="img-fluid lazyload"
+                    alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
+                </div>
+                <div class="col-12 tile-text text-center">
+                  <span class="tile-name">{{ $path->title }}</span>
+                  <br>
+                  <span class="tile-name">{{ $path->titleEng }}</span>
+                  <br>
+                  {{-- <span class="tile-heading py-2">تعداد دروس
+                    {{ nPersian(count(js_to_courses($path->_courses))) }}</span> --}}
+                  <span class="tile-heading py-2">تعداد دروس
+                    {{ nPersian(count(js_to_courses($path->courses))) }}</span>
+                  <br>
+                  <del
+                    style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->old_price()) }}
+                    تومان</del>
+                  <span
+                    style="background-color: lightgreen;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->price()) }}
+                    تومان</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        @endforeach
+      </div>
+    </div>
+  @endif
+
   @if (isset($dubbed_courses))
     @if (count($dubbed_courses) > 0)
       <div class="row card mx-0 latest-courses border-0">
@@ -235,41 +328,6 @@
         </div>
       </div>
     @endif
-  @endif
-
-  @if (count($paths) > 0)
-    <div class="container my-3 photo-gallery">
-      <h2>مسیرهای آموزشی</h2>
-      <div class="row d-flex">
-        @foreach ($paths as $path)
-          <div class="col-12 col-md-4 col-lg-4 mb-4 mt-2" itemscope itemtype="http://schema.org/Course">
-            <div class="card h-100  border-light  bg-light shadow">
-              <a href="{{ route('learn.paths.show', [$path->slug]) }}"
-                class="row card-body photo-frame d-flex align-items-center">
-                <div class="col-12 state-thumb">
-                  <img itemprop="image" src="#" data-src="{{ fromDLHost($path->thumbnail) }}" class="img-fluid lazyload"  alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
-                </div>
-                <div class="col-12 tile-text text-center">
-                  <span class="tile-name">{{ $path->title }}</span>
-                  <br>
-                  <span class="tile-name">{{ $path->titleEng }}</span>
-                  <br>
-                  <span class="tile-heading py-2">تعداد دروس
-                    {{ nPersian(count(js_to_courses($path->_courses))) }}</span>
-                  <br>
-                  <del
-                    style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->old_price()) }}
-                    تومان</del>
-                  <span
-                    style="background-color: lightgreen;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->price()) }}
-                    تومان</span>
-                </div>
-              </a>
-            </div>
-          </div>
-        @endforeach
-      </div>
-    </div>
   @endif
 
   <div class="row card mx-0 latest-courses border-0">

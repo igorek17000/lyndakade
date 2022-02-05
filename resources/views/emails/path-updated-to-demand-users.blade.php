@@ -22,7 +22,8 @@
 
     <p>عنوان مسیر آموزشی: {{ $path->title }}</p>
     <ul>دوره های این مسیر آموزشی:
-      @foreach (js_to_courses($path->_courses) as $course)
+      {{-- @foreach (js_to_courses($path->_courses) as $course) --}}
+      @foreach (js_to_courses($path->courses) as $course)
         <li>
           <a href="{{ courseURL($course) }}">{{ $course->titleEng }}</a>
         </li>

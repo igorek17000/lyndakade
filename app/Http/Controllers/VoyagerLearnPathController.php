@@ -45,7 +45,9 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
 
         // $data->courses = $data->_courses;
-        unset($data->_courses);
+
+        // unset($data->_courses); ---------------
+
 
         // dd($request, $slug, $dataType->editRows, $data);
 

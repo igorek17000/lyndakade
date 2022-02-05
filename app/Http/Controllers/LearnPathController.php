@@ -76,7 +76,8 @@ class LearnPathController extends Controller
             // $view->save();
             $authors = array();
 
-            foreach ($path->_courses as $key => $course) {
+            // foreach ($path->_courses as $key => $course) {
+            foreach ($path->courses as $key => $course) {
                 foreach ($course->authors as $author) {
                     array_push($authors, $author->id);
                 }
@@ -85,7 +86,8 @@ class LearnPathController extends Controller
             $authors = array_values($authors->all());
             return view('learn_paths.show', [
                 'path' => $path,
-                'courses' => $path->_courses,
+                // 'courses' => $path->_courses,
+                'courses' => $path->courses,
                 'authors' => $authors,
                 'path_state' => get_learn_path_state($path),
             ]);
@@ -101,7 +103,8 @@ class LearnPathController extends Controller
         $path = LearnPath::firstWhere('slug', $slug);
 
         $res = [];
-        foreach ($path->_courses as $c) {
+        // foreach ($path->_courses as $c) {
+        foreach ($path->courses as $c) {
             if ($c) {
                 $res[] = $c->slug_linkedin;
             }
@@ -132,7 +135,8 @@ class LearnPathController extends Controller
         return new JsonResponse([
             'data' => [
                 'id' => $request->get('id'),
-                'courses' => js_to_courses($path->_courses),
+                // 'courses' => js_to_courses($path->_courses),
+                'courses' => js_to_courses($path->courses),
             ],
             'status' => 'success',
         ], 200);

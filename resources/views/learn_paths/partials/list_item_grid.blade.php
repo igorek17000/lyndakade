@@ -19,7 +19,8 @@
             {{ nPersian($learn_path->durationMinutes()) }}
             دقیقه
           @endif
-          <p class="mb-2 mt-2">تعداد دروس {{ nPersian(count(js_to_courses($learn_path->_courses))) }}</p>
+          {{-- <p class="mb-2 mt-2">تعداد دروس {{ nPersian(count(js_to_courses($learn_path->_courses))) }}</p> --}}
+          <p class="mb-2 mt-2">تعداد دروس {{ nPersian(count(js_to_courses($learn_path->courses))) }}</p>
           <del
             style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ nPersian($learn_path->old_price()) }}
             تومان</del>
