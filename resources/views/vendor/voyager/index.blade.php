@@ -238,7 +238,7 @@
                     @php
                       $courses = \App\Course::query()
                           ->leftJoin('unlocked_courses', 'unlocked_courses.course_id', '=', 'courses.id')
-                          ->select('courses.id', 'courses.titleEng', DB::raw('count(*) as total'))
+                          ->select('courses.id', 'courses.dubbed_id', 'courses.titleEng', DB::raw('count(*) as total'))
                           ->groupBy('unlocked_courses.course_id')
                           ->orderBy('total', 'desc')
                           ->whereNotNull('unlocked_courses.course_id')
