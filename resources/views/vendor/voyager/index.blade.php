@@ -248,6 +248,7 @@
                     @foreach ($courses as $index => $course)
                       <tr>
                         <th scope="row">{{ $index + 1 }}</th>
+                        <div class="sr-only">{{ $course->dubbed_id }}</div>
                         <td>{{ $course->titleEng }} @if($course->dubbed_id == 1)<b> (Dubbed)</b> @endif</td>
                         <td>{{ number_format($course->total) }}</td>
                         <td>{{ \App\UnlockedCourse::where('course_id', $course->id)->latest()->first()->created_at }}
