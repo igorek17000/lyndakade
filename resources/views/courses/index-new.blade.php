@@ -261,9 +261,9 @@
                 <span class="my-2 d-inline-block" style="max-height: 39px;overflow-y: hidden;">
                   مدرسین:
 
-                  @foreach ($authors as $index => $author)
+                  {{-- @foreach ($authors as $index => $author)
                     {{ $author->name }} @if (!$loop->last), @endif
-                  @endforeach
+                  @endforeach --}}
                 </span>
               </a>
             </div>
