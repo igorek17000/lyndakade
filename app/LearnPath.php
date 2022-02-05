@@ -70,6 +70,7 @@ class LearnPath extends Model
                     ->orderByRaw("FIELD(id, $ids_ordered)")
                     ->get();
                 $model->_courses = $courses;
+                $model->courses = $courses;
             }
         });
     }
