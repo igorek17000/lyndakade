@@ -80,7 +80,7 @@
 @section('content')
     <style>
     .hero-space {
-        height: 430px !important;
+        height: 450px !important;
     }
     @media (min-width: 426px) {
       .hero-space {
