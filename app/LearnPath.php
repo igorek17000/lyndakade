@@ -150,7 +150,7 @@ class LearnPath extends Model
     public function authors()
     {
         $authors = array();
-        $courses = $this->_courses->with('authors')->get();
+        // $courses = $this->_courses->with('authors')->get();
 
         foreach ($this->_courses as $key => $course) {
         // foreach ($courses as $key => $course) {
