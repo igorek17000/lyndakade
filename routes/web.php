@@ -24,9 +24,7 @@ use TCG\Voyager\Facades\Voyager;
 
 Auth::routes();
 
-Route::get('/tests', function () {
-    return response()->view('test', []);
-});
+Route::get('/tests', 'HomeController@test_url')->name('test.url');
 
 Route::get('/faq', function () {
     return response()->view('faq', []);
