@@ -169,7 +169,7 @@ if (count($course->subjects) > 0) {
                     class="author-thumb">
                     <h5>دوبله کننده</h5>
                     @foreach ($course->users as $user)
-                      <a href="{{ route('dubbed.index', [$user->id]) }}">
+                      <a href="{{ route('dubbed.index', [$user->username]) }}">
                         <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
                           data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
                           height="100">
@@ -329,7 +329,7 @@ if (count($course->subjects) > 0) {
                     class="author-thumb">
                     <h5>Dubbed By</h5>
                     @foreach ($course->users as $user)
-                      <a href="{{ route('dubbed.index', [$user->id]) }}">
+                      <a href="{{ route('dubbed.index', [$user->username]) }}">
                         <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
                           data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
                           height="100">

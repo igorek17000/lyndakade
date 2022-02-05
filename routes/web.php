@@ -34,7 +34,7 @@ Route::get('/faq', function () {
 
 Route::get('/packages', 'PackageController@index')->name('packages.index');
 
-Route::get('/dubbed/{user_id}', 'UserController@dubbed_index')->name('dubbed.index');
+Route::get('/dubbed/{username}', 'UserController@dubbed_index')->name('dubbed.index');
 
 Route::group(
     ['middleware' => 'auth'],

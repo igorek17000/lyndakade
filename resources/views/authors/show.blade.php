@@ -12,7 +12,7 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "headline": "دوبلور {{ $user->name }}",
-        "url": "{{ route('dubbed.index', [$user->id]) }}",
+        "url": "{{ route('dubbed.index', [$user->username]) }}",
         "image": "{{ fromDLHost($user->avatar) }}"
       }
     </script>
@@ -61,7 +61,7 @@
             </div>
           </div>
         @else
-          <link itemprop="url" href="{{ route('dubbed.index', [$user->id]) }}" rel="author">
+          <link itemprop="url" href="{{ route('dubbed.index', [$user->username]) }}" rel="author">
         @endif
         <div class="row author-details">
           @if (isset($author))

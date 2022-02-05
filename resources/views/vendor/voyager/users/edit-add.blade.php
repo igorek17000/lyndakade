@@ -110,6 +110,10 @@
                                 <input type="number" class="form-control" id="dubbed_percent" name="dubbed_percent" value="{{ old('dubbed_percent', $dataTypeContent->dubbed_percent ?? '') }}">
                             </div>
 
+                            <label for="description">Description</label>
+                            <textarea class="form-control" dir="rtl" id="description"
+                            name="description" rows="10">{{ old('description', $dataTypeContent->description ?? '') }}</textarea>
+
                             @php
                             if (isset($dataTypeContent->locale)) {
                                 $selected_locale = $dataTypeContent->locale;

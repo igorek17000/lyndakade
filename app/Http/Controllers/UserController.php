@@ -170,9 +170,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function dubbed_index(Request $request, $user_id)
+    public function dubbed_index(Request $request, $username)
     {
-        $user = User::with('courses')->find($user_id);
+        $user = User::with('courses')->firstWhere(['username' => $username]);
         if (!$user || $user->role_id != 3) {
             return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
         }
