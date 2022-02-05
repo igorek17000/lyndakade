@@ -83,7 +83,7 @@
                 alt="عکس دوبلور {{ $user->name }} - Image of {{ $user->name }}">
             </div>
             <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
-              <h1>درباره مدرس {{ $user->name }}</h1>
+              <h1>درباره دوبلور {{ $user->name }}</h1>
               <p id="author-bio" class="text-justify">
                 {{-- {{ $author->description }} --}}
                 {{-- {!! $author->description !!} --}}
