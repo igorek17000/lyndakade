@@ -164,18 +164,20 @@ if (count($course->subjects) > 0) {
                   @endforeach
                 </div>
 
-                <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
-                  class="author-thumb">
-                  <h5>دوبله کننده</h5>
-                  @foreach ($course->users as $user)
-                    <a href="{{ route('dubbed.index', [$user->id]) }}">
-                      <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
-                        data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
-                        height="100">
-                      <cite>{{ $user->name }}</cite>
-                    </a>
-                  @endforeach
-                </div>
+                @if (count($course->users) > 0)
+                  <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
+                    class="author-thumb">
+                    <h5>دوبله کننده</h5>
+                    @foreach ($course->users as $user)
+                      <a href="{{ route('dubbed.index', [$user->id]) }}">
+                        <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
+                          data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
+                          height="100">
+                        <cite>{{ $user->name }}</cite>
+                      </a>
+                    @endforeach
+                  </div>
+                @endif
               </div>
               <div class="col-sm-7 col-md-6 col-lg-8 course-description" role="contentinfo">
                 <h6 title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
@@ -321,6 +323,21 @@ if (count($course->subjects) > 0) {
                     </a>
                   @endforeach
                 </div>
+
+                @if (count($course->users) > 0)
+                  <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
+                    class="author-thumb">
+                    <h5>Dubbed By</h5>
+                    @foreach ($course->users as $user)
+                      <a href="{{ route('dubbed.index', [$user->id]) }}">
+                        <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
+                          data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
+                          height="100">
+                        <cite>{{ $user->name }}</cite>
+                      </a>
+                    @endforeach
+                  </div>
+                @endif
               </div>
               <div class="col-sm-7 col-md-6 col-lg-8 course-description-english" role="contentinfo" dir="ltr">
                 <h6 title="@php
