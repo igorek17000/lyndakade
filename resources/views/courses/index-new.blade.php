@@ -240,7 +240,7 @@
             <div class="col-md-3">
               <a href="{{ route('learn.paths.show', [$path->slug]) }}">
                 <div style="position: relative;">
-                  <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->img) }}"
+                  <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
                     alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
                     style="border-radius: 5px; max-height: 143.44px;">
                   <span
