@@ -51,7 +51,7 @@ class LearnPath extends Model
 
         static::retrieved(function ($model) {
             $js_courses = json_decode($model->courses);
-            $model->courses = array();
+            // $model->courses = array();
             if ($js_courses) {
                 $res = [];
                 foreach ($js_courses as $c) {
