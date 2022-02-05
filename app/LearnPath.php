@@ -51,7 +51,7 @@ class LearnPath extends Model
 
         static::retrieved(function ($model) {
             $js_courses = json_decode($model->courses);
-            $model->_courses = array();
+            $model->courses = array();
             if ($js_courses) {
                 // foreach ($js_courses as $c) {
                 //     $course_id = $c->id;
@@ -67,10 +67,9 @@ class LearnPath extends Model
                 }
                 $ids_ordered = implode(',', $ids);
                 $courses = Course::whereIn('id', $ids)
-                    ->orderByRaw("FIELD(id, $ids_ordered)")
-                    ->get();
+                    ->orderByRaw("FIELD(id, $ids_ordered)");
                 $model->_courses = $courses;
-                $model->courses = $courses;
+                $model->courses = $courses->get();
             }
         });
     }
