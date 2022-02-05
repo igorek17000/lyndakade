@@ -1,20 +1,39 @@
 @extends('layouts.app')
 @push('meta.in.head')
-  @include('meta::manager',[
-  'image' => fromDLHost($author->img),
-  'title' => 'مدرس ' . $author->name . ' - لیندا کده',
-  'keywords' => get_seo_keywords() . ' , ' . 'مدرس ' . $author->name . ' , author ' . $author->name,
-  'description' => $author->description . ' | ' . get_seo_description(),
-  ])
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "headline": "{{ $author->name }}",
-      "url": "{{ route('authors.show', [$author->slug]) }}",
-      "image": "{{ fromDLHost($author->img) }}"
-    }
-  </script>
+  @if (isset($user))
+    @include('meta::manager',[
+    'image' => fromDLHost($user->avatar),
+    'title' => 'دوبلور ' . $user->name . ' - لیندا کده',
+    'keywords' => get_seo_keywords() . ' , ' . 'دوبلور ' . $user->name . ' , dubbed ' . $user->name,
+    'description' => $user->description . ' | ' . get_seo_description(),
+    ])
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "headline": "دوبلور {{ $user->name }}",
+        "url": "{{ route('dubbed.index', [$user->id]) }}",
+        "image": "{{ fromDLHost($user->avatar) }}"
+      }
+    </script>
+  @else
+    @include('meta::manager',[
+    'image' => fromDLHost($author->img),
+    'title' => 'مدرس ' . $author->name . ' - لیندا کده',
+    'keywords' => get_seo_keywords() . ' , ' . 'مدرس ' . $author->name . ' , author ' . $author->name,
+    'description' => $author->description . ' | ' . get_seo_description(),
+    ])
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "headline": "مدرس {{ $author->name }}",
+        "url": "{{ route('authors.show', [$author->slug]) }}",
+        "image": "{{ fromDLHost($author->img) }}"
+      }
+    </script>
+  @endif
+
 @endpush
 @section('content')
   {{-- <div class="row mx-0 px-0" style="height: 400px; background-color:#fff;"> --}}
@@ -30,28 +49,48 @@
   <div class="container">
     <div class="title-banner">
       <div class="container" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-        <link itemprop="url" href="{{ route('authors.show', [$author->slug]) }}" rel="author">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="current-page-path">
-              <a href="{{ route('authors.index') }}">تمام مدرسان</a>
-              <i class="lyndacon arrow-left"></i>
-              <span>{{ $author->name }}</span>
+        @if (isset($author))
+          <link itemprop="url" href="{{ route('authors.show', [$author->slug]) }}" rel="author">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="current-page-path">
+                <a href="{{ route('authors.index') }}">تمام مدرسان</a>
+                <i class="lyndacon arrow-left"></i>
+                <span>{{ $author->name }}</span>
+              </div>
             </div>
           </div>
-        </div>
+        @else
+          <link itemprop="url" href="{{ route('dubbed.index', [$user->id]) }}" rel="author">
+        @endif
         <div class="row author-details">
-          <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
-            <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($author->img) }}" alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
-          </div>
-          <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
-            <h1>درباره مدرس {{ $author->name }}</h1>
-            <p id="author-bio" class="text-justify">
-              {{-- {{ $author->description }} --}}
-              {{-- {!! $author->description !!} --}}
-              {!! nl2br(e($author->description)) !!}
-            </p>
-          </div>
+          @if (isset($author))
+            <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
+              <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($author->img) }}"
+                alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
+              <h1>درباره مدرس {{ $author->name }}</h1>
+              <p id="author-bio" class="text-justify">
+                {{-- {{ $author->description }} --}}
+                {{-- {!! $author->description !!} --}}
+                {!! nl2br(e($author->description)) !!}
+              </p>
+            </div>
+          @else
+            <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
+              <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($user->avatar) }}"
+                alt="عکس دوبلور {{ $user->name }} - Image of {{ $user->name }}">
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
+              <h1>درباره مدرس {{ $user->name }}</h1>
+              <p id="author-bio" class="text-justify">
+                {{-- {{ $author->description }} --}}
+                {{-- {!! $author->description !!} --}}
+                {!! nl2br(e($user->description)) !!}
+              </p>
+            </div>
+          @endif
         </div>
       </div>
     </div>
@@ -81,12 +120,13 @@
                   @endforeach
                 </ul>
                 @if ($hasMore)
-                    <div class="col-12 mb-4 mt-2">
-                        <button class="btn btn-light load-more w-100" coursetype="button" style="margin: auto;">
-                        <span class="text-t">نمایش موارد بیشتر</span>
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="margin: auto;"></span>
-                        </button>
-                    </div>
+                  <div class="col-12 mb-4 mt-2">
+                    <button class="btn btn-light load-more w-100" coursetype="button" style="margin: auto;">
+                      <span class="text-t">نمایش موارد بیشتر</span>
+                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                        style="margin: auto;"></span>
+                    </button>
+                  </div>
                 @endif
               </div>
             </div>

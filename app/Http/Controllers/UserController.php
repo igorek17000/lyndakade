@@ -169,4 +169,40 @@ class UserController extends Controller
             'total_balance' => $total_balance,
         ]);
     }
+
+    public function dubbed_index(Request $request, $user_id)
+    {
+        $user = User::with('courses')->find($user_id);
+        if (!$user || $user->role_id != 3) {
+            return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
+        }
+
+        $courses = $user->courses;
+        if ($request->ajax()) {
+            $res = [
+                'courses' => [],
+                'hasMore' => false,
+            ];
+            if (count($courses) > 0) {
+                $page = $request->get('page', null);
+                if (!$page) {
+                    return $res;
+                }
+                if (intval($courses->count() / 20) + 1 < intval($page)) {
+                    return $res;
+                }
+                foreach ($courses->forPage(intval($page), 20) as $course) {
+                    $res['courses'][] = $this->get_course_timeline($course);
+                }
+                $res['hasMore'] = intval($courses->count() / 20) + 1 >= intval($page) + 1;
+                return $res;
+            }
+        }
+        return view('authors.show', [
+            'user' => $user,
+            'courses' => $courses->take(20),
+            'total_courses' => count($courses),
+            'hasMore' => count($courses) > 20
+        ]);
+    }
 }
