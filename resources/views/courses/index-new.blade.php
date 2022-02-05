@@ -256,9 +256,9 @@
                   style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
                   {{ $path->titleEng }}
                 </span>
-                <br />
+                {{-- <br />
                 <span class="tile-heading py-2">تعداد دروس
-                  {{ nPersian(count(js_to_courses($path->_courses))) }}</span>
+                  {{ nPersian(count(js_to_courses($path->_courses))) }}</span> --}}
                 <br />
                 <span class="my-2 d-inline-block" style="max-height: 39px;overflow-y: hidden;">
                   مدرسین:
