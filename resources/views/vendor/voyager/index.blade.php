@@ -124,7 +124,7 @@
                       $paids = \App\Paid::orderBy('totalprice', 'desc')
                           ->select('*', DB::raw('count(*) as total'), DB::raw('sum(price) as totalprice'))
                           ->groupBy('user_id')
-                          ->limit(10)
+                          ->limit(20)
                           ->get();
                     @endphp
                     @foreach ($paids as $index => $paid)
@@ -201,7 +201,7 @@
                           ->groupBy('paids.item_id')
                           ->orderBy('total', 'desc')
                           ->whereNotNull('paids.item_id')
-                          ->take(15)
+                          ->take(20)
                           ->get();
                     @endphp
                     @foreach ($courses as $index => $course)
@@ -242,7 +242,7 @@
                           ->groupBy('unlocked_courses.course_id')
                           ->orderBy('total', 'desc')
                           ->whereNotNull('unlocked_courses.course_id')
-                          ->take(15)
+                          ->take(20)
                           ->get();
                     @endphp
                     @foreach ($courses as $index => $course)
