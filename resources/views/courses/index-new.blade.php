@@ -243,8 +243,7 @@
                   <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
                     alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
                     style="border-radius: 5px; max-height: 143.44px;">
-                  <span
-                    style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;background-color: #ccc;border-radius: 3px 3px 5px 3px;padding: 1px 2px 0 2px;border: 2px solid #fff700;font-weight: 600;">
+                  <span style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
                     {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
                   </span>
                 </div>
