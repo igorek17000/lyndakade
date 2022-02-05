@@ -244,8 +244,8 @@
                     alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
                     style="border-radius: 5px; max-height: 143.44px;">
                   <span
-                    style="width: 30px; text-align: center; position: absolute; right: 0; bottom: 0; background-color: #ccc; border-radius: 3px 3px 5px 3px; padding: 2px 2px 0 2px;">
-                    {{ $path->durationHours() + 1 }}h
+                    style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;background-color: #ccc;border-radius: 3px 3px 5px 3px;padding: 1px 2px 0 2px;border: 2px solid #fff700;font-weight: 600;">
+                    {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
                   </span>
                 </div>
                 <span class="mt-2 d-inline-block pr-2"
@@ -257,6 +257,9 @@
                   style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
                   {{ $path->titleEng }}
                 </span>
+                <br />
+                <span class="tile-heading py-2">تعداد دروس
+                  {{ nPersian(count(js_to_courses($path->_courses))) }}</span>
                 <br />
                 <span class="my-2 d-inline-block" style="max-height: 39px;overflow-y: hidden;">
                   مدرسین:
