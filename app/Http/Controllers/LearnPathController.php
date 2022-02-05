@@ -72,25 +72,25 @@ class LearnPathController extends Controller
         $path = LearnPath::firstWhere('slug', $learn_path_slug);
         if ($path) {
 
-            // $view = new \App\View(['type' => 2, 'item_id' => $path->id]);
-            // $view->save();
-            $authors = array();
+            // // $view = new \App\View(['type' => 2, 'item_id' => $path->id]);
+            // // $view->save();
+            // $authors = array();
 
-            $courses = $path->_courses->with('authors')->get();
+            // $courses = $path->_courses->with('authors')->get();
 
-            // foreach ($path->_courses as $key => $course) {
-            foreach ($courses as $key => $course) {
-                foreach ($course->authors as $author) {
-                    array_push($authors, $author->id);
-                }
-            }
-            $authors = Author::find($authors);
-            $authors = array_values($authors->all());
+            // // foreach ($path->_courses as $key => $course) {
+            // foreach ($courses as $key => $course) {
+            //     foreach ($course->authors as $author) {
+            //         array_push($authors, $author->id);
+            //     }
+            // }
+            // $authors = Author::find($authors);
+            // $authors = array_values($authors->all());
             return view('learn_paths.show', [
                 'path' => $path,
                 // 'courses' => $path->_courses,
-                'courses' => $courses,
-                'authors' => $authors,
+                'courses' => $path->courses,
+                'authors' => $path->authors(),
                 'path_state' => get_learn_path_state($path),
             ]);
         }

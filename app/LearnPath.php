@@ -145,6 +145,22 @@ class LearnPath extends Model
         return $res;
     }
 
+    public function authors()
+    {
+        $authors = array();
+        $courses = $this->_courses->with('authors')->get();
+
+        // foreach ($path->_courses as $key => $course) {
+        foreach ($courses as $key => $course) {
+            foreach ($course->authors as $author) {
+                array_push($authors, $author->id);
+            }
+        }
+        $authors = Author::find($authors);
+        $authors = array_values($authors->all());
+        return $authors;
+    }
+
     public function getTableColumns()
     {
         return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
