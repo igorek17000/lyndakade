@@ -568,7 +568,7 @@
             <a class="nav-link p-md-0" id="cart-list" data-toggle="dropdown" role="button" aria-expanded="false">
               سبد خرید
             </a>
-            <div class="dropdown-menu dropdown-cart dropdown-menu-center p-1 text-center" role="menu"
+            <div class="dropdown-menu dropdown-cart dropdown-menu-left p-1 text-center" role="menu"
               id="cart-list-item" style="width: 400px!important;color: white;">
               @include('carts.partials._cart_list')
             </div>

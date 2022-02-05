@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-test')
 @push('meta.in.head')
   <link rel="canonical" href="https://lyndakade.ir">
   <link rel="alternate" hreflang="fa" href="https://lyndakade.ir">
