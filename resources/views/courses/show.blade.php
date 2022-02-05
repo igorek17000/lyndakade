@@ -33,7 +33,7 @@ if (count($course->subjects) > 0) {
       "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
       "description": "{{ $course->descriptionEng }} - {{ $course->description }}",
       "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
-      "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm' }}",
+      "timeRequired": "{{ $course->durationHours > 0? $course->durationHours . 'h ' . $course->durationMinutes . 'm': $course->durationMinutes . 'm' }}",
       "provider": [
         @foreach ($course->authors as $author)
           {
@@ -51,20 +51,20 @@ if (count($course->subjects) > 0) {
   @csrf
   <div class="row mx-0 justify-content-center">
     <aside class="col-md-10">
-      <div class="section-module"  itemscope itemtype="http://schema.org/Course">
+      <div class="section-module" itemscope itemtype="http://schema.org/Course">
         {{-- <div class="current-page-path">
           <a href="{{ route('root.home') }}"><span>صفحه اصلی</span></a>
           <i class="lyndacon arrow-left"></i>
           <span>{{ $course->title }}</span>
         </div> --}}
-        <meta itemprop="image" content="{{ fromDLHost($course->img) }}"/>
+        <meta itemprop="image" content="{{ fromDLHost($course->img) }}" />
 
-        <meta itemprop="name" content="{{ $course->title  }}" lang="fa"/>
-        <meta itemprop="name" content="{{ $course->titleEng  }}" lang="en"/>
-        <meta itemprop="url" content="{{ courseURL($course)  }}"/>
-        <meta itemprop="video" content="{{ fromDLHost($course->previewFile)  }}"/>
-        <meta itemprop="description" content="{{ $course->description  }}" lang="fa"/>
-        <meta itemprop="description" content="{{ $course->descriptionEng  }}" lang="en"/>
+        <meta itemprop="name" content="{{ $course->title }}" lang="fa" />
+        <meta itemprop="name" content="{{ $course->titleEng }}" lang="en" />
+        <meta itemprop="url" content="{{ courseURL($course) }}" />
+        <meta itemprop="video" content="{{ fromDLHost($course->previewFile) }}" />
+        <meta itemprop="description" content="{{ $course->description }}" lang="fa" />
+        <meta itemprop="description" content="{{ $course->descriptionEng }}" lang="en" />
 
         <h1 class="panel-title" style="font-size: 1em;">
           <span class="course-title" itemprop="name" lang="fa">
@@ -157,9 +157,22 @@ if (count($course->subjects) > 0) {
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img src="#" class="lazyload" width="100" height="100"
-                        data-src="{{ fromDLHost($author->img) }}"
+                        data-src="{{ fromDLHost($author->img) }}" style="border-radius: 10px;"
                         alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
                       <cite>{{ $author->name }}</cite>
+                    </a>
+                  @endforeach
+                </div>
+
+                <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
+                  class="author-thumb">
+                  <h5>دوبله کننده</h5>
+                  @foreach ($course->users as $user)
+                    <a href="{{ route('dubbed.index', [$user->id]) }}">
+                      <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
+                        data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
+                        height="100">
+                      <cite>{{ $user->name }}</cite>
                     </a>
                   @endforeach
                 </div>
@@ -266,7 +279,7 @@ if (count($course->subjects) > 0) {
                 <div class="course-info-stat-cont m-0 mb-2 w-100 text-left" dir="ltr">
                   <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
                     @if (get_course_price($course->price) != $course->price)
-                      <del  style="color: #f44">
+                      <del style="color: #f44">
                         {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
                       </del>
                       <br>
@@ -302,7 +315,7 @@ if (count($course->subjects) > 0) {
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img itemprop="image" src="#" class="lazyload" width="100" height="100"
-                        data-src="{{ fromDLHost($author->img) }}"
+                        data-src="{{ fromDLHost($author->img) }}" style="border-radius: 10px;"
                         alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
                       <cite>{{ $author->name }}</cite>
                     </a>
@@ -413,7 +426,7 @@ if (count($course->subjects) > 0) {
                     @endif
                   </p>
                   <ul class="exercise-files-popover">
-                    @if ($course->courseFile && json_decode($course->courseFile)!= null)
+                    @if ($course->courseFile && json_decode($course->courseFile) != null)
                       @foreach (json_decode($course->courseFile) as $file)
                         <li role="presentation">
                           <a role="link"
@@ -439,7 +452,7 @@ if (count($course->subjects) > 0) {
                       @endforeach
                     @endif
 
-                    @if ($course->exerciseFile && json_decode($course->exerciseFile)!= null)
+                    @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
                       @php
                         $idx = 0;
                       @endphp
@@ -449,7 +462,7 @@ if (count($course->subjects) > 0) {
                         @endphp
                         <li role="presentation">
                           <a role="link"
-                            href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
+                            href="{{ route('courses.download', [$course->id,hash('md5', 'exFiles') => hash('sha256', auth()->id()),'filename' => $file->original_name]) }}">
                             <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                             <span>
                               {{ prepare_course_file_name($file->original_name) }}
@@ -471,7 +484,7 @@ if (count($course->subjects) > 0) {
                       @endforeach
                     @endif
 
-                    @if ($course->persianSubtitleFile && json_decode($course->persianSubtitleFile)!= null)
+                    @if ($course->persianSubtitleFile && json_decode($course->persianSubtitleFile) != null)
                       @foreach (json_decode($course->persianSubtitleFile) as $file)
 
                         <li role="presentation">
@@ -503,7 +516,8 @@ if (count($course->subjects) > 0) {
                 </div>
                 <div class="col-lg-10">
                   @if (!auth()->check())
-                    <p class="text-center" dir="rtl">برای دانلود، لطفا <a href="{{ route('login', ['returnUrl'=>request()->url()]) }}">وارد حساب کاربری</a>
+                    <p class="text-center" dir="rtl">برای دانلود، لطفا <a
+                        href="{{ route('login', ['returnUrl' => request()->url()]) }}">وارد حساب کاربری</a>
                       شوید.</p>
                   @else
                     <p></p>
@@ -519,7 +533,7 @@ if (count($course->subjects) > 0) {
                     @endif
                   </p>
                   <div class="col-lg-10">
-                    @if ($course->courseFile && json_decode($course->courseFile)!= null)
+                    @if ($course->courseFile && json_decode($course->courseFile) != null)
                       @foreach (json_decode($course->courseFile) as $file)
                         <div>
                           <span>
@@ -534,7 +548,7 @@ if (count($course->subjects) > 0) {
                         </div>
                       @endforeach
                     @endif
-                    @if ($course->exerciseFile && json_decode($course->exerciseFile)!= null)
+                    @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
                       @foreach (json_decode($course->exerciseFile) as $file)
                         <div>
                           <span>

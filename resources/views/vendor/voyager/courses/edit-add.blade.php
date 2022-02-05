@@ -134,7 +134,7 @@ $add = is_null($dataTypeContent->getKey());
                 <input type="text" class="form-control" id="sendMessageToDemandUsers" name="sendMessageToDemandUsers">
             </div>
 
-              @if (!$edit)
+              @if ($edit)
                 <div class="form-group col-md-12">
                   <label for="sendMessageToPaidUsers">
                     <input class="form-check-input" id="sendMessageToPaidUsers" type="checkbox"

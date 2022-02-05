@@ -34,13 +34,14 @@ Route::get('/faq', function () {
 
 Route::get('/packages', 'PackageController@index')->name('packages.index');
 
+Route::get('/dubbed/{user_id}', 'HomeController@dubbed_index')->name('dubbed.index');
+
 Route::group(
     ['middleware' => 'auth'],
     function () {
         Route::get('/packages/unlockcourses', 'PackageController@unlock_courses')->name('packages.unlock_courses');
         Route::get('/packages/payment', 'PackageController@payment')->name('packages.payment');
         Route::get('/packages/callback', 'PackageController@callback')->name('packages.callback');
-
 
         Route::get('/user/dubbed-courses', 'UserController@dubbedCourses')->name('users.dubbed-courses');
     }
