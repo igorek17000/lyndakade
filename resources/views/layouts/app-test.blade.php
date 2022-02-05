@@ -1,5 +1,5 @@
 @php
-session(['redirectToAfterLogin' => url()->previous()]);
+//session(['redirectToAfterLogin' => url()->previous()]);
 @endphp
 <!DOCTYPE html>
 <html dir="rtl" lang="fa">
@@ -556,10 +556,17 @@ session(['redirectToAfterLogin' => url()->previous()]);
             <a class="nav-link px-md-1" href="{{ route('root.contact.us') }}">تماس با ما</a>
           </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0" role="search" action="{{ route('search') }}">
+          <input type="search" name="q" class="form-control mr-sm-2" role="combobox" value="{{ $q ?? '' }}"
+            style="font-size: 13px;border: 0;text-align: right; /*padding: 0;*/ padding-right: 5px;min-width: 320px;border-radius: 5px;"
+            placeholder="نرم افزار یا مهارتی که میخواهید یاد بگیرید را جستجو کنید">
+
+          {{-- <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">جستجو</button> --}}
+        </form>
         @if (Auth::check())
-          <div class="dropdown">
+          <div class="dropdown pr-md-2">
             <a class="nav-link p-md-0" id="cart-list" data-toggle="dropdown" role="button" aria-expanded="false">
-              <img class="justify-content-center" src="{{ asset('smart-cart.png') }}" width="18" height="18">
+              سبد خرید
             </a>
             <div class="dropdown-menu dropdown-cart dropdown-menu-center p-1 text-center" role="menu"
               id="cart-list-item" style="width: 400px!important;color: white;">
@@ -585,6 +592,11 @@ session(['redirectToAfterLogin' => url()->previous()]);
                   <a class="dropdown-item" href="{{ route('courses.mycourses') }}">دروس خریداری شده</a>
                 </li>
               @endif
+              @if (Auth::user()->role_id == 3)
+                <li>
+                  <a class="dropdown-item" href="{{ route('users.dubbed-courses') }}">مدیریت دوبله</a>
+                </li>
+              @endif
               <li>
                 <a class="dropdown-item" href="{{ route('my-profile') }}">{{ __('msg.Profile') }}</a>
               </li>
@@ -600,8 +612,14 @@ session(['redirectToAfterLogin' => url()->previous()]);
             </ul>
           </div>
         @else
-          <div class="nav-item">
-            <a class="nav-link btn btn-outline-primary" href="{{ route('login', ['returnUrl'=>request()->url()]) }}">{{ __('msg.Login') }}</a>
+          <div class="nav-item pr-md-2">
+              @php
+                $login_link = route('login', ['returnUrl'=>request()->url()]);
+                if (request()->has('returnUrl'))
+                    $login_link = route('login', ['returnUrl'=>request()->get('returnUrl')]);
+
+              @endphp
+            <a class="nav-link btn btn-outline-primary" href="{{ $login_link }}">{{ __('msg.Login') }}</a>
           </div>
           @if (Route::has('register'))
             <div class="nav-item">
@@ -610,13 +628,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
             </div>
           @endif
         @endif
-        <form class="form-inline my-2 my-lg-0" role="search" action="{{ route('search') }}">
-          <input type="search" name="q" class="form-control mr-sm-2" role="combobox" value="{{ $q ?? '' }}"
-            style="font-size: 13px;border: 0;text-align: right; /*padding: 0;*/ padding-right: 5px;min-width: 320px;border-radius: 5px;"
-            placeholder="نرم افزار یا مهارتی که میخواهید یاد بگیرید را جستجو کنید">
-
-          {{-- <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">جستجو</button> --}}
-        </form>
       </div>
     </nav>
 
@@ -756,7 +767,6 @@ session(['redirectToAfterLogin' => url()->previous()]);
   !function(){var i="Xj7nlW",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
 </script>
 <!---end GOFTINO code--->
-
   @if (Session::has('message'))
     <script>
       toastr.options.rtl = true;

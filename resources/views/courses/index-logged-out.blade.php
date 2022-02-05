@@ -78,6 +78,28 @@
   </script>
 @endpush
 @section('content')
+    <style>
+    .hero-space {
+        height: 430px !important;
+    }
+    @media (min-width: 426px) {
+      .hero-space {
+        height: 300px !important;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .hero-space {
+        height: 310px !important;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .hero-space {
+        height: 260px !important;
+      }
+    }
+    </style>
   <div class="row m-0 home-page">
     <div class="col-12 hero-space">
       <div class="hero-text" style="background-color: rgba(255, 255, 255, 0.5) !important;">

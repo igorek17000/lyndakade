@@ -53,7 +53,6 @@
                     <td class="text-center hidden-xs">{{ $course->course_total_unlocked }}</td>
                     <td class="text-center hidden-xs">{{ $course->balance_unlocked }} تومان</td>
 
-
                     <td class="text-center show-xs">{{ $course->balance_unlocked + $course->balance_purchase }} تومان</td>
 
                   </tr>

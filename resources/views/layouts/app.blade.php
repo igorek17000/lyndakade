@@ -556,10 +556,17 @@
             <a class="nav-link px-md-1" href="{{ route('root.contact.us') }}">تماس با ما</a>
           </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0" role="search" action="{{ route('search') }}">
+          <input type="search" name="q" class="form-control mr-sm-2" role="combobox" value="{{ $q ?? '' }}"
+            style="font-size: 13px;border: 0;text-align: right; /*padding: 0;*/ padding-right: 5px;min-width: 320px;border-radius: 5px;"
+            placeholder="نرم افزار یا مهارتی که میخواهید یاد بگیرید را جستجو کنید">
+
+          {{-- <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">جستجو</button> --}}
+        </form>
         @if (Auth::check())
-          <div class="dropdown">
+          <div class="dropdown pr-md-2">
             <a class="nav-link p-md-0" id="cart-list" data-toggle="dropdown" role="button" aria-expanded="false">
-              <img class="justify-content-center" src="{{ asset('smart-cart.png') }}" width="18" height="18">
+              سبد خرید
             </a>
             <div class="dropdown-menu dropdown-cart dropdown-menu-center p-1 text-center" role="menu"
               id="cart-list-item" style="width: 400px!important;color: white;">
@@ -605,7 +612,7 @@
             </ul>
           </div>
         @else
-          <div class="nav-item">
+          <div class="nav-item pr-md-2">
               @php
                 $login_link = route('login', ['returnUrl'=>request()->url()]);
                 if (request()->has('returnUrl'))
@@ -621,13 +628,6 @@
             </div>
           @endif
         @endif
-        <form class="form-inline my-2 my-lg-0" role="search" action="{{ route('search') }}">
-          <input type="search" name="q" class="form-control mr-sm-2" role="combobox" value="{{ $q ?? '' }}"
-            style="font-size: 13px;border: 0;text-align: right; /*padding: 0;*/ padding-right: 5px;min-width: 320px;border-radius: 5px;"
-            placeholder="نرم افزار یا مهارتی که میخواهید یاد بگیرید را جستجو کنید">
-
-          {{-- <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">جستجو</button> --}}
-        </form>
       </div>
     </nav>
 
