@@ -7,6 +7,7 @@ use App\LearnPath;
 use App\Mail\CourseAdded;
 use App\Mail\CourseUpdatedMailer;
 use App\Mail\LearnPathAdded;
+use App\Mail\LearnPathUpdate;
 use App\Paid;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
@@ -52,6 +53,23 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
 
         event(new BreadDataUpdated($dataType, $data));
 
+        $path = LearnPath::find($data->id);
+        if ($path->users) {
+            foreach ($path->users as $user) {
+                $email = $user->email;
+                if ($email)
+                    Mail::to($email)->send(new LearnPathUpdate($path));
+            }
+        }
+
+        if ($request->get('sendMessageToPaidUsers', false)) {
+            $paids = Paid::where('type', '2')->where('item_id', $data->id)->get();
+            foreach ($paids as $paid) {
+                $email = $paid->user->email;
+                if ($email)
+                    Mail::to($email)->send(new LearnPathUpdate($path));
+            }
+        }
         if (auth()->user()->can('browse', app($dataType->model_name))) {
             $redirect = redirect()->route("voyager.{$dataType->slug}.index");
         } else {
