@@ -128,8 +128,8 @@ function number_of_courses_in_cart($carts)
         if ($cart->course) {
             $res += 1;
         } else if ($cart->learn_path) {
-            // foreach (js_to_courses($cart->learn_path->_courses) as $c) {
-            foreach (js_to_courses($cart->learn_path->courses) as $c) {
+            foreach (js_to_courses($cart->learn_path->_courses) as $c) {
+            // foreach (js_to_courses($cart->learn_path->courses) as $c) {
                 $res += 1;
             }
         }
@@ -389,8 +389,8 @@ function get_course_state($course)
             } else {
                 $learn_path = LearnPath::find($paid->item_id);
                 if ($learn_path) {
-                    // foreach (js_to_courses($learn_path->_courses) as $current_course) {
-                    foreach (js_to_courses($learn_path->courses) as $current_course) {
+                    foreach (js_to_courses($learn_path->_courses) as $current_course) {
+                    // foreach (js_to_courses($learn_path->courses) as $current_course) {
                         if ($current_course->id == $course->id) {
                             $found = true;
                             break;

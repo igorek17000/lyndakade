@@ -53,8 +53,8 @@
                                          ">
                   <span class="tile-name">{{ $path->title }}</span>
                   <br>
-                  {{-- <span class="tile-heading">تعداد دروس {{ count($path->_courses) }}</span> --}}
-                  <span class="tile-heading">تعداد دروس {{ count($path->courses) }}</span>
+                  <span class="tile-heading">تعداد دروس {{ count($path->_courses) }}</span>
+                  {{-- <span class="tile-heading">تعداد دروس {{ count($path->courses) }}</span> --}}
                 </a>
               </div>
             @endforeach

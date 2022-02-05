@@ -53,24 +53,26 @@ class LearnPath extends Model
             $js_courses = json_decode($model->courses);
             $model->courses = array();
             if ($js_courses) {
-                // foreach ($js_courses as $c) {
-                //     $course_id = $c->id;
-                //     $course = Course::find($course_id);
-                //     if ($course) {
-                //         array_push($res, $course);
-                //     }
-                // }
-
-                $ids = [];
+                $res = [];
                 foreach ($js_courses as $c) {
-                    array_push($ids, $c->id);
+                    $course_id = $c->id;
+                    $course = Course::find($course_id);
+                    if ($course) {
+                        array_push($res, $course);
+                    }
                 }
-                $ids_ordered = implode(',', $ids);
-                $courses = Course::whereIn('id', $ids)
-                    ->orderByRaw("FIELD(id, $ids_ordered)");
-                $model->_courses = $courses;
-                $model->courses = $courses->get();
+
+                // $ids = [];
+                // foreach ($js_courses as $c) {
+                //     array_push($ids, $c->id);
+                // }
+                // $ids_ordered = implode(',', $ids);
+                // $courses = Course::whereIn('id', $ids)
+                //     ->orderByRaw("FIELD(id, $ids_ordered)")->get();
+                $model->_courses = $res;
+                // $model->courses = $courses->get();
             }
+            // $model->_courses = $courses;
         });
     }
 
@@ -150,8 +152,8 @@ class LearnPath extends Model
         $authors = array();
         $courses = $this->_courses->with('authors')->get();
 
-        // foreach ($path->_courses as $key => $course) {
-        foreach ($courses as $key => $course) {
+        foreach ($this->_courses as $key => $course) {
+        // foreach ($courses as $key => $course) {
             foreach ($course->authors as $author) {
                 array_push($authors, $author->id);
             }
