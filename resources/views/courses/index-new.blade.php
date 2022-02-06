@@ -279,7 +279,8 @@
       <h5 class="mt-3 ">
         دوره های آموزشی
       </h5>
-      <button class="preview-course-button"
+      <button
+       type="button" class="preview-course-button" data-toggle="modal" data-target="#preview-modal"
         data-src="https://dl.lyndakade.ir/courses/2014/04/Drawing%20Foundations%20-%20Fundamentals/preview.mp4"
         data-title="نام دوره">
         پیشنمایش
