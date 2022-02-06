@@ -758,7 +758,7 @@
 
         $('#preview-modal-title').text(t.target.getAttribute('data-title'));
 
-        $('#preview-modal-body video').setAttribute('src', video_url);
+        document.querySelector('#preview-modal-body video').setAttribute('src', video_url);
 
         $('#preview-modal').modal('toggle');
 
