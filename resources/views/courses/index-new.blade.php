@@ -279,10 +279,8 @@
       <h5 class="mt-3 ">
         دوره های آموزشی
       </h5>
-      <button
-       type="button" class="preview-course-button" data-toggle="modal" data-target="#preview-modal"
-        data-src="https://dl.lyndakade.ir/courses/2014/04/Drawing%20Foundations%20-%20Fundamentals/preview.mp4"
-        data-title="نام دوره">
+      <button type="button" class="preview-course-button" data-toggle="modal" data-target="#preview-modal"
+        data-src="https://dl.lyndakade.ir/courses/2014/04/Drawing%20Foundations%20-%20Fundamentals/preview.mp4">
         پیشنمایش
       </button>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
@@ -649,19 +647,9 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content text-center">
-        <div class="modal-header">
-          <h5 class="modal-title" id="preview-modal-title">نتیجه جستجو</h5>
-          <button type="button" class="close ml-0 mr-auto" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
         <div class="modal-body" id="preview-modal-body" style="font-size: 1.5rem;">
           <video class="w-100" src="" controls aria-controls="true"></video>
         </div>
-        {{-- <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div> --}}
       </div>
     </div>
   </div>
@@ -759,27 +747,12 @@
     });
 
     $(function() {
-    //   $(document).on("click", ".preview-course-button", function(t) {
-    //     //     video_url = t.target.getAttribute('data-src');
-
-    //     //     $('#preview-modal-title').text(t.target.getAttribute('data-title'));
-
-    //     //     document.querySelector('#preview-modal-body video').setAttribute('src', video_url);
-    //     //     document.querySelector('#preview-modal-body video').play();
-    //     $('#preview-modal').modal('toggle');
-
-    //   });
       $('#preview-modal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget);
-        console.log(button);
-        var video_url = button.data('src');
-        $('#preview-modal-title').text(button.data('title'));
-        document.querySelector('#preview-modal-body video').setAttribute('src', video_url);
+        // $('#preview-modal-title').text(button.data('title'));
+        document.querySelector('#preview-modal-body video').setAttribute('src', button.data('src'));
         document.querySelector('#preview-modal-body video').play();
-        // var modal = $(this)
-        // modal.find('.modal-title').text('New message to ' + recipient)
-        // modal.find('.modal-body input').val(recipient)
-      })
+      });
       $('#preview-modal').on('hidden.bs.modal', function() {
         document.querySelector('#preview-modal-body video').setAttribute('src', '');
       });
