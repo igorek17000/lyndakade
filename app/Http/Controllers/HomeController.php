@@ -540,7 +540,7 @@ class HomeController extends Controller
         $popular_courses = Course::with('authors')->orderBy('views', 'DESC')
         ->limit(4)->get();
 
-        $paths = LearnPath::inRandomOrder()->limit(6)->get();
+        $paths = LearnPath::inRandomOrder()->limit(8)->get();
 
         $libs = Library::orderBy('id', 'asc')->get();
         $page_tabs = [];

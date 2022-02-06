@@ -241,7 +241,7 @@
     <div class="container my-3 photo-gallery">
       <h2>مسیرهای آموزشی</h2>
       <div class="row d-flex">
-        @foreach ($paths as $path)
+        @foreach ($paths->take(6) as $path)
           <div class="col-12 col-md-4 col-lg-4 mb-4 mt-2" itemscope itemtype="http://schema.org/Course">
             <div class="card h-100  border-light  bg-light shadow">
               <a href="{{ route('learn.paths.show', [$path->slug]) }}"
