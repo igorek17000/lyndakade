@@ -174,8 +174,7 @@
       ]
       as $item)
             <div class="form-group row">
-              <label for="{{ $item['key'] }}"
-                class="col-md-4 col-form-label text-md-left">{{ $item['title'] }}</label>
+              <label for="{{ $item['key'] }}" class="col-md-4 col-form-label text-md-left">{{ $item['title'] }}</label>
               <div class="col-md-8 col-lg-6">
                 <input id="{{ $item['key'] }}" type="{{ $item['type'] }}" class="form-control"
                   name="{{ $item['key'] }}" value="{{ $user ? $user->{$item['key']} : $item['key'] }}" required>
@@ -189,6 +188,13 @@
               </div>
             </div>
           @endforeach
+          @if (auth()->user()->role_id == 3)
+            <div class="form-group row">
+              <label for="description" class="col-md-4 col-form-label text-md-left">توضیحات</label>
+              <textarea class="form-control" id="description" name="description"
+                rows="10">{{ $user ? $user->description : '' }}</textarea>
+            </div>
+          @endif
           <div class="form-group row">
             <button class="btn btn-primary" type="submit">ثبت تغییرات</button>
           </div>
@@ -243,7 +249,6 @@
         }
       });
     });
-
   </script>
 @endsection
 
@@ -270,6 +275,5 @@
         }
       };
     });
-
   </script>
 @endpush
