@@ -755,7 +755,7 @@
         console.log(t.target);
         $('#preview-modal-title').text('');
 
-        $('#form-link-modal-body').text('خطای پیش بینی نشده رخ داده است، لطفا دوباره تلاش کنید.');
+        $('#preview-modal-body').text('خطای پیش بینی نشده رخ داده است، لطفا دوباره تلاش کنید.');
 
         $('#preview-modal').modal('toggle');
 
