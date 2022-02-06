@@ -229,7 +229,7 @@
   <div class="row card mx-0 pb-3">
     <div class="container">
       <h5 class="my-0 mt-2"> مسیرهای آموزشی
-        <a class="btn btn-primary btn-xs my-2 mr-3" href="{{ route('learn.paths.index') }}"
+        <a class="btn btn-primary btn-xs mr-3" href="{{ route('learn.paths.index') }}"
           style="max-width: 110px;">مشاهده بیشتر</a>
       </h5>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
