@@ -751,9 +751,10 @@
 
     $(function() {
       $(document).on("click", ".preview-course-button", function(t) {
-        $('#preview-modal').toggle('modal');
+        $('#preview-modal').modal('toggle');
       });
     });
   </script>
 
 @endsection
+    
