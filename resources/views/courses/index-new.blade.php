@@ -755,16 +755,26 @@
     });
 
     $(function() {
-      $(document).on("click", ".preview-course-button", function(t) {
-        video_url = t.target.getAttribute('data-src');
+    //   $(document).on("click", ".preview-course-button", function(t) {
+    //     video_url = t.target.getAttribute('data-src');
 
-        $('#preview-modal-title').text(t.target.getAttribute('data-title'));
+    //     $('#preview-modal-title').text(t.target.getAttribute('data-title'));
 
+    //     document.querySelector('#preview-modal-body video').setAttribute('src', video_url);
+    //     document.querySelector('#preview-modal-body video').play();
+    //     $('#preview-modal').modal('toggle');
+
+    //   });
+      $('#preview-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var video_url = button.data('src');
+        $('#preview-modal-title').text(button.data('title'));
         document.querySelector('#preview-modal-body video').setAttribute('src', video_url);
         document.querySelector('#preview-modal-body video').play();
-        $('#preview-modal').modal('toggle');
-
-      });
+        // var modal = $(this)
+        // modal.find('.modal-title').text('New message to ' + recipient)
+        // modal.find('.modal-body input').val(recipient)
+    })
       $('#preview-modal').on('hidden.bs.modal', function() {
         document.querySelector('#preview-modal-body video').setAttribute('src', '');
       });
