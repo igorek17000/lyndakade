@@ -276,11 +276,14 @@
 
   <div class="row card mx-0 mt-4 pb-4">
     <div class="container">
-      <h5 class="mt-3 preview-course-button"
-        data-src="https://dl.lyndakade.ir/courses/2014/04/Drawing%20Foundations%20-%20Fundamentals/preview.mp4"
-        data-title="نام دوره">
+      <h5 class="mt-3 ">
         دوره های آموزشی
       </h5>
+      <button class="preview-course-button"
+        data-src="https://dl.lyndakade.ir/courses/2014/04/Drawing%20Foundations%20-%20Fundamentals/preview.mp4"
+        data-title="نام دوره">
+        پیشنمایش
+      </button>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
@@ -756,16 +759,16 @@
 
     $(function() {
       $(document).on("click", ".preview-course-button", function(t) {
-    //     video_url = t.target.getAttribute('data-src');
+        //     video_url = t.target.getAttribute('data-src');
 
-    //     $('#preview-modal-title').text(t.target.getAttribute('data-title'));
+        //     $('#preview-modal-title').text(t.target.getAttribute('data-title'));
 
-    //     document.querySelector('#preview-modal-body video').setAttribute('src', video_url);
-    //     document.querySelector('#preview-modal-body video').play();
+        //     document.querySelector('#preview-modal-body video').setAttribute('src', video_url);
+        //     document.querySelector('#preview-modal-body video').play();
         $('#preview-modal').modal('toggle');
 
       });
-      $('#preview-modal').on('show.bs.modal', function (event) {
+      $('#preview-modal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget);
         console.log(button);
         var video_url = button.data('src');
@@ -775,7 +778,7 @@
         // var modal = $(this)
         // modal.find('.modal-title').text('New message to ' + recipient)
         // modal.find('.modal-body input').val(recipient)
-    })
+      })
       $('#preview-modal').on('hidden.bs.modal', function() {
         document.querySelector('#preview-modal-body video').setAttribute('src', '');
       });
