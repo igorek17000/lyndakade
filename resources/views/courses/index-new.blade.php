@@ -276,7 +276,7 @@
 
   <div class="row card mx-0 mt-4 pb-4">
     <div class="container">
-      <h5 class="mt-3 preview-course-button">دوره های آموزشی</h5>
+      <h5 class="mt-3 preview-course-button" data-src="my src">دوره های آموزشی</h5>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
@@ -753,7 +753,7 @@
       $(document).on("click", ".preview-course-button", function(t) {
         console.log(t);
         console.log(t.target);
-        console.log(t.target.text);
+        console.log(t.target.data('src'));
         $('#preview-modal-title').text('title');
 
         $('#preview-modal-body').html('<h1>hi</h1>');
