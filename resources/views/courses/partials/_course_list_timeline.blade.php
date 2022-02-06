@@ -36,17 +36,23 @@
     </div>
     <div class="timeline-body text-justify row">
       <div class="col-md-3 col-sm-12 text-center" itemscope itemtype="http://schema.org/Course">
-      <meta itemprop="name" content="{{ $course->title  }}" lang="fa"/>
-      <meta itemprop="name" content="{{ $course->titleEng  }}" lang="en"/>
-      <meta itemprop="url" content="{{ courseURL($course)  }}"/>
-      <meta itemprop="video" content="{{ fromDLHost($course->previewFile)  }}"/>
-      <meta itemprop="description" content="{{ $course->description  }}" lang="fa"/>
-      <meta itemprop="description" content="{{ $course->descriptionEng  }}" lang="en"/>
+        <meta itemprop="name" content="{{ $course->title }}" lang="fa" />
+        <meta itemprop="name" content="{{ $course->titleEng }}" lang="en" />
+        <meta itemprop="url" content="{{ courseURL($course) }}" />
+        <meta itemprop="video" content="{{ fromDLHost($course->previewFile) }}" />
+        <meta itemprop="description" content="{{ $course->description }}" lang="fa" />
+        <meta itemprop="description" content="{{ $course->descriptionEng }}" lang="en" />
 
         <img itemprop="image" src="#" class="lazyload"
           data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
-          style="max-height: 150px;"  alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}" />
-
+          style="max-height: 150px;border-radius: 5px;"
+          alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}" />
+        @if (count($course->users) > 0)
+          <span
+            style="position: absolute;left: 15px;text-align: left;top: 0;background-color: #222;color: #fffb00;padding: 1px 5px;border-top-left-radius: 5px;border-bottom-right-radius: 5px;font-size: 15px;">
+            دوبله شده
+          </span>
+        @endif
       </div>
       <div class="col-md-9  col-sm-12">
         <p class="mt-md-3" style="word-break: break-word;
@@ -79,8 +85,7 @@
             <b>زیرنویس:</b>
             @if (get_course_status_state($course->dubbed_id))
               <span>دوبله شده</span>
-            @elseif (get_course_status_state($course->persian_subtitle_id) &&
-              get_course_status_state($course->english_subtitle_id))
+            @elseif (get_course_status_state($course->persian_subtitle_id) && get_course_status_state($course->english_subtitle_id))
               <span>انگلیسی و فارسی</span>
             @elseif (get_course_status_state($course->persian_subtitle_id))
               <span>فارسی</span>
