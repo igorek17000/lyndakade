@@ -243,30 +243,33 @@
                   <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
                     alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
                     style="border-radius: 5px; max-height: 143.44px;">
-                  <span style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
+                  <span
+                    style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
                     {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
                   </span>
                 </div>
-                <span class="mt-2 d-inline-block pr-2"
-                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                  {{ $path->title }}
-                </span>
-                <br />
-                <span class="d-inline-block text-left pl-2"
-                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                  {{ $path->titleEng }}
-                </span>
+                <div style="height: 100px;">
+                  <span class="mt-2 d-inline-block pr-2"
+                    style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
+                    {{ $path->title }}
+                  </span>
+                  <br />
+                  <span class="d-inline-block text-left pl-2"
+                    style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
+                    {{ $path->titleEng }}
+                  </span>
+                </div>
                 {{-- <br />
                 <span class="tile-heading py-2">تعداد دروس
                   {{ nPersian(count(js_to_courses($path->_courses))) }}</span> --}}
-                <br />
+                {{-- <br />
                 <span class="my-2 d-inline-block" style="max-height: 39px;overflow-y: hidden;">
                   مدرسین:
 
                   @foreach ($path->authors() as $author)
                     {{ $author->name }} @if (!$loop->last), @endif
                   @endforeach
-                </span>
+                </span> --}}
               </a>
             </div>
           @endforeach
