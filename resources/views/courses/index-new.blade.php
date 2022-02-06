@@ -237,7 +237,7 @@
         <hr style="border-top: 1px solid  #f8ba16" class="my-2">
         <div class="row">
           @foreach ($paths as $path)
-            <div class="col-md-3 mt-3">
+            <div class="col-md-3 my-1">
               <a href="{{ route('learn.paths.show', [$path->slug]) }}" class="text-center">
                 <div style="position: relative;">
                   <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
