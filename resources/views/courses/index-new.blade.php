@@ -753,6 +753,7 @@
       $(document).on("click", ".preview-course-button", function(t) {
         console.log(t);
         console.log(t.target);
+        console.log(t.target.text);
         $('#preview-modal-title').text('title');
 
         $('#preview-modal-body').html('<h1>hi</h1>');
