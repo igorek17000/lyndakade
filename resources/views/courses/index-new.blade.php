@@ -238,7 +238,7 @@
         <div class="row">
           @foreach ($paths as $path)
             <div class="col-md-3">
-              <a href="{{ route('learn.paths.show', [$path->slug]) }}">
+              <a href="{{ route('learn.paths.show', [$path->slug]) }}" class="text-center">
                 <div style="position: relative;">
                   <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
                     alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
@@ -249,15 +249,14 @@
                   </span>
                 </div>
                 <div style="height: 100px;">
-                  <span class="mt-2 d-inline-block pr-2"
+                  <p class="mt-2 d-inline-block text-right pr-2"
                     style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
                     {{ $path->title }}
-                  </span>
-                  <br />
-                  <span class="d-inline-block text-left pl-2"
+                  </p>
+                  <p class="d-inline-block text-left pl-2"
                     style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
                     {{ $path->titleEng }}
-                  </span>
+                  </p>
                 </div>
                 {{-- <br />
                 <span class="tile-heading py-2">تعداد دروس
