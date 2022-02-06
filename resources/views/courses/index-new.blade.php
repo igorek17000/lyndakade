@@ -239,7 +239,7 @@
           @foreach ($paths as $path)
             <div class="col-md-3 my-1">
               <a href="{{ route('learn.paths.show', [$path->slug]) }}" class="text-center">
-                <div style="position: relative;">
+                <div class="mx-auto" style="position: relative;width: 255px;">
                   <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
                     alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
                     style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;">
