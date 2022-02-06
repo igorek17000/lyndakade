@@ -761,7 +761,7 @@
         $('#preview-modal-title').text(t.target.getAttribute('data-title'));
 
         document.querySelector('#preview-modal-body video').setAttribute('src', video_url);
-
+        document.querySelector('#preview-modal-body video').play();
         $('#preview-modal').modal('toggle');
 
       });
