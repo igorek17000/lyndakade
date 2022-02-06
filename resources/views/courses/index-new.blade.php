@@ -650,7 +650,7 @@
           </button>
         </div>
         <div class="modal-body" id="preview-modal-body" style="font-size: 1.5rem;">
-          <video src="" controls aria-controls="true"></video>
+          <video class="w-100" src="" controls aria-controls="true"></video>
         </div>
         {{-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
