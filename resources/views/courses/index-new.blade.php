@@ -276,45 +276,11 @@
       </div>
     </div>
 
-    <div class="container my-3 photo-gallery">
-      <h2>مسیرهای آموزشی</h2>
-      <div class="row d-flex">
-        @foreach ($paths as $path)
-          <div class="col-12 col-md-4 col-lg-4 mb-4 mt-2" itemscope itemtype="http://schema.org/Course">
-            <div class="card h-100  border-light  bg-light shadow">
-              <a href="{{ route('learn.paths.show', [$path->slug]) }}"
-                class="row card-body photo-frame d-flex align-items-center">
-                <div class="col-12 state-thumb">
-                  <img itemprop="image" src="#" data-src="{{ fromDLHost($path->thumbnail) }}"
-                    class="img-fluid lazyload"
-                    alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
-                </div>
-                <div class="col-12 tile-text text-center">
-                  <span class="tile-name">{{ $path->title }}</span>
-                  <br>
-                  <span class="tile-name">{{ $path->titleEng }}</span>
-                  <br>
-                  <span class="tile-heading py-2">تعداد دروس
-                    {{ nPersian(count(js_to_courses($path->_courses))) }}</span>
-                  {{-- <span class="tile-heading py-2">تعداد دروس
-                    {{ nPersian(count(js_to_courses($path->courses))) }}</span> --}}
-                  <br>
-                  <del
-                    style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->old_price()) }}
-                    تومان</del>
-                  <span
-                    style="background-color: lightgreen;padding: 3px 4px;border-radius: 5px;">{{ nPersian($path->price()) }}
-                    تومان</span>
-                </div>
-              </a>
-            </div>
-          </div>
-        @endforeach
-      </div>
-    </div>
   @endif
 
-  @if (isset($dubbed_courses))
+
+
+  {{-- @if (isset($dubbed_courses))
     @if (count($dubbed_courses) > 0)
       <div class="row card mx-0 latest-courses border-0">
         <div class="col-12 card-body">
@@ -336,7 +302,7 @@
       </div>
     @endif
   @endif
-
+  
   <div class="row card mx-0 latest-courses border-0">
     <div class="col-12 card-body">
       <div class="container">
@@ -347,11 +313,6 @@
           <a class="btn btn-primary my-2" href="{{ route('courses.free') }}">مشاهده بیشتر</a>
         </h5>
         <hr style="border-top: 1px solid  #f8ba16">
-        {{-- <h6>
-          <strong>
-            لینداکده به صورت هفتگی بروزرسانی می شود. پیشنهاد می کنیم که این بخش را دنبال کنید.
-          </strong>
-        </h6> --}}
         <div class="row d-flex ">
           @foreach ($free_courses as $course)
             @include('courses.partials._course_list_grid', ['course' => $course])
@@ -370,11 +331,6 @@
           <a class="btn btn-primary my-2" href="{{ route('courses.newest') }}">مشاهده بیشتر</a>
         </h5>
         <hr style="border-top: 1px solid  #f8ba16">
-        {{-- <h6>
-            <strong>
-              لینداکده به صورت هفتگی بروزرسانی می شود. پیشنهاد می کنیم که این بخش را دنبال کنید.
-            </strong>
-          </h6> --}}
         <div class="row d-flex ">
           @foreach ($latest_courses as $course)
             @include('courses.partials._course_list_grid', ['course' => $course])
@@ -393,11 +349,6 @@
           <a class="btn btn-primary my-2" href="{{ route('courses.best') }}">مشاهده بیشتر</a>
         </h5>
         <hr style="border-top: 1px solid  #f8ba16">
-        {{-- <h6>
-          <strong>
-            لینداکده به صورت هفتگی بروزرسانی می شود. پیشنهاد می کنیم که این بخش را دنبال کنید.
-          </strong>
-        </h6> --}}
         <div class="row d-flex ">
           @foreach ($popular_courses as $course)
             @include('courses.partials._course_list_grid', ['course' => $course])
@@ -407,8 +358,6 @@
     </div>
   </div>
 
-
-  {{-- p-5 bg-white rounded shadow --}}
   <div class="row card mx-0 latest-courses border-0">
     <ul id="myTab" role="tablist"
       class="nav nav-tabs nav-pills flex-md-row text-center border-0 rounded-nav d-flex justify-content-center">
@@ -440,7 +389,9 @@
       @endforeach
     </div>
     <!-- End rounded tabs -->
-  </div>
+  </div> --}}
+
+
   <div class="modal fade" id="form-link-modal" tabindex="-1" role="dialog" aria-labelledby="form-link-modal-title"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
