@@ -645,9 +645,9 @@
 
   <div class="modal fade" id="preview-modal" tabindex="-1" role="dialog" aria-labelledby="preview-modal-title"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content text-center">
-        <div class="modal-body" id="preview-modal-body" style="font-size: 1.5rem;">
+        <div class="modal-body p-0" id="preview-modal-body" style="font-size: 1.5rem;">
           <video class="w-100" src="" controls aria-controls="true"></video>
         </div>
       </div>
