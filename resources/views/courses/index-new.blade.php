@@ -248,7 +248,7 @@
                     {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
                   </span>
                 </div>
-                <div style="height: 100px;">
+                <div style="/*height: 100px;*/">
                   <p class="mt-2 d-inline-block text-right pr-2 mb-0"
                     style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
                     {{ $path->title }}
