@@ -766,7 +766,8 @@
 
       });
       $('#preview-modal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget)
+        var button = $(event.relatedTarget);
+        console.log(button);
         var video_url = button.data('src');
         $('#preview-modal-title').text(button.data('title'));
         document.querySelector('#preview-modal-body video').setAttribute('src', video_url);
