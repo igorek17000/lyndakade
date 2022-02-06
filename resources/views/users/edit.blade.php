@@ -1,4 +1,14 @@
 @extends('layouts.app')
+@push('meta.in.head')
+
+  @include('meta::manager',[
+  'image' => 'https://lyndakade.ir/image/logo.png',
+  'title' => 'ویرایش پروفایل - لینداکده',
+  'keywords' => get_seo_keywords(),
+  'description' => get_seo_description(),
+  ])
+
+@endpush
 @push('css_head')
 
   <style>
