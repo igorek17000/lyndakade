@@ -750,16 +750,8 @@
     });
 
     $(function() {
-      $('.preview-course-button').click((e) => {
+      $(document).on("click", ".preview-course-button", function(t) {
         $('#preview-modal').toggle('modal');
-        // setTimeout(() => {
-        //   document.querySelectorAll('#myTabContent div[role="tabpanel"].show').forEach(el => {
-        //     el1 = $(el);
-        //     el1.removeClass('show');
-        //   });
-        //   let element = $('#myTabContent div[role="tabpanel"].active');
-        //   element.addClass('show');
-        // }, 200);
       });
     });
   </script>
