@@ -191,8 +191,10 @@
           @if (auth()->user()->role_id == 3)
             <div class="form-group row">
               <label for="description" class="col-md-4 col-form-label text-md-left">توضیحات</label>
-              <textarea class="form-control" id="description" name="description"
-                rows="10">{{ $user ? $user->description : '' }}</textarea>
+              <div class="col-md-8 col-lg-6">
+                <textarea class="form-control" id="description" name="description"
+                  rows="7">{{ $user ? $user->description : '' }}</textarea>
+              </div>
             </div>
           @endif
           <div class="form-group row">
