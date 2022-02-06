@@ -276,7 +276,9 @@
 
   <div class="row card mx-0 mt-4 pb-4">
     <div class="container">
-      <h5 class="mt-3 preview-course-button" data-src="https://dl.lyndakade.ir/courses/2014/04/Drawing%20Foundations%20-%20Fundamentals/preview.mp4" data-title="نام دوره">
+      <h5 class="mt-3 preview-course-button"
+        data-src="https://dl.lyndakade.ir/courses/2014/04/Drawing%20Foundations%20-%20Fundamentals/preview.mp4"
+        data-title="نام دوره">
         دوره های آموزشی
       </h5>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
@@ -762,6 +764,9 @@
 
         $('#preview-modal').modal('toggle');
 
+      });
+      $('#preview-modal').on('hidden.bs.modal', function() {
+        document.querySelector('#preview-modal-body video').setAttribute('src', '');
       });
     });
   </script>
