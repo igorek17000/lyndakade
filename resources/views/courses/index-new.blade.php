@@ -226,57 +226,54 @@
     </div>
   </div>
 
-  @if (count($paths) > 0)
+  <div class="row card mx-0">
+    <div class="container">
+      <h5 class="my-0 mt-2"> مسیرهای آموزشی
+        <a class="btn btn-primary btn-xs my-2 mr-3" href="{{ route('learn.paths.index') }}"
+          style="max-width: 110px;">مشاهده بیشتر</a>
+      </h5>
+      <hr style="border-top: 1px solid  #f8ba16" class="my-2">
+      <div class="row">
+        @foreach ($paths as $path)
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 @if ($loop->iteration > 6) hidden-md hidden-sm hidden-xs @endif">
+            <a href="{{ route('learn.paths.show', [$path->slug]) }}" class="text-center">
+              <div class="mx-auto" style="position: relative;width: 255px;">
+                <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
+                  alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
+                  style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;">
+                <span
+                  style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
+                  {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
+                </span>
+              </div>
+              <div style="/*height: 100px;*/">
+                <p class="mt-2 text-center pr-2 mb-0"
+                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
+                  {{ $path->title }}
+                </p>
+                <p class="text-center pl-2 mb-0"
+                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
+                  {{ $path->titleEng }}
+                </p>
+              </div>
+              {{-- <br />
+            <span class="tile-heading py-2">تعداد دروس
+                {{ nPersian(count(js_to_courses($path->_courses))) }}</span> --}}
+              {{-- <br />
+            <span class="my-2 d-inline-block" style="max-height: 39px;overflow-y: hidden;">
+                مدرسین:
 
-    <div class="row card mx-0">
-      <div class="container">
-        <h5 class="my-0 mt-2"> مسیرهای آموزشی
-          <a class="btn btn-primary btn-xs my-2 mr-3" href="{{ route('learn.paths.index') }}"
-            style="max-width: 110px;">مشاهده بیشتر</a>
-        </h5>
-        <hr style="border-top: 1px solid  #f8ba16" class="my-2">
-        <div class="row">
-          @foreach ($paths as $path)
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 @if ($loop->iteration > 6) hidden-md hidden-sm hidden-xs @endif">
-              <a href="{{ route('learn.paths.show', [$path->slug]) }}" class="text-center">
-                <div class="mx-auto" style="position: relative;width: 255px;">
-                  <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
-                    alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
-                    style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;">
-                  <span
-                    style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
-                    {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
-                  </span>
-                </div>
-                <div style="/*height: 100px;*/">
-                  <p class="mt-2 text-center pr-2 mb-0"
-                    style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                    {{ $path->title }}
-                  </p>
-                  <p class="text-center pl-2 mb-0"
-                    style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                    {{ $path->titleEng }}
-                  </p>
-                </div>
-                {{-- <br />
-                <span class="tile-heading py-2">تعداد دروس
-                  {{ nPersian(count(js_to_courses($path->_courses))) }}</span> --}}
-                {{-- <br />
-                <span class="my-2 d-inline-block" style="max-height: 39px;overflow-y: hidden;">
-                  مدرسین:
-
-                  @foreach ($path->authors() as $author)
-                    {{ $author->name }} @if (!$loop->last), @endif
-                  @endforeach
-                </span> --}}
-              </a>
-            </div>
-          @endforeach
-        </div>
+                @foreach ($path->authors() as $author)
+                {{ $author->name }} @if (!$loop->last), @endif
+                @endforeach
+            </span> --}}
+            </a>
+          </div>
+        @endforeach
       </div>
     </div>
+  </div>
 
-  @endif
 
 
 
@@ -302,7 +299,7 @@
       </div>
     @endif
   @endif
-  
+
   <div class="row card mx-0 latest-courses border-0">
     <div class="col-12 card-body">
       <div class="container">
