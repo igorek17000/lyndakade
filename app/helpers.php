@@ -412,8 +412,8 @@ function get_course_state($course)
         $found2 = false;
         $user_unlocked_courses = UnlockedCourse::where('user_id', $user_id)->whereNotNull('learn_path_id')->get();
         foreach ($user_unlocked_courses as $user_unlocked_course) {
-            // foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->_courses) as $learn_path_course) {
-                foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->courses) as $learn_path_course) {
+            foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->_courses) as $learn_path_course) {
+                // foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->courses) as $learn_path_course) {
                 if ($course->id == $learn_path_course->id)
                     $found2 = true;
             }
