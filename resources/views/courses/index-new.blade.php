@@ -276,7 +276,9 @@
 
   <div class="row card mx-0 mt-4 pb-4">
     <div class="container">
-      <h5 class="mt-3 preview-course-button" data-src="my src">دوره های آموزشی</h5>
+      <h5 class="mt-3 preview-course-button" data-src="my src" data-title="نام دوره">
+        دوره های آموزشی
+      </h5>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
@@ -648,6 +650,7 @@
           </button>
         </div>
         <div class="modal-body" id="preview-modal-body" style="font-size: 1.5rem;">
+          <video src="" controls aria-controls="true"></video>
         </div>
         {{-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -751,12 +754,11 @@
 
     $(function() {
       $(document).on("click", ".preview-course-button", function(t) {
-        console.log(t);
-        console.log(t.target);
-        console.log(t.target.getAttribute('data-src'));
-        $('#preview-modal-title').text('title');
+        video_url = t.target.getAttribute('data-src');
 
-        $('#preview-modal-body').html('<h1>hi</h1>');
+        $('#preview-modal-title').text(t.target.getAttribute('data-title'));
+
+        $('#preview-modal-body video').setAttribute('src', video_url);
 
         $('#preview-modal').modal('toggle');
 
