@@ -623,7 +623,7 @@
       <div class="modal-content text-center" style="background-color: orange;">
         <div class="modal-header" style="border-color: orange;">
           <h5 class="modal-title" id="form-link-modal-title">نتیجه جستجو</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close ml-0 mr-auto" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
@@ -643,7 +643,7 @@
       <div class="modal-content text-center">
         <div class="modal-header">
           <h5 class="modal-title" id="preview-modal-title">نتیجه جستجو</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close ml-0 mr-auto" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
@@ -753,9 +753,9 @@
       $(document).on("click", ".preview-course-button", function(t) {
         console.log(t);
         console.log(t.target);
-        $('#preview-modal-title').text('');
+        $('#preview-modal-title').text('title');
 
-        $('#preview-modal-body').text('خطای پیش بینی نشده رخ داده است، لطفا دوباره تلاش کنید.');
+        $('#preview-modal-body').html('<h1>hi</h1>');
 
         $('#preview-modal').modal('toggle');
 
