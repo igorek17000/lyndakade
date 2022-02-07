@@ -46,7 +46,7 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
 
         // $data->courses = $data->_courses;
 
-        // unset($data->_courses); ---------------
+        unset($data->_courses);
 
 
         // dd($request, $slug, $dataType->editRows, $data);
