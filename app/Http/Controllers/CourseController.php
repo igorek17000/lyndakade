@@ -565,6 +565,20 @@ class CourseController extends Controller
         }
     }
 
+    public function get_course_api($slug)
+    {
+        $course = Course::with(['authors', 'subjects'])->firstWhere(['slug_linkedin' => $slug]);
+        if (!$course) {
+            return new JsonResponse([
+                'data' => []
+            ], 404);
+        }
+        return new JsonResponse([
+            'data' => $course->toArray(),
+            'url' => courseURL($course),
+        ], 200);
+    }
+
     public function course_api($id)
     {
         $course = Course::with(['authors', 'subjects', 'softwares'])->find($id);
@@ -781,7 +795,7 @@ class CourseController extends Controller
         $user_unlocked_courses = UnlockedCourse::where('user_id', $user_id)->whereNotNull('learn_path_id')->get();
         foreach ($user_unlocked_courses as $user_unlocked_course) {
             // foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->_courses) as $course) {
-                foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->courses) as $course) {
+            foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->courses) as $course) {
                 if ($course->id == $course_id)
                     return true;
             }

@@ -24,6 +24,7 @@ Route::middleware('guest')->post('/set-software', 'SoftwareController@set_softwa
 Route::middleware('guest')->post('/courses/set', 'CourseController@courses_api_set')->name('courses.set.api');
 Route::middleware('guest')->get('/courses', 'CourseController@courses_api')->name('courses.api');
 Route::middleware('guest')->get('/courses/{id}', 'CourseController@course_api')->name('course.api');
+Route::middleware('guest')->get('/courses/get-course/{slug}', 'CourseController@get_course_api')->name('course.api');
 Route::middleware('guest')->post('/courses/get-for-aparat', 'CourseController@course_api_get_for_aparat')->name('course.api.get-for-aparat');
 Route::middleware('guest')->post('/courses/get-for-instagram', 'CourseController@course_api_get_for_instagram')->name('course.api.get-for-instagram');
 Route::middleware('guest')->post('/courses/get-hashed-data', 'CourseController@course_api_get_hashed_data')->name('course.api.get-hashed-data');
