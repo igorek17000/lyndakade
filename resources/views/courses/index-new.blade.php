@@ -649,7 +649,8 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content text-center">
         <div class="modal-body p-0" id="preview-modal-body">
-          <video class="w-100" src="" controls aria-controls="true"></video>
+          <video class="w-100" src="" controls aria-controls="true"
+            style="border-top-left-radius: 3px; border-top-right-radius: 3px;"></video>
           <div class="text-right px-2">
             <div>
               <span style="font-size: 1.2rem;" id="preview-modal-title">عنوان دوره</span>
