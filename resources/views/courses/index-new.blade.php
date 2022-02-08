@@ -647,7 +647,7 @@
     aria-hidden="true" style="background-color: #444c;">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content text-center">
-        <div class="modal-body p-0" id="preview-modal-body" style="font-size: 1.5rem;">
+        <div class="modal-body p-0" id="preview-modal-body" style="margin-bottom: -15px;overflow-y: hidden;font-size: 1.5rem;">
           <video class="w-100" src="" controls aria-controls="true"></video>
         </div>
       </div>
