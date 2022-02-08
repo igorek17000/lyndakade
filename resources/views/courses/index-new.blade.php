@@ -280,8 +280,9 @@
         دوره های آموزشی
       </h5>
       <button type="button" class="preview-course-button" data-toggle="modal" data-target="#preview-modal"
-        data-src="https://dl.lyndakade.ir/courses/2014/04/Drawing%20Foundations%20-%20Fundamentals/preview.mp4">
-        پیشنمایش
+        data-src="https://dl.lyndakade.ir/courses/2014/04/Drawing%20Foundations%20-%20Fundamentals/preview.mp4"
+        data-title="Drawing Foundations - Fundamentals" data-price="20000">
+        پیش‌نمایش
       </button>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
@@ -647,7 +648,8 @@
     aria-hidden="true" style="background-color: #444c;">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content text-center">
-        <div class="modal-body p-0" id="preview-modal-body" style="margin-bottom: -15px;overflow-y: hidden;font-size: 1.5rem;">
+        <div class="modal-body p-0" id="preview-modal-body"
+          style="margin-bottom: -15px;overflow-y: hidden;font-size: 1.5rem;">
           <video class="w-100" src="" controls aria-controls="true"></video>
         </div>
       </div>
@@ -747,6 +749,9 @@
     });
 
     $(function() {
+      document.querySelectorAll('*[data-price]').forEach(element => {
+        element.setAttribute('data-price', engToPer(element.getAttribute('data-price')));
+      });
       $('#preview-modal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget);
         // $('#preview-modal-title').text(button.data('title'));
