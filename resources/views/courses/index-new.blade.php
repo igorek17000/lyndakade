@@ -648,9 +648,15 @@
     aria-hidden="true" style="background-color: #444c;">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content text-center">
-        <div class="modal-body p-0" id="preview-modal-body"
-          style="margin-bottom: -15px;overflow-y: hidden;font-size: 1.5rem;">
+        <div class="modal-body p-0" id="preview-modal-body">
           <video class="w-100" src="" controls aria-controls="true"></video>
+          <div class="text-right px-2">
+            <div>
+              <span style="font-size: 1.2rem;">عنوان دوره</span>
+              <a href="#" style="float: left;" class="btn btn-success mb-2">مشاهده جزئیات دوره</a>
+              <span style="float: left;cursor: auto;" class="btn">قیمت دوره</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
