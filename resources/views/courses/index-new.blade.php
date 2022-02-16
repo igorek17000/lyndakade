@@ -652,6 +652,7 @@
           <video class="w-100" src="" controls aria-controls="true"
             style="border-top-left-radius: 3px; border-top-right-radius: 3px;"></video>
           <div class="text-right px-2">
+
             <div>
               <span style="font-size: 1.2rem;" id="preview-modal-title">عنوان دوره</span>
               <a href="#" style="float: left;" class="btn btn-success mb-2">مشاهده جزئیات دوره</a>

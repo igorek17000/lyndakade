@@ -2,6 +2,7 @@
 
 use App\Course;
 use App\Http\Controllers\CourseController;
+use App\LearnPath;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -57,7 +58,14 @@ Route::get('/learning/paths/{learn_path_slug}', 'LearnPathController@show')->nam
 Route::get('/learning/courses/newest', 'CourseController@newest')->name('courses.newest');
 Route::get('/learning/courses/best', 'CourseController@best')->name('courses.best');
 Route::get('/learning/courses/free', 'CourseController@free')->name('courses.free');
-
+Route::get('/l/{id}', function ($id) {
+    $path = LearnPath::firstWhere('id', $id);
+    if ($path) {
+        return redirect()->route('learn.paths.show', [$path->slug]);
+    }
+    // abort(404);
+    return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
+})->name('courses.show.short');
 // courses
 Route::get('/', 'CourseController@index')->name('root.home');
 Route::get('/learning/{slug_linkedin}', 'CourseController@show_linkedin')->name('courses.show.linkedin');
