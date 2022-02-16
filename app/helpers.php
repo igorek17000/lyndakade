@@ -129,7 +129,7 @@ function number_of_courses_in_cart($carts)
             $res += 1;
         } else if ($cart->learn_path) {
             foreach (js_to_courses($cart->learn_path->_courses) as $c) {
-            // foreach (js_to_courses($cart->learn_path->courses) as $c) {
+                // foreach (js_to_courses($cart->learn_path->courses) as $c) {
                 $res += 1;
             }
         }
@@ -390,7 +390,7 @@ function get_course_state($course)
                 $learn_path = LearnPath::find($paid->item_id);
                 if ($learn_path) {
                     foreach (js_to_courses($learn_path->_courses) as $current_course) {
-                    // foreach (js_to_courses($learn_path->courses) as $current_course) {
+                        // foreach (js_to_courses($learn_path->courses) as $current_course) {
                         if ($current_course->id == $course->id) {
                             $found = true;
                             break;
@@ -412,11 +412,12 @@ function get_course_state($course)
         $found2 = false;
         $user_unlocked_courses = UnlockedCourse::where('user_id', $user_id)->whereNotNull('learn_path_id')->get();
         foreach ($user_unlocked_courses as $user_unlocked_course) {
-            foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->_courses) as $learn_path_course) {
-                // foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->courses) as $learn_path_course) {
-                if ($course->id == $learn_path_course->id)
-                    $found2 = true;
-            }
+            if (LearnPath::find($user_unlocked_course->learn_path_id))
+                foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->_courses) as $learn_path_course) {
+                    // foreach (js_to_courses(LearnPath::find($user_unlocked_course->learn_path_id)->courses) as $learn_path_course) {
+                    if ($course->id == $learn_path_course->id)
+                        $found2 = true;
+                }
         }
 
         if (!$found && $found2) {
