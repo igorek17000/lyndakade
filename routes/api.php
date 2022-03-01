@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,22 @@ Route::middleware('guest')->get('/get-yalda-time', function () {
         'data' => yalda_time_remaining()
     ]);
 })->name('get-yalda-time');
+
+Route::middleware('guest')->get('/test-query', function (Request $request) {
+    $data = [];
+    $q = $request->get('q', 'python 3');
+    $q1 = 'python';
+    $q2 = '3';
+
+    $data = DB::select('select id,title,titleEng, ((titleEng LIKE \'%' . $q1 . '%\') + (titleEng LIKE \'%' . $q2 . '%\')) as matches
+        from courses
+        where titleEng = ' . $q1 . ' OR titleEng = ' . $q2 . '
+        ORDER BY matches DESC');
+
+    return new JsonResponse([
+        'data' => $data
+    ]);
+})->name('test query');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
