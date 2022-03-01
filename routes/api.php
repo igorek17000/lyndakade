@@ -67,17 +67,25 @@ Route::middleware('guest')->get('/get-yalda-time', function () {
 Route::middleware('guest')->get('/test-query', function (Request $request) {
     $data = [];
     $q = $request->get('q', 'python 3');
-    $qq = explode(' ', $q);
+    $qq = preg_split('([\ ]|[.]|[:])', $q);
+    $q3 = [];
+    foreach ($qq as $key => $value) {
+        if (!empty($value))
+            $q3[] = '(titleEng LIKE "%' . $value . '%")';
+    }
+    $q3 = implode(' + ', $q3);
 
-    $q1 = 'python';
-    $q2 = '3';
+    $q4 = [];
+    foreach ($qq as $key => $value) {
+        if (!empty($value))
+            $q4[] = 'titleEng LIKE "%' . $value . '%"';
+    }
+    $q4 = implode(' OR ', $q4);
 
     $data = DB::select('select id,titleEng,
-        (((titleEng LIKE "%' . $q . '%") * 3) +
-        (titleEng LIKE "%' . $qq[0] . '%") +
-        (titleEng LIKE "%' . $qq[1] . '%")) as matches
+        (((titleEng LIKE "%' . $q . '%") * 3) + ' . $q3 . ') as matches
         from courses
-        where titleEng LIKE "%' . $qq[0] . '%" OR titleEng LIKE "%' . $qq[1] . '%"
+        where ' . $q4 . '
         ORDER BY matches DESC');
 
     return new JsonResponse([
