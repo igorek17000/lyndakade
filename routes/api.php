@@ -66,7 +66,7 @@ Route::middleware('guest')->get('/get-yalda-time', function () {
 
 Route::middleware('guest')->get('/test-query', function (Request $request) {
     $data = [];
-    $q = $request->get('q', 'python 3');
+    $q = $request->get('q', '');
     $qq = preg_split('([\ ]|[.]|[:])', $q);
     $q3 = [];
     foreach ($qq as $key => $value) {
