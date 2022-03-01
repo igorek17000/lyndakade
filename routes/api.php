@@ -74,10 +74,10 @@ Route::middleware('guest')->get('/test-query', function (Request $request) {
 
     $data = DB::select('select id,titleEng,
         (((titleEng LIKE "%' . $q . '%") * 3) +
-        (titleEng LIKE "%' . $q[0] . '%") +
-        (titleEng LIKE "%' . $q[1] . '%")) as matches
+        (titleEng LIKE "%' . $qq[0] . '%") +
+        (titleEng LIKE "%' . $qq[1] . '%")) as matches
         from courses
-        where titleEng LIKE "%' . $q[0] . '%" OR titleEng LIKE "%' . $q[1] . '%"
+        where titleEng LIKE "%' . $qq[0] . '%" OR titleEng LIKE "%' . $qq[1] . '%"
         ORDER BY matches DESC');
 
     return new JsonResponse([
