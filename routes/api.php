@@ -67,12 +67,17 @@ Route::middleware('guest')->get('/get-yalda-time', function () {
 Route::middleware('guest')->get('/test-query', function (Request $request) {
     $data = [];
     $q = $request->get('q', 'python 3');
+    $qq = explode(' ', $q);
+
     $q1 = 'python';
     $q2 = '3';
 
-    $data = DB::select('select id,titleEng, ((titleEng LIKE "%' . $q1 . '%") + (titleEng LIKE "%' . $q2 . '%")) as matches
+    $data = DB::select('select id,titleEng,
+        (((titleEng LIKE "%' . $q . '%") * 3) +
+        (titleEng LIKE "%' . $q[0] . '%") +
+        (titleEng LIKE "%' . $q[1] . '%")) as matches
         from courses
-        where titleEng LIKE "%' . $q1 . '%" OR titleEng LIKE "%' . $q2 . '%"
+        where titleEng LIKE "%' . $q[0] . '%" OR titleEng LIKE "%' . $q[1] . '%"
         ORDER BY matches DESC');
 
     return new JsonResponse([
