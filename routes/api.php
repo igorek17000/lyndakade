@@ -70,7 +70,7 @@ Route::middleware('guest')->get('/test-query', function (Request $request) {
     $q1 = 'python';
     $q2 = '3';
 
-    $data = DB::select('select id,title,titleEng, ((titleEng LIKE "%' . $q1 . '%") + (titleEng LIKE "%' . $q2 . '%")) as matches
+    $data = DB::select('select id,titleEng, ((titleEng LIKE "%' . $q1 . '%") + (titleEng LIKE "%' . $q2 . '%")) as matches
         from courses
         where titleEng LIKE "%' . $q1 . '%" OR titleEng LIKE "%' . $q2 . '%"
         ORDER BY matches DESC');
