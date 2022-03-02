@@ -65,32 +65,31 @@ Route::middleware('guest')->get('/get-yalda-time', function () {
 })->name('get-yalda-time');
 
 Route::middleware('guest')->get('/test-query', function (Request $request) {
-    $data = [];
-    $q = $request->get('q', '');
-    // $qq = preg_split('([\ ]|[.]|[:])', $q);
+    $q = trim($request->get('q', ''));
+
+    if (empty($q)) {
+        return new JsonResponse([
+            'data' => DB::select('select * from courses')
+        ]);
+    }
+
     $qq = preg_split('([\ ])', $q);
     $q3 = [];
-    foreach ($qq as $key => $value) {
+    foreach ($qq as $value) {
         if (!empty($value))
             $q3[] = '(titleEng LIKE "%' . $value . '%")';
     }
-    $q3 = implode(' + ', $q3);
-
-    $q4 = [];
-    foreach ($qq as $key => $value) {
-        if (!empty($value))
-            $q4[] = 'titleEng LIKE "%' . $value . '%"';
-    }
-    $q4 = implode(' OR ', $q4);
-
-    $data = DB::select('select id,titleEng,
-        (((titleEng LIKE "%' . $q . '%") * 3) + ' . $q3 . ') as matches
-        from courses
-        where ' . $q4 . '
-        ORDER BY matches DESC');
 
     return new JsonResponse([
-        'data' => $data
+        'data' => DB::select('select id,titleEng,
+        (
+            ((titleEng =' . $q . ') * 5) +
+            (titleEng LIKE "%' . $q . '%") * 3) +
+            ' . implode(' + ', $q3) . '
+        ) as matches
+        from courses
+        where ' . implode(' OR ', $q3) . '
+        ORDER BY matches DESC')
     ]);
 })->name('test query');
 
