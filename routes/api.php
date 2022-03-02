@@ -83,7 +83,7 @@ Route::middleware('guest')->get('/test-query', function (Request $request) {
     return new JsonResponse([
         'data' => DB::select('select id,titleEng,
         (
-            ((titleEng =' . $q . ') * 5) +
+            ((titleEng ="' . $q . '") * 5) +
             (titleEng LIKE "%' . $q . '%") * 3) +
             ' . implode(' + ', $q3) . '
         ) as matches
