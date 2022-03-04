@@ -93,6 +93,21 @@ Route::middleware('guest')->get('/test-query', function (Request $request) {
     ]);
 })->name('test query');
 
+Route::middleware('guest')->get('/main-page/courses', function (Request $request) {
+    $type = $request->get('type');
+    $order = $request->get('order');
+    if (!$type || !$order) {
+        return new JsonResponse([
+            'data' => [],
+            'status' => 'forbidden'
+        ]);
+    }
+    return new JsonResponse([
+        'data' => '',
+        'status' => 'success'
+    ]);
+})->name('test query');
+
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });

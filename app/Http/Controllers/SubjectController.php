@@ -51,7 +51,7 @@ class SubjectController extends Controller
 
     public function subjects_api()
     {
-        $subjects = Subject::get();
+        $subjects = Subject::get(['id', 'title', 'slug', 'library_id']);
         if (!$subjects) {
             return new JsonResponse([
                 'data' => []
