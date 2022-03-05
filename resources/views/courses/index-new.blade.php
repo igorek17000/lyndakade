@@ -193,8 +193,8 @@
       margin: auto;
       text-align: center;
       padding: 1px 0;
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
     }
 
     .course-update-state {
@@ -203,7 +203,7 @@
       position: absolute;
       left: 2px;
       bottom: 2px;
-      border-radius: 0 3px 0 5px;
+      border-radius: 0 3px 0 3px;
       padding: 2px 4px 0 4px;
       background-color: rgba(240, 0, 0, .8);
       color: #fff;
