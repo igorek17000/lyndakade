@@ -282,7 +282,7 @@
     }
     @media (min-width: 768px) {
       .course.container {
-        max-width: 750px;
+        max-width: 980px;
 
       }
     }
