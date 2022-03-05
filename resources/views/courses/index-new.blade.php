@@ -239,7 +239,6 @@
     }
 
     @media(min-width: 575px)and(max-width: 768px) {
-
       .course-description {
         max-width: 600px;
       }
