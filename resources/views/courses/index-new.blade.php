@@ -123,6 +123,32 @@
       }
     }
 
+    .card-horizontal {
+      display: flex;
+      flex: 1 1 auto;
+    }
+
+    [data-toggle="modal"] {
+      text-align: center;
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: 5px;
+      padding: 2px 4px 0 4px;
+      font-size: 20px;
+      background-color: rgba(0, 0, 0, .8);
+      color: #fff;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
   </style>
   <div class="row m-0 home-page">
     <div class="col-12 hero-space">
@@ -292,11 +318,6 @@
       <h5 class="mt-3 ">
         دوره های آموزشی
       </h5>
-      {{-- <a class="preview-course-button" data-toggle="modal" data-target="#preview-modal"
-        data-src="https://dl.lyndakade.ir/courses/2014/04/Drawing%20Foundations%20-%20Fundamentals/preview.mp4"
-        data-title="Drawing Foundations - Fundamentals" data-price="20000">
-        پیش‌نمایش
-      </a> --}}
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
         @foreach (\App\Course::limit(20)->get() as $course)
