@@ -313,7 +313,7 @@
                   @if ($course->durationHours == 0)
                     {{ $course->durationMinutes }} دقیقه
                   @else
-                    {{ $course->durationHours + ($course->durationMinutes > 20 ? 1 : 0) }} ساعت
+                    {{ $course->durationHours + ($course->durationMinutes > 40 ? 1 : 0) }} ساعت
                   @endif
                 </span>
               </div>
