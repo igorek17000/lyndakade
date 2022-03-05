@@ -244,7 +244,7 @@
 
     .card.course .card-img-overlay {
       background-color: rgba(0, 0, 0, .8);
-      display: none;
+      display: flex;
       flex-direction: column;
       justify-content: center;
       color: #fff;
@@ -252,16 +252,18 @@
       font-size: 1.7em;
       border-radius: 5px;
       cursor: pointer;
+      opacity: 0;
+      transition: opacity .9s linear;
     }
 
     .card.course:hover .card-img-overlay {
-      display: flex;
+      opacity: 1;
     }
 
     @media (hover: none) {
       .card.course .card-img-overlay {
-        display: flex;
-      background-color: rgba(0, 0, 0, .6);
+        opacity: 1;
+        background-color: rgba(0, 0, 0, .6);
       }
     }
 
