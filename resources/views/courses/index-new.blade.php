@@ -299,7 +299,7 @@
       </a> --}}
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
-        @foreach (\App\Course::get() as $course)
+        @foreach (\App\Course::limit(20)->get() as $course)
           <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
             <a href="" data-toggle="modal" data-target="#preview-modal" class="text-center"
               data-src="{{ fromDLHost($course->previewFile) }}" data-title="{{ $course->title }}"
