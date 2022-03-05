@@ -128,7 +128,7 @@
       border: 2px solid darkgoldenrod;
     }
 
-    .persian-subtitle-img {
+    .english-subtitle-img {
       border: 2px solid green;
     }
 
@@ -226,6 +226,7 @@
 
     .course-description {
       overflow: hidden;
+      max-width: 1000px;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 3;
