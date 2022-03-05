@@ -238,7 +238,7 @@
       -webkit-box-orient: vertical;
     }
 
-    @media(min-width: 769px) {
+    @media(min-width: 900px) {
       .course-description {
         max-width: 850px;
       }
