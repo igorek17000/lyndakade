@@ -292,11 +292,11 @@
       <h5 class="mt-3 ">
         دوره های آموزشی
       </h5>
-      <a class="preview-course-button" data-toggle="modal" data-target="#preview-modal"
+      {{-- <a class="preview-course-button" data-toggle="modal" data-target="#preview-modal"
         data-src="https://dl.lyndakade.ir/courses/2014/04/Drawing%20Foundations%20-%20Fundamentals/preview.mp4"
         data-title="Drawing Foundations - Fundamentals" data-price="20000">
         پیش‌نمایش
-      </a>
+      </a> --}}
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
         @foreach (\App\Course::get() as $course)
