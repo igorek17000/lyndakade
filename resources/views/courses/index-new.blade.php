@@ -274,6 +274,10 @@
       }
     }
 
+    a.card-img-overlay:hover {
+      color: #fff;
+    }
+
     @media (min-width: 576px) {
       .course.container {
         max-width: 750px;
@@ -494,9 +498,11 @@
                       با زیرنویس انگلیسی
                     </div>
                   @endif
-                  <div class="card-img-overlay">
+                  <a href="" class="card-img-overlay" data-toggle="modal" data-target="#preview-modal"
+                    class="text-center" data-src="{{ fromDLHost($course->previewFile) }}"
+                    data-title="{{ $course->title }}" data-price="{{ $course->price }}">
                     پیش نمایش
-                  </div>
+                  </a>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">
