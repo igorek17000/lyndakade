@@ -261,6 +261,7 @@
     @media (hover: none) {
       .card.course .card-img-overlay {
         display: flex;
+      background-color: rgba(0, 0, 0, .6);
       }
     }
 
