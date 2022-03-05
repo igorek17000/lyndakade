@@ -229,7 +229,7 @@
 
     .course-description {
       overflow: hidden;
-      max-width: 850px;
+      max-width: 500px;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 4;
@@ -238,9 +238,9 @@
       -webkit-box-orient: vertical;
     }
 
-    @media(min-width: 575px)and(max-width: 769px) {
+    @media(min-width: 769px) {
       .course-description {
-        max-width: 600px;
+        max-width: 850px;
       }
 
     }
