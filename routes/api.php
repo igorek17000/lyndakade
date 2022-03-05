@@ -94,16 +94,17 @@ Route::middleware('guest')->get('/test-query', function (Request $request) {
 })->name('test query');
 
 Route::middleware('guest')->get('/main-page/courses', function (Request $request) {
-    $type = $request->get('type');
-    $order = $request->get('order');
-    if (!$type || !$order) {
+    $onlyFree = $request->get('onlyFree');
+    $sortingOrder = $request->get('sortingOrder');
+    $libraries = $request->get('libraries');
+    if (!$sortingOrder || !$libraries) {
         return new JsonResponse([
             'data' => [],
             'status' => 'forbidden'
         ]);
     }
     return new JsonResponse([
-        'data' => '',
+        'data' => [],
         'status' => 'success'
     ]);
 })->name('test query');

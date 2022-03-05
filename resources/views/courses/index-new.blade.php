@@ -3,11 +3,11 @@
   <link rel="canonical" href="https://lyndakade.ir">
   <link rel="alternate" hreflang="fa" href="https://lyndakade.ir">
 
-  @include('meta::manager',[
-  'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => 'لیندا کده بروز ترین وبسایت آموزشی',
-  'keywords' => get_seo_keywords(),
-  'description' => get_seo_description(),
+  @include('meta::manager', [
+      'image' => 'https://lyndakade.ir/image/logo.png',
+      'title' => 'لیندا کده بروز ترین وبسایت آموزشی',
+      'keywords' => get_seo_keywords(),
+      'description' => get_seo_description(),
   ])
 
   <script type="application/ld+json">
@@ -80,24 +80,36 @@
 @section('content')
   <style>
     .hero-space {
-      height: 450px !important;
+      height: 560px !important;
     }
 
     @media (min-width: 426px) {
       .hero-space {
-        height: 300px !important;
+        height: 510px !important;
+      }
+    }
+
+    @media (min-width: 426px) {
+      .hero-space {
+        height: 340px !important;
       }
     }
 
     @media (min-width: 769px) {
       .hero-space {
-        height: 310px !important;
+        height: 360px !important;
       }
     }
 
     @media (min-width: 1025px) {
       .hero-space {
-        height: 260px !important;
+        height: 300px !important;
+      }
+    }
+
+    @media (min-width: 1441px) {
+      .hero-space {
+        height: 370px !important;
       }
     }
 
@@ -235,7 +247,8 @@
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
         @foreach ($paths as $path)
-          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 @if ($loop->iteration > 6) hidden-md hidden-sm hidden-xs @endif">
+          <div
+            class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 @if ($loop->iteration > 6) hidden-md hidden-sm hidden-xs @endif">
             <a href="{{ route('learn.paths.show', [$path->slug]) }}" class="text-center">
               <div class="mx-auto" style="position: relative;width: 255px;">
                 <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
@@ -772,5 +785,4 @@
       });
     });
   </script>
-
 @endsection
