@@ -413,7 +413,10 @@
         <div class="card course">
           <div class="card-horizontal py-2">
             <div class="img-square-wrapper">
-              <img class="d-inline-block lazyload course-img"
+              <img
+                class="d-inline-block lazyload course-img
+              @if (get_course_status_state($course->persian_subtitle_id)) persian-subtitle-img
+              @elseif(get_course_status_state($course->english_subtitle_id)) english-subtitle-img @endif"
                 data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
                 alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}">
               <span class="course-time-state">
