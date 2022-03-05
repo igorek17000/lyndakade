@@ -198,8 +198,8 @@
       width: 70px;
       text-align: center;
       position: absolute;
-      right: 2px;
-      top: 2px;
+      left: 2px;
+      bottom: 2px;
       border-radius: 0 3px 0 5px;
       padding: 2px 4px 0 4px;
       background-color: rgba(240, 0, 0, .8);
@@ -229,8 +229,9 @@
       max-width: 1000px;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
-      line-clamp: 3;
+      -webkit-line-clamp: 4;
+      line-height: 1.7;
+      line-clamp: 4;
       -webkit-box-orient: vertical;
     }
 
