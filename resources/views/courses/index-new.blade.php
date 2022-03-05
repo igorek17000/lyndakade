@@ -441,11 +441,11 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">
-                <p class="mt-2 text-center pr-2 mb-0"
+                <p class="mt-2 text-right pr-2 mb-0"
                   style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
                   {{ $course->title }}
                 </p>
-                <p class="text-center pl-2 mb-0"
+                <p class="text-left pl-2 mb-0"
                   style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
                   {{ $course->titleEng }}
                 </p>
