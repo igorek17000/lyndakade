@@ -484,11 +484,11 @@
                       {{ $course->durationHours + ($course->durationMinutes > 40 ? 1 : 0) }} ساعت
                     @endif
                   </span>
-                  {{-- @if ($course->updateDate) --}}
-                  <span class="course-update-state">
-                    بروز شده
-                  </span>
-                  {{-- @endif --}}
+                  @if ($course->updateDate)
+                    <span class="course-update-state">
+                      بروز شده
+                    </span>
+                  @endif
                   @if (get_course_status_state($course->persian_subtitle_id))
                     <div class="subtitle-state persian-subtitle-img">
                       با زیرنویس فارسی
