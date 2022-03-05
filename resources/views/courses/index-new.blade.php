@@ -274,6 +274,19 @@
       }
     }
 
+    @media (min-width: 576px) {
+      .course.container {
+        max-width: 750px;
+
+      }
+    }
+    @media (min-width: 768px) {
+      .course.container {
+        max-width: 750px;
+
+      }
+    }
+
   </style>
   <div class="row m-0 home-page">
     <div class="col-12 hero-space">
@@ -439,7 +452,7 @@
   </div>
 
   <div class="row card mx-0 mt-4 pb-4">
-    <div class="container">
+    <div class="course container">
       <h5 class="mt-3 ">
         دوره های آموزشی
       </h5>
