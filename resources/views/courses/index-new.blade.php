@@ -125,12 +125,12 @@
 
 
     .persian-subtitle-img {
-      /* border: 2px solid darkgoldenrod; */
+      border: 2px solid darkgoldenrod;
       background-color: darkgoldenrod;
     }
 
     .english-subtitle-img {
-      /* border: 2px solid green; */
+      border: 2px solid green;
       background-color: green;
     }
 
