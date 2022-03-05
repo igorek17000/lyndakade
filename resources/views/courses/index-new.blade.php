@@ -123,12 +123,6 @@
       }
     }
 
-    .course-img {
-      border-radius: 5px;
-      max-height: 170px;
-      min-height: 170px;
-      width: 300px;
-    }
 
     .persian-subtitle-img {
       border: 2px solid darkgoldenrod;
@@ -136,6 +130,13 @@
 
     .persian-subtitle-img {
       border: 2px solid green;
+    }
+
+    .course-img {
+      border-radius: 5px;
+      max-height: 300px;
+      min-height: auto;
+      width: 100%;
     }
 
     @media(min-width: 575px) {
@@ -146,10 +147,11 @@
 
       .course-img {
         border-radius: 5px;
-        max-height: 300px;
-        min-height: auto;
-        width: 100%;
+        max-height: 170px;
+        min-height: 170px;
+        width: 300px;
       }
+
     }
 
     [data-toggle="modal"] {
@@ -448,7 +450,7 @@
                   {{ $course->titleEng }}
                 </p>
               </h5>
-              <p class="card-text course-description">
+              <p class="card-text course-description text-justify">
                 {{ $course->description }}
               </p>
             </div>
