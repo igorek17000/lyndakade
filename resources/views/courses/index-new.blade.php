@@ -179,6 +179,7 @@
 
     .img-square-wrapper {
       position: relative;
+      height: 170px;
     }
 
     .subtitle-state {
@@ -239,6 +240,13 @@
 
     .border-0 {
       border: 0;
+    }
+
+    .card.course .card-img-overlay {
+      background-color: rgba(0, 0, 0, .8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
   </style>
