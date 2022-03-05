@@ -185,37 +185,37 @@
     .subtitle-state {
       color: white;
       bottom: 2px;
-      font-size: 13px;
-      width: 115px;
+      font-size: .7rem;
+      width: 5.6rem;
       position: absolute;
       left: 0;
       right: 0;
       margin: auto;
       text-align: center;
-      padding: 1px 0;
-      border-top-left-radius: 7px;
-      border-top-right-radius: 7px;
+      /* padding: 0.01rem 0; */
+      border-top-left-radius: 0.3rem;
+      border-top-right-radius: 0.3rem;
     }
 
     .course-update-state {
-      width: 70px;
+      width: 3.7rem;
       text-align: center;
       position: absolute;
       left: 2px;
       bottom: 2px;
-      border-radius: 0 3px 0 3px;
+      border-radius: 0 0.25rem 0 0.25rem;
       padding: 2px 4px 0 4px;
       background-color: rgba(240, 0, 0, .8);
       color: #fff;
     }
 
     .course-time-state {
-      width: 70px;
+      width: 3.7rem;
       text-align: center;
       position: absolute;
       right: 2px;
       bottom: 2px;
-      border-radius: 5px 0 3px 0;
+      border-radius: 0.3rem 0 0.3rem 0;
       padding: 2px 4px 0 4px;
       background-color: rgba(0, 0, 0, .8);
       color: #fff;
@@ -249,7 +249,7 @@
       justify-content: center;
       color: #fff;
       text-align: center;
-      font-size: 1.7em;
+      font-size: 1.3rem;
       border-radius: 5px;
       cursor: pointer;
       opacity: 0;
@@ -455,9 +455,9 @@
                 @endif
               </span>
               {{-- @if ($course->updateDate) --}}
-                <span class="course-update-state">
-                  بروز شده
-                </span>
+              <span class="course-update-state">
+                بروز شده
+              </span>
               {{-- @endif --}}
               @if (get_course_status_state($course->persian_subtitle_id))
                 <div class="subtitle-state persian-subtitle-img">
