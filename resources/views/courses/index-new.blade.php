@@ -226,7 +226,7 @@
 
     .course-description {
       overflow: hidden;
-      max-width: 1000px;
+      max-width: 850px;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 4;
