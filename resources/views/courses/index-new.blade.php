@@ -292,233 +292,40 @@
       <h5 class="mt-3 ">
         دوره های آموزشی
       </h5>
-      <button type="button" class="preview-course-button" data-toggle="modal" data-target="#preview-modal"
+      <a class="preview-course-button" data-toggle="modal" data-target="#preview-modal"
         data-src="https://dl.lyndakade.ir/courses/2014/04/Drawing%20Foundations%20-%20Fundamentals/preview.mp4"
         data-title="Drawing Foundations - Fundamentals" data-price="20000">
         پیش‌نمایش
-      </button>
+      </a>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
-          <a href="https://lyndakade.ir/learning/paths/build-your-analytical-skills-with-statistical-analysis"
-            class="text-center">
-            <div class="mx-auto" style="position: relative;width: 255px;">
-              <img class="d-inline-block lazyloaded"
-                data-src="https://dl.lyndakade.ir/learn-paths/build-your-analytical-skills-with-statistical-analysis/thumbnail.webp"
-                alt="مسیر آموزشی تقویت مهارت های تحلیلی خود را با تجزیه و تحلیل آماری - Image of Learn Path Build Your Analytical Skills with Statistical Analysis"
-                style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;"
-                src="https://dl.lyndakade.ir/learn-paths/build-your-analytical-skills-with-statistical-analysis/thumbnail.webp">
-              <span
-                style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
-                2 ساعت
-              </span>
-            </div>
-            <div style="/*height: 100px;*/">
-              <p class="mt-2 text-center pr-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                تقویت مهارت های تحلیلی خود را با تجزیه و تحلیل آماری
-              </p>
-              <p class="text-center pl-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                Build Your Analytical Skills with Statistical Analysis
-              </p>
-            </div>
-
-
-          </a>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
-          <a href="https://lyndakade.ir/learning/paths/build-your-data-analysis-skills" class="text-center">
-            <div class="mx-auto" style="position: relative;width: 255px;">
-              <img class="d-inline-block lazyloaded"
-                data-src="https://dl.lyndakade.ir/learn-paths/build-your-data-analysis-skills/thumbnail.webp"
-                alt="مسیر آموزشی افزایش مهارت تجزیه و تحلیل داده های خود - Image of Learn Path Build Your Data Analysis Skills"
-                style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;"
-                src="https://dl.lyndakade.ir/learn-paths/build-your-data-analysis-skills/thumbnail.webp">
-              <span
-                style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
-                5 ساعت
-              </span>
-            </div>
-            <div style="/*height: 100px;*/">
-              <p class="mt-2 text-center pr-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                افزایش مهارت تجزیه و تحلیل داده های خود
-              </p>
-              <p class="text-center pl-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                Build Your Data Analysis Skills
-              </p>
-            </div>
-
-
-          </a>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
-          <a href="https://lyndakade.ir/learning/paths/master-microsoft-excel" class="text-center">
-            <div class="mx-auto" style="position: relative;width: 255px;">
-              <img class="d-inline-block lazyloaded"
-                data-src="https://dl.lyndakade.ir/learn-paths/master-microsoft-excel/thumbnail.webp"
-                alt="مسیر آموزشی به یک استاد مایکروسافت اکسل تبدیل شوید - Image of Learn Path Master Microsoft Excel"
-                style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;"
-                src="https://dl.lyndakade.ir/learn-paths/master-microsoft-excel/thumbnail.webp">
-              <span
-                style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
-                25 ساعت
-              </span>
-            </div>
-            <div style="/*height: 100px;*/">
-              <p class="mt-2 text-center pr-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                به یک استاد مایکروسافت اکسل تبدیل شوید
-              </p>
-              <p class="text-center pl-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                Master Microsoft Excel
-              </p>
-            </div>
-
-
-          </a>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
-          <a href="https://lyndakade.ir/learning/paths/master-the-fundamentals-of-ai-and-machine-learning"
-            class="text-center">
-            <div class="mx-auto" style="position: relative;width: 255px;">
-              <img class="d-inline-block lazyloaded"
-                data-src="https://dl.lyndakade.ir/learn-paths/master-the-fundamentals-of-ai-and-machine-learning/thumbnail.webp"
-                alt="مسیر آموزشی تسلط بر اصول هوش مصنوعی و یادگیری ماشین - Image of Learn Path Master the Fundamentals of AI and Machine Learning"
-                style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;"
-                src="https://dl.lyndakade.ir/learn-paths/master-the-fundamentals-of-ai-and-machine-learning/thumbnail.webp">
-              <span
-                style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
-                12 ساعت
-              </span>
-            </div>
-            <div style="/*height: 100px;*/">
-              <p class="mt-2 text-center pr-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                تسلط بر اصول هوش مصنوعی و یادگیری ماشین
-              </p>
-              <p class="text-center pl-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                Master the Fundamentals of AI and Machine Learning
-              </p>
-            </div>
-
-
-          </a>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
-          <a href="https://lyndakade.ir/learning/paths/become-a-react-developer" class="text-center">
-            <div class="mx-auto" style="position: relative;width: 255px;">
-              <img class="d-inline-block lazyloaded"
-                data-src="https://dl.lyndakade.ir/learn-paths/become-a-react-developer/thumbnail.webp"
-                alt="مسیر آموزشی به یک توسعه دهنده React تبدیل شوید - Image of Learn Path Become a React Developer"
-                style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;"
-                src="https://dl.lyndakade.ir/learn-paths/become-a-react-developer/thumbnail.webp">
-              <span
-                style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
-                6 ساعت
-              </span>
-            </div>
-            <div style="/*height: 100px;*/">
-              <p class="mt-2 text-center pr-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                به یک توسعه دهنده React تبدیل شوید
-              </p>
-              <p class="text-center pl-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                Become a React Developer
-              </p>
-            </div>
-
-
-          </a>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
-          <a href="https://lyndakade.ir/learning/paths/become-an-accounts-payable-officer-2" class="text-center">
-            <div class="mx-auto" style="position: relative;width: 255px;">
-              <img class="d-inline-block lazyloaded"
-                data-src="https://dl.lyndakade.ir/learn-paths/become-an-accounts-payable-officer-2/thumbnail.webp"
-                alt="مسیر آموزشی تبدیل به یک مسئول حسابهای پرداختنی شوید - Image of Learn Path Become an Accounts Payable Officer"
-                style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;"
-                src="https://dl.lyndakade.ir/learn-paths/become-an-accounts-payable-officer-2/thumbnail.webp">
-              <span
-                style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
-                20 ساعت
-              </span>
-            </div>
-            <div style="/*height: 100px;*/">
-              <p class="mt-2 text-center pr-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                تبدیل به یک مسئول حسابهای پرداختنی شوید
-              </p>
-              <p class="text-center pl-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                Become an Accounts Payable Officer
-              </p>
-            </div>
-
-
-          </a>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1  hidden-md hidden-sm hidden-xs ">
-          <a href="https://lyndakade.ir/learning/paths/prepare-for-microsoft-azure-architect-technologies-certification-az-300"
-            class="text-center">
-            <div class="mx-auto" style="position: relative;width: 255px;">
-              <img class="d-inline-block lazyloaded"
-                data-src="https://dl.lyndakade.ir/learn-paths/prepare-for-microsoft-azure-architect-technologies-certification-az-300/thumbnail.webp"
-                alt="مسیر آموزشی آماده شدن برای گواهینامه Microsoft Azure Architect Technologies (AZ-300) - Image of Learn Path Prepare for Microsoft Azure Architect Technologies Certification (AZ-300)"
-                style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;"
-                src="https://dl.lyndakade.ir/learn-paths/prepare-for-microsoft-azure-architect-technologies-certification-az-300/thumbnail.webp">
-              <span
-                style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
-                24 ساعت
-              </span>
-            </div>
-            <div style="/*height: 100px;*/">
-              <p class="mt-2 text-center pr-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                آماده شدن برای گواهینامه Microsoft Azure Architect Technologies (AZ-300)
-              </p>
-              <p class="text-center pl-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                Prepare for Microsoft Azure Architect Technologies Certification (AZ-300)
-              </p>
-            </div>
-
-
-          </a>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1  hidden-md hidden-sm hidden-xs ">
-          <a href="https://lyndakade.ir/learning/paths/the-top-10-most-popular-courses-among-engineering-professionals"
-            class="text-center">
-            <div class="mx-auto" style="position: relative;width: 255px;">
-              <img class="d-inline-block ls-is-cached lazyloaded"
-                data-src="https://dl.lyndakade.ir/learn-paths/the-top-10-most-popular-courses-among-engineering-professionals/thumbnail.webp"
-                alt="مسیر آموزشی 10 دوره محبوب در بین حرفه ای های مهندسی - Image of Learn Path The Top 10 Most Popular Courses among Engineering Professionals"
-                style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;"
-                src="https://dl.lyndakade.ir/learn-paths/the-top-10-most-popular-courses-among-engineering-professionals/thumbnail.webp">
-              <span
-                style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
-                25 ساعت
-              </span>
-            </div>
-            <div style="/*height: 100px;*/">
-              <p class="mt-2 text-center pr-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                10 دوره محبوب در بین حرفه ای های مهندسی
-              </p>
-              <p class="text-center pl-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                The Top 10 Most Popular Courses among Engineering Professionals
-              </p>
-            </div>
-
-
-          </a>
-        </div>
+        @foreach (\App\Course::get() as $course)
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
+            <a href="" data-toggle="modal" data-target="#preview-modal" class="text-center"
+              data-src="{{ fromDLHost($course->previewFile) }}" data-title="{{ $course->title }}"
+              data-price="{{ $course->price }}">
+              <div class="mx-auto" style="position: relative;width: 255px;">
+                <img class="lazyload d-inline-block" data-src="{{ fromDLHost($course->thumbnail) }}"
+                  alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}"
+                  style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;">
+                <span
+                  style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
+                  {{ $course->durationHours + ($course->durationMinutes > 20 ? 1 : 0) }} ساعت
+                </span>
+              </div>
+              <div style="/*height: 100px;*/">
+                <p class="mt-2 text-center pr-2 mb-0"
+                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
+                  {{ $path->title }}
+                </p>
+                <p class="text-center pl-2 mb-0"
+                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
+                  {{ $path->titleEng }}
+                </p>
+              </div>
+            </a>
+          </div>
+        @endforeach
       </div>
     </div>
   </div>
