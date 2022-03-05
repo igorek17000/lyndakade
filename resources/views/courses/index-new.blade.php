@@ -123,9 +123,33 @@
       }
     }
 
-    .card-horizontal {
-      display: flex;
-      flex: 1 1 auto;
+    .course-img {
+      border-radius: 5px;
+      max-height: 170px;
+      min-height: 170px;
+      width: 300px;
+    }
+
+    .persian-subtitle-img {
+      border: 2px solid darkgoldenrod;
+    }
+
+    .persian-subtitle-img {
+      border: 2px solid green;
+    }
+
+    @media(min-width: 575px) {
+      .card-horizontal {
+        display: flex;
+        flex: 1 1 auto;
+      }
+
+      .course-img {
+        border-radius: 5px;
+        max-height: 300px;
+        min-height: auto;
+        width: 100%;
+      }
     }
 
     [data-toggle="modal"] {
@@ -147,6 +171,68 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .img-square-wrapper {
+      position: relative;
+    }
+
+    .subtitle-state {
+      color: white;
+      bottom: 2px;
+      font-size: 13px;
+      width: 115px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      padding: 1px 0;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    .course-update-state {
+      width: 70px;
+      text-align: center;
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      border-radius: 0 3px 0 5px;
+      padding: 2px 4px 0 4px;
+      background-color: rgba(240, 0, 0, .8);
+      color: #fff;
+    }
+
+    .course-time-state {
+      width: 70px;
+      text-align: center;
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+      border-radius: 5px 0 3px 0;
+      padding: 2px 4px 0 4px;
+      background-color: rgba(0, 0, 0, .8);
+      color: #fff;
+    }
+
+    .card.course {
+      border-top-width: 0;
+      border-left-width: 0;
+      border-right-width: 0;
+    }
+
+    .course-description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+
+    .border-0 {
+      border: 0;
     }
 
   </style>
@@ -319,8 +405,61 @@
         دوره های آموزشی
       </h5>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
+      <div class="card course">
+        <div class="card-horizontal py-2">
+          <div class="img-square-wrapper">
+            <img class="d-inline-block lazyload course-img"
+              data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
+              alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}">
+            <span class="course-time-state">
+              @if ($course->durationHours == 0)
+                {{ $course->durationMinutes }} دقیقه
+              @else
+                {{ $course->durationHours + ($course->durationMinutes > 40 ? 1 : 0) }} ساعت
+              @endif
+            </span>
+            @if ($course->updateDate)
+              <span class="course-update-state">
+                بروز شده
+              </span>
+            @endif
+            @if (get_course_status_state($course->persian_subtitle_id))
+              <div class="subtitle-state persian-subtitle-img">
+                با زیرنویس فارسی
+              </div>
+            @elseif(get_course_status_state($course->english_subtitle_id))
+              <div class="subtitle-state english-subtitle-img">
+                با زیرنویس انگلیسی
+              </div>
+            @endif
+            <div class="card-img-overlay">
+              پیش نمایش
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              <p class="mt-2 text-center pr-2 mb-0"
+                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
+                {{ $course->title }}
+              </p>
+              <p class="text-center pl-2 mb-0"
+                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
+                {{ $course->titleEng }}
+              </p>
+            </h5>
+            <p class="card-text course-description">
+              {{ $course->description }}
+            </p>
+          </div>
+        </div>
+        <div class="card-footer border-0">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+
+
       <div class="row">
-        @foreach (\App\Course::limit(20)->get() as $course)
+        {{-- @foreach (\App\Course::limit(20)->get() as $course)
           <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
             <a href="" data-toggle="modal" data-target="#preview-modal" class="text-center"
               data-src="{{ fromDLHost($course->previewFile) }}" data-title="{{ $course->title }}"
@@ -350,7 +489,8 @@
               </div>
             </a>
           </div>
-        @endforeach
+        @endforeach --}}
+
       </div>
     </div>
   </div>
