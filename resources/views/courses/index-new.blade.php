@@ -136,8 +136,8 @@
 
     .course-img {
       border-radius: 5px;
-      max-height: 300px;
-      min-height: auto;
+      max-height: 170px;
+      min-height: 170px;
       width: 100%;
     }
 
@@ -238,7 +238,7 @@
       -webkit-box-orient: vertical;
     }
 
-    @media(min-width: 575px)and(max-width: 768px) {
+    @media(min-width: 575px)and(max-width: 769px) {
       .course-description {
         max-width: 600px;
       }
