@@ -280,6 +280,7 @@
 
       }
     }
+
     @media (min-width: 768px) {
       .course.container {
         max-width: 980px;
@@ -452,71 +453,77 @@
   </div>
 
   <div class="row card mx-0 mt-4 pb-4">
-    <div class="course container">
+    <div class="course container-fluid">
       <h5 class="mt-3 ">
         دوره های آموزشی
       </h5>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
-      @foreach (\App\Course::limit(20)->get() as $course)
-        <div class="card course">
-          <div class="card-horizontal py-2">
-            <div class="img-square-wrapper">
-              <img
-                class="d-inline-block lazyload course-img
+      <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-9">
+          @foreach (\App\Course::limit(20)->get() as $course)
+            <div class="card course">
+              <div class="card-horizontal py-2">
+                <div class="img-square-wrapper">
+                  <img
+                    class="d-inline-block lazyload course-img
               @if (get_course_status_state($course->persian_subtitle_id)) persian-subtitle-img
               @elseif(get_course_status_state($course->english_subtitle_id)) english-subtitle-img @endif"
-                data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
-                alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}">
-              <span class="course-time-state">
-                @if ($course->durationHours == 0)
-                  {{ $course->durationMinutes }} دقیقه
-                @else
-                  {{ $course->durationHours + ($course->durationMinutes > 40 ? 1 : 0) }} ساعت
-                @endif
-              </span>
-              {{-- @if ($course->updateDate) --}}
-              <span class="course-update-state">
-                بروز شده
-              </span>
-              {{-- @endif --}}
-              @if (get_course_status_state($course->persian_subtitle_id))
-                <div class="subtitle-state persian-subtitle-img">
-                  با زیرنویس فارسی
+                    data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
+                    alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}">
+                  <span class="course-time-state">
+                    @if ($course->durationHours == 0)
+                      {{ $course->durationMinutes }} دقیقه
+                    @else
+                      {{ $course->durationHours + ($course->durationMinutes > 40 ? 1 : 0) }} ساعت
+                    @endif
+                  </span>
+                  {{-- @if ($course->updateDate) --}}
+                  <span class="course-update-state">
+                    بروز شده
+                  </span>
+                  {{-- @endif --}}
+                  @if (get_course_status_state($course->persian_subtitle_id))
+                    <div class="subtitle-state persian-subtitle-img">
+                      با زیرنویس فارسی
+                    </div>
+                  @elseif(get_course_status_state($course->english_subtitle_id))
+                    <div class="subtitle-state english-subtitle-img">
+                      با زیرنویس انگلیسی
+                    </div>
+                  @endif
+                  <div class="card-img-overlay">
+                    پیش نمایش
+                  </div>
                 </div>
-              @elseif(get_course_status_state($course->english_subtitle_id))
-                <div class="subtitle-state english-subtitle-img">
-                  با زیرنویس انگلیسی
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <p class="mt-2 text-right pr-2 mb-0"
+                      style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
+                      {{ $course->title }}
+                    </p>
+                    <p class="text-left pl-2 mb-0"
+                      style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
+                      {{ $course->titleEng }}
+                    </p>
+                  </h5>
+                  <p class="card-text course-description text-justify">
+                    {{ $course->description }}
+                  </p>
                 </div>
-              @endif
-              <div class="card-img-overlay">
-                پیش نمایش
+              </div>
+              <div class="card-footer border-0">
+                <small class="text-muted">Last updated 3 mins ago</small>
               </div>
             </div>
-            <div class="card-body">
-              <h5 class="card-title">
-                <p class="mt-2 text-right pr-2 mb-0"
-                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                  {{ $course->title }}
-                </p>
-                <p class="text-left pl-2 mb-0"
-                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                  {{ $course->titleEng }}
-                </p>
-              </h5>
-              <p class="card-text course-description text-justify">
-                {{ $course->description }}
-              </p>
-            </div>
-          </div>
-          <div class="card-footer border-0">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
+          @endforeach
+
         </div>
-      @endforeach
-
-
-      <div class="row">
-        {{-- @foreach (\App\Course::limit(20)->get() as $course)
+      </div>
+      {{-- <div class="row">
+        @foreach (\App\Course::limit(20)->get() as $course)
           <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
             <a href="" data-toggle="modal" data-target="#preview-modal" class="text-center"
               data-src="{{ fromDLHost($course->previewFile) }}" data-title="{{ $course->title }}"
@@ -546,9 +553,8 @@
               </div>
             </a>
           </div>
-        @endforeach --}}
-
-      </div>
+        @endforeach
+      </div> --}}
     </div>
   </div>
 
