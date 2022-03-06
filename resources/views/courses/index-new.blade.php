@@ -394,6 +394,31 @@
       cursor: pointer;
     }
 
+    .path .card-img-overlay {
+      background-color: rgba(0, 0, 0, .8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      font-size: 1.3rem;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity .3s linear;
+    }
+
+    .path:hover .card-img-overlay {
+      opacity: 1;
+    }
+
+    @media (hover: none) {
+      .path .card-img-overlay {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, .6);
+      }
+    }
+
   </style>
   <div class="row m-0 home-page">
     <div class="col-12 hero-space">
@@ -519,7 +544,7 @@
       <div class="row">
         @foreach ($paths as $path)
           <div
-            class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 @if ($loop->iteration > 6) hidden-md hidden-sm hidden-xs @endif">
+            class="path col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 @if ($loop->iteration > 6) hidden-md hidden-sm hidden-xs @endif">
             <div class="mx-auto" style="position: relative;width: 255px;">
               <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
                 alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
