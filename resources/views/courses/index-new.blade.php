@@ -911,14 +911,14 @@
         var button = $(event.relatedTarget);
         if (button) {
           $('#preview-modal #preview-modal-title').text(button.data('title'));
-          $('#preview-modal #preview-modal-url').text(button.data('url'));
+          document.querySelector('#preview-modal #preview-modal-url').setAttribute('href', button.data('url'));
           // $('#preview-modal-price').text(button.data('price') + ' تومان');
           document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', button.data(
             'src'));
           document.querySelector('#preview-modal #preview-modal-body video').play();
         } else {
           $('#preview-modal #preview-modal-title').text('');
-          $('#preview-modal #preview-modal-url').text('');
+          document.querySelector('#preview-modal #preview-modal-url').setAttribute('href', '');
           // $('#preview-modal-price').text('');
         }
       });
