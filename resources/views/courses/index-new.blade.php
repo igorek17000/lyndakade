@@ -601,7 +601,8 @@
           </ul>
         </div>
         <div class="col-sm-10 col-8">
-          @foreach (\App\Course::limit(20)->get() as $course)
+          @foreach (\App\Course::orderByDesc('views')->limit(20)->get()
+      as $course)
             @include('courses.partials._course_list_new', ['course' => $course])
           @endforeach
         </div>
