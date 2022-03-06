@@ -968,7 +968,7 @@
         $.ajax({
           url: '',
           method: 'get',
-          data: [
+          data: {
             _token: $('[name="_token"]').val(),
             onlyFree: document.querySelector('#onlyFree').checked,
             popular: document.querySelector('#popular').checked,
@@ -976,7 +976,7 @@
             business: document.querySelector('#business').checked,
             technology: document.querySelector('#technology').checked,
             creative: document.querySelector('#creative').checked,
-          ],
+          },
           success: (result) => {
             $(course_list).html('');
             for (let res of result) {
