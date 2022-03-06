@@ -598,6 +598,22 @@
                 </li>
               </ul>
             </li>
+            <li><b>زیرنویس</b>
+              <ul>
+                <li>
+                  <input type="radio" id="persian-sub" name="sub-type" class="cat"><label for="persian-sub"
+                    type="radio">فارسی</label>
+                </li>
+                <li>
+                  <input type="radio" id="english-sub" name="sub-type" class="cat"><label for="english-sub"
+                    type="radio">انگلیسی</label>
+                </li>
+                <li>
+                  <input type="radio" id="no-sub" name="sub-type" class="cat"><label for="no-sub"
+                    type="radio">بدون زیرنویس</label>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
         <div class="col-sm-10 col-8">
