@@ -570,7 +570,7 @@
                 </li>
               </ul>
             </li>
-            <li><b>ترتیب بر اساس</b>
+            <li><b>ترتیب</b>
               <ul>
                 <li>
                   <input type="radio" id="newest" name="sortingOrder" class="cat"><label for="newest"
@@ -616,8 +616,8 @@
             </li>
           </ul>
         </div>
-        <div class="col-sm-10 col-8">
-          @foreach (\App\Course::where('persian_subtitle_id', 2)->orderByDesc('views')->limit(20)->get()
+        <div class="col-sm-10 col-8" id="course-list">
+          @foreach (\App\Course::orderByDesc('views')->limit(20)->get()
       as $course)
             @include('courses.partials._course_list_new', ['course' => $course])
           @endforeach
@@ -924,6 +924,11 @@
       $('#preview-modal').on('hidden.bs.modal', function() {
         document.querySelector('#preview-modal-body video').setAttribute('src', '');
       });
+    });
+    $(function() {
+      $(document).on('click', '.cat', (e) => {
+        console.log(cat clicked, e);
+      })
     });
   </script>
 @endsection
