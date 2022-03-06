@@ -16,7 +16,7 @@
   </div>
   <a href="{{ route('learn.paths.show', [$path->slug]) }}" class="text-center">
     <p class="mt-2 text-center pr-2 mb-0"
-      style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
+      style="font-size: .9rem; font-weight: 600; max-height: 86px; overflow-y: hidden;">
       {{ $path->title }}
     </p>
     {{-- <p class="text-center pl-2 mb-0"
