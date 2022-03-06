@@ -927,7 +927,7 @@
     });
     $(function() {
       $(document).on('click', '.cat', function(e) {
-        console.log(cat clicked, e);
+        console.log('cat clicked', e);
       })
     });
   </script>
