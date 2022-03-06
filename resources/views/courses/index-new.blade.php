@@ -389,6 +389,11 @@
       border: 1px solid #00aaca;
     }
 
+    .learn-path *[data-target="#preview-modal"],
+    .course *[data-target="#preview-modal"] {
+      cursor: pointer;
+    }
+
   </style>
   <div class="row m-0 home-page">
     <div class="col-12 hero-space">
@@ -505,7 +510,7 @@
   </div>
 
   <div class="row card mx-0 pb-3">
-    <div class="container">
+    <div class="learn-path container">
       <h5 class="my-0 mt-2"> مسیرهای آموزشی
         <a class="btn btn-primary btn-xs mr-3" href="{{ route('learn.paths.index') }}" style="max-width: 110px;">مشاهده
           بیشتر</a>
@@ -523,9 +528,10 @@
                 style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
                 {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
               </span>
-              <button href="" class="card-img-overlay" data-toggle="modal" data-target="#preview-modal" class="text-center"
-                data-src="{{ fromDLHost($path->_courses[0]->previewFile) }}" data-title="مسیر آموزشی {{ $path->title }}"
-                data-price="{{ $path->price() }}" data-url="{{ route('learn.paths.show', [$path->slug]) }}">
+              <button href="" class="card-img-overlay" data-toggle="modal" data-target="#preview-modal"
+                class="text-center" data-src="{{ fromDLHost($path->_courses[0]->previewFile) }}"
+                data-title="مسیر آموزشی {{ $path->title }}" data-price="{{ $path->price() }}"
+                data-url="{{ route('learn.paths.show', [$path->slug]) }}">
                 پیش نمایش
               </button>
             </div>
