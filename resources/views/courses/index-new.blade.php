@@ -515,30 +515,29 @@
         @foreach ($paths as $path)
           <div
             class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 @if ($loop->iteration > 6) hidden-md hidden-sm hidden-xs @endif">
+            <div class="mx-auto" style="position: relative;width: 255px;">
+              <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
+                alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
+                style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;">
+              <span
+                style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
+                {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
+              </span>
+            </div>
             <a href="{{ route('learn.paths.show', [$path->slug]) }}" class="text-center">
-              <div class="mx-auto" style="position: relative;width: 255px;">
-                <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
-                  alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
-                  style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;">
-                <span
-                  style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
-                  {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
-                </span>
-              </div>
-              <div style="/*height: 100px;*/">
-                <p class="mt-2 text-center pr-2 mb-0"
-                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                  {{ $path->title }}
-                </p>
-                <p class="text-center pl-2 mb-0"
-                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                  {{ $path->titleEng }}
-                </p>
-              </div>
-              {{-- <br />
+              <p class="mt-2 text-center pr-2 mb-0"
+                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
+                {{ $path->title }}
+              </p>
+              {{-- <p class="text-center pl-2 mb-0"
+                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
+                {{ $path->titleEng }}
+              </p> --}}
+            </a>
+            {{-- <br />
             <span class="tile-heading py-2">تعداد دروس
                 {{ nPersian(count(js_to_courses($path->_courses))) }}</span> --}}
-              {{-- <br />
+            {{-- <br />
             <span class="my-2 d-inline-block" style="max-height: 39px;overflow-y: hidden;">
                 مدرسین:
 
@@ -546,7 +545,6 @@
                 {{ $author->name }} @if (!$loop->last), @endif
                 @endforeach
             </span> --}}
-            </a>
           </div>
         @endforeach
       </div>
@@ -915,7 +913,8 @@
           $('#preview-modal #preview-modal-title').text(button.data('title'));
           $('#preview-modal #preview-modal-url').text(button.data('url'));
           // $('#preview-modal-price').text(button.data('price') + ' تومان');
-          document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', button.data('src'));
+          document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', button.data(
+            'src'));
           document.querySelector('#preview-modal #preview-modal-body video').play();
         } else {
           $('#preview-modal #preview-modal-title').text('');
