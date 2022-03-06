@@ -523,6 +523,11 @@
                 style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
                 {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
               </span>
+              <a href="" class="card-img-overlay" data-toggle="modal" data-target="#preview-modal" class="text-center"
+                data-src="{{ fromDLHost($path->_courses[0]->previewFile) }}" data-title="مسیر آموزشی {{ $path->title }}"
+                data-price="{{ $path->price() }}" data-url="{{ route('learn.paths.show', [$path->slug]) }}">
+                پیش نمایش
+              </a>
             </div>
             <a href="{{ route('learn.paths.show', [$path->slug]) }}" class="text-center">
               <p class="mt-2 text-center pr-2 mb-0"
