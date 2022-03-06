@@ -107,7 +107,7 @@ Route::middleware('guest')->get('/main-page/courses', function (Request $request
         'data' => [],
         'status' => 'success'
     ]);
-})->name('test query');
+})->name('main-page.courses.api');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();

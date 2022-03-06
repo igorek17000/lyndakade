@@ -601,16 +601,16 @@
             <li><b>دسته ها</b>
               <ul>
                 <li>
-                  <input type="checkbox" id="business" name="business" class="cat"><label for="business"
-                    type="checkbox">کسب و کار</label>
+                  <input type="checkbox" id="business" name="library" class="cat" data-id="1">
+                  <label for="business" type="checkbox">کسب و کار</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="technology" name="technology" class="cat"><label for="technology"
-                    type="checkbox">تکنولوژی</label>
+                  <input type="checkbox" id="technology" name="library" class="cat" data-id="3">
+                  <label for="technology" type="checkbox">تکنولوژی</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="creative" name="creative" class="cat"><label for="creative"
-                    type="checkbox">خلاقیت</label>
+                  <input type="checkbox" id="creative" name="library" class="cat" data-id="2">
+                  <label for="creative" type="checkbox">خلاقیت</label>
                 </li>
               </ul>
             </li>
@@ -962,33 +962,30 @@
         </div>`;
 
       $(document).on('click', '.cat', function(e) {
+          /*
         var course_list = document.getElementById('course-list');
         $(course_list).html(loading_html);
 
         $.ajax({
-          url: '',
+          url: "{{ route('main-page.courses.api') }}",
           method: 'get',
           data: {
             _token: $('[name="_token"]').val(),
-            onlyFree: document.querySelector('#onlyFree').checked,
-            popular: document.querySelector('#popular').checked,
-            newest: document.querySelector('#newest').checked,
-            business: document.querySelector('#business').checked,
-            technology: document.querySelector('#technology').checked,
-            creative: document.querySelector('#creative').checked,
+            onlyFree: $('#onlyFree').checked,
+            sortingOrder: $('input[name="sortingOrder"]:checked').data('id'),
+            business: $('#business').checked,
+            technology: $('#technology').checked,
+            creative: $('#creative').checked,
           },
           success: (result) => {
-            $(course_list).html('');
-            for (let res of result) {
-              // console.log(res);
-              course_list.insertAdjacentHTML('beforeend', res)
-            }
+            $(course_list).html(result);
           },
           errors: (xhr) => {
             console.log(xhr);
             $(course_list).html(error_html);
           }
         });
+        */
       })
     });
   </script>
