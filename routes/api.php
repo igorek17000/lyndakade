@@ -103,7 +103,7 @@ Route::middleware('guest')->get('/main-page/courses', function (Request $request
     return new JsonResponse([
         'data' => view('courses.partials._course_list_new_total', [
             'courses' => $courses,
-        ]),
+        ])->render(),
         'd' => [
             $onlyFree, $sortingOrder, $libraries
         ],
