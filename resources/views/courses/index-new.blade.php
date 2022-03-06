@@ -419,6 +419,23 @@
       }
     }
 
+    @keyframes spinner-border {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .spinner-border {
+      display: inline-block;
+      width: 4rem;
+      height: 4rem;
+      vertical-align: text-bottom;
+      border: 0.23em solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: spinner-border .95s linear infinite;
+    }
+
   </style>
   <div class="row m-0 home-page">
     <div class="col-12 hero-space">
@@ -930,9 +947,48 @@
         document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', '');
       });
     });
+
     $(function() {
+      var loading_html = `
+        <div class="d-flex justify-content-center mt-5">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">در حال بارگیری ...</span>
+            </div>
+        </div>`;
+
+      var error_html = `
+        <div class="d-flex justify-content-center mt-5">
+            <div style="font-size: 1rem;">خطایی رخ داده است، لطفا دوباره امتحان کنید.</div>
+        </div>`;
+
       $(document).on('click', '.cat', function(e) {
-        console.log('cat clicked', e);
+        var course_list = document.getElementById('course-list');
+        $(course_list).html(loading_html);
+
+        $.ajax({
+          url: '',
+          method: 'get',
+          data: [
+            _token: $('[name="_token"]').val(),
+            onlyFree: document.querySelector('#onlyFree').checked,
+            popular: document.querySelector('#popular').checked,
+            newest: document.querySelector('#newest').checked,
+            business: document.querySelector('#business').checked,
+            technology: document.querySelector('#technology').checked,
+            creative: document.querySelector('#creative').checked,
+          ],
+          success: (result) => {
+            $(course_list).html('');
+            for (let res of result) {
+              // console.log(res);
+              course_list.insertAdjacentHTML('beforeend', res)
+            }
+          },
+          errors: (xhr) => {
+            console.log(xhr);
+            $(course_list).html(error_html);
+          }
+        });
       })
     });
   </script>
