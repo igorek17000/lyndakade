@@ -926,7 +926,7 @@
       });
     });
     $(function() {
-      $(document).on('click', '.cat', (e) => {
+      $(document).on('click', '.cat', function(e) {
         console.log(cat clicked, e);
       })
     });
