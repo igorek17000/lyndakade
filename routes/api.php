@@ -97,8 +97,9 @@ Route::middleware('guest')->get('/main-page/courses', function (Request $request
     $onlyFree = $request->get('onlyFree');
     $sortingOrder = $request->get('sortingOrder');
     $libraries = $request->get('libraries');
+    $sortingOrder = $sortingOrder ? (intval($sortingOrder) == 1 ? 'releaseDate' : 'views') : 'releaseDate';
 
-    $courses = \App\Course::orderByDesc('views')->limit(20)->get();
+    $courses = \App\Course::orderByDesc($sortingOrder)->limit(20)->get();
 
     return new JsonResponse([
         'data' => view('courses.partials._course_list_new_total', [

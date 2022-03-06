@@ -589,12 +589,12 @@
             <li><b>ترتیب</b>
               <ul>
                 <li>
-                  <input type="radio" id="newest" name="sortingOrder" class="cat"><label for="newest"
-                    type="radio">جدیدترین</label>
+                  <input type="radio" id="newest" name="sortingOrder" class="cat" data-id="1">
+                  <label for="newest" type="radio">جدیدترین</label>
                 </li>
                 <li>
-                  <input type="radio" id="popular" name="sortingOrder" class="cat"><label for="popular"
-                    type="radio">محبوب ترین</label>
+                  <input type="radio" id="popular" name="sortingOrder" class="cat" data-id="2">
+                  <label for="popular" type="radio">محبوب ترین</label>
                 </li>
               </ul>
             </li>
@@ -633,9 +633,11 @@
           </ul>
         </div>
         <div class="col-sm-10 col-8" id="course-list">
-          @include('courses.partials._course_list_new_total', [
-              'courses' => \App\Course::orderByDesc('views')->limit(20)->get(),
-          ])
+          <div class="d-flex justify-content-center mt-5">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">در حال بارگیری ...</span>
+            </div>
+          </div>
         </div>
       </div>
       {{-- <div class="row">
@@ -957,7 +959,7 @@
             <div style="font-size: 1rem;">خطایی رخ داده است، لطفا دوباره امتحان کنید.</div>
         </div>`;
 
-      $(document).on('click', '.cat', function(e) {
+      function get_courses() {
         var course_list = document.getElementById('course-list');
         $(course_list).html(loading_html);
 
@@ -973,13 +975,19 @@
             }),
           },
           success: function(result) {
+            console.log("result", result);
             $(course_list).html(result.data);
           },
           errors: function(xhr) {
-            console.log(xhr);
+            console.log("xhr", xhr);
             $(course_list).html(error_html);
           }
         });
+      }
+
+      get_courses();
+      $(document).on('click', '.cat', function(e) {
+        get_courses();
       })
     });
   </script>
