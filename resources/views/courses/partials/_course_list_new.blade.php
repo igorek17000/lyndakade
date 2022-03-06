@@ -51,7 +51,30 @@
     </div>
   </div>
   <div class="card-footer border-0">
-    <small class="text-muted">Last updated 3 mins ago</small>
+    <div class="row">
+      <div class="col-lg-2 col-sm-6 mb-sm-1">
+        تاریخ انتشار
+        {{ $course->releaseDate }}
+      </div>
+      <div class="col-lg-2 col-sm-6 mb-sm-1">
+        تاریخ بروزرسانی
+        {{ $course->updateDate ? $course->updateDate : 'ندارد' }}
+      </div>
+      <div class="col-lg-2 col-sm-6 mb-sm-1">
+        مدرس
+        {{ $course->authors[0]->name }}
+      </div>
+      <div class="col-lg-2 col-sm-6 mb-sm-1">
+        فایل های همراه
+      </div>
+      <div class="col-lg-2 col-sm-6 mb-sm-1">
+        قیمت
+        {{ $course->price }}
+      </div>
+      <div class="col-lg-2 col-sm-6 mb-sm-1">
+        بازدید
+        {{ $course->views }}
+      </div>
+    </div>
   </div>
 </div>
-
