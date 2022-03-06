@@ -804,7 +804,7 @@
 
             <div>
               <span style="font-size: 1.2rem;" id="preview-modal-title">عنوان دوره</span>
-              <a href="#" style="float: left;" class="btn btn-success mb-2">مشاهده جزئیات دوره</a>
+              <a href="#" id="preview-modal-url" style="float: left;" class="btn btn-success mb-2">مشاهده جزئیات دوره</a>
               {{-- <span style="float: left;cursor: auto;" class="btn" id="preview-modal-price">قیمت دوره</span> --}}
             </div>
           </div>
@@ -912,17 +912,19 @@
       $('#preview-modal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget);
         if (button) {
-          $('#preview-modal-title').text(button.data('title'));
+          $('#preview-modal #preview-modal-title').text(button.data('title'));
+          $('#preview-modal #preview-modal-url').text(button.data('url'));
           // $('#preview-modal-price').text(button.data('price') + ' تومان');
-          document.querySelector('#preview-modal-body video').setAttribute('src', button.data('src'));
-          document.querySelector('#preview-modal-body video').play();
+          document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', button.data('src'));
+          document.querySelector('#preview-modal #preview-modal-body video').play();
         } else {
-          $('#preview-modal-title').text('');
+          $('#preview-modal #preview-modal-title').text('');
+          $('#preview-modal #preview-modal-url').text('');
           // $('#preview-modal-price').text('');
         }
       });
       $('#preview-modal').on('hidden.bs.modal', function() {
-        document.querySelector('#preview-modal-body video').setAttribute('src', '');
+        document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', '');
       });
     });
     $(function() {
