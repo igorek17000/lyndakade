@@ -543,45 +543,10 @@
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
         @foreach ($paths as $path)
-          <div
-            class="path col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 @if ($loop->iteration > 6) hidden-md hidden-sm hidden-xs @endif">
-            <div class="mx-auto" style="position: relative;width: 255px;">
-              <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
-                alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
-                style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;">
-              <span
-                style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
-                {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
-              </span>
-              <button href="" class="card-img-overlay" data-toggle="modal" data-target="#preview-modal"
-                class="text-center" data-src="{{ fromDLHost($path->_courses[0]->previewFile) }}"
-                data-title="مسیر آموزشی {{ $path->title }}" data-price="{{ $path->price() }}"
-                data-url="{{ route('learn.paths.show', [$path->slug]) }}">
-                پیش نمایش
-              </button>
-            </div>
-            <a href="{{ route('learn.paths.show', [$path->slug]) }}" class="text-center">
-              <p class="mt-2 text-center pr-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                {{ $path->title }}
-              </p>
-              {{-- <p class="text-center pl-2 mb-0"
-                style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                {{ $path->titleEng }}
-              </p> --}}
-            </a>
-            {{-- <br />
-            <span class="tile-heading py-2">تعداد دروس
-                {{ nPersian(count(js_to_courses($path->_courses))) }}</span> --}}
-            {{-- <br />
-            <span class="my-2 d-inline-block" style="max-height: 39px;overflow-y: hidden;">
-                مدرسین:
-
-                @foreach ($path->authors() as $author)
-                {{ $author->name }} @if (!$loop->last), @endif
-                @endforeach
-            </span> --}}
-          </div>
+          @include('learn_paths.partials.list_item_grid_new', [
+              'path' => $path,
+              'loop' => $loop,
+          ])
         @endforeach
       </div>
     </div>
@@ -653,7 +618,10 @@
         <div class="col-sm-10 col-8" id="course-list">
           @foreach (\App\Course::orderByDesc('views')->limit(20)->get()
       as $course)
-            @include('courses.partials._course_list_new', ['course' => $course])
+            @include('courses.partials._course_list_new', [
+                'course' => $course,
+                'loop' => $loop,
+            ])
           @endforeach
         </div>
       </div>
