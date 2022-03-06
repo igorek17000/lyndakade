@@ -15,6 +15,7 @@ class LearnPath extends Model
 
     protected $fillable = ['title', 'titleEng', 'description'];
 
+
     /**
      * Searchable rules.
      *
@@ -75,6 +76,13 @@ class LearnPath extends Model
             // $model->_courses = $courses;
         });
     }
+
+    // protected $with = ['__courses'];
+
+    // public function __courses()
+    // {
+    //     return $this->hasMany(Course::class,);
+    // }
 
     /**
      * A LearnPath belong to a library
@@ -153,7 +161,7 @@ class LearnPath extends Model
         // $courses = $this->_courses->with('authors')->get();
 
         foreach ($this->_courses as $key => $course) {
-        // foreach ($courses as $key => $course) {
+            // foreach ($courses as $key => $course) {
             foreach ($course->authors as $author) {
                 array_push($authors, $author->id);
             }

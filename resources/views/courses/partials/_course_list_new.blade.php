@@ -28,11 +28,11 @@
           با زیرنویس انگلیسی
         </div>
       @endif
-      <a href="" class="card-img-overlay" data-toggle="modal" data-target="#preview-modal" class="text-center"
+      <button href="" class="card-img-overlay" data-toggle="modal" data-target="#preview-modal" class="text-center"
         data-src="{{ fromDLHost($course->previewFile) }}" data-title="{{ $course->title }}"
         data-price="{{ $course->price }}" data-url="{{ courseURL($course) }}">
         پیش نمایش
-      </a>
+      </button>
     </div>
     <div class="card-body">
       <h5 class="card-title">
