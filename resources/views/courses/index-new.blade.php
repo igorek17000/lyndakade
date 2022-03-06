@@ -633,13 +633,9 @@
           </ul>
         </div>
         <div class="col-sm-10 col-8" id="course-list">
-          @foreach (\App\Course::orderByDesc('views')->limit(20)->get()
-      as $course)
-            @include('courses.partials._course_list_new', [
-                'course' => $course,
-                'loop' => $loop,
-            ])
-          @endforeach
+          @include('courses.partials._course_list_new_total', [
+              'courses' => \App\Course::orderByDesc('views')->limit(20)->get(),
+          ])
         </div>
       </div>
       {{-- <div class="row">
@@ -962,7 +958,6 @@
         </div>`;
 
       $(document).on('click', '.cat', function(e) {
-          /*
         var course_list = document.getElementById('course-list');
         $(course_list).html(loading_html);
 
@@ -973,19 +968,18 @@
             _token: $('[name="_token"]').val(),
             onlyFree: $('#onlyFree').checked,
             sortingOrder: $('input[name="sortingOrder"]:checked').data('id'),
-            business: $('#business').checked,
-            technology: $('#technology').checked,
-            creative: $('#creative').checked,
+            libraries: [...document.querySelectorAll('input[name="library"]:checked')].map((el) => {
+              return $(el).data('id')
+            }),
           },
-          success: (result) => {
-            $(course_list).html(result);
+          success: function(result) {
+            $(course_list).html(result.data);
           },
-          errors: (xhr) => {
+          errors: function(xhr) {
             console.log(xhr);
             $(course_list).html(error_html);
           }
         });
-        */
       })
     });
   </script>

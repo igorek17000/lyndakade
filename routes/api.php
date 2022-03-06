@@ -97,14 +97,16 @@ Route::middleware('guest')->get('/main-page/courses', function (Request $request
     $onlyFree = $request->get('onlyFree');
     $sortingOrder = $request->get('sortingOrder');
     $libraries = $request->get('libraries');
-    if (!$sortingOrder || !$libraries) {
-        return new JsonResponse([
-            'data' => [],
-            'status' => 'forbidden'
-        ]);
-    }
+
+    $courses = \App\Course::orderByDesc('views')->limit(20)->get();
+
     return new JsonResponse([
-        'data' => [],
+        'data' => view('courses.partials._course_list_new_total', [
+            'courses' => $courses,
+        ]),
+        'd' => [
+            $onlyFree, $sortingOrder, $libraries
+        ],
         'status' => 'success'
     ]);
 })->name('main-page.courses.api');
