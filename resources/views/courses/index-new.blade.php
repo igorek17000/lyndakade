@@ -299,6 +299,96 @@
       padding: 1rem;
     }
 
+    .course ul li {
+      position: relative;
+    }
+
+    .course ul>li ul {
+      padding-right: 25px;
+      padding-top: 4px;
+    }
+
+    .course ul input {
+      position: absolute;
+      left: 0;
+      top: 0;
+      visibility: hidden;
+    }
+
+    .course ul label {
+      display: block;
+      line-height: 25px;
+      position: relative;
+      padding-right: 25px;
+      font-size: 14px;
+    }
+
+    .course ul label[type="checkbox"]::before {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+      border: 1px solid #d7e1e6;
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 2px;
+    }
+
+    .course ul label[type="checkbox"]::after {
+      width: 14px;
+      height: 14px;
+      border-radius: 2px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      background-color: #00aaca;
+      content: '';
+      position: absolute;
+      right: 2px;
+      top: 4px;
+      opacity: 0;
+      transition: opacity .3s linear;
+    }
+
+    .course ul label[type="radio"]::before {
+      width: 18px;
+      height: 18px;
+      border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+      border: 1px solid #d7e1e6;
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 2px;
+    }
+
+    .course ul label[type="radio"]::after {
+      width: 14px;
+      height: 14px;
+      border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+      background-color: #00aaca;
+      content: '';
+      position: absolute;
+      right: 2px;
+      top: 4px;
+      opacity: 0;
+      transition: opacity .3s linear;
+    }
+
+    .course ul li input:checked+label:after,
+    .course ul li label:hover:after {
+      opacity: 1;
+    }
+
+    .course ul li input:checked+label:before,
+    .course ul li label:hover:before {
+      border: 1px solid #00aaca;
+    }
+
   </style>
   <div class="row m-0 home-page">
     <div class="col-12 hero-space">
@@ -470,69 +560,50 @@
       </h5>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
-        <div class="col-3">
-
+        <div class="col-sm-2 col-4">
+          <ul>
+            <li><b>قیمت</b>
+              <ul>
+                <li>
+                  <input type="checkbox" id="onlyFree" name="onlyFree" class="cat"><label for="onlyFree"
+                    type="checkbox">رایگان</label>
+                </li>
+              </ul>
+            </li>
+            <li><b>ترتیب بر اساس</b>
+              <ul>
+                <li>
+                  <input type="radio" id="newest" name="sortingOrder" class="cat"><label for="newest"
+                    type="radio">جدیدترین</label>
+                </li>
+                <li>
+                  <input type="radio" id="popular" name="sortingOrder" class="cat"><label for="popular"
+                    type="radio">محبوب ترین</label>
+                </li>
+              </ul>
+            </li>
+            <li><b>دسته ها</b>
+              <ul>
+                <li>
+                  <input type="checkbox" id="business" name="business" class="cat"><label for="business"
+                    type="checkbox">کسب و کار</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="technology" name="technology" class="cat"><label for="technology"
+                    type="checkbox">تکنولوژی</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="creative" name="creative" class="cat"><label for="creative"
+                    type="checkbox">خلاقیت</label>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-        <div class="col-9">
+        <div class="col-sm-10 col-8">
           @foreach (\App\Course::limit(20)->get() as $course)
-            <div class="card course">
-              <div class="card-horizontal py-2">
-                <div class="img-square-wrapper">
-                  <img
-                    class="d-inline-block lazyload course-img
-              @if (get_course_status_state($course->persian_subtitle_id)) persian-subtitle-img
-              @elseif(get_course_status_state($course->english_subtitle_id)) english-subtitle-img @endif"
-                    data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
-                    alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}">
-                  <span class="course-time-state">
-                    @if ($course->durationHours == 0)
-                      {{ $course->durationMinutes }} دقیقه
-                    @else
-                      {{ $course->durationHours + ($course->durationMinutes > 40 ? 1 : 0) }} ساعت
-                    @endif
-                  </span>
-                  @if ($course->updateDate)
-                    <span class="course-update-state">
-                      بروز شده
-                    </span>
-                  @endif
-                  @if (get_course_status_state($course->persian_subtitle_id))
-                    <div class="subtitle-state persian-subtitle-img">
-                      با زیرنویس فارسی
-                    </div>
-                  @elseif(get_course_status_state($course->english_subtitle_id))
-                    <div class="subtitle-state english-subtitle-img">
-                      با زیرنویس انگلیسی
-                    </div>
-                  @endif
-                  <a href="" class="card-img-overlay" data-toggle="modal" data-target="#preview-modal"
-                    class="text-center" data-src="{{ fromDLHost($course->previewFile) }}"
-                    data-title="{{ $course->title }}" data-price="{{ $course->price }}">
-                    پیش نمایش
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">
-                    <p class="mt-2 text-right pr-2 mb-0"
-                      style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                      {{ $course->title }}
-                    </p>
-                    <p class="text-left pl-2 mb-0"
-                      style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                      {{ $course->titleEng }}
-                    </p>
-                  </h5>
-                  <p class="card-text course-description text-justify">
-                    {{ $course->description }}
-                  </p>
-                </div>
-              </div>
-              <div class="card-footer border-0">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </div>
-            </div>
+            @include('courses.partials._course_list_new', ['course' => $course])
           @endforeach
-
         </div>
       </div>
       {{-- <div class="row">
