@@ -974,7 +974,7 @@
           '1';
         var libraries = [...document.querySelectorAll('input[name="library"]:checked')].map((el) => {
           return $(el).data('id')
-        });
+        }).join();
         var data = {
           _token: $('[name="_token"]').val(),
           onlyFree: $('#onlyFree')[0].checked,

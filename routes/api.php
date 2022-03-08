@@ -96,9 +96,13 @@ Route::middleware('guest')->get('/test-query', function (Request $request) {
 Route::middleware('guest')->post('/main-page/courses', function (Request $request) {
     $onlyFree = $request->get('onlyFree', false);
     $sortingOrder = $request->get('sortingOrder', '1');
-    $libraries = $request->get('libraries', \App\Library::get()->pluck('id')->toArray());
+    $libraries = $request->get('libraries', false);
     $sortingOrder = intval($sortingOrder) == 1 ? 'releaseDate' : 'views';
-
+    if ($libraries === false) {
+        $libraries = \App\Library::get()->pluck('id')->toArray();
+    } else {
+        $libraries = explode(',', $libraries);
+    }
     if (count($libraries) == 0) {
         $courses = \App\Course::query();
         $type = 1;
