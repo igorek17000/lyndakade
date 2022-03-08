@@ -100,13 +100,13 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     $sortingOrder = $sortingOrder ? (intval($sortingOrder) == 1 ? 'releaseDate' : 'views') : 'releaseDate';
 
     if (count($libraries) == 0) {
-        $courses = \App\Course::orderByDesc($sortingOrder)->limit(20)->get()
-            ->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
+        $courses = \App\Course::query();
     } else {
-        $courses = \App\Course::orderByDesc('releaseDate')->whereHas('subjects', function ($q) use ($libraries) {
+        $courses = \App\Course::whereHas('subjects', function ($q) use ($libraries) {
             $q->whereIn('library_id', $libraries);
-        })->limit(20)->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
+        });
     }
+    $courses = $courses->orderByDesc($sortingOrder)->limit(20)->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
     return new JsonResponse([
         'data' => view('courses.partials._course_list_new_total', [
             'courses' => $courses,
