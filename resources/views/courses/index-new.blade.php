@@ -977,8 +977,8 @@
         var data = {
           _token: $('[name="_token"]').val(),
           onlyFree: $('#onlyFree')[0].checked,
-          sortingOrder,
-          libraries,
+          sortingOrder: sortingOrder,
+          libraries: libraries,
         };
 
         console.log(sortingOrder, libraries, data);
@@ -986,7 +986,7 @@
         $request = $.ajax({
           url: "{{ route('main-page.courses.api') }}",
           method: 'post',
-          data,
+          data: data,
           success: function(result) {
             console.log("result", result);
             $(course_list).html(result.data);
