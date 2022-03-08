@@ -94,7 +94,7 @@ Route::middleware('guest')->get('/test-query', function (Request $request) {
 })->name('test query');
 
 Route::middleware('guest')->post('/main-page/courses', function (Request $request) {
-    $onlyFree = $request->get('onlyFree');
+    $onlyFree = $request->get('onlyFree', false);
     $sortingOrder = $request->get('sortingOrder', '1');
     $libraries = $request->get('libraries', \App\Library::get()->pluck('id')->toArray());
     $sortingOrder = intval($sortingOrder) == 1 ? 'releaseDate' : 'views';
@@ -107,6 +107,9 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
             $q->whereIn('library_id', $libraries);
         });
         $type = 2;
+    }
+    if ($onlyFree) {
+        $courses = $courses->where('price', 0);
     }
     $courses = $courses->orderByDesc($sortingOrder)->limit(20)->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
     return new JsonResponse([
