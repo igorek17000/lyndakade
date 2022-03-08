@@ -970,7 +970,7 @@
         $(course_list).html(loading_html);
 
         var sortingOrder = $('input[name="sortingOrder"]:checked').length > 0 ? $(
-          'input[name="sortingOrder"]:checked')[0].data('id') : null;
+          'input[name="sortingOrder"]:checked')[0].data('id') : '';
         var libraries = [...document.querySelectorAll('input[name="library"]:checked')].map((el) => {
           return $(el).data('id')
         });
