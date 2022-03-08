@@ -958,29 +958,44 @@
         <div class="d-flex justify-content-center mt-5">
             <div style="font-size: 1rem;">خطایی رخ داده است، لطفا دوباره امتحان کنید.</div>
         </div>`;
+      var $request = null;
+      var course_list = document.getElementById('course-list');
 
       function get_courses() {
-        var course_list = document.getElementById('course-list');
+        if ($request != null) {
+          $request.abort();
+          $request = null;
+        }
+
         $(course_list).html(loading_html);
 
-        $.ajax({
+        var sortingOrder = $('input[name="sortingOrder"]:checked').length > 0 ? $(
+          'input[name="sortingOrder"]:checked')[0].data('id') : null;
+        var libraries = [...document.querySelectorAll('input[name="library"]:checked')].map((el) => {
+          return $(el).data('id')
+        });
+        var data = {
+          _token: $('[name="_token"]').val(),
+          onlyFree: $('#onlyFree')[0].checked,
+          sortingOrder,
+          libraries,
+        };
+
+        console.log(sortingOrder, libraries, data);
+
+        $request = $.ajax({
           url: "{{ route('main-page.courses.api') }}",
           method: 'post',
-          data: {
-            _token: $('[name="_token"]').val(),
-            onlyFree: $('#onlyFree').checked,
-            sortingOrder: $('input[name="sortingOrder"]:checked').data('id'),
-            libraries: [...document.querySelectorAll('input[name="library"]:checked')].map((el) => {
-              return $(el).data('id')
-            }),
-          },
+          data,
           success: function(result) {
             console.log("result", result);
             $(course_list).html(result.data);
+            $request = null;
           },
           errors: function(xhr) {
             console.log("xhr", xhr);
             $(course_list).html(error_html);
+            $request = null;
           }
         });
       }
