@@ -598,7 +598,7 @@
                 </li>
               </ul>
             </li>
-            <li><b>دسته ها</b>
+            <li><b>کتابخانه</b>
               <ul>
                 <li>
                   <input type="checkbox" id="business" name="library" class="cat" data-id="1">
@@ -821,8 +821,8 @@
 
             <div>
               <span style="font-size: 1.2rem;" id="preview-modal-title">عنوان دوره</span>
-              <a href="#" id="preview-modal-url" style="float: left;" class="btn btn-success mb-2">مشاهده جزئیات دوره</a>
-              {{-- <span style="float: left;cursor: auto;" class="btn" id="preview-modal-price">قیمت دوره</span> --}}
+              <a href="#" id="preview-modal-url" style="float: left;" class="btn btn-success mb-2">مشاهده جزئیات</a>
+              {{-- <span style="float: left;cursor: auto;" class="btn" id="preview-modal-price">قیمت</span> --}}
             </div>
           </div>
         </div>
@@ -965,7 +965,7 @@
 
         $.ajax({
           url: "{{ route('main-page.courses.api') }}",
-          method: 'get',
+          method: 'post',
           data: {
             _token: $('[name="_token"]').val(),
             onlyFree: $('#onlyFree').checked,
