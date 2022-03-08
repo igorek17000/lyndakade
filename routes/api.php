@@ -96,16 +96,22 @@ Route::middleware('guest')->get('/test-query', function (Request $request) {
 Route::middleware('guest')->post('/main-page/courses', function (Request $request) {
     $onlyFree = $request->get('onlyFree');
     $sortingOrder = $request->get('sortingOrder');
-    $libraries = $request->get('libraries');
+    $libraries = $request->get('libraries', \App\Library::get()->pluck('id')->toArray());
     $sortingOrder = $sortingOrder ? (intval($sortingOrder) == 1 ? 'releaseDate' : 'views') : 'releaseDate';
 
-    $courses = \App\Course::whereIn('library_id', $libraries)->orderByDesc($sortingOrder)->limit(20)->get();
-
+    if (count($libraries) == 0) {
+        $courses = \App\Course::orderByDesc($sortingOrder)->limit(20)->get()
+            ->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
+    } else {
+        $courses = \App\Course::orderByDesc('releaseDate')->whereHas('subjects', function ($q) use ($libraries) {
+            $q->whereIn('library_id', $libraries);
+        })->limit(20)->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
+    }
     return new JsonResponse([
         'data' => view('courses.partials._course_list_new_total', [
             'courses' => $courses,
         ])->render(),
-        'd' => [
+        'params' => [
             $onlyFree, $sortingOrder, $libraries
         ],
         'status' => 'success'
