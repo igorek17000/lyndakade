@@ -101,10 +101,12 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
 
     if (count($libraries) == 0) {
         $courses = \App\Course::query();
+        $type = 1;
     } else {
         $courses = \App\Course::whereHas('subjects', function ($q) use ($libraries) {
             $q->whereIn('library_id', $libraries);
         });
+        $type = 2;
     }
     $courses = $courses->orderByDesc($sortingOrder)->limit(20)->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
     return new JsonResponse([
@@ -112,7 +114,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
             'courses' => $courses,
         ])->render(),
         'params' => [
-            $onlyFree, $sortingOrder, $libraries
+            $onlyFree, $sortingOrder, $libraries, $type
         ],
         'status' => 'success'
     ]);
