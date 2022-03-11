@@ -495,6 +495,11 @@ class HomeController extends Controller
         return response()->json(Subject::query()->get(['title']));
     }
 
+    public function test2_url(Request $request)
+    {
+        return view('users.my-profile-new');
+    }
+
     public function test_url(Request $request)
     {
 
@@ -502,12 +507,12 @@ class HomeController extends Controller
         // $free_courses = $this->sort_courses_by_releasedate_or_updatedate(Course::where('price', 0)->get(['releaseDate', 'updateDate', 'id']));
 
         $free_courses_ids = Course::where('price', 0)
-        ->get(['releaseDate', 'updateDate', 'id'])
-        ->map(function ($c) {
-            return ['id' => $c->id, 'date' => $c->updateDate ?? $c->releaseDate,];
-        })->sortByDesc(function ($c) {
-            return verta($c['date']);
-        })->take(4);
+            ->get(['releaseDate', 'updateDate', 'id'])
+            ->map(function ($c) {
+                return ['id' => $c->id, 'date' => $c->updateDate ?? $c->releaseDate,];
+            })->sortByDesc(function ($c) {
+                return verta($c['date']);
+            })->take(4);
         $ids = [];
         foreach ($free_courses_ids as $free_course) {
             $ids[] = $free_course['id'];
@@ -519,11 +524,11 @@ class HomeController extends Controller
         });
 
         $latest_courses_ids = Course::get(['releaseDate', 'updateDate', 'id'])
-        ->map(function ($c) {
-            return ['id' => $c->id, 'date' => $c->updateDate ?? $c->releaseDate];
-        })->sortByDesc(function ($c) {
-            return verta($c['date']);
-        })->take(4);
+            ->map(function ($c) {
+                return ['id' => $c->id, 'date' => $c->updateDate ?? $c->releaseDate];
+            })->sortByDesc(function ($c) {
+                return verta($c['date']);
+            })->take(4);
         $ids = [];
         foreach ($latest_courses_ids as $latest_course) {
             $ids[] = $latest_course['id'];
@@ -538,7 +543,7 @@ class HomeController extends Controller
         $dubbed_courses = Course::with('authors')->where('dubbed_id', 1)->limit(4)->get();
 
         $popular_courses = Course::with('authors')->orderBy('views', 'DESC')
-        ->limit(4)->get();
+            ->limit(4)->get();
 
         $paths = LearnPath::inRandomOrder()->limit(8)->get();
 

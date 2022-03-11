@@ -53,6 +53,32 @@ class UserController extends Controller
         return view('users.edit', ['user' => Auth::user()]);
     }
 
+   /* public function update_profile(Request $request)
+    {
+        if (auth()->check()) {
+            $id = auth()->id();
+            $user = auth()->user();
+            $errors = false;
+            if (User::where('username', $request->input('username'))->count() > 0 && $user->username != $request->input('username')) {
+                $errors = true;
+            }
+            if (User::where('email', $request->input('email'))->count() > 0 && $user->email != $request->input('email')) {
+                $errors = true;
+            }
+            if (!$errors) {
+                User::where('id', $id)->update([
+                    'name' => $request->input('name', $user->name),
+                    'firstName' => $request->input('firstName', $user->firstName),
+                    'lastName' => $request->input('lastName', $user->lastName),
+                    'username' => $request->input('username', $user->username),
+                    'email' => $request->input('email', $user->email),
+                    'mobile' => $request->input('mobile', $user->mobile),
+                    'avatar' => $request->input('avatar', $user->avatar),
+                ]);
+            }
+        }
+    }
+*/
     /**
      * Display apply changes requested by logged in user
      *
@@ -97,7 +123,7 @@ class UserController extends Controller
         if (auth()->user()->can('browse', app($dataType->model_name))) {
             $redirect = redirect()->route("voyager.{$dataType->slug}.index");
         } else {
-            $redirect = redirect()->back();
+            $redirect = redirect()->route('my-profile');
         }
 
         return $redirect->with([
