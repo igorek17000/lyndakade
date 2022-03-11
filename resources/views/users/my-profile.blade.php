@@ -176,8 +176,8 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <div class="profile-work">
-          {{-- <p>WORK LINK</p>
+        {{-- <div class="profile-work">
+          <p>WORK LINK</p>
           <a href="">Website Link</a><br />
           <a href="">Bootsnipp Profile</a><br />
           <a href="">Bootply Profile</a>
@@ -186,8 +186,8 @@
           <a href="">Web Developer</a><br />
           <a href="">WordPress</a><br />
           <a href="">WooCommerce</a><br />
-          <a href="">PHP, .Net</a><br /> --}}
-        </div>
+          <a href="">PHP, .Net</a><br />
+        </div>--}}
       </div>
       <div class="col-md-8">
         <div class="tab-content profile-tab" id="myTabContent">
