@@ -128,7 +128,7 @@ class LearnPath extends Model
         $res = 0;
         foreach ($courses as $course) {
             if (auth()->check()) {
-                if (!(new PaidController)->isPaid($course->id, auth()->id(), '2')) {
+                if (!(new PaidController)->isPaid($course->id, auth()->id(), '1')) {
                     $res += get_course_price($course->price);
                 }
             } else {
