@@ -159,10 +159,10 @@
     [data-toggle="modal"] {
       text-align: center;
       /* position: absolute;
-      right: 0;
-      left: 0;
-      top: 0;
-      bottom: 0; */
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0; */
       border-radius: 5px;
       padding: 2px 4px 0 4px;
       font-size: 20px;
@@ -441,7 +441,7 @@
 
   </style>
   <div class="row m-0 home-page">
-    <div class="col-12 hero-space">
+    <div class="col-12 hero-space" style="min-height: 440px; height: auto;">
       <div class="hero-text" style="background-color: rgba(255, 255, 255, 0.5) !important;">
         <h1 style="font-size: 2.25rem;">
           دانلود آموزش های وبسایت
