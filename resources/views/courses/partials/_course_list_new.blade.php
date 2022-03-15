@@ -71,7 +71,7 @@
               $d = explode('/', $d);
               echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
           } else {
-              echo 'ندارد';
+              echo '<span style="color: darkred"> ندارد</span>';
           }
         @endphp
       </div>
