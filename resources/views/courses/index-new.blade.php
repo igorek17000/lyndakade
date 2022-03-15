@@ -159,10 +159,10 @@
     [data-toggle="modal"] {
       text-align: center;
       /* position: absolute;
-            right: 0;
-            left: 0;
-            top: 0;
-            bottom: 0; */
+                right: 0;
+                left: 0;
+                top: 0;
+                bottom: 0; */
       border-radius: 5px;
       padding: 2px 4px 0 4px;
       font-size: 20px;
@@ -337,6 +337,10 @@
       .course ul label {
         margin-right: -15px;
         font-size: 11px;
+      }
+
+      .card.course .card-footer {
+        text-align: center;
       }
     }
 
@@ -641,154 +645,8 @@
           </div>
         </div>
       </div>
-      {{-- <div class="row">
-        @foreach (\App\Course::limit(20)->get() as $course)
-          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 ">
-            <a href="" data-toggle="modal" data-target="#preview-modal" class="text-center"
-              data-src="{{ fromDLHost($course->previewFile) }}" data-title="{{ $course->title }}"
-              data-price="{{ $course->price }}">
-              <div class="mx-auto" style="position: relative;width: 255px;">
-                <img class="lazyload d-inline-block" data-src="{{ fromDLHost($course->thumbnail) }}"
-                  alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}"
-                  style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;">
-                <span
-                  style="width: 70px;text-align: center;position: absolute;right: 0;bottom: 0;border-radius: 3px 0 5px 0;padding: 2px 4px 0 4px;background-color: rgba(0,0,0,.8);color: #fff;">
-                  @if ($course->durationHours == 0)
-                    {{ $course->durationMinutes }} دقیقه
-                  @else
-                    {{ $course->durationHours + ($course->durationMinutes > 40 ? 1 : 0) }} ساعت
-                  @endif
-                </span>
-              </div>
-              <div style="/*height: 100px;*/">
-                <p class="mt-2 text-center pr-2 mb-0"
-                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
-                  {{ $course->title }}
-                </p>
-                <p class="text-center pl-2 mb-0"
-                  style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
-                  {{ $course->titleEng }}
-                </p>
-              </div>
-            </a>
-          </div>
-        @endforeach
-      </div> --}}
     </div>
   </div>
-
-
-
-  {{-- @if (isset($dubbed_courses))
-    @if (count($dubbed_courses) > 0)
-      <div class="row card mx-0 latest-courses border-0">
-        <div class="col-12 card-body">
-          <div class="container">
-            <h5>
-              <i class="fas fa-plus-square"></i>
-              دوره های آموزشی دوبله شده
-              (تعداد دوره ها {{ nPersian(count($dubbed_courses)) }})
-              <a class="btn btn-primary my-2" href="{{ route('courses.free') }}">مشاهده بیشتر</a>
-            </h5>
-            <hr style="border-top: 1px solid  #f8ba16">
-            <div class="row d-flex ">
-              @foreach ($dubbed_courses as $course)
-                @include('courses.partials._course_list_grid', ['course' => $course])
-              @endforeach
-            </div>
-          </div>
-        </div>
-      </div>
-    @endif
-  @endif
-
-  <div class="row card mx-0 latest-courses border-0">
-    <div class="col-12 card-body">
-      <div class="container">
-        <h5>
-          <i class="fas fa-plus-square"></i>
-          دوره های آموزشی رایگان
-          (تعداد دوره ها {{ $free_courses_count }})
-          <a class="btn btn-primary my-2" href="{{ route('courses.free') }}">مشاهده بیشتر</a>
-        </h5>
-        <hr style="border-top: 1px solid  #f8ba16">
-        <div class="row d-flex ">
-          @foreach ($free_courses as $course)
-            @include('courses.partials._course_list_grid', ['course' => $course])
-          @endforeach
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row card mx-0 latest-courses border-0">
-    <div class="col-12 card-body">
-      <div class="container">
-        <h5>
-          <i class="fas fa-plus-square"></i>
-          جدیدترین دوره های آموزشی
-          <a class="btn btn-primary my-2" href="{{ route('courses.newest') }}">مشاهده بیشتر</a>
-        </h5>
-        <hr style="border-top: 1px solid  #f8ba16">
-        <div class="row d-flex ">
-          @foreach ($latest_courses as $course)
-            @include('courses.partials._course_list_grid', ['course' => $course])
-          @endforeach
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row card mx-0 latest-courses border-0">
-    <div class="col-12 card-body">
-      <div class="container">
-        <h5>
-          <i class="fas fa-plus-square"></i>
-          محبوب ترین دوره های آموزشی
-          <a class="btn btn-primary my-2" href="{{ route('courses.best') }}">مشاهده بیشتر</a>
-        </h5>
-        <hr style="border-top: 1px solid  #f8ba16">
-        <div class="row d-flex ">
-          @foreach ($popular_courses as $course)
-            @include('courses.partials._course_list_grid', ['course' => $course])
-          @endforeach
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row card mx-0 latest-courses border-0">
-    <ul id="myTab" role="tablist"
-      class="nav nav-tabs nav-pills flex-md-row text-center border-0 rounded-nav d-flex justify-content-center">
-      @foreach ($page_tabs as $tab)
-        <li class="nav-item flex-md-fill">
-          <a id="{{ $tab[0] }}-tab" data-toggle="tab" href="#{{ $tab[0] }}" role="tab"
-            aria-controls="{{ $tab[0] }}" aria-selected="true"
-            class="nav-link border-0 text-uppercase font-weight-bold {{ $loop->first ? 'active' : '' }}">{{ $tab[1] }}</a>
-        </li>
-      @endforeach
-    </ul>
-    <div id="myTabContent" class="tab-content">
-      @foreach ($page_tabs as $tab)
-        <div id="{{ $tab[0] }}" role="tabpanel" aria-labelledby="{{ $tab[0] }}-tab"
-          class="tab-pane fade p-0 {{ $loop->first ? 'show active' : '' }}">
-          <div class="row card mx-0 latest-courses border-0">
-            <div class="col-12 card-body px-0">
-              <div class="container">
-                <div class="row d-flex">
-                  @foreach ($tab[2] as $course)
-                    @include('courses.partials._course_list_grid', ['course' => $course])
-                  @endforeach
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      @endforeach
-    </div>
-    <!-- End rounded tabs -->
-  </div> --}}
 
 
   <div class="modal fade" id="form-link-modal" tabindex="-1" role="dialog" aria-labelledby="form-link-modal-title"
