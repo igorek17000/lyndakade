@@ -57,16 +57,36 @@
     <div class="row">
       <div class="col-lg-3 col-sm-6 mb-sm-1">
         تاریخ انتشار
-        {{ $course->releaseDate }}
+        @php
+          $d = date('Y/m/d', strtotime($course->releaseDate));
+          $d = explode('/', $d);
+          echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+        @endphp
       </div>
       <div class="col-lg-3 col-sm-6 mb-sm-1">
         تاریخ بروزرسانی
-        {{ $course->updateDate ? $course->updateDate : 'ندارد' }}
+        @php
+          if ($course->updateDate) {
+              $d = date('Y/m/d', strtotime($course->updateDate));
+              $d = explode('/', $d);
+              echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+          } else {
+              echo 'ندارد';
+          }
+        @endphp
       </div>
-      <div class="col-lg-3 col-sm-6 mb-sm-1">
-        مدرس
-        {{ $course->authors[0]->name }}
-      </div>
+      @if (count($course->users) > 0)
+        <div class="col-lg-3 col-sm-6 mb-sm-1">
+          دوبلور
+          
+          {{ $course->users[0]->name }}
+        </div>
+      @else
+        <div class="col-lg-3 col-sm-6 mb-sm-1">
+          مدرس
+          {{ $course->authors[0]->name }}
+        </div>
+      @endif
       <div class="col-lg-3 col-sm-6 mb-sm-1">
         فایل های همراه
       </div>
