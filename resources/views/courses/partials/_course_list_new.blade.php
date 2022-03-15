@@ -87,7 +87,8 @@
         <div class="col-lg-3 col-sm-6 mb-sm-1">
           مدرس
           <a href="{{ route('authors.show', [$course->authors[0]->slug]) }}">
-            <img src="{{ fromDLHost($course->authors[0]->img) }}" width="30" height="30" style="border-radius: 20%;">
+            <img class="lazyload" src="{{ fromDLHost($course->authors[0]->img) }}" width="30" height="30"
+              style="border-radius: 20%;">
             {{ $course->authors[0]->name }}
           </a>
         </div>
