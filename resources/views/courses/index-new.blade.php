@@ -326,6 +326,13 @@
       font-size: 14px;
     }
 
+    @media(max-width: 1023px) {
+      .course ul label {
+        margin-right: -15px;
+        font-size: 12px;
+      }
+    }
+
     @media(max-width: 576px) {
       .course ul label {
         margin-right: -15px;
