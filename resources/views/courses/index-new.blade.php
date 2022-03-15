@@ -159,10 +159,10 @@
     [data-toggle="modal"] {
       text-align: center;
       /* position: absolute;
-        right: 0;
-        left: 0;
-        top: 0;
-        bottom: 0; */
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0; */
       border-radius: 5px;
       padding: 2px 4px 0 4px;
       font-size: 20px;
@@ -324,6 +324,13 @@
       position: relative;
       padding-right: 25px;
       font-size: 14px;
+    }
+
+    @media(max-width: 576px) {
+      .course ul label {
+        margin-right: -15px;
+        font-size: 11px;
+      }
     }
 
     .course ul label[type="checkbox"]::before {
