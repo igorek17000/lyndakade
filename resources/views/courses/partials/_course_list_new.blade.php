@@ -78,14 +78,18 @@
       @if (count($course->users) > 0)
         <div class="col-lg-3 col-sm-6 mb-sm-1">
           دوبلور
-
-          {{ $course->users[0]->name }}
+          <a href="{{ route('dubbed.index', [$course->users[0]->username]) }}">
+            <img src="{{ fromDLHost($course->users[0]->img) }}" width="30" height="30" style="border-radius: 20%;">
+            {{ $course->users[0]->name }}
+          </a>
         </div>
       @else
         <div class="col-lg-3 col-sm-6 mb-sm-1">
           مدرس
-          <img src="{{ fromDLHost($course->authors[0]->img) }}" width="30" height="30" style="border-radius: 20%;">
-          {{ $course->authors[0]->name }}
+          <a href="{{ route('authors.show', [$course->authors[0]->slug]) }}">
+            <img src="{{ fromDLHost($course->authors[0]->img) }}" width="30" height="30" style="border-radius: 20%;">
+            {{ $course->authors[0]->name }}
+          </a>
         </div>
       @endif
       <div class="col-lg-3 col-sm-6 mb-sm-1">
