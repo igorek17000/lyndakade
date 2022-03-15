@@ -54,7 +54,7 @@
     </div>
   </div>
   <div class="card-footer border-0">
-    <div class="row">
+    <div class="row align-items-center">
       <div class="col-lg-3 col-sm-6 mb-sm-1">
         تاریخ انتشار
         @php
@@ -78,12 +78,13 @@
       @if (count($course->users) > 0)
         <div class="col-lg-3 col-sm-6 mb-sm-1">
           دوبلور
-          
+
           {{ $course->users[0]->name }}
         </div>
       @else
         <div class="col-lg-3 col-sm-6 mb-sm-1">
           مدرس
+          <img src="{{ fromDLHost($course->authors[0]->img) }}" width="30" height="30" style="border-radius: 20%;">
           {{ $course->authors[0]->name }}
         </div>
       @endif
