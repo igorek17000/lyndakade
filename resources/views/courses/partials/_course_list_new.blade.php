@@ -77,7 +77,6 @@
       </div>
       @if (count($course->users) > 0)
         <div class="col-lg-3 col-sm-6 mb-sm-1">
-          دوبلور
           <a class="lazyload" href="{{ route('dubbed.index', [$course->users[0]->username]) }}">
             <img src="{{ fromDLHost($course->users[0]->img) }}" width="30" height="30" style="border-radius: 20%;">
             {{ $course->users[0]->name }}
@@ -85,7 +84,6 @@
         </div>
       @else
         <div class="col-lg-3 col-sm-6 mb-sm-1">
-          مدرس
           <a href="{{ route('authors.show', [$course->authors[0]->slug]) }}">
             <img class="lazyload" src="{{ fromDLHost($course->authors[0]->img) }}" width="30" height="30"
               style="border-radius: 20%;">
@@ -94,7 +92,11 @@
         </div>
       @endif
       <div class="col-lg-3 col-sm-6 mb-sm-1">
-        فایل های همراه
+        @if ($course->exerciseFile && count(json_decode($course->exerciseFile)) > 0)
+          فایل های تمرینی <span style="color: green">دارد</span>
+        @else
+          فایل های تمرینی <span style="color: darkred">ندارد</span>
+        @endif
       </div>
       {{-- <div class="col-lg-2 col-sm-6 mb-sm-1">
         قیمت
