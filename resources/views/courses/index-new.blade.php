@@ -80,36 +80,36 @@
 @section('content')
   <style>
     .hero-space {
-      height: 560px !important;
+      min-height: 560px !important;
     }
 
     @media (min-width: 426px) {
       .hero-space {
-        height: 510px !important;
+        min-height: 510px !important;
       }
     }
 
     @media (min-width: 426px) {
       .hero-space {
-        height: 340px !important;
+        min-height: 340px !important;
       }
     }
 
     @media (min-width: 769px) {
       .hero-space {
-        height: 360px !important;
+        min-height: 360px !important;
       }
     }
 
     @media (min-width: 1025px) {
       .hero-space {
-        height: 300px !important;
+        min-height: 300px !important;
       }
     }
 
     @media (min-width: 1441px) {
       .hero-space {
-        height: 370px !important;
+        min-height: 370px !important;
       }
     }
 
