@@ -77,6 +77,20 @@
     }
   </script>
 @endpush
+{{-- 
+@push('css_head')
+  <link rel="stylesheet"
+    href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/modules/5e5759c43d0415c9288b45aac1111d45.min.css">
+@endpush
+
+@push('js')
+  <script type="text/javascript"
+    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/mdb5/standard/modules/5e5759c43d0415c9288b45aac1111d45.min.js">
+  </script>
+  <script type="text/javascript"
+    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search/search.min.js"></script>
+  <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
+@endpush --}}
 
 @section('content')
   <style>
