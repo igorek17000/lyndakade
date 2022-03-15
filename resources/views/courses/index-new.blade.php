@@ -331,10 +331,6 @@
         margin-right: -15px;
         font-size: 12px;
       }
-
-      .card.course .card-footer {
-        text-align: center;
-      }
     }
 
     @media(max-width: 576px) {
