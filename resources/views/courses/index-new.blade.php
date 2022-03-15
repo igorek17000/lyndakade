@@ -158,11 +158,11 @@
 
     [data-toggle="modal"] {
       text-align: center;
-      position: absolute;
+      /* position: absolute;
       right: 0;
       left: 0;
       top: 0;
-      bottom: 0;
+      bottom: 0; */
       border-radius: 5px;
       padding: 2px 4px 0 4px;
       font-size: 20px;
@@ -175,6 +175,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      float: left;
+      width: 100%;
+      height: 100%;
     }
 
     .img-square-wrapper {
@@ -614,20 +617,6 @@
                 </li>
               </ul>
             </li>
-            {{-- <li><b>زیرنویس</b>
-              <ul>
-                <li>
-                  <input type="radio" id="persian-sub" name="sub-type" class="cat">
-                  <label for="persian-sub"
-                    type="radio">فارسی</label>
-                </li>
-                <li>
-                  <input type="radio" id="english-sub" name="sub-type" class="cat">
-                  <label for="english-sub"
-                    type="radio">انگلیسی</label>
-                </li>
-              </ul>
-            </li> --}}
           </ul>
         </div>
         <div class="col-sm-10 col-8" id="course-list">
@@ -982,7 +971,7 @@
           onlyFree: $('#onlyFree')[0].checked,
           sortingOrder: sortingOrder,
           libraries: libraries,
-        //   subtitle: subtitle,
+          //   subtitle: subtitle,
         };
 
         console.log(sortingOrder, libraries, data);
