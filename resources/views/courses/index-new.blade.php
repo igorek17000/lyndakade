@@ -174,10 +174,10 @@
     [data-toggle="modal"] {
       text-align: center;
       /* position: absolute;
-                      right: 0;
-                      left: 0;
-                      top: 0;
-                      bottom: 0; */
+                          right: 0;
+                          left: 0;
+                          top: 0;
+                          bottom: 0; */
       border-radius: 5px;
       padding: 2px 4px 0 4px;
       font-size: 20px;
@@ -617,6 +617,9 @@
                   <input type="checkbox" id="onlyFree" name="onlyFree" class="cat"><label for="onlyFree"
                     type="checkbox">رایگان</label>
                 </li>
+                <li>
+                  <input id="price-range" name="price-range" class="multi-range" type="range">
+                </li>
               </ul>
             </li>
             <li><b>ترتیب</b>
@@ -704,6 +707,19 @@
 
 @section('script_body')
   <script>
+    $(function() {
+      $('#price-range').mdbRange({
+        width: '100%',
+        single: {
+          active: true,
+          multi: {
+            active: true,
+            rangeLength: 2
+          },
+        }
+      });
+    });
+
     function perToEng(str) {
       var
         persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
