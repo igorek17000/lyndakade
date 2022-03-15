@@ -77,6 +77,21 @@
     }
   </script>
 @endpush
+
+@push('css_head')
+  <link rel="stylesheet"
+    href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/modules/5e5759c43d0415c9288b45aac1111d45.min.css">
+@endpush
+
+@push('js')
+  <script type="text/javascript"
+    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/mdb5/standard/modules/5e5759c43d0415c9288b45aac1111d45.min.js">
+  </script>
+  <script type="text/javascript"
+    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search/search.min.js"></script>
+  <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
+@endpush
+
 @section('content')
   <style>
     .hero-space {
@@ -159,10 +174,10 @@
     [data-toggle="modal"] {
       text-align: center;
       /* position: absolute;
-                  right: 0;
-                  left: 0;
-                  top: 0;
-                  bottom: 0; */
+                      right: 0;
+                      left: 0;
+                      top: 0;
+                      bottom: 0; */
       border-radius: 5px;
       padding: 2px 4px 0 4px;
       font-size: 20px;
