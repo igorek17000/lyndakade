@@ -78,7 +78,7 @@
       @if (count($course->users) > 0)
         <div class="col-lg-3 col-sm-6 mb-sm-1">
           دوبلور
-          <a href="{{ route('dubbed.index', [$course->users[0]->username]) }}">
+          <a class="lazyload" href="{{ route('dubbed.index', [$course->users[0]->username]) }}">
             <img src="{{ fromDLHost($course->users[0]->img) }}" width="30" height="30" style="border-radius: 20%;">
             {{ $course->users[0]->name }}
           </a>
