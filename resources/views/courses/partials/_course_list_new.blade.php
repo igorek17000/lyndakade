@@ -53,9 +53,9 @@
       </p>
     </div>
   </div>
-  <div class="card-footer border-0">
+  <div class="card-footer border-0" style="padding: .25rem .75rem;">
     <div class="row align-items-center">
-      <div class="col-lg-3 col-sm-6 mb-sm-1">
+      <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
         تاریخ انتشار
         @php
           $d = date('Y/m/d', strtotime($course->releaseDate));
@@ -63,7 +63,7 @@
           echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
         @endphp
       </div>
-      <div class="col-lg-3 col-sm-6 mb-sm-1">
+      <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
         تاریخ بروزرسانی
         @php
           if ($course->updateDate) {
@@ -76,14 +76,14 @@
         @endphp
       </div>
       @if (count($course->users) > 0)
-        <div class="col-lg-3 col-sm-6 mb-sm-1">
+        <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
           <a class="lazyload" href="{{ route('dubbed.index', [$course->users[0]->username]) }}">
             <img src="{{ fromDLHost($course->users[0]->img) }}" width="30" height="30" style="border-radius: 20%;">
             {{ $course->users[0]->name }}
           </a>
         </div>
       @else
-        <div class="col-lg-3 col-sm-6 mb-sm-1">
+        <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
           <a href="{{ route('authors.show', [$course->authors[0]->slug]) }}">
             <img class="lazyload" src="{{ fromDLHost($course->authors[0]->img) }}" width="30" height="30"
               style="border-radius: 20%;">
@@ -91,7 +91,7 @@
           </a>
         </div>
       @endif
-      <div class="col-lg-3 col-sm-6 mb-sm-1">
+      <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
         @if ($course->exerciseFile && count(json_decode($course->exerciseFile)) > 0)
           فایل های تمرینی <span style="color: green">دارد</span>
         @else
