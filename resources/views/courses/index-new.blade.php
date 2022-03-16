@@ -605,7 +605,7 @@
                     type="checkbox">رایگان</label>
                 </li>
                 <li>
-                  <input id="price-range" name="price-range" type="text" data-provide="slider" data-slider-step="1000"
+                  <input id="price-range" name="price-range" type="text" data-slider-step="5000"
                     data-slider-value="[5000,100000]" />
                 </li>
               </ul>
