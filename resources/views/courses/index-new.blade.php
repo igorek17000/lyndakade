@@ -457,7 +457,7 @@
     }
 
     .price-range .slider {
-      width: 100%;
+      width: 170px;
     }
 
   </style>
