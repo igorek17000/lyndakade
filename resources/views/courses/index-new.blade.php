@@ -2,6 +2,7 @@
 @push('meta.in.head')
   <link rel="canonical" href="https://lyndakade.ir">
   <link rel="alternate" hreflang="fa" href="https://lyndakade.ir">
+  <link rel="stylesheet" href="https://seiyria.com/bootstrap-slider/css/bootstrap-slider.css">
 
   @include('meta::manager', [
       'image' => 'https://lyndakade.ir/image/logo.png',
@@ -77,20 +78,6 @@
     }
   </script>
 @endpush
-{{-- 
-@push('css_head')
-  <link rel="stylesheet"
-    href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/modules/5e5759c43d0415c9288b45aac1111d45.min.css">
-@endpush
-
-@push('js')
-  <script type="text/javascript"
-    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/mdb5/standard/modules/5e5759c43d0415c9288b45aac1111d45.min.js">
-  </script>
-  <script type="text/javascript"
-    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search/search.min.js"></script>
-  <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
-@endpush --}}
 
 @section('content')
   <style>
@@ -174,10 +161,10 @@
     [data-toggle="modal"] {
       text-align: center;
       /* position: absolute;
-                          right: 0;
-                          left: 0;
-                          top: 0;
-                          bottom: 0; */
+                                                              right: 0;
+                                                              left: 0;
+                                                              top: 0;
+                                                              bottom: 0; */
       border-radius: 5px;
       padding: 2px 4px 0 4px;
       font-size: 20px;
@@ -326,7 +313,7 @@
       padding-top: 4px;
     }
 
-    .course ul input {
+    .course ul input:not(#price-range) {
       position: absolute;
       left: 0;
       top: 0;
@@ -618,7 +605,8 @@
                     type="checkbox">رایگان</label>
                 </li>
                 <li>
-                  <input id="price-range" name="price-range" class="multi-range" type="range">
+                  <input id="price-range" name="price-range" type="text" data-provide="slider" data-slider-step="1000"
+                    data-slider-value="[5000,100000]" />
                 </li>
               </ul>
             </li>
@@ -706,17 +694,21 @@
 @endsection
 
 @section('script_body')
+  <script src="https://seiyria.com/bootstrap-slider/js/bootstrap-slider.js"></script>
+
   <script>
+    function range(start, stop, step = 1) {
+      if (stop > start) {
+        return [...range(start, stop - step, step), stop];
+      }
+      return [start];
+    }
     $(function() {
-      $('#price-range').mdbRange({
-        width: '100%',
-        single: {
-          active: true,
-          multi: {
-            active: true,
-            rangeLength: 2
-          },
-        }
+      $("#price-range").slider({
+        value: [5000, 100000],
+        ticks: range(5000, 100000, 5000),
+        lock_to_ticks: true,
+        ticks_tooltip: true,
       });
     });
 
