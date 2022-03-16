@@ -710,10 +710,10 @@
       //   $("#price-range").slider();
       $("#price-range").slider({
         value: [5000, 100000],
-        ticks: range(5000, 100000, 5000),
-        lock_to_ticks: true,
+        // ticks: range(5000, 100000, 5000),
+        // lock_to_ticks: true,
         step: 5000,
-        ticks_tooltip: true,
+        // ticks_tooltip: true,
       });
     });
 
