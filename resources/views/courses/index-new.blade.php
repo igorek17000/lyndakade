@@ -709,9 +709,9 @@
     $(function() {
       //   $("#price-range").slider();
       $("#price-range").slider({
-        min: 5000,
+        min: 0,
         max: 100000,
-        value: [5000, 100000],
+        value: [0, 100000],
         step: 5000,
         // ticks: range(5000, 100000, 5000),
         // lock_to_ticks: true,
