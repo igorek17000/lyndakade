@@ -62,6 +62,7 @@
           $d = explode('/', $d);
           echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
         @endphp
+        ({{ date('Y/m/d', strtotime($course->releaseDate)) }})
       </div>
       <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
         تاریخ بروزرسانی
@@ -74,6 +75,9 @@
               echo '<span style="color: darkred"> ندارد</span>';
           }
         @endphp
+        @if ($course->updateDate)
+          ({{ date('Y/m/d', strtotime($course->updateDate)) }})
+        @endif
       </div>
       @if (count($course->users) > 0)
         <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
