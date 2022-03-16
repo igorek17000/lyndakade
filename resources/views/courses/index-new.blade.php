@@ -456,9 +456,9 @@
       animation: spinner-border .95s linear infinite;
     }
 
-    .price-range .slider {
+    /* .price-range .slider {
       width: 170px;
-    }
+    } */
 
   </style>
   <div class="row m-0 home-page">
@@ -608,9 +608,9 @@
                   <input type="checkbox" id="onlyFree" name="onlyFree" class="cat"><label for="onlyFree"
                     type="checkbox">رایگان</label>
                 </li>
-                <li class="price-range">
+                {{-- <li class="price-range">
                   <input id="price-range" name="price-range" type="text" />
-                </li>
+                </li> --}}
               </ul>
             </li>
             <li><b>ترتیب</b>
@@ -697,7 +697,7 @@
 @endsection
 
 @section('script_body')
-  <script src="https://seiyria.com/bootstrap-slider/js/bootstrap-slider.js"></script>
+  {{-- <script src="https://seiyria.com/bootstrap-slider/js/bootstrap-slider.js"></script> --}}
 
   <script>
     function range(start, stop, step = 1) {
@@ -706,18 +706,17 @@
       }
       return [start];
     }
-    $(function() {
-      //   $("#price-range").slider();
-      $("#price-range").slider({
-        min: 0,
-        max: 100000,
-        value: [0, 100000],
-        step: 5000,
-        // ticks: range(5000, 100000, 5000),
-        // lock_to_ticks: true,
-        // ticks_tooltip: true,
-      });
-    });
+    // $(function() {
+    //   $("#price-range").slider({
+    //     min: 0,
+    //     max: 100000,
+    //     value: [0, 100000],
+    //     step: 5000,
+    //     // ticks: range(5000, 100000, 5000),
+    //     // lock_to_ticks: true,
+    //     // ticks_tooltip: true,
+    //   });
+    // });
 
     function perToEng(str) {
       var
