@@ -161,10 +161,10 @@
     [data-toggle="modal"] {
       text-align: center;
       /* position: absolute;
-                                                                  right: 0;
-                                                                  left: 0;
-                                                                  top: 0;
-                                                                  bottom: 0; */
+                                                                    right: 0;
+                                                                    left: 0;
+                                                                    top: 0;
+                                                                    bottom: 0; */
       border-radius: 5px;
       padding: 2px 4px 0 4px;
       font-size: 20px;
@@ -609,8 +609,7 @@
                     type="checkbox">رایگان</label>
                 </li>
                 <li class="price-range">
-                  <input id="price-range" name="price-range" type="text" data-slider-step="5000"
-                    data-slider-value="[5000,100000]" />
+                  <input id="price-range" name="price-range" type="text" />
                 </li>
               </ul>
             </li>
@@ -708,14 +707,14 @@
       return [start];
     }
     $(function() {
-      $("#price-range").slider();
-    //   $("#price-range").slider({
-    //     value: [5000, 100000],
-    //     // ticks: range(5000, 100000, 5000),
-    //     // lock_to_ticks: true,
-    //     tooltip: 'always'
-    //     // ticks_tooltip: true,
-    //   });
+      //   $("#price-range").slider();
+      $("#price-range").slider({
+        value: [5000, 100000],
+        ticks: range(5000, 100000, 5000),
+        lock_to_ticks: true,
+        step: 5000,
+        ticks_tooltip: true,
+      });
     });
 
     function perToEng(str) {
