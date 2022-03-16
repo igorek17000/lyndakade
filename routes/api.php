@@ -115,7 +115,13 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     if ($onlyFree) {
         $courses = $courses->where('price', 0);
     }
-    $courses = $courses->orderByDesc($sortingOrder)->limit(20)->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
+    $courses = $courses->orderByDesc($sortingOrder);
+    $limit = 20;
+    $page = intval($request->get('page', 1));
+    $offset = ($page - 1) * $limit;
+    $courses = $courses->skip($offset)->limit($limit);
+
+    $courses = $courses->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
     return new JsonResponse([
         'data' => view('courses.partials._course_list_new_total', [
             'courses' => $courses,
