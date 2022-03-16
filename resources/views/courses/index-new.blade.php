@@ -708,13 +708,14 @@
       return [start];
     }
     $(function() {
-      $("#price-range").slider({
-        value: [5000, 100000],
-        // ticks: range(5000, 100000, 5000),
-        // lock_to_ticks: true,
-        tooltip: 'always'
-        // ticks_tooltip: true,
-      });
+      $("#price-range").slider();
+    //   $("#price-range").slider({
+    //     value: [5000, 100000],
+    //     // ticks: range(5000, 100000, 5000),
+    //     // lock_to_ticks: true,
+    //     tooltip: 'always'
+    //     // ticks_tooltip: true,
+    //   });
     });
 
     function perToEng(str) {
