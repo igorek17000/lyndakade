@@ -108,7 +108,7 @@ class LearnPathController extends Controller
         foreach ($path->_courses as $c) {
         // foreach ($path->courses as $c) {
             if ($c) {
-                $res[] = $c->slug_linkedin;
+                $res[] = $c;
             }
         }
         return new JsonResponse([
