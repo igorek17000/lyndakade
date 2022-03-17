@@ -267,7 +267,9 @@ class CourseController extends Controller
 
     public function show_linkedin(Request $request, $slug_linkedin)
     {
-        $course = Course::with(['authors', 'subjects', 'softwares'])->firstWhere('slug_linkedin', $slug_linkedin);
+        $course = Course::with(['authors', 'subjects', 'softwares'])
+            ->where('slug_linkedin', $slug_linkedin)
+            ->orWhere('slug_url', $slug_linkedin)->first();
         if ($course) {
             // $course->increment('views');
 

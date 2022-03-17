@@ -11,17 +11,39 @@ if (count($course->subjects) > 0) {
 @endphp
 
 @push('meta.in.head')
-  @include('meta::manager',[
-  'image' => $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img),
-  'title' => $course->title . ' - ' . $course->titleEng . ' - لیندا کده',
-  'description' => $course->description . ' - ' . $course->descriptionEng,
-  'keywords' => 'دانلود ' . $course->title . ', ' .'دانلود ' . $course->titleEng . ' , ' . 'دانلود دوره ' . $course->title
-  . ', ' .'دانلود دوره ' . $course->titleEng . ' , ' . 'دانلود دوره آموزشی ' . $course->title . ', ' .'دانلود دوره آموزشی
-  ' . $course->titleEng . ' , ' . $keyword_subs . get_seo_keywords(),
+  @include('meta::manager', [
+      'image' => $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img),
+      'title' => $course->title . ' - ' . $course->titleEng . ' - لیندا کده',
+      'description' => $course->description . ' - ' . $course->descriptionEng,
+      'keywords' =>
+          'دانلود ' .
+          $course->title .
+          ', ' .
+          'دانلود ' .
+          $course->titleEng .
+          ' , ' .
+          'دانلود دوره ' .
+          $course->title .
+          ', ' .
+          'دانلود دوره ' .
+          $course->titleEng .
+          ' , ' .
+          'دانلود دوره آموزشی ' .
+          $course->title .
+          ', ' .
+          'دانلود دوره آموزشی
+      ' .
+          $course->titleEng .
+          ' , ' .
+          $keyword_subs .
+          get_seo_keywords(),
   ])
-  @if ($course->slug_url && $course->slug)
-    <link rel="alternate" href="{{ route('courses.show', [$course->slug_url, $course->slug, $course->id]) }}">
+
+  <link rel="alternate" href="{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}">
+  @if ($course->slug_url)
+    <link rel="alternate" href="{{ route('courses.show.linkedin', [$course->slug_url]) }}">
   @endif
+
   <link rel="alternate" href="{{ route('courses.show.short', [$course->id]) }}">
 
   <script type="application/ld+json">
@@ -40,7 +62,8 @@ if (count($course->subjects) > 0) {
           "@type": "Person",
           "name": "{{ $author->name }}",
           "url": {"@id": "{{ route('authors.show', [$author->slug]) }}"}
-          }@if (!$loop->last),
+          @if (!$loop->last)
+            ,
           @endif
         @endforeach
       ]
@@ -416,8 +439,7 @@ if (count($course->subjects) > 0) {
             <div class="tab-pane fade" id="nav-concepts" role="tabpanel" aria-labelledby="nav-concepts-tab">
               <div class="row" style="font-size: 1.3em;">
                 <div class="col-sm-6">
-                  <pre
-                    style="font-family: 'IranSANS'; overflow-y: hidden; line-height: 1.5;">{!! $course->concepts !!}</pre>
+                  <pre style="font-family: 'IranSANS'; overflow-y: hidden; line-height: 1.5;">{!! $course->concepts !!}</pre>
                 </div>
                 <div class="col-sm-6 text-left" dir="ltr">
                   <pre style="overflow-y: hidden; line-height: 1.5;">{!! $course->conceptsEng !!}</pre>
@@ -503,7 +525,6 @@ if (count($course->subjects) > 0) {
 
                     @if ($course->persianSubtitleFile && json_decode($course->persianSubtitleFile) != null)
                       @foreach (json_decode($course->persianSubtitleFile) as $file)
-
                         <li role="presentation">
                           <a role="link"
                             href="{{ route('courses.download', [$course->id, hash('md5', 'persianSubtitleFile') => hash('sha256', auth()->id())]) }}">
@@ -525,7 +546,6 @@ if (count($course->subjects) > 0) {
                   </ul>
                 </div>
               </div>
-
             @else
               <div class="row justify-content-center text-left" dir="ltr">
                 <div class="col-lg-2 text-center">
@@ -650,8 +670,9 @@ if (count($course->subjects) > 0) {
               <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
                 <div class="row d-flex">
                   @for ($i = 0; $i < 4 && $index + $i < count($related_courses); $i++)
-                    @include('courses.partials._course_list_grid', ['course'=>
-                    $related_courses[$index + $i]])
+                    @include('courses.partials._course_list_grid', [
+                        'course' => $related_courses[$index + $i],
+                    ])
                   @endfor
                 </div>
               </div>
