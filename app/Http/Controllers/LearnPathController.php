@@ -103,7 +103,7 @@ class LearnPathController extends Controller
     {
         $paths = LearnPath::get();
         foreach ($paths as $path) {
-            $ids = implode(',', json_decode($path->courses));
+            $ids = implode(',', (array) json_decode($path->courses));
             LearnPath::where('id', $path->id)->update([
                 'courses_id' => $ids
             ]);
