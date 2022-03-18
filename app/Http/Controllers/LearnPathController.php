@@ -99,6 +99,16 @@ class LearnPathController extends Controller
         return redirect()->route('root.home');
     }
 
+    public function set_courses_id_api(Request $request)
+    {
+        $paths = LearnPath::get();
+        foreach ($paths as $path) {
+            $ids = implode(',', json_decode($path->courses));
+            LearnPath::where('id', $path->id)->update([
+                'courses_id' => $ids
+            ]);
+        }
+    }
 
     public function course_list_api(Request $request, $slug)
     {
@@ -106,7 +116,7 @@ class LearnPathController extends Controller
 
         $res = [];
         foreach ($path->_courses as $c) {
-        // foreach ($path->courses as $c) {
+            // foreach ($path->courses as $c) {
             if ($c) {
                 $res[] = $c;
             }

@@ -51,6 +51,7 @@ Route::middleware('guest')->get('/learn-path/get-all', 'LearnPathController@get_
 Route::middleware('guest')->get('/learn-path/get', 'LearnPathController@get_api')->name('learn-path.get.api');
 Route::middleware('guest')->post('/learn-path/set-img', 'LearnPathController@set_img_api')->name('learn-path.set-img.api');
 Route::middleware('guest')->get('/learn-path/course-list/{slug}', 'LearnPathController@course_list_api')->name('learn-path.course-list.api');
+Route::middleware('guest')->get('/learn-path/set-courses-id', 'LearnPathController@set_courses_id_api')->name('learn-path.course-list.api');
 
 Route::middleware('guest')->post('/course/set-price', 'CourseController@set_price_api')->name('course.set.price.api');
 
