@@ -102,9 +102,10 @@ class LearnPathController extends Controller
     public function set_courses_id_api(Request $request)
     {
         $p = LearnPath::where('id', 29)->first();
-        $ee = explode(',', $p->courses_id);
+        $courses = Course::whereIn('id', explode(',', $p->courses_id))
+            ->orderByRaw("FIELD(id, $p->courses_id)")->get('id');
         return new JsonResponse([
-            'courses' => Course::whereIn('id', $ee)->orderByRaw("FIELD(id, $p->courses_id)")->get('id'),
+            'courses' => $courses,
             'ids' => $p->courses_id,
             'status' => 'success',
         ], 200);

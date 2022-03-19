@@ -265,11 +265,14 @@ class CourseController extends Controller
         return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
     }
 
-    public function show_linkedin(Request $request, $slug_linkedin)
+    public function show_linkedin(Request $request, $slug)
     {
         $course = Course::with(['authors', 'subjects', 'softwares'])
-            ->where('slug_linkedin', $slug_linkedin)
-            ->orWhere('slug_url', $slug_linkedin)->first();
+            ->where('slug_linkedin', $slug)
+            ->orWhere('slug_url', $slug)
+            ->orWhere('slug_url', 'LIKE', '%,' . $slug)
+            ->orWhere('slug_url', 'LIKE', '%,' . $slug . ',%')
+            ->orWhere('slug_url', 'LIKE', $slug . ',%')->first();
         if ($course) {
             // $course->increment('views');
 
@@ -425,8 +428,12 @@ class CourseController extends Controller
     public function course_update_view_from_linkedin_api(Request $request)
     {
         $view = intval($request->input('view'));
-        $course_slug = $request->input('course_slug');
-        $course = Course::firstWhere('slug_linkedin', $course_slug);
+        $slug = $request->input('course_slug');
+        $course = Course::where('slug_linkedin', $slug)
+            ->orWhere('slug_url', $slug)
+            ->orWhere('slug_url', 'LIKE', '%,' . $slug)
+            ->orWhere('slug_url', 'LIKE', '%,' . $slug . ',%')
+            ->orWhere('slug_url', 'LIKE', $slug . ',%');
         if ($course) {
             $course->update(['views' => $view]);
             return new JsonResponse([
@@ -443,7 +450,11 @@ class CourseController extends Controller
         $slugs = explode(',', $request->input('slugs'));
         $courses_id = [];
         foreach ($slugs as $slug) {
-            $course = Course::firstWhere('slug_linkedin', $slug);
+            $course = Course::where('slug_linkedin', $slug)
+                ->orWhere('slug_url', $slug)
+                ->orWhere('slug_url', 'LIKE', '%,' . $slug)
+                ->orWhere('slug_url', 'LIKE', '%,' . $slug . ',%')
+                ->orWhere('slug_url', 'LIKE', $slug . ',%')->first();
             if ($course)
                 $courses_id[] = $course->id;
         }
@@ -569,7 +580,11 @@ class CourseController extends Controller
 
     public function get_course_api($slug)
     {
-        $course = Course::with(['authors', 'subjects'])->firstWhere(['slug_linkedin' => $slug]);
+        $course = Course::with(['authors', 'subjects'])->where('slug_linkedin', $slug)
+            ->orWhere('slug_url', $slug)
+            ->orWhere('slug_url', 'LIKE', '%,' . $slug)
+            ->orWhere('slug_url', 'LIKE', '%,' . $slug . ',%')
+            ->orWhere('slug_url', 'LIKE', $slug . ',%')->first();
         if (!$course) {
             return new JsonResponse([
                 'data' => []
@@ -833,7 +848,11 @@ class CourseController extends Controller
                 'status' => 'link is not valid',
             ], 200);
         }
-        $course = Course::firstWhere('slug_linkedin', $slug_linkedin);
+        $course = Course::where('slug_linkedin', $slug)
+            ->orWhere('slug_url', $slug)
+            ->orWhere('slug_url', 'LIKE', '%,' . $slug)
+            ->orWhere('slug_url', 'LIKE', '%,' . $slug . ',%')
+            ->orWhere('slug_url', 'LIKE', $slug . ',%')->first();
         if (!$course) {
             return new JsonResponse([
                 'data' => [],

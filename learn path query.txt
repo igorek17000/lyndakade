@@ -1,0 +1,7 @@
+SELECT `learn_paths`.id, `learn_paths`.courses, `courses`.* FROM `learn_paths`, `courses` WHERE  `learn_paths`.`id` >= 0 AND ( `learn_paths`.`courses` = `courses`.`id` OR `learn_paths`.`courses` LIKE CONCAT(`courses`.`id`, ',%') OR `learn_paths`.`courses` LIKE CONCAT('%,', `courses`.`id`, ',%') OR `learn_paths`.`courses` LIKE CONCAT('%,', `courses`.`id`));
+
+
+DB::select("SELECT `learn_paths`.id, `learn_paths`.courses, `courses`.id FROM `learn_paths`, `courses` WHERE  `learn_paths`.`id` = 5 AND ( `learn_paths`.`courses` = `courses`.`id` OR `learn_paths`.`courses` LIKE CONCAT(`courses`.`id`, ',%') OR `learn_paths`.`courses` LIKE CONCAT('%,', `courses`.`id`, ',%') OR `learn_paths`.`courses` LIKE CONCAT('%,', `courses`.`id`));")
+
+$slug = 'microsoft-azure-synapse-for-developers'
+Course::where('slug_linkedin', $slug)->orWhere('slug_url', $slug)->orWhere('slug_url', 'LIKE', '%,' . $slug)->orWhere('slug_url', 'LIKE', '%,' . $slug . ',%')->orWhere('slug_url', 'LIKE', $slug . ',%')->get()

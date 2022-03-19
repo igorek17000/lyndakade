@@ -125,7 +125,12 @@ Route::get('/{slug_url}/{slug}/{id}-2.html', function (Illuminate\Http\Request $
         // return redirect()->route('courses.show', [$course->slug_url, $course->slug, $course->id]);
     }
 
-    $course = Course::firstWhere('slug', $slug);
+    $course = Course::where('slug_linkedin', $slug)
+        ->orWhere('slug', $slug)
+        ->orWhere('slug_url', $slug)
+        ->orWhere('slug_url', 'LIKE', '%,' . $slug)
+        ->orWhere('slug_url', 'LIKE', '%,' . $slug . ',%')
+        ->orWhere('slug_url', 'LIKE', $slug . ',%');
     if ($course) {
         if ($course->slug_linkedin) {
             return redirect()->route('courses.show.linkedin', [$course->slug_linkedin]);
