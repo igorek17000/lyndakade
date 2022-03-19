@@ -103,7 +103,7 @@ class LearnPathController extends Controller
     {
         $p = LearnPath::where('id', 29)->first();
         return new JsonResponse([
-            'courses' => Course::whereIn('id', explode(',', $p->courses_id))->orderByRaw("FIELD(id, $p->courses_id)"),
+            'courses' => Course::whereIn('id', explode(',', $p->courses_id))->orderByRaw("FIELD(id, ". explode(',', $p->courses_id) . ")"),
             'ids' => $p->courses_id,
             'status' => 'success',
         ], 200);
