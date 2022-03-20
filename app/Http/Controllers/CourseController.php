@@ -843,8 +843,8 @@ class CourseController extends Controller
                 'status' => 'link is required',
             ], 200);
         }
-        $slug_linkedin = $this->find_slug_linkedin_from_link($link);
-        if (!$slug_linkedin) {
+        $slug = $this->find_slug_linkedin_from_link($link);
+        if (!$slug) {
             return new JsonResponse([
                 'data' => [],
                 'status' => 'link is not valid',
