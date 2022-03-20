@@ -130,7 +130,7 @@ Route::get('/{slug_url}/{slug}/{id}-2.html', function (Illuminate\Http\Request $
         ->orWhere('slug_url', $slug)
         ->orWhere('slug_url', 'LIKE', '%,' . $slug)
         ->orWhere('slug_url', 'LIKE', '%,' . $slug . ',%')
-        ->orWhere('slug_url', 'LIKE', $slug . ',%');
+        ->orWhere('slug_url', 'LIKE', $slug . ',%')->first();
     if ($course) {
         if ($course->slug_linkedin) {
             return redirect()->route('courses.show.linkedin', [$course->slug_linkedin]);

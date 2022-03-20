@@ -77,6 +77,8 @@ class CourseController extends Controller
     public function index()
     {
 
+
+
         $free_courses_count = Course::where('price', 0)->count();
         // $free_courses = $this->sort_courses_by_releasedate_or_updatedate(Course::where('price', 0)->get(['releaseDate', 'updateDate', 'id']));
 
