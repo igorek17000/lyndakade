@@ -51,29 +51,43 @@ class LearnPath extends Model
         parent::boot();
 
         static::retrieved(function ($model) {
-            $js_courses = json_decode($model->courses);
-            // $model->courses = array();
-            if ($js_courses) {
-                $res = [];
+            $ids = $model->courses_id;
+            if (!$model->courses_id) {
+                $js_courses = json_decode($model->courses);
+                $ids = [];
                 foreach ($js_courses as $c) {
-                    $course_id = $c->id;
-                    $course = Course::find($course_id);
-                    if ($course) {
-                        array_push($res, $course);
-                    }
+                    $ids[] = $c['id'];
                 }
-
-                // $ids = [];
-                // foreach ($js_courses as $c) {
-                //     array_push($ids, $c->id);
-                // }
-                // $ids_ordered = implode(',', $ids);
-                // $courses = Course::whereIn('id', $ids)
-                //     ->orderByRaw("FIELD(id, $ids_ordered)")->get();
-                $model->_courses = $res;
-                // $model->courses = $courses->get();
+                $ids = implode(',', $ids);
+                LearnPath::where('id', $model->id)->update([
+                    'courses_id' => $ids
+                ]);
             }
-            // $model->_courses = $courses;
+            $model->_courses = Course::whereIn('id', $ids)
+                ->orderByRaw("FIELD(id, $ids)")->get();
+
+            // $js_courses = ;
+            // // $model->courses = array();
+            // if ($js_courses) {
+            //     $res = [];
+            //     foreach ($js_courses as $c) {
+            //         $course_id = $c->id;
+            //         $course = Course::find($course_id);
+            //         if ($course) {
+            //             array_push($res, $course);
+            //         }
+            //     }
+            //     // $ids = [];
+            //     // foreach ($js_courses as $c) {
+            //     //     array_push($ids, $c->id);
+            //     // }
+            //     // $ids_ordered = implode(',', $ids);
+            //     // $courses = Course::whereIn('id', $ids)
+            //     //     ->orderByRaw("FIELD(id, $ids_ordered)")->get();
+            //     $model->_courses = $res;
+            //     // $model->courses = $courses->get();
+            // }
+            // // $model->_courses = $courses;
         });
     }
 
