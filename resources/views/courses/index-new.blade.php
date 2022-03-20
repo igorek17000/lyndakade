@@ -643,7 +643,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-sm-10 col-8">
+        <div class="col-sm-10 col-8 text-center">
           <div id="course-list">
             <div class="d-flex justify-content-center mt-5">
               <div class="spinner-border" role="status">
