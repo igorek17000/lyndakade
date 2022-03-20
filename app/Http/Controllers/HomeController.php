@@ -502,79 +502,14 @@ class HomeController extends Controller
 
     public function test_url(Request $request)
     {
-
-        $free_courses_count = Course::where('price', 0)->count();
-        // $free_courses = $this->sort_courses_by_releasedate_or_updatedate(Course::where('price', 0)->get(['releaseDate', 'updateDate', 'id']));
-
-        $free_courses_ids = Course::where('price', 0)
-            ->get(['releaseDate', 'updateDate', 'id'])
-            ->map(function ($c) {
-                return ['id' => $c->id, 'date' => $c->updateDate ?? $c->releaseDate,];
-            })->sortByDesc(function ($c) {
-                return verta($c['date']);
-            })->take(4);
-        $ids = [];
-        foreach ($free_courses_ids as $free_course) {
-            $ids[] = $free_course['id'];
-        }
-        $free_courses = Course::with('authors')->whereIn('id', $ids)->get();
-
-        $free_courses->sortByDesc(function ($model) use ($ids) {
-            return array_search($model->getKey(), $ids);
-        });
-
-        $latest_courses_ids = Course::get(['releaseDate', 'updateDate', 'id'])
-            ->map(function ($c) {
-                return ['id' => $c->id, 'date' => $c->updateDate ?? $c->releaseDate];
-            })->sortByDesc(function ($c) {
-                return verta($c['date']);
-            })->take(4);
-        $ids = [];
-        foreach ($latest_courses_ids as $latest_course) {
-            $ids[] = $latest_course['id'];
-        }
-
-        $latest_courses = Course::with('authors')->whereIn('id', $ids)->get();
-
-        $latest_courses->sortByDesc(function ($model) use ($ids) {
-            return array_search($model->getKey(), $ids);
-        });
-
-        $dubbed_courses = Course::with('authors')->where('dubbed_id', 1)->limit(4)->get();
-
-        $popular_courses = Course::with('authors')->orderBy('views', 'DESC')
-            ->limit(4)->get();
-
-        $paths = LearnPath::inRandomOrder()->limit(8)->get();
-
-        $libs = Library::orderBy('id', 'asc')->get();
-        $page_tabs = [];
-        foreach ($libs as $lib) {
-            $page_tabs[] = [$lib->slug, $lib->title, get_courses_for_library($lib->id)];
-        }
-        // $page_tabs = [
-        //     [1, 'آموزش انیمیشن سه بعدی', get_courses_for_library(1)],
-        //     [20, 'صوتی + موسیقی', get_courses_for_library(20)],
-        //     [29, 'کسب و کار', get_courses_for_library(29)],
-        //     [40, 'طراحی', get_courses_for_library(40)],
-        //     [50, 'توسعه دهنده', get_courses_for_library(50)],
-        //     [70, 'عکاسی', get_courses_for_library(70)],
-        //     [78, 'ویدئو', get_courses_for_library(78)],
-        //     [88, 'وب', get_courses_for_library(88)],
-        //     [1665, 'CAD', get_courses_for_library(1665)],
-        //     [1792, 'یادگیری الکترونیکی', get_courses_for_library(1792)],
-        //     [2057, 'IT', get_courses_for_library(2057)],
-        //     [2058, 'بازاریابی', get_courses_for_library(2058)]
-        // ];
-
         return view('courses.index-new', [
-            'free_courses_count' => $free_courses_count,
-            'free_courses' => $free_courses,
-            'latest_courses' => $latest_courses,
-            'popular_courses' => $popular_courses,
-            'dubbed_courses' => $dubbed_courses,
-            'paths' => $paths,
-            'page_tabs' => $page_tabs,
+            // 'free_courses_count' => $free_courses_count,
+            // 'free_courses' => $free_courses,
+            // 'latest_courses' => $latest_courses,
+            // 'popular_courses' => $popular_courses,
+            // 'dubbed_courses' => $dubbed_courses,
+            'paths' => LearnPath::inRandomOrder()->limit(8)->get(),
+            // 'page_tabs' => $page_tabs,
         ]);
     }
 }

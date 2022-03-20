@@ -76,8 +76,15 @@ class CourseController extends Controller
      */
     public function index()
     {
-
-
+        return view('courses.index-new', [
+            // 'free_courses_count' => $free_courses_count,
+            // 'free_courses' => $free_courses,
+            // 'latest_courses' => $latest_courses,
+            // 'popular_courses' => $popular_courses,
+            // 'dubbed_courses' => $dubbed_courses,
+            'paths' => LearnPath::inRandomOrder()->limit(8)->get(),
+            // 'page_tabs' => $page_tabs,
+        ]);
 
         $free_courses_count = Course::where('price', 0)->count();
         // $free_courses = $this->sort_courses_by_releasedate_or_updatedate(Course::where('price', 0)->get(['releaseDate', 'updateDate', 'id']));
