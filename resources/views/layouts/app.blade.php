@@ -66,6 +66,15 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"
+    media="print" onload="this.media='all'">
+
+  <noscript>
+    <link rel="stylesheet" href="style.css">
+  </noscript>
+
   {{-- <link href="{{ mix('css/app.css') }}" rel="stylesheet"> --}}
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -102,7 +111,7 @@
     integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{{ mix('js/all.js') }}"></script>
-  
+
   @yield('script_head')
   @stack('css_head')
 

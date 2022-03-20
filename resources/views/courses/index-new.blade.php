@@ -1,4 +1,4 @@
-@extends('layouts.app-test')
+@extends('layouts.app')
 @push('meta.in.head')
   <link rel="canonical" href="https://lyndakade.ir">
   <link rel="alternate" hreflang="fa" href="https://lyndakade.ir">
@@ -161,10 +161,10 @@
     [data-toggle="modal"] {
       text-align: center;
       /* position: absolute;
-                                                                        right: 0;
-                                                                        left: 0;
-                                                                        top: 0;
-                                                                        bottom: 0; */
+                                                                                    right: 0;
+                                                                                    left: 0;
+                                                                                    top: 0;
+                                                                                    bottom: 0; */
       border-radius: 5px;
       padding: 2px 4px 0 4px;
       font-size: 20px;
@@ -457,8 +457,8 @@
     }
 
     /* .price-range .slider {
-      width: 170px;
-    } */
+                  width: 170px;
+                } */
 
   </style>
   <div class="row m-0 home-page">
@@ -643,12 +643,17 @@
             </li>
           </ul>
         </div>
-        <div class="col-sm-10 col-8" id="course-list">
-          <div class="d-flex justify-content-center mt-5">
-            <div class="spinner-border" role="status">
-              <span class="sr-only">در حال بارگیری ...</span>
+        <div class="col-sm-10 col-8">
+          <div id="course-list">
+            <div class="d-flex justify-content-center mt-5">
+              <div class="spinner-border" role="status">
+                <span class="sr-only">در حال بارگیری ...</span>
+              </div>
             </div>
           </div>
+          <button class="mt-2 btn btn-info load-more-courses">
+            موارد بیشتر
+          </button>
         </div>
       </div>
     </div>
@@ -894,7 +899,56 @@
       get_courses();
       $(document).on('click', '.cat', function(e) {
         get_courses();
-      })
+      });
+
+      function more_courses() {
+
+        if ($request2 != null) {
+          $request2.abort();
+          $request2 = null;
+        }
+        // $(course_list).html(loading_html);
+
+        var sortingOrder = document.querySelectorAll('input[name="sortingOrder"]:checked').length > 0 ?
+          document.querySelectorAll('input[name="sortingOrder"]:checked')[0].getAttribute('data-id') :
+          '1';
+
+        var libraries = [...document.querySelectorAll('input[name="library"]:checked')].map((el) => {
+          return $(el).data('id')
+        }).join();
+
+        // var subtitle = document.querySelectorAll('input[name="sortingOrder"]:checked').length > 0 ?
+        //   document.querySelectorAll('input[name="sortingOrder"]:checked')[0].getAttribute('data-id') :
+        //   '1';
+        var data = {
+          _token: $('[name="_token"]').val(),
+          onlyFree: $('#onlyFree')[0].checked,
+          sortingOrder: sortingOrder,
+          libraries: libraries,
+          //   subtitle: subtitle,
+        };
+
+        console.log(sortingOrder, libraries, data);
+
+        $request2 = $.ajax({
+          url: "{{ route('main-page.courses.api') }}",
+          method: 'post',
+          data: data,
+          success: function(result) {
+            console.log("result", result);
+            $(course_list).html(result.data);
+            $request2 = null;
+          },
+          errors: function(xhr) {
+            console.log("xhr", xhr);
+            $(course_list).html(error_html);
+            $request2 = null;
+          }
+        });
+      }
+      $(document).on('click', '.load-more-courses', function(e) {
+        more_courses(e.relatedTarget);
+      });
     });
   </script>
 @endsection
