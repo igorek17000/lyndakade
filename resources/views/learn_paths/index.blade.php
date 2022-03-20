@@ -82,9 +82,7 @@
           <div class="col-12">
             <h3>{{ $library->title }}</h3>
           </div>
-          @foreach ($library->paths as $learn_path)
-            @include('learn_paths.partials.list_item_grid', ['learn_path' => $learn_path])
-          @endforeach
+        @include('learn_paths.partials.list_item_grid_total', ['paths' => $library->paths])
         </div>
       @endforeach
     </div>
