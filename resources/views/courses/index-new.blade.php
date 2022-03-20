@@ -161,10 +161,10 @@
     [data-toggle="modal"] {
       text-align: center;
       /* position: absolute;
-                                                                                    right: 0;
-                                                                                    left: 0;
-                                                                                    top: 0;
-                                                                                    bottom: 0; */
+                                                                                                right: 0;
+                                                                                                left: 0;
+                                                                                                top: 0;
+                                                                                                bottom: 0; */
       border-radius: 5px;
       padding: 2px 4px 0 4px;
       font-size: 20px;
@@ -457,8 +457,8 @@
     }
 
     /* .price-range .slider {
-                  width: 170px;
-                } */
+                              width: 170px;
+                            } */
 
   </style>
   <div class="row m-0 home-page">
@@ -884,7 +884,7 @@
           method: 'post',
           data: data,
           success: function(result) {
-            console.log("result", result);
+            // console.log("result", result);
             $(course_list).html(result.data);
             $request = null;
           },
@@ -901,13 +901,13 @@
         get_courses();
       });
 
-      function more_courses() {
+      var $request2 = null;
 
+      function more_courses(relatedTarget) {
         if ($request2 != null) {
           $request2.abort();
           $request2 = null;
         }
-        // $(course_list).html(loading_html);
 
         var sortingOrder = document.querySelectorAll('input[name="sortingOrder"]:checked').length > 0 ?
           document.querySelectorAll('input[name="sortingOrder"]:checked')[0].getAttribute('data-id') :
@@ -920,11 +920,15 @@
         // var subtitle = document.querySelectorAll('input[name="sortingOrder"]:checked').length > 0 ?
         //   document.querySelectorAll('input[name="sortingOrder"]:checked')[0].getAttribute('data-id') :
         //   '1';
+
+        var page = (document.querySelectorAll('course-list > div').length / 20) + 1;
+
         var data = {
           _token: $('[name="_token"]').val(),
           onlyFree: $('#onlyFree')[0].checked,
           sortingOrder: sortingOrder,
           libraries: libraries,
+          page: page,
           //   subtitle: subtitle,
         };
 
@@ -935,18 +939,20 @@
           method: 'post',
           data: data,
           success: function(result) {
-            console.log("result", result);
-            $(course_list).html(result.data);
+            // console.log("result", result);
+            course_list.insertAdjacentHTML('beforeend', result.data)
+            // $(course_list).html(result.data);
             $request2 = null;
           },
           errors: function(xhr) {
             console.log("xhr", xhr);
-            $(course_list).html(error_html);
+            // $(course_list).html(error_html);
             $request2 = null;
           }
         });
       }
       $(document).on('click', '.load-more-courses', function(e) {
+        console.log('event', e);
         more_courses(e.relatedTarget);
       });
     });
