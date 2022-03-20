@@ -921,7 +921,7 @@
         //   document.querySelectorAll('input[name="sortingOrder"]:checked')[0].getAttribute('data-id') :
         //   '1';
 
-        var page = (document.querySelectorAll('course-list > div').length / 20) + 1;
+        var page = (document.querySelectorAll('#course-list > div').length / 20) + 1;
 
         var data = {
           _token: $('[name="_token"]').val(),
