@@ -63,7 +63,7 @@ class LearnPath extends Model
                     'courses_id' => $ids
                 ]);
             }
-            $model->_courses = Course::whereIn('id', $ids)
+            $model->_courses = Course::whereIn('id', explode(',', $ids))
                 ->orderByRaw("FIELD(id, $ids)")->get();
 
             // $js_courses = ;
