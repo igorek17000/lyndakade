@@ -141,7 +141,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
 })->name('main-page.courses.api');
 
 Route::middleware('guest')->post('/subjects/update', function (Request $request) {
-    $subs = $request->get('data');
+    $subs = $request->get('subs');
     if (!$subs) {
         return new JsonResponse([
             'status' => 'failed'
@@ -151,6 +151,7 @@ Route::middleware('guest')->post('/subjects/update', function (Request $request)
         $subs = json_decode($subs);
         return new JsonResponse([
             'subs' => $subs,
+            'request' => $request,
             'status' => 'success'
         ]);
 
