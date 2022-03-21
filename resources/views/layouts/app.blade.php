@@ -238,7 +238,7 @@
           <li class="nav-item">
             <a class="nav-link px-md-1" href="{{ route('root.home') }}">صفحه اصلی</a>
           </li>
-          <li class="nav-item dropdown">
+          {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle px-md-1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               کتابخانه
@@ -277,7 +277,7 @@
                 </a>
               @endforeach
             </div>
-          </li>
+          </li> --}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle px-md-1" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">

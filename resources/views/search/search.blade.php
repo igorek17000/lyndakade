@@ -182,7 +182,7 @@
                             </style>
                         <ul class="timeline pb-0" id="course-list">
                             @foreach ($courses as $course)
-                                @include('courses.partials._course_list_timeline', ['course'=> $course])
+                                @include('courses.partials._course_list_new', ['course'=> $course])
 
                             {{-- <li class="course">
                                 <a href="{{ courseURL($course) }}" class="timeline-panel">

@@ -196,7 +196,7 @@ class HomeController extends Controller
 
     public function get_course_timeline($course)
     {
-        return view('courses.partials._course_list_timeline', ['course' => $course])->render();
+        return view('courses.partials._course_list_new', ['course' => $course])->render();
     }
 
     public function search_page(Request $request)
