@@ -283,7 +283,7 @@
 
     }
 
-    [data-toggle="modal"] {
+    [data-target="#preview-modal"] {
       text-align: center;
       /* position: absolute;
                                                                                                 right: 0;
