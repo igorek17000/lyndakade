@@ -560,10 +560,10 @@
       }
       $(document).on('click', '.load-more-courses', function(e) {
         // console.log('event', e);
-        document.querySelector('.load-more-courses').setAttribute('disabled', true);
-        setTimeout(() => {
-          document.querySelector('.load-more-courses').setAttribute('disabled', false);
-        }, 4000);
+        // document.querySelector('.load-more-courses').setAttribute('disabled', true);
+        // setTimeout(() => {
+        //   document.querySelector('.load-more-courses').setAttribute('disabled', false);
+        // }, 4000);
         more_courses(e.relatedTarget);
       });
     });
