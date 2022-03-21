@@ -901,6 +901,25 @@
     </footer>
   </div>
 
+  <div class="modal fade" id="preview-modal" tabindex="-1" role="dialog" aria-labelledby="preview-modal-title"
+    aria-hidden="true" style="background-color: #444c;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content text-center">
+        <div class="modal-body p-0" id="preview-modal-body">
+          <video class="w-100" src="" controls aria-controls="true"
+            style="border-top-left-radius: 3px; border-top-right-radius: 3px;"></video>
+          <div class="text-right px-2">
+
+            <div>
+              <span style="font-size: 1.2rem;" id="preview-modal-title">عنوان دوره</span>
+              <a href="#" id="preview-modal-url" style="float: left;" class="btn btn-success mb-2">مشاهده جزئیات</a>
+              {{-- <span style="float: left;cursor: auto;" class="btn" id="preview-modal-price">قیمت</span> --}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/themify-icons.css') }}" /> --}}
   <link rel="stylesheet" type="text/css"
@@ -1186,6 +1205,31 @@
       // });
       // $('.toast').toast('show');
     });
+
+    $(function() {
+      document.querySelectorAll('*[data-price]').forEach(element => {
+        element.setAttribute('data-price', engToPer(element.getAttribute('data-price')));
+      });
+      $('#preview-modal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget);
+        if (button) {
+          $('#preview-modal #preview-modal-title').text(button.data('title'));
+          document.querySelector('#preview-modal #preview-modal-url').setAttribute('href', button.data('url'));
+          // $('#preview-modal-price').text(button.data('price') + ' تومان');
+          document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', button.data(
+            'src'));
+          document.querySelector('#preview-modal #preview-modal-body video').play();
+        } else {
+          $('#preview-modal #preview-modal-title').text('');
+          document.querySelector('#preview-modal #preview-modal-url').setAttribute('href', '');
+          // $('#preview-modal-price').text('');
+        }
+      });
+      $('#preview-modal').on('hidden.bs.modal', function() {
+        document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', '');
+      });
+    });
+
   </script>
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
   {{-- <p>
