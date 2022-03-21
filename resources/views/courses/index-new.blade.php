@@ -532,6 +532,9 @@
             course_list.insertAdjacentHTML('beforeend', result.data)
             // $(course_list).html(result.data);
             $request2 = null;
+            if (!result.hasMore) {
+              $('.load-more-courses').remove();
+            }
           },
           errors: function(xhr) {
             console.log("xhr", xhr);

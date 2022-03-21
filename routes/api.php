@@ -130,11 +130,11 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     } else if ($language == 2) {
         $courses = $courses->where('dubbed_id', 2);
     }
-
     $limit = 20;
     $page = intval($request->get('page', 1));
     $offset = ($page - 1) * $limit;
     $courses = $courses->skip($offset)->limit($limit);
+    $hasMore = $courses->count() > $limit;
 
     $courses = $courses->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
     return new JsonResponse([
@@ -144,6 +144,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
         'params' => [
             $onlyFree, $sortingOrder, $libraries, $type
         ],
+        'hasMore' => $hasMore,
         'status' => 'success'
     ]);
 })->name('main-page.courses.api');
