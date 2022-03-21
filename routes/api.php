@@ -1,5 +1,6 @@
 <?php
 
+use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\JsonResponse;
@@ -138,6 +139,25 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
         'status' => 'success'
     ]);
 })->name('main-page.courses.api');
+
+Route::middleware('guest')->post('/subjects/update', function (Request $request) {
+    $subs = $request->get('data');
+    if (!$subs) {
+        return 'failed';
+    }
+    try {
+        $subs = json_decode($subs);
+        return $subs;
+        foreach ($subs as $d) {
+            $id = $d['id'];
+            $title_per = $d['title_per'];
+            Subject::where('id', $id)->update(['title_per' => $title_per]);
+        }
+        return 'success';
+    } catch (Exception $e) {
+        return 'failed';
+    }
+})->name('subjects.update.api');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
