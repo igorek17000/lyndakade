@@ -66,6 +66,10 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
         //     }
         // }
 
+        Course::where('id', $data->id)->update([
+            'sortingDate' => $request->get('updateDate') ? $request->updateDate : $request->releaseDate
+        ]);
+        
         if ($request->get('sendMessageToPaidUsers', false)) {
             $course_id = $data->id;
             $course = Course::find($course_id);
@@ -111,8 +115,6 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
         // Check permission
         $this->authorize('add', app($dataType->model_name));
 
-        $request->merge(['sortingDate' => $request->get('updateDate') ? $request->updateDate : $request->releaseDate]);
-
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
         $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
@@ -127,6 +129,10 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
                     Mail::to($email)->send(new CourseAdded($course));
             }
         }
+
+        Course::where('id', $data->id)->update([
+            'sortingDate' => $request->get('updateDate') ? $request->updateDate : $request->releaseDate
+        ]);
 
         if (!$request->has('_tagging')) {
 
