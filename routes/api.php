@@ -134,7 +134,8 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     $page = intval($request->get('page', 1));
     $offset = ($page - 1) * $limit;
     $courses = $courses->skip($offset)->limit($limit);
-    $hasMore = $courses->count() > $limit;
+    $courses_count = $courses->count();
+    $hasMore = $courses_count > $limit;
 
     $courses = $courses->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
     return new JsonResponse([
@@ -145,6 +146,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
             $onlyFree, $sortingOrder, $libraries, $type
         ],
         'hasMore' => $hasMore,
+        'courses_count' => $courses_count,
         'status' => 'success'
     ]);
 })->name('main-page.courses.api');
