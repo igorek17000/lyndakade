@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                ' .
+                  ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -92,7 +92,9 @@ if (count($course->subjects) > 0) {
         <h1 class="panel-title" style="font-size: 1em;">
           <span class="course-title" itemprop="name" lang="fa">
             {{ $course->title }}
-            @if ($course->persian_subtitle_id == 1)
+            @if ($course->dubbed_id == 1)
+              (<span style="color: green">دوبله فارسی</span>)
+            @elseif ($course->persian_subtitle_id == 1)
               (<span style="color: green">با زیر نویس فارسی</span>)
             @endif
           </span>
