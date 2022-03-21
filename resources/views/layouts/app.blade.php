@@ -261,6 +261,11 @@
       background-color: rgb(168, 0, 0);
     }
 
+    .dubbed-subtitle-img {
+      border: 2px solid rgb(0, 0, 163);
+      background-color: rgb(0, 0, 163);
+    }
+
     .course-img {
       border-radius: 5px;
       max-height: 170px;
@@ -1206,25 +1211,25 @@
       // $('.toast').toast('show');
     });
 
-      function perToEng(str) {
-        var
-          persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
-          arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
-        if (typeof str === 'string') {
-          for (var i = 0; i < 10; i++) {
-            str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
-          }
+    function perToEng(str) {
+      var
+        persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
+        arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
+      if (typeof str === 'string') {
+        for (var i = 0; i < 10; i++) {
+          str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
         }
-        return str;
       }
+      return str;
+    }
 
-      function engToPer(n) {
-        const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    function engToPer(n) {
+      const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
 
-        return n
-          .toString()
-          .replace(/\d/g, x => farsiDigits[x]);
-      }
+      return n
+        .toString()
+        .replace(/\d/g, x => farsiDigits[x]);
+    }
 
     $(function() {
       document.querySelectorAll('*[data-price]').forEach(element => {
@@ -1265,3 +1270,4 @@
 </body>
 
 </html>
+                                 

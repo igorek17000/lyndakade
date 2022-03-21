@@ -4,7 +4,8 @@
     <div class="img-square-wrapper">
       <img
         class="d-inline-block lazyload course-img
-              @if (get_course_status_state($course->persian_subtitle_id)) persian-subtitle-img
+              @if ($course->dubbed_id == 1) dubbed-subtitle-img
+              @elseif (get_course_status_state($course->persian_subtitle_id)) persian-subtitle-img
               @elseif(get_course_status_state($course->english_subtitle_id)) english-subtitle-img
               @else no-subtitle-img @endif"
         data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
@@ -22,7 +23,7 @@
         </span>
       @endif
       @if($course->dubbed_id == 1)
-        <div class="subtitle-state no-subtitle-img">
+        <div class="subtitle-state dubbed-subtitle-img">
           دوبله شده
         </div>
       @elseif (get_course_status_state($course->persian_subtitle_id))
