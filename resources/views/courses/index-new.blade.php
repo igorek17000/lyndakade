@@ -136,6 +136,11 @@
       background-color: green;
     }
 
+    .english-subtitle-img {
+      border: 2px solid rgb(168, 0, 0);
+      background-color: rgb(168, 0, 0);
+    }
+
     .course-img {
       border-radius: 5px;
       max-height: 170px;
