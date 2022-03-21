@@ -128,7 +128,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     if ($language == 1) {
         $courses = $courses->where('dubbed_id', 1);
     } else if ($language == 2) {
-        $courses = $courses->where('dubbed_id', 0);
+        $courses = $courses->where('dubbed_id', 2);
     }
 
     $limit = 20;
