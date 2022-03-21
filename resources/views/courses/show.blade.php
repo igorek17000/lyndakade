@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-        ' .
+              ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -100,6 +100,18 @@ if (count($course->subjects) > 0) {
         <div class="panel-title text-left" style="direction: ltr; font-size: 1em;" itemprop="name" lang="en">
           <span class="course-title">{{ $course->titleEng }}</span>
         </div>
+        @if (count($course->subjects) > 0)
+          <ul>
+            <li class="pr-4 tags">دسته:
+              @foreach ($course->subjects as $subject)
+                <a target="_blank"
+                  href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a>
+              @endforeach
+            </li>
+          </ul>
+        @endif
+        <hr class="mt-1">
+
         <div class="video-player">
           <video controls {{-- id="my-player" --}} class="w-100" {{-- preload="auto" --}}
             poster="{{ fromDLHost($course->img) }}" {{-- data-setup='{ "fluid" : true , "controls": true, "autoplay": false, "preload": "auto", "seek": true  }' --}} {{-- data-setup='{ "fluid" : true , "preload" : "auto"}' --}}>
@@ -616,7 +628,7 @@ if (count($course->subjects) > 0) {
     </aside>
   </div>
 
-  @if (count($course->subjects) > 0 || count($course->softwares) > 0)
+  {{-- @if (count($course->subjects) > 0 || count($course->softwares) > 0)
     <div class="row mx-0 justify-content-center">
       <aside class="col-md-10">
         <div class="section-module">
@@ -642,7 +654,7 @@ if (count($course->subjects) > 0) {
         </div>
       </aside>
     </div>
-  @endif
+  @endif --}}
 
   <div class="row mx-0 justify-content-center">
     <aside class="col-md-10">
