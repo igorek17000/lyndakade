@@ -99,6 +99,8 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     $onlyFree = $request->get('onlyFree', '0');
     $sortingOrder = $request->get('sortingOrder', '1');
     $libraries = $request->get('libraries', '');
+    $language = $request->get('language', '3');
+
     // $sortingOrder = intval($sortingOrder) == 1 ? 'sortingDate' : 'views';
     if (empty($libraries)) {
         $libraries = \App\Library::get()->pluck('id')->toArray();
@@ -121,6 +123,12 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
         $courses = $courses->orderByDesc('sortingDate');
     } else {
         $courses = $courses->orderByDesc('views');
+    }
+
+    if ($language == 1) {
+        $courses = $courses->where('dubbed_id', 1);
+    } else if ($language == 2) {
+        $courses = $courses->where('dubbed_id', 0);
     }
 
     $limit = 20;

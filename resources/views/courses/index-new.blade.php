@@ -227,9 +227,6 @@
                   <input type="checkbox" id="onlyFree" name="onlyFree" class="cat"><label for="onlyFree"
                     type="checkbox">رایگان</label>
                 </li>
-                {{-- <li class="price-range">
-                  <input id="price-range" name="price-range" type="text" />
-                </li> --}}
               </ul>
             </li>
             <li><b>ترتیب</b>
@@ -241,6 +238,22 @@
                 <li>
                   <input type="radio" id="popular" name="sortingOrder" class="cat" data-id="2">
                   <label for="popular" type="radio">محبوب ترین</label>
+                </li>
+              </ul>
+            </li>
+            <li><b>زبان</b>
+              <ul>
+                <li>
+                  <input type="checkbox" id="language-persian" name="language" class="cat" data-id="1">
+                  <label for="language-persian" type="checkbox">فارسی</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="language-english" name="language" class="cat" data-id="2">
+                  <label for="language-english" type="checkbox">انگلیسی</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="language-all" name="language" class="cat" data-id="3">
+                  <label for="language-all" type="checkbox">همه موارد</label>
                 </li>
               </ul>
             </li>
@@ -298,7 +311,6 @@
       </div>
     </div>
   </div>
-
 @endsection
 
 @section('script_body')
@@ -442,18 +454,19 @@
           return $(el).data('id')
         }).join();
 
-        // var subtitle = document.querySelectorAll('input[name="sortingOrder"]:checked').length > 0 ?
-        //   document.querySelectorAll('input[name="sortingOrder"]:checked')[0].getAttribute('data-id') :
-        //   '1';
+        var language = document.querySelectorAll('input[name="language"]:checked').length > 0 ?
+          document.querySelectorAll('input[name="language"]:checked')[0].getAttribute('data-id') :
+          '3';
+
         var data = {
           _token: $('[name="_token"]').val(),
           onlyFree: $('#onlyFree')[0].checked ? '1' : '0',
           sortingOrder: sortingOrder,
           libraries: libraries,
-          //   subtitle: subtitle,
+          language: language,
         };
 
-        console.log(sortingOrder, libraries, data);
+        console.log(sortingOrder, libraries, language, data);
 
         $request = $.ajax({
           url: "{{ route('main-page.courses.api') }}",
@@ -493,9 +506,9 @@
           return $(el).data('id')
         }).join();
 
-        // var subtitle = document.querySelectorAll('input[name="sortingOrder"]:checked').length > 0 ?
-        //   document.querySelectorAll('input[name="sortingOrder"]:checked')[0].getAttribute('data-id') :
-        //   '1';
+        var language = document.querySelectorAll('input[name="language"]:checked').length > 0 ?
+          document.querySelectorAll('input[name="language"]:checked')[0].getAttribute('data-id') :
+          '3';
 
         var page = (document.querySelectorAll('#course-list > div').length / 20) + 1;
 
@@ -505,10 +518,10 @@
           sortingOrder: sortingOrder,
           libraries: libraries,
           page: page,
-          //   subtitle: subtitle,
+          language: language,
         };
 
-        console.log(sortingOrder, libraries, data);
+        console.log(sortingOrder, libraries, language, data);
 
         $request2 = $.ajax({
           url: "{{ route('main-page.courses.api') }}",
