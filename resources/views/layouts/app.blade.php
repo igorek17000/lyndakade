@@ -357,7 +357,7 @@
       border-right-width: 0;
     }
 
-    .course-description {
+    .course-description-grid {
       overflow: hidden;
       max-width: 500px;
       text-overflow: ellipsis;
@@ -369,7 +369,7 @@
     }
 
     @media(min-width: 900px) {
-      .course-description {
+      .course-description-grid {
         max-width: 850px;
       }
 

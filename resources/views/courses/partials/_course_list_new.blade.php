@@ -53,7 +53,7 @@
           </p>
         </h5>
       </a>
-      <p class="card-text course-description text-justify">
+      <p class="card-text course-description-grid text-justify">
         {{ $course->description }}
       </p>
     </div>
