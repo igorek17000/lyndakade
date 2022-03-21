@@ -244,16 +244,16 @@
             <li><b>زبان</b>
               <ul>
                 <li>
-                  <input type="checkbox" id="language-persian" name="language" class="cat" data-id="1">
-                  <label for="language-persian" type="checkbox">فارسی</label>
+                  <input type="radio" id="language-persian" name="language" class="cat" data-id="1">
+                  <label for="language-persian" type="radio">فارسی</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="language-english" name="language" class="cat" data-id="2">
-                  <label for="language-english" type="checkbox">انگلیسی</label>
+                  <input type="radio" id="language-english" name="language" class="cat" data-id="2">
+                  <label for="language-english" type="radio">انگلیسی</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="language-all" name="language" class="cat" data-id="3">
-                  <label for="language-all" type="checkbox">همه موارد</label>
+                  <input type="radio" id="language-all" name="language" class="cat" data-id="3">
+                  <label for="language-all" type="radio">همه موارد</label>
                 </li>
               </ul>
             </li>
