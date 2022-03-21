@@ -46,8 +46,8 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
 
         event(new BreadDataUpdated($dataType, $data));
         $demanded_users = $request->get('sendMessageToDemandUsers');
+        $course = Course::find($data->id);
         if (strlen(trim($demanded_users)) > 0) {
-            $course = Course::find($data->id);
             $demanded_users = explode(",", $demanded_users);
             $users = User::find($demanded_users);
             foreach ($users as $user) {
@@ -66,10 +66,10 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
         //     }
         // }
 
-        Course::where('id', $data->id)->update([
-            'sortingDate' => $request->get('updateDate') ? $request->updateDate : $request->releaseDate
+        Course::where('id', $course->id)->update([
+            'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate
         ]);
-        
+
         if ($request->get('sendMessageToPaidUsers', false)) {
             $course_id = $data->id;
             $course = Course::find($course_id);
@@ -130,8 +130,8 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
             }
         }
 
-        Course::where('id', $data->id)->update([
-            'sortingDate' => $request->get('updateDate') ? $request->updateDate : $request->releaseDate
+        Course::where('id', $course->id)->update([
+            'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate
         ]);
 
         if (!$request->has('_tagging')) {
