@@ -30,7 +30,7 @@
             با زیرنویس انگلیسی
           </div>
         @else
-          <div class="subtitle-state english-subtitle-img">
+          <div class="subtitle-state no-subtitle-img">
             بدون زیرنویس
           </div>
         @endif
