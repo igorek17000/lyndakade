@@ -95,7 +95,7 @@ Route::middleware('guest')->get('/test-query', function (Request $request) {
 })->name('test query');
 
 Route::middleware('guest')->post('/main-page/courses', function (Request $request) {
-    $onlyFree = $request->get('onlyFree', false);
+    $onlyFree = $request->get('onlyFree', '0');
     $sortingOrder = $request->get('sortingOrder', '1');
     $libraries = $request->get('libraries', '');
     // $sortingOrder = intval($sortingOrder) == 1 ? 'sortingDate' : 'views';
@@ -113,7 +113,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
         });
         $type = 2;
     }
-    if ($onlyFree) {
+    if (intval($onlyFree) == 1) {
         $courses = $courses->where('price', 0);
     }
     if (intval($sortingOrder) == 1) {

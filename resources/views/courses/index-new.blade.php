@@ -447,7 +447,7 @@
         //   '1';
         var data = {
           _token: $('[name="_token"]').val(),
-          onlyFree: $('#onlyFree')[0].checked,
+          onlyFree: $('#onlyFree')[0].checked ? '1' : '0',
           sortingOrder: sortingOrder,
           libraries: libraries,
           //   subtitle: subtitle,
@@ -501,7 +501,7 @@
 
         var data = {
           _token: $('[name="_token"]').val(),
-          onlyFree: $('#onlyFree')[0].checked,
+          onlyFree: $('#onlyFree')[0].checked ? '1' : '0',
           sortingOrder: sortingOrder,
           libraries: libraries,
           page: page,
