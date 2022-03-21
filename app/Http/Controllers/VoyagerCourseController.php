@@ -66,9 +66,11 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
         //     }
         // }
 
-        Course::where('id', $course->id)->update([
-            'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate
-        ]);
+        foreach (Course::get() as $course) {
+            Course::where('id', $course->id)->update([
+                'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate
+            ]);
+        }
 
         if ($request->get('sendMessageToPaidUsers', false)) {
             $course_id = $data->id;
