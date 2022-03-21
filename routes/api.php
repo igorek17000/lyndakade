@@ -98,7 +98,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     $onlyFree = $request->get('onlyFree', false);
     $sortingOrder = $request->get('sortingOrder', '1');
     $libraries = $request->get('libraries', '');
-    // $sortingOrder = intval($sortingOrder) == 1 ? 'releaseDate' : 'views';
+    // $sortingOrder = intval($sortingOrder) == 1 ? 'sortingDate' : 'views';
     if (empty($libraries)) {
         $libraries = \App\Library::get()->pluck('id')->toArray();
     } else {
@@ -117,7 +117,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
         $courses = $courses->where('price', 0);
     }
     if (intval($sortingOrder) == 1) {
-        $courses = $courses->orderByDesc('releaseDate');
+        $courses = $courses->orderByDesc('sortingDate');
     } else {
         $courses = $courses->orderByDesc('views');
     }
