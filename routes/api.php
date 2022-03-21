@@ -132,10 +132,12 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     }
     $limit = 20;
     $page = intval($request->get('page', 1));
+
+    $courses_count = $courses->count();
+    $hasMore = $courses_count > $limit * $page;
+
     $offset = ($page - 1) * $limit;
     $courses = $courses->skip($offset)->limit($limit);
-    $courses_count = $courses->count();
-    $hasMore = $courses_count > $limit;
 
     $courses = $courses->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
     return new JsonResponse([
