@@ -23,7 +23,7 @@
           </span>
         @endif
         @if (get_course_status_state($course->persian_subtitle_id))
-          <div class="subtitle-state persian-subtitle-img" style="width: 9rem;">
+          <div class="subtitle-state persian-subtitle-img">
             با زیرنویس فارسی و انگلیسی
           </div>
         @elseif(get_course_status_state($course->english_subtitle_id))
