@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-              ' .
+                ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -104,7 +104,7 @@ if (count($course->subjects) > 0) {
           <ul>
             <li class="pr-4 tags">دسته:
               @foreach ($course->subjects as $subject)
-                <a target="_blank"
+                <a target="_blank" class="mb-0"
                   href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a>
               @endforeach
             </li>
