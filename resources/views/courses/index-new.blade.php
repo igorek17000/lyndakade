@@ -275,7 +275,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-sm-10 col-8 text-center">
+        <div class="col-sm-10 col-8 text-center" id="course-list-parent">
           <div id="course-list">
             <div class="d-flex justify-content-center mt-5">
               <div class="spinner-border" role="status">
@@ -425,6 +425,11 @@
     });
 
     $(function() {
+      var load_more_html `
+          <button class="mt-2 btn btn-info load-more-courses">
+            موارد بیشتر
+          </button>`;
+
       var loading_html = `
         <div class="d-flex justify-content-center mt-5">
             <div class="spinner-border" role="status">
@@ -437,6 +442,7 @@
             <div style="font-size: 1rem;">خطایی رخ داده است، لطفا دوباره امتحان کنید.</div>
         </div>`;
       var $request = null;
+      var course_list_parent = document.getElementById('course-list-parent');
       var course_list = document.getElementById('course-list');
 
       function get_courses() {
@@ -476,6 +482,12 @@
             // console.log("result", result);
             $(course_list).html(result.data);
             $request = null;
+            if (!result.hasMore) {
+              $('.load-more-courses').remove();
+            } else {
+              if (!document.querySelector('.load-more-courses'))
+                course_list_parent.insertAdjacentHTML('beforeend', load_more_html)
+            }
           },
           errors: function(xhr) {
             console.log("xhr", xhr);
@@ -534,6 +546,9 @@
             $request2 = null;
             if (!result.hasMore) {
               $('.load-more-courses').remove();
+            } else {
+              if (!document.querySelector('.load-more-courses'))
+                course_list_parent.insertAdjacentHTML('beforeend', load_more_html)
             }
           },
           errors: function(xhr) {
