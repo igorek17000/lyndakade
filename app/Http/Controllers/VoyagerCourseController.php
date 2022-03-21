@@ -66,11 +66,9 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
         //     }
         // }
 
-        foreach (Course::get() as $course) {
-            Course::where('id', $course->id)->update([
-                'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate
-            ]);
-        }
+        Course::where('id', $course->id)->update([
+            'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate
+        ]);
 
         if ($request->get('sendMessageToPaidUsers', false)) {
             $course_id = $data->id;
@@ -132,11 +130,10 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
             }
         }
 
-        foreach (Course::get() as $course) {
-            Course::where('id', $course->id)->update([
-                'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate
-            ]);
-        }
+        Course::where('id', $course->id)->update([
+            'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate
+        ]);
+
 
         if (!$request->has('_tagging')) {
 
