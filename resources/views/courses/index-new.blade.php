@@ -425,7 +425,7 @@
     });
 
     $(function() {
-      var load_more_html `
+      var load_more_html = `
           <button class="mt-2 btn btn-info load-more-courses">
             موارد بیشتر
           </button>`;
