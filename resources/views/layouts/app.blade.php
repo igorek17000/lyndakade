@@ -1206,6 +1206,26 @@
       // $('.toast').toast('show');
     });
 
+      function perToEng(str) {
+        var
+          persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
+          arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
+        if (typeof str === 'string') {
+          for (var i = 0; i < 10; i++) {
+            str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+          }
+        }
+        return str;
+      }
+
+      function engToPer(n) {
+        const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+
+        return n
+          .toString()
+          .replace(/\d/g, x => farsiDigits[x]);
+      }
+
     $(function() {
       document.querySelectorAll('*[data-price]').forEach(element => {
         element.setAttribute('data-price', engToPer(element.getAttribute('data-price')));
@@ -1229,7 +1249,6 @@
         document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', '');
       });
     });
-
   </script>
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
   {{-- <p>
