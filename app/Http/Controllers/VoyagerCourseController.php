@@ -111,7 +111,7 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
         // Check permission
         $this->authorize('add', app($dataType->model_name));
 
-        $request->request->add(['sortingDate' => $request->get('updateDate') ? $request->updateDate : $request->releaseDate]);
+        $request->merge(['sortingDate' => $request->get('updateDate') ? $request->updateDate : $request->releaseDate]);
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
