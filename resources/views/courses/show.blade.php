@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-      ' .
+        ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -625,7 +625,7 @@ if (count($course->subjects) > 0) {
               <h5 class="course-title" style="font-size: 1.2rem;">عناوین مرتبط</h5>
               @foreach ($course->subjects as $subject)
                 <a target="_blank"
-                  href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title }}</em></a>
+                  href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per }}</em></a>
               @endforeach
             </div>
           @endif
