@@ -147,9 +147,12 @@ class HomeController extends Controller
                 if (intval($courses->count() / 20) + 1 < intval($page)) {
                     return $res;
                 }
-                foreach ($courses->forPage(intval($page), 20) as $course) {
-                    $res['courses'][] = $this->get_course_timeline($course);
-                }
+                $res['courses'] = view('courses.partials._course_list_new_total', [
+                    'courses' => $courses->forPage(intval($page), 20),
+                ])->render();
+                // foreach ($courses->forPage(intval($page), 20) as $course) {
+                //     $res['courses'][] = $this->get_course_timeline($course);
+                // }
                 $res['hasMore'] = intval($courses->count() / 20) + 1 >= intval($page) + 1;
                 return $res;
             }
@@ -247,9 +250,13 @@ class HomeController extends Controller
                 if (intval($courses->count() / 20) + 1 < intval($page)) {
                     return $res;
                 }
-                foreach ($courses->forPage(intval($page), 20) as $course) {
-                    $res['courses'][] = $this->get_course_timeline($course);
-                }
+
+                $res['courses'] = view('courses.partials._course_list_new_total', [
+                    'courses' => $courses->forPage(intval($page), 20),
+                ])->render();
+                // foreach ($courses->forPage(intval($page), 20) as $course) {
+                //     $res['courses'][] = $this->get_course_timeline($course);
+                // }
                 $res['hasMore'] = intval($courses->count() / 20) + 1 >= intval($page) + 1;
                 return $res;
             }

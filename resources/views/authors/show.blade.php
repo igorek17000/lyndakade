@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @push('meta.in.head')
   @if (isset($user))
-    @include('meta::manager',[
-    'image' => fromDLHost($user->avatar),
-    'title' => 'دوبلور ' . $user->name . ' - لیندا کده',
-    'keywords' => get_seo_keywords() . ' , ' . 'دوبلور ' . $user->name . ' , dubbed ' . $user->name,
-    'description' => $user->description . ' | ' . get_seo_description(),
+    @include('meta::manager', [
+        'image' => fromDLHost($user->avatar),
+        'title' => 'دوبلور ' . $user->name . ' - لیندا کده',
+        'keywords' => get_seo_keywords() . ' , ' . 'دوبلور ' . $user->name . ' , dubbed ' . $user->name,
+        'description' => $user->description . ' | ' . get_seo_description(),
     ])
     <script type="application/ld+json">
       {
@@ -17,11 +17,11 @@
       }
     </script>
   @else
-    @include('meta::manager',[
-    'image' => fromDLHost($author->img),
-    'title' => 'مدرس ' . $author->name . ' - لیندا کده',
-    'keywords' => get_seo_keywords() . ' , ' . 'مدرس ' . $author->name . ' , author ' . $author->name,
-    'description' => $author->description . ' | ' . get_seo_description(),
+    @include('meta::manager', [
+        'image' => fromDLHost($author->img),
+        'title' => 'مدرس ' . $author->name . ' - لیندا کده',
+        'keywords' => get_seo_keywords() . ' , ' . 'مدرس ' . $author->name . ' , author ' . $author->name,
+        'description' => $author->description . ' | ' . get_seo_description(),
     ])
     <script type="application/ld+json">
       {
@@ -104,7 +104,7 @@
             </div>
             <div class="card-body clearfix" id="list-items">
               <div class="row d-flex ">
-                <style>
+                {{-- <style>
                   .timeline>li>.timeline-panel {
                     width: calc(100% - 15px) !important;
                   }
@@ -113,13 +113,16 @@
                     width: 0 !important;
                   }
 
-                </style>
-                <ul class="timeline pb-0" id="course-list">
-                  @foreach ($courses as $course)
+                </style> --}}
+                <div id="course-list">
+                  @include('courses.partials._course_list_new_total', [
+                      'courses' => $courses,
+                  ])
+                  {{-- @foreach ($courses as $course)
                     @include('courses.partials._course_list_new', ['course'=> $course])
-                  @endforeach
-                </ul>
-                @if ($hasMore)
+                  @endforeach --}}
+                </div>
+                {{-- @if ($hasMore)
                   <div class="col-12 mb-4 mt-2">
                     <button class="btn btn-light load-more w-100" coursetype="button" style="margin: auto;">
                       <span class="text-t">نمایش موارد بیشتر</span>
@@ -127,7 +130,7 @@
                         style="margin: auto;"></span>
                     </button>
                   </div>
-                @endif
+                @endif --}}
               </div>
             </div>
           </div>
