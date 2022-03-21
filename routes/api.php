@@ -145,7 +145,11 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
             'courses' => $courses,
         ])->render(),
         'params' => [
-            $onlyFree, $sortingOrder, $libraries, $type
+            'onlyFree' => $onlyFree,
+            'sortingOrder' => $sortingOrder,
+            'libraries' => $libraries,
+            'type' =>  $type,
+            'page' =>  $page,
         ],
         'hasMore' => $hasMore,
         'courses_count' => $courses_count,
