@@ -166,6 +166,7 @@ Route::middleware('guest')->post('/subjects/update', function (Request $request)
         ], 200);
     } catch (Exception $e) {
         return new JsonResponse([
+            'e' => $e->getMessage(),
             'status' => 'failed'
         ], 500);
     }
