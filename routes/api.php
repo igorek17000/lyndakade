@@ -153,11 +153,11 @@ Route::middleware('guest')->post('/subjects/update', function (Request $request)
         foreach ($subs as $d) {
             $id = $d->id;
             $title_per = $d->title_per;
-            return new JsonResponse([
-                'id' => $id,
-                'title_per' => $title_per,
-                'status' => 'success',
-            ], 200);
+            // return new JsonResponse([
+            //     'id' => $id,
+            //     'title_per' => $title_per,
+            //     'status' => 'success',
+            // ], 200);
             Subject::where('id', $id)->update(['title_per' => $title_per]);
         }
 
