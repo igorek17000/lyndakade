@@ -99,7 +99,7 @@
         <article class="card-group-item">
           <div class="filter-content">
             {{-- {{ csrf_field() }} --}}
-            <div class="card-header text-left my-3 current-page-path">
+            <div class="card-header text-left mt-3 current-page-path">
               تعداد کل دروس <b>{{ $total_courses }}</b>
             </div>
             <div class="card-body clearfix" id="list-items">

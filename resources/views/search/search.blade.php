@@ -178,7 +178,7 @@
               @if (count($courses) == 0)
                 نتیجه ای یافت نشد.
               @endif
-              <style>
+              {{-- <style>
                 .timeline>li>.timeline-panel {
                   width: calc(100% - 15px) !important;
                 }
@@ -187,7 +187,7 @@
                   width: 0 !important;
                 }
 
-              </style>
+              </style> --}}
               <div id="course-list">
                 @include('courses.partials._course_list_new_total', [
                     'courses' => $courses,
