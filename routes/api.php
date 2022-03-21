@@ -143,19 +143,30 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
 Route::middleware('guest')->post('/subjects/update', function (Request $request) {
     $subs = $request->get('data');
     if (!$subs) {
-        return 'failed';
+        return new JsonResponse([
+            'status' => 'failed'
+        ], 403);
     }
     try {
         $subs = json_decode($subs);
-        return $subs;
+        return new JsonResponse([
+            'subs' => $subs,
+            'status' => 'success'
+        ]);
+
         foreach ($subs as $d) {
             $id = $d['id'];
             $title_per = $d['title_per'];
             Subject::where('id', $id)->update(['title_per' => $title_per]);
         }
-        return 'success';
+
+        return new JsonResponse([
+            'status' => 'success'
+        ], 200);
     } catch (Exception $e) {
-        return 'failed';
+        return new JsonResponse([
+            'status' => 'failed'
+        ], 500);
     }
 })->name('subjects.update.api');
 
