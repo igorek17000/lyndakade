@@ -200,6 +200,392 @@
 
   </style>
 
+  <style>
+    .hero-space {
+      min-height: 560px !important;
+    }
+
+    @media (min-width: 426px) {
+      .hero-space {
+        min-height: 510px !important;
+      }
+    }
+
+    @media (min-width: 426px) {
+      .hero-space {
+        min-height: 340px !important;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .hero-space {
+        min-height: 360px !important;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .hero-space {
+        min-height: 300px !important;
+      }
+    }
+
+    @media (min-width: 1441px) {
+      .hero-space {
+        min-height: 370px !important;
+      }
+    }
+
+    .show-xs {
+      display: none !important;
+    }
+
+    @media (max-width: 767px) {
+      .show-xs {
+        display: block !important;
+      }
+    }
+
+
+    .persian-subtitle-img {
+      border: 2px solid darkgoldenrod;
+      background-color: darkgoldenrod;
+    }
+
+    .english-subtitle-img {
+      border: 2px solid green;
+      background-color: green;
+    }
+
+    .no-subtitle-img {
+      border: 2px solid rgb(168, 0, 0);
+      background-color: rgb(168, 0, 0);
+    }
+
+    .course-img {
+      border-radius: 5px;
+      max-height: 170px;
+      min-height: 170px;
+      width: 100%;
+    }
+
+    @media(min-width: 575px) {
+      .card-horizontal {
+        display: flex;
+        flex: 1 1 auto;
+      }
+
+      .course-img {
+        border-radius: 5px;
+        max-height: 170px;
+        min-height: 170px;
+        width: 300px;
+      }
+
+    }
+
+    [data-toggle="modal"] {
+      text-align: center;
+      /* position: absolute;
+                                                                                                right: 0;
+                                                                                                left: 0;
+                                                                                                top: 0;
+                                                                                                bottom: 0; */
+      border-radius: 5px;
+      padding: 2px 4px 0 4px;
+      font-size: 20px;
+      background-color: rgba(0, 0, 0, .8);
+      color: #fff;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      float: left;
+      width: 100%;
+      height: 100%;
+    }
+
+    .img-square-wrapper {
+      position: relative;
+      height: 170px;
+    }
+
+    .subtitle-state {
+      color: white;
+      bottom: 2px;
+      font-size: .7rem;
+      width: 5.6rem;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      /* padding: 0.01rem 0; */
+      border-top-left-radius: 0.3rem;
+      border-top-right-radius: 0.3rem;
+    }
+
+    .course-update-state {
+      width: 3.7rem;
+      text-align: center;
+      position: absolute;
+      left: 2px;
+      bottom: 2px;
+      border-radius: 0 0.25rem 0 0.25rem;
+      padding: 2px 4px 0 4px;
+      background-color: rgba(240, 0, 0, .8);
+      color: #fff;
+    }
+
+    .course-time-state {
+      width: 3.7rem;
+      text-align: center;
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+      border-radius: 0.3rem 0 0.3rem 0;
+      padding: 2px 4px 0 4px;
+      background-color: rgba(0, 0, 0, .8);
+      color: #fff;
+    }
+
+    .card.course {
+      border-top-width: 0;
+      border-left-width: 0;
+      border-right-width: 0;
+    }
+
+    .course-description {
+      overflow: hidden;
+      max-width: 500px;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      line-height: 1.7;
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+
+    @media(min-width: 900px) {
+      .course-description {
+        max-width: 850px;
+      }
+
+    }
+
+    .border-0 {
+      border: 0;
+    }
+
+    .card.course .card-img-overlay {
+      background-color: rgba(0, 0, 0, .8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      font-size: 1.3rem;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity .3s linear;
+    }
+
+    .card.course:hover .card-img-overlay {
+      opacity: 1;
+    }
+
+    @media (hover: none) {
+      .card.course .card-img-overlay {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, .6);
+      }
+    }
+
+    a.card-img-overlay:hover {
+      color: #fff;
+    }
+
+    @media (min-width: 576px) {
+      .course.container {
+        max-width: 750px;
+
+      }
+    }
+
+    @media (min-width: 768px) {
+      .course.container {
+        max-width: 980px;
+
+      }
+    }
+
+    .course .card-body {
+      -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      padding: 1rem;
+    }
+
+    .course ul li {
+      position: relative;
+    }
+
+    .course ul>li ul {
+      padding-right: 25px;
+      padding-top: 4px;
+    }
+
+    .course ul input:not(#price-range) {
+      position: absolute;
+      left: 0;
+      top: 0;
+      visibility: hidden;
+    }
+
+    .course ul label {
+      display: block;
+      line-height: 25px;
+      position: relative;
+      padding-right: 25px;
+      font-size: 14px;
+    }
+
+    @media(max-width: 1023px) {
+      .course ul label {
+        margin-right: -15px;
+        font-size: 12px;
+      }
+    }
+
+    @media(max-width: 576px) {
+      .course ul label {
+        margin-right: -15px;
+        font-size: 11px;
+      }
+
+    }
+
+    .course ul label[type="checkbox"]::before {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+      border: 1px solid #d7e1e6;
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 2px;
+    }
+
+    .course ul label[type="checkbox"]::after {
+      width: 14px;
+      height: 14px;
+      border-radius: 2px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      background-color: #00aaca;
+      content: '';
+      position: absolute;
+      right: 2px;
+      top: 4px;
+      opacity: 0;
+      transition: opacity .3s linear;
+    }
+
+    .course ul label[type="radio"]::before {
+      width: 18px;
+      height: 18px;
+      border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+      border: 1px solid #d7e1e6;
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 2px;
+    }
+
+    .course ul label[type="radio"]::after {
+      width: 14px;
+      height: 14px;
+      border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+      background-color: #00aaca;
+      content: '';
+      position: absolute;
+      right: 2px;
+      top: 4px;
+      opacity: 0;
+      transition: opacity .3s linear;
+    }
+
+    .course ul li input:checked+label:after,
+    .course ul li label:hover:after {
+      opacity: 1;
+    }
+
+    .course ul li input:checked+label:before,
+    .course ul li label:hover:before {
+      border: 1px solid #00aaca;
+    }
+
+    .learn-path *[data-target="#preview-modal"],
+    .course *[data-target="#preview-modal"] {
+      cursor: pointer;
+    }
+
+    .path .card-img-overlay {
+      background-color: rgba(0, 0, 0, .8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      font-size: 1.3rem;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity .3s linear;
+    }
+
+    .path:hover .card-img-overlay {
+      opacity: 1;
+    }
+
+    @media (hover: none) {
+      .path .card-img-overlay {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, .6);
+      }
+    }
+
+    @keyframes spinner-border {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .spinner-border {
+      display: inline-block;
+      width: 4rem;
+      height: 4rem;
+      vertical-align: text-bottom;
+      border: 0.23em solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: spinner-border .95s linear infinite;
+    }
+
+    /* .price-range .slider {
+                              width: 170px;
+                            } */
+
+  </style>
 </head>
 
 <body>
