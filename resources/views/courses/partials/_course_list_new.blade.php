@@ -21,7 +21,11 @@
           بروز شده
         </span>
       @endif
-      @if (get_course_status_state($course->persian_subtitle_id))
+      @if($course->dubbed_id == 1)
+        <div class="subtitle-state no-subtitle-img">
+          دوبله شده
+        </div>
+      @elseif (get_course_status_state($course->persian_subtitle_id))
         <div class="subtitle-state persian-subtitle-img">
           با زیرنویس فارسی و انگلیسی
         </div>
