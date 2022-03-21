@@ -151,8 +151,8 @@ Route::middleware('guest')->post('/subjects/update', function (Request $request)
         $subs = json_decode($subs);
 
         foreach ($subs as $d) {
-            $id = $d['id'];
-            $title_per = $d['title_per'];
+            $id = $d->id;
+            $title_per = $d->title_per;
             return new JsonResponse([
                 'id' => $id,
                 'title_per' => $title_per,
