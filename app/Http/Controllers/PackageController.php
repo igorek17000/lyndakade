@@ -32,7 +32,7 @@ class PackageController extends Controller
             create_hashed_data_if_not_exists($pack->id);
         }
 
-        return view('packages.index', [
+        return view('packages.index-new', [
             'packages' => $packs,
         ]);
     }
