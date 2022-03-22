@@ -163,8 +163,8 @@
     //   e.preventDefault();
     //   console.log(e);
       setTimeout(() => {
-        var code = document.querySelector('[name="discount_code"]').textContent.trim();
-        if (!code) {
+        var code = document.querySelector('[name="discount_code"]').value.trim();
+        if (code == '') {
           document.getElementById('check-code-result').innerHTML =
             `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
           return;
