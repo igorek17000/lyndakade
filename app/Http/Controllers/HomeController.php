@@ -311,7 +311,9 @@ class HomeController extends Controller
                 $query[$search_key] = $subject->id;
                 $query_result = $request->url() . '?' . http_build_query($query);
                 $a['link'] = $query_result;
-                if ($subject->title) {
+                if ($subject->title_per) {
+                    $a['title'] = $subject->title_per;
+                } else if ($subject->title) {
                     $a['title'] = $subject->title;
                 } else {
                     $a['title'] = $subject->name;

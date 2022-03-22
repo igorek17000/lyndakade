@@ -663,18 +663,16 @@ if (count($course->subjects) > 0) {
       <div class="section-module">
         <div class="row p-0 m-0">
           <div class="col-6">
-            <h5 class="course-title">دروس مرتبط</h5>
+            <h5 class="course-title">دوره‌های مرتبط</h5>
           </div>
           <div id="carousel-arrows" class="col-6">
             <a class="align-self-center" href="#blogCarousel" role="button" data-slide="next">
               <i class="lyndacon arrow-right" aria-hidden="true"></i>
-              بعدی
-              <span class="sr-only">Next</span>
+              <span class="sr-only">بعدی</span>
             </a>
             <a class="align-self-center" href="#blogCarousel" role="button" data-slide="prev">
-              قبلی
               <i class="lyndacon arrow-left" aria-hidden="true"></i>
-              <span class="sr-only">Previous</span>
+              <span class="sr-only">قبلی</span>
             </a>
           </div>
         </div>
