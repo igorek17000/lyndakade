@@ -193,6 +193,12 @@ Route::middleware('guest')->post('/subjects/update', function (Request $request)
 
 Route::middleware('auth')->get('/package/check-code', function (Request $request) {
     $code = $request->get('code');
+    if(!$code){
+        return new JsonResponse([
+            'data' => false,
+            'status' => 'failed'
+        ], 403);
+    }
 
     $today = \Carbon\Carbon::now();
     $dis = Discount::where(DB::raw('BINARY `code`'), $code)
@@ -209,7 +215,7 @@ Route::middleware('auth')->get('/package/check-code', function (Request $request
         'data' => false,
         'status' => 'failed'
     ], 403);
-});
+})->name('package.check-code.api');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();

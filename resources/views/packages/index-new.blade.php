@@ -158,6 +158,16 @@
   <script>
     async function check_code_button(e) {
       e.preventDefault();
+      $.ajax({
+        url: route('package.check-code.api', ['code' => ]),
+        method: 'get',
+        success: function(result) {
+
+        },
+        errors: function(xhr) {
+          console.log("xhr", xhr);
+        }
+      })
       console.log(e);
       return false;
     }
