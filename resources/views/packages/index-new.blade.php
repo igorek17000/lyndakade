@@ -171,6 +171,7 @@
       $.ajax({
         url: route('package.check-code.api', ['code' => code]),
         method: 'get',
+        async: false,
         success: function(result) {
           var tt = result.percent;
           if (tt && result.data) {
