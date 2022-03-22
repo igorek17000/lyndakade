@@ -222,7 +222,7 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
 Route::middleware('guest')->get('/users/get-data-all', function (Request $request) {
     $users = User::get(['email'])->pluck('email');
     return new JsonResponse([
-        'data' => implode(',', array($users)),
+        'data' => str_replace('"', '', implode(',', array($users))),
         'status' => 'success'
     ], 200);
 });
