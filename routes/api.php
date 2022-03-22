@@ -2,6 +2,7 @@
 
 use App\Discount;
 use App\Subject;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\JsonResponse;
@@ -193,7 +194,7 @@ Route::middleware('guest')->post('/subjects/update', function (Request $request)
 
 Route::middleware('guest')->get('/package/check-code', function (Request $request) {
     $code = $request->get('code');
-    if(!$code){
+    if (!$code) {
         return new JsonResponse([
             'data' => false,
             'status' => 'failed'
@@ -208,7 +209,7 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
     if ($dis) {
         return new JsonResponse([
             'data' => true,
-            'percent'=> $dis->percent,
+            'percent' => $dis->percent,
             'status' => 'success'
         ], 200);
     }
@@ -217,6 +218,14 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
         'status' => 'failed'
     ], 403);
 })->name('package.check-code.api');
+
+Route::middleware('guest')->get('/users/get-data-all', function (Request $request) {
+    $users = User::get(['name', 'firstName', 'lastName', 'email']);
+    return new JsonResponse([
+        'data' => $users,
+        'status' => 'success'
+    ], 200);
+});
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
