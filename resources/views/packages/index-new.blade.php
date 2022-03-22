@@ -134,13 +134,13 @@
             </div>
             <div class="modal-body">
               <div class="card-body p-0" style="height: 300px !important;">
-                <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
+                <h3 class="pt-4 pb-4">{{ $package['title'] }}</h3>
                 <p>{{ nPersian($package['days']) }} روزه</p>
                 <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
                 <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
                 <label for="discount_code">کد تخفیف: </label>
                 <input type="text" name="discount_code" id="discount_code">
-                <button class="check-code-button" onclick="check_code_button(event)">بررسی کد تخفیف</button>
+                <button class="btn btn-info check-code-button mt-2" onclick="check_code_button(event)">بررسی کد تخفیف</button>
               </div>
             </div>
             <div class="modal-footer">
