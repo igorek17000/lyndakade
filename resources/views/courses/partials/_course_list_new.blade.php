@@ -22,7 +22,7 @@
           بروز شده
         </span>
       @endif
-      @if($course->dubbed_id == 1)
+      @if ($course->dubbed_id == 1)
         <div class="subtitle-state dubbed-subtitle-img">
           دوبله شده
         </div>
@@ -92,7 +92,8 @@
       @if (count($course->users) > 0)
         <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
           <a class="lazyload" href="{{ route('dubbed.index', [$course->users[0]->username]) }}">
-            <img src="{{ fromDLHost($course->users[0]->avatar) }}" width="30" height="30" style="border-radius: 20%;">
+            <img src="{{ fromDLHost($course->users[0]->avatar) }}" width="30" height="30"
+              style="border-radius: 20%;">
             {{ $course->users[0]->name }}
           </a>
         </div>
@@ -105,10 +106,12 @@
           </a>
         </div>
       @endif
-      <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
+      <div class="col-lg-3 col-sm-6 mb-sm-1 my-1" exFile="{{ $course->exerciseFile }}">
         @if ($course->exerciseFile)
-          @if (count(json_decode($course->exerciseFile)) > 0)
-            فایل های تمرینی <span style="color: green">دارد</span>
+          @if (json_decode($course->exerciseFile))
+            @if (count(json_decode($course->exerciseFile)) > 0)
+              فایل های تمرینی <span style="color: green">دارد</span>
+            @endif
           @else
             فایل های تمرینی <span style="color: darkred">ندارد</span>
           @endif
