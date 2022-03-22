@@ -173,7 +173,7 @@
         method: 'get',
         success: function(result) {
           var tt = result.percent;
-          if (tt) {
+          if (tt && result.data) {
             document.getElementById('check-code-result').innerHTML =
               `<span style="color: green;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
           }
