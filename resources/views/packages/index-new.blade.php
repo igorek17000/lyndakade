@@ -138,10 +138,10 @@
                 <p>{{ nPersian($package['days']) }} روزه</p>
                 <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
                 <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
+                <label for="discount_code">کد تخفیف: </label>
+                <input type="text" name="discount_code" id="discount_code">
+                <button class="check-code-button">بررسی کد تخفیف</button>
               </div>
-              <label for="discount_code">کد تخفیف: </label>
-              <input type="text" name="discount_code" id="discount_code">
-
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
@@ -156,6 +156,10 @@
 
 @section('script_body')
   <script>
-
+    $(function() {
+      $(document).on('click', '.check-code-button', function(e) {
+        console.log(e);
+      });
+    })();
   </script>
 @endsection
