@@ -7,6 +7,7 @@ use App\Course;
 use App\LearnPath;
 use App\Library;
 use App\Mail\ContactUsMailer;
+use App\Package;
 use App\SkillLevel;
 use App\Software;
 use App\Subject;
@@ -511,14 +512,8 @@ class HomeController extends Controller
 
     public function test_url(Request $request)
     {
-        return view('courses.index-new', [
-            // 'free_courses_count' => $free_courses_count,
-            // 'free_courses' => $free_courses,
-            // 'latest_courses' => $latest_courses,
-            // 'popular_courses' => $popular_courses,
-            // 'dubbed_courses' => $dubbed_courses,
-            'paths' => LearnPath::inRandomOrder()->limit(8)->get(),
-            // 'page_tabs' => $page_tabs,
+        return view('packages.index-new', [
+            'packages' => Package::get(),
         ]);
     }
 }

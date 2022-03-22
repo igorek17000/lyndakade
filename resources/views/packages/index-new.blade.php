@@ -119,32 +119,43 @@
     </div>
   </div>
   @foreach ($packages as $package)
-    <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
-      aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalLabel{{ $package->id }}">{{ $package['title'] }}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-              style="float: left;margin: 0 auto 0 0;padding: 3px;">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="card-body p-0" style="height: 300px !important;">
-              <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
-              <p>{{ nPersian($package['days']) }} روزه</p>
-              <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
-              <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
+    <form action="{{ route('packages.payment') }}" method="get">
+      <input type="hidden" name="code" value="{{ hash('sha256', $package->id) }}">
+      <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
+        aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel{{ $package->id }}">{{ $package['title'] }}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                style="float: left;margin: 0 auto 0 0;padding: 3px;">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
-            <a class="btn btn-primary"
-              href="{{ route('packages.payment', ['code' => hash('sha256', $package->id)]) }}">خرید اشتراک</a>
+            <div class="modal-body">
+              <div class="card-body p-0" style="height: 300px !important;">
+                <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
+                <p>{{ nPersian($package['days']) }} روزه</p>
+                <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
+                <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
+              </div>
+              <label for="discount_code">کد تخفیف: </label>
+              <input type="text" name="discount_code" id="discount_code">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+              <button class="btn btn-primary" type="submit">رفتن به درگاه پرداخت</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   @endforeach
+@endsection
+
+@section('script_body')
+  <script>
+
+  </script>
 @endsection

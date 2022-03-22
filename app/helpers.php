@@ -4,6 +4,7 @@ use App\Cart;
 use App\Course;
 use App\CourseStatus;
 use App\Demand;
+use App\Discount;
 use App\HashedData;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaidController;
@@ -15,6 +16,7 @@ use App\UnlockedCourse;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -244,38 +246,18 @@ function check_off_for_user(Int $amount)
 }
 
 
-function sendDemand(Demand $demand)
+function package_price_discount(Package $pack, $discount_code)
 {
-    $message = "new course request ON www.LyndaKade.ir";
-    if ($demand->title && $demand->author) {
-        $message .= "
-
-Course Title: " . $demand->title . "
-Course Author: " . $demand->author;
-    } else {
-        $message .= "
-
-Link: $demand->link";
+    $today = \Carbon\Carbon::now();
+    $dis = Discount::where(DB::raw('BINARY `code`'), $discount_code)
+        ->whereDate('start_date', '<=', $today)
+        ->whereDate('end_date', '>=', $today)
+        ->first();
+    if ($dis) {
+        $dis_price = $pack->price * $dis->percent / 100;
+        return intval(($pack->price - $dis_price) / 1000) * 1000;
     }
-
-    $message .=  "
-
-Requested by " . $demand->user->name . " (user id: " . $demand->user->id . ")";
-
-    $token = "1729049302:AAEMNCgF12whsXvjRoBvkKqssTxe4vTicBk";
-
-    foreach ([
-        '1601410204', // lyndakadeSupport
-        '117727943', // hadi
-    ] as $chat_id) {
-        $data = [
-            'text' => $message,
-            'chat_id' => $chat_id
-        ];
-
-        file_get_contents("https://api.telegram.org/bot$token/sendMessage?" . http_build_query($data));
-    }
-    return $message;
+    return $pack->price;
 }
 
 function nPersian($string)

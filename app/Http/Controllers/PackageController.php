@@ -47,7 +47,7 @@ class PackageController extends Controller
                 $count += 1;
             } else {
                 foreach (js_to_courses($cart->learn_path->_courses) as $current_course) {
-                // foreach (js_to_courses($cart->learn_path->courses) as $current_course) {
+                    // foreach (js_to_courses($cart->learn_path->courses) as $current_course) {
                     $count += 1;
                 }
             }
@@ -99,6 +99,7 @@ class PackageController extends Controller
     public function payment(Request $request)
     {
         $code = $request->get('code');
+        $discount_code = $request->get('discount_code');
 
         $hashedData = HashedData::firstWhere('hashed', $code);
         if (!$hashedData) {
@@ -114,7 +115,7 @@ class PackageController extends Controller
             return '404';
         }
 
-        $amount = $pack->price;
+        $amount = package_price_discount($pack->price, $discount_code);
 
         $email = Auth::user()->email;
         $mobile = Auth::user()->mobile;
