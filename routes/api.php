@@ -220,7 +220,7 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
 })->name('package.check-code.api');
 
 Route::middleware('guest')->get('/users/get-data-all', function (Request $request) {
-    $users = User::get(['name', 'firstName', 'lastName', 'email']);
+    $users = User::get(['email'])->pluck('email');
     return new JsonResponse([
         'data' => $users,
         'status' => 'success'
