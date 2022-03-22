@@ -246,7 +246,7 @@ function check_off_for_user(Int $amount)
 }
 
 
-function package_price_discount(Package $pack, $discount_code)
+function package_price_discount($pack, $discount_code)
 {
     $today = \Carbon\Carbon::now();
     $dis = Discount::where(DB::raw('BINARY `code`'), $discount_code)

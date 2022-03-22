@@ -115,7 +115,7 @@ class PackageController extends Controller
             return '404';
         }
 
-        $amount = package_price_discount($pack->price, $discount_code);
+        $amount = package_price_discount($pack, $discount_code);
 
         $email = Auth::user()->email;
         $mobile = Auth::user()->mobile;
