@@ -208,6 +208,7 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
     if ($dis) {
         return new JsonResponse([
             'data' => true,
+            'percent'=> $dis->percent,
             'status' => 'success'
         ], 200);
     }

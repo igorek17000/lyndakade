@@ -140,7 +140,10 @@
                 <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
                 <label for="discount_code">کد تخفیف: </label>
                 <input type="text" name="discount_code" id="discount_code">
-                <button class="btn btn-info check-code-button mt-2" onclick="check_code_button(event)">بررسی کد تخفیف</button>
+                <br />
+                <button class="btn btn-info check-code-button mt-2" onclick="check_code_button(event)">بررسی کد
+                  تخفیف</button>
+                <div id="check-code-result"></div>
               </div>
             </div>
             <div class="modal-footer">
@@ -153,19 +156,34 @@
     </form>
   @endforeach
 @endsection
-
 @section('script_body')
   <script>
     async function check_code_button(e) {
       e.preventDefault();
+      var code = document.querySelector('[name="discount_code"]').textContent.trim();
+      if (!code) {
+        document.getElementById('check-code-result').innerHTML =
+          `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+        return;
+      }
+      document.querySelector('.check-code-button').setAttribute('disabled', true);
+
       $.ajax({
         url: route('package.check-code.api', ['code' => ]),
         method: 'get',
         success: function(result) {
-
+          var tt = result.percent;
+          if (tt) {
+            document.getElementById('check-code-result').innerHTML =
+              `<span style="color: green;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
+          }
+          document.getElementById('check-code-result').innerHTML =
+            `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
         },
         errors: function(xhr) {
           console.log("xhr", xhr);
+          document.getElementById('check-code-result').innerHTML =
+            `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
         }
       })
       console.log(e);
