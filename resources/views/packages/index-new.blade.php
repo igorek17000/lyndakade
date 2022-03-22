@@ -140,7 +140,7 @@
                 <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
                 <label for="discount_code">کد تخفیف: </label>
                 <input type="text" name="discount_code" id="discount_code">
-                <button class="check-code-button" onclick="check_code_button()">بررسی کد تخفیف</button>
+                <button class="check-code-button" onclick="check_code_button(event)">بررسی کد تخفیف</button>
               </div>
             </div>
             <div class="modal-footer">
