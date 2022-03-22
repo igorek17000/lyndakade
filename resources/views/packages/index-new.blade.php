@@ -140,7 +140,7 @@
                 <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
                 <label for="discount_code">کد تخفیف: </label>
                 <input type="text" name="discount_code" id="discount_code">
-                <button class="check-code-button">بررسی کد تخفیف</button>
+                <button class="check-code-button" onclick="check_code_button">بررسی کد تخفیف</button>
               </div>
             </div>
             <div class="modal-footer">
@@ -156,10 +156,10 @@
 
 @section('script_body')
   <script>
-    $(function() {
-      $(document).on('click', '.check-code-button', function(e) {
-        console.log(e);
-      });
-    })();
+    function check_code_button(e) {
+      e.preventDefault();
+      console.log(e);
+      return false;
+    }
   </script>
 @endsection
