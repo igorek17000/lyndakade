@@ -169,7 +169,7 @@
       document.querySelector('.check-code-button').setAttribute('disabled', true);
 
       $.ajax({
-        url: route('package.check-code.api', ['code' => ]),
+        url: route('package.check-code.api', ['code' => code]),
         method: 'get',
         success: function(result) {
           var tt = result.percent;
