@@ -191,7 +191,7 @@ Route::middleware('guest')->post('/subjects/update', function (Request $request)
     }
 })->name('subjects.update.api');
 
-Route::middleware('auth')->get('/package/check-code', function (Request $request) {
+Route::middleware('guest')->get('/package/check-code', function (Request $request) {
     $code = $request->get('code');
     if(!$code){
         return new JsonResponse([
