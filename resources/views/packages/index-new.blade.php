@@ -141,8 +141,9 @@
                 <label for="discount_code">کد تخفیف: </label>
                 <input type="text" name="discount_code" id="discount_code">
                 <br />
-                <button class="btn btn-info check-code-button mt-2" onclick="check_code_button(event)">بررسی کد
-                  تخفیف</button>
+                <span class="btn btn-info check-code-button mt-2" onclick="check_code_button(event)">
+                  بررسی کد تخفیف
+                </span>
                 <div id="check-code-result"></div>
               </div>
             </div>
