@@ -159,9 +159,9 @@
 @endsection
 @section('script_body')
   <script>
-    async function check_code_button(e) {
-      e.preventDefault();
-      console.log(e);
+    async function check_code_button() {
+    //   e.preventDefault();
+    //   console.log(e);
       setTimeout(() => {
         var code = document.querySelector('[name="discount_code"]').textContent.trim();
         if (!code) {
