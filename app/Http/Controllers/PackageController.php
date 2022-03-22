@@ -176,6 +176,12 @@ class PackageController extends Controller
             $factorId = $receipt->getReferenceId();
             $pack = Package::find($payment->item_id);
 
+            if ($payment->discount_code) {
+                $dis = Discount::where($payment->discount_code)->first();
+                if ($dis)
+                    $dis->delete();
+            }
+
             $user_package_paid = PackagePaid::where('user_id', $payment->user->id)->first();
 
             if ($user_package_paid) {
@@ -213,12 +219,6 @@ class PackageController extends Controller
             $paid->save();
 
             Mail::to(Auth::user()->email)->send(new PackageFactorMailer($pack, $amount, $factorId, $status, $paymentMethod, $payment->created_at, $authority, $end_date));
-
-            if ($payment->discount_code) {
-                $dis = Discount::where($payment->discount_code)->first();
-                if ($dis)
-                    $dis->delete();
-            }
 
             // echo $receipt->getReferenceId();
         } catch (InvalidPaymentException $exception) {
