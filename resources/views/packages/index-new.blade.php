@@ -177,9 +177,9 @@
           if (tt && result.data) {
             document.getElementById('check-code-result').innerHTML =
               `<span style="color: green;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
-          }else{
-          document.getElementById('check-code-result').innerHTML =
-            `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+          } else {
+            document.getElementById('check-code-result').innerHTML =
+              `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
           }
         },
         errors: function(xhr) {
