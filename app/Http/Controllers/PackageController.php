@@ -177,7 +177,7 @@ class PackageController extends Controller
             $pack = Package::find($payment->item_id);
 
             if ($payment->discount_code) {
-                $dis = Discount::where($payment->discount_code)->first();
+                $dis = Discount::where('code', $payment->discount_code)->first();
                 if ($dis)
                     $dis->delete();
             }
