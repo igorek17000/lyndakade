@@ -114,7 +114,7 @@
             @endif
           @else
             فایل های تمرینی <span style="color: darkred">ندارد</span>
-            <p>{{ $course->exerciseFile }}</p>
+            {{-- <p>{{ $course->exerciseFile }}</p> --}}
           @endif
         @else
           فایل های تمرینی <span style="color: darkred">ندارد</span>
