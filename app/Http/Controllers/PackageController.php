@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Discount;
 use App\HashedData;
 use App\Mail\PackageFactorMailer;
 use App\Package;
@@ -129,7 +130,7 @@ class PackageController extends Controller
 
         // Purchase method accepts a callback function.
         return \Shetabit\Payment\Facade\Payment::callbackUrl(route('packages.callback'))
-            ->purchase($invoice, function ($driver, $transactionId) use ($email, $mobile, $user_id, $amount, $pack) {
+            ->purchase($invoice, function ($driver, $transactionId) use ($email, $mobile, $user_id, $amount, $pack, $discount_code) {
 
                 // We can store $transactionId in database.
                 $payment = new Payment([
@@ -140,6 +141,7 @@ class PackageController extends Controller
                     'user_id' => $user_id,
                     'item_type' => "3",
                     'item_id' => $pack->id,
+                    'discount_code' => $discount_code
                 ]);
                 $payment->save();
             })->pay()->render();
@@ -200,6 +202,7 @@ class PackageController extends Controller
                 $package_paid->save();
             }
 
+
             $paid = new Paid([
                 'factorId' => $factorId,
                 'type' => 3,
@@ -210,6 +213,12 @@ class PackageController extends Controller
             $paid->save();
 
             Mail::to(Auth::user()->email)->send(new PackageFactorMailer($pack, $amount, $factorId, $status, $paymentMethod, $payment->created_at, $authority, $end_date));
+
+            if ($payment->discount_code) {
+                $dis = Discount::where($payment->discount_code)->first();
+                if ($dis)
+                    $dis->delete();
+            }
 
             // echo $receipt->getReferenceId();
         } catch (InvalidPaymentException $exception) {
