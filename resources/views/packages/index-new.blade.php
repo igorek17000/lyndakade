@@ -141,7 +141,7 @@
                 <label for="discount_code">کد تخفیف: </label>
                 <input type="text" name="discount_code" id="discount_code">
                 <br />
-                <span class="btn btn-info check-code-button mt-2" onclick="check_code_button(event)">
+                <span class="btn btn-info check-code-button mt-2" onclick="check_code_button()">
                   بررسی کد تخفیف
                 </span>
                 <div id="check-code-result"></div>
@@ -161,35 +161,36 @@
   <script>
     async function check_code_button(e) {
       e.preventDefault();
-      var code = document.querySelector('[name="discount_code"]').textContent.trim();
-      if (!code) {
-        document.getElementById('check-code-result').innerHTML =
-          `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
-        return;
-      }
-      document.querySelector('.check-code-button').setAttribute('disabled', true);
-
-      $.ajax({
-        url: route('package.check-code.api', ['code' => code]),
-        method: 'get',
-        async: false,
-        success: function(result) {
-          var tt = result.percent;
-          if (tt && result.data) {
-            document.getElementById('check-code-result').innerHTML =
-              `<span style="color: green;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
-          } else {
+      console.log(e);
+      setTimeout(() => {
+        var code = document.querySelector('[name="discount_code"]').textContent.trim();
+        if (!code) {
+          document.getElementById('check-code-result').innerHTML =
+            `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+          return;
+        }
+        document.querySelector('.check-code-button').setAttribute('disabled', true);
+        $.ajax({
+          url: route('package.check-code.api', ['code' => code]),
+          method: 'get',
+          async: false,
+          success: function(result) {
+            var tt = result.percent;
+            if (tt && result.data) {
+              document.getElementById('check-code-result').innerHTML =
+                `<span style="color: green;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
+            } else {
+              document.getElementById('check-code-result').innerHTML =
+                `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+            }
+          },
+          errors: function(xhr) {
+            console.log("xhr", xhr);
             document.getElementById('check-code-result').innerHTML =
               `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
           }
-        },
-        errors: function(xhr) {
-          console.log("xhr", xhr);
-          document.getElementById('check-code-result').innerHTML =
-            `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
-        }
-      })
-      console.log(e);
+        });
+      }, 50);
       return false;
     }
   </script>
