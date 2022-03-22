@@ -106,7 +106,7 @@
           </a>
         </div>
       @endif
-      <div class="col-lg-3 col-sm-6 mb-sm-1 my-1" exFile="{{ $course->exerciseFile }}">
+      <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
         @if ($course->exerciseFile)
           @if (json_decode($course->exerciseFile))
             @if (count(json_decode($course->exerciseFile)) > 0)
@@ -114,6 +114,7 @@
             @endif
           @else
             فایل های تمرینی <span style="color: darkred">ندارد</span>
+            <p>{{ $course->exerciseFile }}</p>
           @endif
         @else
           فایل های تمرینی <span style="color: darkred">ندارد</span>
