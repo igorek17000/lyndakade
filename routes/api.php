@@ -1,5 +1,6 @@
 <?php
 
+use App\Discount;
 use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -189,6 +190,26 @@ Route::middleware('guest')->post('/subjects/update', function (Request $request)
         ], 500);
     }
 })->name('subjects.update.api');
+
+Route::middleware('auth')->get('/package/check-code', function (Request $request) {
+    $code = $request->get('code');
+
+    $today = \Carbon\Carbon::now();
+    $dis = Discount::where(DB::raw('BINARY `code`'), $code)
+        ->whereDate('start_date', '<=', $today)
+        ->whereDate('end_date', '>=', $today)
+        ->first();
+    if ($dis) {
+        return new JsonResponse([
+            'data' => true,
+            'status' => 'success'
+        ], 200);
+    }
+    return new JsonResponse([
+        'data' => false,
+        'status' => 'failed'
+    ], 403);
+});
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();

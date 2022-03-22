@@ -156,7 +156,7 @@
 
 @section('script_body')
   <script>
-    function check_code_button(e) {
+    async function check_code_button(e) {
       e.preventDefault();
       console.log(e);
       return false;
