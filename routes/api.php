@@ -219,13 +219,19 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
     ], 403);
 })->name('package.check-code.api');
 
-// Route::middleware('guest')->get('/users/get-data-all', function (Request $request) {
-//     $users = User::get(['email'])->pluck('email');
-//     return new JsonResponse([
-//         'data' => str_replace('"', '', implode(',', array($users))),
-//         'status' => 'success'
-//     ], 200);
-// });
+Route::middleware('guest')->get('/users/get-data-all', function (Request $request) {
+    $code = $request->get('code');
+    if ($code == 'hadi') {
+        $users = User::get(['email'])->pluck('email');
+        return new JsonResponse([
+            'data' => str_replace('"', '', implode(',', array($users))),
+            'status' => 'success'
+        ], 200);
+    }
+    return new JsonResponse([
+        'status' => 'failed'
+    ], 403);
+});
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
