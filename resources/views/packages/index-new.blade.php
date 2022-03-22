@@ -159,7 +159,7 @@
 @endsection
 @section('script_body')
   <script>
-    async function check_code_button() {
+    function check_code_button() {
     //   e.preventDefault();
     //   console.log(e);
       setTimeout(() => {
