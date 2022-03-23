@@ -778,12 +778,12 @@ if (count($course->subjects) > 0) {
 @endsection
 @section('script_body')
   <script>
-    window.addEventListener('goftino_ready', function() {
-      Goftino.setWidget({
-        hasIcon: false,
-        counter: '#unread_counter'
-      });
-    });
+    // window.addEventListener('goftino_ready', function() {
+    //   Goftino.setWidget({
+    //     hasIcon: false,
+    //     counter: '#unread_counter'
+    //   });
+    // });
 
     $(function() {
       var course_id = '{{ $course->id }}';
