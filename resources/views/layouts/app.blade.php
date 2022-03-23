@@ -151,8 +151,12 @@
       background: transparent;
     }
 
-    .tags>a {
+    .wrapper-wide.dark-theme .tags>a {
       background: #333;
+    }
+
+    .wrapper-wide.dark-theme [data-slide] {
+      background: transparent;
     }
 
     .fab-container {
