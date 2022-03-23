@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                  ' .
+                      ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -682,9 +682,10 @@ if (count($course->subjects) > 0) {
               <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
                 <div class="row d-flex">
                   @for ($i = 0; $i < 4 && $index + $i < count($related_courses); $i++)
-                    @include('courses.partials._course_list_grid', [
+                    @include('courses.partials._course_list_grid-new', [
                         'course' => $related_courses[$index + $i],
                     ])
+
                   @endfor
                 </div>
               </div>
