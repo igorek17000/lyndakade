@@ -689,9 +689,9 @@
           alt="لینداکده - LyndaKade - Lynda Kade - LinkedIN" style="width: 60px; height: 55px;">
         <span class="hidden-md hidden-lg">لیندا کده</span>
       </a>
-      {{-- <span class="theme-toggle hidden-md hidden-lg" style="margin-right: auto;color: #eee;">
-        <i class="fa-sun"  style="font-size: 28px;margin: 10px;"></i>
-      </span> --}}
+      <span class="theme-toggle hidden-md hidden-lg" style="margin-right: auto;color: #eee;">
+        <i class="fa fa-sun"  style="font-size: 28px;margin: 10px;"></i>
+      </span>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -798,11 +798,11 @@
           <li class="nav-item">
             <a class="nav-link px-md-1" href="{{ route('root.contact.us') }}">تماس با ما</a>
           </li>
-          {{-- <li class="nav-item">
+          <li class="nav-item">
             <span class="theme-toggle" style="color: #eee;">
-                <i class="fa-sun"  style="font-size: 28px;margin: 10px;"></i>
+                <i class="fa fa-sun"  style="font-size: 28px;margin: 10px;"></i>
             </span>
-          </li> --}}
+          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" role="search" action="{{ route('search') }}">
           <input type="search" name="q" class="form-control mr-sm-2" role="combobox" value="{{ $q ?? '' }}"
@@ -1280,15 +1280,17 @@
       document.querySelectorAll('.theme-toggle').forEach((toggle_icon) => {
         toggle_icon.addEventListener('click', function() {
           if (wrapper_wide.classList.contains(dark_theme_class)) {
-            toggle_icon.querySelector('i').classList.add(moon_class);
-            toggle_icon.querySelector('i').classList.remove(sun_class);
+            $(toggle_icon).html(`<i class="fa fa-moon"  style="font-size: 28px;margin: 10px;"></i>`);
+            // toggle_icon.querySelector('i').classList.add(moon_class);
+            // toggle_icon.querySelector('i').classList.remove(sun_class);
 
             wrapper_wide.classList.remove(dark_theme_class);
 
             setCookie('theme', 'light');
           } else {
-            toggle_icon.querySelector('i').classList.add(sun_class);
-            toggle_icon.querySelector('i').classList.remove(moon_class);
+            $(toggle_icon).html(`<i class="fa fa-sun"  style="font-size: 28px;margin: 10px;"></i>`);
+            // toggle_icon.querySelector('i').classList.add(sun_class);
+            // toggle_icon.querySelector('i').classList.remove(moon_class);
 
             wrapper_wide.classList.add(dark_theme_class);
 
