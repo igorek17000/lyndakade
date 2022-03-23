@@ -298,7 +298,7 @@ class CourseController extends Controller
                 $view->views = 1;
                 $view->save();
             }
-
+/*
             $subjects = $course->subjects;
             $subjects_id = array();
             foreach ($subjects as $subject) {
@@ -339,10 +339,11 @@ class CourseController extends Controller
             foreach ($related_courses as $related_course) {
                 array_push($courses, $related_course);
             }
-            /*
+*/
+
             $subjectIds = $course->subjects->pluck('id')->toArray();
 
-            $related_courses = Course::with('authors')->has('subjects', function ($query) use ($subjectIds) {
+            $related_courses = Course::with('authors')->whereHas('subjects', function ($query) use ($subjectIds) {
                 return $query->whereIn('subjects.id', $subjectIds);
             })->where('id', '!=', $course->id)
                 ->limit(52)
@@ -353,7 +354,6 @@ class CourseController extends Controller
                 array_push($courses, $related_course);
             }
 
-*/
             $skillEng = SkillLevel::find($course->skillLevel)->titleEng;
             $skill = SkillLevel::find($course->skillLevel)->title;
 
