@@ -167,6 +167,15 @@
       background: #333;
     }
 
+    .hero-text {
+      background-color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    .wrapper-wide.dark-theme .hero-text {
+      background-color: rgba(0, 0, 0, 0.5) !important;
+      color: white;
+    }
+
     .fab-container {
       position: fixed;
       width: 70px;
