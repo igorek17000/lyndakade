@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                            ' .
+                                    ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -305,7 +305,7 @@ if (count($course->subjects) > 0) {
                     <h6>تعدادی افرادی که این دوره را مشاهده کردند</h6>
                   </div>
                 @endif
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
+                <button type="button" class="btn btn-warning report-issue-toggle">
                   <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                   گزارش خرابی
                 </button>
@@ -779,6 +779,15 @@ if (count($course->subjects) > 0) {
 @section('script_body')
   <script>
     $(function() {
+      var course_id = '{{ $course->id }}';
+      var course_title = '{{ $course->title }}';
+      var course_titleEng = '{{ $course->titleEng }}';
+      $(document).on('click', '.report-issue-toggle', function(e) {
+        Goftino.open();
+        Goftino.sendMessage({
+          text: 'سلام\n' + course_title + 'مشکل داره.'
+        });
+      });
       $('.carousel').carousel({
         interval: false,
         wrap: false,
