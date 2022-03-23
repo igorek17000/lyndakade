@@ -64,7 +64,7 @@
     </div>
   </div>
   <div class="card-footer border-0 text-center" style="padding: .25rem .75rem;background-color: rgba(0,0,0,0.1);">
-    <div class="row align-items-center">
+    <div class="row align-items-center no-dark">
       <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
         تاریخ انتشار
         @php
