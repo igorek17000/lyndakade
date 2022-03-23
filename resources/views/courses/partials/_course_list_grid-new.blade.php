@@ -1,5 +1,5 @@
 <div class="col-12 col-lg-3 col-md-6 my-2 course" itemscope="" itemtype="http://schema.org/Course">
-  <div class="card h-100 border-light  bg-light shadow course-grid">
+  <div class="card h-100 border-0 course-grid">
     <meta itemprop="name" content="{{ $course->title }}" lang="fa" />
     <meta itemprop="name" content="{{ $course->titleEng }}" lang="en" />
     <meta itemprop="url" content="{{ courseURL($course) }}" />
