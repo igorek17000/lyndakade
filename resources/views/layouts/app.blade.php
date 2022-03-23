@@ -675,7 +675,7 @@
         background-color: #00aaca;
         font-family: 'IranSANS';
         font-weight: bold;">
-        تخفیف 40 درصدی ویژه نوروز خرید اشتراک سایت
+        تخفیف 40 درصدی ویژه نوروز خرید اشتراک سایت: lyndakade1401
       </div>
     </a>
     {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0" @if (app()->isLocal('en')) dir="ltr" @endif> --}}
