@@ -142,7 +142,8 @@
       color: #00aaca;
     }
 
-    .wrapper-wide.dark-theme .section-module {
+    .wrapper-wide.dark-theme .section-module,
+    .wrapper-wide.dark-theme .container {
       background-color: #222;
     }
 
