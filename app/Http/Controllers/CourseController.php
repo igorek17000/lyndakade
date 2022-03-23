@@ -300,8 +300,6 @@ class CourseController extends Controller
             }
 
             /*
-                 * getting courses id related to subjects
-                 */
             $subjects = $course->subjects;
             $subjects_id = array();
             foreach ($subjects as $subject) {
@@ -316,9 +314,6 @@ class CourseController extends Controller
                 array_push($ids, $id->course_id);
             }
 
-            /*
-                 * getting courses id related to software
-                 */
             $softwares = $course->softwares;
             $softwares_id = array();
             foreach ($softwares as $software) {
@@ -338,13 +333,27 @@ class CourseController extends Controller
             $ids = array_values(array_unique($ids));
 
             $related_courses = Course::with('authors')
-            // ->orderBy('views', 'DESC')
-            ->whereIn('id', $ids)->limit(52)->get();
+                // ->orderBy('views', 'DESC')
+                ->whereIn('id', $ids)->limit(52)->get();
 
             $courses = array();
             foreach ($related_courses as $related_course) {
                 array_push($courses, $related_course);
             }
+            */
+            $subjectIds = $course->subjects->pluck('id')->toArray();
+
+            $related_courses = Course::with('authors')->has('subjects', function ($query) use ($subjectIds) {
+                return $query->whereIn('id', $subjectIds);
+            })->whereNot('id', $course->id)
+                ->limit(52)
+                ->get();
+
+            $courses = array();
+            foreach ($related_courses as $related_course) {
+                array_push($courses, $related_course);
+            }
+
 
             $skillEng = SkillLevel::find($course->skillLevel)->titleEng;
             $skill = SkillLevel::find($course->skillLevel)->title;
