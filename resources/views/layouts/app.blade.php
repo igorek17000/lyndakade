@@ -127,6 +127,9 @@
     }
 
     .wrapper-wide.dark-theme {
+      background: repeat-x #171717;
+      background-image: -webkit-linear-gradient(top, #171717 0, #111 100%);
+      background-image: -o-linear-gradient(top, #171717 0, #111 100%);
       background-image: linear-gradient(to bottom, #171717 0, #111 100%);
       color: white;
     }
