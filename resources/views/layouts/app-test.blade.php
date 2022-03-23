@@ -66,6 +66,15 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"
+    media="print" onload="this.media='all'">
+
+  <noscript>
+    <link rel="stylesheet" href="style.css">
+  </noscript>
+
   {{-- <link href="{{ mix('css/app.css') }}" rel="stylesheet"> --}}
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -102,19 +111,6 @@
     integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{{ mix('js/all.js') }}"></script>
-
-  <script>
-    window.addEventListener('goftino_getMessage', function(d) {
-
-      var message_type = d.detail.type;
-      // "text" , "file" , "voice"
-
-      var message_content = d.detail.content;
-      // "hi, thanks for joining chat..."
-
-      // console.log(message_type, message_content);
-    });
-  </script>
 
   @yield('script_head')
   @stack('css_head')
@@ -204,6 +200,397 @@
 
   </style>
 
+  <style>
+    .hero-space {
+      min-height: 560px !important;
+    }
+
+    @media (min-width: 426px) {
+      .hero-space {
+        min-height: 510px !important;
+      }
+    }
+
+    @media (min-width: 426px) {
+      .hero-space {
+        min-height: 340px !important;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .hero-space {
+        min-height: 360px !important;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .hero-space {
+        min-height: 300px !important;
+      }
+    }
+
+    @media (min-width: 1441px) {
+      .hero-space {
+        min-height: 370px !important;
+      }
+    }
+
+    .show-xs {
+      display: none !important;
+    }
+
+    @media (max-width: 767px) {
+      .show-xs {
+        display: block !important;
+      }
+    }
+
+
+    .persian-subtitle-img {
+      border: 2px solid darkgoldenrod;
+      background-color: darkgoldenrod;
+    }
+
+    .english-subtitle-img {
+      border: 2px solid green;
+      background-color: green;
+    }
+
+    .no-subtitle-img {
+      border: 2px solid rgb(168, 0, 0);
+      background-color: rgb(168, 0, 0);
+    }
+
+    .dubbed-subtitle-img {
+      border: 2px solid rgb(0, 0, 163);
+      background-color: rgb(0, 0, 163);
+    }
+
+    .course-img {
+      border-radius: 5px;
+      max-height: 170px;
+      min-height: 170px;
+      width: 100%;
+    }
+
+    @media(min-width: 575px) {
+      .card-horizontal {
+        display: flex;
+        flex: 1 1 auto;
+      }
+
+      .course-img {
+        border-radius: 5px;
+        max-height: 170px;
+        min-height: 170px;
+        width: 300px;
+      }
+
+    }
+
+    [data-target="#preview-modal"] {
+      text-align: center;
+      /* position: absolute;
+                                                                                                right: 0;
+                                                                                                left: 0;
+                                                                                                top: 0;
+                                                                                                bottom: 0; */
+      border-radius: 5px;
+      padding: 2px 4px 0 4px;
+      font-size: 20px;
+      background-color: rgba(0, 0, 0, .8);
+      color: #fff;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      float: left;
+      width: 100%;
+      height: 100%;
+    }
+
+    .img-square-wrapper {
+      position: relative;
+      height: 170px;
+    }
+
+    .subtitle-state {
+      color: white;
+      bottom: 2px;
+      font-size: .7rem;
+      width: 5.6rem;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      /* padding: 0.01rem 0; */
+      border-top-left-radius: 0.3rem;
+      border-top-right-radius: 0.3rem;
+    }
+
+    .course-update-state {
+      width: 3.7rem;
+      text-align: center;
+      position: absolute;
+      left: 2px;
+      bottom: 2px;
+      border-radius: 0 0.25rem 0 0.25rem;
+      padding: 2px 4px 0 4px;
+      background-color: rgba(240, 0, 0, .8);
+      color: #fff;
+    }
+
+    .course-time-state {
+      width: 3.7rem;
+      text-align: center;
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+      border-radius: 0.3rem 0 0.3rem 0;
+      padding: 2px 4px 0 4px;
+      background-color: rgba(0, 0, 0, .8);
+      color: #fff;
+    }
+
+    .card.course {
+      border-top-width: 0;
+      border-left-width: 0;
+      border-right-width: 0;
+    }
+
+    .course-description-grid {
+      overflow: hidden;
+      max-width: 500px;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      line-height: 1.7;
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+
+    @media(min-width: 900px) {
+      .course-description-grid {
+        max-width: 850px;
+      }
+
+    }
+
+    .border-0 {
+      border: 0;
+    }
+
+    .card.course .card-img-overlay {
+      background-color: rgba(0, 0, 0, .8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      font-size: 1.3rem;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity .3s linear;
+    }
+
+    .card.course:hover .card-img-overlay {
+      opacity: 1;
+    }
+
+    @media (hover: none) {
+      .card.course .card-img-overlay {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, .6);
+      }
+    }
+
+    a.card-img-overlay:hover {
+      color: #fff;
+    }
+
+    @media (min-width: 576px) {
+      .course.container {
+        max-width: 750px;
+
+      }
+    }
+
+    @media (min-width: 768px) {
+      .course.container {
+        max-width: 980px;
+
+      }
+    }
+
+    .course .card-body {
+      -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      padding: 1rem;
+    }
+
+    .course ul li {
+      position: relative;
+    }
+
+    .course ul>li ul {
+      padding-right: 25px;
+      padding-top: 4px;
+    }
+
+    .course ul input:not(#price-range) {
+      position: absolute;
+      left: 0;
+      top: 0;
+      visibility: hidden;
+    }
+
+    .course ul label {
+      display: block;
+      line-height: 25px;
+      position: relative;
+      padding-right: 25px;
+      font-size: 14px;
+    }
+
+    @media(max-width: 1023px) {
+      .course ul label {
+        margin-right: -15px;
+        font-size: 12px;
+      }
+    }
+
+    @media(max-width: 576px) {
+      .course ul label {
+        margin-right: -15px;
+        font-size: 11px;
+      }
+
+    }
+
+    .course ul label[type="checkbox"]::before {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+      border: 1px solid #d7e1e6;
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 2px;
+    }
+
+    .course ul label[type="checkbox"]::after {
+      width: 14px;
+      height: 14px;
+      border-radius: 2px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      background-color: #00aaca;
+      content: '';
+      position: absolute;
+      right: 2px;
+      top: 4px;
+      opacity: 0;
+      transition: opacity .3s linear;
+    }
+
+    .course ul label[type="radio"]::before {
+      width: 18px;
+      height: 18px;
+      border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+      border: 1px solid #d7e1e6;
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 2px;
+    }
+
+    .course ul label[type="radio"]::after {
+      width: 14px;
+      height: 14px;
+      border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+      background-color: #00aaca;
+      content: '';
+      position: absolute;
+      right: 2px;
+      top: 4px;
+      opacity: 0;
+      transition: opacity .3s linear;
+    }
+
+    .course ul li input:checked+label:after,
+    .course ul li label:hover:after {
+      opacity: 1;
+    }
+
+    .course ul li input:checked+label:before,
+    .course ul li label:hover:before {
+      border: 1px solid #00aaca;
+    }
+
+    .learn-path *[data-target="#preview-modal"],
+    .course *[data-target="#preview-modal"] {
+      cursor: pointer;
+    }
+
+    .path .card-img-overlay {
+      background-color: rgba(0, 0, 0, .8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      font-size: 1.3rem;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity .3s linear;
+    }
+
+    .path:hover .card-img-overlay {
+      opacity: 1;
+    }
+
+    @media (hover: none) {
+      .path .card-img-overlay {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, .6);
+      }
+    }
+
+    @keyframes spinner-border {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .spinner-border {
+      display: inline-block;
+      width: 4rem;
+      height: 4rem;
+      vertical-align: text-bottom;
+      border: 0.23em solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: spinner-border .95s linear infinite;
+    }
+
+    /* .price-range .slider {
+                              width: 170px;
+                            } */
+
+  </style>
 </head>
 
 <body>
@@ -242,7 +629,7 @@
           <li class="nav-item">
             <a class="nav-link px-md-1" href="{{ route('root.home') }}">صفحه اصلی</a>
           </li>
-          <li class="nav-item dropdown">
+          {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle px-md-1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               کتابخانه
@@ -281,7 +668,7 @@
                 </a>
               @endforeach
             </div>
-          </li>
+          </li> --}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle px-md-1" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
@@ -519,6 +906,25 @@
     </footer>
   </div>
 
+  <div class="modal fade" id="preview-modal" tabindex="-1" role="dialog" aria-labelledby="preview-modal-title"
+    aria-hidden="true" style="background-color: #444c;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content text-center">
+        <div class="modal-body p-0" id="preview-modal-body">
+          <video class="w-100" src="" controls aria-controls="true"
+            style="border-top-left-radius: 3px; border-top-right-radius: 3px;"></video>
+          <div class="text-right px-2">
+
+            <div>
+              <span style="font-size: 1.2rem;" id="preview-modal-title">عنوان دوره</span>
+              <a href="#" id="preview-modal-url" style="float: left;" class="btn btn-success mb-2">مشاهده جزئیات</a>
+              {{-- <span style="float: left;cursor: auto;" class="btn" id="preview-modal-price">قیمت</span> --}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/themify-icons.css') }}" /> --}}
   <link rel="stylesheet" type="text/css"
@@ -803,6 +1209,50 @@
       //     delay: 3500,
       // });
       // $('.toast').toast('show');
+    });
+
+    function perToEng(str) {
+      var
+        persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
+        arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
+      if (typeof str === 'string') {
+        for (var i = 0; i < 10; i++) {
+          str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+        }
+      }
+      return str;
+    }
+
+    function engToPer(n) {
+      const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+
+      return n
+        .toString()
+        .replace(/\d/g, x => farsiDigits[x]);
+    }
+
+    $(function() {
+      document.querySelectorAll('*[data-price]').forEach(element => {
+        element.setAttribute('data-price', engToPer(element.getAttribute('data-price')));
+      });
+      $('#preview-modal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget);
+        if (button) {
+          $('#preview-modal #preview-modal-title').text(button.data('title'));
+          document.querySelector('#preview-modal #preview-modal-url').setAttribute('href', button.data('url'));
+          // $('#preview-modal-price').text(button.data('price') + ' تومان');
+          document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', button.data(
+            'src'));
+          document.querySelector('#preview-modal #preview-modal-body video').play();
+        } else {
+          $('#preview-modal #preview-modal-title').text('');
+          document.querySelector('#preview-modal #preview-modal-url').setAttribute('href', '');
+          // $('#preview-modal-price').text('');
+        }
+      });
+      $('#preview-modal').on('hidden.bs.modal', function() {
+        document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', '');
+      });
     });
   </script>
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}

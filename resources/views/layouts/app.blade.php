@@ -118,6 +118,24 @@
   @csrf
 
   <style>
+    .wrapper-wide {
+      box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+      background: repeat-x #f7f7f7;
+      background-image: -webkit-linear-gradient(top, #f7f7f7 0, #e5e5e5 100%);
+      background-image: -o-linear-gradient(top, #f7f7f7 0, #e5e5e5 100%);
+      background-image: linear-gradient(to bottom, #f7f7f7 0, #e5e5e5 100%);
+    }
+
+    .wrapper-wide.dark-theme {
+      background-color: #111;
+      color: white;
+    }
+
+    .wrapper-wide.dark-theme .section-module {
+      background-color: #222;
+      color: white;
+    }
+
     .fab-container {
       position: fixed;
       width: 70px;
@@ -599,11 +617,7 @@
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <div class="wrapper-wide" style="    box-shadow: 0 0 4px rgba(0,0,0,.1);
-    background: repeat-x #f7f7f7;
-    background-image: -webkit-linear-gradient(top,#f7f7f7 0,#e5e5e5 100%);
-    background-image: -o-linear-gradient(top,#f7f7f7 0,#e5e5e5 100%);
-    background-image: linear-gradient(to bottom,#f7f7f7 0,#e5e5e5 100%);">
+  <div class="wrapper-wide">
 
     @include('go-to-top-btn')
     <style>
