@@ -18,10 +18,9 @@
 @endpush
 @section('content')
   <div class="container" style="margin-bottom: 10px">
-    <div class="row" style="margin-top: 50px;background-color: white;padding-top: 10px; padding-bottom: 10px">
+    <div class="row bg-white" style="margin-top: 50px;padding-top: 10px; padding-bottom: 10px">
       <div class="col-lg-6">
-        <div class="col-lg-12 social-box"
-          style="border-radius: 20px;margin-bottom: 20px;padding-top: 5px">
+        <div class="col-lg-12" style="border-radius: 20px;margin-bottom: 20px;padding-top: 5px">
           <div class="col-lg-12">
             <h1 style="font-size: 1.15rem;">راه های ارتباطی</h1>
             <hr>
@@ -36,9 +35,9 @@
               </a>
             </div>
             <div class="col-3">
-              <a rel="noreferrer" href="http://www.Aparat.com/LyndaKade.ir" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat آپارات" title="آپارات"
-                  class="icon-aparat">
+              <a rel="noreferrer" href="http://www.Aparat.com/LyndaKade.ir" target="_blank">
+                <img data-toggle="tooltip" src="https://lyndakade.ir/image/socialicons/aparat.png" alt="Aparat آپارات"
+                  title="آپارات" class="icon-aparat" width="40" height="40">
                 <br />
                 آپارات
               </a>
