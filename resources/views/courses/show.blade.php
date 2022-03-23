@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                      ' .
+                        ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -666,17 +666,17 @@ if (count($course->subjects) > 0) {
             <h5 class="course-title">دوره‌های مرتبط</h5>
           </div>
           <div id="carousel-arrows" class="col-6">
-            <a class="align-self-center" href="#blogCarousel" role="button" data-slide="next">
+            <a class="align-self-center" href="#related_courses" role="button" data-slide="next">
               <i class="lyndacon arrow-right" aria-hidden="true"></i>
               <span class="sr-only">بعدی</span>
             </a>
-            <a class="align-self-center" href="#blogCarousel" role="button" data-slide="prev">
+            <a class="align-self-center" href="#related_courses" role="button" data-slide="prev">
               <i class="lyndacon arrow-left" aria-hidden="true"></i>
               <span class="sr-only">قبلی</span>
             </a>
           </div>
         </div>
-        <div id="blogCarousel" class="carousel slide" data-interval="1000000">
+        <div id="related_courses" class="carousel slide" data-interval="1000000">
           <div class="carousel-inner" count="{{ count($related_courses) }}">
             @for ($index = 0; $index < count($related_courses); $index += 4)
               <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
@@ -685,7 +685,6 @@ if (count($course->subjects) > 0) {
                     @include('courses.partials._course_list_grid-new', [
                         'course' => $related_courses[$index + $i],
                     ])
-
                   @endfor
                 </div>
               </div>
@@ -695,6 +694,43 @@ if (count($course->subjects) > 0) {
       </div>
     </aside>
   </div>
+
+  {{-- <div class="row mx-0 justify-content-center">
+    <aside class="col-md-10">
+      <div class="section-module">
+        <div class="row p-0 m-0">
+          <div class="col-6">
+            <h5 class="course-title">مسیرهای مرتبط</h5>
+          </div>
+          <div id="carousel-arrows" class="col-6">
+            <a class="align-self-center" href="#related_paths" role="button" data-slide="next">
+              <i class="lyndacon arrow-right" aria-hidden="true"></i>
+              <span class="sr-only">بعدی</span>
+            </a>
+            <a class="align-self-center" href="#related_paths" role="button" data-slide="prev">
+              <i class="lyndacon arrow-left" aria-hidden="true"></i>
+              <span class="sr-only">قبلی</span>
+            </a>
+          </div>
+        </div>
+        <div id="related_paths" class="carousel slide" data-interval="1000000">
+          <div class="carousel-inner" count="{{ count($related_paths) }}">
+            @for ($index = 0; $index < count($related_paths); $index += 4)
+              <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
+                <div class="row d-flex">
+                  @for ($i = 0; $i < 4 && $index + $i < count($related_paths); $i++)
+                    @include('courses.partials._course_list_grid-new', [
+                        'course' => $related_paths[$index + $i],
+                    ])
+                  @endfor
+                </div>
+              </div>
+            @endfor
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div> --}}
 
   <div id="report-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="report-modal-title"
     aria-hidden="true">

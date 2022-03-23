@@ -298,7 +298,7 @@ class CourseController extends Controller
                 $view->views = 1;
                 $view->save();
             }
-/*
+            /*
             $subjects = $course->subjects;
             $subjects_id = array();
             foreach ($subjects as $subject) {
@@ -349,10 +349,23 @@ class CourseController extends Controller
                 ->limit(52)
                 ->get();
 
-            $courses = array();
-            foreach ($related_courses as $related_course) {
-                array_push($courses, $related_course);
-            }
+            // $courses = array();
+            // foreach ($related_courses as $related_course) {
+            //     array_push($courses, $related_course);
+            // }
+            // $related_courses = $courses;
+
+            $related_paths = LearnPath::where('courses_id', $course->id)
+                ->orWhere('courses_id', 'LIKE', $course->id . ',%')
+                ->orWhere('courses_id', 'LIKE', '%,' . $course->id . ',%')
+                ->orWhere('courses_id', 'LIKE', '%,' . $course->id)
+                ->get();
+
+            // $paths = array();
+            // foreach ($related_paths as $related_path) {
+            //     array_push($paths, $related_path);
+            // }
+            // $related_paths = $paths;
 
             $skillEng = SkillLevel::find($course->skillLevel)->titleEng;
             $skill = SkillLevel::find($course->skillLevel)->title;
@@ -374,6 +387,7 @@ class CourseController extends Controller
                 'course' => $course,
                 'has_subtitle' => $has_subtitle,
                 'related_courses' => $related_courses,
+                'related_paths' => $related_paths,
                 'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
             ]);
         }
