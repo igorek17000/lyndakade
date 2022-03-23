@@ -18,7 +18,7 @@
 @endpush
 @section('content')
   <div class="container" style="margin-bottom: 10px">
-    <div class="row bg-white" style="margin-top: 50px;padding-top: 10px; padding-bottom: 10px">
+    <div class="row" style="margin-top: 50px;padding-top: 10px; padding-bottom: 10px">
       <div class="col-lg-6">
         <div class="col-lg-12" style="border-radius: 20px;margin-bottom: 20px;padding-top: 5px">
           <div class="col-lg-12">
