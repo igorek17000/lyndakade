@@ -127,13 +127,13 @@
     }
 
     .wrapper-wide.dark-theme {
+      background-image: none;
       background-color: #111;
       color: white;
     }
 
     .wrapper-wide.dark-theme .section-module {
       background-color: #222;
-      color: white;
     }
 
     .fab-container {
