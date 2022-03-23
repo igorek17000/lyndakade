@@ -127,9 +127,16 @@
     }
 
     .wrapper-wide.dark-theme {
-      background-image: none;
-      background-color: #111;
+      background-image: linear-gradient(to bottom, #171717 0, #111 100%);
       color: white;
+    }
+
+    .wrapper-wide.dark-theme a {
+      color: white;
+    }
+
+    .wrapper-wide.dark-theme a:hover {
+      color: #00aaca;
     }
 
     .wrapper-wide.dark-theme .section-module {
