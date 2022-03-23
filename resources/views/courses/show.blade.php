@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                          ' .
+                            ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -695,42 +695,44 @@ if (count($course->subjects) > 0) {
     </aside>
   </div>
 
-  <div class="row mx-0 justify-content-center">
-    <aside class="col-md-10">
-      <div class="section-module">
-        <div class="row p-0 m-0">
-          <div class="col-6">
-            <h5 class="course-title">مسیرهای مرتبط</h5>
+  @if (count($related_paths))
+    <div class="row mx-0 justify-content-center">
+      <aside class="col-md-10">
+        <div class="section-module">
+          <div class="row p-0 m-0">
+            <div class="col-6">
+              <h5 class="course-title">مسیرهای مرتبط</h5>
+            </div>
+            <div id="carousel-arrows" class="col-6">
+              <a class="align-self-center" href="#related_paths" role="button" data-slide="next">
+                <i class="lyndacon arrow-right" aria-hidden="true"></i>
+                <span class="sr-only">بعدی</span>
+              </a>
+              <a class="align-self-center" href="#related_paths" role="button" data-slide="prev">
+                <i class="lyndacon arrow-left" aria-hidden="true"></i>
+                <span class="sr-only">قبلی</span>
+              </a>
+            </div>
           </div>
-          <div id="carousel-arrows" class="col-6">
-            <a class="align-self-center" href="#related_paths" role="button" data-slide="next">
-              <i class="lyndacon arrow-right" aria-hidden="true"></i>
-              <span class="sr-only">بعدی</span>
-            </a>
-            <a class="align-self-center" href="#related_paths" role="button" data-slide="prev">
-              <i class="lyndacon arrow-left" aria-hidden="true"></i>
-              <span class="sr-only">قبلی</span>
-            </a>
-          </div>
-        </div>
-        <div id="related_paths" class="carousel slide" data-interval="1000000">
-          <div class="carousel-inner" count="{{ count($related_paths) }}">
-            @for ($index = 0; $index < count($related_paths); $index += 4)
-              <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
-                <div class="row d-flex">
-                  @for ($i = 0; $i < 4 && $index + $i < count($related_paths); $i++)
-                    @include('learn_paths.partials.list_item_grid_new', [
-                        'path' => $related_paths[$index + $i],
-                    ])
-                  @endfor
+          <div id="related_paths" class="carousel slide" data-interval="1000000">
+            <div class="carousel-inner" count="{{ count($related_paths) }}">
+              @for ($index = 0; $index < count($related_paths); $index += 4)
+                <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
+                  <div class="row d-flex">
+                    @for ($i = 0; $i < 4 && $index + $i < count($related_paths); $i++)
+                      @include('learn_paths.partials.list_item_grid_new', [
+                          'path' => $related_paths[$index + $i],
+                      ])
+                    @endfor
+                  </div>
                 </div>
-              </div>
-            @endfor
+              @endfor
+            </div>
           </div>
         </div>
-      </div>
-    </aside>
-  </div>
+      </aside>
+    </div>
+  @endif
 
   <div id="report-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="report-modal-title"
     aria-hidden="true">
