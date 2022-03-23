@@ -130,7 +130,7 @@
       background-color: rgba(255, 255, 255, 0.5) !important;
     }
 
-    
+
     .wrapper-wide.dark-theme {
       background: repeat-x #171717;
       background-image: -webkit-linear-gradient(top, #171717 0, #111 100%);
@@ -306,8 +306,8 @@
 
 
     .persian-subtitle-img {
-      border: 2px solid darkgoldenrod;
-      background-color: darkgoldenrod;
+      border: 2px solid rgb(0, 0, 163);
+      background-color: rgb(0, 0, 163);
     }
 
     .english-subtitle-img {
@@ -319,10 +319,9 @@
       border: 2px solid rgb(168, 0, 0);
       background-color: rgb(168, 0, 0);
     }
-
     .dubbed-subtitle-img {
-      border: 2px solid rgb(0, 0, 163);
-      background-color: rgb(0, 0, 163);
+      border: 2px solid darkgoldenrod;
+      background-color: darkgoldenrod;
     }
 
     .course-img {
