@@ -339,12 +339,12 @@ class CourseController extends Controller
 
             $related_courses = Course::with('authors')
             // ->orderBy('views', 'DESC')
-            ->whereIn('id', $ids)->limit(52)->get();
+            ->whereIn('id', $ids)->limit(52)->get()->toArray();
 
-            $courses = array();
-            foreach ($related_courses as $related_course) {
-                array_push($courses, $related_course);
-            }
+            // $courses = array();
+            // foreach ($related_courses as $related_course) {
+            //     array_push($courses, $related_course);
+            // }
 
             $skillEng = SkillLevel::find($course->skillLevel)->titleEng;
             $skill = SkillLevel::find($course->skillLevel)->title;
@@ -365,7 +365,7 @@ class CourseController extends Controller
                 'skillEng' => $skillEng,
                 'course' => $course,
                 'has_subtitle' => $has_subtitle,
-                'related_courses' => $courses,
+                'related_courses' => $related_courses,
                 'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
             ]);
         }
