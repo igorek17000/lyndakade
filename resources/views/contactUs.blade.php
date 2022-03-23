@@ -21,7 +21,7 @@
     <div class="row" style="margin-top: 50px;background-color: white;padding-top: 10px; padding-bottom: 10px">
       <div class="col-lg-6">
         <div class="col-lg-12 social-box"
-          style="border-radius: 20px;background-color: orange;margin-bottom: 20px;padding-top: 5px">
+          style="border-radius: 20px;margin-bottom: 20px;padding-top: 5px">
           <div class="col-lg-12">
             <h1 style="font-size: 1.15rem;">راه های ارتباطی</h1>
             <hr>
@@ -36,19 +36,19 @@
               </a>
             </div>
             <div class="col-3">
-              <a rel="noreferrer" href="http://www.Instagram.com/lyndakade.ir" target="_blank">
-                <img data-toggle="tooltip" src="https://lyndakade.ir/image/socialicons/instagram2.png"
-                  alt="Instagram اینستاگرام" title="اینستاگرام" class="icon-instagram" style="height: 40px;">
-                <br />
-                اینستاگرام
-              </a>
-            </div>
-            <div class="col-3">
               <a rel="noreferrer" href="http://www.Aparat.com/LyndaKade.ir" target="_blank"> <img data-toggle="tooltip"
                   src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat آپارات" title="آپارات"
                   class="icon-aparat">
                 <br />
                 آپارات
+              </a>
+            </div>
+            <div class="col-3">
+              <a rel="noreferrer" href="http://www.Instagram.com/lyndakade.ir" target="_blank">
+                <img data-toggle="tooltip" src="https://lyndakade.ir/image/socialicons/instagram2.png"
+                  alt="Instagram اینستاگرام" title="اینستاگرام" class="icon-instagram" style="height: 40px;">
+                <br />
+                اینستاگرام
               </a>
             </div>
             <div class="col-3">
