@@ -122,7 +122,7 @@
     <form action="{{ route('packages.payment') }}" method="get">
       <input type="hidden" name="code" value="{{ hash('sha256', $package->id) }}">
       <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
-        aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true" style="margin-top: 50px;">
+        aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true" style="margin-top: 50px;padding: 0 10px;">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
