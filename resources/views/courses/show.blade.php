@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                      ' .
+                                        ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -778,6 +778,13 @@ if (count($course->subjects) > 0) {
 @endsection
 @section('script_body')
   <script>
+    window.addEventListener('goftino_ready', function() {
+      Goftino.setWidget({
+        hasIcon: false,
+        counter: '#unread_counter'
+      });
+    });
+
     $(function() {
       var course_id = '{{ $course->id }}';
       var course_title = '{{ $course->title }}';

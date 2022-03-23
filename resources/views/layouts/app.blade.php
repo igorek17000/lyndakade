@@ -259,6 +259,23 @@
       cursor: pointer;
     }
 
+    #unread_counter {
+      background: #000593;
+      border-radius: 50%;
+      padding: 3px;
+      font-size: 15px;
+      position: fixed;
+      color: white;
+      min-width: 25px;
+      max-width: 30px;
+      height: 25px;
+      top: 0px;
+      right: 0px;
+      z-index: 5;
+      text-align: center;
+      font-weight: bold;
+    }
+
   </style>
 
   <style>
