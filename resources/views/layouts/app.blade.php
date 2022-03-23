@@ -689,7 +689,7 @@
           alt="لینداکده - LyndaKade - Lynda Kade - LinkedIN" style="width: 60px; height: 55px;">
         <span class="hidden-md hidden-lg">لیندا کده</span>
       </a>
-      <span class="theme-toggle" style="margin-right: auto;">
+      <span class="theme-toggle hidden-md hidden-lg" style="margin-right: auto;">
         <svg class="svg-inline--fa fa-sun fa-w-16" style="font-size: 28px;margin: 10px;" aria-hidden="true"
           data-prefix="fa" data-icon="sun" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
           data-fa-i2svg="">
