@@ -344,7 +344,7 @@ class CourseController extends Controller
             $subjectIds = $course->subjects->pluck('id')->toArray();
 
             $related_courses = Course::with('authors')->has('subjects', function ($query) use ($subjectIds) {
-                return $query->whereIn('id', $subjectIds);
+                return $query->whereIn('subjects.id', $subjectIds);
             })->where('id', '!=', $course->id)
                 ->limit(52)
                 ->get();
