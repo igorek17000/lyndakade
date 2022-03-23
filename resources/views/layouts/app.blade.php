@@ -126,6 +126,11 @@
       background-image: linear-gradient(to bottom, #f7f7f7 0, #e5e5e5 100%);
     }
 
+    .hero-text {
+      background-color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    
     .wrapper-wide.dark-theme {
       background: repeat-x #171717;
       background-image: -webkit-linear-gradient(top, #171717 0, #111 100%);
@@ -165,10 +170,6 @@
 
     .wrapper-wide.dark-theme .tags>a {
       background: #333;
-    }
-
-    .hero-text {
-      background-color: rgba(255, 255, 255, 0.5) !important;
     }
 
     .wrapper-wide.dark-theme .hero-text {

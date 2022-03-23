@@ -82,7 +82,7 @@
 @section('content')
   <div class="row m-0 home-page">
     <div class="col-12 hero-space" style="min-height: 440px; height: auto;">
-      <div class="hero-text" style="background-color: rgba(255, 255, 255, 0.5) !important;">
+      <div class="hero-text">
         <h1 style="font-size: 2.25rem;">
           دانلود آموزش های وبسایت
           <a href="https://www.linkedin.com/" style="color: #2977c9;">لینکدین</a>
