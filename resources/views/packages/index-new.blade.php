@@ -122,7 +122,7 @@
     <form action="{{ route('packages.payment') }}" method="get">
       <input type="hidden" name="code" value="{{ hash('sha256', $package->id) }}">
       <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
-        aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true">
+        aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true" style="margin-top: 50px;">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -133,7 +133,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="card-body p-0" style="height: 300px !important;">
+              <div class="card-body p-0" style="height: 250px !important;">
                 <h3 class="pt-4 pb-4">{{ $package['title'] }}</h3>
                 <p>{{ nPersian($package['days']) }} روزه</p>
                 <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
