@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                    ' .
+                                      ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -782,11 +782,15 @@ if (count($course->subjects) > 0) {
       var course_id = '{{ $course->id }}';
       var course_title = '{{ $course->title }}';
       var course_titleEng = '{{ $course->titleEng }}';
+      var isSent = false;
       $(document).on('click', '.report-issue-toggle', function(e) {
         Goftino.open();
-        Goftino.sendMessage({
-          text: 'سلام، لطفا گزارش خودتون رو برای "' + course_title + '" در اینجا ذکر کنید.'
-        });
+        if (!isSent) {
+          Goftino.sendMessage({
+            text: 'سلام، لطفا گزارش خودتون رو برای "' + course_title + '" در اینجا ذکر کنید.'
+          });
+          isSent = true;
+        }
       });
       $('.carousel').carousel({
         interval: false,
