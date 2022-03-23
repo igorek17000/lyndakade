@@ -146,6 +146,15 @@
     .wrapper-wide.dark-theme .course-title {
       text-shadow: none;
     }
+
+    .wrapper-wide.dark-theme .course-grid {
+      background: transparent;
+    }
+
+    .tags>a {
+      background: #333;
+    }
+
     .fab-container {
       position: fixed;
       width: 70px;
