@@ -96,10 +96,10 @@
           <a href="https://www.linkedin.com/" style="color: #2977c9;">سایت لینکدین</a>
           است را وارد کنید
         </div>
-        <div class="row m-0 p-0">
+        <div class="row m-0 p-0 no-dark">
           <div class="col-12 m-0 p-0">
             <form id="url-form" name="url-form">
-              <div class="row justify-content-center px-0">
+              <div class="row justify-content-center px-0 no-dark">
                 <div class="col-12 px-0 px-md-2">
                   <input id="url" name="url" type="text" class="form-control"
                     placeholder="https://www.linkedin.com/learning/writing-articles-2" dir="ltr">
