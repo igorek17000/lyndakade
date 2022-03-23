@@ -785,7 +785,7 @@ if (count($course->subjects) > 0) {
       $(document).on('click', '.report-issue-toggle', function(e) {
         Goftino.open();
         Goftino.sendMessage({
-          text: 'سلام\n' + course_title + 'مشکل داره.'
+          text: 'سلام، لطفا گزارش خودتون رو برای "' + course_title + '" در اینجا ذکر کنید.'
         });
       });
       $('.carousel').carousel({
