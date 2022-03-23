@@ -345,7 +345,7 @@ class CourseController extends Controller
 
             $related_courses = Course::with('authors')->has('subjects', function ($query) use ($subjectIds) {
                 return $query->whereIn('id', $subjectIds);
-            })->whereNot('id', $course->id)
+            })->where('id', '!=', $course->id)
                 ->limit(52)
                 ->get();
 
