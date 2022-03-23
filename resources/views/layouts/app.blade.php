@@ -143,7 +143,8 @@
     }
 
     .wrapper-wide.dark-theme .section-module,
-    .wrapper-wide.dark-theme .container {
+    .wrapper-wide.dark-theme .container,
+    .wrapper-wide.dark-theme .container-fluid {
       background-color: #222;
     }
 
