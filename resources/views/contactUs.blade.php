@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @push('meta.in.head')
-  @include('meta::manager',[
-  'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => 'تماس با ما - لیندا کده',
-  'keywords' => get_seo_keywords() . ' , تماس با ما , contact us ',
-  'description' => 'برای ارتباط با ما از این صفحه اقدام فرمایید. | ' . get_seo_description(),
+  @include('meta::manager', [
+      'image' => 'https://lyndakade.ir/image/logo.png',
+      'title' => 'تماس با ما - لیندا کده',
+      'keywords' => get_seo_keywords() . ' , تماس با ما , contact us ',
+      'description' => 'برای ارتباط با ما از این صفحه اقدام فرمایید. | ' . get_seo_description(),
   ])
   <script type="application/ld+json">
     {
@@ -27,36 +27,39 @@
             <hr>
           </div>
           <div class="row text-center">
-            <div class="col-lg-4 col-xs-4">
+            <div class="col-3">
               <a rel="noreferrer" href="http://www.T.me/LyndaKadeSupport" target="_blank"> <img data-toggle="tooltip"
                   src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram پیشتبانی تلگرام"
                   title="پیشتبانی تلگرام" class="icon-telegram">
+                <br />
                 پیشتبانی تلگرام
               </a>
             </div>
-            <div class="col-lg-4 col-xs-4">
-              {{-- <a rel="noreferrer" href="http://www.T.me/LyndaKade" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram کانال تلگرام" title="کانال تلگرام"
-                  class="icon-telegram">
-                کانال تلگرام
-              </a> --}}
+            <div class="col-3">
               <a rel="noreferrer" href="http://www.Instagram.com/lyndakade.ir" target="_blank">
                 <img data-toggle="tooltip" src="https://lyndakade.ir/image/socialicons/instagram2.png"
                   alt="Instagram اینستاگرام" title="اینستاگرام" class="icon-instagram" style="height: 40px;">
-                اینستاگرام</a>
+                <br />
+                اینستاگرام
+              </a>
             </div>
-            <div class="col-lg-4 col-xs-4">
+            <div class="col-3">
+              <a rel="noreferrer" href="http://www.Aparat.com/LyndaKade.ir" target="_blank"> <img data-toggle="tooltip"
+                  src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat آپارات" title="آپارات"
+                  class="icon-aparat">
+                <br />
+                آپارات
+              </a>
+            </div>
+            <div class="col-3">
               <a rel="noreferrer" href="tel:+989377629084">
                 <img data-toggle="tooltip"
                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAD1ElEQVRoge2ZS0hUURjHf40PSDI1NKSgIogSo4UYRkktatP7KUqrWvQie4DuW5RBIUWLok2RPaBN4a5IWvZYtCh7aS90V1QOJVamOS2+73Cn6d6ZO/eeq0Hzh8tl5vvOOf//nHO+c75vIIcccrCBQqAJuA68BoaARETPEPBKx2rUsa1gG/AuQuKZnrfAljAC8oD2pA4fA83AAqAoTMcZUARUAQd0TDP+SSAWpEMj4juwK2gnIRED9gA/cMRkha04IpZbpRYMK3DEbPbbqBBZlwlkJv4V7EM4vcFnAGjE2RMTsZy8kAd0I9waUo1uRDfp+wIwlqbjOcAZ4BkwAPQBrcCkEGTT4ZdySuaYFr2I6qo0Pk3AN9zD5eGgTH2gWsfo8eM8qM5TPOz1wIj6XAZqgFJgO86BNjccX08U6xhf/TibX9YL99V+2sV2RW1dRLfEMvHz5RhDZuMXMNnFXg581PahTuM0sCYkgQjxwm6cWYkCVoQAfFF7qYe9Uu3vs2GXBVz5BTkn+vU9z8Neoe/BAH0HRhAhj/Rd52Hfoe+olpZvZFpaO9V+y8VWAsTVXmOfGmBxj0wDhpHoVZFiW61tHwQg6BfW9sgAcBvIB/am2L7oewYWM7ug8DN19eozgCwngxjwRG3NkbCzuLQMutTvRMr3G/T7ODA7C4J+YV1ILbJPRoElKbYb2kc33udNUFgXAtCmvr38mceXItd7I8bmzEQipBBnT3QiyY/BTBwxcWTPmABQA5xHqjMfgLvI3czPRTMSIQDzgU/a5lyKrQy4mdRnP/Aw6XPq00XmFCAyIQBLcRKtIy72DThpqpmhdiRRqkQumubWPIQkZ16zE6kQkOrGqLY9y5/LDCQ01wFrgKku7ctx8pkE0BKWX1AhIGLMzHQSrJBnMs0+D/u4CAFZZmbP9PJ3aM6EEm372cM+bkJAAoCJZqPIoVmStoWDxdruaVh+NoSAhNo2nEJFHAkE0zO0u6b+p8LysyXEoBa4k9TvCJICHEB+/TL1K0IKGiZyzQrL76s6Fgck7oVlSAAYTiLj9owg1U43TFUfX+UgU6CrDsM6DcqQ5Owiso9MDWAEuIfcrL2wUH1f+hnoqjpHWTEMihaEW4cf5wacqJF6qE0k8oDnCLetfhoUIP/hJYD90fHKGgdxzqYCv402IpX4YWBlNLyywiqEyxiwLtvGx5FfYBgJlROxzPKBQ8BP5XIsSCcx5EAb005eIP9/LMJ+1peMUh2jVcdMKIejhCyMr8cJyRPx9ABrwwhIRgFys+1AIocpwkXxxHWMSzpmvi0ROeTwP+M3VRKuYcd8Z5MAAAAASUVORK5CYII="
                   alt="تماس تلفن" title="تماس تلفن" class="icon-phone" style="height: 40px;">
+                <br />
                 تماس تلفنی
               </a>
             </div>
-            {{-- <div class="col-lg-6 col-xs-4">
-              <i class="fab fa-telegram-plane fa-2x iconFa"></i>
-              <p style="font-size:14px">09171986156</p>
-            </div> --}}
           </div>
         </div>
         <div class="col-lg-12" style="margin-bottom: 20px;border: 1px solid gainsboro;border-radius: 20px">
@@ -113,50 +116,6 @@
             <iframe src="https://maps.google.com/maps?q=Bandar%20%Lengeh&t=&z=13&ie=UTF8&iwloc=&output=embed"
               style="border:0" allowfullscreen>
             </iframe>
-          </div>
-        </div>
-        <div class="col-lg-12 social-box"
-          style="border-radius: 20px;background-color: orange;padding-top: 5px;padding-bottom: 5px">
-          <div class="col-lg-12">
-            <h6>شبکه های اجتماعی :</h6>
-            <hr>
-          </div>
-          <div class="row text-center">
-            <div class="col-lg-4 col-xs-4">
-              <a rel="noreferrer" href="http://www.Instagram.com/lyndakade.ir" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/instagram2.png') }}" alt="Instagram اینستاگرام" title="اینستاگرام"
-                  class="icon-instagram">
-                اینستاگرام</a>
-            </div>
-            {{-- <div class="col-lg-4 col-xs-4">
-              <a href="">
-                <i class="fas fa-envelope fa-2x iconFa"></i>
-              </a>
-            </div> --}}
-            {{-- <div class="col-lg-4 col-xs-4">
-              <a rel="noreferrer" href="http://www.T.me/LyndaKade" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram" title="کانال تلگرام"
-                  class="icon-telegram">
-                کانال تلگرام
-              </a>
-            </div> --}}
-            <div class="col-lg-4 col-xs-4">
-              <a rel="noreferrer" href="http://www.T.me/LyndaKadeSupport" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/telegram.png') }}" alt="Telegram پیشتبانی تلگرام"
-                  title="پیشتبانی تلگرام" class="icon-telegram">
-                پیشتبانی تلگرام
-              </a>
-            </div>
-            <div class="col-lg-4 col-xs-4">
-              {{-- <a href="">
-                <i class="fas fa-envelope fa-2x iconFa"></i>
-              </a> --}}
-              <a rel="noreferrer" href="http://www.Aparat.com/LyndaKade.ir" target="_blank"> <img data-toggle="tooltip"
-                  src="{{ asset('image/socialicons/aparat.png') }}" alt="Aparat آپارات" title="آپارات"
-                  class="icon-aparat">
-                آپارات
-              </a>
-            </div>
           </div>
         </div>
       </div>
