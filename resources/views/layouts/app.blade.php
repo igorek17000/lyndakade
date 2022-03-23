@@ -669,17 +669,19 @@
       }
 
     </style>
-    <div class="sticky-top text-center" style="font-size: 17px;
+    @if (now() <= \Carbon\Carbon::createFromTimeStamp(1648495799))
+      <div class="sticky-top text-center" style="font-size: 17px;
         padding: 15px 0;
         background-color: #00aaca;
         font-family: 'IranSANS';
         font-weight: bold;">
-      تخفیف 40 درصدی ویژه نوروز
-      <a href="{{ route('packages.index') }}" style="color: #df9000;text-shadow: 1px 1px black;">
-        خرید اشتراک
-      </a>
-      سایت: lyndakade1401
-    </div>
+        تخفیف 40 درصدی ویژه نوروز
+        <a href="{{ route('packages.index') }}" style="color: #df9000;text-shadow: 1px 1px black;">
+          خرید اشتراک
+        </a>
+        سایت: lyndakade1401
+      </div>
+    @endif
     {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0" @if (app()->isLocal('en')) dir="ltr" @endif> --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0">
       <a class="navbar-brand mb-1" href="https://lyndakade.ir">
