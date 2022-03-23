@@ -337,7 +337,9 @@ class CourseController extends Controller
             }
             $ids = array_values(array_unique($ids));
 
-            $related_courses = Course::with('authors')->orderBy('views', 'DESC')->whereIn('id', $ids)->limit(50)->get();
+            $related_courses = Course::with('authors')
+            // ->orderBy('views', 'DESC')
+            ->whereIn('id', $ids)->limit(52)->get();
 
             $courses = array();
             foreach ($related_courses as $related_course) {
