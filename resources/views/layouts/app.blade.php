@@ -145,9 +145,13 @@
     .wrapper-wide.dark-theme .section-module,
     .wrapper-wide.dark-theme .container,
     .wrapper-wide.dark-theme .container-fluid,
-    .wrapper-wide.dark-theme .row:not(.no-dark),
-    .wrapper-wide.dark-theme .card.course {
+    .wrapper-wide.dark-theme .row:not(.no-dark) {
       background-color: #222;
+    }
+
+    .wrapper-wide.dark-theme .card.course {
+
+      background-color: #353535;
     }
 
     .wrapper-wide.dark-theme .course-title {
