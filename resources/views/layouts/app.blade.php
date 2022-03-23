@@ -1280,9 +1280,9 @@
 
       document.querySelectorAll('.theme-toggle').forEach((toggle_icon) => {
         if (wrapper_wide.classList.contains(dark_theme_class)) {
-          $(toggle_icon).html(`<i class="fa fa-moon"  style="font-size: 28px;margin: 10px;"></i>`);
-        } else {
           $(toggle_icon).html(`<i class="fa fa-sun"  style="font-size: 28px;margin: 10px;"></i>`);
+        } else {
+          $(toggle_icon).html(`<i class="fa fa-moon"  style="font-size: 28px;margin: 10px;"></i>`);
         }
 
         toggle_icon.addEventListener('click', function() {
