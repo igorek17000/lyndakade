@@ -48,9 +48,9 @@
         پیش نمایش
       </button>
     </div>
-    <div class="card-body" style="height: auto;">
+    <div class="card-body py-1" style="height: auto;">
       <a href="{{ courseURL($course) }}">
-        <h5 class="card-title">
+        <h5 class="card-title" style="height: auto;">
           <p class="mt-2 text-right pr-2 mb-0"
             style="font-size: .9rem; font-weight: 600; max-height: 50px; overflow-y: hidden;">
             {{ $course->title }}
