@@ -674,8 +674,7 @@
         padding: 15px 0;
         background-color: #00aaca;
         font-family: 'IranSANS';
-        font-weight: bold;
-        z-index: 10000;">
+        font-weight: bold;">
         تخفیف 40 درصدی ویژه نوروز خرید اشتراک سایت
       </div>
     </a>
