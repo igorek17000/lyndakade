@@ -669,6 +669,16 @@
       }
 
     </style>
+    <a href="{{ route('packages.index') }}">
+      <div class="sticky-top text-center" style="font-size: 17px;
+        padding: 15px 0;
+        background-color: #00aaca;
+        font-family: 'IranSANS';
+        font-weight: bold;
+        z-index: 10000;">
+        تخفیف 40 درصدی ویژه نوروز خرید اشتراک سایت
+      </div>
+    </a>
     {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0" @if (app()->isLocal('en')) dir="ltr" @endif> --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0">
       <a class="navbar-brand mb-1" href="https://lyndakade.ir">
