@@ -143,8 +143,8 @@
     }
 
     .wrapper-wide.dark-theme .section-module,
-    .wrapper-wide.dark-theme .container,
-    .wrapper-wide.dark-theme .container-fluid,
+    .wrapper-wide.dark-theme .container:not(.no-dark),
+    .wrapper-wide.dark-theme .container-fluid:not(.no-dark),
     .wrapper-wide.dark-theme .row:not(.no-dark) {
       background-color: #222;
     }
