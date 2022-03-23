@@ -147,16 +147,13 @@
       text-shadow: none;
     }
 
-    .wrapper-wide.dark-theme .course-grid {
-      background: transparent;
+    .wrapper-wide.dark-theme .course-grid,
+    .wrapper-wide.dark-theme [data-slide] {
+      background: transparent !important;
     }
 
     .wrapper-wide.dark-theme .tags>a {
       background: #333;
-    }
-
-    .wrapper-wide.dark-theme [data-slide] {
-      background: transparent;
     }
 
     .fab-container {
