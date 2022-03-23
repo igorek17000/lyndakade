@@ -143,6 +143,9 @@
       background-color: #222;
     }
 
+    .wrapper-wide.dark-theme .course-title {
+      text-shadow: none;
+    }
     .fab-container {
       position: fixed;
       width: 70px;
