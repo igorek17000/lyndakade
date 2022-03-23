@@ -144,8 +144,8 @@
 
     .wrapper-wide.dark-theme .section-module,
     .wrapper-wide.dark-theme .container,
-    .wrapper-wide.dark-theme .container-fluid
-    .wrapper-wide.dark-theme .row
+    .wrapper-wide.dark-theme .container-fluid,
+    .wrapper-wide.dark-theme .row,
     .wrapper-wide.dark-theme .card.course {
       background-color: #222;
     }
