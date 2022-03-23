@@ -139,12 +139,14 @@
       color: white;
     }
 
-    .wrapper-wide.dark-theme a {
+    .wrapper-wide.dark-theme a,
+    .wrapper-wide.dark-theme pre {
       color: white;
     }
 
-    .wrapper-wide.dark-theme a:hover {
-      color: #00aaca;
+    .wrapper-wide.dark-theme a:hover,
+    .wrapper-wide.dark-theme h5.course-title {
+      color: #17a2b8;
     }
 
     .wrapper-wide.dark-theme .section-module,
@@ -319,6 +321,7 @@
       border: 2px solid rgb(168, 0, 0);
       background-color: rgb(168, 0, 0);
     }
+
     .dubbed-subtitle-img {
       border: 2px solid darkgoldenrod;
       background-color: darkgoldenrod;
