@@ -689,9 +689,9 @@
           alt="لینداکده - LyndaKade - Lynda Kade - LinkedIN" style="width: 60px; height: 55px;">
         <span class="hidden-md hidden-lg">لیندا کده</span>
       </a>
-      <span class="theme-toggle hidden-md hidden-lg" style="margin-right: auto;color: #eee;">
+      {{-- <span class="theme-toggle hidden-md hidden-lg" style="margin-right: auto;color: #eee;">
         <i class="fa fa-sun" style="font-size: 28px;margin: 10px;"></i>
-      </span>
+      </span> --}}
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -798,11 +798,11 @@
           <li class="nav-item">
             <a class="nav-link px-md-1" href="{{ route('root.contact.us') }}">تماس با ما</a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <span class="theme-toggle" style="color: #eee;">
               <i class="fa fa-moon" style="font-size: 28px;margin: 10px;"></i>
             </span>
-          </li>
+          </li> --}}
         </ul>
         <form class="form-inline my-2 my-lg-0" role="search" action="{{ route('search') }}">
           <input type="search" name="q" class="form-control mr-sm-2" role="combobox" value="{{ $q ?? '' }}"
