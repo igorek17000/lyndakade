@@ -10,7 +10,7 @@
     <div class="img-square-wrapper" style="height: 130px;">
       <img itemprop="image" src="#"
         data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
-        class="d-inline-block course-img persian-subtitle-img lazyloaded"
+        class="d-inline-block course-img persian-subtitle-img lazyload"
         alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}"
         style="max-height: 130px;min-height: 130px;">
       <span class="course-time-state">
@@ -52,13 +52,13 @@
       <a href="{{ courseURL($course) }}">
         <h5 class="card-title">
           <p class="mt-2 text-right pr-2 mb-0"
-            style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;">
+            style="font-size: .9rem; font-weight: 600; max-height: 50px; overflow-y: hidden;">
             {{ $course->title }}
           </p>
-          <p class="text-left pl-2 mb-0"
+          {{-- <p class="text-left pl-2 mb-0"
             style="font-size: .9rem; font-weight: 600; max-height: 43px; overflow-y: hidden;" dir="ltr">
             {{ $course->titleEng }}
-          </p>
+          </p> --}}
         </h5>
       </a>
     </div>
