@@ -151,7 +151,7 @@
             </div>
           </section>
           @if (isset($object))
-            <div class="card flex-row flex-wrap w-100 py-3 {{ $object['img'] ? '' : ' px-3 ' }}">
+            <div class="row flex-row flex-wrap w-100 py-3 {{ $object['img'] ? '' : ' px-3 ' }}">
               @if ($object['img'])
                 <div class="card-header border-0" style="
                                       max-width: 160px;
