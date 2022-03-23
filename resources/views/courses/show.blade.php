@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                        ' .
+                          ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -695,7 +695,7 @@ if (count($course->subjects) > 0) {
     </aside>
   </div>
 
-  {{-- <div class="row mx-0 justify-content-center">
+  <div class="row mx-0 justify-content-center">
     <aside class="col-md-10">
       <div class="section-module">
         <div class="row p-0 m-0">
@@ -719,8 +719,8 @@ if (count($course->subjects) > 0) {
               <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
                 <div class="row d-flex">
                   @for ($i = 0; $i < 4 && $index + $i < count($related_paths); $i++)
-                    @include('courses.partials._course_list_grid-new', [
-                        'course' => $related_paths[$index + $i],
+                    @include('learn_paths.partials.list_item_grid_new', [
+                        'path' => $related_paths[$index + $i],
                     ])
                   @endfor
                 </div>
@@ -730,7 +730,7 @@ if (count($course->subjects) > 0) {
         </div>
       </div>
     </aside>
-  </div> --}}
+  </div>
 
   <div id="report-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="report-modal-title"
     aria-hidden="true">
