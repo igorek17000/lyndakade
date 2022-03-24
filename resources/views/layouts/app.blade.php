@@ -259,23 +259,6 @@
       cursor: pointer;
     }
 
-    #unread_counter {
-      background: #000593;
-      border-radius: 50%;
-      padding: 3px;
-      font-size: 15px;
-      position: fixed;
-      color: white;
-      min-width: 25px;
-      max-width: 30px;
-      height: 25px;
-      top: 0px;
-      right: 0px;
-      z-index: 5;
-      text-align: center;
-      font-weight: bold;
-    }
-
   </style>
 
   <style>
@@ -759,14 +742,13 @@
               @endforeach
             </div>
           </li> --}}
-          <li class="nav-item dropdown">
+          {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle px-md-1" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               مسیرهای آموزشی
             </a>
             <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink1">
-
-              @foreach (\App\Library::get() as $lib)
+             @foreach (\App\Library::get() as $lib)
                 <a class="dropdown-item  text-center" style="color: #fff;"
                   href="{{ route('learn.paths.show', [$lib->slug]) }}">
                   <i class="category-icons" aria-hidden="true">
@@ -802,6 +784,9 @@
                 همه مسیرهای آموزشی
               </a>
             </div>
+          </li> --}}
+          <li class="nav-item">
+            <a class="nav-link px-md-1" href="{{ route('learn.paths.index') }}">مسیرهای آموزشی</a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-md-1" href="{{ route('packages.index') }}">خرید اشتراک</a>
