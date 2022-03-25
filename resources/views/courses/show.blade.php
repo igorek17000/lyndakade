@@ -69,6 +69,9 @@ if (count($course->subjects) > 0) {
       ]
     }
   </script>
+@endpush
+@section('content')
+  @csrf
   <style>
     .input-short-link {
       text-align: left;
@@ -98,9 +101,6 @@ if (count($course->subjects) > 0) {
     }
 
   </style>
-@endpush
-@section('content')
-  @csrf
   <div class="row mx-0 justify-content-center">
     <aside class="col-md-10">
       <div class="section-module" itemscope itemtype="http://schema.org/Course">
