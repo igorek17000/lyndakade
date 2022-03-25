@@ -64,7 +64,7 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
         }
 
         $courses_id = [];
-        foreach ($path->_courses as $course) {
+        foreach (json_decode($path->courses) as $course) {
             $courses_id[] = $course->id;
         }
         LearnPath::where('id', $data->id)->update([
@@ -125,7 +125,7 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
         }
 
         $courses_id = [];
-        foreach ($path->_courses as $course) {
+        foreach (json_decode($path->courses) as $course) {
             $courses_id[] = $course->id;
         }
         LearnPath::where('id', $data->id)->update([
