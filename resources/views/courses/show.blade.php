@@ -106,7 +106,7 @@ if (count($course->subjects) > 0) {
           <ul>
             <li class="pr-4 tags">دسته:
               @foreach ($course->subjects as $subject)
-                <a target="_blank" class="mb-0" titleEng="{{ $subject->title }}"
+                <a target="_blank" titleEng="{{ $subject->title }}"
                   href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a>
               @endforeach
             </li>
