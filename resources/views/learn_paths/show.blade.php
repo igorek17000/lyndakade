@@ -48,10 +48,10 @@
   <div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 150px;">
     <div class="row m-0">
       <div class="path-big-img" style="
-                                                      max-width: 100%; width: 100%;
-                                                      background: url({{ fromDLHost($path->img) }});
-                                                      background-size: auto;
-                                                      height: 300px !important;">
+                                                          max-width: 100%; width: 100%;
+                                                          background: url({{ fromDLHost($path->img) }});
+                                                          background-size: auto;
+                                                          height: 300px !important;">
         <img itemprop="image" src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}"
           alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
       </div>
@@ -360,9 +360,11 @@
       @foreach ($courses as $index => $course)
         <li>
           <div class="timeline-badge">{{ $index + 1 }}</div>
-          @include('courses.partials._course_list_new', [
-              'course' => $course,
-          ])
+          <div class="timeline-panel">
+            @include('courses.partials._course_list_new', [
+                'course' => $course,
+            ])
+          </div>
           {{-- <a href="{{ courseURL($course) }}" class="timeline-panel">
             <div class="timeline-heading">
               <h2 class="timeline-title" style="font-size: 1.25rem;">
