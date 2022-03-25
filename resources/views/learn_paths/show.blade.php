@@ -48,10 +48,10 @@
   <div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 150px;">
     <div class="row m-0">
       <div class="path-big-img" style="
-                                                    max-width: 100%; width: 100%;
-                                                    background: url({{ fromDLHost($path->img) }});
-                                                    background-size: auto;
-                                                    height: 300px !important;">
+                                                      max-width: 100%; width: 100%;
+                                                      background: url({{ fromDLHost($path->img) }});
+                                                      background-size: auto;
+                                                      height: 300px !important;">
         <img itemprop="image" src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}"
           alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
       </div>
@@ -358,15 +358,12 @@
   <div class="container">
     <ul class="timeline">
       @foreach ($courses as $index => $course)
-        @include('courses.partials._course_list_new', [
-            'course' => $course,
-        ])
-      @endforeach
-{{--
-      @foreach ($courses as $index => $course)
         <li>
           <div class="timeline-badge">{{ $index + 1 }}</div>
-          <a href="{{ courseURL($course) }}" class="timeline-panel">
+          @include('courses.partials._course_list_new', [
+              'course' => $course,
+          ])
+          {{-- <a href="{{ courseURL($course) }}" class="timeline-panel">
             <div class="timeline-heading">
               <h2 class="timeline-title" style="font-size: 1.25rem;">
                 <p class="m-0">
@@ -457,10 +454,9 @@
                 </div>
               </div>
             </div>
-          </a>
+          </a> --}}
         </li>
-      @endforeach --}}
-
+      @endforeach
     </ul>
     <div class="row position-relative mx-0" style="height: 60px;">
       <div id="cart-btn">
