@@ -9,6 +9,7 @@ use App\LearnPath;
 use App\Library;
 use App\Software;
 use App\Subject;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
@@ -72,6 +73,17 @@ class LearnPathController extends Controller
         $path = LearnPath::firstWhere('slug', $learn_path_slug);
         if ($path) {
 
+            $view_dt = Carbon::now();
+            $view_date = $view_dt->format('Y-m-d');
+            $view = \App\View::firstWhere('date', $view_date);
+            if ($view) {
+                $view->increment('views');
+            } else {
+                $view = new \App\View();
+                $view->date = $view_date;
+                $view->views = 1;
+                $view->save();
+            }
             // // $view = new \App\View(['type' => 2, 'item_id' => $path->id]);
             // // $view->save();
             // $authors = array();
