@@ -142,11 +142,19 @@ class CartController extends Controller
     public function redirect()
     {
         $amount = 0;
-        foreach (Auth::user()->carts as $cart) {
-            if ($cart->course)
+        $desc = '';
+        $carts = Auth::user()->carts;
+        foreach ($carts as $cart) {
+            if ($cart->course) {
+                $desc .= 'C' . $cart->course->id;
                 $amount += get_course_price($cart->course->price);
-            else
+            } else {
+                $desc .= 'C' . $cart->learn_path->id;
                 $amount += $cart->learn_path->price();
+            }
+            if ($carts->last() != $cart) {
+                $desc .= '+';
+            }
         }
         $amount = check_off_for_user($amount);
 
@@ -161,6 +169,7 @@ class CartController extends Controller
 
         $invoice->detail('email', $email);
         $invoice->detail('mobile', $mobile);
+        $invoice->detail('description', 'خرید ' . $desc);
 
         // Purchase method accepts a callback function.
         return \Shetabit\Payment\Facade\Payment::callbackUrl(route('payment.callback'))
