@@ -360,7 +360,7 @@
       @foreach ($courses as $index => $course)
         <li>
           <div class="timeline-badge">{{ $index + 1 }}</div>
-          <div class="timeline-panel">
+          <div class="timeline-panel p-0">
             @include('courses.partials._course_list_new', [
                 'course' => $course,
             ])
