@@ -48,10 +48,10 @@
   <div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 150px;">
     <div class="row m-0">
       <div class="path-big-img" style="
-                                                          max-width: 100%; width: 100%;
-                                                          background: url({{ fromDLHost($path->img) }});
-                                                          background-size: auto;
-                                                          height: 300px !important;">
+                                                            max-width: 100%; width: 100%;
+                                                            background: url({{ fromDLHost($path->img) }});
+                                                            background-size: auto;
+                                                            height: 300px !important;">
         <img itemprop="image" src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}"
           alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
       </div>
@@ -59,7 +59,28 @@
         <div class="container-fluid" style="height: 630px;overflow: hidden;">
           <div class="row">
             <div class="col-xs-12 col-md-12 path-title-desc ">
-              <div class="container h-100 mt-4" style="background-color: #ffffff;border-radius: 5px;">
+              <div class="container h-100 mt-4" style="position: relative;background-color: #ffffff;border-radius: 5px;">
+                <div class="input-group"
+                  style="text-align: left;position: absolute;width: 180px;left: 0;top: 2px;margin-left: 4px;margin-top: 2px;">
+                  <span class="input-group-addon"><svg class="svg-inline--fa fa-copy fa-w-14"
+                      style="position: absolute;z-index: 10;left: 8px;top: 5px;font-size: 18px;" aria-hidden="true"
+                      data-prefix="fa" data-icon="copy" role="img" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512" data-fa-i2svg="">
+                      <path fill="currentColor"
+                        d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z">
+                      </path>
+                    </svg>
+                    <!-- <i class="fa fa-copy" style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i> --></span>
+                  <input readonly="" onclick="
+                                        this.setSelectionRange(0, this.value.length);
+                                        document.execCommand('copy');
+                                        toastr.options.rtl = true;
+                                        toastr.options.positionClass = 'toast-bottom-left';
+                                        toastr.info('لینک کوتاه کپی شد.');"
+                    style="font-size: 11px;text-align: left;direction: rtl;padding-left: 27px;padding-right: 2px;"
+                    title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/c/2849005" id="shorturl"
+                    class="form-control">
+                </div>
                 <div class="path-big-img-path pt-3 my-0" style="width: -moz-fit-content;">
                   <a href="{{ route('learn.paths.index') }}">
                     مسیرهای یادگیری
