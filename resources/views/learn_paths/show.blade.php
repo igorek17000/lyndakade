@@ -59,8 +59,8 @@
         <div class="container-fluid" style="height: 630px;overflow: hidden;">
           <div class="row">
             <div class="col-xs-12 col-md-12 path-title-desc ">
-              <div class="container h-100 mt-3" style="background-color: #ffffff;border-radius: 5px;">
-                <div class="path-big-img-path pt-3" style="width: -moz-fit-content;">
+              <div class="container h-100 mt-4" style="background-color: #ffffff;border-radius: 5px;">
+                <div class="path-big-img-path pt-3 my-0" style="width: -moz-fit-content;">
                   <a href="{{ route('learn.paths.index') }}">
                     مسیرهای یادگیری
                   </a>
