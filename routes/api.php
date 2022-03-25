@@ -1,6 +1,7 @@
 <?php
 
 use App\Discount;
+use App\Paid;
 use App\Subject;
 use App\User;
 use Illuminate\Http\Request;
@@ -233,6 +234,19 @@ Route::middleware('guest')->get('/users/get-data-all', function (Request $reques
     ], 403);
 });
 
+Route::middleware('guest')->get('/paid/get-data-all', function (Request $request) {
+    $code = $request->get('code');
+    if ($code == 'hadi00') {
+        $paids = Paid::get();
+        return new JsonResponse([
+            'data' => $paids,
+            'status' => 'success'
+        ], 200);
+    }
+    return new JsonResponse([
+        'status' => 'failed'
+    ], 403);
+});
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
