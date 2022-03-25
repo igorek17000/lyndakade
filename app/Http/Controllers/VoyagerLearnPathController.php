@@ -48,7 +48,6 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
 
         unset($data->_courses);
 
-
         // dd($request, $slug, $dataType->editRows, $data);
 
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
@@ -63,6 +62,14 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
                     Mail::to($email)->send(new LearnPathUpdate($path));
             }
         }
+
+        $courses_id = [];
+        foreach ($path->_courses as $course) {
+            $courses_id[] = $course->id;
+        }
+        LearnPath::where('id', $data->id)->update([
+            'courses_id' => implode(',', $courses_id),
+        ]);
 
         if ($request->get('sendMessageToPaidUsers', false)) {
             $paids = Paid::where('type', '2')->where('item_id', $data->id)->get();
@@ -116,6 +123,14 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
                     Mail::to($email)->send(new LearnPathAdded($path));
             }
         }
+
+        $courses_id = [];
+        foreach ($path->_courses as $course) {
+            $courses_id[] = $course->id;
+        }
+        LearnPath::where('id', $data->id)->update([
+            'courses_id' => implode(',', $courses_id),
+        ]);
 
         if (!$request->has('_tagging')) {
             if (auth()->user()->can('browse', $data)) {
