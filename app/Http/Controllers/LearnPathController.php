@@ -112,7 +112,7 @@ class LearnPathController extends Controller
         $paths = LearnPath::get();
         foreach ($paths as $path) {
             $ids = [];
-            foreach ($path->_courses as $course) {
+            foreach (json_decode($path->courses) as $course) {
                 $ids[] = $course->id;
             }
             $ids = implode(',', $ids);
