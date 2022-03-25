@@ -78,7 +78,7 @@
                                         toastr.options.positionClass = 'toast-bottom-left';
                                         toastr.info('لینک کوتاه کپی شد.');"
                     style="font-size: 11px;text-align: left;direction: rtl;padding-left: 27px;padding-right: 2px;"
-                    title="لینک کوتاه این مسیر آموزشی" type="text" value="lyndakade.ir/l/{{ $path->id }}" id="shorturl"
+                    title="لینک کوتاه این مسیر آموزشی" type="text" value="lyndakade.ir/L/{{ $path->id }}" id="shorturl"
                     class="form-control">
                 </div>
                 <div class="path-big-img-path pt-3 my-0" style="width: -moz-fit-content;">

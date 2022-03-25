@@ -124,7 +124,7 @@ if (count($course->subjects) > 0) {
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
-              title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/c/{{ $course->id }}" id="shorturl"
+              title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
           </div>
           {{-- <span class="short-link">
