@@ -66,7 +66,7 @@ Route::get('/l/{id}', function ($id) {
     }
     // abort(404);
     return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
-})->name('courses.show.short');
+})->where('id', '[0-9]+')->name('courses.show.short');
 // courses
 Route::get('/', 'CourseController@index')->name('root.home');
 Route::get('/learning/{slug_linkedin}', 'CourseController@show_linkedin')->name('courses.show.linkedin');
@@ -84,7 +84,7 @@ Route::get('/c/{id}', function ($id) {
     }
     // abort(404);
     return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
-})->name('courses.show.short');
+})->where('id', '[0-9]+')->name('courses.show.short');
 
 // /{slug}/{id}-0.html
 Route::get('/{slug}/{id}-0.html', function ($slug, $id) {
@@ -153,6 +153,14 @@ Route::get('/{slug_url}/{slug}/{id}-2.html', function (Illuminate\Http\Request $
 // authors
 Route::get('/authors', 'AuthorController@index')->name('authors.index');
 Route::get('/instructors/{slug}', 'AuthorController@show')->name('authors.show');
+
+Route::get('/A/{id}', function ($id) {
+    $aut = \App\Author::firstWhere('id', $id);
+    if ($aut) {
+        return redirect()->route('authors.show', [$aut->slug]);
+    }
+    return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
+})->where('id', '[0-9]+')->name('authors.show.short');
 
 
 // subjects & software & libraries
