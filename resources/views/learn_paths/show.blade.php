@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @push('meta.in.head')
-  @include('meta::manager',[
-  'image' => fromDLHost($path->img),
-  'title' => $path->titleEng . ' - ' . $path->title . ' - لیندا کده',
-  'keywords' => get_seo_keywords() . ' , لیست مسیر آموزشی , learn path, learn-path, all learn paths ' . $path->title,
-  'description' => 'مسیر آموزشی ' . $path->description . '| ' . get_seo_description(),
+  @include('meta::manager', [
+      'image' => fromDLHost($path->img),
+      'title' => $path->titleEng . ' - ' . $path->title . ' - لیندا کده',
+      'keywords' => get_seo_keywords() . ' , لیست مسیر آموزشی , learn path, learn-path, all learn paths ' . $path->title,
+      'description' => 'مسیر آموزشی ' . $path->description . '| ' . get_seo_description(),
   ])
   <script type="application/ld+json">
     {
@@ -23,19 +23,21 @@
           "description": "{{ $course->description }}",
           "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
           "timeRequired":
-          "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm' }}",
+          "{{ $course->durationHours > 0? $course->durationHours . 'h ' . $course->durationMinutes . 'm': $course->durationMinutes . 'm' }}",
           "provider": [
           @foreach ($course->authors as $author)
             {
             "@type": "Person",
             "name": "{{ $author->name }}",
             "url": {"@id": "{{ route('authors.show', [$author->slug]) }}"}
-            }@if (!$loop->last),
+            @if (!$loop->last)
+              ,
             @endif
           @endforeach
           ]
           }
-          }@if (!$loop->last),
+          @if (!$loop->last)
+            ,
           @endif
         @endforeach
       ]
@@ -46,11 +48,12 @@
   <div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 150px;">
     <div class="row m-0">
       <div class="path-big-img" style="
-                                                  max-width: 100%; width: 100%;
-                                                  background: url({{ fromDLHost($path->img) }});
-                                                  background-size: auto;
-                                                  height: 300px !important;">
-        <img itemprop="image" src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}" alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
+                                                    max-width: 100%; width: 100%;
+                                                    background: url({{ fromDLHost($path->img) }});
+                                                    background-size: auto;
+                                                    height: 300px !important;">
+        <img itemprop="image" src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}"
+          alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
       </div>
       <div class="path-big-img-content w-100">
         <div class="container-fluid" style="height: 630px;overflow: hidden;">
@@ -120,7 +123,9 @@
                     </div>
                   @endif
                   <div class="col-6 my-md-1">
-                    <b>قیمت @if ($path->price() > 0) با 30% تخفیف @endif:
+                    <b>قیمت @if ($path->price() > 0)
+                        با 30% تخفیف
+                      @endif:
                     </b>
                     @if ($path->price() == 0)
                       <span style="color: darkgreen">رایگان</span>
@@ -149,7 +154,7 @@
                     @else
                       <div>
                         برای خرید این مسیر آموزشی باید
-                        <a href="{{ route('login', ['returnUrl'=>request()->url()]) }}" style="color: orange">
+                        <a href="{{ route('login', ['returnUrl' => request()->url()]) }}" style="color: orange">
                           وارد حساب کاربری
                         </a>
                         خود شوید.
@@ -353,6 +358,12 @@
   <div class="container">
     <ul class="timeline">
       @foreach ($courses as $index => $course)
+        @include('courses.partials._course_list_new', [
+            'course' => $course,
+        ])
+      @endforeach
+{{--
+      @foreach ($courses as $index => $course)
         <li>
           <div class="timeline-badge">{{ $index + 1 }}</div>
           <a href="{{ courseURL($course) }}" class="timeline-panel">
@@ -364,7 +375,6 @@
                     توسط
                     <span class="text-left" dir="ltr">
                       @foreach ($course->authors as $author)
-                        {{-- <i class="glyphicon glyphicon-time"></i> --}}
                         {{ $author->name }}
                         @if (!$loop->last)
                           ,
@@ -379,7 +389,6 @@
                     by
                     <span>
                       @foreach ($course->authors as $author)
-                        {{-- <i class="glyphicon glyphicon-time"></i> --}}
                         {{ $author->name }}
                         @if (!$loop->last)
                           ,
@@ -395,17 +404,18 @@
               <div class="col-md-3 col-sm-12 text-center">
                 <img itemprop="image" src="#" class="lazyload"
                   data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
-                  style="max-height: 150px;"  alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}"  />
+                  style="max-height: 150px;"
+                  alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}" />
 
               </div>
               <div class="col-md-9  col-sm-12">
                 <p class="mt-md-3" style="word-break: break-word;
-                                            overflow: hidden;
-                                            text-overflow: ellipsis;
-                                            display: -webkit-box;
-                                            line-height: 2; /* fallback */
-                                            -webkit-line-clamp: 3; /* number of lines to show */
-                                            -webkit-box-orient: vertical;">
+                                              overflow: hidden;
+                                              text-overflow: ellipsis;
+                                              display: -webkit-box;
+                                              line-height: 2; /* fallback */
+                                              -webkit-line-clamp: 3; /* number of lines to show */
+                                              -webkit-box-orient: vertical;">
                   {!! $course->description !!}
                 </p>
                 <div class="row">
@@ -432,8 +442,7 @@
                     <b>زیرنویس:</b>
                     @if (get_course_status_state($course->dubbed_id))
                       <span>دوبله شده</span>
-                    @elseif (get_course_status_state($course->persian_subtitle_id) &&
-                      get_course_status_state($course->english_subtitle_id))
+                    @elseif (get_course_status_state($course->persian_subtitle_id) && get_course_status_state($course->english_subtitle_id))
                       <span>انگلیسی و فارسی</span>
                     @elseif (get_course_status_state($course->persian_subtitle_id))
                       <span>فارسی</span>
@@ -450,7 +459,8 @@
             </div>
           </a>
         </li>
-      @endforeach
+      @endforeach --}}
+
     </ul>
     <div class="row position-relative mx-0" style="height: 60px;">
       <div id="cart-btn">
@@ -471,7 +481,7 @@
         @else
           <div>
             برای خرید این مسیر آموزشی باید
-            <a href="{{ route('login', ['returnUrl'=>request()->url()]) }}">
+            <a href="{{ route('login', ['returnUrl' => request()->url()]) }}">
               وارد حساب کاربری
             </a>
             خود شوید.
