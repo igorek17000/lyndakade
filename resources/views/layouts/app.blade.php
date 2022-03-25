@@ -1253,6 +1253,9 @@
 
   </script> --}}
 
+  @yield('script_body')
+  @stack('js')
+
   <script>
     function toggleDropdown(e) {
       const _d = $(e.target).closest('.dropdown'),
@@ -1268,11 +1271,7 @@
     $('body')
       .on('mouseenter mouseleave', '.dropdown', toggleDropdown)
       .on('click', '.dropdown-menu a', toggleDropdown);
-  </script>
-
-  @yield('script_body')
-  @stack('js')
-  <script>
+      
     $(function() {
       var wrapper_wide = document.querySelector('.wrapper-wide');
       var sun_class = 'fa-sun';
@@ -1316,9 +1315,7 @@
         document.cookie = name + "=" + value + ";" + expires + ";path=/";
       }
     });
-  </script>
 
-  <script>
     $(function() {
       $('.form-control.search-input.tt-input').on('keyup', function(event) {
         if (event.keyCode == 13) {

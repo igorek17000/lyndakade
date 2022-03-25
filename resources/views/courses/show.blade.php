@@ -114,7 +114,12 @@ if (count($course->subjects) > 0) {
             </ul>
           @endif
           <span style="text-align: left;position: absolute;width: 180px;left: 0;top: 2px;"><input readonly=""
-              onclick="this.setSelectionRange(0, this.value.length); document.execCommand('copy');"
+              onclick="
+                this.setSelectionRange(0, this.value.length);
+                document.execCommand('copy');
+                toastr.options.rtl = true;
+                toastr.options.positionClass = 'toast-bottom-left';
+                toastr.info('لینک کوتاه کپی شد.');"
               style="width:100%;direction:ltr;border: 1px solid #444;border-radius: 3px;padding: 3px;"
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/c/{{ $course->id }}" id="shorturl">
           </span>
