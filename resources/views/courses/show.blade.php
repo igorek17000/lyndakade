@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                                                  ' .
+                                                                      ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -72,37 +72,7 @@ if (count($course->subjects) > 0) {
 @endpush
 @section('content')
   @csrf
-  <style>
-    .short-link {
-      text-align: left;
-      position: absolute;
-      width: 180px;
-      left: 0;
-      top: 2px;
-      background: url(data:image/svg+xml;charset=UTF-8,<svg class="svg-inline--fa fa-clone fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="clone" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M464 0c26.51 0 48 21.49 48 48v288c0 26.51-21.49 48-48 48H176c-26.51 0-48-21.49-48-48V48c0-26.51 21.49-48 48-48h288M176 416c-44.112 0-80-35.888-80-80V128H48c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h288c26.51 0 48-21.49 48-48v-48H176z"></path></svg>) no-repeat;
-      display: inline-block;
-      background-size: 20px;
-      background-origin: content-box;
-    }
 
-    .short-link input {
-      padding: 3px;
-      padding-left: 22px;
-      background-color: transparent !important;
-      width: 100%;
-      direction: ltr;
-      border: 1px solid #444;
-      border-radius: 3px;
-    }
-
-    .short-link input:-webkit-autofill,
-    .short-link input:-webkit-autofill:hover,
-    .short-link input:-webkit-autofill:focus,
-    .short-link input:-webkit-autofill:active {
-      transition: background-color 5000s ease-in-out 0s;
-    }
-
-  </style>
   <div class="row mx-0 justify-content-center">
     <aside class="col-md-10">
       <div class="section-module" itemscope itemtype="http://schema.org/Course">
@@ -144,15 +114,28 @@ if (count($course->subjects) > 0) {
               </li>
             </ul>
           @endif
-          <span class="short-link">
+          <div class="input-group" style="text-align: left;position: absolute;width: 200px;left: 0;top: 2px;">
+            <span class="input-group-addon"><i class="fa fa-copy"
+                style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly="" onclick="
-                                    this.setSelectionRange(0, this.value.length);
-                                    document.execCommand('copy');
-                                    toastr.options.rtl = true;
-                                    toastr.options.positionClass = 'toast-bottom-left';
-                                    toastr.info('لینک کوتاه کپی شد.');" style="" title="لینک کوتاه این دوره" type="text"
-              value="lyndakade.ir/c/{{ $course->id }}" id="shorturl">
-          </span>
+                                      this.setSelectionRange(0, this.value.length);
+                                      document.execCommand('copy');
+                                      toastr.options.rtl = true;
+                                      toastr.options.positionClass = 'toast-bottom-left';
+                                      toastr.info('لینک کوتاه کپی شد.');"
+              style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
+              title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/c/{{ $course->id }}" id="shorturl"
+              class="form-control">
+          </div>
+          {{-- <span class="short-link">
+            <input readonly="" onclick="
+                                        this.setSelectionRange(0, this.value.length);
+                                        document.execCommand('copy');
+                                        toastr.options.rtl = true;
+                                        toastr.options.positionClass = 'toast-bottom-left';
+                                        toastr.info('لینک کوتاه کپی شد.');" style="" title="لینک کوتاه این دوره"
+              type="text" value="lyndakade.ir/c/{{ $course->id }}" id="shorturl">
+          </span> --}}
         </div>
         <hr class="mt-1">
 
