@@ -73,7 +73,7 @@ if (count($course->subjects) > 0) {
 @section('content')
   @csrf
   <style>
-    .input-short-link {
+    .short-link {
       text-align: left;
       position: absolute;
       width: 180px;
@@ -83,7 +83,7 @@ if (count($course->subjects) > 0) {
       display: inline-block;
     }
 
-    .input-short-link input {
+    .short-link input {
       padding: 3px;
       padding-left: 40px;
       background-color: transparent !important;
@@ -93,10 +93,10 @@ if (count($course->subjects) > 0) {
       border-radius: 3px;
     }
 
-    .input-short-link input:-webkit-autofill,
-    .input-short-link input:-webkit-autofill:hover,
-    .input-short-link input:-webkit-autofill:focus,
-    .input-short-link input:-webkit-autofill:active {
+    .short-link input:-webkit-autofill,
+    .short-link input:-webkit-autofill:hover,
+    .short-link input:-webkit-autofill:focus,
+    .short-link input:-webkit-autofill:active {
       transition: background-color 5000s ease-in-out 0s;
     }
 
@@ -142,7 +142,7 @@ if (count($course->subjects) > 0) {
               </li>
             </ul>
           @endif
-          <span ckass="input-short-link">
+          <span class="short-link">
             <input readonly="" onclick="
                                   this.setSelectionRange(0, this.value.length);
                                   document.execCommand('copy');
