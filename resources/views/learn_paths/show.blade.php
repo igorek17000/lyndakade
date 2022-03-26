@@ -72,7 +72,8 @@
                     </svg>
                     <!-- <i class="fa fa-copy" style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i> --></span>
                   <input readonly="" onclick="
-                                        this.setSelectionRange(0, $(this).val().length);
+                                        var el = $(this) as HTMLInputElement;
+                                        el.setSelectionRange(0, $(this).val().length);
                                         document.execCommand('copy');
                                         toastr.options.rtl = true;
                                         toastr.options.positionClass = 'toast-bottom-left';

@@ -115,7 +115,9 @@ if (count($course->subjects) > 0) {
             </ul>
           @endif
           <div class="input-group" style="text-align: left;position: absolute;width: 200px;left: 0;top: 2px;"
-           onclick="this.setSelectionRange(0, $(this).val().length);
+           onclick="
+                    var el = $(this) as HTMLInputElement;
+                    el.setSelectionRange(0, $(this).val().length);
                     document.execCommand('copy');
                     toastr.options.rtl = true;
                     toastr.options.positionClass = 'toast-bottom-left';
