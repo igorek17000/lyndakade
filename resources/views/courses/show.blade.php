@@ -76,7 +76,7 @@ if (count($course->subjects) > 0) {
     @if ($has_dubbed)
       <div class="text-center"
         style="font-size: 17px;padding: 15px 0 15px 100px;background-color: rgb(0 59 122);color: #fff;font-family: 'IranSANS';font-weight: bold;bottom: 0;position: fixed;z-index: 100;width: 100%;">
-        دوبله‌ی فارسی این دوره آموزشی، در وبسایت قرار داده شده است. <a href="https:/lyndakade.ir/c/{{ $has_dubbed }}">
+        دوبله‌ی فارسی این دوره آموزشی، در وبسایت قرار داده شده است. <a href="https://lyndakade.ir/c/{{ $has_dubbed }}">
           اینجا کلیک کنید. </a>
       </div>
     @endif
