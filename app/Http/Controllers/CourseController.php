@@ -161,116 +161,95 @@ class CourseController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param Request $request
-     * @param $subject
-     * @param $slug
-     * @param $my_id
-     * @return Factory|RedirectResponse|Redirector|View
-     */
+    private function show_course(Request $request, $slug, $course)
+    {
+        $my_id = $course->id;
+
+        $view_dt = Carbon::now();
+        $view_date = $view_dt->format('Y-m-d');
+        $view = \App\View::firstWhere('date', $view_date);
+        if ($view) {
+            $view->increment('views');
+        } else {
+            $view = new \App\View();
+            $view->date = $view_date;
+            $view->views = 1;
+            $view->save();
+        }
+        $related_courses = [];
+        if ($course->related_courses_slug) {
+            $related_slugs = explode(',', $course->related_courses_slug);
+            $related_courses = Course::with('authors')->whereIn('slug_linkedin', $related_slugs);
+            foreach ($related_slugs as $r_slug) {
+                $related_courses = $related_courses
+                    ->orWhere('slug_url',  $r_slug)
+                    ->orWhere('slug_url', 'LIKE', '%,' .  $r_slug)
+                    ->orWhere('slug_url', 'LIKE', '%,' .  $r_slug . ',%')
+                    ->orWhere('slug_url', 'LIKE',  $r_slug . ',%');
+            }
+            $related_courses = $related_courses->get();
+        }
+
+        if (count($related_courses) == 0) {
+            $subjectIds = $course->subjects->pluck('id')->toArray();
+            $related_courses = Course::with('authors')->whereHas('subjects', function ($query) use ($subjectIds) {
+                return $query->whereIn('subjects.id', $subjectIds);
+            })->where('id', '!=', $course->id)
+                ->limit(52)
+                ->get();
+        }
+        
+        $related_paths = LearnPath::where('courses_id', $course->id)
+            ->orWhere('courses_id', 'LIKE', $course->id . ',%')
+            ->orWhere('courses_id', 'LIKE', '%,' . $course->id . ',%')
+            ->orWhere('courses_id', 'LIKE', '%,' . $course->id)
+            ->get();
+
+        $skillEng = SkillLevel::find($course->skillLevel)->titleEng;
+        $skill = SkillLevel::find($course->skillLevel)->title;
+
+        $has_subtitle = true;
+        try {
+            foreach (json_decode($course->previewSubtitle) as $subtitle) {
+            }
+            if (json_decode($course->previewSubtitle) == 0) {
+                $has_subtitle = false;
+            }
+        } catch (Exception $e) {
+            $has_subtitle = false;
+        }
+
+        $dubbed_course = Course::where('slug_linkedin', $slug . '-dubbed')
+            ->orWhere('slug_url',  $slug . '-dubbed')
+            ->orWhere('slug_url', 'LIKE', '%,' .  $slug . '-dubbed')
+            ->orWhere('slug_url', 'LIKE', '%,' .  $slug . '-dubbed' . ',%')
+            ->orWhere('slug_url', 'LIKE',  $slug . '-dubbed' . ',%')->first();
+
+        $has_dubbed = false;
+        if ($dubbed_course) {
+            $has_dubbed = $dubbed_course->id;
+        }
+
+        return view('courses.show', [
+            'skill' => $skill,
+            'skillEng' => $skillEng,
+            'course' => $course,
+            'has_dubbed' => $has_dubbed,
+            'has_subtitle' => $has_subtitle,
+            'related_courses' => $related_courses,
+            'related_paths' => $related_paths,
+            'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
+        ]);
+    }
+
     public function show(Request $request, $subject, $slug, $my_id)
     {
         $course = Course::with(['authors', 'subjects', 'softwares'])->find($my_id);
         if ($course) {
             if ($course->slug == $slug) {
-                // $course->increment('views');
-
-                // views($course)->record();
-
-                // $view = new \App\View([
-                //     'course_id' => $course->id,
-                //     'user_id' => auth()->check() ? auth()->id() : null,
-                //     'ip' => $request->ip(),
-                // ]);
-                // $view->save();
-
-                // $date  = Carbon::now()->subMonths(2);
-                // \App\View::where('created_at', '<=', $date)->delete();
-
-                $view_dt = Carbon::now();
-                $view_date = $view_dt->format('Y-m-d');
-                $view = \App\View::firstWhere('date', $view_date);
-                if ($view) {
-                    $view->increment('views');
-                } else {
-                    $view = new \App\View();
-                    $view->date = $view_date;
-                    $view->views = 1;
-                    $view->save();
-                }
-
-                /*
-                 * getting courses id related to subjects
-                 */
-                $subjects = $course->subjects;
-                $subjects_id = array();
-                foreach ($subjects as $subject) {
-                    array_push($subjects_id, $subject->id);
-                }
-                $courses_id = DB::table('course_subject')
-                    ->whereIn('subject_id', $subjects_id)
-                    ->get('course_id');
-
-                $ids = array();
-                foreach ($courses_id as $id) {
-                    array_push($ids, $id->course_id);
-                }
-
-                /*
-                 * getting courses id related to software
-                 */
-                $softwares = $course->softwares;
-                $softwares_id = array();
-                foreach ($softwares as $software) {
-                    array_push($softwares_id, $software->course_id);
-                }
-                $courses_id = DB::table('course_software')
-                    ->whereIn('software_id', $softwares_id)
-                    ->get('course_id');
-
-                foreach ($courses_id as $id) {
-                    array_push($ids, $id->course_id);
-                }
-
-                while (($key = array_search($my_id, $ids)) !== false) {
-                    unset($ids[$key]);
-                }
-                $ids = array_values(array_unique($ids));
-
-                $related_courses = Course::with('authors')->orderBy('views', 'DESC')->whereIn('id', $ids)->limit(50)->get();
-
-                $courses = array();
-                foreach ($related_courses as $related_course) {
-                    array_push($courses, $related_course);
-                }
-
-                $skillEng = SkillLevel::find($course->skillLevel)->titleEng;
-                $skill = SkillLevel::find($course->skillLevel)->title;
-
-                $has_subtitle = true;
-                try {
-                    foreach (json_decode($course->previewSubtitle) as $subtitle) {
-                    }
-                    if (json_decode($course->previewSubtitle) == 0) {
-                        $has_subtitle = false;
-                    }
-                } catch (Exception $e) {
-                    $has_subtitle = false;
-                }
-
-                return view('courses.show', [
-                    'skill' => $skill,
-                    'skillEng' => $skillEng,
-                    'course' => $course,
-                    'has_subtitle' => $has_subtitle,
-                    'related_courses' => $courses,
-                    'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
-                ]);
+                return $this->show_course($request, $course->slug_linkedin, $course);
             }
         }
-        // abort(404);
         return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
     }
 
@@ -283,117 +262,9 @@ class CourseController extends Controller
             ->orWhere('slug_url', 'LIKE', '%,' . $slug . ',%')
             ->orWhere('slug_url', 'LIKE', $slug . ',%')->first();
         if ($course) {
-            // $course->increment('views');
-
-            $my_id = $course->id;
-
-            $view_dt = Carbon::now();
-            $view_date = $view_dt->format('Y-m-d');
-            $view = \App\View::firstWhere('date', $view_date);
-            if ($view) {
-                $view->increment('views');
-            } else {
-                $view = new \App\View();
-                $view->date = $view_date;
-                $view->views = 1;
-                $view->save();
-            }
-            /*
-            $subjects = $course->subjects;
-            $subjects_id = array();
-            foreach ($subjects as $subject) {
-                array_push($subjects_id, $subject->id);
-            }
-            $courses_id = DB::table('course_subject')
-                ->whereIn('subject_id', $subjects_id)
-                ->get('course_id');
-
-            $ids = array();
-            foreach ($courses_id as $id) {
-                array_push($ids, $id->course_id);
-            }
-
-            $softwares = $course->softwares;
-            $softwares_id = array();
-            foreach ($softwares as $software) {
-                array_push($softwares_id, $software->course_id);
-            }
-            $courses_id = DB::table('course_software')
-                ->whereIn('software_id', $softwares_id)
-                ->get('course_id');
-
-            foreach ($courses_id as $id) {
-                array_push($ids, $id->course_id);
-            }
-
-            while (($key = array_search($my_id, $ids)) !== false) {
-                unset($ids[$key]);
-            }
-            $ids = array_values(array_unique($ids));
-
-            $related_courses = Course::with('authors')
-                // ->orderBy('views', 'DESC')
-                ->whereIn('id', $ids)->limit(52)->get();
-
-            $courses = array();
-            foreach ($related_courses as $related_course) {
-                array_push($courses, $related_course);
-            }
-*/
-
-            $subjectIds = $course->subjects->pluck('id')->toArray();
-
-            $related_courses = Course::with('authors')->whereHas('subjects', function ($query) use ($subjectIds) {
-                return $query->whereIn('subjects.id', $subjectIds);
-            })->where('id', '!=', $course->id)
-                ->limit(52)
-                ->get();
-
-            $related_paths = LearnPath::where('courses_id', $course->id)
-                ->orWhere('courses_id', 'LIKE', $course->id . ',%')
-                ->orWhere('courses_id', 'LIKE', '%,' . $course->id . ',%')
-                ->orWhere('courses_id', 'LIKE', '%,' . $course->id)
-                ->get();
-
-            $skillEng = SkillLevel::find($course->skillLevel)->titleEng;
-            $skill = SkillLevel::find($course->skillLevel)->title;
-
-            $has_subtitle = true;
-            try {
-                foreach (json_decode($course->previewSubtitle) as $subtitle) {
-                }
-                if (json_decode($course->previewSubtitle) == 0) {
-                    $has_subtitle = false;
-                }
-            } catch (Exception $e) {
-                $has_subtitle = false;
-            }
-
-            $dubbed_course = Course::where('slug_linkedin', $slug . '-dubbed')
-                ->orWhere('slug_url',  $slug . '-dubbed')
-                ->orWhere('slug_url', 'LIKE', '%,' .  $slug . '-dubbed')
-                ->orWhere('slug_url', 'LIKE', '%,' .  $slug . '-dubbed' . ',%')
-                ->orWhere('slug_url', 'LIKE',  $slug . '-dubbed' . ',%')->first();
-
-            $has_dubbed = false;
-            if ($dubbed_course) {
-                $has_dubbed = $dubbed_course->id;
-            }
-
-            return view('courses.show', [
-                'skill' => $skill,
-                'skillEng' => $skillEng,
-                'course' => $course,
-                'has_dubbed' => $has_dubbed,
-                'has_subtitle' => $has_subtitle,
-                'related_courses' => $related_courses,
-                'related_paths' => $related_paths,
-                'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
-            ]);
+            return $this->show_course($request, $slug, $course);
         }
         return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
-        abort(404);
-        return redirect()->route('root.home');
     }
 
     public function not_found()
@@ -584,7 +455,7 @@ class CourseController extends Controller
             ], 500);
         }
     }
-    
+
     public function course_subject_set_api(Request $request)
     {
         try {
