@@ -1,15 +1,5 @@
 <?php
 
-use Illuminate\Routing\Route as IlluminateRoute;
-use App\Custom\CaseInsensitiveUriValidator;
-use Illuminate\Routing\Matching\UriValidator;
-
-$validators = IlluminateRoute::getValidators();
-$validators[] = new CaseInsensitiveUriValidator;
-IlluminateRoute::$validators = array_filter($validators, function ($validator) {
-    return get_class($validator) != UriValidator::class;
-});
-
 use App\Course;
 use App\Http\Controllers\CourseController;
 use App\LearnPath;
@@ -84,7 +74,7 @@ Route::get('/learning/{slug_linkedin}/{video_slug}', 'CourseController@show_link
 Route::get('/ajax/player/transcript', 'CourseController@subtitle_content')->name('courses.subtitle_content');
 Route::get('courses/download/{id}', 'CourseController@download_course')->name('courses.download');
 Route::post('/report-issues/courses', 'CourseController@report_issues')->name('courses.report-issues');
-Route::get('/c/{id}', function ($id) {
+Route::get('/{c}/{id}', function ($id) {
     $course = Course::firstWhere('id', $id);
     if ($course) {
         if ($course->slug_linkedin) {
@@ -94,7 +84,7 @@ Route::get('/c/{id}', function ($id) {
     }
     // abort(404);
     return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
-})->where('id', '[0-9]+')->name('courses.show.short');
+})->where(['c' => 'c|C', 'id' => '[0-9]+'])->name('courses.show.short');
 
 // /{slug}/{id}-0.html
 Route::get('/{slug}/{id}-0.html', function ($slug, $id) {
