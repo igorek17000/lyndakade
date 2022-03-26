@@ -127,6 +127,7 @@ class PackageController extends Controller
 
         $invoice->detail('email', $email);
         $invoice->detail('mobile', $mobile);
+        // $invoice->detail('description', $pack->title);
 
         // Purchase method accepts a callback function.
         return \Shetabit\Payment\Facade\Payment::callbackUrl(route('packages.callback'))

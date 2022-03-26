@@ -958,7 +958,7 @@
                 </ul>
               </div>
               <div class="col-12 text-center">
-                <p class="my-0 text-white">کلیه‌ی حقوق مادی و معنوی این سایت متعلق به LyndaKade.ir است</p>
+                <p class="my-0 text-white">کلیه‌ی حقوق این سایت متعلق به لینداکده است.</p>
               </div>
             </div>
           </div>
