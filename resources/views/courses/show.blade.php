@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                                                            ' .
+                                                                              ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -114,12 +114,12 @@ if (count($course->subjects) > 0) {
               </li>
             </ul>
           @endif
-          <div class="input-group" style="text-align: left;position: absolute;width: 200px;left: 0;top: 2px;" onclick="(()=>{
-                  this.select();
-                  this.setSelectionRange(0, 99999);
-                  navigator.clipboard.writeText(this.value);
-                  toastr.info('لینک کوتاه کپی شد.');
-              })()">
+          <div class="input-group" style="text-align: left;position: absolute;width: 200px;left: 0;top: 2px;" onclick="(()=>{this.select();
+                                                this.setSelectionRange(0, 99999);
+                                                navigator.clipboard.writeText(this.value);
+                                                  toastr.options.rtl = true;
+                                                  toastr.options.positionClass = 'toast-bottom-left';
+                                                toastr.info('لینک کوتاه کپی شد.');})()">
             <span class="input-group-addon"><i class="fa fa-copy"
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""

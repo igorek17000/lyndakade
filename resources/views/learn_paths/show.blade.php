@@ -74,6 +74,8 @@
                   <input readonly="" onclick="(()=>{this.select();
                                               this.setSelectionRange(0, 99999);
                                               navigator.clipboard.writeText(this.value);
+                                                toastr.options.rtl = true;
+                                                toastr.options.positionClass = 'toast-bottom-left';
                                               toastr.info('لینک کوتاه کپی شد.');})()"
                     style="font-size: 11px;text-align: left;direction: rtl;padding-left: 27px;padding-right: 2px;"
                     title="لینک کوتاه این مسیر آموزشی" type="text" value="lyndakade.ir/L/{{ $path->id }}"
