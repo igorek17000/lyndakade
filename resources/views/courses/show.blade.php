@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                                                              ' .
+                                                                                    ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -72,6 +72,15 @@ if (count($course->subjects) > 0) {
 @endpush
 @section('content')
   @csrf
+  @if (isset($has_dubbed))
+    @if ($has_dubbed)
+      <div class="text-center"
+        style="font-size: 17px;padding: 15px 0 15px 100px;background-color: rgb(0 59 122);color: #fff;font-family: 'IranSANS';font-weight: bold;bottom: 0;position: fixed;z-index: 100;width: 100%;">
+        دوبله‌ی فارسی این دوره آموزشی، در وبسایت قرار داده شده است. <a href="https:/lyndakade.ir/c/{{ $has_dubbed }}">
+          اینجا کلیک کنید. </a>
+      </div>
+    @endif
+  @endif
 
   <div class="row mx-0 justify-content-center">
     <aside class="col-md-10">
@@ -118,11 +127,11 @@ if (count($course->subjects) > 0) {
             <span class="input-group-addon"><i class="fa fa-copy"
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly="" onclick="(()=>{this.select();
-                                                this.setSelectionRange(0, 99999);
-                                                navigator.clipboard.writeText(this.value);
-                                                  toastr.options.rtl = true;
-                                                  toastr.options.positionClass = 'toast-bottom-left';
-                                                toastr.info('لینک کوتاه کپی شد.');})()"
+                                                      this.setSelectionRange(0, 99999);
+                                                      navigator.clipboard.writeText(this.value);
+                                                        toastr.options.rtl = true;
+                                                        toastr.options.positionClass = 'toast-bottom-left';
+                                                      toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">

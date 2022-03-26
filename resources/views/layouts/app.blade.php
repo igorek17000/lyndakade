@@ -662,7 +662,7 @@
 
   <div class="wrapper-wide">
 
-    @include('go-to-top-btn')
+    {{-- @include('go-to-top-btn') --}}
     <style>
       nav.navbar ul li a {
         position: relative !important;
@@ -1271,7 +1271,7 @@
     $('body')
       .on('mouseenter mouseleave', '.dropdown', toggleDropdown)
       .on('click', '.dropdown-menu a', toggleDropdown);
-      
+
     $(function() {
       var wrapper_wide = document.querySelector('.wrapper-wide');
       var sun_class = 'fa-sun';

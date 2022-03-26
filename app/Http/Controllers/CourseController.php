@@ -369,10 +369,22 @@ class CourseController extends Controller
                 $has_subtitle = false;
             }
 
+            $dubbed_course = Course::where('slug_linkedin', $slug . '-dubbed')
+                ->orWhere('slug_url',  $slug . '-dubbed')
+                ->orWhere('slug_url', 'LIKE', '%,' .  $slug . '-dubbed')
+                ->orWhere('slug_url', 'LIKE', '%,' .  $slug . '-dubbed' . ',%')
+                ->orWhere('slug_url', 'LIKE',  $slug . '-dubbed' . ',%')->first();
+
+            $has_dubbed = false;
+            if ($dubbed_course) {
+                $has_dubbed = $dubbed_course->id;
+            }
+
             return view('courses.show', [
                 'skill' => $skill,
                 'skillEng' => $skillEng,
                 'course' => $course,
+                'has_dubbed' => $has_dubbed,
                 'has_subtitle' => $has_subtitle,
                 'related_courses' => $related_courses,
                 'related_paths' => $related_paths,
