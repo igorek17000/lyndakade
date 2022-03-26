@@ -49,6 +49,7 @@ Route::middleware('guest')->post('/course-set-img-thumbnail', 'CourseController@
 
 Route::middleware('guest')->post('/courses/update-view-from-linkedin', 'CourseController@course_update_view_from_linkedin_api')->name('course.update.view.api');
 Route::middleware('guest')->post('/course-subject/set', 'CourseController@course_subject_set_api')->name('course.subject.set.api');
+Route::middleware('guest')->post('/course-related/set', 'CourseController@course_related_set_api')->name('course.related.set.api');
 Route::middleware('guest')->post('/subjects/add', 'SubjectController@subject_add_api')->name('subjects.add.api');
 
 Route::middleware('guest')->get('/learn-path/get-all', 'LearnPathController@get_all_api')->name('learn-path.get-all.api');

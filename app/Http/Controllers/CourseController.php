@@ -561,6 +561,30 @@ class CourseController extends Controller
         ], 205);
     }
 
+    public function course_related_set_api(Request $request)
+    {
+        try {
+            $course_id = $request->input('course_id');
+            $related_courses_slug = $request->input('related_courses_slug');
+            $course = Course::find($course_id);
+            if ($course && $related_courses_slug) {
+                Course::where('id', $course_id)->update([
+                    'related_courses_slug' => $related_courses_slug
+                ]);
+                return new JsonResponse([
+                    'message' => 'success',
+                ], 200);
+            }
+            return new JsonResponse([
+                'message' => 'failed',
+            ], 400);
+        } catch (Exception $e) {
+            return new JsonResponse([
+                'message' => $e,
+            ], 500);
+        }
+    }
+    
     public function course_subject_set_api(Request $request)
     {
         try {
