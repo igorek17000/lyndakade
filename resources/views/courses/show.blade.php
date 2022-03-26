@@ -105,7 +105,7 @@ if (count($course->subjects) > 0) {
         </div>
         <div style="position: relative;">
           @if (count($course->subjects) > 0)
-            <ul style="padding-left: 180px;">
+            <ul style="padding-left: 200px;">
               <li class="pr-4 tags">دسته:
                 @foreach ($course->subjects as $subject)
                   <a target="_blank" titleEng="{{ $subject->title }}"

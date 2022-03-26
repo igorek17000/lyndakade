@@ -733,11 +733,13 @@ class CourseController extends Controller
         $courses = Course::with(['authors', 'subjects', 'softwares'])
             ->where('created_at', '>=', $start_date)
             ->whereNotIn('id', $skipped_ids)
-            ->orderBy('created_at', 'desc')
-            ->limit($limit)
+            ->orderBy('created_at', 'desc');
+        $count = $courses->count();
+        $courses = $courses->limit($limit)
             ->get(['id', 'title', 'titleEng', 'description', 'previewFile', 'previewSubtitle', 'img', 'persian_subtitle_id']);
         return new JsonResponse([
             'data' => $courses->toArray(),
+            'count' => $count,
             'status' => 'success',
         ], 200);
     }
