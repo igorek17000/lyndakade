@@ -1,5 +1,15 @@
 <?php
 
+use Illuminate\Routing\Route as IlluminateRoute;
+use App\Custom\CaseInsensitiveUriValidator;
+use Illuminate\Routing\Matching\UriValidator;
+
+$validators = IlluminateRoute::getValidators();
+$validators[] = new CaseInsensitiveUriValidator;
+IlluminateRoute::$validators = array_filter($validators, function ($validator) {
+    return get_class($validator) != UriValidator::class;
+});
+
 use App\Course;
 use App\Http\Controllers\CourseController;
 use App\LearnPath;
