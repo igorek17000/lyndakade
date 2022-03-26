@@ -71,9 +71,9 @@
                       </path>
                     </svg>
                     <!-- <i class="fa fa-copy" style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i> --></span>
-                  <input readonly="" onclick="this.select();
+                  <input readonly="" onclick="()=>{this.select();
                                             this.setSelectionRange(0, 99999);
-                                            navigator.clipboard.writeText(this.value);"
+                                            navigator.clipboard.writeText(this.value);}"
                     style="font-size: 11px;text-align: left;direction: rtl;padding-left: 27px;padding-right: 2px;"
                     title="لینک کوتاه این مسیر آموزشی" type="text" value="lyndakade.ir/L/{{ $path->id }}"
                     id="shorturl" class="form-control">
