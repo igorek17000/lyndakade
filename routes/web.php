@@ -67,6 +67,14 @@ Route::get('/l/{id}', function ($id) {
     // abort(404);
     return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
 })->where('id', '[0-9]+')->name('courses.show.short');
+Route::get('/L/{id}', function ($id) {
+    $path = LearnPath::firstWhere('id', $id);
+    if ($path) {
+        return redirect()->route('learn.paths.show', [$path->slug]);
+    }
+    // abort(404);
+    return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
+})->where('id', '[0-9]+')->name('courses.show.short');
 // courses
 Route::get('/', 'CourseController@index')->name('root.home');
 Route::get('/learning/{slug_linkedin}', 'CourseController@show_linkedin')->name('courses.show.linkedin');
@@ -74,7 +82,7 @@ Route::get('/learning/{slug_linkedin}/{video_slug}', 'CourseController@show_link
 Route::get('/ajax/player/transcript', 'CourseController@subtitle_content')->name('courses.subtitle_content');
 Route::get('courses/download/{id}', 'CourseController@download_course')->name('courses.download');
 Route::post('/report-issues/courses', 'CourseController@report_issues')->name('courses.report-issues');
-Route::get('/{c}/{id}', function ($id) {
+Route::get('/c/{id}', function ($id) {
     $course = Course::firstWhere('id', $id);
     if ($course) {
         if ($course->slug_linkedin) {
@@ -84,7 +92,18 @@ Route::get('/{c}/{id}', function ($id) {
     }
     // abort(404);
     return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
-})->where(['c' => 'c|C', 'id' => '[0-9]+'])->name('courses.show.short');
+})->where(['id' => '[0-9]+'])->name('courses.show.short');
+Route::get('/C/{id}', function ($id) {
+    $course = Course::firstWhere('id', $id);
+    if ($course) {
+        if ($course->slug_linkedin) {
+            return redirect()->route('courses.show.linkedin', [$course->slug_linkedin]);
+        }
+        return redirect()->route('courses.show', [$course->slug_url, $course->slug, $course->id]);
+    }
+    // abort(404);
+    return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
+})->where(['id' => '[0-9]+'])->name('courses.show.short');
 
 // /{slug}/{id}-0.html
 Route::get('/{slug}/{id}-0.html', function ($slug, $id) {
