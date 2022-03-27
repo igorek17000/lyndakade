@@ -59,11 +59,8 @@ class LearnPath extends Model
                     $js_courses = json_decode($model->courses);
                     $ids = [];
                     foreach ($js_courses as $c) {
-                        try {
-                            $ids[] = $c->id;
-                        } catch (Exception $e) {
-                            $ids[] = $c['id'];
-                        }
+                        $c = (array) $c;
+                        $ids[] = $c['id'];
                     }
                     $ids = implode(',', $ids);
                     LearnPath::where('id', $model->id)->update([
