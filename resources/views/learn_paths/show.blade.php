@@ -6,6 +6,7 @@
       'keywords' => get_seo_keywords() . ' , لیست مسیر آموزشی , learn path, learn-path, all learn paths ' . $path->title,
       'description' => 'مسیر آموزشی ' . $path->description . '| ' . get_seo_description(),
   ])
+  <link rel="alternate" href="{{ route('learn.paths.show.short', [$path->id]) }}">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",

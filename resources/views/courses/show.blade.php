@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                                                                    ' .
+                                                                                      ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -41,7 +41,9 @@ if (count($course->subjects) > 0) {
 
   <link rel="alternate" href="{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}">
   @if ($course->slug_url)
-    <link rel="alternate" href="{{ route('courses.show.linkedin', [$course->slug_url]) }}">
+    @foreach (explode(',', $course->slug_url) as $item)
+      <link rel="alternate" href="{{ route('courses.show.linkedin', [$item]) }}">
+    @endforeach
   @endif
 
   <link rel="alternate" href="{{ route('courses.show.short', [$course->id]) }}">
@@ -127,11 +129,11 @@ if (count($course->subjects) > 0) {
             <span class="input-group-addon"><i class="fa fa-copy"
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly="" onclick="(()=>{this.select();
-                                                      this.setSelectionRange(0, 99999);
-                                                      navigator.clipboard.writeText(this.value);
-                                                        toastr.options.rtl = true;
-                                                        toastr.options.positionClass = 'toast-bottom-left';
-                                                      toastr.info('لینک کوتاه کپی شد.');})()"
+                                                        this.setSelectionRange(0, 99999);
+                                                        navigator.clipboard.writeText(this.value);
+                                                          toastr.options.rtl = true;
+                                                          toastr.options.positionClass = 'toast-bottom-left';
+                                                        toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">

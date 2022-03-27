@@ -66,7 +66,7 @@ Route::get('/l/{id}', function ($id) {
     }
     // abort(404);
     return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
-})->where('id', '[0-9]+')->name('courses.show.short');
+})->where('id', '[0-9]+')->name('learn.paths.show.short');
 Route::get('/L/{id}', function ($id) {
     $path = LearnPath::firstWhere('id', $id);
     if ($path) {
@@ -74,7 +74,7 @@ Route::get('/L/{id}', function ($id) {
     }
     // abort(404);
     return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
-})->where('id', '[0-9]+')->name('courses.show.short');
+})->where('id', '[0-9]+')->name('learn.paths.show.short');
 // courses
 Route::get('/', 'CourseController@index')->name('root.home');
 Route::get('/learning/{slug_linkedin}', 'CourseController@show_linkedin')->name('courses.show.linkedin');
