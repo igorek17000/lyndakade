@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Http\Controllers\PaidController;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -58,7 +59,11 @@ class LearnPath extends Model
                     $js_courses = json_decode($model->courses);
                     $ids = [];
                     foreach ($js_courses as $c) {
-                        $ids[] = $c['id'];
+                        try {
+                            $ids[] = $c['id'];
+                        } catch (Exception $e) {
+                            $ids[] = $c->id;
+                        }
                     }
                     $ids = implode(',', $ids);
                     LearnPath::where('id', $model->id)->update([
