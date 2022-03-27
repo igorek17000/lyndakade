@@ -60,9 +60,9 @@ class LearnPath extends Model
                     $ids = [];
                     foreach ($js_courses as $c) {
                         try {
-                            $ids[] = $c['id'];
-                        } catch (Exception $e) {
                             $ids[] = $c->id;
+                        } catch (Exception $e) {
+                            $ids[] = $c['id'];
                         }
                     }
                     $ids = implode(',', $ids);
