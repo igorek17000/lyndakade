@@ -669,18 +669,20 @@
       }
 
     </style>
-    @if (now() <= \Carbon\Carbon::createFromTimeStamp(1648495799) && \App\Discount::where('code', 'lyndakade1401')->count() > 0)
-      <div class="sticky-top text-center" style="font-size: 17px;
+    @if (\App\Discount::where('code', 'lyndakade1401')->count() > 0)
+      @if (now() <= \App\Discount::where('code', 'lyndakade1401')->first()->end_date)
+        <div class="sticky-top text-center" style="font-size: 17px;
         padding: 15px 0;
         background-color: #00aaca;
         font-family: 'IranSANS';
         font-weight: bold;">
-        تخفیف 40 درصدی ویژه نوروز
-        <a href="{{ route('packages.index') }}" style="color: #df9000;text-shadow: 1px 1px black;">
-          خرید اشتراک
-        </a>
-        سایت: lyndakade1401
-      </div>
+          تخفیف 40 درصدی ویژه نوروز
+          <a href="{{ route('packages.index') }}" style="color: #df9000;text-shadow: 1px 1px black;">
+            خرید اشتراک
+          </a>
+          سایت: lyndakade1401
+        </div>
+      @endif
     @endif
     {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0" @if (app()->isLocal('en')) dir="ltr" @endif> --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0">
