@@ -70,7 +70,11 @@ class LearnPathController extends Controller
             ]);
         }
 
-        $path = LearnPath::firstWhere('slug', $learn_path_slug);
+        $path = LearnPath::where('slug', $learn_path_slug)
+            ->orWhere('slug', 'LIKE', '%,' .  $learn_path_slug)
+            ->orWhere('slug', 'LIKE', '%,' .  $learn_path_slug . ',%')
+            ->orWhere('slug', 'LIKE',  $learn_path_slug . ',%')
+            ->first();
         if ($path) {
 
             $view_dt = Carbon::now();
@@ -136,7 +140,11 @@ class LearnPathController extends Controller
 
     public function course_list_api(Request $request, $slug)
     {
-        $path = LearnPath::firstWhere('slug', $slug);
+        $path = LearnPath::where('slug', $slug)
+            ->orWhere('slug', 'LIKE', '%,' .  $slug)
+            ->orWhere('slug', 'LIKE', '%,' .  $slug . ',%')
+            ->orWhere('slug', 'LIKE',  $slug . ',%')
+            ->first();
 
         $res = [];
         foreach ($path->_courses as $c) {
