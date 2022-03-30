@@ -158,18 +158,20 @@ $questions = [
   <style>
   </style>
   <div class="container">
-    <h1 class="text-center">سوالات متداول</h1>
-    <div class="content_text_page_normal">
+    <p>&nbsp;</p>
+    <h1 class="text-center" style="color: #2500bb;font-weight: 600;">سوالات متداول</h1>
+    <div>
       <p>&nbsp;</p>
       @foreach ($questions as $question)
-        <h3>
+        <h3 style="font-size: 24px;">
           <span style="color: #000000;">#</span>
           <span style="color: #ff6600;">
             <span style="color: #000000;">{{ nPersian($loop->iteration) }}</span>
             {{ $question['question'] }}
           </span>
         </h3>
-        <blockquote>
+        <blockquote
+          style="background-color: #eee;border-right: 15px solid #00a3a3;padding: 5px;border-left: 3px solid #00a3a3;">
           {!! nl2br($question['answer']) !!}
         </blockquote>
         <p>&nbsp;</p>
