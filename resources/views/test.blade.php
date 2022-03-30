@@ -156,11 +156,16 @@ $questions = [
 @endpush
 @section('content')
   <style>
+    .faq-questions blockquote a {
+      color: blue;
+      font-weight: bold;
+    }
+
   </style>
   <div class="container">
     <p>&nbsp;</p>
     <h1 class="text-center" style="color: #2500bb;font-weight: 600;">سوالات متداول</h1>
-    <div>
+    <div class="faq-questions">
       <p>&nbsp;</p>
       @foreach ($questions as $question)
         <h3 style="font-size: 24px;">
