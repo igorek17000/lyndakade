@@ -118,6 +118,67 @@
   @csrf
 
   <style>
+    .wrapper-wide {
+      box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+      background: repeat-x #f7f7f7;
+      background-image: -webkit-linear-gradient(top, #f7f7f7 0, #e5e5e5 100%);
+      background-image: -o-linear-gradient(top, #f7f7f7 0, #e5e5e5 100%);
+      background-image: linear-gradient(to bottom, #f7f7f7 0, #e5e5e5 100%);
+    }
+
+    .hero-text {
+      background-color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+
+    .wrapper-wide.dark-theme {
+      background: repeat-x #171717;
+      background-image: -webkit-linear-gradient(top, #171717 0, #111 100%);
+      background-image: -o-linear-gradient(top, #171717 0, #111 100%);
+      background-image: linear-gradient(to bottom, #171717 0, #111 100%);
+      color: white;
+    }
+
+    .wrapper-wide.dark-theme a,
+    .wrapper-wide.dark-theme pre {
+      color: white;
+    }
+
+    .wrapper-wide.dark-theme a:hover,
+    .wrapper-wide.dark-theme h5.course-title {
+      color: #17a2b8;
+    }
+
+    .wrapper-wide.dark-theme .section-module,
+    .wrapper-wide.dark-theme .container:not(.no-dark),
+    .wrapper-wide.dark-theme .container-fluid:not(.no-dark),
+    .wrapper-wide.dark-theme .row:not(.no-dark) {
+      background-color: #222;
+    }
+
+    .wrapper-wide.dark-theme .card.course {
+
+      background-color: #353535;
+    }
+
+    .wrapper-wide.dark-theme .course-title {
+      text-shadow: none;
+    }
+
+    .wrapper-wide.dark-theme .course-grid,
+    .wrapper-wide.dark-theme [data-slide] {
+      background: transparent !important;
+    }
+
+    .wrapper-wide.dark-theme .tags>a {
+      background: #333;
+    }
+
+    .wrapper-wide.dark-theme .hero-text {
+      background-color: rgba(0, 0, 0, 0.5) !important;
+      color: white;
+    }
+
     .fab-container {
       position: fixed;
       width: 70px;
@@ -247,8 +308,8 @@
 
 
     .persian-subtitle-img {
-      border: 2px solid darkgoldenrod;
-      background-color: darkgoldenrod;
+      border: 2px solid rgb(0, 0, 163);
+      background-color: rgb(0, 0, 163);
     }
 
     .english-subtitle-img {
@@ -262,8 +323,8 @@
     }
 
     .dubbed-subtitle-img {
-      border: 2px solid rgb(0, 0, 163);
-      background-color: rgb(0, 0, 163);
+      border: 2px solid darkgoldenrod;
+      background-color: darkgoldenrod;
     }
 
     .course-img {
@@ -599,19 +660,30 @@
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <div class="wrapper-wide" style="    box-shadow: 0 0 4px rgba(0,0,0,.1);
-    background: repeat-x #f7f7f7;
-    background-image: -webkit-linear-gradient(top,#f7f7f7 0,#e5e5e5 100%);
-    background-image: -o-linear-gradient(top,#f7f7f7 0,#e5e5e5 100%);
-    background-image: linear-gradient(to bottom,#f7f7f7 0,#e5e5e5 100%);">
+  <div class="wrapper-wide">
 
-    @include('go-to-top-btn')
+    {{-- @include('go-to-top-btn') --}}
     <style>
       nav.navbar ul li a {
         position: relative !important;
       }
 
     </style>
+    @if (\App\Discount::where('code', 'lyndakade1401')->count() > 0)
+      @if (now() <= \App\Discount::where('code', 'lyndakade1401')->first()->end_date)
+        <div class="sticky-top text-center" style="font-size: 17px;
+        padding: 15px 0;
+        background-color: #00aaca;
+        font-family: 'IranSANS';
+        font-weight: bold;">
+          تخفیف 40 درصدی ویژه نوروز
+          <a href="{{ route('packages.index') }}" style="color: #df9000;text-shadow: 1px 1px black;">
+            خرید اشتراک
+          </a>
+          سایت: lyndakade1401
+        </div>
+      @endif
+    @endif
     {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0" @if (app()->isLocal('en')) dir="ltr" @endif> --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0">
       <a class="navbar-brand mb-1" href="https://lyndakade.ir">
@@ -619,6 +691,9 @@
           alt="لینداکده - LyndaKade - Lynda Kade - LinkedIN" style="width: 60px; height: 55px;">
         <span class="hidden-md hidden-lg">لیندا کده</span>
       </a>
+      {{-- <span class="theme-toggle hidden-md hidden-lg" style="margin-right: auto;color: #eee;">
+        <i class="fa fa-sun" style="font-size: 28px;margin: 10px;"></i>
+      </span> --}}
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -669,14 +744,13 @@
               @endforeach
             </div>
           </li> --}}
-          <li class="nav-item dropdown">
+          {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle px-md-1" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               مسیرهای آموزشی
             </a>
             <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink1">
-
-              @foreach (\App\Library::get() as $lib)
+             @foreach (\App\Library::get() as $lib)
                 <a class="dropdown-item  text-center" style="color: #fff;"
                   href="{{ route('learn.paths.show', [$lib->slug]) }}">
                   <i class="category-icons" aria-hidden="true">
@@ -712,6 +786,9 @@
                 همه مسیرهای آموزشی
               </a>
             </div>
+          </li> --}}
+          <li class="nav-item">
+            <a class="nav-link px-md-1" href="{{ route('learn.paths.index') }}">مسیرهای آموزشی</a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-md-1" href="{{ route('packages.index') }}">خرید اشتراک</a>
@@ -725,6 +802,11 @@
           <li class="nav-item">
             <a class="nav-link px-md-1" href="{{ route('root.contact.us') }}">تماس با ما</a>
           </li>
+          {{-- <li class="nav-item">
+            <span class="theme-toggle" style="color: #eee;">
+              <i class="fa fa-moon" style="font-size: 28px;margin: 10px;"></i>
+            </span>
+          </li> --}}
         </ul>
         <form class="form-inline my-2 my-lg-0" role="search" action="{{ route('search') }}">
           <input type="search" name="q" class="form-control mr-sm-2" role="combobox" value="{{ $q ?? '' }}"
@@ -837,15 +919,15 @@
 
     {{-- <footer id="footer" class="bg-dark text-muted p-md-5 pt-4 @if (app()->isLocal('en')) text-left @endif"  @if (app()->isLocal('en')) dir="ltr" @endif> --}}
     <footer id="footer" class="bg-dark text-muted p-md-5 pt-4">
-      <div class="container">
-        <div class="row">
+      <div class="container no-dark">
+        <div class="row no-dark">
           <div class="contact col-lg-6 col-md-6 col-sm-12 col-xs-12 text-sm-right text-center">
             <h5 class="pt-1 pb-3" style="color: #00aaca;">درباره ما</h5>
             <p class="text-white pl-md-5 text-justify">
               لینداکده یک بستر یادگیری پیشرو است که به هر کس کمک می کند تا کسب و کار ، نرم افزار ، فناوری و
               مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد.
             </p>
-            <div class="row">
+            <div class="row no-dark">
               <div class="col-12 text-center">
                 <ul class="list-inline">
                   <li class="list-inline-item text-white">
@@ -878,7 +960,7 @@
                 </ul>
               </div>
               <div class="col-12 text-center">
-                <p class="my-0 text-white">کلیه‌ی حقوق مادی و معنوی این سایت متعلق به LyndaKade.ir است</p>
+                <p class="my-0 text-white">کلیه‌ی حقوق این سایت متعلق به لینداکده است.</p>
               </div>
             </div>
           </div>
@@ -1173,6 +1255,9 @@
 
   </script> --}}
 
+  @yield('script_body')
+  @stack('js')
+
   <script>
     function toggleDropdown(e) {
       const _d = $(e.target).closest('.dropdown'),
@@ -1188,11 +1273,51 @@
     $('body')
       .on('mouseenter mouseleave', '.dropdown', toggleDropdown)
       .on('click', '.dropdown-menu a', toggleDropdown);
-  </script>
 
-  @yield('script_body')
-  @stack('js')
-  <script>
+    $(function() {
+      var wrapper_wide = document.querySelector('.wrapper-wide');
+      var sun_class = 'fa-sun';
+      var moon_class = 'fa-moon';
+      var dark_theme_class = 'dark-theme';
+
+
+      document.querySelectorAll('.theme-toggle').forEach((toggle_icon) => {
+        if (wrapper_wide.classList.contains(dark_theme_class)) {
+          $(toggle_icon).html(`<i class="fa fa-sun"  style="font-size: 28px;margin: 10px;"></i>`);
+        } else {
+          $(toggle_icon).html(`<i class="fa fa-moon"  style="font-size: 28px;margin: 10px;"></i>`);
+        }
+
+        toggle_icon.addEventListener('click', function() {
+          if (wrapper_wide.classList.contains(dark_theme_class)) {
+            $(toggle_icon).html(`<i class="fa fa-moon"  style="font-size: 28px;margin: 10px;"></i>`);
+            // toggle_icon.querySelector('i').classList.add(moon_class);
+            // toggle_icon.querySelector('i').classList.remove(sun_class);
+
+            wrapper_wide.classList.remove(dark_theme_class);
+
+            setCookie('theme', 'light');
+          } else {
+            $(toggle_icon).html(`<i class="fa fa-sun"  style="font-size: 28px;margin: 10px;"></i>`);
+            // toggle_icon.querySelector('i').classList.add(sun_class);
+            // toggle_icon.querySelector('i').classList.remove(moon_class);
+
+            wrapper_wide.classList.add(dark_theme_class);
+
+            setCookie('theme', 'dark');
+          }
+        });
+      });
+
+
+      function setCookie(name, value) {
+        var d = new Date();
+        d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+      }
+    });
+
     $(function() {
       $('.form-control.search-input.tt-input').on('keyup', function(event) {
         if (event.keyCode == 13) {
