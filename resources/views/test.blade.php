@@ -165,7 +165,7 @@ $questions = [
       @foreach ($questions as $question)
         <h3 style="font-size: 24px;">
           <span style="color: #000000;">#</span>
-          <span style="color: #ff6600;">
+          <span style="color: #0072ff;">
             <span style="color: #000000;">{{ nPersian($loop->iteration) }}</span>
             {{ $question['question'] }}
           </span>
