@@ -151,7 +151,7 @@ $packages = \App\Package::get();
                 <button class="btn btn-info check-code-button mt-2" onclick="check_code_button(event)" type="button">
                   بررسی کد تخفیف
                 </button>
-                <div id="check-code-result"></div>
+                <div id="check-code-result" style="padding: 5px 0;"></div>
               </div>
             </div>
             <div class="modal-footer">
@@ -177,7 +177,7 @@ $packages = \App\Package::get();
       var code = this_btn.parentElement.parentElement.querySelector('[name="discount_code"]').value.trim();
       if (code == '') {
         result_div.innerHTML =
-          `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+          `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
         return;
       }
       this_btn.setAttribute('disabled', true);
@@ -189,16 +189,16 @@ $packages = \App\Package::get();
           var tt = result.percent;
           if (tt && result.data) {
             result_div.innerHTML =
-              `<span style="color: green;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
+              `<span style="color: green;border: 1px solid;padding: 2px;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
           } else {
             result_div.innerHTML =
-              `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+              `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
           }
         },
         errors: function(xhr) {
           console.log("xhr", xhr);
           result_div.innerHTML =
-            `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+            `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
         }
       });
       this_btn.removeAttribute('disabled');
