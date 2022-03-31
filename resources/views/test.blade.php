@@ -176,7 +176,6 @@ $packages = \App\Package::get();
         result_div = this_btn.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(
           '#check-code-result');
 
-      //   setTimeout(() => {
       var code = this_btn.parentElement.parentElement.querySelector('[name="discount_code"]').value.trim();
       if (code == '') {
         result_div.innerHTML =
@@ -187,8 +186,9 @@ $packages = \App\Package::get();
       $.ajax({
         url: "{{ route('package.check-code.api') }}?code=" + code + '&price=' + price,
         method: 'get',
-        async: false,
+        // async: false,
         success: function(result) {
+          this_btn.removeAttribute('disabled');
           var tt = result.percent;
           if (tt && result.data) {
             result_div.innerHTML =
@@ -199,13 +199,12 @@ $packages = \App\Package::get();
           }
         },
         errors: function(xhr) {
+          this_btn.removeAttribute('disabled');
           console.log("xhr", xhr);
           result_div.innerHTML =
             `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
         }
       });
-      this_btn.removeAttribute('disabled');
-      //   }, 50);
       return false;
     }
   </script>
