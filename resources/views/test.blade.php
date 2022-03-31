@@ -126,7 +126,7 @@
     </div>
   </div>
   @foreach ($packages as $package)
-    <form action="{{ route('packages.payment') }}" method="get" onsubmit="check_code_button(event)">
+    <form action="{{ route('packages.payment') }}" method="get" onsubmit="check_code_button(this)">
       <input type="hidden" name="code" value="{{ hash('sha256', $package->id) }}">
       <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
         aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true" style="margin-top: 50px;padding: 0 10px;">
@@ -145,8 +145,8 @@
                 <p>{{ nPersian($package['days']) }} روزه</p>
                 <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
                 <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
-                <label for="discount_code">کد تخفیف: </label>
-                <input type="text" name="discount_code" id="discount_code">
+                <label for="discount_code{{ $package->id }}">کد تخفیف: </label>
+                <input type="text" name="discount_code" id="discount_code{{ $package->id }}">
                 <br />
                 <button class="btn btn-info check-code-button mt-2" type="submit">
                   بررسی کد تخفیف
