@@ -126,7 +126,7 @@
     </div>
   </div>
   @foreach ($packages as $package)
-    <form action="{{ route('packages.payment') }}" method="get" onsubmit="check_code_button">
+    <form action="{{ route('packages.payment') }}" method="get" onsubmit="check_code_button(event)">
       <input type="hidden" name="code" value="{{ hash('sha256', $package->id) }}">
       <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
         aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true" style="margin-top: 50px;padding: 0 10px;">
