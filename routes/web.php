@@ -39,6 +39,10 @@ Route::get('/packages', 'PackageController@index')->name('packages.index');
 
 Route::get('/dubbed/{username}', 'UserController@dubbed_index')->name('dubbed.index');
 
+Route::get('/dubbed/join', function () {
+    return response()->view('test', []);
+})->name('dubbed.request');
+
 Route::group(
     ['middleware' => 'auth'],
     function () {

@@ -211,14 +211,14 @@ if (count($course->subjects) > 0) {
                     </div>
                   @elseif ($course_state == '2')
                     <div id="cart-btn">
-                      <a data-id="1-{{ $course->id }}"
+                      <a data-id="1-{{ $course->id }}"  data-lang="FA"
                         class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
                         حذف از سبد خرید
                       </a>
                     </div>
                   @elseif($course_state == '3')
                     <div id="cart-btn">
-                      <a data-id="1-{{ $course->id }}"
+                      <a data-id="1-{{ $course->id }}" data-lang="FA"
                         class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
                         افزودن به سبد خرید
                       </a>
@@ -371,14 +371,14 @@ if (count($course->subjects) > 0) {
                     </div>
                   @elseif ($course_state == '2')
                     <div id="cart-btn">
-                      <a data-id="1-{{ $course->id }}"
+                      <a data-id="1-{{ $course->id }}" data-lang="EN"
                         class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
                         Remove From Cart
                       </a>
                     </div>
                   @elseif($course_state == '3')
                     <div id="cart-btn">
-                      <a data-id="1-{{ $course->id }}"
+                      <a data-id="1-{{ $course->id }}" data-lang="EN"
                         class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
                         Add To Cart
                       </a>
