@@ -103,24 +103,7 @@
     <h2>خرید اشتراک</h2>
     <div class="row d-flex justify-content-center text-center mx-md-5 mt-3" style="font-size: 1.2em;">
       @foreach ($packages as $package)
-        {{-- <a href="{{ route('packages.payment', ['code' => hash('sha256', $package->id)]) }}"
-          class="w-20 col-sm-4 mb-4 mx-md-auto mx-5">
-          <div class="card-body p-0" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
-            <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
-            <p>{{ nPersian($package['days']) }} روزه</p>
-            <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
-            <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
-            <button class="btn btn-secondary">خرید اشتراک</button>
-          </div>
-        </a> --}}
         <div class="w-20 col-sm-4 mb-4 mx-md-auto mx-5" data-toggle="modal" data-target="#modal{{ $package->id }}">
-          {{-- <div class="card-body p-0" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
-            <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
-            <p>{{ nPersian($package['days']) }} روزه</p>
-            <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
-            <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
-          </div> --}}
-
           <div class="card-body p-0" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
             <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
             <p>{{ nPersian($package['days']) }} روزه</p>
@@ -140,7 +123,7 @@
     </div>
   </div>
   @foreach ($packages as $package)
-    <form action="{{ route('packages.payment') }}" method="get">
+    <form action="{{ route('packages.payment') }}" method="get" onsubmit="check_code_button">
       <input type="hidden" name="code" value="{{ hash('sha256', $package->id) }}">
       <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
         aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true" style="margin-top: 50px;padding: 0 10px;">
@@ -162,7 +145,7 @@
                 <label for="discount_code">کد تخفیف: </label>
                 <input type="text" name="discount_code" id="discount_code">
                 <br />
-                <button class="btn btn-info check-code-button mt-2" onclick="check_code_button()">
+                <button class="btn btn-info check-code-button mt-2" type="submit">
                   بررسی کد تخفیف
                 </button>
                 <div id="check-code-result"></div>
@@ -180,9 +163,9 @@
 @endsection
 @section('script_body')
   <script>
-    function check_code_button() {
-      //   e.preventDefault();
-      //   console.log(e);
+    function check_code_button(e) {
+      e.preventDefault();
+      console.log(e);
       setTimeout(() => {
         var code = document.querySelector('[name="discount_code"]').value.trim();
         if (code == '') {
@@ -192,7 +175,7 @@
         }
         document.querySelector('.check-code-button').setAttribute('disabled', true);
         $.ajax({
-          url: '{{ route('package.check-code.api') }}?code=' + code,
+          url: "{{ route('package.check-code.api') }}?code=" + code,
           method: 'get',
           async: false,
           success: function(result) {
@@ -211,6 +194,7 @@
               `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
           }
         });
+        document.querySelector('.check-code-button').setAttribute('disabled', false);
       }, 50);
       return false;
     }

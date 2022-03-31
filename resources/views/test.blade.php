@@ -2,62 +2,201 @@
 @push('meta.in.head')
   @include('meta::manager', [
       'image' => 'https://lyndakade.ir/image/logo.png',
-      'title' => 'جذب دوبلور - لیندا کده',
-      'keywords' => get_seo_keywords() . 'جذب دوبلور , استخدام دوبلور , ',
-      'description' => 'فرم جهت جذب دوبلور. | ' . get_seo_description(),
+      'title' => 'خرید اشتراک - لیندا کده',
+      'keywords' => get_seo_keywords() . ', خرید اشتراک , buy package , package, lyndakade package',
+      'description' => 'خرید اشتراک | ' . get_seo_description(),
   ])
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "جذب دوبلور",
-      "url": "{{ route('dubbed.request') }}"
+      "@type": "ItemList",
+      "itemListElement": [
+        @foreach ($packages as $package)
+          {
+          "@type":"ListItem",
+          "position":{{ $loop->index + 1 }},
+          "url":"{{ route('packages.index', ['id' => $loop->index + 1]) }}"
+          @if (!$loop->last)
+            ,
+          @endif
+        @endforeach
+      ]
     }
   </script>
 @endpush
 @section('content')
+  <h1 class="sr-only">خرید اشتراک</h1>
   <style>
+    .w-20 {
+      user-select: none;
+    }
+
+    .w-20 .card-body {
+      transition-duration: 200ms;
+    }
+
+    .w-20 .card-body:hover {
+      background-color: #00a9d3 !important;
+      color: #fff !important;
+    }
+
+    @media(min-width: 768px) {
+      .w-20 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 20% !important;
+        flex: 0 0 20% !important;
+        max-width: 20%;
+      }
+    }
+
+    @media(max-width: 768px) {
+
+      .w-20 .card-body {
+        background-color: #00a9d3 !important;
+      }
+
+    }
+
+    .card-body>p {
+      border-top: 2px solid #919191;
+      margin: 0;
+      padding: 0.5rem 0;
+    }
 
   </style>
-  @csrf
-  <div class="container">
-    <div class="row justify-content-center m-4">
-      <div class="col-md-6 com-sm-12 pt-3">
-        <div class="card" id="card">
-          <div class="card-header text-center">
-            <h1>جذب دوبلور</h1>
+  @if (number_of_available_package(auth()->id()) > -1)
+    <div class="container card mt-0 my-md-5 py-3 ">
+      <h2>اشتراک های فعلی من</h2>
+      <div class="row d-flex justify-content-center text-center mx-md-5 mt-3" style="font-size: 1.2em;">
+        <table class="table table-bordered table-sm col-sm-12 col-md-8">
+          <tbody>
+            <tr>
+              <td>
+                از اعتبار اشتراک فعلی شما <b>{{ nPersian(number_of_available_package(auth()->id())) }}</b>
+                دوره آموزشی باقی مانده است و تا
+                <b>
+                  تاریخ
+                  @php
+                    $date = strtotime(end_date_of_available_package(auth()->id())->toDateTimeString());
+                    $d = date('Y/m/d', $date);
+                    $d = explode('/', $d);
+                    echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/')) . ' و ساعت ' . nPersian(date('H:i:s', $date));
+                  @endphp
+                </b>
+                اعتبار دارد.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>
+                  توجه داشته باشید، در صورت پایان یافتن زمان این اشتراک، اعتبار دوره آموزشی آن از بین خواهد رفت،
+                  اما در صورت خرید اشتراک دیگر، اعتبار دوره آموزشی فعلی نیز به اشتراک جدید اضافه خواهد شد.
+                </b>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  @endif
+  <div class="container card mt-0 my-md-5 py-3 ">
+    <h2>خرید اشتراک</h2>
+    <div class="row d-flex justify-content-center text-center mx-md-5 mt-3" style="font-size: 1.2em;">
+      @foreach ($packages as $package)
+        <div class="w-20 col-sm-4 mb-4 mx-md-auto mx-5" data-toggle="modal" data-target="#modal{{ $package->id }}">
+          <div class="card-body p-0" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
+            <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
+            <p>{{ nPersian($package['days']) }} روزه</p>
+            <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
+            <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
+            <p class="px-1" style="font-size: 13px;color: #7a00ad;font-weight: 600;">
+              قیمت هر دوره آموزشی بطور متوسط
+              @php
+                $ratio = $package['price'] / $package['count'];
+                echo nPersian(number_format($ratio));
+              @endphp
+              تومان
+            </p>
           </div>
-          <div class="card-body">
-            <form id="method-2" method="POST" action="{{ route('dubbed.request') }}">
-              @csrf
-              <div class="form-group row">
-                <label for="email" class="col-md-4 col-form-label text-md-left">لینک درس در لینکدین</label>
-                <div class="col-md-6">
-                  <input id="email" type="url" class="form-control @error('email') is-invalid @enderror" name="email"
-                    value="{{ old('email') }}" autocomplete="email">
-                  @error('email')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </div>
+        </div>
+      @endforeach
+    </div>
+  </div>
+  @foreach ($packages as $package)
+    <form action="{{ route('packages.payment') }}" method="get" onsubmit="check_code_button">
+      <input type="hidden" name="code" value="{{ hash('sha256', $package->id) }}">
+      <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
+        aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true" style="margin-top: 50px;padding: 0 10px;">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel{{ $package->id }}">{{ $package['title'] }}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                style="float: left;margin: 0 auto 0 0;padding: 3px;">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="card-body p-0" style="height: 250px !important;">
+                <h3 class="pt-4 pb-4">{{ $package['title'] }}</h3>
+                <p>{{ nPersian($package['days']) }} روزه</p>
+                <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
+                <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
+                <label for="discount_code">کد تخفیف: </label>
+                <input type="text" name="discount_code" id="discount_code">
+                <br />
+                <button class="btn btn-info check-code-button mt-2" type="submit">
+                  بررسی کد تخفیف
+                </button>
+                <div id="check-code-result"></div>
               </div>
-              <div class="form-group row mb-0">
-                <div class="col-md-6 col-xs-6 col-sm-6">
-                  <button type="submit" class="btn btn-success my-2">
-                    ثبت درخواست
-                  </button>
-                </div>
-              </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+              <button class="btn btn-primary" type="submit">رفتن به درگاه پرداخت</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </form>
+  @endforeach
 @endsection
-@push('js')
+@section('script_body')
   <script>
-    $(function() {});
+    function check_code_button(e) {
+      e.preventDefault();
+      console.log(e);
+      setTimeout(() => {
+        var code = document.querySelector('[name="discount_code"]').value.trim();
+        if (code == '') {
+          document.getElementById('check-code-result').innerHTML =
+            `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+          return;
+        }
+        document.querySelector('.check-code-button').setAttribute('disabled', true);
+        $.ajax({
+          url: "{{ route('package.check-code.api') }}?code=" + code,
+          method: 'get',
+          async: false,
+          success: function(result) {
+            var tt = result.percent;
+            if (tt && result.data) {
+              document.getElementById('check-code-result').innerHTML =
+                `<span style="color: green;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
+            } else {
+              document.getElementById('check-code-result').innerHTML =
+                `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+            }
+          },
+          errors: function(xhr) {
+            console.log("xhr", xhr);
+            document.getElementById('check-code-result').innerHTML =
+              `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+          }
+        });
+        document.querySelector('.check-code-button').setAttribute('disabled', false);
+      }, 50);
+      return false;
+    }
   </script>
-@endpush
+@endsection
