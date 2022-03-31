@@ -677,11 +677,11 @@
         font-family: 'IranSANS';
         font-weight: bold;">
           100 عدد تخفیف 40 درصدی ویژه سیزده‌بدر
-          <a href="{{ route('packages.index') }}" style="color: #df9000;text-shadow: 1px 1px black;">
+          <a href="{{ route('packages.index') }}" style="color: #df9000;text-shadow: 0px 0px 6px black">
             خرید اشتراک
           </a>
           تا پایان 15 فروردین
-          <span style="color:#df9000;text-shadow: 1px 1px black;">
+          <span style="color:#df9000;text-shadow: 0px 0px 6px black">
             کد تخفیف: 13bedar
           </span>
         </div>
