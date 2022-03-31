@@ -174,7 +174,7 @@ $packages = \App\Package::get();
           '#check-code-result');
 
       //   setTimeout(() => {
-      var code = document.querySelector('[name="discount_code"]').value.trim();
+      var code = this_btn.parentElement.parentElement.querySelector('[name="discount_code"]').value.trim();
       if (code == '') {
         result_div.innerHTML =
           `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
