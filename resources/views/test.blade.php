@@ -184,8 +184,13 @@ $packages = \App\Package::get();
 
       return n
         .toString()
-        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
         .replace(/\d/g, x => farsiDigits[x]);
+    }
+
+    function numFormat(n) {
+      return n
+        .toString()
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     }
 
     function check_code_button(e) {
@@ -202,7 +207,7 @@ $packages = \App\Package::get();
       if (code == '') {
         result_div.innerHTML =
           `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
-        package_price.innerHTML = `${engToPer(price)} تومان`;
+        package_price.innerHTML = `${engToPer(numFormat(price))} تومان`;
         return;
       }
       this_btn.setAttribute('disabled', true);
@@ -214,17 +219,17 @@ $packages = \App\Package::get();
           this_btn.removeAttribute('disabled');
           var tt = result.percent;
           if (tt && result.data) {
-            package_price.innerHTML = `${engToPer(price)} تومان
+            package_price.innerHTML = `${engToPer(numFormat(price))} تومان
 <span style="color: #39c300;">
                 با تخفیف
-${engToPer(result.new_price)}
+${engToPer(numFormat(result.new_price))}
     تومان</span>`;
             result_div.innerHTML =
               `<span style="color: green;border: 1px solid;padding: 2px;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
           } else {
             result_div.innerHTML =
               `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
-            package_price.innerHTML = `${engToPer(price)} تومان`;
+            package_price.innerHTML = `${engToPer(numFormat(price))} تومان`;
           }
         },
         errors: function(xhr) {
@@ -232,7 +237,7 @@ ${engToPer(result.new_price)}
           console.log("xhr", xhr);
           result_div.innerHTML =
             `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
-          package_price.innerHTML = `${engToPer(price)} تومان`;
+          package_price.innerHTML = `${engToPer(numFormat(price))} تومان`;
         }
       });
       return false;
