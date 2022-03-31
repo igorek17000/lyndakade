@@ -168,36 +168,40 @@ $packages = \App\Package::get();
   <script>
     function check_code_button(e) {
       e.preventDefault();
-      console.log(e);
+      //   console.log(e.target);
+      var this_btn = e.target,
+        result_div = this_btn.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(
+          '#check-code-result');
+
       //   setTimeout(() => {
-      //     var code = document.querySelector('[name="discount_code"]').value.trim();
-      //     if (code == '') {
-      //       document.getElementById('check-code-result').innerHTML =
-      //         `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
-      //       return;
-      //     }
-      //     document.querySelector('.check-code-button').setAttribute('disabled', true);
-      //     $.ajax({
-      //       url: "{{ route('package.check-code.api') }}?code=" + code,
-      //       method: 'get',
-      //       async: false,
-      //       success: function(result) {
-      //         var tt = result.percent;
-      //         if (tt && result.data) {
-      //           document.getElementById('check-code-result').innerHTML =
-      //             `<span style="color: green;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
-      //         } else {
-      //           document.getElementById('check-code-result').innerHTML =
-      //             `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
-      //         }
-      //       },
-      //       errors: function(xhr) {
-      //         console.log("xhr", xhr);
-      //         document.getElementById('check-code-result').innerHTML =
-      //           `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
-      //       }
-      //     });
-      //     document.querySelector('.check-code-button').setAttribute('disabled', false);
+      var code = document.querySelector('[name="discount_code"]').value.trim();
+      if (code == '') {
+        result_div.innerHTML =
+          `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+        return;
+      }
+      this_btn.setAttribute('disabled', true);
+      $.ajax({
+        url: "{{ route('package.check-code.api') }}?code=" + code,
+        method: 'get',
+        async: false,
+        success: function(result) {
+          var tt = result.percent;
+          if (tt && result.data) {
+            result_div.innerHTML =
+              `<span style="color: green;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
+          } else {
+            result_div.innerHTML =
+              `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+          }
+        },
+        errors: function(xhr) {
+          console.log("xhr", xhr);
+          result_div.innerHTML =
+            `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+        }
+      });
+      this_btn.removeAttribute('disabled');
       //   }, 50);
       return false;
     }
