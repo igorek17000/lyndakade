@@ -128,6 +128,7 @@ $packages = \App\Package::get();
   @foreach ($packages as $package)
     <form action="{{ route('packages.payment') }}" method="get">
       <input type="hidden" name="code" value="{{ hash('sha256', $package->id) }}">
+      <input type="hidden" name="price" value="{{ $package['price'] }}">
       <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
         aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true" style="margin-top: 50px;padding: 0 10px;">
         <div class="modal-dialog" role="document">
@@ -170,6 +171,8 @@ $packages = \App\Package::get();
       e.preventDefault();
       //   console.log(e.target);
       var this_btn = e.target,
+        price = this_btn.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(
+          '[name="price"]').value.trim(),
         result_div = this_btn.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(
           '#check-code-result');
 
@@ -182,7 +185,7 @@ $packages = \App\Package::get();
       }
       this_btn.setAttribute('disabled', true);
       $.ajax({
-        url: "{{ route('package.check-code.api') }}?code=" + code,
+        url: "{{ route('package.check-code.api') }}?code=" + code + '&price=' + price,
         method: 'get',
         async: false,
         success: function(result) {

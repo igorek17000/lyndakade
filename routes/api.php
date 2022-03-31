@@ -196,7 +196,8 @@ Route::middleware('guest')->post('/subjects/update', function (Request $request)
 
 Route::middleware('guest')->get('/package/check-code', function (Request $request) {
     $code = $request->get('code');
-    if (!$code) {
+    $price = $request->get('price');
+    if (!$code || !$price) {
         return new JsonResponse([
             'data' => false,
             'status' => 'failed'
@@ -212,6 +213,7 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
         return new JsonResponse([
             'data' => true,
             'percent' => $dis->percent,
+            'new_price' => $dis->percent / 100 * $price,
             'status' => 'success'
         ], 200);
     }
