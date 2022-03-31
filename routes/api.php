@@ -213,7 +213,7 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
         return new JsonResponse([
             'data' => true,
             'percent' => $dis->percent,
-            'new_price' => $dis->percent / 100 * $price,
+            'new_price' => $price - ($dis->percent / 100 * $price),
             'status' => 'success'
         ], 200);
     }
