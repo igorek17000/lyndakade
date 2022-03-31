@@ -171,7 +171,7 @@ $packages = \App\Package::get();
       e.preventDefault();
       //   console.log(e.target);
       var this_btn = e.target,
-        price = this_btn.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(
+        price = this_btn.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(
           '[name="price"]').value.trim(),
         result_div = this_btn.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(
           '#check-code-result');
