@@ -117,21 +117,21 @@ $(function() {
                 },
                 success: function(e) {
                     if (e) {
-                        var a = n.attr("data-id"),
-                            lang = n.attr("data-lang"),
-                            txt =
-                                lang == "FA"
-                                    ? "حذف از سبد خرید"
-                                    : "Remove From Cart";
+                        var a = n.attr("data-id");
                         n.remove();
                         var o = document.querySelectorAll("#cart-btn");
-                        for (let t = 0; t < o.length; t++)
+                        for (let t = 0; t < o.length; t++) {
+                            var txt =
+                                o[t].getAttribute("data-lang") == "FA"
+                                    ? "حذف از سبد خرید"
+                                    : "Remove From Cart";
                             o[t].innerHTML =
                                 '<a data-id="' +
                                 a +
                                 '" class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">' +
                                 txt +
                                 "</a>";
+                        }
                         t();
                     } else alert("خطایی رخ داده است. لطفا دوباره تلاش کنید.");
                 },
@@ -151,21 +151,21 @@ $(function() {
                     },
                     success: function(e) {
                         if (e) {
-                            var a = n.attr("data-id"),
-                                lang = n.attr("data-lang"),
-                                txt =
-                                    lang == "FA"
-                                        ? "افزودن به سبد خرید"
-                                        : "Add To Cart";
+                            var a = n.attr("data-id");
                             n.remove();
                             var o = document.querySelectorAll("#cart-btn");
-                            for (let t = 0; t < o.length; t++)
+                            for (let t = 0; t < o.length; t++) {
+                                var txt =
+                                    o[t].getAttribute("data-lang") == "FA"
+                                        ? "افزودن به سبد خرید"
+                                        : "Add To Cart";
                                 o[t].innerHTML =
                                     '<a data-id="' +
                                     a +
                                     '" class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">' +
                                     txt +
                                     "</a>";
+                            }
                             t();
                         } else
                             alert("خطایی رخ داده است. لطفا دوباره تلاش کنید.");
