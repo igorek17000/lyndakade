@@ -145,14 +145,14 @@ $packages = \App\Package::get();
                 <h3 class="py-2">{{ $package['title'] }}</h3>
                 <p>{{ nPersian($package['days']) }} روزه</p>
                 <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
-                <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
+                <p class="package-price">{{ nPersian(number_format($package['price'])) }} تومان</p>
                 <label for="discount_code{{ $package->id }}">کد تخفیف: </label>
                 <input type="text" name="discount_code" id="discount_code{{ $package->id }}">
                 <br />
                 <button class="btn btn-info check-code-button mt-2" onclick="check_code_button(event)" type="button">
                   بررسی کد تخفیف
                 </button>
-                <div id="check-code-result" style="padding: 5px 0;"></div>
+                <div class="check-code-result" style="padding: 5px 0;"></div>
               </div>
             </div>
             <div class="modal-footer">
@@ -167,19 +167,42 @@ $packages = \App\Package::get();
 @endsection
 @section('script_body')
   <script>
+    function perToEng(str) {
+      var
+        persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
+        arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
+      if (typeof str === 'string') {
+        for (var i = 0; i < 10; i++) {
+          str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+        }
+      }
+      return str;
+    }
+
+    function engToPer(n) {
+      const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+
+      return n
+        .toString()
+        .replace(/\d/g, x => farsiDigits[x])
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    }
+
     function check_code_button(e) {
       e.preventDefault();
       //   console.log(e.target);
       var this_btn = e.target,
-        price = this_btn.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(
+        price = this_btn.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement
+        .querySelector(
           '[name="price"]').value.trim(),
-        result_div = this_btn.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(
-          '#check-code-result');
+        result_div = this_btn.parentElement.parentElement.querySelector('.check-code-result'),
+        package_price = this_btn.parentElement.parentElement.querySelector('.package-price');
 
       var code = this_btn.parentElement.parentElement.querySelector('[name="discount_code"]').value.trim();
       if (code == '') {
         result_div.innerHTML =
           `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
+        package_price.innerHTML = `${engToPer(price)} تومان`;
         return;
       }
       this_btn.setAttribute('disabled', true);
@@ -191,11 +214,17 @@ $packages = \App\Package::get();
           this_btn.removeAttribute('disabled');
           var tt = result.percent;
           if (tt && result.data) {
+            package_price.innerHTML = `${engToPer(price)} تومان
+<span style="color: #39c300;">
+                با تخفیف
+${engToPer(result.new_price)}
+    تومان</span>`;
             result_div.innerHTML =
               `<span style="color: green;border: 1px solid;padding: 2px;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
           } else {
             result_div.innerHTML =
               `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
+            package_price.innerHTML = `${engToPer(price)} تومان`;
           }
         },
         errors: function(xhr) {
@@ -203,6 +232,7 @@ $packages = \App\Package::get();
           console.log("xhr", xhr);
           result_div.innerHTML =
             `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
+          package_price.innerHTML = `${engToPer(price)} تومان`;
         }
       });
       return false;
