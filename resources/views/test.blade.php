@@ -1,3 +1,6 @@
+@php
+        $packages = Package::get();
+@endphp
 @extends('layouts.app')
 @push('meta.in.head')
   @include('meta::manager', [
