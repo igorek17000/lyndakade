@@ -1,5 +1,5 @@
 @php
-        $packages = Package::get();
+        $packages = \App\Package::get();
 @endphp
 @extends('layouts.app')
 @push('meta.in.head')
