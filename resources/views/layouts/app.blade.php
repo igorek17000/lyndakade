@@ -669,18 +669,21 @@
       }
 
     </style>
-    @if (\App\Discount::where('code', 'lyndakade1401')->count() > 0)
-      @if (now() <= \App\Discount::where('code', 'lyndakade1401')->first()->end_date)
+    @if (\App\Discount::where('code', '13bedar')->count() > 0)
+      @if (now() <= \App\Discount::where('code', '13bedar')->first()->end_date)
         <div class="sticky-top text-center" style="font-size: 17px;
         padding: 15px 0;
         background-color: #00aaca;
         font-family: 'IranSANS';
         font-weight: bold;">
-          تخفیف 40 درصدی ویژه نوروز
+          100 عدد تخفیف 40 درصدی ویژه سیزده‌بدر
           <a href="{{ route('packages.index') }}" style="color: #df9000;text-shadow: 1px 1px black;">
             خرید اشتراک
           </a>
-          سایت: lyndakade1401
+          تا پایان 15 فروردین
+          <span style="color:#df9000;text-shadow: 1px 1px black;">
+            کد تخفیف: 13bedar
+          </span>
         </div>
       @endif
     @endif
