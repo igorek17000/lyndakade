@@ -1,5 +1,5 @@
 @php
-        $packages = \App\Package::get();
+$packages = \App\Package::get();
 @endphp
 @extends('layouts.app')
 @push('meta.in.head')
@@ -126,7 +126,7 @@
     </div>
   </div>
   @foreach ($packages as $package)
-    <form action="{{ route('packages.payment') }}" method="get" onsubmit="check_code_button(this)">
+    <form action="{{ route('packages.payment') }}" method="get">
       <input type="hidden" name="code" value="{{ hash('sha256', $package->id) }}">
       <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
         aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true" style="margin-top: 50px;padding: 0 10px;">
@@ -148,7 +148,7 @@
                 <label for="discount_code{{ $package->id }}">کد تخفیف: </label>
                 <input type="text" name="discount_code" id="discount_code{{ $package->id }}">
                 <br />
-                <button class="btn btn-info check-code-button mt-2" type="submit">
+                <button class="btn btn-info check-code-button mt-2" onclick="check_code_button(event)" type="button">
                   بررسی کد تخفیف
                 </button>
                 <div id="check-code-result"></div>
@@ -169,36 +169,36 @@
     function check_code_button(e) {
       e.preventDefault();
       console.log(e);
-    //   setTimeout(() => {
-    //     var code = document.querySelector('[name="discount_code"]').value.trim();
-    //     if (code == '') {
-    //       document.getElementById('check-code-result').innerHTML =
-    //         `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
-    //       return;
-    //     }
-    //     document.querySelector('.check-code-button').setAttribute('disabled', true);
-    //     $.ajax({
-    //       url: "{{ route('package.check-code.api') }}?code=" + code,
-    //       method: 'get',
-    //       async: false,
-    //       success: function(result) {
-    //         var tt = result.percent;
-    //         if (tt && result.data) {
-    //           document.getElementById('check-code-result').innerHTML =
-    //             `<span style="color: green;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
-    //         } else {
-    //           document.getElementById('check-code-result').innerHTML =
-    //             `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
-    //         }
-    //       },
-    //       errors: function(xhr) {
-    //         console.log("xhr", xhr);
-    //         document.getElementById('check-code-result').innerHTML =
-    //           `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
-    //       }
-    //     });
-    //     document.querySelector('.check-code-button').setAttribute('disabled', false);
-    //   }, 50);
+      //   setTimeout(() => {
+      //     var code = document.querySelector('[name="discount_code"]').value.trim();
+      //     if (code == '') {
+      //       document.getElementById('check-code-result').innerHTML =
+      //         `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+      //       return;
+      //     }
+      //     document.querySelector('.check-code-button').setAttribute('disabled', true);
+      //     $.ajax({
+      //       url: "{{ route('package.check-code.api') }}?code=" + code,
+      //       method: 'get',
+      //       async: false,
+      //       success: function(result) {
+      //         var tt = result.percent;
+      //         if (tt && result.data) {
+      //           document.getElementById('check-code-result').innerHTML =
+      //             `<span style="color: green;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
+      //         } else {
+      //           document.getElementById('check-code-result').innerHTML =
+      //             `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+      //         }
+      //       },
+      //       errors: function(xhr) {
+      //         console.log("xhr", xhr);
+      //         document.getElementById('check-code-result').innerHTML =
+      //           `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+      //       }
+      //     });
+      //     document.querySelector('.check-code-button').setAttribute('disabled', false);
+      //   }, 50);
       return false;
     }
   </script>
