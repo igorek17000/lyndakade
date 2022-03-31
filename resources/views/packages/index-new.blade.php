@@ -1,3 +1,6 @@
+@php
+$packages = \App\Package::get();
+@endphp
 @extends('layouts.app')
 @push('meta.in.head')
   @include('meta::manager', [
@@ -123,8 +126,9 @@
     </div>
   </div>
   @foreach ($packages as $package)
-    <form action="{{ route('packages.payment') }}" method="get" onsubmit="check_code_button">
+    <form action="{{ route('packages.payment') }}" method="get">
       <input type="hidden" name="code" value="{{ hash('sha256', $package->id) }}">
+      <input type="hidden" name="price" value="{{ $package['price'] }}">
       <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
         aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true" style="margin-top: 50px;padding: 0 10px;">
         <div class="modal-dialog" role="document">
@@ -138,17 +142,17 @@
             </div>
             <div class="modal-body">
               <div class="card-body p-0" style="height: 250px !important;">
-                <h3 class="pt-4 pb-4">{{ $package['title'] }}</h3>
+                <h3 style="padding: .4rem 0 !important;">{{ $package['title'] }}</h3>
                 <p>{{ nPersian($package['days']) }} روزه</p>
                 <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
-                <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
-                <label for="discount_code">کد تخفیف: </label>
-                <input type="text" name="discount_code" id="discount_code">
+                <p class="package-price">{{ nPersian(number_format($package['price'])) }} تومان</p>
+                <label for="discount_code{{ $package->id }}">کد تخفیف: </label>
+                <input type="text" name="discount_code" id="discount_code{{ $package->id }}">
                 <br />
-                <button class="btn btn-info check-code-button mt-2" type="submit">
+                <button class="btn btn-info check-code-button mt-2" onclick="check_code_button(event)" type="button">
                   بررسی کد تخفیف
                 </button>
-                <div id="check-code-result"></div>
+                <div class="check-code-result" style="padding: 5px 0;"></div>
               </div>
             </div>
             <div class="modal-footer">
@@ -163,39 +167,59 @@
 @endsection
 @section('script_body')
   <script>
+    function numFormat(n) {
+      return n
+        .toString()
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    }
+
     function check_code_button(e) {
       e.preventDefault();
-      console.log(e);
-      setTimeout(() => {
-        var code = document.querySelector('[name="discount_code"]').value.trim();
-        if (code == '') {
-          document.getElementById('check-code-result').innerHTML =
-            `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
-          return;
-        }
-        document.querySelector('.check-code-button').setAttribute('disabled', true);
-        $.ajax({
-          url: "{{ route('package.check-code.api') }}?code=" + code,
-          method: 'get',
-          async: false,
-          success: function(result) {
-            var tt = result.percent;
-            if (tt && result.data) {
-              document.getElementById('check-code-result').innerHTML =
-                `<span style="color: green;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
-            } else {
-              document.getElementById('check-code-result').innerHTML =
-                `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
-            }
-          },
-          errors: function(xhr) {
-            console.log("xhr", xhr);
-            document.getElementById('check-code-result').innerHTML =
-              `<span style="color: red;">کد نا معتبر می‌باشد.</span>`;
+      //   console.log(e.target);
+      var this_btn = e.target,
+        price = this_btn.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement
+        .querySelector(
+          '[name="price"]').value.trim(),
+        result_div = this_btn.parentElement.parentElement.querySelector('.check-code-result'),
+        package_price = this_btn.parentElement.parentElement.querySelector('.package-price');
+
+      var code = this_btn.parentElement.parentElement.querySelector('[name="discount_code"]').value.trim();
+      if (code == '') {
+        result_div.innerHTML =
+          `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
+        package_price.innerHTML = `${engToPer(numFormat(price))} تومان`;
+        return;
+      }
+      this_btn.setAttribute('disabled', true);
+      $.ajax({
+        url: "{{ route('package.check-code.api') }}?code=" + code + '&price=' + price,
+        method: 'get',
+        // async: false,
+        success: function(result) {
+          this_btn.removeAttribute('disabled');
+          var tt = result.percent;
+          if (tt && result.data) {
+            package_price.innerHTML = `${engToPer(numFormat(price))} تومان
+<span style="color: #39c300;">
+                با تخفیف
+${engToPer(numFormat(result.new_price))}
+    تومان</span>`;
+            result_div.innerHTML =
+              `<span style="color: green;border: 1px solid;padding: 2px;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
+          } else {
+            result_div.innerHTML =
+              `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
+            package_price.innerHTML = `${engToPer(numFormat(price))} تومان`;
           }
-        });
-        document.querySelector('.check-code-button').setAttribute('disabled', false);
-      }, 50);
+        },
+        errors: function(xhr) {
+          this_btn.removeAttribute('disabled');
+          console.log("xhr", xhr);
+          result_div.innerHTML =
+            `<span style="color: red;border: 1px solid;padding: 2px;">کد نا معتبر می‌باشد.</span>`;
+          package_price.innerHTML = `${engToPer(numFormat(price))} تومان`;
+        }
+      });
       return false;
     }
   </script>
