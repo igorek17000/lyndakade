@@ -184,8 +184,8 @@ $packages = \App\Package::get();
 
       return n
         .toString()
-        .replace(/\d/g, x => farsiDigits[x])
-        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        .replace(/\d/g, x => farsiDigits[x]);
     }
 
     function check_code_button(e) {
