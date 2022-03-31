@@ -57,6 +57,12 @@
 
     }
 
+    .card-body>p {
+      border-top: 2px solid #919191;
+      margin: 0;
+      padding: 0.5rem 0;
+    }
+
   </style>
   @if (number_of_available_package(auth()->id()) > -1)
     <div class="container card mt-0 my-md-5 py-3 ">
@@ -108,11 +114,26 @@
           </div>
         </a> --}}
         <div class="w-20 col-sm-4 mb-4 mx-md-auto mx-5" data-toggle="modal" data-target="#modal{{ $package->id }}">
+          {{-- <div class="card-body p-0" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
+            <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
+            <p>{{ nPersian($package['days']) }} روزه</p>
+            <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
+            <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
+          </div> --}}
+
           <div class="card-body p-0" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
             <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
             <p>{{ nPersian($package['days']) }} روزه</p>
             <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
             <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
+            <p class="px-1" style="font-size: 13px;color: #7a00ad;font-weight: 600;">
+              قیمت هر دوره آموزشی بطور متوسط
+              @php
+                $ratio = $package['price'] / $package['count'];
+                echo nPersian(number_format($ratio));
+              @endphp
+              تومان
+            </p>
           </div>
         </div>
       @endforeach
@@ -160,8 +181,8 @@
 @section('script_body')
   <script>
     function check_code_button() {
-    //   e.preventDefault();
-    //   console.log(e);
+      //   e.preventDefault();
+      //   console.log(e);
       setTimeout(() => {
         var code = document.querySelector('[name="discount_code"]').value.trim();
         if (code == '') {
@@ -171,7 +192,7 @@
         }
         document.querySelector('.check-code-button').setAttribute('disabled', true);
         $.ajax({
-          url: '{{ route("package.check-code.api") }}?code=' + code,
+          url: '{{ route('package.check-code.api') }}?code=' + code,
           method: 'get',
           async: false,
           success: function(result) {
