@@ -142,7 +142,7 @@ $packages = \App\Package::get();
             </div>
             <div class="modal-body">
               <div class="card-body p-0" style="height: 250px !important;">
-                <h3 class="py-2">{{ $package['title'] }}</h3>
+                <h3 style="padding: .4rem 0 !important;">{{ $package['title'] }}</h3>
                 <p>{{ nPersian($package['days']) }} روزه</p>
                 <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
                 <p class="package-price">{{ nPersian(number_format($package['price'])) }} تومان</p>
