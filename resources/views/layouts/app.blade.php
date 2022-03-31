@@ -676,7 +676,7 @@
         background-color: #00aaca;
         font-family: 'IranSANS';
         font-weight: bold;">
-          100 عدد تخفیف 40 درصدی ویژه سیزده‌بدر
+          {{ nPersian(100) }} عدد تخفیف {{ nPersian(40) }} درصدی ویژه سیزده‌بدر
           <a href="{{ route('packages.index') }}" style="color: #df9000;text-shadow: 0px 0px 6px black">
             خرید اشتراک
           </a>
