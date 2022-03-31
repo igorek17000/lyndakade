@@ -200,7 +200,7 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
         return new JsonResponse([
             'data' => false,
             'status' => 'failed'
-        ], 403);
+        ], 200);
     }
 
     $today = \Carbon\Carbon::now();
@@ -218,7 +218,7 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
     return new JsonResponse([
         'data' => false,
         'status' => 'failed'
-    ], 403);
+    ], 200);
 })->name('package.check-code.api');
 
 Route::middleware('guest')->get('/users/get-data-all', function (Request $request) {
