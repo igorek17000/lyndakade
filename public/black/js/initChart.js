@@ -35,15 +35,21 @@ function get_chart_data(days, url) {
 }
 
 function get_views_for_last_days(days = 7) {
-    return get_chart_data(days, "data/get-views-for-days");
+    return get_chart_data(days, "https://lyndakade.ir/data/get-views-for-days");
 }
 
 function get_purchases_count_for_last_days(days = 7) {
-    return get_chart_data(days, "data/get-purchases-count-for-days");
+    return get_chart_data(
+        days,
+        "https://lyndakade.ir/data/get-purchases-count-for-days"
+    );
 }
 
 function get_purchases_price_for_last_days(days = 7) {
-    return get_chart_data(days, "data/get-purchases-price-for-days");
+    return get_chart_data(
+        days,
+        "https://lyndakade.ir/data/get-purchases-price-for-days"
+    );
 }
 
 $(function() {
