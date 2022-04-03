@@ -104,68 +104,45 @@ $packages = \App\Package::get();
   @endif
   <div class="container card mt-0 my-md-5 py-3 ">
     <h2>خرید اشتراک</h2>
-    <div class="row d-flex justify-content-center text-center mx-md-5 mt-3" style="font-size: 1.2em;">
-      @foreach ($packages as $package)
-        <div class="w-20 col-sm-4 mb-4 mx-md-auto mx-5" data-toggle="modal" data-target="#modal{{ $package->id }}">
-          <div class="card-body p-0" style="border: darkcyan 2px solid; border-radius: 10px; height: 300px !important;">
-            <h3 class="pt-5 pb-4">{{ $package['title'] }}</h3>
-            <p>{{ nPersian($package['days']) }} روزه</p>
-            <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
-            <p>{{ nPersian(number_format($package['price'])) }} تومان</p>
-            <p class="px-1" style="font-size: 13px;color: #7a00ad;font-weight: 600;">
-              قیمت هر دوره آموزشی بطور متوسط
-              @php
-                $ratio = $package['price'] / $package['count'];
-                echo nPersian(number_format($ratio));
-              @endphp
-              تومان
-            </p>
-          </div>
-        </div>
-      @endforeach
+    <div class="chart-area">
+      <canvas id="chartBig5"></canvas>
     </div>
   </div>
-  @foreach ($packages as $package)
-    <form action="{{ route('packages.payment') }}" method="get">
-      <input type="hidden" name="code" value="{{ hash('sha256', $package->id) }}">
-      <input type="hidden" name="price" value="{{ $package['price'] }}">
-      <div class="modal text-center fade" id="modal{{ $package->id }}" tabindex="-1" role="dialog"
-        aria-labelledby="modalLabel{{ $package->id }}" aria-hidden="true" style="margin-top: 50px;padding: 0 10px;">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel{{ $package->id }}">{{ $package['title'] }}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                style="float: left;margin: 0 auto 0 0;padding: 3px;">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="card-body p-0" style="height: 250px !important;">
-                <h3 style="padding: .4rem 0 !important;">{{ $package['title'] }}</h3>
-                <p>{{ nPersian($package['days']) }} روزه</p>
-                <p>{{ nPersian($package['count']) }} دوره آموزشی</p>
-                <p class="package-price">{{ nPersian(number_format($package['price'])) }} تومان</p>
-                <label for="discount_code{{ $package->id }}">کد تخفیف: </label>
-                <input type="text" name="discount_code" id="discount_code{{ $package->id }}">
-                <br />
-                <button class="btn btn-info check-code-button mt-2" onclick="check_code_button(event)" type="button">
-                  بررسی کد تخفیف
-                </button>
-                <div class="check-code-result" style="padding: 5px 0;"></div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
-              <button class="btn btn-primary" type="submit">رفتن به درگاه پرداخت</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  @endforeach
 @endsection
+
 @section('script_body')
+  <script src="https://lyndakade.ir/black/js/plugins/chartjs.min.js"></script>
+  <script>
+    var ctx = document.getElementById("chartBig5").getContext("2d"),
+      labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      data = [50, 50, 50, 50, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
+    for (let idx = 0; idx < labels.length; idx++) {
+      labels[idx] = engToPer(labels[idx]);
+      data[idx] = engToPer(data[idx]);
+    }
+    const config = {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'دستمزد دوبلور',
+          data: data,
+          fill: true,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }],
+        options: {
+          scales: {
+            y: {
+              stacked: true
+            }
+          }
+        }
+      },
+    };
+    var myChartData = new Chart(ctx, config);
+  </script>
+
   <script>
     function numFormat(n) {
       return n
@@ -200,10 +177,10 @@ $packages = \App\Package::get();
           var tt = result.percent;
           if (tt && result.data) {
             package_price.innerHTML = `${engToPer(numFormat(price))} تومان
-<span style="color: #39c300;">
-                با تخفیف
-${engToPer(numFormat(result.new_price))}
-    تومان</span>`;
+            <span style="color: #39c300;">
+                            با تخفیف
+            ${engToPer(numFormat(result.new_price))}
+                تومان</span>`;
             result_div.innerHTML =
               `<span style="color: green;border: 1px solid;padding: 2px;">کد دارای ${tt} تخفیف می‌باشد.</span>`;
           } else {

@@ -97,7 +97,7 @@
             {{ $course->users[0]->name }}
           </a>
         </div>
-      @else
+      @elseif(count($course->authors) > 0)
         <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
           <a href="{{ route('authors.show', [$course->authors[0]->slug]) }}">
             <img class="lazyload" src="{{ fromDLHost($course->authors[0]->img) }}" width="30" height="30"
