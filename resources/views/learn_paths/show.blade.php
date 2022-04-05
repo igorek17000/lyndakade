@@ -87,6 +87,9 @@
                     مسیرهای یادگیری
                   </a>
                   <i class="lyndacon arrow-left"></i>
+                  <a href="{{ route('category.index') }}">
+                    {{ $path->category->title }}
+                  </a>
                 </div>
                 {{-- <h1 class="pt-md-3 container" style="padding-top: 30px;">
                   <span>
