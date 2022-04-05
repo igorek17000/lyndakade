@@ -87,9 +87,11 @@
                     مسیرهای یادگیری
                   </a>
                   <i class="lyndacon arrow-left"></i>
+                  @if ($path->category)
                   <a href="{{ route('category.index') }}">
                     {{ $path->category->title }}
                   </a>
+                  @endif
                 </div>
                 {{-- <h1 class="pt-md-3 container" style="padding-top: 30px;">
                   <span>
