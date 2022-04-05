@@ -54,6 +54,7 @@ Route::group(
     }
 );
 
+Route::get('/category/', 'CategoryController@index')->name('category.index');
 
 // learning paths
 Route::get('/learning-paths/', 'LearnPathController@index')->name('learn.paths.index.clone');

@@ -88,7 +88,8 @@
                   </a>
                   <i class="lyndacon arrow-left"></i>
                   @if ($path->category)
-                  <a href="{{ route('category.index') }}">
+                  <a href="#">
+                  {{-- <a href="{{ route('category.index') }}"> --}}
                     {{ $path->category->title }}
                   </a>
                   @endif
