@@ -6,7 +6,6 @@
 {{-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->isLocale('fa') ? 'rtl' : 'ltr' }}"> --}}
 
 <head>
-
   <!-- Google Tag Manager -->
   <script>
     (function(w, d, s, l, i) {
@@ -29,6 +28,7 @@
   <meta charset="UTF-8" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="ahrefs-site-verification" content="aa83e5ce5c77eea3020a703c0314d147b6de80f758c8bf3e24a3aefc9d48a47c">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SB27JF9C9Y"></script>
@@ -669,23 +669,25 @@
       }
 
     </style>
-    @if (\App\Discount::where('code', '13bedar')->count() > 0)
-      @if (now() <= \App\Discount::where('code', '13bedar')->first()->end_date)
+    @php
+        $discount_count = \App\Discount::where('type', 1)->whereDate('start_date', '<=', \Carbon\Carbon::now())->whereDate('end_date', '>=', \Carbon\Carbon::now())->count();
+        $discount = \App\Discount::where('type', 1)->whereDate('start_date', '<=', \Carbon\Carbon::now())->whereDate('end_date', '>=', \Carbon\Carbon::now())->first();
+    @endphp
+
+    @if ($discount_count > 0)
         <div class="sticky-top text-center" style="font-size: 17px;
         padding: 15px 0;
         background-color: #00aaca;
         font-family: 'IranSANS';
         font-weight: bold;">
-          {{ nPersian(100) }} عدد تخفیف {{ nPersian(40) }} درصدی ویژه سیزده‌بدر
+          {{ nPersian($discount_count) }} عدد تخفیف {{ nPersian($discount->percent) }} درصدی ویژه
           <a href="{{ route('packages.index') }}" style="color: #df9000;text-shadow: 0px 0px 6px black">
             خرید اشتراک
           </a>
-          تا پایان 15 فروردین
           <span style="color:#df9000;text-shadow: 0px 0px 6px black">
-            کد تخفیف: 13bedar
+            کد تخفیف: {{ $discount->code }}
           </span>
         </div>
-      @endif
     @endif
     {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0" @if (app()->isLocal('en')) dir="ltr" @endif> --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0">
@@ -876,7 +878,7 @@
               }
 
             @endphp
-            <a class="nav-link btn btn-outline-primary" href="{{ $login_link }}">{{ __('msg.Login') }}</a>
+            <a class="nav-link btn btn-outline-primary"  rel="nofollow" href="{{ $login_link }}">{{ __('msg.Login') }}</a>
           </div>
           @if (Route::has('register'))
             <div class="nav-item">
