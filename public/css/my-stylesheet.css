@@ -1082,7 +1082,7 @@ nav bar ends
     line-height: 28px;
     font-weight: 500;
     text-transform: uppercase;
-    background-color: #fff;
+    background-color: #00e7e7;
     border: 1px solid #ddd;
     border-radius: 30px;
     position: relative;
@@ -1111,7 +1111,7 @@ nav bar ends
 
 #learn-path-page .row {
     padding-bottom: 30px;
-    border-bottom: 1px solid #eee;
+    border-top: 1px solid #00e7e7;
     margin: 0;
 }
 

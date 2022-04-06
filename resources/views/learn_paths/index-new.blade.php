@@ -80,7 +80,11 @@
       <div class="row active">
         <ul class="col-md-4 col-sm-6 col-12">
           @foreach ($categories as $category)
-            <li>{{ $category->title }}</li>
+            <li>
+              <input type="radio" id="{{ $category->titleEng }}" name="category" class="cat"
+                data-id="{{ $category->id }}">
+              <label for="{{ $category->titleEng }}" type="radio">{{ $category->title }}</label>
+            </li>
           @endforeach
         </ul>
         <div class="col-md-8 col-sm-6 col-12">
