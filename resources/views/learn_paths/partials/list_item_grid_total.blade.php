@@ -1,7 +1,7 @@
 @foreach ($paths as $learn_path)
   <div class="col-sm-12 col-md-6 col-lg-3 p-2">
     <div class="card">
-      <a class="card-content" href="{{ route('learn.paths.show', [$learn_path->slug]) }}">
+      <a class="card-content" href="{{ route('learn.paths.show', [explode(',', $learn_path->slug)[0]]) }}">
         <div class="card-img">
           <img itemprop="image" src="#" class="lazyload card-img" style="height: 150px !important;"
             data-src="{{ fromDLHost($learn_path->thumbnail) }}"
