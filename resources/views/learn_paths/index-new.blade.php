@@ -76,7 +76,7 @@
     {{-- "> --}}
   </div>
   <div id="learn-path-page">
-    <div class="row active mx-0">
+    <div class="row active mx-0 pb-3">
       <div class="course col-md-2 col-sm-6 col-12 pt-md-5 text-right" style="margin-top: 1.5rem!important;">
         <div style="position: sticky; top: 15px;">
           <ul style="max-height: calc(100vh - 15px * 2);overflow-y: auto;">
