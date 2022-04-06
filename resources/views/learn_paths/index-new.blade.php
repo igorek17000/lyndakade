@@ -83,7 +83,7 @@
             @foreach ($categories as $category)
               <li>
                 <input type="radio" id="{{ $category->titleEng }}" name="category" class="cat"
-                  data-id="{{ $category->id }}" {{ 7 == $category->id ? ' checked' : '' }}>
+                  data-id="{{ $category->id }}" {{ $selected_category_id == $category->id ? ' checked' : '' }}>
                 <label for="{{ $category->titleEng }}" type="radio">{{ $category->title }}</label>
               </li>
             @endforeach
@@ -92,8 +92,9 @@
       </div>
       <div class="col-md-10 col-sm-6 col-12">
         @foreach ($categories as $category)
-          <div id="cat-{{ $category->id }}" class="library-title row active"
-            @if ($loop->first) style="margin-top: 2rem!important;" @endif>
+          <div id="cat-{{ $category->id }}"
+            class="library-title row pb-0 {{ $selected_category_id == $category->id ? ' active' : '' }}"
+            style="margin-top: 2rem!important;">
             <div class="col-12">
               <h3>{{ $category->title }}</h3>
             </div>
