@@ -92,9 +92,8 @@
       </div>
       <div class="col-md-10 col-sm-6 col-12">
         @foreach ($categories as $category)
-          <div id="cat-{{ $category->id }}"
-            class="library-title row pb-0 {{ $selected_category_id == $category->id ? ' active' : '' }}"
-            style="margin-top: 2rem!important;">
+          <div id="cat-{{ $category->id }}" class="library-title row pb-0"
+            style="margin-top: 2rem!important; {{ $selected_category_id == $category->id ? ' display:flex;' : ' display:none;' }}">
             <div class="col-12">
               <h3>{{ $category->title }}</h3>
             </div>

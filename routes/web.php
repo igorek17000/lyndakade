@@ -30,7 +30,7 @@ Route::get('/tests', function () {
     $categories = Category::with(['paths'])->get();
     return view('learn_paths.index-new', [
         'categories' => $categories,
-        'selected_category_id' => -1,
+        'selected_category_id' => 7,
     ]);
 })->name('test.url');
 // Route::get('/tests', 'HomeController@test_url')->name('test.url');
