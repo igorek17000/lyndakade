@@ -78,15 +78,17 @@
   <div id="learn-path-page">
     <div class="row active">
       <div class="course col-md-2 col-sm-6 col-12 pt-md-5 text-right" style="margin-top: 1.5rem!important;">
-        <ul {{-- style="position: sticky;top: 15px;" --}}>
-          @foreach ($categories as $category)
-            <li>
-              <input type="radio" id="{{ $category->titleEng }}" name="category" class="cat"
-                data-id="{{ $category->id }}">
-              <label for="{{ $category->titleEng }}" type="radio">{{ $category->title }}</label>
-            </li>
-          @endforeach
-        </ul>
+        <div style="position: sticky; top: 15px;">
+          <ul style="max-height: calc(100vh - 15px * 2);overflow-y: auto;">
+            @foreach ($categories as $category)
+              <li>
+                <input type="radio" id="{{ $category->titleEng }}" name="category" class="cat"
+                  data-id="{{ $category->id }}" @checked($selected_category_id == $category->id)>
+                <label for="{{ $category->titleEng }}" type="radio">{{ $category->title }}</label>
+              </li>
+            @endforeach
+          </ul>
+        </div>
       </div>
       <div class="col-md-10 col-sm-6 col-12">
         @foreach ($categories as $category)

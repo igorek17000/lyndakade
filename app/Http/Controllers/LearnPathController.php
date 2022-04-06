@@ -176,17 +176,6 @@ class LearnPathController extends Controller
                 'duration_m' => $duration_m,
             ]);
         }
-        return;
-        foreach ($paths as $path) {
-            $ids = [];
-            foreach (json_decode($path->courses) as $course) {
-                $ids[] = $course->id;
-            }
-            $ids = implode(',', $ids);
-            LearnPath::where('id', $path->id)->update([
-                'courses_id' => $ids
-            ]);
-        }
     }
 
     public function course_list_api(Request $request, $slug)
