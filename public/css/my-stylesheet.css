@@ -1111,7 +1111,7 @@ nav bar ends
 
 #learn-path-page .row:not(.active) {
     padding-bottom: 30px;
-    border-top: 1px solid #00e7e7;
+    border-top: 2px solid #00e7e7;
     margin: 0;
 }
 
