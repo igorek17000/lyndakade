@@ -220,7 +220,7 @@
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
         <div class="col-sm-2 col-4">
-          <ul>
+          <ul style="position: sticky;top: 15px;">
             <li><b>قیمت</b>
               <ul>
                 <li>
