@@ -10,13 +10,13 @@ class Category extends Model
 
 
     /**
-     * A Category belong to many LearnPaths
+     * A Category has many LearnPaths
      *
      * @return belongsToMany
      */
     public function paths()
     {
-        return $this->belongsToMany(LearnPath::class);
+        return $this->hasMany(LearnPath::class);
     }
 
 }
