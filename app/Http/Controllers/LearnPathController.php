@@ -157,7 +157,24 @@ class LearnPathController extends Controller
         //     'ids' => $p->courses_id,
         //     'status' => 'success',
         // ], 200);
+
         $paths = LearnPath::get();
+        foreach ($paths as $path) {
+            $total_duration_m = 0;
+            $courses_id = [];
+            foreach (json_decode($path->courses) as $course) {
+                $courses_id[] = $course->id;
+                $total_duration_m += ($course->durationHours * 60) + $course->durationMinutes;
+            }
+            $duration_h = (int)($total_duration_m / 60);
+            $duration_m = (int)($total_duration_m % 60);
+            LearnPath::where('id', $path->id)->update([
+                'courses_id' => implode(',', $courses_id),
+                'duration_h' => $duration_h,
+                'duration_m' => $duration_m,
+            ]);
+        }
+        return;
         foreach ($paths as $path) {
             $ids = [];
             foreach (json_decode($path->courses) as $course) {

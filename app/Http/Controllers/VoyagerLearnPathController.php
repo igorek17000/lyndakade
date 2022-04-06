@@ -63,12 +63,19 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
             }
         }
 
+        $total_duration_m = 0;
         $courses_id = [];
         foreach (json_decode($path->courses) as $course) {
             $courses_id[] = $course->id;
+            $total_duration_m += ($course->durationHours * 60) + $course->durationMinutes;
         }
+        $duration_h = (int)($total_duration_m / 60);
+        $duration_m = (int)($total_duration_m % 60);
+
         LearnPath::where('id', $data->id)->update([
             'courses_id' => implode(',', $courses_id),
+            'duration_h' => $duration_h,
+            'duration_m' => $duration_m,
         ]);
 
         if ($request->get('sendMessageToPaidUsers', false)) {
@@ -124,12 +131,19 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
             }
         }
 
+        $total_duration_m = 0;
         $courses_id = [];
         foreach (json_decode($path->courses) as $course) {
             $courses_id[] = $course->id;
+            $total_duration_m += ($course->durationHours * 60) + $course->durationMinutes;
         }
+        $duration_h = (int)($total_duration_m / 60);
+        $duration_m = (int)($total_duration_m % 60);
+
         LearnPath::where('id', $data->id)->update([
             'courses_id' => implode(',', $courses_id),
+            'duration_h' => $duration_h,
+            'duration_m' => $duration_m,
         ]);
 
         if (!$request->has('_tagging')) {

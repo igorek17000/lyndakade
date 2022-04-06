@@ -130,6 +130,9 @@ class LearnPath extends Model
 
     public function durationHours()
     {
+        if ($this->duration_m > 0) {
+            return $this->duration_h;
+        }
         $courses = js_to_courses($this->_courses);
         // $courses = js_to_courses($this->courses);
         $res = 0;
@@ -141,6 +144,9 @@ class LearnPath extends Model
 
     public function durationMinutes()
     {
+        if ($this->duration_m > 0) {
+            return $this->duration_m;
+        }
         $courses = js_to_courses($this->_courses);
         // $courses = js_to_courses($this->courses);
         $res = 0;
