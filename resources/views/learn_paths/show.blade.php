@@ -49,10 +49,10 @@
   <div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 150px;">
     <div class="row m-0">
       <div class="path-big-img" style="
-                                                                max-width: 100%; width: 100%;
-                                                                background: url({{ fromDLHost($path->img) }});
-                                                                background-size: auto;
-                                                                height: 300px !important;">
+                                                                    max-width: 100%; width: 100%;
+                                                                    background: url({{ fromDLHost($path->img) }});
+                                                                    background-size: auto;
+                                                                    height: 300px !important;">
         <img itemprop="image" src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}"
           alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
       </div>
@@ -73,11 +73,11 @@
                     </svg>
                     <!-- <i class="fa fa-copy" style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i> --></span>
                   <input readonly="" onclick="(()=>{this.select();
-                                              this.setSelectionRange(0, 99999);
-                                              navigator.clipboard.writeText(this.value);
-                                                toastr.options.rtl = true;
-                                                toastr.options.positionClass = 'toast-bottom-left';
-                                              toastr.info('لینک کوتاه کپی شد.');})()"
+                                                  this.setSelectionRange(0, 99999);
+                                                  navigator.clipboard.writeText(this.value);
+                                                    toastr.options.rtl = true;
+                                                    toastr.options.positionClass = 'toast-bottom-left';
+                                                  toastr.info('لینک کوتاه کپی شد.');})()"
                     style="font-size: 11px;text-align: left;direction: rtl;padding-left: 27px;padding-right: 2px;"
                     title="لینک کوتاه این مسیر آموزشی" type="text" value="lyndakade.ir/L/{{ $path->id }}"
                     id="shorturl" class="form-control">
@@ -88,10 +88,10 @@
                   </a>
                   <i class="lyndacon arrow-left"></i>
                   @if ($path->category)
-                  <a href="#">
-                  {{-- <a href="{{ route('category.index') }}"> --}}
-                    {{ $path->category->title ?? $path->category->titleEng }}
-                  </a>
+                    {{-- <a href="#"> --}}
+                    <a href="{{ route('learn.paths.index', ['category_id' => $path->category->id]) }}">
+                      {{ $path->category->title ?? $path->category->titleEng }}
+                    </a>
                   @endif
                 </div>
                 {{-- <h1 class="pt-md-3 container" style="padding-top: 30px;">

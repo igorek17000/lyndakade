@@ -37,7 +37,7 @@ class LearnPathController extends Controller
     {
         $libraries = Library::with(['paths'])->get();
 
-        return view('learn_paths.index', [
+        return view('learn_paths.index-new', [
             'libraries' => $libraries,
             'selected_library' => 'all',
         ]);
