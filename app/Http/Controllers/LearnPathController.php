@@ -134,13 +134,13 @@ class LearnPathController extends Controller
                     $cat = Category::where('titleEng', $cat_titleEng)->first();
                 }
 
-                LearnPath::where('slug', $d->path_slug)
-                ->orWhere('slug', 'LIKE', '%,' .  $d->path_slug)
-                ->orWhere('slug', 'LIKE', '%,' .  $d->path_slug . ',%')
-                ->orWhere('slug', 'LIKE',  $d->path_slug . ',%')
-                ->update([
-                    'category_id' => $cat->id,
-                ]);
+                $path = LearnPath::where('slug', $d->path_slug)
+                    ->orWhere('slug', 'LIKE', '%,' .  $d->path_slug)
+                    ->orWhere('slug', 'LIKE', '%,' .  $d->path_slug . ',%')
+                    ->orWhere('slug', 'LIKE',  $d->path_slug . ',%')
+                    ->first();
+
+                $path->category()->associate($cat);
             }
         }
     }
