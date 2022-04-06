@@ -83,7 +83,7 @@
             @foreach ($categories as $category)
               <li>
                 <input type="radio" id="{{ $category->titleEng }}" name="category" class="cat"
-                  data-id="{{ $category->id }}" {{ $selected_category_id == $category->id ? ' checked' : '' }}>
+                  data-id="{{ $category->id }}" {{ 7 == $category->id ? ' checked' : '' }}>
                 <label for="{{ $category->titleEng }}" type="radio">{{ $category->title }}</label>
               </li>
             @endforeach
