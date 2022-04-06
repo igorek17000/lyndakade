@@ -26,11 +26,12 @@ use TCG\Voyager\Facades\Voyager;
 
 Auth::routes();
 
-Route::get('/tests', function () {
+Route::get('/tests', function (Illuminate\Http\Request $request) {
+    $cat_id = $request->get('category_id', 7);
     $categories = Category::with(['paths'])->get();
     return view('learn_paths.index-new', [
         'categories' => $categories,
-        'selected_category_id' => 7,
+        'selected_category_id' => $cat_id,
     ]);
 })->name('test.url');
 // Route::get('/tests', 'HomeController@test_url')->name('test.url');

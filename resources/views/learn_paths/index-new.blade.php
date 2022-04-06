@@ -152,7 +152,14 @@
   <script>
     $(function() {
       $(document).on('click', '[name="category"]', function(event) {
-        console.log(event);
+        var cat_id = event.target.dataset.id;
+        [].forEach.call(document.querySelectorAll(".library-title"), function(el) {
+          if (el.id == `cat-${cat_id}`) {
+            el.style.display = 'flex'
+          } else {
+            el.style.display = 'none'
+          }
+        });
       });
     });
   </script>
