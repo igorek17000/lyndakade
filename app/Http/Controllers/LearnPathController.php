@@ -35,21 +35,11 @@ class LearnPathController extends Controller
      */
     public function index(Request $request)
     {
-        $libraries = Library::with(['paths'])->get();
-
+        $cat_id = $request->get('category_id', 7);
+        $categories = Category::with(['paths'])->get();
         return view('learn_paths.index-new', [
-            'libraries' => $libraries,
-            'selected_library' => 'all',
-        ]);
-    }
-
-    public function show_category(Request $request, $library_slug)
-    {
-        $libraries = Library::with(['paths'])->get();
-
-        return view('learn_paths.index', [
-            'libraries' => $libraries,
-            'selected_library' => $library_slug,
+            'categories' => $categories,
+            'selected_category_id' => $cat_id,
         ]);
     }
 
