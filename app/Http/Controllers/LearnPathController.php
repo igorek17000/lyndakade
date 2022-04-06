@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Author;
+use App\Category;
 use App\Course;
 use App\Http\Requests\LearnPathRequest;
 use App\LearnPath;
@@ -113,6 +114,32 @@ class LearnPathController extends Controller
         return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
         abort(404);
         return redirect()->route('root.home');
+    }
+
+    public function set_category_api(Request $request)
+    {
+        $data = $request->get('data');
+        if ($data) {
+            $data = explode('|', $data);
+            foreach ($data as $d) {
+                $d = json_decode($d);
+                $cat_titleEng = $d->cat_titleEng;
+                // $cat_title = $d->cat_title;
+                $cat_slug = $d->cat_slug;
+                $cat = Category::where('slug', $cat_slug)->first();
+                if (!$cat) {
+                    Category::create([
+                        'slug' => $cat_slug,
+                        'titleEng' => $cat_titleEng,
+                    ]);
+                    $cat = Category::where('slug', $cat_slug)->first();
+                }
+
+                LearnPath::where('id', $d->path_id)->update([
+                    'category_id' => $cat->id,
+                ]);
+            }
+        }
     }
 
     public function set_courses_id_api(Request $request)

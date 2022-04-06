@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use App\Course;
 use App\Http\Controllers\CourseController;
 use App\LearnPath;
@@ -26,7 +27,11 @@ use TCG\Voyager\Facades\Voyager;
 Auth::routes();
 
 Route::get('/tests', function () {
-    return response()->view('test', []);
+    $categories = Category::with(['paths'])->get();
+    return view('learn_paths.index-new', [
+        'categories' => $categories,
+        'selected_category_id' => -1,
+    ]);
 })->name('test.url');
 // Route::get('/tests', 'HomeController@test_url')->name('test.url');
 // Route::get('/tests2', 'HomeController@test2_url')->name('test2.url');
@@ -53,8 +58,6 @@ Route::group(
         Route::get('/user/dubbed-courses', 'UserController@dubbedCourses')->name('users.dubbed-courses');
     }
 );
-
-Route::get('/category/', 'CategoryController@index')->name('category.index');
 
 // learning paths
 Route::get('/learning-paths/', 'LearnPathController@index')->name('learn.paths.index.clone');

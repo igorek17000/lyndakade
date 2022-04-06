@@ -40,11 +40,11 @@ Route::middleware('guest')->get('/courses/add-view/{id}', 'CourseController@add_
 Route::middleware('guest')->get('/courses/add-views/{id}/{count}', 'CourseController@add_views')->name('courses.add-views.api');
 Route::middleware('guest')->get('/courses-all', 'CourseController@courses_all_api')->name('courses.all.api');
 Route::middleware('guest')->get('/authors', 'AuthorController@authors_api')->name('authors.api');
-Route::middleware('guest')->get('/authors/has-courses', 'AuthorController@authors_has_api')->name('authors.api');
+Route::middleware('guest')->get('/authors/has-courses', 'AuthorController@authors_has_api')->name('authors-has.api');
 Route::middleware('guest')->post('/authors/update/{id}', 'AuthorController@update_api')->name('authors.update.api');
 Route::middleware('guest')->get('/views', 'DataController@views_api')->name('views.api');
 Route::middleware('guest')->get('/course-set-view', 'CourseController@course_set_view_api')->name('courses.set-view.api');
-Route::middleware('guest')->post('/course-set-thumbnail', 'CourseController@course_set_thumbnail_api')->name('courses.set-view.api');
+Route::middleware('guest')->post('/course-set-thumbnail', 'CourseController@course_set_thumbnail_api')->name('courses.set-thumbnail.api');
 Route::middleware('guest')->post('/course-set-img-thumbnail', 'CourseController@course_set_img_thumbnail_api')->name('courses.set-img-thumbnail.api');
 
 Route::middleware('guest')->post('/courses/update-view-from-linkedin', 'CourseController@course_update_view_from_linkedin_api')->name('course.update.view.api');
@@ -56,7 +56,8 @@ Route::middleware('guest')->get('/learn-path/get-all', 'LearnPathController@get_
 Route::middleware('guest')->get('/learn-path/get', 'LearnPathController@get_api')->name('learn-path.get.api');
 Route::middleware('guest')->post('/learn-path/set-img', 'LearnPathController@set_img_api')->name('learn-path.set-img.api');
 Route::middleware('guest')->get('/learn-path/course-list/{slug}', 'LearnPathController@course_list_api')->name('learn-path.course-list.api');
-Route::middleware('guest')->get('/learn-path/set-courses-id', 'LearnPathController@set_courses_id_api')->name('learn-path.course-list.api');
+Route::middleware('guest')->get('/learn-path/set-courses-id', 'LearnPathController@set_courses_id_api')->name('learn-path.set-course.api');
+Route::middleware('guest')->get('/learn-path/set-category', 'LearnPathController@set_category_api')->name('learn-path.set-category.api');
 
 Route::middleware('guest')->post('/course/set-price', 'CourseController@set_price_api')->name('course.set.price.api');
 

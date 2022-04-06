@@ -111,38 +111,6 @@ $packages = \App\Package::get();
 @endsection
 
 @section('script_body')
-  <script src="https://lyndakade.ir/black/js/plugins/chartjs.min.js"></script>
-  <script>
-    var ctx = document.getElementById("chartBig5").getContext("2d"),
-      labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-      data = [50, 50, 50, 50, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
-    for (let idx = 0; idx < labels.length; idx++) {
-      labels[idx] = engToPer(labels[idx]);
-      data[idx] = engToPer(data[idx]);
-    }
-    const config = {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'دستمزد دوبلور',
-          data: data,
-          fill: true,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1
-        }],
-        options: {
-          scales: {
-            y: {
-              stacked: true
-            }
-          }
-        }
-      },
-    };
-    var myChartData = new Chart(ctx, config);
-  </script>
-
   <script>
     function numFormat(n) {
       return n

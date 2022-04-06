@@ -14,7 +14,7 @@ class Category extends Model
      *
      * @return belongsToMany
      */
-    public function learn_paths()
+    public function paths()
     {
         return $this->belongsToMany(LearnPath::class);
     }
