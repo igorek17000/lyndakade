@@ -90,7 +90,7 @@
                   @if ($path->category)
                   <a href="#">
                   {{-- <a href="{{ route('category.index') }}"> --}}
-                    {{ $path->category->title }}
+                    {{ $path->category->title ?? $path->category->titleEng }}
                   </a>
                   @endif
                 </div>
