@@ -150,35 +150,10 @@
 @endsection
 @section('script_body')
   <script>
-    function changePaths(id) {
-      if (id === 'see-all') {
-
-        [].forEach.call(document.querySelectorAll(".dropdown-item"), function(el) {
-          el.classList.remove("active");
-        });
-        document.getElementById('dropdown-see-all').classList.add("active");
-
-        [].forEach.call(document.querySelectorAll(".library-title"), function(el) {
-          el.classList.remove("active");
-          el.classList.add("active");
-        });
-
-      } else {
-        [].forEach.call(document.querySelectorAll(".dropdown-item"), function(el) {
-          el.classList.remove("active");
-        });
-        document.getElementById('dropdown-' + id).classList.add("active");
-
-
-        [].forEach.call(document.querySelectorAll(".library-title"), function(el) {
-          el.classList.remove("active");
-        });
-        document.getElementById(id).classList.add("active");
-      }
-    }
-
     $(function() {
-      $('#dropdownFilter').dropdown();
+      $(document).on('click', '[name="category"]', function(event) {
+        console.log(event);
+      });
     });
   </script>
 @endsection
