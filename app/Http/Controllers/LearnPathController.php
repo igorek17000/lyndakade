@@ -141,6 +141,7 @@ class LearnPathController extends Controller
                     ->first();
 
                 $path->category()->associate($cat);
+                unset($path->_courses);
                 $path->save();
             }
         }
