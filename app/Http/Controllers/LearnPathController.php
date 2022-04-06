@@ -124,18 +124,17 @@ class LearnPathController extends Controller
             foreach ($data as $d) {
                 $d = json_decode($d);
                 $cat_titleEng = $d->cat_titleEng;
-                // $cat_title = $d->cat_title;
-                $cat_slug = $d->cat_slug;
-                $cat = Category::where('slug', $cat_slug)->first();
+                $cat_title = $d->cat_title;
+                $cat = Category::where('titleEng', $cat_titleEng)->first();
                 if (!$cat) {
                     Category::create([
-                        'slug' => $cat_slug,
+                        'title' => $cat_title,
                         'titleEng' => $cat_titleEng,
                     ]);
-                    $cat = Category::where('slug', $cat_slug)->first();
+                    $cat = Category::where('titleEng', $cat_titleEng)->first();
                 }
 
-                LearnPath::where('id', $d->path_id)->update([
+                LearnPath::where('id', $d->path_slug)->update([
                     'category_id' => $cat->id,
                 ]);
             }
