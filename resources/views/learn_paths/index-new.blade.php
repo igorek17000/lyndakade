@@ -76,8 +76,9 @@
     {{-- "> --}}
   </div>
   <div id="learn-path-page">
-    <div class="row active">
-      <ul class="col-md-2 col-sm-6 col-12" style="margin-top: 1.5rem!important;">
+    <div class="path row active">
+      <ul class="col-md-2 col-sm-6 col-12 pt-md-5 text-right"
+        style="margin-top: 1.5rem!important;padding-left: 0!important;padding-right: 0!important;">
         @foreach ($categories as $category)
           <li>
             <input type="radio" id="{{ $category->titleEng }}" name="category" class="cat"
