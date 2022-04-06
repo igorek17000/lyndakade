@@ -76,8 +76,8 @@
     {{-- "> --}}
   </div>
   <div id="learn-path-page">
-    <div class="course row active">
-      <div class="col-md-2 col-sm-6 col-12 pt-md-5 text-right" style="margin-top: 1.5rem!important;">
+    <div class="row active">
+      <div class="course col-md-2 col-sm-6 col-12 pt-md-5 text-right" style="margin-top: 1.5rem!important;">
         <ul style="position: sticky;top: 15px;">
           @foreach ($categories as $category)
             <li>
