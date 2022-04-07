@@ -149,7 +149,7 @@ class CartController extends Controller
                 $desc .= 'C' . $cart->course->id;
                 $amount += get_course_price($cart->course->price);
             } else {
-                $desc .= 'C' . $cart->learn_path->id;
+                $desc .= 'L' . $cart->learn_path->id;
                 $amount += $cart->learn_path->price();
             }
             if ($carts->last() != $cart) {
