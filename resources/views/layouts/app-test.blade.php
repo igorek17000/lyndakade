@@ -1487,6 +1487,9 @@
           if (content.status == 'success') {
             form.reset();
             sub_btn.innerHTML = dub_form_button_done;
+            setTimeout(() => {
+              sub_btn.innerHTML = dub_form_button_default;
+            }, 4000);
           } else {
             sub_btn.innerHTML = dub_form_button_default;
           }
