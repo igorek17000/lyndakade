@@ -677,7 +677,7 @@
           width="30" height="30">
         جذب دوبلور، جهت ارسال رزومه اینجا کلیک کنید
       </div>
-      <div class="modal fade show" id="dubbed-modal" tabindex="-1" role="dialog" aria-labelledby="dubbed-modal-title"
+      <div class="modal fade" id="dubbed-modal" tabindex="-1" role="dialog" aria-labelledby="dubbed-modal-title"
         style="background-color: rgba(68, 68, 68, 0.8); display: block; padding-right: 10px;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
