@@ -1449,7 +1449,9 @@
       form.addEventListener('submit', (event) => {
         event.preventDefault();
         const data = formToJSON(form.elements);
+        console.log(data);
         const jdata = JSON.stringify(data);
+        console.log(jdata);
 
         (async () => {
           //   const rawResponse = await fetch('/', {
