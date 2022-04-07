@@ -713,8 +713,7 @@
                     (ترجیحا شماره‌ای که واتساپ یا تلگرام داره رو وارد کنید)
                   </span>
                   <input type="tel" class="form-control form-control-sm" name="phone" id="phone" required
-                    aria-required="true">
-
+                    aria-required="true" minlength="10" maxlength="14" onkeypress="return onlyNumberKey(event)">
                 </div>
                 <div class="form-group text-center m-0" id="dubbed-form-submit">
                   <button type="submit" class="btn btn-primary">ارسال</button>
@@ -1448,6 +1447,20 @@
         document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', '');
       });
     });
+
+    function onlyNumberKey(evt) {
+
+      // Only ASCII character in that range allowed
+      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+        return false;
+      return true;
+    }
+
+    function validatePhoneNumber(input_str) {
+      var re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+      return re.test(input_str);
+    }
 
     $(function() {
       const dub_form_button_default = `<button type="submit" class="btn btn-primary">ارسال</button>`;
