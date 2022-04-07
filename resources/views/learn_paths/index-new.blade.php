@@ -76,8 +76,8 @@
     {{-- "> --}}
   </div>
   <div id="learn-path-page">
-    <div class="row active mx-0 pb-3">
-      <div class="course col-md-2 col-sm-6 col-12 pt-md-5 text-right" style="margin-top: 1.5rem!important;">
+    <div class="course row active mx-0 pb-3">
+      <div class="col-md-2 col-sm-6 col-12 pt-md-5 text-right" style="margin-top: 1.5rem!important;">
         <div style="position: sticky; top: 15px;">
           <ul style="max-height: calc(100vh - 15px * 2);overflow-y: auto;">
             @foreach ($categories as $category)
@@ -98,7 +98,11 @@
               <h3>{{ $category->title }}</h3>
             </div>
             @foreach ($category->paths as $learn_path)
-              <div class="col-sm-12 col-md-6 col-lg-3 p-2">
+              @include('learn_paths.partials.list_item_grid_new', [
+                  'path' => $learn_path,
+                  'loop' => $loop,
+              ])
+              {{-- <div class="col-sm-12 col-md-6 col-lg-3 p-2">
                 <div class="card">
                   <a class="card-content"
                     href="{{ route('learn.paths.show', [explode(',', $learn_path->slug)[0]]) }}">
@@ -108,9 +112,7 @@
                         data-src="{{ fromDLHost($learn_path->thumbnail) }}"
                         alt="مسیر آموزشی {{ $learn_path->title }} - Image of Learn Path {{ $learn_path->titleEng }}" />
                     </div>
-
                     <div class="card-img-overlay text-center">
-                      {{-- <div class="card-img-overlay text-center vertical-center"> --}}
                       <h5 class="titlePer" style="height: 42px !important; font-size: initial;">
                         {{ $learn_path->title }}</h5>
                       <h5 class="titleEng" style="height: 42px !important; font-size: initial;">
@@ -129,7 +131,6 @@
                         <p class="mb-2 mt-2">تعداد دروس
                           {{ nPersian(count(js_to_courses($learn_path->_courses))) }}
                         </p>
-                        {{-- <p class="mb-2 mt-2">تعداد دروس {{ nPersian(count(js_to_courses($learn_path->courses))) }}</p> --}}
                         <del
                           style="background-color: #6c757d;padding: 3px 4px;border-radius: 5px;">{{ nPersian($learn_path->old_price()) }}
                           تومان</del>
@@ -140,7 +141,7 @@
                     </div>
                   </a>
                 </div>
-              </div>
+              </div> --}}
             @endforeach
           </div>
         @endforeach
