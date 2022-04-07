@@ -1470,9 +1470,9 @@
         sub_btn.innerHTML = dub_form_button_loading;
 
         const data = formToJSON(form.elements);
-        console.log(data);
+        // console.log(data);
         const jdata = JSON.stringify(data);
-        console.log(jdata);
+        // console.log(jdata);
 
         (async () => {
           const rawResponse = await fetch("{{ route('dubbed-join.api') }}", {

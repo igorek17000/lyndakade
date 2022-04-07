@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\LearnPath;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -20,6 +19,10 @@ class DubJoinMailer extends Mailable
     public function __construct($data)
     {
         $this->name = $data->name;
+        $this->email = $data->email;
+        $this->phone = $data->phone;
+        $this->gender = $data->gender;
+        $this->skills = $data->skills;
     }
 
     /**
@@ -29,9 +32,13 @@ class DubJoinMailer extends Mailable
      */
     public function build()
     {
-        return $this->subject('رزومه‌ی ' . $this->name . '')
-            ->view('emails.path-updated-to-demand-users', [
-                'path' => $this->path,
+        return $this->subject('رزومه‌ی ' . ($this->gender == 'female' ? 'خانم ' : 'آقای ') . $this->name)
+            ->view('emails.dub-join', [
+                'name' => $this->name,
+                'email' => $this->email,
+                'phone' => $this->phone,
+                'gender' => $this->gender,
+                'skills' => $this->skills,
             ]);
     }
 }

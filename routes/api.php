@@ -1,6 +1,7 @@
 <?php
 
 use App\Discount;
+use App\Mail\DubJoinMailer;
 use App\Paid;
 use App\Subject;
 use App\User;
@@ -255,9 +256,8 @@ Route::middleware('guest')->get('/paid/get-data-all', function (Request $request
 
 Route::middleware('guest')->post('/dubbed/join', function (Request $request) {
     $form_data = (object)$request->only(['name', 'gender', 'skills', 'email', 'phone']);
-    // Mail::to('dubbed')->send(new CourseUpdatedMailer($course));
+    Mail::to('zarehadi2@gmail.com')->send(new DubJoinMailer($form_data));
     return new JsonResponse([
-        'name' => $form_data->name,
         'data' => $form_data,
         'status' => 'success'
     ], 200);
