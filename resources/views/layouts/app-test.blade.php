@@ -1457,6 +1457,8 @@
         <span class="sr-only">درحال ارسال...</span>
       </button>
       `;
+      const dub_form_button_done = `<button type="button" class="btn btn-success" disabled="">ارسال شد.</button>`;
+
       const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         data[element.name] = element.value;
         return data;
@@ -1484,6 +1486,8 @@
           const content = await rawResponse.json();
           if (content.status == 'success') {
             form.reset();
+            sub_btn.innerHTML = dub_form_button_done;
+          } else {
             sub_btn.innerHTML = dub_form_button_default;
           }
           console.log(content);
