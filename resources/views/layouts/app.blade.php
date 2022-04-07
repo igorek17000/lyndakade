@@ -675,6 +675,56 @@
       }
 
     </style>
+    @if (true)
+      <div class="sticky-top text-center" data-toggle="modal" data-target="#dubbed-modal"
+        style="font-size: 17px; padding: 10px 0px; background-color: rgb(0, 170, 202); font-family: IranSANS; font-weight: bold; color: rgb(221, 221, 221); cursor: pointer;">
+        <img
+          src="data:img/png;base64,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"
+          width="30" height="30">
+        جذب دوبلور، جهت ارسال رزومه اینجا کلیک کنید
+      </div>
+      <div class="modal fade" id="dubbed-modal" tabindex="-1" role="dialog" aria-labelledby="dubbed-modal-title">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <p class="text-center" style="font-size: 20px;font-weight: 400;margin-bottom: 0;">فرم جذب دوبلور</p>
+              <form id="dubbed-form">
+                <div class="form-group">
+                  <label for="name" class="col-form-label">نام و نام خانوادگی</label>
+                  <input type="text" class="form-control form-control-sm" id="name" name="name" required
+                    aria-required="true">
+
+                  <label for="gender" class="col-form-label">جنسیت</label>
+                  <select class="form-control form-control-sm" id="gender" name="gender">
+                    <option value="female" selected="">زن</option>
+                    <option value="male">مرد</option>
+                  </select>
+
+                  <label for="skills" class="col-form-label">مهارت‌ها</label>
+                  <input type="text" class="form-control form-control-sm" name="skills" id="skills"
+                    placeholder="اکسل، پاورپوینت، اتوکد و ..." required aria-required="true">
+
+                  <label for="email" class="col-form-label">ایمیل</label>
+                  <input type="email" class="form-control form-control-sm text-left" name="email" id="email" dir="ltr"
+                    required aria-required="true">
+
+                  <label for="phone" class="col-form-label">شماره تماس</label>
+                  <span style="color: #af4848;font-size: 12px;margin-right: 4px;">
+                    (ترجیحا شماره‌ای که واتساپ یا تلگرام داره رو وارد کنید)
+                  </span>
+                  <input type="tel" class="form-control form-control-sm" name="phone" id="phone" required
+                    aria-required="true" minlength="10" maxlength="14" onkeypress="return onlyNumberKey(event)">
+                </div>
+                <div class="form-group text-center m-0" id="dubbed-form-submit">
+                  <button type="submit" class="btn btn-primary">ارسال</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    @endif
+
     @php
       $discount_count = \App\Discount::where('type', 1)
           ->whereDate('start_date', '<=', \Carbon\Carbon::now())
@@ -1396,6 +1446,70 @@
       $('#preview-modal').on('hidden.bs.modal', function() {
         document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', '');
       });
+    });
+
+    function onlyNumberKey(evt) {
+
+      // Only ASCII character in that range allowed
+      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+        return false;
+      return true;
+    }
+
+    function validatePhoneNumber(input_str) {
+      var re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+      return re.test(input_str);
+    }
+
+    $(function() {
+      const dub_form_button_default = `<button type="submit" class="btn btn-primary">ارسال</button>`;
+      const dub_form_button_loading = `
+      <button class="btn btn-primary" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="sr-only">درحال ارسال...</span>
+      </button>
+      `;
+      const dub_form_button_done = `<button type="button" class="btn btn-success" disabled="">ارسال شد.</button>`;
+
+      const formToJSON = elements => [].reduce.call(elements, (data, element) => {
+        data[element.name] = element.value;
+        return data;
+      }, {});
+      const form = document.forms['dubbed-form'];
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const sub_btn = document.querySelector('#dubbed-form #dubbed-form-submit');
+        sub_btn.innerHTML = dub_form_button_loading;
+
+        const data = formToJSON(form.elements);
+        // console.log(data);
+        const jdata = JSON.stringify(data);
+        // console.log(jdata);
+
+        (async () => {
+          const rawResponse = await fetch("{{ route('dubbed-join.api') }}", {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: jdata
+          });
+          const content = await rawResponse.json();
+          if (content.status == 'success') {
+            form.reset();
+            sub_btn.innerHTML = dub_form_button_done;
+            setTimeout(() => {
+              sub_btn.innerHTML = dub_form_button_default;
+            }, 4000);
+          } else {
+            sub_btn.innerHTML = dub_form_button_default;
+          }
+          console.log(content);
+        })();
+      });
+
     });
   </script>
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
