@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -253,8 +254,10 @@ Route::middleware('guest')->get('/paid/get-data-all', function (Request $request
 });
 
 Route::middleware('guest')->post('/dubbed/join', function (Request $request) {
-    $form_data = $request->only(['name', 'gender', 'skills', 'email', 'phone']);
+    $form_data = (object)$request->only(['name', 'gender', 'skills', 'email', 'phone']);
+    // Mail::to('dubbed')->send(new CourseUpdatedMailer($course));
     return new JsonResponse([
+        'name' => $form_data->name,
         'data' => $form_data,
         'status' => 'success'
     ], 200);
