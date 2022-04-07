@@ -278,7 +278,7 @@
         <div class="col-sm-10 col-8 text-center" id="course-list-parent">
           <div id="course-list">
             <div class="d-flex justify-content-center mt-5">
-              <div class="spinner-border" role="status">
+              <div class="c-spinner-border" role="status">
                 <span class="sr-only">در حال بارگیری ...</span>
               </div>
             </div>
@@ -432,7 +432,7 @@
 
       var loading_html = `
         <div class="d-flex justify-content-center mt-5">
-            <div class="spinner-border" role="status">
+            <div class="c-spinner-border" role="status">
                 <span class="sr-only">در حال بارگیری ...</span>
             </div>
         </div>`;

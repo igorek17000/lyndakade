@@ -630,13 +630,13 @@
       }
     }
 
-    @keyframes spinner-border {
+    @keyframes c-spinner-border {
       to {
         transform: rotate(360deg);
       }
     }
 
-    .spinner-border {
+    .c-spinner-border {
       display: inline-block;
       width: 4rem;
       height: 4rem;
@@ -644,7 +644,7 @@
       border: 0.23em solid currentColor;
       border-right-color: transparent;
       border-radius: 50%;
-      animation: spinner-border .95s linear infinite;
+      animation: c-spinner-border .95s linear infinite;
     }
 
     /* .price-range .slider {
