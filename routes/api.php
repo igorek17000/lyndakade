@@ -256,7 +256,7 @@ Route::middleware('guest')->get('/paid/get-data-all', function (Request $request
 
 Route::middleware('guest')->post('/dubbed/join', function (Request $request) {
     $form_data = (object)$request->only(['name', 'gender', 'skills', 'email', 'phone']);
-    Mail::to('zarehadi2@gmail.com')->send(new DubJoinMailer($form_data));
+    Mail::to('apply@lyndakade.ir')->send(new DubJoinMailer($form_data));
     return new JsonResponse([
         'data' => $form_data,
         'status' => 'success'
