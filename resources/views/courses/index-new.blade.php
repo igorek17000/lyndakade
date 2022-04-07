@@ -202,7 +202,7 @@
       </h5>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
-        @foreach ($paths as $path)
+        @foreach (\App\LearnPath::inRandomOrder()->limit(8)->get() as $path)
           @include('learn_paths.partials.list_item_grid_new', [
               'path' => $path,
               'loop' => $loop,

@@ -512,8 +512,6 @@ class HomeController extends Controller
 
     public function test_url(Request $request)
     {
-        return view('packages.index-new', [
-            'packages' => Package::get(),
-        ]);
+        return view('test');
     }
 }
