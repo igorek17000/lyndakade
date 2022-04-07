@@ -685,7 +685,8 @@
               <form id="dubbed-form">
                 <div class="form-group">
                   <label for="name" class="col-form-label">نام و نام خانوادگی</label>
-                  <input type="text" class="form-control form-control-sm" id="name" name="name" required aria-required="true">
+                  <input type="text" class="form-control form-control-sm" id="name" name="name" required
+                    aria-required="true">
 
                   <label for="gender" class="col-form-label">جنسیت</label>
                   <select class="form-control form-control-sm" id="gender" name="gender">
@@ -698,13 +699,15 @@
                     placeholder="اکسل، پاورپوینت، اتوکد و ..." required aria-required="true">
 
                   <label for="email" class="col-form-label">ایمیل</label>
-                  <input type="email" class="form-control form-control-sm text-left" name="email" id="email" dir="ltr" required aria-required="true">
+                  <input type="email" class="form-control form-control-sm text-left" name="email" id="email" dir="ltr"
+                    required aria-required="true">
 
                   <label for="phone" class="col-form-label">شماره تماس</label>
                   <span style="color: #af4848;font-size: 12px;margin-right: 4px;">
                     (ترجیحا شماره‌ای که واتساپ یا تلگرام داره رو وارد کنید)
                   </span>
-                  <input type="tel" class="form-control form-control-sm" name="phone" id="phone" required aria-required="true">
+                  <input type="tel" class="form-control form-control-sm" name="phone" id="phone" required
+                    aria-required="true">
 
                 </div>
                 <div class="form-group text-center m-0">
@@ -1454,16 +1457,16 @@
         console.log(jdata);
 
         (async () => {
-          //   const rawResponse = await fetch('/', {
-          //     method: 'POST',
-          //     headers: {
-          //       'Accept': 'application/json',
-          //       'Content-Type': 'application/json'
-          //     },
-          //     body: jdata
-          //   });
-          //   const content = await rawResponse.json();
-          //   console.log(content);
+          const rawResponse = await fetch("{{ route('dubbed-join.api') }}", {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: jdata
+          });
+          const content = await rawResponse.json();
+          console.log(content);
         })();
       });
 

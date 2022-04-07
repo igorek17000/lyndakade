@@ -251,6 +251,14 @@ Route::middleware('guest')->get('/paid/get-data-all', function (Request $request
         'status' => 'failed'
     ], 403);
 });
+
+Route::middleware('guest')->post('/dubbed/join', function (Request $request) {
+    $form_data = $request->only(['name', 'gender', 'skills', 'email', 'phone']);
+    return new JsonResponse([
+        'data' => $form_data,
+        'status' => 'success'
+    ], 200);
+})->name('dubbed-join.api');
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
