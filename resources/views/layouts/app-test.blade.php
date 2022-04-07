@@ -710,7 +710,7 @@
                     aria-required="true">
 
                 </div>
-                <div class="form-group text-center m-0">
+                <div class="form-group text-center m-0" id="dubbed-form-submit">
                   <button type="submit" class="btn btn-primary">ارسال</button>
                 </div>
               </form>
@@ -1444,6 +1444,13 @@
     });
 
     $(function() {
+      const dub_form_button_default = `<button type="submit" class="btn btn-primary">ارسال</button>`;
+      const dub_form_button_loading = `
+      <button class="btn btn-primary" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="sr-only">درحال ارسال...</span>
+      </button>
+      `;
       const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         data[element.name] = element.value;
         return data;
@@ -1451,6 +1458,9 @@
       const form = document.forms['dubbed-form'];
       form.addEventListener('submit', (event) => {
         event.preventDefault();
+        const sub_btn = document.querySelector('#dubbed-form #dubbed-form-submit');
+        sub_btn.innerHTML = dub_form_button_loading;
+
         const data = formToJSON(form.elements);
         console.log(data);
         const jdata = JSON.stringify(data);
@@ -1466,6 +1476,10 @@
             body: jdata
           });
           const content = await rawResponse.json();
+          if (content.status == 'success') {
+            form.reset();
+            sub_btn.innerHTML = dub_form_button_default;
+          }
           console.log(content);
         })();
       });
