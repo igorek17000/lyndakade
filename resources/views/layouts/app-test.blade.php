@@ -688,7 +688,7 @@
                   <input type="text" class="form-control form-control-sm" id="name" name="name" required aria-required="true">
 
                   <label for="gender" class="col-form-label">جنسیت</label>
-                  <select class="form-control form-control-sm" id="gender" name="gender" required aria-required="true">
+                  <select class="form-control form-control-sm" id="gender" name="gender">
                     <option value="female" selected="">زن</option>
                     <option value="male">مرد</option>
                   </select>
