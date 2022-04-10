@@ -151,6 +151,7 @@
                   <thead>
                     <tr>
                       <th scope="col">#</th>
+                      <th scope="col">User ID</th>
                       <th scope="col">Username</th>
                       <th scope="col">Total Dubbed Courses</th>
                       <th scope="col">Total Balance</th>
@@ -161,13 +162,14 @@
                       @if ($row->id != -1)
                         <tr>
                           <th scope="row">{{ $loop->iteration }}</th>
+                          <td>{{ $row->id }}</td>
                           <td>{{ $row->username }}</td>
                           <td>{{ $row->total_courses }}</td>
                           <td>{{ $row->total_balance }}</td>
                         </tr>
                       @else
                         <tr>
-                          <td colspan="2"><b>{{ $row->username }}</b></td>
+                          <td colspan="3"><b>{{ $row->username }}</b></td>
                           <td><b>{{ $row->total_courses }}</b></td>
                           <td><b>{{ $row->total_balance }}</b></td>
                         </tr>
