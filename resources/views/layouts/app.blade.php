@@ -675,7 +675,7 @@
       }
 
     </style>
-    @if (true)
+    @if (false)
       <div class="sticky-top text-center" data-toggle="modal" data-target="#dubbed-modal"
         style="font-size: 17px; padding: 10px 0px; background-color: rgb(0, 170, 202); font-family: IranSANS; font-weight: bold; color: rgb(221, 221, 221); cursor: pointer;">
         <img
