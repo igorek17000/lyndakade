@@ -627,10 +627,10 @@ class CourseController extends Controller
         } else {
             $skipped_ids = explode(',', $skipped_ids);
         }
-        $start_date = $request->get('start_date', '2021-04-01');
+        // $start_date = $request->get('start_date', '2021-04-01');
         $limit = intval($request->get('limit', 20));
-        $courses = Course::with(['authors', 'subjects', 'softwares'])
-            ->where('created_at', '>=', $start_date)
+        $courses = Course::with(['authors', 'subjects'])
+            // ->where('created_at', '>=', $start_date)
             ->whereNotIn('id', $skipped_ids)
             ->orderBy('created_at', 'desc');
         $count = $courses->count();
@@ -642,7 +642,7 @@ class CourseController extends Controller
             'status' => 'success',
         ], 200);
     }
-    public function course_api_get_for_instagram(Request $request)
+    public function course_api_get_course(Request $request)
     {
         $skipped_ids = $request->get('skipped_ids');
         if (!$skipped_ids) {
@@ -650,16 +650,15 @@ class CourseController extends Controller
         } else {
             $skipped_ids = explode(',', $skipped_ids);
         }
-        $start_date = $request->get('start_date', '2021-04-01');
         $limit = intval($request->get('limit', 20));
         $courses = Course::with(['authors', 'subjects'])
-            ->where('releaseDate', '>=', $start_date)
-            ->orWhere('updateDate', '>=', $start_date)
             ->whereNotIn('id', $skipped_ids)
             ->orderBy('created_at', 'asc')
             ->limit($limit)
             ->get([
-                'id', 'title', 'titleEng', 'slug_linkedin', 'skillLevel', 'durationHours', 'durationMinutes', 'description', 'releaseDate', 'updateDate', 'partNumbers', 'previewFile', 'previewSubtitle', 'img', 'persian_subtitle_id', 'price'
+                'id', 'title', 'titleEng', 'slug_linkedin', 'slug_url', 'skillLevel', 'durationHours',
+                'durationMinutes', 'description', 'descriptionEng', 'releaseDate', 'updateDate',
+                'partNumbers', 'previewFile', 'img', 'persian_subtitle_id', 'price'
             ]);
         return new JsonResponse([
             'data' => $courses->toArray(),
