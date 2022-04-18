@@ -938,7 +938,7 @@
               if (request()->has('returnUrl')) {
                   $login_link = route('login', ['returnUrl' => request()->get('returnUrl')]);
               }
-
+              
             @endphp
             <a class="nav-link btn btn-outline-primary" rel="nofollow"
               href="{{ $login_link }}">{{ __('msg.Login') }}</a>
@@ -1477,39 +1477,40 @@
         return data;
       }, {});
       const form = document.forms['dubbed-form'];
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const sub_btn = document.querySelector('#dubbed-form #dubbed-form-submit');
-        sub_btn.innerHTML = dub_form_button_loading;
+      if (form) {
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const sub_btn = document.querySelector('#dubbed-form #dubbed-form-submit');
+          sub_btn.innerHTML = dub_form_button_loading;
 
-        const data = formToJSON(form.elements);
-        // console.log(data);
-        const jdata = JSON.stringify(data);
-        // console.log(jdata);
+          const data = formToJSON(form.elements);
+          // console.log(data);
+          const jdata = JSON.stringify(data);
+          // console.log(jdata);
 
-        (async () => {
-          const rawResponse = await fetch("{{ route('dubbed-join.api') }}", {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: jdata
-          });
-          const content = await rawResponse.json();
-          if (content.status == 'success') {
-            form.reset();
-            sub_btn.innerHTML = dub_form_button_done;
-            setTimeout(() => {
+          (async () => {
+            const rawResponse = await fetch("{{ route('dubbed-join.api') }}", {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: jdata
+            });
+            const content = await rawResponse.json();
+            if (content.status == 'success') {
+              form.reset();
+              sub_btn.innerHTML = dub_form_button_done;
+              setTimeout(() => {
+                sub_btn.innerHTML = dub_form_button_default;
+              }, 4000);
+            } else {
               sub_btn.innerHTML = dub_form_button_default;
-            }, 4000);
-          } else {
-            sub_btn.innerHTML = dub_form_button_default;
-          }
-          console.log(content);
-        })();
-      });
-
+            }
+            console.log(content);
+          })();
+        });
+      }
     });
   </script>
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
