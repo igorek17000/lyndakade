@@ -49,7 +49,7 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
         $course = Course::find($data->id);
         if (strlen(trim($demanded_users)) > 0) {
             $demanded_users = explode(",", $demanded_users);
-            $users = User::find($demanded_users);
+            $users = User::whereIn('id', $demanded_users)->get();
             foreach ($users as $user) {
                 $email = $user->email;
                 if ($email)
@@ -123,9 +123,12 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
 
         event(new BreadDataAdded($dataType, $data));
 
+        $demanded_users = $request->get('sendMessageToDemandUsers');
         $course = Course::find($data->id);
-        if ($course->users) {
-            foreach ($course->users as $user) {
+        if (strlen(trim($demanded_users)) > 0) {
+            $demanded_users = explode(",", $demanded_users);
+            $users = User::whereIn('id', $demanded_users)->get();
+            foreach ($users as $user) {
                 $email = $user->email;
                 if ($email)
                     Mail::to($email)->send(new CourseAdded($course));
