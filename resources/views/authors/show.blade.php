@@ -131,7 +131,7 @@
       </div>
     </div>
     <div class="course container-fluid">
-      <div class="card-header text-center mt-3">
+      <div class="text-center mt-3">
         <b style="font-size: 1rem;font-weight: 600;">
           تعداد کل دروس {{ $total_courses }}
         </b>
