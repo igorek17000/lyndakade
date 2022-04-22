@@ -36,7 +36,7 @@
 
 @endpush
 @section('content')
-  <div class="title-banner">
+  {{-- <div class="title-banner">
     <div class="container" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       @if (isset($author))
         <link itemprop="url" href="{{ route('authors.show', [$author->slug]) }}" rel="author">
@@ -62,8 +62,8 @@
           <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
             <h1>درباره مدرس {{ $author->name }}</h1>
             <p id="author-bio" class="text-justify">
-              {{-- {{ $author->description }} --}}
-              {{-- {!! $author->description !!} --}}
+              {{ $author->description }}
+              {!! $author->description !!}
               {!! nl2br(e($author->description)) !!}
             </p>
           </div>
@@ -76,20 +76,65 @@
           <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
             <h1>درباره دوبلور {{ $user->name }}</h1>
             <p id="author-bio" class="text-justify">
-              {{-- {{ $author->description }} --}}
-              {{-- {!! $author->description !!} --}}
+              {{ $author->description }}
+              {!! $author->description !!}
               {!! nl2br(e($user->description)) !!}
             </p>
           </div>
         @endif
       </div>
     </div>
-  </div>
+  </div> --}}
 
   <div class="row card mx-0 mt-4 pb-4">
+    <div class="container" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      @if (isset($author))
+        <link itemprop="url" href="{{ route('authors.show', [$author->slug]) }}" rel="author">
+        <div class="row mt-3">
+          <div class="col-xs-12">
+            <div class="current-page-path">
+              <a href="{{ route('authors.index') }}">تمام مدرسان</a>
+              <i class="lyndacon arrow-left"></i>
+              <span>{{ $author->name }}</span>
+            </div>
+          </div>
+        </div>
+      @else
+        <link itemprop="url" href="{{ route('dubbed.index', [$user->username]) }}" rel="author">
+      @endif
+      <div class="row author-details mt-3">
+        @if (isset($author))
+          <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
+            <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($author->img) }}"
+              alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}"
+              style="width: 200px !important;height: 200px !important; border-radius: 50% !important;">
+          </div>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
+            <h1>درباره مدرس {{ $author->name }}</h1>
+            <p id="author-bio" class="text-justify">
+              {!! nl2br(e($author->description)) !!}
+            </p>
+          </div>
+        @else
+          <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
+            <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($user->avatar) }}"
+              alt="عکس دوبلور {{ $user->name }} - Image of {{ $user->name }}"
+              style="width: 200px !important;height: 200px !important; border-radius: 50% !important;">
+          </div>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
+            <h1>درباره دوبلور {{ $user->name }}</h1>
+            <p id="author-bio" class="text-justify">
+              {!! nl2br(e($user->description)) !!}
+            </p>
+          </div>
+        @endif
+      </div>
+    </div>
     <div class="course container-fluid">
       <div class="card-header text-center mt-3">
-        تعداد کل دروس <b>{{ $total_courses }}</b>
+        <b style="font-size: 1rem;font-weight: 600;">
+          تعداد کل دروس {{ $total_courses }}
+        </b>
       </div>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
