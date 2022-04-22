@@ -167,7 +167,7 @@
 @push('js')
   <script>
     $(function() {
-      var is_user = '{{ isset($author) ? "false" : "true" }}';
+      var is_user = '{{ isset($author) ? 'false' : 'true' }}';
       console.log(is_user);
 
       var load_more_html = `
@@ -216,6 +216,11 @@
           libraries: libraries,
           language: language,
         };
+        if (is_user == 'false') {
+          data['author_id'] = '{{ $author->id }}';
+        } else {
+          data['user_id'] = '{{ $user->id }}';
+        }
 
         console.log(sortingOrder, libraries, language, data);
 
@@ -271,6 +276,12 @@
           page: page,
           language: language,
         };
+
+        if (is_user == 'false') {
+          data['author_id'] = '{{ $author->id }}';
+        } else {
+          data['user_id'] = '{{ $user->id }}';
+        }
 
         console.log(sortingOrder, libraries, language, data);
         $request2 = $.ajax({
