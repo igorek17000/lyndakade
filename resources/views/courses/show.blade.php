@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                                                                      ' .
+                                                                                        ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -115,10 +115,10 @@ if (count($course->subjects) > 0) {
           <span class="course-title">{{ $course->titleEng }}</span>
         </div>
         <div style="position: relative;">
-          @if (count($course->subjects) > 0)
+          @if (count(isset($subjects) ? $subjects : $course->subjects) > 0)
             <ul style="padding-left: 200px;">
               <li class="pr-4 tags">دسته:
-                @foreach ($course->subjects as $subject)
+                @foreach (isset($subjects) ? $subjects : $course->subjects as $subject)
                   <a target="_blank" titleEng="{{ $subject->title }}"
                     href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a>
                 @endforeach
@@ -129,11 +129,11 @@ if (count($course->subjects) > 0) {
             <span class="input-group-addon"><i class="fa fa-copy"
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly="" onclick="(()=>{this.select();
-                                                        this.setSelectionRange(0, 99999);
-                                                        navigator.clipboard.writeText(this.value);
-                                                          toastr.options.rtl = true;
-                                                          toastr.options.positionClass = 'toast-bottom-left';
-                                                        toastr.info('لینک کوتاه کپی شد.');})()"
+                                                          this.setSelectionRange(0, 99999);
+                                                          navigator.clipboard.writeText(this.value);
+                                                            toastr.options.rtl = true;
+                                                            toastr.options.positionClass = 'toast-bottom-left';
+                                                          toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -211,7 +211,7 @@ if (count($course->subjects) > 0) {
                     </div>
                   @elseif ($course_state == '2')
                     <div id="cart-btn" data-lang="FA">
-                      <a data-id="1-{{ $course->id }}"  data-lang="FA"
+                      <a data-id="1-{{ $course->id }}" data-lang="FA"
                         class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
                         حذف از سبد خرید
                       </a>

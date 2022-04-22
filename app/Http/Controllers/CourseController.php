@@ -222,6 +222,8 @@ class CourseController extends Controller
             $has_dubbed = $dubbed_course->id;
         }
 
+        $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc');
+
         return view('courses.show', [
             'skill' => $skill,
             'skillEng' => $skillEng,
@@ -230,6 +232,7 @@ class CourseController extends Controller
             'has_subtitle' => $has_subtitle,
             'related_courses' => $related_courses,
             'related_paths' => $related_paths,
+            'subjects' => $subjects,
             'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
         ]);
     }
