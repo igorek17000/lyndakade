@@ -86,7 +86,7 @@
 
   <div class="row card mx-0 mt-4 pb-4">
     <div class="course container-fluid">
-      <div class="card-header text-left mt-3 current-page-path">
+      <div class="card-header text-left mt-3">
         تعداد کل دروس <b>{{ $total_courses }}</b>
       </div>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
@@ -167,7 +167,7 @@
 @push('js')
   <script>
     $(function() {
-      var is_user = '{{ isset($author) ? false : true }}';
+      var is_user = '{{ isset($author) ? "false" : "true" }}';
       console.log(is_user);
 
       var load_more_html = `
