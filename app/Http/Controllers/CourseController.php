@@ -222,7 +222,7 @@ class CourseController extends Controller
             $has_dubbed = $dubbed_course->id;
         }
 
-        $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc');
+        $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc')->get();
 
         return view('courses.show', [
             'skill' => $skill,
