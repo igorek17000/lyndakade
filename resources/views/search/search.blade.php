@@ -48,9 +48,9 @@
         @endif --}}
     <div class="row my-3 justify-content-center">
       <aside id="search-filters" class="col-md-2 hidden-xs hiddem-sm search-filter-cont">
-        <button class="btn btn-mobile" data-toggle="collapse" data-target="#search-sidebar">
+        {{-- <button class="btn btn-mobile" data-toggle="collapse" data-target="#search-sidebar">
           <i class="fa fa-bars"></i>
-        </button>
+        </button> --}}
         <nav class="navbar navbar-expand  flex-md-column flex-row align-items-start">
           <div id="search-sidebar" class="collapse navbar-collapse">
             <ul
