@@ -36,17 +36,6 @@
 
 @endpush
 @section('content')
-  {{-- <div class="row mx-0 px-0" style="height: 400px; background-color:#fff;"> --}}
-  {{-- <div class="col-md-4 h-100 py-5" style="text-align: center;"> --}}
-  {{-- <img src="{{ asset($author->img) }}" class="h-50 w-50 d-inline-block" alt="image" style="margin-top: 22%;"> --}}
-  {{-- </div> --}}
-
-  {{-- <div class="col-md-8 py-5"> --}}
-  {{-- <span class="card-title">{{ $author->name }}</span> --}}
-  {{-- </div> --}}
-  {{-- </div> --}}
-
-  <div class="container">
     <div class="title-banner">
       <div class="container" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
         @if (isset($author))
@@ -179,8 +168,6 @@
         </article>
       </div>
     </div>
-
-  </div>
 @endsection
 
 @push('js')
@@ -261,6 +248,9 @@
         });
       }
       get_courses();
+      $(document).on('click', '.cat', function(e) {
+        get_courses();
+      });
 
       var $request2 = null;
 
