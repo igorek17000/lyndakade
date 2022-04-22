@@ -1,5 +1,6 @@
 <?php
 
+use App\Author;
 use App\Discount;
 use App\Mail\DubJoinMailer;
 use App\Paid;
@@ -107,6 +108,8 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     $sortingOrder = $request->get('sortingOrder', '1');
     $libraries = $request->get('libraries', '');
     $language = $request->get('language', '3');
+    $author_id = $request->get('author_id');
+    $q = $request->get('q');
 
     // $sortingOrder = intval($sortingOrder) == 1 ? 'sortingDate' : 'views';
     if (empty($libraries)) {
@@ -114,14 +117,25 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     } else {
         $libraries = explode(',', $libraries);
     }
-    if (count($libraries) == 0) {
+    if ($author_id != null) {
+        $author = Author::find($author_id);
+        if ($author) {
+            $courses = $author->courses();
+            $type = 'author';
+        } else {
+            return new JsonResponse([false]);
+        }
+    } else if ($q != null) {
+        $courses = \App\Course::search($q);
+        $type = 'search';
+    } else if (count($libraries) == 0) {
         $courses = \App\Course::query();
-        $type = 1;
+        $type = 'just courses';
     } else {
         $courses = \App\Course::whereHas('subjects', function ($q) use ($libraries) {
             $q->whereIn('library_id', $libraries);
         });
-        $type = 2;
+        $type = 'with library';
     }
     if (intval($onlyFree) == 1) {
         $courses = $courses->where('price', 0);
@@ -145,7 +159,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
 
     $offset = ($page - 1) * $limit;
     $courses = $courses->skip($offset)->limit($limit);
-
+    // $courses = $courses->with(['subjects', 'authors']);
     $courses = $courses->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
     return new JsonResponse([
         'data' => view('courses.partials._course_list_new_total', [
