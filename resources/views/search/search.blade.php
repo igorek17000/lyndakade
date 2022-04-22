@@ -48,47 +48,42 @@
         @endif --}}
     <div class="row my-3 justify-content-center">
       <aside id="search-filters" class="col-md-2 hidden-xs hiddem-sm search-filter-cont">
-        {{-- <button class="btn btn-mobile" data-toggle="collapse" data-target="#search-sidebar">
-          <i class="fa fa-bars"></i>
-        </button> --}}
         <nav class="navbar navbar-expand  flex-md-column flex-row align-items-start">
-          <div id="search-sidebar" class="collapse navbar-collapse">
-            <ul
-              class="filter-set ga-category accessible-tabs flex-md-column flex-row navbar-nav w-100 justify-content-between"
-              data-context="Category Filters">
-              @if (isset($categories_filter) && count($categories_filter) > 0)
-                @foreach ($categories_filter as $category)
-                  <li class="nav-item">
-                    <span style="font-size: 1rem;"><b>{{ $category['title'] }}</b></span>
-                    <ul>
-                      @foreach ($category['items'] as $index => $item)
-                        <li class="filter-item"
-                          @if ($index > 4) style="{{ $index > 4 ? 'display:none;' : '' }}" @endif>
-                          @if (isset($_GET[$category['key']]) && ($_GET[$category['key']] == $item['title'] || (isset($item['titleEng']) && $_GET[$category['key']] == $item['titleEng'])))
-                            <span>
-                              <strong>{{ $item['title'] }}<span
-                                  class="result-count">({{ $item['count'] }})</span></strong>
-                            </span>
-                          @else
-                            <a class="filter ga ga-multiple" rel="nofollow" href="{{ $item['link'] }}">
-                              {{ $item['title'] }}<span class="result-count">&nbsp;({{ $item['count'] }})</span>
-                            </a>
-                          @endif
-                        </li>
-                      @endforeach
-                      @if ($category['hasMore'])
-                        <li class="show-more-toggle">
-                          <button class="btn btn-link">
-                            <span>+ موارد بیشتر</span>
-                          </button>
-                        </li>
-                      @endif
-                    </ul>
-                  </li>
-                @endforeach
-              @endif
-            </ul>
-          </div>
+          <ul
+            class="filter-set ga-category accessible-tabs flex-md-column flex-row navbar-nav w-100 justify-content-between"
+            data-context="Category Filters">
+            @if (isset($categories_filter) && count($categories_filter) > 0)
+              @foreach ($categories_filter as $category)
+                <li class="nav-item">
+                  <span style="font-size: 1rem;"><b>{{ $category['title'] }}</b></span>
+                  <ul>
+                    @foreach ($category['items'] as $index => $item)
+                      <li class="filter-item"
+                        @if ($index > 4) style="{{ $index > 4 ? 'display:none;' : '' }}" @endif>
+                        @if (isset($_GET[$category['key']]) && ($_GET[$category['key']] == $item['title'] || (isset($item['titleEng']) && $_GET[$category['key']] == $item['titleEng'])))
+                          <span>
+                            <strong>{{ $item['title'] }}<span
+                                class="result-count">({{ $item['count'] }})</span></strong>
+                          </span>
+                        @else
+                          <a class="filter ga ga-multiple" rel="nofollow" href="{{ $item['link'] }}">
+                            {{ $item['title'] }}<span class="result-count">&nbsp;({{ $item['count'] }})</span>
+                          </a>
+                        @endif
+                      </li>
+                    @endforeach
+                    @if ($category['hasMore'])
+                      <li class="show-more-toggle">
+                        <button class="btn btn-link">
+                          <span>+ موارد بیشتر</span>
+                        </button>
+                      </li>
+                    @endif
+                  </ul>
+                </li>
+              @endforeach
+            @endif
+          </ul>
         </nav>
       </aside>
 
@@ -154,14 +149,14 @@
             <div class="row flex-row flex-wrap w-100 py-3 {{ $object['img'] ? '' : ' px-3 ' }}">
               @if ($object['img'])
                 <div class="card-header border-0" style="
-                                      max-width: 160px;
-                                      background: transparent;
-                                  ">
+                                        max-width: 160px;
+                                        background: transparent;
+                                    ">
                   <img itemprop="image" src="{{ fromDLHost($object['img']) }}"
                     alt="جستجوی {{ $object['title'] }} - search for {{ $object['title'] }}" style="
-                                      width: 100%;
-                                      border-radius: 50%;
-                                  ">
+                                        width: 100%;
+                                        border-radius: 50%;
+                                    ">
                 </div>
               @endif
               <div class="card-block px-2" style="{{ $object['img'] ? ' max-width: 70%; ' : '' }}">
