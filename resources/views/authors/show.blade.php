@@ -104,6 +104,63 @@
             </div>
             <div class="card-body clearfix" id="list-items">
               <div class="row d-flex ">
+
+                <div class="col-sm-2 col-4">
+                  <ul style="position: sticky;top: 15px;">
+                    <li><b>قیمت</b>
+                      <ul>
+                        <li>
+                          <input type="checkbox" id="onlyFree" name="onlyFree" class="cat"><label
+                            for="onlyFree" type="checkbox">رایگان</label>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><b>ترتیب</b>
+                      <ul>
+                        <li>
+                          <input type="radio" id="newest" name="sortingOrder" class="cat" data-id="1">
+                          <label for="newest" type="radio">جدیدترین</label>
+                        </li>
+                        <li>
+                          <input type="radio" id="popular" name="sortingOrder" class="cat" data-id="2">
+                          <label for="popular" type="radio">محبوب ترین</label>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><b>زبان</b>
+                      <ul>
+                        <li>
+                          <input type="radio" id="language-persian" name="language" class="cat" data-id="1">
+                          <label for="language-persian" type="radio">فارسی</label>
+                        </li>
+                        <li>
+                          <input type="radio" id="language-english" name="language" class="cat" data-id="2">
+                          <label for="language-english" type="radio">انگلیسی</label>
+                        </li>
+                        <li>
+                          <input type="radio" id="language-all" name="language" class="cat" data-id="3">
+                          <label for="language-all" type="radio">همه موارد</label>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><b>کتابخانه</b>
+                      <ul>
+                        <li>
+                          <input type="checkbox" id="business" name="library" class="cat" data-id="1">
+                          <label for="business" type="checkbox">کسب و کار</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" id="technology" name="library" class="cat" data-id="3">
+                          <label for="technology" type="checkbox">تکنولوژی</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" id="creative" name="library" class="cat" data-id="2">
+                          <label for="creative" type="checkbox">خلاقیت</label>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
                 <div class="col-sm-10 col-8 text-center" id="course-list-parent">
                   <div id="course-list">
                     <div class="d-flex justify-content-center mt-5">
