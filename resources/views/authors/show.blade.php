@@ -168,6 +168,8 @@
   <script>
     $(function() {
       var is_user = "{{ isset($author) ? 'false' : 'true' }}";
+      var is_user_id = "{{ isset($author) ? $author->id : $user->id }}";
+
       console.log(is_user);
       //   console.log(is_user, (is_user == 'false'));
 
@@ -217,12 +219,12 @@
           libraries: libraries,
           language: language,
         };
-        // if (is_user == 'false') {
-        //   data['author_id'] = '{{ $author->id }}';
-        // } else {
-        //   data['user_id'] = '{{ $user->id }}';
-        // }
 
+        if (is_user == 'false') {
+          data['author_id'] = is_user_id;
+        } else {
+          data['user_id'] = is_user_id;
+        }
         console.log(sortingOrder, libraries, language, data);
 
         $request = $.ajax({
@@ -278,11 +280,11 @@
           language: language,
         };
 
-        // if (is_user == 'false') {
-        //   data['author_id'] = '{{ $author->id }}';
-        // } else {
-        //   data['user_id'] = '{{ $user->id }}';
-        // }
+        if (is_user == 'false') {
+          data['author_id'] = is_user_id;
+        } else {
+          data['user_id'] = is_user_id;
+        }
 
         console.log(sortingOrder, libraries, language, data);
         $request2 = $.ajax({
