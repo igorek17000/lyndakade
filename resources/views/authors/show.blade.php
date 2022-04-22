@@ -36,138 +36,132 @@
 
 @endpush
 @section('content')
-    <div class="title-banner">
-      <div class="container" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <div class="title-banner">
+    <div class="container" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      @if (isset($author))
+        <link itemprop="url" href="{{ route('authors.show', [$author->slug]) }}" rel="author">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="current-page-path">
+              <a href="{{ route('authors.index') }}">تمام مدرسان</a>
+              <i class="lyndacon arrow-left"></i>
+              <span>{{ $author->name }}</span>
+            </div>
+          </div>
+        </div>
+      @else
+        <link itemprop="url" href="{{ route('dubbed.index', [$user->username]) }}" rel="author">
+      @endif
+      <div class="row author-details">
         @if (isset($author))
-          <link itemprop="url" href="{{ route('authors.show', [$author->slug]) }}" rel="author">
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="current-page-path">
-                <a href="{{ route('authors.index') }}">تمام مدرسان</a>
-                <i class="lyndacon arrow-left"></i>
-                <span>{{ $author->name }}</span>
+          <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
+            <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($author->img) }}"
+              alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
+          </div>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
+            <h1>درباره مدرس {{ $author->name }}</h1>
+            <p id="author-bio" class="text-justify">
+              {{-- {{ $author->description }} --}}
+              {{-- {!! $author->description !!} --}}
+              {!! nl2br(e($author->description)) !!}
+            </p>
+          </div>
+        @else
+          <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
+            <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($user->avatar) }}"
+              alt="عکس دوبلور {{ $user->name }} - Image of {{ $user->name }}">
+          </div>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
+            <h1>درباره دوبلور {{ $user->name }}</h1>
+            <p id="author-bio" class="text-justify">
+              {{-- {{ $author->description }} --}}
+              {{-- {!! $author->description !!} --}}
+              {!! nl2br(e($user->description)) !!}
+            </p>
+          </div>
+        @endif
+      </div>
+    </div>
+  </div>
+
+  <div class="row card mx-0 mt-4 pb-4">
+    <div class="course container-fluid">
+      <div class="card-header text-left mt-3 current-page-path">
+        تعداد کل دروس <b>{{ $total_courses }}</b>
+      </div>
+      <hr style="border-top: 1px solid  #f8ba16" class="my-2">
+      <div class="row">
+        <div class="col-sm-2 col-4">
+          <ul style="position: sticky;top: 15px;">
+            <li><b>قیمت</b>
+              <ul>
+                <li>
+                  <input type="checkbox" id="onlyFree" name="onlyFree" class="cat"><label for="onlyFree"
+                    type="checkbox">رایگان</label>
+                </li>
+              </ul>
+            </li>
+            <li><b>ترتیب</b>
+              <ul>
+                <li>
+                  <input type="radio" id="newest" name="sortingOrder" class="cat" data-id="1">
+                  <label for="newest" type="radio">جدیدترین</label>
+                </li>
+                <li>
+                  <input type="radio" id="popular" name="sortingOrder" class="cat" data-id="2">
+                  <label for="popular" type="radio">محبوب ترین</label>
+                </li>
+              </ul>
+            </li>
+            <li><b>زبان</b>
+              <ul>
+                <li>
+                  <input type="radio" id="language-persian" name="language" class="cat" data-id="1">
+                  <label for="language-persian" type="radio">فارسی</label>
+                </li>
+                <li>
+                  <input type="radio" id="language-english" name="language" class="cat" data-id="2">
+                  <label for="language-english" type="radio">انگلیسی</label>
+                </li>
+                <li>
+                  <input type="radio" id="language-all" name="language" class="cat" data-id="3">
+                  <label for="language-all" type="radio">همه موارد</label>
+                </li>
+              </ul>
+            </li>
+            <li><b>کتابخانه</b>
+              <ul>
+                <li>
+                  <input type="checkbox" id="business" name="library" class="cat" data-id="1">
+                  <label for="business" type="checkbox">کسب و کار</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="technology" name="library" class="cat" data-id="3">
+                  <label for="technology" type="checkbox">تکنولوژی</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="creative" name="library" class="cat" data-id="2">
+                  <label for="creative" type="checkbox">خلاقیت</label>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-10 col-8 text-center" id="course-list-parent">
+          <div id="course-list">
+            <div class="d-flex justify-content-center mt-5">
+              <div class="spinner-border c-spinner-border" role="status">
+                <span class="sr-only">در حال بارگیری ...</span>
               </div>
             </div>
           </div>
-        @else
-          <link itemprop="url" href="{{ route('dubbed.index', [$user->username]) }}" rel="author">
-        @endif
-        <div class="row author-details">
-          @if (isset($author))
-            <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
-              <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($author->img) }}"
-                alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
-            </div>
-            <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
-              <h1>درباره مدرس {{ $author->name }}</h1>
-              <p id="author-bio" class="text-justify">
-                {{-- {{ $author->description }} --}}
-                {{-- {!! $author->description !!} --}}
-                {!! nl2br(e($author->description)) !!}
-              </p>
-            </div>
-          @else
-            <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
-              <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($user->avatar) }}"
-                alt="عکس دوبلور {{ $user->name }} - Image of {{ $user->name }}">
-            </div>
-            <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
-              <h1>درباره دوبلور {{ $user->name }}</h1>
-              <p id="author-bio" class="text-justify">
-                {{-- {{ $author->description }} --}}
-                {{-- {!! $author->description !!} --}}
-                {!! nl2br(e($user->description)) !!}
-              </p>
-            </div>
-          @endif
+          <button class="mt-2 btn btn-info load-more-courses">
+            موارد بیشتر
+          </button>
         </div>
       </div>
     </div>
-    <div class="row mt-3 mr-0 ml-0">
-      <div class="card col-md-12 mb-4">
-        <article class="card-group-item">
-          <div class="filter-content">
-            {{-- {{ csrf_field() }} --}}
-            <div class="card-header text-left mt-3 current-page-path">
-              تعداد کل دروس <b>{{ $total_courses }}</b>
-            </div>
-            <div class="card-body clearfix" id="list-items">
-              <div class="row d-flex ">
-
-                <div class="col-sm-2 col-4">
-                  <ul style="position: sticky;top: 15px;">
-                    <li><b>قیمت</b>
-                      <ul>
-                        <li>
-                          <input type="checkbox" id="onlyFree" name="onlyFree" class="cat"><label
-                            for="onlyFree" type="checkbox">رایگان</label>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><b>ترتیب</b>
-                      <ul>
-                        <li>
-                          <input type="radio" id="newest" name="sortingOrder" class="cat" data-id="1">
-                          <label for="newest" type="radio">جدیدترین</label>
-                        </li>
-                        <li>
-                          <input type="radio" id="popular" name="sortingOrder" class="cat" data-id="2">
-                          <label for="popular" type="radio">محبوب ترین</label>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><b>زبان</b>
-                      <ul>
-                        <li>
-                          <input type="radio" id="language-persian" name="language" class="cat" data-id="1">
-                          <label for="language-persian" type="radio">فارسی</label>
-                        </li>
-                        <li>
-                          <input type="radio" id="language-english" name="language" class="cat" data-id="2">
-                          <label for="language-english" type="radio">انگلیسی</label>
-                        </li>
-                        <li>
-                          <input type="radio" id="language-all" name="language" class="cat" data-id="3">
-                          <label for="language-all" type="radio">همه موارد</label>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><b>کتابخانه</b>
-                      <ul>
-                        <li>
-                          <input type="checkbox" id="business" name="library" class="cat" data-id="1">
-                          <label for="business" type="checkbox">کسب و کار</label>
-                        </li>
-                        <li>
-                          <input type="checkbox" id="technology" name="library" class="cat" data-id="3">
-                          <label for="technology" type="checkbox">تکنولوژی</label>
-                        </li>
-                        <li>
-                          <input type="checkbox" id="creative" name="library" class="cat" data-id="2">
-                          <label for="creative" type="checkbox">خلاقیت</label>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-sm-10 col-8 text-center" id="course-list-parent">
-                  <div id="course-list">
-                    <div class="d-flex justify-content-center mt-5">
-                      <div class="spinner-border c-spinner-border" role="status">
-                        <span class="sr-only">در حال بارگیری ...</span>
-                      </div>
-                    </div>
-                  </div>
-                  <button class="mt-2 btn btn-info load-more-courses">
-                    موارد بیشتر
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
+  </div>
 @endsection
 
 @push('js')
