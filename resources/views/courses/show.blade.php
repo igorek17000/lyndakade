@@ -115,10 +115,10 @@ if (count($course->subjects) > 0) {
           <span class="course-title">{{ $course->titleEng }}</span>
         </div>
         <div style="position: relative;">
-          @if (count(isset($subjects) ? $subjects : $course->subjects) > 0)
+          @if (count($subjects) > 0)
             <ul style="padding-left: 200px;">
               <li class="pr-4 tags">دسته:
-                @foreach (isset($subjects) ? $subjects : $course->subjects as $subject)
+                @foreach ($subjects as $subject)
                   <a target="_blank" titleEng="{{ $subject->title }}"
                     href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a>
                 @endforeach
