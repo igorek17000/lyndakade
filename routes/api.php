@@ -108,6 +108,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     $sortingOrder = $request->get('sortingOrder', '1');
     $libraries = $request->get('libraries', '');
     $language = $request->get('language', '3');
+    $user_id = $request->get('user_id');
     $author_id = $request->get('author_id');
     $q = $request->get('q');
 
@@ -122,6 +123,14 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
         if ($author) {
             $courses = $author->courses();
             $type = 'author';
+        } else {
+            return new JsonResponse([false]);
+        }
+    } else if ($user_id != null) {
+        $user = User::find($user_id);
+        if ($user) {
+            $courses = $user->courses();
+            $type = 'user';
         } else {
             return new JsonResponse([false]);
         }

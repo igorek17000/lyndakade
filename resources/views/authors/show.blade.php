@@ -104,33 +104,18 @@
             </div>
             <div class="card-body clearfix" id="list-items">
               <div class="row d-flex ">
-                {{-- <style>
-                  .timeline>li>.timeline-panel {
-                    width: calc(100% - 15px) !important;
-                  }
-
-                  .timeline:before {
-                    width: 0 !important;
-                  }
-
-                </style> --}}
-                <div id="course-list">
-                  @include('courses.partials._course_list_new_total', [
-                      'courses' => $courses,
-                  ])
-                  {{-- @foreach ($courses as $course)
-                    @include('courses.partials._course_list_new', ['course'=> $course])
-                  @endforeach --}}
-                </div>
-                {{-- @if ($hasMore)
-                  <div class="col-12 mb-4 mt-2">
-                    <button class="btn btn-light load-more w-100" coursetype="button" style="margin: auto;">
-                      <span class="text-t">نمایش موارد بیشتر</span>
-                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                        style="margin: auto;"></span>
-                    </button>
+                <div class="col-sm-10 col-8 text-center" id="course-list-parent">
+                  <div id="course-list">
+                    <div class="d-flex justify-content-center mt-5">
+                      <div class="spinner-border c-spinner-border" role="status">
+                        <span class="sr-only">در حال بارگیری ...</span>
+                      </div>
+                    </div>
                   </div>
-                @endif --}}
+                  <button class="mt-2 btn btn-info load-more-courses">
+                    موارد بیشتر
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -144,40 +129,135 @@
 @push('js')
   <script>
     $(function() {
-      $('.load-more').click(function(e) {
-        var page = ($('#course-list .course').length / 20) + 1;
-        var el = this;
-        $(el).prop('disabled', true);
-        urlObject = new URL(document.location.href);
-        params = urlObject.searchParams;
-        let data = {
-          _token: $('[name="_token"]').val(),
-          page: page,
+      var is_user = '{{ isset($author) ? false : true }}';
+      console.log(is_user);
+
+      var load_more_html = `
+          <button class="mt-2 btn btn-info load-more-courses">
+            موارد بیشتر
+          </button>`;
+
+      var loading_html = `
+        <div class="d-flex justify-content-center mt-5">
+            <div class="spinner-border c-spinner-border" role="status">
+                <span class="sr-only">در حال بارگیری ...</span>
+            </div>
+        </div>`;
+
+      var error_html = `
+        <div class="d-flex justify-content-center mt-5">
+            <div style="font-size: 1rem;">خطایی رخ داده است، لطفا دوباره امتحان کنید.</div>
+        </div>`;
+      var $request = null;
+      var course_list_parent = document.getElementById('course-list-parent');
+      var course_list = document.getElementById('course-list');
+
+      function get_courses() {
+        if ($request != null) {
+          $request.abort();
+          $request = null;
         }
-        $.ajax({
-          url: window.location.href.split('?')[0],
-          method: 'get',
-          data,
+
+        $(course_list).html(loading_html);
+
+        var sortingOrder = document.querySelectorAll('input[name="sortingOrder"]:checked').length > 0 ?
+          document.querySelectorAll('input[name="sortingOrder"]:checked')[0].getAttribute('data-id') :
+          '1';
+        var libraries = [...document.querySelectorAll('input[name="library"]:checked')].map((el) => {
+          return $(el).data('id')
+        }).join();
+
+        var language = document.querySelectorAll('input[name="language"]:checked').length > 0 ?
+          document.querySelectorAll('input[name="language"]:checked')[0].getAttribute('data-id') :
+          '3';
+
+        var data = {
+          _token: $('[name="_token"]').val(),
+          onlyFree: $('#onlyFree')[0].checked ? '1' : '0',
+          sortingOrder: sortingOrder,
+          libraries: libraries,
+          language: language,
+        };
+
+        console.log(sortingOrder, libraries, language, data);
+
+        $request = $.ajax({
+          url: "{{ route('main-page.courses.api') }}",
+          method: 'post',
+          data: data,
           success: function(result) {
-            var course_list = document.getElementById('course-list');
-            for (let res of result.courses) {
-              // console.log(res);
-              course_list.insertAdjacentHTML('beforeend', res)
-            }
-            if (result.hasMore) {
-              $(el).prop('disabled', false);
+            // console.log("result", result);
+            $(course_list).html(result.data);
+            $request = null;
+            if (!result.hasMore) {
+              $('.load-more-courses').remove();
             } else {
-              setTimeout(() => {
-                $(el).remove();
-              }, 600);
+              if (!document.querySelector('.load-more-courses'))
+                course_list_parent.insertAdjacentHTML('beforeend', load_more_html)
             }
           },
           errors: function(xhr) {
-            console.log(xhr);
-            $(el).prop('disabled', false);
+            console.log("xhr", xhr);
+            $(course_list).html(error_html);
+            $request = null;
           }
         });
-      })
+      }
+      get_courses();
+
+      var $request2 = null;
+
+      function more_courses(relatedTarget) {
+        if ($request2 != null) {
+          $request2.abort();
+          $request2 = null;
+        }
+        var sortingOrder = document.querySelectorAll('input[name="sortingOrder"]:checked').length > 0 ?
+          document.querySelectorAll('input[name="sortingOrder"]:checked')[0].getAttribute('data-id') :
+          '1';
+        var libraries = [...document.querySelectorAll('input[name="library"]:checked')].map((el) => {
+          return $(el).data('id')
+        }).join();
+        var language = document.querySelectorAll('input[name="language"]:checked').length > 0 ?
+          document.querySelectorAll('input[name="language"]:checked')[0].getAttribute('data-id') :
+          '3';
+        var page = (document.querySelectorAll('#course-list > div').length / 20) + 1;
+        var data = {
+          _token: $('[name="_token"]').val(),
+          onlyFree: $('#onlyFree')[0].checked ? '1' : '0',
+          sortingOrder: sortingOrder,
+          libraries: libraries,
+          page: page,
+          language: language,
+        };
+
+        console.log(sortingOrder, libraries, language, data);
+        $request2 = $.ajax({
+          url: "{{ route('main-page.courses.api') }}",
+          method: 'post',
+          data: data,
+          success: function(result) {
+            // console.log("result", result);
+            course_list.insertAdjacentHTML('beforeend', result.data)
+            // $(course_list).html(result.data);
+            $request2 = null;
+            if (!result.hasMore) {
+              $('.load-more-courses').remove();
+            } else {
+              if (!document.querySelector('.load-more-courses'))
+                course_list_parent.insertAdjacentHTML('beforeend', load_more_html)
+            }
+          },
+          errors: function(xhr) {
+            console.log("xhr", xhr);
+            // $(course_list).html(error_html);
+            $request2 = null;
+          }
+        });
+      }
+      $(document).on('click', '.load-more-courses', function(e) {
+        more_courses(e.relatedTarget);
+      });
     });
   </script>
 @endpush
