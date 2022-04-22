@@ -56,7 +56,8 @@
         @if (isset($author))
           <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
             <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($author->img) }}"
-              alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
+              alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}"
+              style="width: 200px !important;height: 200px !important; border-radius: 50% !important;">
           </div>
           <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
             <h1>درباره مدرس {{ $author->name }}</h1>
@@ -69,7 +70,8 @@
         @else
           <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
             <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($user->avatar) }}"
-              alt="عکس دوبلور {{ $user->name }} - Image of {{ $user->name }}">
+              alt="عکس دوبلور {{ $user->name }} - Image of {{ $user->name }}"
+              style="width: 200px !important;height: 200px !important; border-radius: 50% !important;">
           </div>
           <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
             <h1>درباره دوبلور {{ $user->name }}</h1>
@@ -86,7 +88,7 @@
 
   <div class="row card mx-0 mt-4 pb-4">
     <div class="course container-fluid">
-      <div class="card-header text-left mt-3">
+      <div class="card-header text-center mt-3">
         تعداد کل دروس <b>{{ $total_courses }}</b>
       </div>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
@@ -225,7 +227,7 @@
         } else {
           data['user_id'] = is_user_id;
         }
-        console.log(sortingOrder, libraries, language, data);
+        console.log(data);
 
         $request = $.ajax({
           url: "{{ route('main-page.courses.api') }}",
@@ -285,8 +287,8 @@
         } else {
           data['user_id'] = is_user_id;
         }
+        console.log(data);
 
-        console.log(sortingOrder, libraries, language, data);
         $request2 = $.ajax({
           url: "{{ route('main-page.courses.api') }}",
           method: 'post',
