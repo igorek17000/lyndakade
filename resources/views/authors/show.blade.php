@@ -167,8 +167,8 @@
 @push('js')
   <script>
     $(function() {
-      var is_user = '{{ isset($author) ? 'false' : 'true' }}';
-      console.log(is_user, (is_user == 'false'));
+      var is_user = "{{ isset($author) ? 'false' : 'true' }}";
+    //   console.log(is_user, (is_user == 'false'));
 
       var load_more_html = `
           <button class="mt-2 btn btn-info load-more-courses">
