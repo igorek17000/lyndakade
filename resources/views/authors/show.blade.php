@@ -216,11 +216,11 @@
           libraries: libraries,
           language: language,
         };
-        if (is_user == 'false') {
-          data['author_id'] = '{{ $author->id }}';
-        } else {
-          data['user_id'] = '{{ $user->id }}';
-        }
+        // if (is_user == 'false') {
+        //   data['author_id'] = '{{ $author->id }}';
+        // } else {
+        //   data['user_id'] = '{{ $user->id }}';
+        // }
 
         console.log(sortingOrder, libraries, language, data);
 
@@ -277,11 +277,11 @@
           language: language,
         };
 
-        if (is_user == 'false') {
-          data['author_id'] = '{{ $author->id }}';
-        } else {
-          data['user_id'] = '{{ $user->id }}';
-        }
+        // if (is_user == 'false') {
+        //   data['author_id'] = '{{ $author->id }}';
+        // } else {
+        //   data['user_id'] = '{{ $user->id }}';
+        // }
 
         console.log(sortingOrder, libraries, language, data);
         $request2 = $.ajax({
