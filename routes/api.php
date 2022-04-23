@@ -120,7 +120,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
         $libraries = explode(',', $libraries);
     }
     if ($subject_slug != null) {
-        $subject = Subject::where('slug', $subject_slug)->orWhere('slug', str_replace("-training-tutorials", "", $slug))->first();
+        $subject = Subject::where('slug', $subject_slug)->orWhere('slug', str_replace("-training-tutorials", "", $subject_slug))->first();
         if ($subject) {
             $courses = $subject->courses();
             $type = 'subject';
