@@ -45,6 +45,8 @@ class PackageController extends Controller
 
         foreach ($carts as $cart) {
             if ($cart->course) {
+                // if ($cart->course->dubbed_id == 1)
+                //     continue;
                 $count += 1;
             } else {
                 foreach (js_to_courses($cart->learn_path->_courses) as $current_course) {
@@ -63,6 +65,8 @@ class PackageController extends Controller
             // submit the courses in UnlockCourses
             foreach ($carts as $cart) {
                 if ($cart->course) {
+                    // if ($cart->course->dubbed_id == 1)
+                    //     continue;
                     if (UnlockedCourse::where('user_id', $user_id)->where('course_id', $cart->course->id)->first())
                         continue;
                     $unlock_course = new UnlockedCourse([
@@ -70,6 +74,7 @@ class PackageController extends Controller
                         'course_id' => $cart->course->id,
                     ]);
                     $unlock_course->save();
+                    $cart->delete();
                 } else {
                     if (UnlockedCourse::where('user_id', $user_id)->where('learn_path_id', $cart->learn_path->id)->first())
                         continue;
@@ -79,8 +84,8 @@ class PackageController extends Controller
                         'learn_path_id' => $cart->learn_path->id,
                     ]);
                     $unlock_course->save();
+                    $cart->delete();
                 }
-                $cart->delete();
             }
 
             PackagePaid::where('user_id', $user_id)->update([

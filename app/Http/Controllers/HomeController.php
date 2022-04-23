@@ -107,95 +107,22 @@ class HomeController extends Controller
                     $ids[] = $course->id;
                 }
             }
-            $courses = Course::find($ids);
+            $ids = array_unique($ids);
+            $courses = Course::whereIn('id', $ids);
+            $total_courses = $courses->count();
+            // $courses =  $courses->limit(20)->get();
+            // $details = $this->prepare_for_search_page($request, $courses);
+            // $filtered_items = $details['filtered_items'];
+            // $courses = $details['courses']->sortByDesc('releaseDate');
+            // $categories_filter = $details['categories_filter'];
 
-            $details = $this->prepare_for_search_page($request, $courses);
-            $filtered_items = $details['filtered_items'];
-            $courses = $details['courses']->sortByDesc('releaseDate');
-            $categories_filter = $details['categories_filter'];
-
-            return view('search.search', [
-                'shown_item' => $sub,
-                'filtered_items' => $filtered_items,
-                'courses' => $courses->take(20),
-                'categories_filter' => $categories_filter,
+            return view('subjects.show', [
+                'subject' => $sub,
+                'total_courses' => $total_courses,
             ]);
         }
         // abort(404);
         return redirect()->route('root.home')->with('error', 'صفحه مورد نظر یافت نشد.');
-    }
-
-    function show_first_object($obj, $type, $request)
-    {
-        $query = $request->get('q');
-
-        $details = $this->prepare_for_search_page($request, $obj->courses);
-
-        $filtered_items = $details['filtered_items'];
-        $courses = $details['courses'];
-        $categories_filter = $details['categories_filter'];
-
-        if ($request->ajax()) {
-            $res = [
-                'courses' => [],
-                'hasMore' => false,
-            ];
-            if ($courses->count() > 0) {
-                $page = $request->get('page', null);
-                if (!$page) {
-                    return $res;
-                }
-                if (intval($courses->count() / 20) + 1 < intval($page)) {
-                    return $res;
-                }
-                $res['courses'] = view('courses.partials._course_list_new_total', [
-                    'courses' => $courses->forPage(intval($page), 20),
-                ])->render();
-                // foreach ($courses->forPage(intval($page), 20) as $course) {
-                //     $res['courses'][] = $this->get_course_timeline($course);
-                // }
-                $res['hasMore'] = intval($courses->count() / 20) + 1 >= intval($page) + 1;
-                return $res;
-            }
-
-            // $learn_paths = LearnPath::with('library')->search($query)->distinct('learn_paths.id')->get();
-            // $searched = $learn_paths->toArray();
-            // if (count($searched) > 0) {
-            //     return $searched;
-            // }
-
-            // $authors = Author::with('courses')->search($query)->distinct('authors.id')->get();
-            // $searched = $authors->toArray();
-
-            // if (count($searched) > 0) {
-            //     return $searched;
-            // }
-            // return [];
-
-            // $subjects = Subject::with('courses')->search($query)->distinct('subjects.id')->get();
-            // $result = array_merge($result, $subjects->toArray());
-            // if (count($result) > $count) {
-            //     return $result;
-            // }
-            // $software = Software::with('courses')->search($query)->distinct('software.id')->get();
-            // $result = array_merge($result, $software->toArray());
-            // return $result;
-        }
-
-        return view('search.search', [
-            'q' => $request->get('q'),
-            'object' => [
-                'type' => $type,
-                'img' => $obj->img ?? null,
-                'title' => $obj->name ?? ($obj->titleper ?? $obj->title),
-                'description' => $obj->description,
-            ],
-            'filtered_items' => $filtered_items,
-            'result_count' => count($courses),
-            'courses' => count($courses) > 20 ? $courses->take(20) : $courses,
-            'categories_filter' => $categories_filter,
-            'hasMore' => count($courses) > 20
-        ]);
     }
 
     public function get_course_timeline($course)
@@ -209,24 +136,22 @@ class HomeController extends Controller
         if (!$query) {
             return redirect('/');
         }
-
         $author = Author::with('courses')->firstWhere('name', $query);
         if ($author) {
-            return $this->show_first_object($author, 'مدرس', $request);
+            return redirect()->route('authors.show', [$author->slug]);
         }
-
-        $software = Software::with('courses')->where('title', $query)->first();
-        if ($software) {
-            return $this->show_first_object($software, 'نرم افزار', $request);
-        }
-
-        $subject = Subject::with('courses')->where('title', $query)->first();
+        $subject = Subject::with('courses')->where('title', $query)->orWhere('title_per', $query)->first();
         if ($subject) {
-            return $this->show_first_object($subject, 'دسته', $request);
+            return redirect()->route('home.show', [$subject->slug]);
         }
 
+        return view('search.search', [
+            'q' => $request->get('q'),
+            'total_courses' => Course::search($query)->distinct('courses.id')->count(),
+        ]);
 
         $searched = Course::with(['subjects', 'authors'])->search($query)->distinct('courses.id')->get();
+
         // $courses_id = [];
         // foreach ($searched as $course) {
         //     array_push($courses_id, $course->id);

@@ -1,83 +1,35 @@
 @extends('layouts.app')
 @push('meta.in.head')
-  @if (isset($user))
-    @include('meta::manager', [
-        'image' => fromDLHost($user->avatar),
-        'title' => 'دوبلور ' . $user->name . ' - لیندا کده',
-        'keywords' => get_seo_keywords() . ' , ' . 'دوبلور ' . $user->name . ' , dubbed ' . $user->name,
-        'description' => $user->description . ' | ' . get_seo_description(),
-    ])
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "headline": "دوبلور {{ $user->name }}",
-        "url": "{{ route('dubbed.index', [$user->username]) }}",
-        "image": "{{ fromDLHost($user->avatar) }}"
-      }
-    </script>
-  @elseif (isset($author))
-    @include('meta::manager', [
-        'image' => fromDLHost($author->img),
-        'title' => 'مدرس ' . $author->name . ' - لیندا کده',
-        'keywords' => get_seo_keywords() . ' , ' . 'مدرس ' . $author->name . ' , author ' . $author->name,
-        'description' => $author->description . ' | ' . get_seo_description(),
-    ])
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "headline": "مدرس {{ $author->name }}",
-        "url": "{{ route('authors.show', [$author->slug]) }}",
-        "image": "{{ fromDLHost($author->img) }}"
-      }
-    </script>
-  @endif
-
+  @include('meta::manager', [
+      'image' => 'https://lyndakade.ir/image/logo.png',
+      'title' => ($subject->title_per ?? $subject->title) . ' (' . ($subject->title ?? $subject->titleEng) . ')'. ' - لیندا کده',
+      'keywords' => get_seo_keywords() . ' , ' . ($subject->title_per ?? $subject->title) . ' , subject ' . ($subject->title ?? $subject->titleEng),
+      'description' => $subject->description . ' | ' . get_seo_description(),
+  ])
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "headline": "{{ ($subject->title ?? $subject->titleEng) }}",
+      "url": "{{ route('home.show', [$subject->slug]) }}"
+    }
+  </script>
 @endpush
 @section('content')
   <div class="row card mx-0 pb-4">
-    <div class="container" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      @if (isset($author))
-        <link itemprop="url" href="{{ route('authors.show', [$author->slug]) }}" rel="author">
-        <div class="row mx-0 mt-3">
-          <div class="col-xs-12">
-            <div class="current-page-path">
-              <a href="{{ route('authors.index') }}">تمام مدرسان</a>
-              <i class="lyndacon arrow-left"></i>
-              <span>{{ $author->name }}</span>
-            </div>
-          </div>
-        </div>
-      @else
-        <link itemprop="url" href="{{ route('dubbed.index', [$user->username]) }}" rel="author">
-      @endif
+    <div class="container" itemprop="subject" itemscope="" itemtype="http://schema.org/Person">
       <div class="row mx-0 author-details mt-3">
-        @if (isset($author))
           <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
-            <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($author->img) }}"
-              alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}"
-              style="width: 200px !important;height: 200px !important; border-radius: 50% !important;">
-          </div>
-          <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
-            <h1 style="font-size: 23px; font-weight: 700; margin: 0;">درباره مدرس {{ $author->name }}</h1>
-            <p class="text-justify" style="font-size: 17px;margin: 0;">
-              {!! nl2br(e($author->description)) !!}
-            </p>
-          </div>
-        @else
-          <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
-            <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($user->avatar) }}"
+            {{-- <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($user->avatar) }}"
               alt="عکس دوبلور {{ $user->name }} - Image of {{ $user->name }}"
-              style="width: 200px !important;height: 200px !important; border-radius: 50% !important;">
+              style="width: 200px !important;height: 200px !important; border-radius: 50% !important;"> --}}
           </div>
           <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
-            <h1 style="font-size: 23px; font-weight: 700; margin: 0;">درباره دوبلور {{ $user->name }}</h1>
+            <h1 style="font-size: 23px; font-weight: 700; margin: 0;">{{ ($subject->title_per ?? $subject->title) }}({{ ($subject->title ?? $subject->titleEng) }})</h1>
             <p class="text-justify" style="font-size: 17px;margin: 0;">
-              {!! nl2br(e($user->description)) !!}
+              {!! nl2br(e($subject->description)) !!}
             </p>
           </div>
-        @endif
       </div>
     </div>
     <div class="course container-fluid">
@@ -164,11 +116,6 @@
 @push('js')
   <script>
     $(function() {
-      var is_user = "{{ isset($author) ? 'false' : 'true' }}";
-      var is_user_id = "{{ isset($author) ? $author->id : $user->id }}";
-
-      console.log(is_user);
-      //   console.log(is_user, (is_user == 'false'));
 
       var load_more_html = `
           <button class="mt-2 btn btn-info load-more-courses">
@@ -215,13 +162,9 @@
           sortingOrder: sortingOrder,
           libraries: libraries,
           language: language,
+          subject_slug: '{{ $subject->slug }}',
         };
 
-        if (is_user == 'false') {
-          data['author_id'] = is_user_id;
-        } else {
-          data['user_id'] = is_user_id;
-        }
         console.log(data);
 
         $request = $.ajax({
@@ -275,13 +218,9 @@
           libraries: libraries,
           page: page,
           language: language,
+          subject_slug: '{{ $subject->slug }}',
         };
 
-        if (is_user == 'false') {
-          data['author_id'] = is_user_id;
-        } else {
-          data['user_id'] = is_user_id;
-        }
         console.log(data);
 
         $request2 = $.ajax({

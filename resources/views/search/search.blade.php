@@ -1,34 +1,105 @@
 @extends('layouts.app')
-@if (isset($shown_item))
-  @push('meta.in.head')
-    @include('meta::manager', [
-        'image' => fromDLHost($shown_item->img),
-        'title' => $shown_item->title . ' - لیندا کده',
-        'description' => $shown_item->description,
-        'keywords' =>
-            get_seo_keywords() .
-            ' , ' .
-            $shown_item->title .
-            ', ' .
-            $shown_item->titleEng .
-            join(', ', explode(' ', $shown_item->title)) .
-            ', ' .
-            join(', ', explode(' ', $shown_item->titleEng)),
-    ])
-  @endpush
-@else
-  @push('meta.in.head')
-    @include('meta::manager', [
-        'image' => 'https://lyndakade.ir/image/logo.png',
-        'title' => $q . ' - لیندا کده',
-        'keywords' => get_seo_keywords(),
-        'description' => get_seo_description(),
-    ])
-  @endpush
-@endif
+@push('meta.in.head')
+  @include('meta::manager', [
+      'image' => 'https://lyndakade.ir/image/logo.png',
+      'title' => 'جستجوی ' . $q . ' - لیندا کده',
+      'keywords' => get_seo_keywords(),
+      'description' => get_seo_description(),
+  ])
+@endpush
 @section('content')
-  <div class="container search-page">
-    {{-- @if (isset($shown_item))
+  <div class="row card mx-0 pb-4">
+    <div class="container">
+      <div class="row mx-0 author-details mt-3">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12 container-fluid">
+          <h1 style="font-size: 23px; font-weight: 700; margin: 0;">
+            {{ nPersian($total_courses) }} نتیجه برای "{{ $q }}"
+          </h1>
+        </div>
+      </div>
+    </div>
+    <div class="course container-fluid">
+      <div class="text-center mt-3">
+        <b style="font-size: 1rem;font-weight: 600;">
+          تعداد کل دروس {{ $total_courses }}
+        </b>
+      </div>
+      <hr style="border-top: 1px solid  #f8ba16" class="my-2">
+      <div class="row mx-0">
+        <div class="col-sm-2 col-4">
+          <ul style="position: sticky;top: 15px;">
+            <li><b>قیمت</b>
+              <ul>
+                <li>
+                  <input type="checkbox" id="onlyFree" name="onlyFree" class="cat"><label for="onlyFree"
+                    type="checkbox">رایگان</label>
+                </li>
+              </ul>
+            </li>
+            <li><b>ترتیب</b>
+              <ul>
+                <li>
+                  <input type="radio" id="newest" name="sortingOrder" class="cat" data-id="1">
+                  <label for="newest" type="radio">جدیدترین</label>
+                </li>
+                <li>
+                  <input type="radio" id="popular" name="sortingOrder" class="cat" data-id="2">
+                  <label for="popular" type="radio">محبوب ترین</label>
+                </li>
+              </ul>
+            </li>
+            <li><b>زبان</b>
+              <ul>
+                <li>
+                  <input type="radio" id="language-persian" name="language" class="cat" data-id="1">
+                  <label for="language-persian" type="radio">فارسی</label>
+                </li>
+                <li>
+                  <input type="radio" id="language-english" name="language" class="cat" data-id="2">
+                  <label for="language-english" type="radio">انگلیسی</label>
+                </li>
+                <li>
+                  <input type="radio" id="language-all" name="language" class="cat" data-id="3">
+                  <label for="language-all" type="radio">همه موارد</label>
+                </li>
+              </ul>
+            </li>
+            <li><b>کتابخانه</b>
+              <ul>
+                <li>
+                  <input type="checkbox" id="business" name="library" class="cat" data-id="1">
+                  <label for="business" type="checkbox">کسب و کار</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="technology" name="library" class="cat" data-id="3">
+                  <label for="technology" type="checkbox">تکنولوژی</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="creative" name="library" class="cat" data-id="2">
+                  <label for="creative" type="checkbox">خلاقیت</label>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-10 col-8 text-center" id="course-list-parent">
+          <div id="course-list">
+            <div class="d-flex justify-content-center mt-5">
+              <div class="spinner-border c-spinner-border" role="status">
+                <span class="sr-only">در حال بارگیری ...</span>
+              </div>
+            </div>
+          </div>
+          <button class="mt-2 btn btn-info load-more-courses">
+            موارد بیشتر
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{-- <div class="container search-page">
+
+    @if (isset($shown_item))
             <div class="row mb-5 justify-content-center shown-item">
                 @if (isset($shown_item->img))
                     <div class="col-xs-12 col-md-6 subject-img" style="background-image: url({{ fromDLHost($shown_item->img) }});background-size: cover;" >
@@ -45,7 +116,8 @@
                     @endif
                 </div>
             </div>
-        @endif --}}
+        @endif
+
     <div class="row my-3 justify-content-center">
       <aside id="search-filters" class="col-md-2 hidden-xs hiddem-sm search-filter-cont">
         <nav class="navbar navbar-expand  flex-md-column flex-row align-items-start">
@@ -88,21 +160,10 @@
       </aside>
 
       <section class="col-xs-12 col-md-10 search-results-cont pull-left">
+
         <div class="row">
           <section id="search-results-bar">
             <div class="row mx-1">
-              @if (isset($shown_item))
-                <div class="col-xs-12 mb-3">
-                  <h1 class="subject-title w-100">
-                    <span>
-                      {{ $shown_item->title }}
-                    </span>
-                    <span class="text-left" style="float: left;" dir="ltr">
-                      {{ $shown_item->titleEng ?? '' }}
-                    </span>
-                  </h1>
-                </div>
-              @endif
               @if (isset($result_count) && isset($q))
                 <div class="results-heading col-xs-12 col-sm-8">
                   {{ $result_count }}
@@ -169,178 +230,212 @@
             </div>
           @endif
           <section id="search-results">
-            <div class="row mx-1" id="search-results-list">
+
+              <div class="row mx-1" id="search-results-list">
               @if (count($courses) == 0)
                 نتیجه ای یافت نشد.
               @endif
-              {{-- <style>
-                .timeline>li>.timeline-panel {
-                  width: calc(100% - 15px) !important;
-                }
-
-                .timeline:before {
-                  width: 0 !important;
-                }
-
-              </style> --}}
               <div id="course-list">
                 @include('courses.partials._course_list_new_total', [
                     'courses' => $courses,
                 ])
-
-                {{-- @foreach ($courses as $course)
-                                <li class="course">
-                                    <a href="{{ courseURL($course) }}" class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h2 class="timeline-title" style="font-size: 1.25rem;">
-                                                <p class="m-0">
-                                                {{ $course->title }}
-                                                <small class="text-muted">
-                                                    توسط
-                                                    <span class="text-left" dir="ltr">
-                                                        @foreach ($course->authors as $author)
-                                                            {{ $author->name }}
-                                                            @if (!$loop->last)
-                                                            ,
-                                                            @endif
-                                                        @endforeach
-                                                    </span>
-                                                </small>
-                                                </p>
-                                                <p dir="ltr" class="text-left m-0">
-                                                    {{ $course->titleEng }}
-                                                    <small class="text-muted">
-                                                        by
-                                                        <span>
-                                                            @foreach ($course->authors as $author)
-                                                                {{ $author->name }}
-                                                                @if (!$loop->last)
-                                                                ,
-                                                                @endif
-                                                            @endforeach
-                                                        </span>
-                                                    </small>
-                                                </p>
-                                            </h2>
-                                        </div>
-                                        <div class="timeline-body text-justify row">
-                                        <div class="col-md-3 col-sm-12 text-center">
-                                            <img src="#" class="lazyload" data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}" style="max-height: 150px;" />
-
-                                        </div>
-                                        <div class="col-md-9  col-sm-12">
-                                            <p class="mt-md-3" style="word-break: break-word;
-                                                                        overflow: hidden;
-                                                                        text-overflow: ellipsis;
-                                                                        display: -webkit-box;
-                                                                        line-height: 2; /* fallback */
-                                                                        /* fallback */
-                                                                        -webkit-line-clamp: 3; /* number of lines to show */
-                                                                        -webkit-box-orient: vertical;">
-                                            {!! $course->description !!}
-                                            </p>
-                                            <div class="row">
-                                            <div class="col-md-3 col-6 pb-1">
-                                                <b>مدت زمان:</b>
-                                                {{ $course->durationHours ? $course->durationHours . 'h ' : '' }}
-                                                {{ $course->durationMinutes ? $course->durationMinutes . 'm' : '' }}
-                                            </div>
-                                            <div class="col-md-3 col-6">
-                                                <b>سطح:</b>
-                                                {{ \App\SkillLevel::find($course->skillLevel)->title }}
-                                            </div>
-                                            <div class="col-md-3 col-6">
-                                                <b>تاریخ انتشار:</b>
-                                                <span id="release-date" title="در لینکدین {{ date('Y/m/d', strtotime($course->releaseDate)) }}">
-                                                {{ date('Y/m/d', strtotime($course->releaseDate)) }}
-                                                </span>
-                                            </div>
-                                            <div class="col-md-3 col-6">
-                                                <b>زیرنویس:</b>
-                                                @if (get_course_status_state($course->dubbed_id))
-                                                <span>دوبله شده</span>
-                                                @elseif (get_course_status_state($course->persian_subtitle_id) &&
-                                                get_course_status_state($course->english_subtitle_id))
-                                                <span>انگلیسی و فارسی</span>
-                                                @elseif (get_course_status_state($course->persian_subtitle_id))
-                                                <span>فارسی</span>
-                                                @elseif (get_course_status_state($course->english_subtitle_id))
-                                                <span>انگلیسی</span>
-                                                @else
-                                                <span style="color: red">
-                                                    ندارد
-                                                </span>
-                                                @endif
-                                            </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            @endforeach --}}
               </div>
-
-              {{-- @foreach ($courses as $course)
-                                    @include ('.courses.partials._course_list_grid', ['course' => $course, 'col' => 'col-lg-4'])
-                            @endforeach --}}
-              {{-- @if ($hasMore ?? false)
+                @if ($hasMore ?? false)
                 <div class="col-12 mb-4 mt-2">
-                  <button class="btn btn-light load-more-courses w-100" coursetype="button" style="margin: auto;">
+                  <button class="btn btn-light load-more w-100" coursetype="button" style="margin: auto;">
                     <span class="text-t">نمایش موارد بیشتر</span>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
                       style="margin: auto;"></span>
                   </button>
                 </div>
-              @endif --}}
+              @endif
             </div>
           </section>
         </div>
       </section>
     </div>
-  </div>
+  </div> --}}
 @endsection
 @push('js')
   <script>
     $(function() {
-      $('.load-more').click(function(e) {
-        var page = ($('#course-list .course').length / 20) + 1;
-        var el = this;
-        $(el).prop('disabled', true);
-        urlObject = new URL(document.location.href);
-        params = urlObject.searchParams;
-        let data = {
+
+      var load_more_html = `
+          <button class="mt-2 btn btn-info load-more-courses">
+            موارد بیشتر
+          </button>`;
+
+      var loading_html = `
+        <div class="d-flex justify-content-center mt-5">
+            <div class="spinner-border c-spinner-border" role="status">
+                <span class="sr-only">در حال بارگیری ...</span>
+            </div>
+        </div>`;
+
+      var error_html = `
+        <div class="d-flex justify-content-center mt-5">
+            <div style="font-size: 1rem;">خطایی رخ داده است، لطفا دوباره امتحان کنید.</div>
+        </div>`;
+      var $request = null;
+      var course_list_parent = document.getElementById('course-list-parent');
+      var course_list = document.getElementById('course-list');
+
+      function get_courses() {
+        if ($request != null) {
+          $request.abort();
+          $request = null;
+        }
+
+        $(course_list).html(loading_html);
+
+        var sortingOrder = document.querySelectorAll('input[name="sortingOrder"]:checked').length > 0 ?
+          document.querySelectorAll('input[name="sortingOrder"]:checked')[0].getAttribute('data-id') :
+          '1';
+        var libraries = [...document.querySelectorAll('input[name="library"]:checked')].map((el) => {
+          return $(el).data('id')
+        }).join();
+
+        var language = document.querySelectorAll('input[name="language"]:checked').length > 0 ?
+          document.querySelectorAll('input[name="language"]:checked')[0].getAttribute('data-id') :
+          '3';
+
+        var data = {
           _token: $('[name="_token"]').val(),
-          page: page,
-        }
-        for (let item of params) {
-          let pa = item[0],
-            pb = item[1];
-          data[pa] = pb;
-        }
-        $.ajax({
-          url: window.location.href.split('?')[0],
-          method: 'get',
-          data,
+          onlyFree: $('#onlyFree')[0].checked ? '1' : '0',
+          sortingOrder: sortingOrder,
+          libraries: libraries,
+          language: language,
+          q: '{{ $q }}',
+        };
+
+        console.log(data);
+
+        $request = $.ajax({
+          url: "{{ route('main-page.courses.api') }}",
+          method: 'post',
+          data: data,
           success: function(result) {
-            var course_list = document.getElementById('course-list');
-            for (let res of result.courses) {
-              // console.log(res);
-              course_list.insertAdjacentHTML('beforeend', res)
-            }
-            if (result.hasMore) {
-              $(el).prop('disabled', false);
+            // console.log("result", result);
+            $(course_list).html(result.data);
+            $request = null;
+            if (!result.hasMore) {
+              $('.load-more-courses').remove();
             } else {
-              setTimeout(() => {
-                $(el).remove();
-              }, 600);
+              if (!document.querySelector('.load-more-courses'))
+                course_list_parent.insertAdjacentHTML('beforeend', load_more_html)
             }
           },
           errors: function(xhr) {
-            console.log(xhr);
-            $(el).prop('disabled', false);
+            console.log("xhr", xhr);
+            $(course_list).html(error_html);
+            $request = null;
           }
         });
-      })
+      }
+      get_courses();
+      $(document).on('click', '.cat', function(e) {
+        get_courses();
+      });
+
+      var $request2 = null;
+
+      function more_courses(relatedTarget) {
+        if ($request2 != null) {
+          $request2.abort();
+          $request2 = null;
+        }
+        var sortingOrder = document.querySelectorAll('input[name="sortingOrder"]:checked').length > 0 ?
+          document.querySelectorAll('input[name="sortingOrder"]:checked')[0].getAttribute('data-id') :
+          '1';
+        var libraries = [...document.querySelectorAll('input[name="library"]:checked')].map((el) => {
+          return $(el).data('id')
+        }).join();
+        var language = document.querySelectorAll('input[name="language"]:checked').length > 0 ?
+          document.querySelectorAll('input[name="language"]:checked')[0].getAttribute('data-id') :
+          '3';
+        var page = (document.querySelectorAll('#course-list > div').length / 20) + 1;
+        var data = {
+          _token: $('[name="_token"]').val(),
+          onlyFree: $('#onlyFree')[0].checked ? '1' : '0',
+          sortingOrder: sortingOrder,
+          libraries: libraries,
+          page: page,
+          language: language,
+          q: '{{ $q }}',
+        };
+
+        console.log(data);
+
+        $request2 = $.ajax({
+          url: "{{ route('main-page.courses.api') }}",
+          method: 'post',
+          data: data,
+          success: function(result) {
+            // console.log("result", result);
+            course_list.insertAdjacentHTML('beforeend', result.data)
+            // $(course_list).html(result.data);
+            $request2 = null;
+            if (!result.hasMore) {
+              $('.load-more-courses').remove();
+            } else {
+              if (!document.querySelector('.load-more-courses'))
+                course_list_parent.insertAdjacentHTML('beforeend', load_more_html)
+            }
+          },
+          errors: function(xhr) {
+            console.log("xhr", xhr);
+            // $(course_list).html(error_html);
+            $request2 = null;
+          }
+        });
+      }
+      $(document).on('click', '.load-more-courses', function(e) {
+        more_courses(e.relatedTarget);
+      });
     });
+
+    // $(function() {
+    //   $('.load-more').click(function(e) {
+    //     var page = ($('#course-list .course').length / 20) + 1;
+    //     var el = this;
+    //     $(el).prop('disabled', true);
+    //     urlObject = new URL(document.location.href);
+    //     params = urlObject.searchParams;
+    //     let data = {
+    //       _token: $('[name="_token"]').val(),
+    //       page: page,
+    //     }
+    //     for (let item of params) {
+    //       let pa = item[0],
+    //         pb = item[1];
+    //       data[pa] = pb;
+    //     }
+    //     $.ajax({
+    //       url: window.location.href.split('?')[0],
+    //       method: 'get',
+    //       data,
+    //       success: function(result) {
+    //         var course_list = document.getElementById('course-list');
+    //         for (let res of result.courses) {
+    //           // console.log(res);
+    //           course_list.insertAdjacentHTML('beforeend', res)
+    //         }
+    //         if (result.hasMore) {
+    //           $(el).prop('disabled', false);
+    //         } else {
+    //           setTimeout(() => {
+    //             $(el).remove();
+    //           }, 600);
+    //         }
+    //       },
+    //       errors: function(xhr) {
+    //         console.log(xhr);
+    //         $(el).prop('disabled', false);
+    //       }
+    //     });
+    //   })
+
+
+    // });
   </script>
 @endpush

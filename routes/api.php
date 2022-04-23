@@ -110,6 +110,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     $language = $request->get('language', '3');
     $user_id = $request->get('user_id');
     $author_id = $request->get('author_id');
+    $subject_slug = $request->get('subject_slug');
     $q = $request->get('q');
 
     // $sortingOrder = intval($sortingOrder) == 1 ? 'sortingDate' : 'views';
@@ -118,7 +119,15 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     } else {
         $libraries = explode(',', $libraries);
     }
-    if ($author_id != null) {
+    if ($subject_slug != null) {
+        $subject = Subject::where('slug', $subject_slug)->get();
+        if ($subject) {
+            $courses = $subject->courses();
+            $type = 'subject';
+        } else {
+            return new JsonResponse([false]);
+        }
+    } else if ($author_id != null) {
         $author = Author::find($author_id);
         if ($author) {
             $courses = $author->courses();
