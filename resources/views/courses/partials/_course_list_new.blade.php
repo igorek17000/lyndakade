@@ -48,7 +48,7 @@
     <div class="card-body">
       <a href="{{ courseURL($course) }}">
         <h5 class="card-title">
-          <p class="mt-2 text-right pr-2 mb-0"
+          <p class="mt-2 text-right pr-2 mb-2"
             style="font-size: .9rem; font-weight: 600; /*max-height: 43px;*/ overflow-y: hidden;">
             {{ $course->title }}
           </p>
