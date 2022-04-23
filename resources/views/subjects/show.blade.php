@@ -2,15 +2,20 @@
 @push('meta.in.head')
   @include('meta::manager', [
       'image' => 'https://lyndakade.ir/image/logo.png',
-      'title' => ($subject->title_per ?? $subject->title) . ' (' . ($subject->title ?? $subject->titleEng) . ')'. ' - لیندا کده',
-      'keywords' => get_seo_keywords() . ' , ' . ($subject->title_per ?? $subject->title) . ' , subject ' . ($subject->title ?? $subject->titleEng),
+      'title' => ($subject->title_per ?? $subject->title) . ' (' . ($subject->titleEng ?? $subject->title) . ')' . ' - لیندا کده',
+      'keywords' =>
+          get_seo_keywords() .
+          ' , ' .
+          ($subject->title_per ?? $subject->title) .
+          ' , subject ' .
+          ($subject->titleEng ?? $subject->title),
       'description' => $subject->description . ' | ' . get_seo_description(),
   ])
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "headline": "{{ ($subject->title ?? $subject->titleEng) }}",
+      "headline": "{{ $subject->titleEng ?? $subject->title }}",
       "url": "{{ route('home.show', [$subject->slug]) }}"
     }
   </script>
@@ -19,17 +24,18 @@
   <div class="row card mx-0 pb-4">
     <div class="container" itemprop="subject" itemscope="" itemtype="http://schema.org/Person">
       <div class="row mx-0 author-details mt-3">
-          <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
-            {{-- <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($user->avatar) }}"
+        <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
+          {{-- <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($user->avatar) }}"
               alt="عکس دوبلور {{ $user->name }} - Image of {{ $user->name }}"
               style="width: 200px !important;height: 200px !important; border-radius: 50% !important;"> --}}
-          </div>
-          <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
-            <h1 style="font-size: 23px; font-weight: 700; margin: 0;">{{ ($subject->title_per ?? $subject->title) }}({{ ($subject->title ?? $subject->titleEng) }})</h1>
-            <p class="text-justify" style="font-size: 17px;margin: 0;">
-              {!! nl2br(e($subject->description)) !!}
-            </p>
-          </div>
+        </div>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-xl-9">
+          <h1 style="font-size: 23px; font-weight: 700; margin: 0;">
+            {{ $subject->title_per ?? $subject->title }}({{ $subject->titleEng ?? $subject->title }})</h1>
+          <p class="text-justify" style="font-size: 17px;margin: 0;">
+            {!! nl2br(e($subject->description)) !!}
+          </p>
+        </div>
       </div>
     </div>
     <div class="course container-fluid">
