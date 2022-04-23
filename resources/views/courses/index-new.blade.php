@@ -283,9 +283,9 @@
               </div>
             </div>
           </div>
-          <button class="mt-2 btn btn-info load-more-courses">
+          {{-- <button class="mt-2 btn btn-info load-more-courses">
             موارد بیشتر
-          </button>
+          </button> --}}
         </div>
       </div>
     </div>
