@@ -55,8 +55,9 @@ return [
             'password' => 'ashkan1996',
             'root' => 'public_html',
             'timeout' => 9999999,
-            'passive' => true,
+            'passive' => false,
             'ignorePassiveAddress' => true,
+             'port' => 21,
             // 'ssl' => true,
         ],
 
