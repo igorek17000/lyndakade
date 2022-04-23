@@ -158,10 +158,12 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     if (intval($onlyFree) == 1) {
         $courses = $courses->where('price', 0);
     }
-    if (intval($sortingOrder) == 1) {
-        $courses = $courses->orderByDesc('sortingDate');
-    } else {
-        $courses = $courses->orderByDesc('views');
+    if ($q == null) {
+        if (intval($sortingOrder) == 1) {
+            $courses = $courses->orderByDesc('sortingDate');
+        } else {
+            $courses = $courses->orderByDesc('views');
+        }
     }
 
     if ($language == 1) {
