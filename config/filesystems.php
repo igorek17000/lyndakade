@@ -57,7 +57,7 @@ return [
             'timeout' => 9999999,
             'passive' => false,
             'ignorePassiveAddress' => true,
-             'port' => 21,
+            //  'port' => 21,
             // 'ssl' => true,
         ],
 
