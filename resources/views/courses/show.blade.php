@@ -75,19 +75,19 @@ if (count($course->subjects) > 0) {
 @section('content')
   <style>
     @media(max-width: 900px) {
-      .tags:nth-child(n+7) {
+      li.tags a:nth-child(n+7) {
         display: none;
       }
     }
 
     @media(max-width: 768px) {
-      .tags:nth-child(n+5) {
+      li.tags a:nth-child(n+5) {
         display: none;
       }
     }
 
     @media(max-width: 500px) {
-      .tags:nth-child(n+4) {
+      li.tags a:nth-child(n+4) {
         display: none;
       }
     }
