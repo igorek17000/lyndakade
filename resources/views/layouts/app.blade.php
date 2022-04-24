@@ -1033,8 +1033,8 @@
               </div>
             </div>
           </div>
-          <div class="column col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center my-2 enamad-logo">
-            <div id="carouselFooter" class="carousel slide" data-ride="carousel" data-interval="3000">
+          {{-- <div class="column col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center my-2 enamad-logo"> --}}
+            {{-- <div id="carouselFooter" class="carousel slide" data-ride="carousel" data-interval="3000">
               <ol class="carousel-indicators">
                 <li data-target="#carouselFooter" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselFooter" data-slide-to="1"></li>
@@ -1062,8 +1062,8 @@
                 </div>
               </div>
             </div>
-          </div>
-          {{-- <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
+          </div> --}}
+          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
             <a referrerpolicy="origin" target="_blank"
               href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
               <img src="#" class="lazyload" referrerpolicy="origin"
@@ -1081,7 +1081,7 @@
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 zarinpal-logo">
             <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
-          </div> --}}
+          </div>
         </div>
       </div>
     </footer>
