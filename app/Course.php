@@ -35,12 +35,12 @@ class Course extends Model
          * @var array
          */
         'columns' => [
-            'courses.title' => 10,
-            'courses.titleEng' => 10,
-            'courses.description' => 2,
-            'courses.descriptionEng' => 2,
-            'courses.concepts' => 2,
-            'courses.conceptsEng' => 2,
+            'courses.title' => 30,
+            'courses.titleEng' => 30,
+            'courses.description' => 1,
+            'courses.descriptionEng' => 1,
+            'courses.concepts' => 1,
+            'courses.conceptsEng' => 1,
             // 'subjects.title' => 6,
             // 'software.title' => 6,
             // 'authors.name' => 6,
