@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                                                                        ' .
+                                                                                                        ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -119,7 +119,8 @@ if (count($course->subjects) > 0) {
             <ul style="padding-left: 200px;">
               <li class="pr-4 tags">دسته:
                 @foreach ($subjects as $subject)
-                  <a target="_blank" titleEng="{{ $subject->title }}" title="دارای {{ $subject->courses_count }} دوره آموزشی"
+                  <a target="_blank" titleEng="{{ $subject->title }}"
+                    title="دارای {{ $subject->courses_count }} دوره آموزشی"
                     href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a>
                 @endforeach
               </li>
@@ -129,11 +130,11 @@ if (count($course->subjects) > 0) {
             <span class="input-group-addon"><i class="fa fa-copy"
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly="" onclick="(()=>{this.select();
-                                                          this.setSelectionRange(0, 99999);
-                                                          navigator.clipboard.writeText(this.value);
-                                                            toastr.options.rtl = true;
-                                                            toastr.options.positionClass = 'toast-bottom-left';
-                                                          toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                          this.setSelectionRange(0, 99999);
+                                                                          navigator.clipboard.writeText(this.value);
+                                                                            toastr.options.rtl = true;
+                                                                            toastr.options.positionClass = 'toast-bottom-left';
+                                                                          toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -253,36 +254,29 @@ if (count($course->subjects) > 0) {
                 @endif
               </div>
               <div class="col-sm-7 col-md-6 col-lg-8 course-description" role="contentinfo">
-                <h6 title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
-                  تاریخ
-                  انتشار</h6>
-                <span id="release-date" title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
-                  <b>
+                <div style="margin: 0;font-size: 13px;font-weight: 600;">
+                  <span title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
+                    تاریخ انتشار
                     @php
                       $d = date('Y/m/d', strtotime($course->releaseDate));
                       $d = explode('/', $d);
                       echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                     @endphp
-                  </b>
-                </span>
-                {{-- {{ $course->created_at->format('Y/m/d') }}</span> --}}
-                <i class="lyndacon closed-captioning" title="زیرنویس"></i>
-                @if ($course->updateDate)
-                  <h6 title="{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
-                    تاریخ
-                    بروزرسانی</h6>
-                  <span id="release-date" title="{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
-                    <b>
+                    <i class="lyndacon closed-captioning pl-2" title="زیرنویس"></i>
+                  </span>
+                  @if ($course->updateDate)
+                    <span title="{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
+                      تاریخ بروزرسانی
                       @php
                         $d = date('Y/m/d', strtotime($course->updateDate));
                         $d = explode('/', $d);
                         echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                       @endphp
-                    </b>
-                  </span>
-                  {{-- {{ $course->created_at->format('Y/m/d') }}</span> --}}
-                  <i class="lyndacon closed-captioning" title="زیرنویس"></i>
-                @endif
+                    </span>
+                    <i class="lyndacon closed-captioning pl-2" title="زیرنویس"></i>
+                  @endif
+                </div>
+
                 <div itemprop="description" class="text-justify" style="font-size: 13px;">
                   {{-- {{ $course->description }} --}}
                   {!! nl2br(e($course->description)) !!}
@@ -321,7 +315,12 @@ if (count($course->subjects) > 0) {
                     <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
                     <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
                   </span>
-                  <h6>سطح <strong>{{ $skill }}</strong></h6>
+                  <span style="color: #888; margin-bottom: 4px;">
+                    سطح
+                    <strong>
+                      {{ $skill }}
+                    </strong>
+                  </span>
                 </div>
                 <div class="course-info-stat-cont duration">
                   <span class="course-info-stat">
@@ -332,13 +331,18 @@ if (count($course->subjects) > 0) {
                       {{ $course->durationMinutes }}m
                     @endif
                   </span>
-                  <h6>مدت زمان دوره</h6>
+
+                  <span style="color: #888; margin-bottom: 4px;">
+                    مدت زمان دوره
+                  </span>
                 </div>
                 @if ($course->views > 0)
                   <div class="course-info-stat-cont viewers"
                     title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
                     <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
-                    <h6>تعدادی افرادی که این دوره را مشاهده کردند</h6>
+                    <span style="color: #888; margin-bottom: 4px;">
+                      تعدادی افرادی که این دوره را مشاهده کردند
+                    </span>
                   </div>
                 @endif
                 <button type="button" class="btn btn-warning report-issue-toggle">
@@ -413,40 +417,27 @@ if (count($course->subjects) > 0) {
                 @endif
               </div>
               <div class="col-sm-7 col-md-6 col-lg-8 course-description-english" role="contentinfo" dir="ltr">
-                <h6 title="@php
-                  $d = date('Y/m/d', strtotime($course->releaseDate));
-                  $d = explode('/', $d);
-                  echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
-                @endphp">
-                  Released:
-                </h6>
-                <span id="release-date" title="@php
-                  $d = date('Y/m/d', strtotime($course->releaseDate));
-                  $d = explode('/', $d);
-                  echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
-                @endphp">
-                  <b>{{ date('Y/m/d', strtotime($course->releaseDate)) }}</b>
-                </span>
-                {{-- {{ $course->created_at->format('Y/m/d') }}</span> --}}
-                <i class="lyndacon closed-captioning px-1" title="Subtitle"></i>
-                @if ($course->updateDate)
-                  <h6 title="@php
-                    $d = date('Y/m/d', strtotime($course->updateDate));
-                    $d = explode('/', $d);
+                <div style="margin: 0;font-size: 13px;font-weight: 600;">
+                  <span title="@php
+                    $d = explode('/', date('Y/m/d', strtotime($course->releaseDate)));
                     echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                   @endphp">
-                    Updated:
-                  </h6>
-                  <span id="release-date" title="@php
-                    $d = date('Y/m/d', strtotime($course->updateDate));
-                    $d = explode('/', $d);
-                    echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
-                  @endphp">
-                    <b>{{ date('Y/m/d', strtotime($course->updateDate)) }}</b>
+                    Release:
+                    {{ date('Y/m/d', strtotime($course->releaseDate)) }}
+                    <i class="lyndacon closed-captioning pl-2" title="زیرنویس"></i>
                   </span>
-                  {{-- {{ $course->created_at->format('Y/m/d') }}</span> --}}
-                  <i class="lyndacon closed-captioning px-1" title="Subtitle"></i>
-                @endif
+                  @if ($course->updateDate)
+                    <span title="@php
+                      $d = explode('/', date('Y/m/d', strtotime($course->updateDate)));
+                      echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                    @endphp">
+                      Update:
+                      {{ date('Y/m/d', strtotime($course->updateDate)) }}
+                    </span>
+                    <i class="lyndacon closed-captioning pl-2" title="زیرنویس"></i>
+                  @endif
+                </div>
+
                 <div class="text-justify" itemprop="description" style="font-size: 13px; margin-top: 10px;">
                   {{-- {!! $course->descriptionEng !!} --}}
                   {!! nl2br(e($course->descriptionEng)) !!}
@@ -459,7 +450,10 @@ if (count($course->subjects) > 0) {
                     <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
                     <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
                   </span>
-                  <h6>Skill Level <strong>{{ $skillEng }}</strong></h6>
+
+                  <span style="color: #888; margin-bottom: 4px;">
+                    Skill Level <strong>{{ $skillEng }}</strong>
+                  </span>
                 </div>
                 <div class="course-info-stat-cont duration">
                   <span class="course-info-stat">
@@ -470,12 +464,16 @@ if (count($course->subjects) > 0) {
                       {{ $course->durationMinutes }}m
                     @endif
                   </span>
-                  <h6>Duration</h6>
+                  <span style="color: #888; margin-bottom: 4px;">
+                    Duration
+                  </span>
                 </div>
                 @if ($course->views > 0)
                   <div class="course-info-stat-cont viewers" title="Number of people watched this course (from linkedin)">
                     <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
-                    <h6>People watched this course</h6>
+                    <span style="color: #888; margin-bottom: 4px;">
+                      People watched this course
+                    </span>
                   </div>
                 @endif
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
@@ -487,7 +485,7 @@ if (count($course->subjects) > 0) {
           </div>
           @if ($course->concepts)
             <div class="tab-pane fade" id="nav-concepts" role="tabpanel" aria-labelledby="nav-concepts-tab">
-              <div class="row" style="font-size: 1.3em;">
+              <div class="row" style="font-size: 1em;">
                 <div class="col-sm-6">
                   <pre style="font-family: 'IranSANS'; overflow-y: hidden; line-height: 1.5;">{!! $course->concepts !!}</pre>
                 </div>

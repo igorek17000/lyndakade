@@ -424,6 +424,7 @@
     }
 
     .course-description-grid {
+      font-size: 12px !important;
       overflow: hidden;
       max-width: 500px;
       text-overflow: ellipsis;
@@ -938,7 +939,7 @@
               if (request()->has('returnUrl')) {
                   $login_link = route('login', ['returnUrl' => request()->get('returnUrl')]);
               }
-              
+
             @endphp
             <a class="nav-link btn btn-outline-primary" rel="nofollow"
               href="{{ $login_link }}">{{ __('msg.Login') }}</a>
