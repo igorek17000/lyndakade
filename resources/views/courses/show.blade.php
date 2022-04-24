@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                                                                                        ' .
+                                                                                                                                ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -129,12 +129,13 @@ if (count($course->subjects) > 0) {
           <div class="input-group" style="text-align: left;position: absolute;width: 200px;left: 0;top: 2px;">
             <span class="input-group-addon"><i class="fa fa-copy"
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
-            <input readonly="" onclick="(()=>{this.select();
-                                                                          this.setSelectionRange(0, 99999);
-                                                                          navigator.clipboard.writeText(this.value);
-                                                                            toastr.options.rtl = true;
-                                                                            toastr.options.positionClass = 'toast-bottom-left';
-                                                                          toastr.info('لینک کوتاه کپی شد.');})()"
+            <input readonly=""
+              onclick="(()=>{this.select();
+                                                                                                  this.setSelectionRange(0, 99999);
+                                                                                                  navigator.clipboard.writeText(this.value);
+                                                                                                    toastr.options.rtl = true;
+                                                                                                    toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                  toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -281,7 +282,126 @@ if (count($course->subjects) > 0) {
                   {{-- {{ $course->description }} --}}
                   {!! nl2br(e($course->description)) !!}
                 </div>
-                <div class="row" style="font-weight: 600;">
+                <div
+                  style="border: 2px solid orange;border-radius: 15px;margin-top: 15px;padding: 15px 20px;font-size: 13px;font-weight: 600;text-align: left;direction: ltr;">
+                  <p style="text-align: center;direction: rtl;margin-bottom: 10px;">
+                    این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
+                    @if ($course->persian_subtitle_id == 1)
+                      به همراه زیرنویس فارسی و انگلیسی می‌باشد.
+                    @elseif ($course->english_subtitle_id == 1)
+                      به همراه زیرنویس انگلیسی می‌باشد.
+                    @else
+                      دارای زیرنویس نمی‌باشد
+                    @endif
+                  </p>
+                  @php
+                    $is_unlocked = auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0);
+                  @endphp
+                  <ul class="exercise-files-popover">
+                    @if ($course->courseFile && json_decode($course->courseFile) != null)
+                      @foreach (json_decode($course->courseFile) as $file)
+                        <li role="presentation">
+                          @if ($is_unlocked)
+                            <a role="link"
+                              href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
+                              <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                              <span>
+                                {{ prepare_course_file_name($file->original_name) }}
+                              </span>
+                              @if (isset($file->size))
+                                <span class="text-muted small">
+                                  ({{ formatBytes($file->size) }})
+                                </span>
+                              @endif
+                            </a>
+                          @else
+                            <span>
+                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                              {{ prepare_course_file_name($file->original_name) }}
+                            </span>
+                            @if (isset($file->size))
+                              <span class="text-muted small">
+                                ({{ formatBytes($file->size) }})
+                              </span>
+                            @endif
+                          @endif
+                        </li>
+                      @endforeach
+                    @endif
+
+                    @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
+                      @php
+                        $idx = 0;
+                      @endphp
+                      @foreach (json_decode($course->exerciseFile) as $file)
+                        @php
+                          $idx = $idx + 1;
+                        @endphp
+                        <li role="presentation">
+                          @if ($is_unlocked)
+                            <a role="link"
+                              href="{{ route('courses.download', [$course->id,hash('md5', 'exFiles') => hash('sha256', auth()->id()),'filename' => $file->original_name]) }}">
+                              <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                              <span>
+                                {{ prepare_course_file_name($file->original_name) }}
+                              </span>
+                              @if (isset($file->size))
+                                <span class="text-muted small">
+                                  ({{ formatBytes($file->size) }})
+                                </span>
+                              @endif
+                            </a>
+                          @else
+                            <span>
+                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                              {{ prepare_course_file_name($file->original_name) }}
+                            </span>
+                            @if (isset($file->size))
+                              <span class="text-muted small">
+                                ({{ formatBytes($file->size) }})
+                              </span>
+                            @endif
+                          @endif
+                        </li>
+                      @endforeach
+                    @endif
+                    @if ($course->persianSubtitleFile && json_decode($course->persianSubtitleFile) != null)
+                      @foreach (json_decode($course->persianSubtitleFile) as $file)
+                        <li role="presentation">
+                          @if ($is_unlocked)
+                            <a role="link"
+                              href="{{ route('courses.download', [$course->id, hash('md5', 'persianSubtitleFile') => hash('sha256', auth()->id())]) }}">
+                              <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                              <span>
+                                فایل زیرنویس فارسی
+                              </span>
+                            </a>
+                          @else
+                            <span>
+                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                              فایل زیرنویس فارسی
+                            </span>
+                            @if (isset($file->size))
+                              <span class="text-muted small">
+                                ({{ formatBytes($file->size) }})
+                              </span>
+                            @endif
+                          @endif
+                        </li>
+                      @endforeach
+                    @endif
+                  </ul>
+                  @if (!auth()->check())
+                    <p class="text-center" dir="rtl">
+                      برای دانلود، لطفا
+                      <a href="{{ route('login', ['returnUrl' => request()->url()]) }}">
+                        وارد حساب کاربری
+                      </a>
+                      شوید.
+                    </p>
+                  @endif
+                </div>
+                {{-- <div class="row" style="font-weight: 600;">
                   <div class="col-md-4">
                     زیرنویس انگلیسی:
                     @if (get_course_status_state($course->english_subtitle_id))
@@ -306,361 +426,333 @@ if (count($course->subjects) > 0) {
                       <span style="color: red;">ندارد</span>
                     @endif
                   </div>
-                </div>
-              </div>
-              <div class="col-sm-3 col-md-3 col-lg-2 text-center">
-                <div class="course-info-stat-cont">
-                  <span class="course-info-stat skill-levels clearfix">
-                    <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
-                    <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
-                    <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
-                  </span>
-                  <span style="color: #888; margin-bottom: 4px;">
-                    سطح
-                    <strong>
-                      {{ $skill }}
-                    </strong>
-                  </span>
-                </div>
-                <div class="course-info-stat-cont duration">
-                  <span class="course-info-stat">
-                    @if ($course->durationHours)
-                      {{ $course->durationHours }}h
-                    @endif
-                    @if ($course->durationMinutes)
-                      {{ $course->durationMinutes }}m
-                    @endif
-                  </span>
-
-                  <span style="color: #888; margin-bottom: 4px;">
-                    مدت زمان دوره
-                  </span>
-                </div>
-                @if ($course->views > 0)
-                  <div class="course-info-stat-cont viewers"
-                    title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
-                    <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
+                </div> --}}
+                <div class="col-sm-3 col-md-3 col-lg-2 text-center">
+                  <div class="course-info-stat-cont">
+                    <span class="course-info-stat skill-levels clearfix">
+                      <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
+                      <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
+                      <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
+                    </span>
                     <span style="color: #888; margin-bottom: 4px;">
-                      تعدادی افرادی که این دوره را مشاهده کردند
+                      سطح
+                      <strong>
+                        {{ $skill }}
+                      </strong>
                     </span>
                   </div>
-                @endif
-                <button type="button" class="btn btn-warning report-issue-toggle">
-                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                  گزارش خرابی
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab">
-            <div class="row">
-              <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
-                <div class="course-info-stat-cont m-0 mb-2 w-100 text-left" dir="ltr">
-                  <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
-                    @if (get_course_price($course->price) != $course->price)
-                      <del style="color: #f44">
-                        {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
-                      </del>
-                      <br>
-                    @endif
-                    {{ $course->price == 0 ? 'FREE' : number_format(get_course_price($course->price)) . ' Toman' }}
-                  </span>
-                </div>
-                @if (auth()->check() && $course->price > 0)
-                  @if ($course_state == '1')
-                    <div id="cart-btn">
-                      <span class="btn btn-secondary align-self-center m-0 mb-2 w-100">
-                        Purchased
+                  <div class="course-info-stat-cont duration">
+                    <span class="course-info-stat">
+                      @if ($course->durationHours)
+                        {{ $course->durationHours }}h
+                      @endif
+                      @if ($course->durationMinutes)
+                        {{ $course->durationMinutes }}m
+                      @endif
+                    </span>
+
+                    <span style="color: #888; margin-bottom: 4px;">
+                      مدت زمان دوره
+                    </span>
+                  </div>
+                  @if ($course->views > 0)
+                    <div class="course-info-stat-cont viewers"
+                      title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
+                      <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
+                      <span style="color: #888; margin-bottom: 4px;">
+                        تعدادی افرادی که این دوره را مشاهده کردند
                       </span>
                     </div>
-                  @elseif ($course_state == '2')
-                    <div id="cart-btn" data-lang="EN">
-                      <a data-id="1-{{ $course->id }}" data-lang="EN"
-                        class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
-                        Remove From Cart
-                      </a>
-                    </div>
-                  @elseif($course_state == '3')
-                    <div id="cart-btn" data-lang="EN">
-                      <a data-id="1-{{ $course->id }}" data-lang="EN"
-                        class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
-                        Add To Cart
-                      </a>
-                    </div>
                   @endif
-                @endif
-                <div class="author-thumb">
-                  <h5>Author</h5>
-                  @foreach ($course->authors as $author)
-                    <a href="{{ route('authors.show', [$author->slug]) }}">
-                      <img itemprop="image" src="#" class="lazyload" width="100" height="100"
-                        data-src="{{ fromDLHost($author->img) }}" style="border-radius: 10px;"
-                        alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
-                      <cite>{{ $author->name }}</cite>
-                    </a>
-                  @endforeach
+                  <button type="button" class="btn btn-warning report-issue-toggle">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    گزارش خرابی
+                  </button>
                 </div>
-
-                @if (count($course->users) > 0)
-                  <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
-                    class="author-thumb">
-                    <h5>Dubbed By</h5>
-                    @foreach ($course->users as $user)
-                      <a href="{{ route('dubbed.index', [$user->username]) }}">
-                        <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
-                          data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
-                          height="100">
-                        <cite>{{ $user->name }}</cite>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab">
+              <div class="row">
+                <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
+                  <div class="course-info-stat-cont m-0 mb-2 w-100 text-left" dir="ltr">
+                    <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
+                      @if (get_course_price($course->price) != $course->price)
+                        <del style="color: #f44">
+                          {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
+                        </del>
+                        <br>
+                      @endif
+                      {{ $course->price == 0 ? 'FREE' : number_format(get_course_price($course->price)) . ' Toman' }}
+                    </span>
+                  </div>
+                  @if (auth()->check() && $course->price > 0)
+                    @if ($course_state == '1')
+                      <div id="cart-btn">
+                        <span class="btn btn-secondary align-self-center m-0 mb-2 w-100">
+                          Purchased
+                        </span>
+                      </div>
+                    @elseif ($course_state == '2')
+                      <div id="cart-btn" data-lang="EN">
+                        <a data-id="1-{{ $course->id }}" data-lang="EN"
+                          class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
+                          Remove From Cart
+                        </a>
+                      </div>
+                    @elseif($course_state == '3')
+                      <div id="cart-btn" data-lang="EN">
+                        <a data-id="1-{{ $course->id }}" data-lang="EN"
+                          class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
+                          Add To Cart
+                        </a>
+                      </div>
+                    @endif
+                  @endif
+                  <div class="author-thumb">
+                    <h5>Author</h5>
+                    @foreach ($course->authors as $author)
+                      <a href="{{ route('authors.show', [$author->slug]) }}">
+                        <img itemprop="image" src="#" class="lazyload" width="100" height="100"
+                          data-src="{{ fromDLHost($author->img) }}" style="border-radius: 10px;"
+                          alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
+                        <cite>{{ $author->name }}</cite>
                       </a>
                     @endforeach
                   </div>
-                @endif
-              </div>
-              <div class="col-sm-7 col-md-6 col-lg-8 course-description-english" role="contentinfo" dir="ltr">
-                <div style="margin: 0;font-size: 13px;font-weight: 600;">
-                  <span title="@php
-                    $d = explode('/', date('Y/m/d', strtotime($course->releaseDate)));
-                    echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
-                  @endphp">
-                    Release:
-                    {{ date('Y/m/d', strtotime($course->releaseDate)) }}
-                    <i class="lyndacon closed-captioning pl-2" title="زیرنویس"></i>
-                  </span>
-                  @if ($course->updateDate)
+
+                  @if (count($course->users) > 0)
+                    <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
+                      class="author-thumb">
+                      <h5>Dubbed By</h5>
+                      @foreach ($course->users as $user)
+                        <a href="{{ route('dubbed.index', [$user->username]) }}">
+                          <img src="#" class="lazyload"
+                            alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
+                            data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
+                            height="100">
+                          <cite>{{ $user->name }}</cite>
+                        </a>
+                      @endforeach
+                    </div>
+                  @endif
+                </div>
+                <div class="col-sm-7 col-md-6 col-lg-8 course-description-english" role="contentinfo" dir="ltr">
+                  <div style="margin: 0;font-size: 13px;font-weight: 600;">
                     <span title="@php
-                      $d = explode('/', date('Y/m/d', strtotime($course->updateDate)));
+                      $d = explode('/', date('Y/m/d', strtotime($course->releaseDate)));
                       echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                     @endphp">
-                      Update:
-                      {{ date('Y/m/d', strtotime($course->updateDate)) }}
+                      Release:
+                      {{ date('Y/m/d', strtotime($course->releaseDate)) }}
+                      <i class="lyndacon closed-captioning pl-2" title="subtitle"></i>
                     </span>
-                    <i class="lyndacon closed-captioning pl-2" title="زیرنویس"></i>
-                  @endif
-                </div>
-
-                <div class="text-justify" itemprop="description" style="font-size: 13px; margin-top: 10px;">
-                  {{-- {!! $course->descriptionEng !!} --}}
-                  {!! nl2br(e($course->descriptionEng)) !!}
-                </div>
-              </div>
-              <div class="col-sm-3 col-md-3 col-lg-2 text-center">
-                <div class="course-info-stat-cont">
-                  <span class="course-info-stat skill-levels clearfix">
-                    <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
-                    <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
-                    <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
-                  </span>
-
-                  <span style="color: #888; margin-bottom: 4px;">
-                    Skill Level <strong>{{ $skillEng }}</strong>
-                  </span>
-                </div>
-                <div class="course-info-stat-cont duration">
-                  <span class="course-info-stat">
-                    @if ($course->durationHours)
-                      {{ $course->durationHours }}h
+                    @if ($course->updateDate)
+                      <span title="@php
+                        $d = explode('/', date('Y/m/d', strtotime($course->updateDate)));
+                        echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                      @endphp">
+                        Update:
+                        {{ date('Y/m/d', strtotime($course->updateDate)) }}
+                      </span>
+                      <i class="lyndacon closed-captioning pl-2" title="subtitle"></i>
                     @endif
-                    @if ($course->durationMinutes)
-                      {{ $course->durationMinutes }}m
-                    @endif
-                  </span>
-                  <span style="color: #888; margin-bottom: 4px;">
-                    Duration
-                  </span>
+                  </div>
+                  <div class="text-justify" itemprop="description" style="font-size: 13px; margin-top: 10px;">
+                    {!! nl2br(e($course->descriptionEng)) !!}
+                  </div>
                 </div>
-                @if ($course->views > 0)
-                  <div class="course-info-stat-cont viewers" title="Number of people watched this course (from linkedin)">
-                    <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
+                <div class="col-sm-3 col-md-3 col-lg-2 text-center">
+                  <div class="course-info-stat-cont">
+                    <span class="course-info-stat skill-levels clearfix">
+                      <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
+                      <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
+                      <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
+                    </span>
+
                     <span style="color: #888; margin-bottom: 4px;">
-                      People watched this course
+                      Skill Level <strong>{{ $skillEng }}</strong>
                     </span>
                   </div>
-                @endif
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
-                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                  Report
-                </button>
-              </div>
-            </div>
-          </div>
-          @if ($course->concepts)
-            <div class="tab-pane fade" id="nav-concepts" role="tabpanel" aria-labelledby="nav-concepts-tab">
-              <div class="row" style="font-size: 1em;">
-                <div class="col-sm-6">
-                  <pre style="font-family: 'IranSANS'; overflow-y: hidden; line-height: 1.5;">{!! $course->concepts !!}</pre>
-                </div>
-                <div class="col-sm-6 text-left" dir="ltr">
-                  <pre style="overflow-y: hidden; line-height: 1.5;">{!! $course->conceptsEng !!}</pre>
-                </div>
-              </div>
-            </div>
-          @endif
-          <div class="tab-pane fade" id="nav-download-links" role="tabpanel" aria-labelledby="nav-download-links-tab">
-            @if (auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0))
-              <div class="row justify-content-center text-left" dir="ltr">
-                <div class="col-lg-2 text-center">
-                  <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
-                </div>
-                <div class="col-lg-10">
-                  <p class="text-center text-left" dir="rtl">
-                    این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
-                    @if ($course->persian_subtitle_id == 1)
-                      به همراه زیرنویس فارسی و انگلیسی می‌باشد.
-                    @elseif ($course->english_subtitle_id == 1)
-                      به همراه زیرنویس انگلیسی می‌باشد.
-                    @else
-                      دارای زیرنویس نمی‌باشد
-                    @endif
-                  </p>
-                  <ul class="exercise-files-popover">
-                    @if ($course->courseFile && json_decode($course->courseFile) != null)
-                      @foreach (json_decode($course->courseFile) as $file)
-                        <li role="presentation">
-                          <a role="link"
-                            href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
-                            <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
-                            <span>
-                              {{ prepare_course_file_name($file->original_name) }}
-                            </span>
-                            @if (isset($file->size))
-                              <span class="text-muted small">
-                                ({{ formatBytes($file->size) }})
-                              </span>
-                            @endif
-                          </a>
-                          {{-- <a role="link"
-                                        href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
-                                        <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
-                                        <span>
-                                        فایل دوره آموزشی
-                                        </span>
-                                    </a> --}}
-                        </li>
-                      @endforeach
-                    @endif
-
-                    @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
-                      @php
-                        $idx = 0;
-                      @endphp
-                      @foreach (json_decode($course->exerciseFile) as $file)
-                        @php
-                          $idx = $idx + 1;
-                        @endphp
-                        <li role="presentation">
-                          <a role="link"
-                            href="{{ route('courses.download', [$course->id,hash('md5', 'exFiles') => hash('sha256', auth()->id()),'filename' => $file->original_name]) }}">
-                            <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
-                            <span>
-                              {{ prepare_course_file_name($file->original_name) }}
-                            </span>
-                            @if (isset($file->size))
-                              <span class="text-muted small">
-                                ({{ formatBytes($file->size) }})
-                              </span>
-                            @endif
-                          </a>
-                          {{-- <a role="link"
-                                href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
-                                <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
-                                <span>
-                                فایل تمرینی {{ $idx }}
-                                </span>
-                            </a> --}}
-                        </li>
-                      @endforeach
-                    @endif
-
-                    @if ($course->persianSubtitleFile && json_decode($course->persianSubtitleFile) != null)
-                      @foreach (json_decode($course->persianSubtitleFile) as $file)
-                        <li role="presentation">
-                          <a role="link"
-                            href="{{ route('courses.download', [$course->id, hash('md5', 'persianSubtitleFile') => hash('sha256', auth()->id())]) }}">
-                            <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
-                            <span>
-                              فایل زیرنویس فارسی دوره
-                            </span>
-                          </a>
-                          {{-- <a role="link"
-                                href="https://dl.lyndakade.ir/download.php?token={{ create_hashed_data_if_not_exists(auth()->id()) }}&file={{ create_hashed_data_if_not_exists($file->download_link) }}&course={{ create_hashed_data_if_not_exists($course->id) }}&token2={{ create_hashed_data_if_not_exists(request()->ip()) }}">
-                                <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
-                                <span>
-                                فایل زیرنویس فارسی دوره
-                                </span>
-                            </a> --}}
-                        </li>
-                      @endforeach
-                    @endif
-                  </ul>
-                </div>
-              </div>
-            @else
-              <div class="row justify-content-center text-left" dir="ltr">
-                <div class="col-lg-2 text-center">
-                  <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
-                </div>
-                <div class="col-lg-10">
-                  @if (!auth()->check())
-                    <p class="text-center" dir="rtl">برای دانلود، لطفا <a
-                        href="{{ route('login', ['returnUrl' => request()->url()]) }}">وارد حساب کاربری</a>
-                      شوید.</p>
-                  @else
-                    <p></p>
+                  <div class="course-info-stat-cont duration">
+                    <span class="course-info-stat">
+                      @if ($course->durationHours)
+                        {{ $course->durationHours }}h
+                      @endif
+                      @if ($course->durationMinutes)
+                        {{ $course->durationMinutes }}m
+                      @endif
+                    </span>
+                    <span style="color: #888; margin-bottom: 4px;">
+                      Duration
+                    </span>
+                  </div>
+                  @if ($course->views > 0)
+                    <div class="course-info-stat-cont viewers"
+                      title="Number of people watched this course (from linkedin)">
+                      <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
+                      <span style="color: #888; margin-bottom: 4px;">
+                        People watched this course
+                      </span>
+                    </div>
                   @endif
-                  <p class="text-center text-left" dir="rtl">
-                    این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
-                    @if ($course->persian_subtitle_id == 1)
-                      به همراه زیرنویس فارسی و انگلیسی می‌باشد.
-                    @elseif ($course->english_subtitle_id == 1)
-                      به همراه زیرنویس انگلیسی می‌باشد.
-                    @else
-                      دارای زیرنویس نمی‌باشد.
-                    @endif
-                  </p>
-                  <div class="col-lg-10">
-                    @if ($course->courseFile && json_decode($course->courseFile) != null)
-                      @foreach (json_decode($course->courseFile) as $file)
-                        <div>
-                          <span>
-                            <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
-                            {{ prepare_course_file_name($file->original_name) }}
-                          </span>
-                          @if (isset($file->size))
-                            <span class="text-muted small">
-                              ({{ formatBytes($file->size) }})
-                            </span>
-                          @endif
-                        </div>
-                      @endforeach
-                    @endif
-                    @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
-                      @foreach (json_decode($course->exerciseFile) as $file)
-                        <div>
-                          <span>
-                            <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
-                            {{ prepare_course_file_name($file->original_name) }}
-                          </span>
-                          @if (isset($file->size))
-                            <span class="text-muted small">
-                              ({{ formatBytes($file->size) }})
-                            </span>
-                          @endif
-                        </div>
-                      @endforeach
-                    @endif
+                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    Report
+                  </button>
+                </div>
+              </div>
+            </div>
+            @if ($course->concepts)
+              <div class="tab-pane fade" id="nav-concepts" role="tabpanel" aria-labelledby="nav-concepts-tab">
+                <div class="row" style="font-size: 1em;">
+                  <div class="col-sm-6">
+                    <pre style="font-family: 'IranSANS'; overflow-y: hidden; line-height: 1.5;">{!! $course->concepts !!}</pre>
+                  </div>
+                  <div class="col-sm-6 text-left" dir="ltr">
+                    <pre style="overflow-y: hidden; line-height: 1.5;">{!! $course->conceptsEng !!}</pre>
                   </div>
                 </div>
               </div>
             @endif
+            {{-- <div class="tab-pane fade" id="nav-download-links" role="tabpanel" aria-labelledby="nav-download-links-tab">
+              @if (auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0))
+                <div class="row justify-content-center text-left" dir="ltr">
+                  <div class="col-lg-2 text-center">
+                    <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
+                  </div>
+                  <div class="col-lg-10">
+                    <p class="text-center text-left" dir="rtl">
+                      این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
+                      @if ($course->persian_subtitle_id == 1)
+                        به همراه زیرنویس فارسی و انگلیسی می‌باشد.
+                      @elseif ($course->english_subtitle_id == 1)
+                        به همراه زیرنویس انگلیسی می‌باشد.
+                      @else
+                        دارای زیرنویس نمی‌باشد
+                      @endif
+                    </p>
+                    <ul class="exercise-files-popover">
+                      @if ($course->courseFile && json_decode($course->courseFile) != null)
+                        @foreach (json_decode($course->courseFile) as $file)
+                          <li role="presentation">
+                            <a role="link"
+                              href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
+                              <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                              <span>
+                                {{ prepare_course_file_name($file->original_name) }}
+                              </span>
+                              @if (isset($file->size))
+                                <span class="text-muted small">
+                                  ({{ formatBytes($file->size) }})
+                                </span>
+                              @endif
+                            </a>
+                          </li>
+                        @endforeach
+                      @endif
 
-            {{-- @if (!auth()->check())
-            @elseif (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state
-              == '1'
-              || $course->price == 0)
-            @endif --}}
+                      @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
+                        @php
+                          $idx = 0;
+                        @endphp
+                        @foreach (json_decode($course->exerciseFile) as $file)
+                          @php
+                            $idx = $idx + 1;
+                          @endphp
+                          <li role="presentation">
+                            <a role="link"
+                              href="{{ route('courses.download', [$course->id,hash('md5', 'exFiles') => hash('sha256', auth()->id()),'filename' => $file->original_name]) }}">
+                              <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                              <span>
+                                {{ prepare_course_file_name($file->original_name) }}
+                              </span>
+                              @if (isset($file->size))
+                                <span class="text-muted small">
+                                  ({{ formatBytes($file->size) }})
+                                </span>
+                              @endif
+                            </a>
+                          </li>
+                        @endforeach
+                      @endif
+
+                      @if ($course->persianSubtitleFile && json_decode($course->persianSubtitleFile) != null)
+                        @foreach (json_decode($course->persianSubtitleFile) as $file)
+                          <li role="presentation">
+                            <a role="link"
+                              href="{{ route('courses.download', [$course->id, hash('md5', 'persianSubtitleFile') => hash('sha256', auth()->id())]) }}">
+                              <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                              <span>
+                                فایل زیرنویس فارسی دوره
+                              </span>
+                            </a>
+                          </li>
+                        @endforeach
+                      @endif
+                    </ul>
+                  </div>
+                </div>
+              @else
+                <div class="row justify-content-center text-left" dir="ltr">
+                  <div class="col-lg-2 text-center">
+                    <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
+                  </div>
+                  <div class="col-lg-10">
+                    @if (!auth()->check())
+                      <p class="text-center" dir="rtl">برای دانلود، لطفا <a
+                          href="{{ route('login', ['returnUrl' => request()->url()]) }}">وارد حساب کاربری</a>
+                        شوید.</p>
+                    @else
+                      <p></p>
+                    @endif
+                    <p class="text-center text-left" dir="rtl">
+                      این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
+                      @if ($course->persian_subtitle_id == 1)
+                        به همراه زیرنویس فارسی و انگلیسی می‌باشد.
+                      @elseif ($course->english_subtitle_id == 1)
+                        به همراه زیرنویس انگلیسی می‌باشد.
+                      @else
+                        دارای زیرنویس نمی‌باشد.
+                      @endif
+                    </p>
+                    <div class="col-lg-10">
+                      @if ($course->courseFile && json_decode($course->courseFile) != null)
+                        @foreach (json_decode($course->courseFile) as $file)
+                          <div>
+                            <span>
+                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                              {{ prepare_course_file_name($file->original_name) }}
+                            </span>
+                            @if (isset($file->size))
+                              <span class="text-muted small">
+                                ({{ formatBytes($file->size) }})
+                              </span>
+                            @endif
+                          </div>
+                        @endforeach
+                      @endif
+                      @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
+                        @foreach (json_decode($course->exerciseFile) as $file)
+                          <div>
+                            <span>
+                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                              {{ prepare_course_file_name($file->original_name) }}
+                            </span>
+                            @if (isset($file->size))
+                              <span class="text-muted small">
+                                ({{ formatBytes($file->size) }})
+                              </span>
+                            @endif
+                          </div>
+                        @endforeach
+                      @endif
+                    </div>
+                  </div>
+                </div>
+              @endif
+            </div> --}}
           </div>
         </div>
-      </div>
     </aside>
   </div>
 
