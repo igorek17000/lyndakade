@@ -278,7 +278,7 @@ if (count($course->subjects) > 0) {
                   @endphp
                 <div
                   style="border: 2px solid orange;border-radius: 15px;margin-top: 15px;padding: 15px 20px;font-size: 13px;text-align: left;direction: ltr;">
-                  <p style="text-align: center;direction: rtl;margin-bottom: 10px;font-weight: 600;">
+                  <p style="text-align: center;direction: rtl;margin-bottom: 10px;@if($is_unlocked) font-weight: 600; @endif">
                     این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
                     @if ($course->persian_subtitle_id == 1)
                       به همراه زیرنویس فارسی و انگلیسی می‌باشد.
