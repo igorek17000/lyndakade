@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                                                                                                                ' .
+                                                                                                                                          ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -131,24 +131,15 @@ if (count($course->subjects) > 0) {
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
               onclick="(()=>{this.select();
-                                                                                                  this.setSelectionRange(0, 99999);
-                                                                                                  navigator.clipboard.writeText(this.value);
-                                                                                                    toastr.options.rtl = true;
-                                                                                                    toastr.options.positionClass = 'toast-bottom-left';
-                                                                                                  toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                                                            this.setSelectionRange(0, 99999);
+                                                                                                            navigator.clipboard.writeText(this.value);
+                                                                                                              toastr.options.rtl = true;
+                                                                                                              toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                            toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
           </div>
-          {{-- <span class="short-link">
-            <input readonly="" onclick="
-                                        this.setSelectionRange(0, this.value.length);
-                                        document.execCommand('copy');
-                                        toastr.options.rtl = true;
-                                        toastr.options.positionClass = 'toast-bottom-left';
-                                        toastr.info('لینک کوتاه کپی شد.');" style="" title="لینک کوتاه این دوره"
-              type="text" value="lyndakade.ir/c/{{ $course->id }}" id="shorturl">
-          </span> --}}
         </div>
         <hr class="mt-1">
 
@@ -427,194 +418,194 @@ if (count($course->subjects) > 0) {
                     @endif
                   </div>
                 </div> --}}
-                <div class="col-sm-3 col-md-3 col-lg-2 text-center">
-                  <div class="course-info-stat-cont">
-                    <span class="course-info-stat skill-levels clearfix">
-                      <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
-                      <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
-                      <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
-                    </span>
-                    <span style="color: #888; margin-bottom: 4px;">
-                      سطح
-                      <strong>
-                        {{ $skill }}
-                      </strong>
-                    </span>
-                  </div>
-                  <div class="course-info-stat-cont duration">
-                    <span class="course-info-stat">
-                      @if ($course->durationHours)
-                        {{ $course->durationHours }}h
-                      @endif
-                      @if ($course->durationMinutes)
-                        {{ $course->durationMinutes }}m
-                      @endif
-                    </span>
-
-                    <span style="color: #888; margin-bottom: 4px;">
-                      مدت زمان دوره
-                    </span>
-                  </div>
-                  @if ($course->views > 0)
-                    <div class="course-info-stat-cont viewers"
-                      title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
-                      <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
-                      <span style="color: #888; margin-bottom: 4px;">
-                        تعدادی افرادی که این دوره را مشاهده کردند
-                      </span>
-                    </div>
-                  @endif
-                  <button type="button" class="btn btn-warning report-issue-toggle">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                    گزارش خرابی
-                  </button>
+              </div>
+              <div class="col-sm-3 col-md-3 col-lg-2 text-center">
+                <div class="course-info-stat-cont">
+                  <span class="course-info-stat skill-levels clearfix">
+                    <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
+                    <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
+                    <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
+                  </span>
+                  <span style="color: #888; margin-bottom: 4px;">
+                    سطح
+                    <strong>
+                      {{ $skill }}
+                    </strong>
+                  </span>
                 </div>
+                <div class="course-info-stat-cont duration">
+                  <span class="course-info-stat">
+                    @if ($course->durationHours)
+                      {{ $course->durationHours }}h
+                    @endif
+                    @if ($course->durationMinutes)
+                      {{ $course->durationMinutes }}m
+                    @endif
+                  </span>
+
+                  <span style="color: #888; margin-bottom: 4px;">
+                    مدت زمان دوره
+                  </span>
+                </div>
+                @if ($course->views > 0)
+                  <div class="course-info-stat-cont viewers"
+                    title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
+                    <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
+                    <span style="color: #888; margin-bottom: 4px;">
+                      تعدادی افرادی که این دوره را مشاهده کردند
+                    </span>
+                  </div>
+                @endif
+                <button type="button" class="btn btn-warning report-issue-toggle">
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                  گزارش خرابی
+                </button>
               </div>
             </div>
-            <div class="tab-pane fade" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab">
-              <div class="row">
-                <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
-                  <div class="course-info-stat-cont m-0 mb-2 w-100 text-left" dir="ltr">
-                    <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
-                      @if (get_course_price($course->price) != $course->price)
-                        <del style="color: #f44">
-                          {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
-                        </del>
-                        <br>
-                      @endif
-                      {{ $course->price == 0 ? 'FREE' : number_format(get_course_price($course->price)) . ' Toman' }}
+          </div>
+        </div>
+        <div class="tab-pane fade" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab">
+          <div class="row">
+            <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
+              <div class="course-info-stat-cont m-0 mb-2 w-100 text-left" dir="ltr">
+                <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
+                  @if (get_course_price($course->price) != $course->price)
+                    <del style="color: #f44">
+                      {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
+                    </del>
+                    <br>
+                  @endif
+                  {{ $course->price == 0 ? 'FREE' : number_format(get_course_price($course->price)) . ' Toman' }}
+                </span>
+              </div>
+              @if (auth()->check() && $course->price > 0)
+                @if ($course_state == '1')
+                  <div id="cart-btn">
+                    <span class="btn btn-secondary align-self-center m-0 mb-2 w-100">
+                      Purchased
                     </span>
                   </div>
-                  @if (auth()->check() && $course->price > 0)
-                    @if ($course_state == '1')
-                      <div id="cart-btn">
-                        <span class="btn btn-secondary align-self-center m-0 mb-2 w-100">
-                          Purchased
-                        </span>
-                      </div>
-                    @elseif ($course_state == '2')
-                      <div id="cart-btn" data-lang="EN">
-                        <a data-id="1-{{ $course->id }}" data-lang="EN"
-                          class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
-                          Remove From Cart
-                        </a>
-                      </div>
-                    @elseif($course_state == '3')
-                      <div id="cart-btn" data-lang="EN">
-                        <a data-id="1-{{ $course->id }}" data-lang="EN"
-                          class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
-                          Add To Cart
-                        </a>
-                      </div>
-                    @endif
-                  @endif
-                  <div class="author-thumb">
-                    <h5>Author</h5>
-                    @foreach ($course->authors as $author)
-                      <a href="{{ route('authors.show', [$author->slug]) }}">
-                        <img itemprop="image" src="#" class="lazyload" width="100" height="100"
-                          data-src="{{ fromDLHost($author->img) }}" style="border-radius: 10px;"
-                          alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
-                        <cite>{{ $author->name }}</cite>
-                      </a>
-                    @endforeach
+                @elseif ($course_state == '2')
+                  <div id="cart-btn" data-lang="EN">
+                    <a data-id="1-{{ $course->id }}" data-lang="EN"
+                      class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
+                      Remove From Cart
+                    </a>
                   </div>
+                @elseif($course_state == '3')
+                  <div id="cart-btn" data-lang="EN">
+                    <a data-id="1-{{ $course->id }}" data-lang="EN"
+                      class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
+                      Add To Cart
+                    </a>
+                  </div>
+                @endif
+              @endif
+              <div class="author-thumb">
+                <h5>Author</h5>
+                @foreach ($course->authors as $author)
+                  <a href="{{ route('authors.show', [$author->slug]) }}">
+                    <img itemprop="image" src="#" class="lazyload" width="100" height="100"
+                      data-src="{{ fromDLHost($author->img) }}" style="border-radius: 10px;"
+                      alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
+                    <cite>{{ $author->name }}</cite>
+                  </a>
+                @endforeach
+              </div>
 
-                  @if (count($course->users) > 0)
-                    <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
-                      class="author-thumb">
-                      <h5>Dubbed By</h5>
-                      @foreach ($course->users as $user)
-                        <a href="{{ route('dubbed.index', [$user->username]) }}">
-                          <img src="#" class="lazyload"
-                            alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
-                            data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
-                            height="100">
-                          <cite>{{ $user->name }}</cite>
-                        </a>
-                      @endforeach
-                    </div>
-                  @endif
+              @if (count($course->users) > 0)
+                <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
+                  class="author-thumb">
+                  <h5>Dubbed By</h5>
+                  @foreach ($course->users as $user)
+                    <a href="{{ route('dubbed.index', [$user->username]) }}">
+                      <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
+                        data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
+                        height="100">
+                      <cite>{{ $user->name }}</cite>
+                    </a>
+                  @endforeach
                 </div>
-                <div class="col-sm-7 col-md-6 col-lg-8 course-description-english" role="contentinfo" dir="ltr">
-                  <div style="margin: 0;font-size: 13px;font-weight: 600;">
-                    <span title="@php
-                      $d = explode('/', date('Y/m/d', strtotime($course->releaseDate)));
-                      echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
-                    @endphp">
-                      Release:
-                      {{ date('Y/m/d', strtotime($course->releaseDate)) }}
-                      <i class="lyndacon closed-captioning pl-2" title="subtitle"></i>
-                    </span>
-                    @if ($course->updateDate)
-                      <span title="@php
-                        $d = explode('/', date('Y/m/d', strtotime($course->updateDate)));
-                        echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
-                      @endphp">
-                        Update:
-                        {{ date('Y/m/d', strtotime($course->updateDate)) }}
-                      </span>
-                      <i class="lyndacon closed-captioning pl-2" title="subtitle"></i>
-                    @endif
-                  </div>
-                  <div class="text-justify" itemprop="description" style="font-size: 13px; margin-top: 10px;">
-                    {!! nl2br(e($course->descriptionEng)) !!}
-                  </div>
-                </div>
-                <div class="col-sm-3 col-md-3 col-lg-2 text-center">
-                  <div class="course-info-stat-cont">
-                    <span class="course-info-stat skill-levels clearfix">
-                      <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
-                      <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
-                      <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
-                    </span>
-
-                    <span style="color: #888; margin-bottom: 4px;">
-                      Skill Level <strong>{{ $skillEng }}</strong>
-                    </span>
-                  </div>
-                  <div class="course-info-stat-cont duration">
-                    <span class="course-info-stat">
-                      @if ($course->durationHours)
-                        {{ $course->durationHours }}h
-                      @endif
-                      @if ($course->durationMinutes)
-                        {{ $course->durationMinutes }}m
-                      @endif
-                    </span>
-                    <span style="color: #888; margin-bottom: 4px;">
-                      Duration
-                    </span>
-                  </div>
-                  @if ($course->views > 0)
-                    <div class="course-info-stat-cont viewers"
-                      title="Number of people watched this course (from linkedin)">
-                      <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
-                      <span style="color: #888; margin-bottom: 4px;">
-                        People watched this course
-                      </span>
-                    </div>
-                  @endif
-                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                    Report
-                  </button>
-                </div>
+              @endif
+            </div>
+            <div class="col-sm-7 col-md-6 col-lg-8 course-description-english" role="contentinfo" dir="ltr">
+              <div style="margin: 0;font-size: 13px;font-weight: 600;">
+                <span title="@php
+                  $d = explode('/', date('Y/m/d', strtotime($course->releaseDate)));
+                  echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                @endphp">
+                  Release:
+                  {{ date('Y/m/d', strtotime($course->releaseDate)) }}
+                  <i class="lyndacon closed-captioning pl-2" title="subtitle"></i>
+                </span>
+                @if ($course->updateDate)
+                  <span title="@php
+                    $d = explode('/', date('Y/m/d', strtotime($course->updateDate)));
+                    echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                  @endphp">
+                    Update:
+                    {{ date('Y/m/d', strtotime($course->updateDate)) }}
+                  </span>
+                  <i class="lyndacon closed-captioning pl-2" title="subtitle"></i>
+                @endif
+              </div>
+              <div class="text-justify" itemprop="description" style="font-size: 13px; margin-top: 10px;">
+                {!! nl2br(e($course->descriptionEng)) !!}
               </div>
             </div>
-            @if ($course->concepts)
-              <div class="tab-pane fade" id="nav-concepts" role="tabpanel" aria-labelledby="nav-concepts-tab">
-                <div class="row" style="font-size: 1em;">
-                  <div class="col-sm-6">
-                    <pre style="font-family: 'IranSANS'; overflow-y: hidden; line-height: 1.5;">{!! $course->concepts !!}</pre>
-                  </div>
-                  <div class="col-sm-6 text-left" dir="ltr">
-                    <pre style="overflow-y: hidden; line-height: 1.5;">{!! $course->conceptsEng !!}</pre>
-                  </div>
-                </div>
+            <div class="col-sm-3 col-md-3 col-lg-2 text-center">
+              <div class="course-info-stat-cont">
+                <span class="course-info-stat skill-levels clearfix">
+                  <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
+                  <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
+                  <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
+                </span>
+
+                <span style="color: #888; margin-bottom: 4px;">
+                  Skill Level <strong>{{ $skillEng }}</strong>
+                </span>
               </div>
-            @endif
-            {{-- <div class="tab-pane fade" id="nav-download-links" role="tabpanel" aria-labelledby="nav-download-links-tab">
+              <div class="course-info-stat-cont duration">
+                <span class="course-info-stat">
+                  @if ($course->durationHours)
+                    {{ $course->durationHours }}h
+                  @endif
+                  @if ($course->durationMinutes)
+                    {{ $course->durationMinutes }}m
+                  @endif
+                </span>
+                <span style="color: #888; margin-bottom: 4px;">
+                  Duration
+                </span>
+              </div>
+              @if ($course->views > 0)
+                <div class="course-info-stat-cont viewers" title="Number of people watched this course (from linkedin)">
+                  <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
+                  <span style="color: #888; margin-bottom: 4px;">
+                    People watched this course
+                  </span>
+                </div>
+              @endif
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
+                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                Report
+              </button>
+            </div>
+          </div>
+        </div>
+        @if ($course->concepts)
+          <div class="tab-pane fade" id="nav-concepts" role="tabpanel" aria-labelledby="nav-concepts-tab">
+            <div class="row" style="font-size: 1em;">
+              <div class="col-sm-6">
+                <pre style="font-family: 'IranSANS'; overflow-y: hidden; line-height: 1.5;">{!! $course->concepts !!}</pre>
+              </div>
+              <div class="col-sm-6 text-left" dir="ltr">
+                <pre style="overflow-y: hidden; line-height: 1.5;">{!! $course->conceptsEng !!}</pre>
+              </div>
+            </div>
+          </div>
+        @endif
+        {{-- <div class="tab-pane fade" id="nav-download-links" role="tabpanel" aria-labelledby="nav-download-links-tab">
               @if (auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0))
                 <div class="row justify-content-center text-left" dir="ltr">
                   <div class="col-lg-2 text-center">
@@ -751,8 +742,7 @@ if (count($course->subjects) > 0) {
                 </div>
               @endif
             </div> --}}
-          </div>
-        </div>
+      </div>
     </aside>
   </div>
 
