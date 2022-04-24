@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                                                                                                                            ' .
+                                                                                                                                                ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -121,7 +121,13 @@ if (count($course->subjects) > 0) {
                 @foreach ($subjects as $subject)
                   <a target="_blank" titleEng="{{ $subject->title }}"
                     title="دارای {{ $subject->courses_count }} دوره آموزشی"
-                    href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a>
+                    href="{{ route('home.show', [$subject->slug]) }}" style="position: relative;">
+                    <em>{{ $subject->title_per ?? $subject->title }}</em>
+                    <span
+                      style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+                      {{ $subject->courses_count }} دوره
+                    </span>
+                  </a>
                 @endforeach
               </li>
             </ul>
@@ -131,11 +137,11 @@ if (count($course->subjects) > 0) {
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
               onclick="(()=>{this.select();
-                                                                                                              this.setSelectionRange(0, 99999);
-                                                                                                              navigator.clipboard.writeText(this.value);
-                                                                                                                toastr.options.rtl = true;
-                                                                                                                toastr.options.positionClass = 'toast-bottom-left';
-                                                                                                              toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                                                                  this.setSelectionRange(0, 99999);
+                                                                                                                  navigator.clipboard.writeText(this.value);
+                                                                                                                    toastr.options.rtl = true;
+                                                                                                                    toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                                  toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -273,12 +279,13 @@ if (count($course->subjects) > 0) {
                   {{-- {{ $course->description }} --}}
                   {!! nl2br(e($course->description)) !!}
                 </div>
-                  @php
-                    $is_unlocked = auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0);
-                  @endphp
+                @php
+                  $is_unlocked = auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0);
+                @endphp
                 <div
                   style="border: 2px solid orange;border-radius: 15px;margin-top: 15px;padding: 15px 20px;font-size: 13px;text-align: left;direction: ltr;">
-                  <p style="text-align: center;direction: rtl;margin-bottom: 10px;@if($is_unlocked) font-weight: 600; @endif">
+                  <p
+                    style="text-align: center;direction: rtl;margin-bottom: 10px;@if ($is_unlocked) font-weight: 600; @endif">
                     این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
                     @if ($course->persian_subtitle_id == 1)
                       به همراه زیرنویس فارسی و انگلیسی می‌باشد.
