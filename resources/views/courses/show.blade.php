@@ -75,7 +75,7 @@ if (count($course->subjects) > 0) {
 @section('content')
   <style>
     @media(max-width: 900px) {
-      .tags:nth-child(n+6) {
+      .tags:nth-child(n+7) {
         display: none;
       }
     }
