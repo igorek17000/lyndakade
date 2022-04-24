@@ -183,8 +183,8 @@ if (count($course->subjects) > 0) {
               <a class="nav-item nav-link" id="nav-concepts-tab" data-toggle="tab" href="#nav-concepts" role="tab"
                 aria-controls="nav-concepts" aria-selected="false">سرفصل ها</a>
             @endif
-            <a class="nav-item nav-link" id="nav-download-links-tab" data-toggle="tab" href="#nav-download-links"
-              role="tab" aria-controls="nav-download-links" aria-selected="false">لینک های دانلود</a>
+            {{-- <a class="nav-item nav-link" id="nav-download-links-tab" data-toggle="tab" href="#nav-download-links"
+              role="tab" aria-controls="nav-download-links" aria-selected="false">لینک های دانلود</a> --}}
           </div>
         </nav>
 
