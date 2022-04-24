@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                                                                                                                                ' .
+                                                                                                                                                        ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -73,6 +73,26 @@ if (count($course->subjects) > 0) {
   </script>
 @endpush
 @section('content')
+  <style>
+    @media(max-width: 900px) {
+      .tags:nth-child(n+6) {
+        display: none;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .tags:nth-child(n+5) {
+        display: none;
+      }
+    }
+
+    @media(max-width: 500px) {
+      .tags:nth-child(n+4) {
+        display: none;
+      }
+    }
+
+  </style>
   @csrf
   @if (isset($has_dubbed))
     @if ($has_dubbed)
@@ -114,13 +134,15 @@ if (count($course->subjects) > 0) {
         <div class="panel-title text-left" style="direction: ltr; font-size: 1em;" itemprop="name" lang="en">
           <span class="course-title">{{ $course->titleEng }}</span>
         </div>
+
         <div style="position: relative;">
           @if (count($subjects) > 0)
             <ul style="padding-left: 200px;">
               <li class="pr-4 tags">دسته:
                 @foreach ($subjects as $subject)
                   <a target="_blank" titleEng="{{ $subject->title }}"
-                    title="دارای {{ $subject->courses_count }} دوره آموزشی" style="position: relative;background-color: #ddd;margin-bottom: 15px;"
+                    title="دارای {{ $subject->courses_count }} دوره آموزشی"
+                    style="position: relative;background-color: #ddd;margin-bottom: 15px;"
                     href="{{ route('home.show', [$subject->slug]) }}">
                     <em>{{ $subject->title_per ?? $subject->title }}</em>
                     <span
@@ -137,11 +159,11 @@ if (count($course->subjects) > 0) {
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
               onclick="(()=>{this.select();
-                                                                                                                  this.setSelectionRange(0, 99999);
-                                                                                                                  navigator.clipboard.writeText(this.value);
-                                                                                                                    toastr.options.rtl = true;
-                                                                                                                    toastr.options.positionClass = 'toast-bottom-left';
-                                                                                                                  toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                                                                          this.setSelectionRange(0, 99999);
+                                                                                                                          navigator.clipboard.writeText(this.value);
+                                                                                                                            toastr.options.rtl = true;
+                                                                                                                            toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                                          toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
