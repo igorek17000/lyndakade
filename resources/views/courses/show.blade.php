@@ -120,8 +120,8 @@ if (count($course->subjects) > 0) {
               <li class="pr-4 tags">دسته:
                 @foreach ($subjects as $subject)
                   <a target="_blank" titleEng="{{ $subject->title }}"
-                    title="دارای {{ $subject->courses_count }} دوره آموزشی"
-                    href="{{ route('home.show', [$subject->slug]) }}" style="position: relative;">
+                    title="دارای {{ $subject->courses_count }} دوره آموزشی" style="position: relative;background-color: #ddd;"
+                    href="{{ route('home.show', [$subject->slug]) }}">
                     <em>{{ $subject->title_per ?? $subject->title }}</em>
                     <span
                       style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
