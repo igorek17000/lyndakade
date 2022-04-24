@@ -273,9 +273,12 @@ if (count($course->subjects) > 0) {
                   {{-- {{ $course->description }} --}}
                   {!! nl2br(e($course->description)) !!}
                 </div>
+                  @php
+                    $is_unlocked = auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0);
+                  @endphp
                 <div
-                  style="border: 2px solid orange;border-radius: 15px;margin-top: 15px;padding: 15px 20px;font-size: 13px;font-weight: 600;text-align: left;direction: ltr;">
-                  <p style="text-align: center;direction: rtl;margin-bottom: 10px;">
+                  style="border: 2px solid orange;border-radius: 15px;margin-top: 15px;padding: 15px 20px;font-size: 13px;text-align: left;direction: ltr;">
+                  <p style="text-align: center;direction: rtl;margin-bottom: 10px;font-weight: 600;">
                     این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
                     @if ($course->persian_subtitle_id == 1)
                       به همراه زیرنویس فارسی و انگلیسی می‌باشد.
@@ -285,9 +288,6 @@ if (count($course->subjects) > 0) {
                       دارای زیرنویس نمی‌باشد
                     @endif
                   </p>
-                  @php
-                    $is_unlocked = auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0);
-                  @endphp
                   <ul class="exercise-files-popover">
                     @if ($course->courseFile && json_decode($course->courseFile) != null)
                       @foreach (json_decode($course->courseFile) as $file)
@@ -383,9 +383,9 @@ if (count($course->subjects) > 0) {
                     @endif
                   </ul>
                   @if (!auth()->check())
-                    <p class="text-center" dir="rtl">
+                    <p style="text-align: center;direction: rtl;font-size: 14px;font-weight: 600;">
                       برای دانلود، لطفا
-                      <a href="{{ route('login', ['returnUrl' => request()->url()]) }}">
+                      <a style="color: blue;" href="{{ route('login', ['returnUrl' => request()->url()]) }}">
                         وارد حساب کاربری
                       </a>
                       شوید.
