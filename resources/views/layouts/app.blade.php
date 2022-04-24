@@ -1033,7 +1033,37 @@
               </div>
             </div>
           </div>
-          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
+          <div class="column col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center my-2 enamad-logo">
+            <div id="carouselFooter" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselFooter" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselFooter" data-slide-to="1"></li>
+                <li data-target="#carouselFooter" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <a referrerpolicy="origin" target="_blank"
+                    href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
+                    <img src="#" class="lazyload" referrerpolicy="origin"
+                      data-src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD"
+                      alt="نماد الکترونیک enamad در صورت اتصال با آی‌پی داخل کشور، نمایش داده خواهد شد."
+                      style="cursor:pointer;" id="PmAs0cswBnOXzNOOqfGD">
+                  </a>
+                </div>
+                <div class="carousel-item">
+                  <img src="#" class="lazyload" referrerpolicy='origin' id='nbqejzpeapfujxlzsizpesgt'
+                    style='cursor:pointer;'
+                    onclick='window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")'
+                    alt='logo-samandehi - لوگو ساماندهی'
+                    data-src='https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
+                </div>
+                <div class="carousel-item">
+                  <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{-- <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
             <a referrerpolicy="origin" target="_blank"
               href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
               <img src="#" class="lazyload" referrerpolicy="origin"
@@ -1051,7 +1081,7 @@
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 zarinpal-logo">
             <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
-          </div>
+          </div> --}}
         </div>
       </div>
     </footer>
