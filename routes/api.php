@@ -114,7 +114,9 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     $q = $request->get('q');
 
     // $sortingOrder = intval($sortingOrder) == 1 ? 'sortingDate' : 'views';
-
+    $courses = Course::query();
+    $type = 'main';
+    
     if ($subject_slug != null) {
         $subject = Subject::with('courses')->where('slug', $subject_slug)->orWhere('slug', str_replace("-training-tutorials", "", $subject_slug))->first();
         if ($subject) {
@@ -143,7 +145,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
         $courses = \App\Course::search($q);
         $type = 'search';
     }
-    
+
     if (empty($libraries)) {
         $libraries = \App\Library::get()->pluck('id')->toArray();
     } else {
