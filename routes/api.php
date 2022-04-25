@@ -1,6 +1,7 @@
 <?php
 
 use App\Author;
+use App\Course;
 use App\Discount;
 use App\Mail\DubJoinMailer;
 use App\Paid;
@@ -116,7 +117,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     // $sortingOrder = intval($sortingOrder) == 1 ? 'sortingDate' : 'views';
     $courses = Course::query();
     $type = 'main';
-    
+
     if ($subject_slug != null) {
         $subject = Subject::with('courses')->where('slug', $subject_slug)->orWhere('slug', str_replace("-training-tutorials", "", $subject_slug))->first();
         if ($subject) {
@@ -142,7 +143,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
             return new JsonResponse([false], 404);
         }
     } else if ($q != null) {
-        $courses = \App\Course::search($q);
+        $courses = Course::search($q);
         $type = 'search';
     }
 
