@@ -165,9 +165,9 @@
   <script>
     $(function() {
       var is_user = "{{ isset($author) ? 'false' : 'true' }}";
-      var is_user_id = "{{ isset($author) ? $author->id : $user->id }}";
+      var user_username_or_author_slug = "{{ isset($author) ? $author->slug : $user->username }}";
 
-      console.log(is_user);
+    //   console.log(is_user);
       //   console.log(is_user, (is_user == 'false'));
 
       var load_more_html = `
@@ -218,9 +218,9 @@
         };
 
         if (is_user == 'false') {
-          data['author_id'] = is_user_id;
+          data['author_slug'] = user_username_or_author_slug;
         } else {
-          data['user_id'] = is_user_id;
+          data['user_username'] = user_username_or_author_slug;
         }
         console.log(data);
 
@@ -278,9 +278,9 @@
         };
 
         if (is_user == 'false') {
-          data['author_id'] = is_user_id;
+          data['author_slug'] = user_username_or_author_slug;
         } else {
-          data['user_id'] = is_user_id;
+          data['user_username'] = user_username_or_author_slug;
         }
         console.log(data);
 

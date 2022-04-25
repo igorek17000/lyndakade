@@ -108,53 +108,52 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
     $sortingOrder = $request->get('sortingOrder', '1');
     $libraries = $request->get('libraries', '');
     $language = $request->get('language', '3');
-    $user_id = $request->get('user_id');
-    $author_id = $request->get('author_id');
+    $user_username = $request->get('user_username');
+    $author_slug = $request->get('author_slug');
     $subject_slug = $request->get('subject_slug');
     $q = $request->get('q');
 
     // $sortingOrder = intval($sortingOrder) == 1 ? 'sortingDate' : 'views';
+
+    if ($subject_slug != null) {
+        $subject = Subject::with('courses')->where('slug', $subject_slug)->orWhere('slug', str_replace("-training-tutorials", "", $subject_slug))->first();
+        if ($subject) {
+            $courses = $subject->courses();
+            $type = 'subject';
+        } else {
+            return new JsonResponse([false], 404);
+        }
+    } else if ($author_slug != null) {
+        $author = Author::with('courses')->where('slug', $author_slug)->first();
+        if ($author) {
+            $courses = $author->courses();
+            $type = 'author';
+        } else {
+            return new JsonResponse([false], 404);
+        }
+    } else if ($user_username != null) {
+        $user = User::with('courses')->where('username', $user_username)->first();
+        if ($user) {
+            $courses = $user->courses();
+            $type = 'user';
+        } else {
+            return new JsonResponse([false], 404);
+        }
+    } else if ($q != null) {
+        $courses = \App\Course::search($q);
+        $type = 'search';
+    }
+    
     if (empty($libraries)) {
         $libraries = \App\Library::get()->pluck('id')->toArray();
     } else {
         $libraries = explode(',', $libraries);
     }
-    if ($subject_slug != null) {
-        $subject = Subject::where('slug', $subject_slug)->orWhere('slug', str_replace("-training-tutorials", "", $subject_slug))->first();
-        if ($subject) {
-            $courses = $subject->courses();
-            $type = 'subject';
-        } else {
-            return new JsonResponse([false]);
-        }
-    } else if ($author_id != null) {
-        $author = Author::find($author_id);
-        if ($author) {
-            $courses = $author->courses();
-            $type = 'author';
-        } else {
-            return new JsonResponse([false]);
-        }
-    } else if ($user_id != null) {
-        $user = User::find($user_id);
-        if ($user) {
-            $courses = $user->courses();
-            $type = 'user';
-        } else {
-            return new JsonResponse([false]);
-        }
-    } else if ($q != null) {
-        $courses = \App\Course::search($q);
-        $type = 'search';
-    } else if (count($libraries) == 0) {
-        $courses = \App\Course::query();
-        $type = 'just courses';
-    } else {
-        $courses = \App\Course::whereHas('subjects', function ($q) use ($libraries) {
-            $q->whereIn('library_id', $libraries);
-        });
-        $type = 'with library';
-    }
+
+    $courses = $courses->whereHas('subjects', function ($q) use ($libraries) {
+        $q->whereIn('library_id', $libraries);
+    });
+
     if (intval($onlyFree) == 1) {
         $courses = $courses->where('price', 0);
     }
