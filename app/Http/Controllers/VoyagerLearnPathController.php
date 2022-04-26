@@ -63,13 +63,15 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
             }
         }
 
-        $total_duration_m = 0;
+        // $total_duration_m = 0;
         $courses_id = [];
-        // dd($path->_courses, json_decode($path->_courses));
-        foreach ($path->_courses as $course) {
+        foreach (json_decode($path->courses) as $course) {
             $courses_id[] = $course->id;
-            $total_duration_m += ($course->durationHours * 60) + $course->durationMinutes;
+            // $total_duration_m += ($course->durationHours * 60) + $course->durationMinutes;
         }
+        $total_duration_m = Course::whereIn('id', $courses_id)->sum('durationHours') * 60;
+        $total_duration_m += Course::whereIn('id', $courses_id)->sum('durationMinutes');
+
         $duration_h = (int)($total_duration_m / 60);
         $duration_m = (int)($total_duration_m % 60);
 
@@ -132,12 +134,15 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
             }
         }
 
-        $total_duration_m = 0;
+        // $total_duration_m = 0;
         $courses_id = [];
-        foreach (json_decode($path->_courses) as $course) {
+        foreach (json_decode($path->courses) as $course) {
             $courses_id[] = $course->id;
-            $total_duration_m += ($course->durationHours * 60) + $course->durationMinutes;
+            // $total_duration_m += ($course->durationHours * 60) + $course->durationMinutes;
         }
+        $total_duration_m = Course::whereIn('id', $courses_id)->sum('durationHours') * 60;
+        $total_duration_m += Course::whereIn('id', $courses_id)->sum('durationMinutes');
+
         $duration_h = (int)($total_duration_m / 60);
         $duration_m = (int)($total_duration_m % 60);
 
