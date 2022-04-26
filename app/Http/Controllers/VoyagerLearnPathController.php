@@ -65,8 +65,8 @@ class VoyagerLearnPathController extends \TCG\Voyager\Http\Controllers\VoyagerBa
 
         $total_duration_m = 0;
         $courses_id = [];
-        dd($path->_courses, json_decode($path->_courses));
-        foreach (json_decode($path->_courses) as $course) {
+        // dd($path->_courses, json_decode($path->_courses));
+        foreach ($path->_courses as $course) {
             $courses_id[] = $course->id;
             $total_duration_m += ($course->durationHours * 60) + $course->durationMinutes;
         }
