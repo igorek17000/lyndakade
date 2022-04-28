@@ -114,20 +114,11 @@
             @endif
           @else
             فایل های تمرینی <span style="color: darkred">ندارد</span>
-            {{-- <p>{{ $course->exerciseFile }}</p> --}}
           @endif
         @else
           فایل های تمرینی <span style="color: darkred">ندارد</span>
         @endif
       </div>
-      {{-- <div class="col-lg-2 col-sm-6 mb-sm-1">
-        قیمت
-        {{ $course->price }}
-      </div>
-      <div class="col-lg-2 col-sm-6 mb-sm-1">
-        بازدید
-        {{ $course->views }}
-      </div> --}}
     </div>
   </div>
 </div>
