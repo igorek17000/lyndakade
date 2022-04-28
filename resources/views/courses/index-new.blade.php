@@ -85,7 +85,7 @@
       <div class="hero-text">
         <h1 style="font-size: 2.25rem;">
           دانلود آموزش های وبسایت
-          <a href="https://www.linkedin.com/" style="color: #2977c9;">لینکدین</a>
+          <a href="https://www.linkedin.com/learning" style="color: #2977c9;">لینکدین</a>
           به همراه زیرنویس فارسی و انگلیسی
         </h1>
         @guest
@@ -93,7 +93,7 @@
         @endguest
         <div style="margin-top: 5%; margin-bottom: 2%;">
           برای جستجوی درس مربوطه کافی است لینک مربوط به درس را که در
-          <a href="https://www.linkedin.com/" style="color: #2977c9;">سایت لینکدین</a>
+          <a href="https://www.linkedin.com/learning" style="color: #2977c9;">سایت لینکدین</a>
           است را وارد کنید
         </div>
         <div class="row m-0 p-0 no-dark">

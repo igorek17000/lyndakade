@@ -753,7 +753,7 @@
       </div>
     @endif
     {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0" @if (app()->isLocal('en')) dir="ltr" @endif> --}}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0">
+    <nav class="navbar navbar-expand-lg navbar-dark w-100 py-0" style="background-color: #252525;">
       <a class="navbar-brand mb-1" href="https://lyndakade.ir">
         <img draggable="false" class="img-logo m-0 p-0" src="https://lyndakade.ir/image/logoedit2.png" title="لینداکده"
           alt="لینداکده - LyndaKade - Lynda Kade - LinkedIN" style="width: 60px; height: 55px;">
@@ -987,7 +987,7 @@
     </style>
 
     {{-- <footer id="footer" class="bg-dark text-muted p-md-5 pt-4 @if (app()->isLocal('en')) text-left @endif"  @if (app()->isLocal('en')) dir="ltr" @endif> --}}
-    <footer id="footer" class="bg-dark text-muted p-md-5 pt-4">
+    {{-- <footer id="footer" class="bg-dark text-muted p-md-5 pt-4">
       <div class="container no-dark">
         <div class="row no-dark">
           <div class="contact col-lg-6 col-md-6 col-sm-12 col-xs-12 text-sm-right text-center">
@@ -1003,24 +1003,24 @@
                     لینداکده-1400
                   </li>
                   <li class="list-inline-item">
-                    <a href="{{ route('root.contact.us') }}" style="color: #00aaca;">تماس با ما</a>
+                    <a rel="noopener noreferrer" href="{{ route('root.contact.us') }}" style="color: #00aaca;">
+                      تماس با ما
+                    </a>
                   </li>
                   <li class="list-inline-item">
-                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
+                    <a rel="noopener noreferrer" class="social-icon text-xs-center" target="_blank"
                       href="http://www.Instagram.com/lyndakade.ir">
-                      <img data-toggle="tooltip" src="#" data-src="{{ asset('image/socialicons/instagram2.png') }}"
-                        alt="Instagram - اینستاگرام" title="اینستاگرام" class="icon-instagram lazyload">
+                      <i class="fab fa-instagram"></i>
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
+                    <a rel="noopener noreferrer" class="social-icon text-xs-center" target="_blank"
                       href="http://www.T.me/LyndaKadeSupport">
-                      <img data-toggle="tooltip" src="#" data-src="{{ asset('image/socialicons/telegram.png') }}"
-                        alt="Telegram - پیشتبانی تلگرام" title="پیشتبانی تلگرام" class="icon-telegram lazyload">
+                      <i class="fab fa-telegram"></i>
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
+                    <a rel="noopener noreferrer" class="social-icon text-xs-center" target="_blank"
                       href="http://www.Aparat.com/LyndaKade.ir">
                       <img data-toggle="tooltip" src="#" data-src="{{ asset('image/socialicons/aparat.png') }}"
                         alt="Aparat - آپارات" title="آپارات" class="icon-aparat lazyload">
@@ -1033,36 +1033,6 @@
               </div>
             </div>
           </div>
-          {{-- <div class="column col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center my-2 enamad-logo"> --}}
-            {{-- <div id="carouselFooter" class="carousel slide" data-ride="carousel" data-interval="3000">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselFooter" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselFooter" data-slide-to="1"></li>
-                <li data-target="#carouselFooter" data-slide-to="2"></li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <a referrerpolicy="origin" target="_blank"
-                    href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
-                    <img src="#" class="lazyload" referrerpolicy="origin"
-                      data-src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD"
-                      alt="نماد الکترونیک enamad در صورت اتصال با آی‌پی داخل کشور، نمایش داده خواهد شد."
-                      style="cursor:pointer;" id="PmAs0cswBnOXzNOOqfGD">
-                  </a>
-                </div>
-                <div class="carousel-item">
-                  <img src="#" class="lazyload" referrerpolicy='origin' id='nbqejzpeapfujxlzsizpesgt'
-                    style='cursor:pointer;'
-                    onclick='window.open("https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&p=uiwkjyoedshwrfthpfvlobpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")'
-                    alt='logo-samandehi - لوگو ساماندهی'
-                    data-src='https://logo.samandehi.ir/logo.aspx?id=275190&p=odrfyndtujynnbpdbsiylyma' />
-                </div>
-                <div class="carousel-item">
-                  <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
-                </div>
-              </div>
-            </div>
-          </div> --}}
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
             <a referrerpolicy="origin" target="_blank"
               href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
@@ -1084,6 +1054,81 @@
           </div>
         </div>
       </div>
+    </footer> --}}
+
+    <footer id="footer" class="p-md-5 pt-4" style="background-color: #252525;">
+      <div class="container no-dark">
+        <div class=" row no-dark">
+          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
+            <a referrerpolicy="origin" target="_blank"
+              href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
+              <img src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD"
+                class=" lazyloaded" referrerpolicy="origin"
+                data-src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD"
+                alt="نماد الکترونیک enamad در صورت اتصال با آی‌پی داخل کشور، نمایش داده خواهد شد."
+                style="cursor:pointer;" id="PmAs0cswBnOXzNOOqfGD">
+            </a>
+          </div>
+          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
+            <img src="https://logo.samandehi.ir/logo.aspx?id=275190&amp;p=odrfyndtujynnbpdbsiylyma"
+              class=" lazyloaded" referrerpolicy="origin" id="nbqejzpeapfujxlzsizpesgt" style="cursor:pointer;"
+              onclick="window.open(&quot;https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&amp;p=uiwkjyoedshwrfthpfvlobpd&quot;, &quot;Popup&quot;,&quot;toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30&quot;)"
+              alt="logo-samandehi - لوگو ساماندهی"
+              data-src="https://logo.samandehi.ir/logo.aspx?id=275190&amp;p=odrfyndtujynnbpdbsiylyma">
+          </div>
+          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 zarinpal-logo">
+            <script async src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
+          </div>
+          <div class="contact col-lg-6 col-md-6 col-sm-12 col-xs-12 text-sm-right text-center">
+            <h5 class="pt-1 pb-3" style="color: #00aaca;">درباره ما</h5>
+            <p class="text-white pl-md-5 text-justify">
+              لینداکده یک بستر یادگیری پیشرو است که به هر کس کمک می کند تا کسب و کار ، نرم افزار ، فناوری و
+              مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد.
+            </p>
+            <div class="row no-dark">
+              <div class="col-12 text-center">
+                <ul class="list-inline">
+                  <li class="list-inline-item text-white">
+                    لینداکده-1400
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="https://lyndakade.ir/contact-us">
+                      <img class="lazyload" src="https://img.icons8.com/plasticine/344/apple-phone.png"
+                        width="32px">
+                      {{-- <i class="fab fa-phone"></i> --}}
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
+                      href="http://www.Instagram.com/lyndakade.ir">
+                      <img class="lazyload" src="https://img.icons8.com/plasticine/344/instagram-new--v2.png"
+                        width="32px">
+                      {{-- <i class="fab fa-instagram"></i> --}}
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
+                      href="http://www.T.me/LyndaKadeSupport">
+                      <img class="lazyload" src="https://img.icons8.com/plasticine/344/telegram-app.png"
+                        width="32px">
+                      {{-- <i class="fab fa-telegram"></i> --}}
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
+                      href="http://www.Aparat.com/LyndaKade.ir">
+                      <img class="lazyload" src="https://img.icons8.com/plasticine/344/aparat.png" width="32px">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 text-center">
+                <p class="my-0 text-white">کلیه‌ی حقوق این سایت متعلق به لینداکده است.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   </div>
 
@@ -1095,7 +1140,6 @@
           <video class="w-100" src="" controls aria-controls="true"
             style="border-top-left-radius: 3px; border-top-right-radius: 3px;"></video>
           <div class="text-right px-2">
-
             <div>
               <span style="font-size: 1.2rem;" id="preview-modal-title">عنوان دوره</span>
               <a href="#" id="preview-modal-url" style="float: left;" class="btn btn-success mb-2">مشاهده جزئیات</a>
