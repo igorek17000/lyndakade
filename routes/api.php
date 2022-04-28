@@ -280,6 +280,10 @@ Route::middleware('guest')->post('/main-page/courses/test', function (Request $r
     $courses = $courses->skip($offset)->limit($limit);
     // $courses = $courses->with(['subjects', 'authors']);
     $courses = $courses->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
+    $courses = $courses->map(function ($course, $key) {
+        $course->previewFile = json_decode($course->previewFile)[0]->download_link;
+        return $course;
+    });
     return new JsonResponse([
         'data' => $courses,
         'params' => [
