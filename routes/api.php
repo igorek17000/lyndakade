@@ -281,9 +281,7 @@ Route::middleware('guest')->post('/main-page/courses/test', function (Request $r
     // $courses = $courses->with(['subjects', 'authors']);
     $courses = $courses->get()->makeHidden(['courseFile', 'exerciseFile', 'persianSubtitleFile']);
     return new JsonResponse([
-        'data' => view('courses.partials._course_list_new_total', [
-            'courses' => $courses,
-        ])->render(),
+        'data' => $courses,
         'params' => [
             'onlyFree' => $onlyFree,
             'sortingOrder' => $sortingOrder,
