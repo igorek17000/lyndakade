@@ -1077,7 +1077,7 @@
               data-src="https://logo.samandehi.ir/logo.aspx?id=275190&amp;p=odrfyndtujynnbpdbsiylyma">
           </div>
           <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 zarinpal-logo">
-            <script async src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
+            <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
           </div>
           <div class="contact col-lg-6 col-md-6 col-sm-12 col-xs-12 text-sm-right text-center">
             <h5 class="pt-1 pb-3" style="color: #00aaca;">درباره ما</h5>
