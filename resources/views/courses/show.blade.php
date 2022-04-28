@@ -809,7 +809,7 @@ if (count($course->subjects) > 0) {
         <div class="section-module">
           <div class="row p-0 m-0">
             <div class="col-6">
-              <h5 class="course-title">مسیرهای مرتبط</h5>
+              <h5 class="course-title">مسیرهای آموزشی مرتبط</h5>
             </div>
             <div id="carousel-arrows" class="col-6">
               <a class="align-self-center" href="#related_paths" role="button" data-slide="next">
