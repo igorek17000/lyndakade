@@ -654,9 +654,13 @@
       border-width: 0.2em;
     }
 
-    /* .price-range .slider {
-                              width: 170px;
-                            } */
+    footer .list-inline-item img {
+      transition: transform .7s ease-in-out;
+    }
+
+    footer .list-inline-item img:hover {
+      transform: rotate(360deg);
+    }
 
   </style>
 </head>
@@ -1091,14 +1095,14 @@
                   <li class="list-inline-item text-white">
                     لینداکده-1400
                   </li>
-                  <li class="list-inline-item">
+                  <li class="list-inline-item mx-0">
                     <a href="https://lyndakade.ir/contact-us">
                       <img class="" src="https://img.icons8.com/plasticine/344/apple-phone.png"
                         width="32px">
                       {{-- <i class="fab fa-phone"></i> --}}
                     </a>
                   </li>
-                  <li class="list-inline-item">
+                  <li class="list-inline-item mx-0">
                     <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
                       href="http://www.Instagram.com/lyndakade.ir">
                       <img class="" src="https://img.icons8.com/plasticine/344/instagram-new--v2.png"
@@ -1106,7 +1110,7 @@
                       {{-- <i class="fab fa-instagram"></i> --}}
                     </a>
                   </li>
-                  <li class="list-inline-item">
+                  <li class="list-inline-item mx-0">
                     <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
                       href="http://www.T.me/LyndaKadeSupport">
                       <img class="" src="https://img.icons8.com/plasticine/344/telegram-app.png"
@@ -1114,7 +1118,7 @@
                       {{-- <i class="fab fa-telegram"></i> --}}
                     </a>
                   </li>
-                  <li class="list-inline-item">
+                  <li class="list-inline-item mx-0">
                     <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
                       href="http://www.Aparat.com/LyndaKade.ir">
                       <img class="" src="https://img.icons8.com/plasticine/344/aparat.png" width="32px">
