@@ -9,11 +9,15 @@
       {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
     </span>
     @php
-        $previewFile = fromDLHost($path->_courses[0]->previewFile) ?? '#';
+      try {
+          $previewFile = fromDLHost($path->_courses[0]->previewFile);
+      } catch (\Throwable $th) {
+          $previewFile = '#';
+      }
     @endphp
     <button href="" class="card-img-overlay" data-toggle="modal" data-target="#preview-modal" class="text-center"
-      data-src="{{ $previewFile }}" data-title="مسیر آموزشی {{ $path->title }}"
-      data-price="{{ $path->price() }}" data-url="{{ route('learn.paths.show', [$path->slug]) }}">
+      data-src="{{ $previewFile }}" data-title="مسیر آموزشی {{ $path->title }}" data-price="{{ $path->price() }}"
+      data-url="{{ route('learn.paths.show', [$path->slug]) }}">
       پیش نمایش
     </button>
   </div>
