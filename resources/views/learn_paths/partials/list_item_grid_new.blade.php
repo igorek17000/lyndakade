@@ -9,7 +9,7 @@
       {{ $path->durationHours() + ($path->durationMinutes() > 20 ? 1 : 0) }} ساعت
     </span>
     <button href="" class="card-img-overlay" data-toggle="modal" data-target="#preview-modal" class="text-center"
-      data-src="{{ fromDLHost($path->_courses[0]->previewFile) }}" data-title="مسیر آموزشی {{ $path->title }}"
+      data-src="{{ $path->_courses[0] ? fromDLHost($path->_courses[0]->previewFile) : '#' }}" data-title="مسیر آموزشی {{ $path->title }}"
       data-price="{{ $path->price() }}" data-url="{{ route('learn.paths.show', [$path->slug]) }}">
       پیش نمایش
     </button>
