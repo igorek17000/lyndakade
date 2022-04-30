@@ -1,5 +1,6 @@
 <div
-  class="card course @if (isset($loop)) @if ($loop->iteration > 10) hidden-md hidden-sm hidden-xs @endif @endif">
+  class="card course">
+  {{-- class="card course @if (isset($loop)) @if ($loop->iteration > 10) hidden-md hidden-sm hidden-xs @endif @endif"> --}}
   <div class="card-horizontal py-2">
     <div class="img-square-wrapper">
       <img
