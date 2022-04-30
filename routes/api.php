@@ -153,10 +153,11 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
         $libraries = explode(',', $libraries);
     }
 
-    $courses = $courses->whereHas('subjects', function ($q) use ($libraries) {
-        $q->whereIn('library_id', $libraries);
-    });
-
+    if (count($libraries) < 3){
+        $courses = $courses->whereHas('subjects', function ($q) use ($libraries) {
+            $q->whereIn('library_id', $libraries);
+        });
+    }
     if (intval($onlyFree) == 1) {
         $courses = $courses->where('price', 0);
     }
