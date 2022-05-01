@@ -77,6 +77,7 @@ Route::middleware('guest')->get('/get-yalda-time', function () {
 })->name('get-yalda-time');
 
 Route::middleware('guest')->get('/test-query', function (Request $request) {
+    return ;
     foreach (LearnPath::get() as $path) {
         $courses_id = [];
         foreach (json_decode($path->courses) as $course) {
