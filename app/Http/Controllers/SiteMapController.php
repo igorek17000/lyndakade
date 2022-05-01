@@ -240,6 +240,9 @@ class SiteMapController extends Controller
                 route('courses.newest'),
                 route('courses.best'),
                 route('courses.free'),
+                route('login'),
+                route('register'),
+                route('password.request'),
                 route('faq'),
             ],
         ])->header('Content-Type', 'text/xml');
