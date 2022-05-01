@@ -3,6 +3,7 @@
 use App\Author;
 use App\Course;
 use App\Discount;
+use App\LearnPath;
 use App\Mail\DubJoinMailer;
 use App\Paid;
 use App\Subject;
@@ -76,6 +77,22 @@ Route::middleware('guest')->get('/get-yalda-time', function () {
 })->name('get-yalda-time');
 
 Route::middleware('guest')->get('/test-query', function (Request $request) {
+    foreach (LearnPath::get() as $path) {
+        $courses_id = [];
+        foreach (json_decode($path->courses) as $course) {
+            $courses_id[] = $course->id;
+        }
+        $total_duration_m = Course::whereIn('id', $courses_id)->sum('durationHours') * 60;
+        $total_duration_m += Course::whereIn('id', $courses_id)->sum('durationMinutes');
+        $duration_h = (int)($total_duration_m / 60);
+        $duration_m = (int)($total_duration_m % 60);
+        LearnPath::where('id', $path->id)->update([
+            'courses_id' => implode(',', $courses_id),
+            'duration_h' => $duration_h,
+            'duration_m' => $duration_m,
+        ]);
+    }
+
     $q = trim($request->get('q', ''));
 
     if (empty($q)) {
@@ -153,7 +170,7 @@ Route::middleware('guest')->post('/main-page/courses', function (Request $reques
         $libraries = explode(',', $libraries);
     }
 
-    if (count($libraries) < 3){
+    if (count($libraries) < 3) {
         $courses = $courses->whereHas('subjects', function ($q) use ($libraries) {
             $q->whereIn('library_id', $libraries);
         });
