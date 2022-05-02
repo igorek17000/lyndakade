@@ -32,7 +32,7 @@ if (count($course->subjects) > 0) {
           $course->title .
           ', ' .
           'دانلود دوره آموزشی
-                                                                                                                                                        ' .
+                                                                                                                                                          ' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -64,7 +64,7 @@ if (count($course->subjects) > 0) {
           "@type": "Person",
           "name": "{{ $author->name }}",
           "url": {"@id": "{{ route('authors.show', [$author->slug]) }}"}
-        }
+          }
           @if (!$loop->last)
             ,
           @endif
@@ -160,11 +160,11 @@ if (count($course->subjects) > 0) {
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
               onclick="(()=>{this.select();
-                                                                                                                          this.setSelectionRange(0, 99999);
-                                                                                                                          navigator.clipboard.writeText(this.value);
-                                                                                                                            toastr.options.rtl = true;
-                                                                                                                            toastr.options.positionClass = 'toast-bottom-left';
-                                                                                                                          toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                                                                            this.setSelectionRange(0, 99999);
+                                                                                                                            navigator.clipboard.writeText(this.value);
+                                                                                                                              toastr.options.rtl = true;
+                                                                                                                              toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                                            toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -310,7 +310,9 @@ if (count($course->subjects) > 0) {
                   <p
                     style="text-align: center;direction: rtl;margin-bottom: 10px;@if ($is_unlocked) font-weight: 600; @endif">
                     این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
-                    @if ($course->persian_subtitle_id == 1)
+                    @if ($course->dubbed_id == 1)
+                      دوبله فارسی می‌باشد.
+                    @elseif ($course->persian_subtitle_id == 1)
                       به همراه زیرنویس فارسی و انگلیسی می‌باشد.
                     @elseif ($course->english_subtitle_id == 1)
                       به همراه زیرنویس انگلیسی می‌باشد.
