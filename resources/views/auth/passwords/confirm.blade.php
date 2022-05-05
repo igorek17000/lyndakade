@@ -1,35 +1,35 @@
 @extends('layouts.app')
 @push('meta.in.head')
-  @include('meta::manager',[
-  'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => 'بازیابی رمز عبور - لیندا کده' ,
-  'keywords' => get_seo_keywords() . ' , فراموشی کلمه عبور, فراموشی رمز عبور, reset password',
-  'description' => ' صفحه فراموشی کلمه عبور | ' . get_seo_description(),
+  @include('meta::manager', [
+      'image' => 'https://lyndakade.ir/image/logo.png',
+      'title' => __('msg.Confirm Password') . ' - لیندا کده',
+      'keywords' => get_seo_keywords() . __('msg.Confirm Password') . ', Confirm Password',
+      'description' => ' صفحه ' . __('msg.Confirm Password') . ' | ' . get_seo_description(),
   ])
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name" : "Reset Password - بازیابی رمز عبور",
+      "name": "Confirm Password - {{ __('msg.Confirm Password') }}",
       "url": "{{ route('password.request') }}"
     }
-    </script>
+  </script>
 @endpush
 @section('content')
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">{{ __('Confirm Password') }}</div>
+          <div class="card-header">{{ __('msg.Confirm Password') }}</div>
 
           <div class="card-body">
-            {{ __('Please confirm your password before continuing.') }}
+            {{ __('msg.Please confirm your password before continuing.') }}
 
             <form method="POST" action="{{ route('password.confirm') }}">
               @csrf
 
               <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('msg.Password') }}</label>
 
                 <div class="col-md-6">
                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
@@ -46,12 +46,12 @@
               <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
                   <button type="submit" class="btn btn-primary">
-                    {{ __('Confirm Password') }}
+                    {{ __('msg.Confirm Password') }}
                   </button>
 
                   @if (Route::has('password.request'))
                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                      {{ __('Forgot Your Password?') }}
+                      {{ __('msg.Forgot Your Password?') }}
                     </a>
                   @endif
                 </div>
