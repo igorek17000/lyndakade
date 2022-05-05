@@ -77,7 +77,7 @@ Route::middleware('guest')->get('/get-yalda-time', function () {
 })->name('get-yalda-time');
 
 Route::middleware('guest')->get('/test-query', function (Request $request) {
-    return ;
+    return;
     foreach (LearnPath::get() as $path) {
         $courses_id = [];
         foreach (json_decode($path->courses) as $course) {
@@ -314,6 +314,29 @@ Route::middleware('guest')->post('/dubbed/join', function (Request $request) {
     Mail::to('apply@lyndakade.ir')->send(new DubJoinMailer($form_data));
     return new JsonResponse([
         'data' => $form_data,
+        'status' => 'success'
+    ], 200);
+})->name('dubbed-join.api');
+
+Route::middleware('guest')->post('/courses/set-short-desc', function (Request $request) {
+    $desc = $request->get('desc');
+    if ($desc) {
+        foreach ($desc as $d) {
+            $slug = $d['slug'];
+            $short_desc_eng = $d['shortDescEng'];
+            $short_desc_per = $d['shortDescFa'];
+            Course::where('slug_linkedin', $slug)
+                ->orWhere('slug_url', $slug)
+                ->orWhere('slug_url', 'LIKE', '%,' . $slug)
+                ->orWhere('slug_url', 'LIKE', '%,' . $slug . ',%')
+                ->orWhere('slug_url', 'LIKE', $slug . ',%')
+                ->update([
+                    'shortDesc' => $short_desc_per,
+                    'shortDescEng' => $short_desc_eng,
+                ]);
+        }
+    }
+    return new JsonResponse([
         'status' => 'success'
     ], 200);
 })->name('dubbed-join.api');
