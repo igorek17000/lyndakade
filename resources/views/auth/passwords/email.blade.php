@@ -1,5 +1,20 @@
 @extends('layouts.app')
-
+@push('meta.in.head')
+  @include('meta::manager',[
+  'image' => 'https://lyndakade.ir/image/logo.png',
+  'title' => 'بازیابی رمز عبور - لیندا کده' ,
+  'keywords' => get_seo_keywords() . ' , فراموشی کلمه عبور, فراموشی رمز عبور, reset password',
+  'description' => ' صفحه فراموشی کلمه عبور | ' . get_seo_description(),
+  ])
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name" : "Reset Password - بازیابی رمز عبور",
+      "url": "{{ route('password.request') }}"
+    }
+    </script>
+@endpush
 @section('content')
   <div class="container d-flex align-items-center reset-password-page">
     <div class="row justify-content-center">
