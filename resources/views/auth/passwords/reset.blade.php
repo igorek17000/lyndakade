@@ -6,6 +6,14 @@
   'keywords' => get_seo_keywords() . ' , فراموشی کلمه عبور, فراموشی رمز عبور, reset password',
   'description' => ' صفحه فراموشی کلمه عبور | ' . get_seo_description(),
   ])
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name" : "Reset Password - بازیابی رمز عبور",
+      "url": "{{ route('password.request') }}"
+    }
+    </script>
 @endpush
 @section('content')
   <h1 class="sr-only">{{ __('Reset Password') }}</h1>

@@ -1,6 +1,2 @@
 User-agent: *
 Allow: *
-Sitemap: https://lyndakade.ir/sitemap.xml
-Sitemap: https://lyndakade.ir/sitemap-partial.xml
-Sitemap: https://lyndakade.ir/sitemap-courses.xml
-Sitemap: https://lyndakade.ir/sitemap-authors.xml
