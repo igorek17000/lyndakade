@@ -1098,7 +1098,7 @@
                   <li class="list-inline-item mx-0">
                     <a href="https://lyndakade.ir/contact-us">
                       <img class="" src="https://img.icons8.com/plasticine/344/apple-phone.png"
-                        width="32px">
+                        width="32px" alt="تماس با ما">
                       {{-- <i class="fab fa-phone"></i> --}}
                     </a>
                   </li>
@@ -1106,7 +1106,7 @@
                     <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
                       href="http://www.Instagram.com/lyndakade.ir">
                       <img class="" src="https://img.icons8.com/plasticine/344/instagram-new--v2.png"
-                        width="32px">
+                        width="32px" alt="کانال اینستاگرام">
                       {{-- <i class="fab fa-instagram"></i> --}}
                     </a>
                   </li>
@@ -1114,14 +1114,15 @@
                     <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
                       href="http://www.T.me/LyndaKadeSupport">
                       <img class="" src="https://img.icons8.com/plasticine/344/telegram-app.png"
-                        width="32px">
+                        width="32px" alt="کانال تلگرام">
                       {{-- <i class="fab fa-telegram"></i> --}}
                     </a>
                   </li>
                   <li class="list-inline-item mx-0">
                     <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
                       href="http://www.Aparat.com/LyndaKade.ir">
-                      <img class="" src="https://img.icons8.com/plasticine/344/aparat.png" width="32px">
+                      <img class="" src="https://img.icons8.com/plasticine/344/aparat.png" width="32px"
+                        alt="کانال آپارات">
                     </a>
                   </li>
                 </ul>
