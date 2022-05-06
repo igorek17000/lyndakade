@@ -14,7 +14,7 @@ if (count($course->subjects) > 0) {
   @include('meta::manager', [
       'image' => $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img),
       'title' => $course->title . ' - ' . $course->titleEng . ' - لیندا کده',
-      'description' => $course->description . ' - ' . $course->descriptionEng,
+      'description' => ($course->shortDesc ?? $course->description) . ' - ' . ($course->shortDescEng ?? $course->descriptionEng),
       'keywords' =>
           'دانلود ' .
           $course->title .
@@ -31,8 +31,7 @@ if (count($course->subjects) > 0) {
           'دانلود دوره آموزشی ' .
           $course->title .
           ', ' .
-          'دانلود دوره آموزشی
-                                                                                                                                                          ' .
+          'دانلود دوره آموزشی' .
           $course->titleEng .
           ' , ' .
           $keyword_subs .
@@ -55,9 +54,9 @@ if (count($course->subjects) > 0) {
       "image": "{{ fromDLHost($course->img) }}",
       "name": "{{ $course->titleEng }} - {{ $course->title }}",
       "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
-      "description": "{{ $course->descriptionEng }} - {{ $course->description }}",
+      "description": "{{ ($course->shortDesc ?? $course->description) }}",
       "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
-      "timeRequired": "{{ $course->durationHours > 0? $course->durationHours . 'h ' . $course->durationMinutes . 'm': $course->durationMinutes . 'm' }}",
+      "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm' }}",
       "provider": [
         @foreach ($course->authors as $author)
           {
@@ -160,11 +159,11 @@ if (count($course->subjects) > 0) {
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
               onclick="(()=>{this.select();
-                                                                                                                            this.setSelectionRange(0, 99999);
-                                                                                                                            navigator.clipboard.writeText(this.value);
-                                                                                                                              toastr.options.rtl = true;
-                                                                                                                              toastr.options.positionClass = 'toast-bottom-left';
-                                                                                                                            toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                                                                              this.setSelectionRange(0, 99999);
+                                                                                                                              navigator.clipboard.writeText(this.value);
+                                                                                                                                toastr.options.rtl = true;
+                                                                                                                                toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                                              toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -363,7 +362,7 @@ if (count($course->subjects) > 0) {
                         <li role="presentation">
                           @if ($is_unlocked)
                             <a role="link"
-                              href="{{ route('courses.download', [$course->id,hash('md5', 'exFiles') => hash('sha256', auth()->id()),'filename' => $file->original_name]) }}">
+                              href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
                               <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
                               <span>
                                 {{ prepare_course_file_name($file->original_name) }}
