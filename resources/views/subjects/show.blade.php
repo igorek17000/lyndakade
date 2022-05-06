@@ -22,10 +22,10 @@
 @endpush
 @section('content')
   <div class="row card mx-0 pb-4">
-    <div class="container" itemprop="subject" itemscope="" itemtype="http://schema.org/Person">
+    <div class="container" >
       <div class="row mx-0 author-details mt-3">
         <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
-          {{-- <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($user->avatar) }}"
+          {{-- <img class="author lazyload" data-src="{{ fromDLHost($user->avatar) }}"
               alt="عکس دوبلور {{ $user->name }} - Image of {{ $user->name }}"
               style="width: 200px !important;height: 200px !important; border-radius: 50% !important;"> --}}
         </div>

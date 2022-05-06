@@ -247,7 +247,7 @@
               <a href="{{ route('learn.paths.show', [$path->slug]) }}"
                 class="row card-body photo-frame d-flex align-items-center">
                 <div class="col-12 state-thumb">
-                  <img itemprop="image" src="#" data-src="{{ fromDLHost($path->thumbnail) }}" class="img-fluid lazyload"  alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
+                  <img src="#" data-src="{{ fromDLHost($path->thumbnail) }}" class="img-fluid lazyload"  alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
                 </div>
                 <div class="col-12 tile-text text-center">
                   <span class="tile-name">{{ $path->title }}</span>

@@ -1,14 +1,8 @@
 <div class="col-12 col-lg-3 col-md-6 my-2 course" itemscope="" itemtype="http://schema.org/Course">
   <div class="card h-100 border-0 course-grid">
-    <meta itemprop="name" content="{{ $course->title }}" lang="fa" />
-    <meta itemprop="name" content="{{ $course->titleEng }}" lang="en" />
-    <meta itemprop="url" content="{{ courseURL($course) }}" />
-    <meta itemprop="video" content="{{ fromDLHost($course->previewFile) }}" />
-    <meta itemprop="description" content="{{ $course->description }}" lang="fa" />
-    <meta itemprop="description" content="{{ $course->descriptionEng }}" lang="en" />
 
     <div class="img-square-wrapper" style="height: 130px;">
-      <img itemprop="image" src="#"
+      <img src="#"
         data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
         class="d-inline-block course-img persian-subtitle-img lazyload"
         alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}"

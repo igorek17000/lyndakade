@@ -137,7 +137,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="profile-img">
-          <img itemprop="image" src="#" class="lazyload" data-src="{{ $user ? fromDLHost($user->avatar) : fromDLHost('black/img/emilyz.jpg') }}"
+          <img src="#" class="lazyload" data-src="{{ $user ? fromDLHost($user->avatar) : fromDLHost('black/img/emilyz.jpg') }}"
            alt="my photo - عکس من" />
           {{-- <div class="file btn btn-lg btn-primary">
             ویرایش عکس

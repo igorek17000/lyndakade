@@ -112,17 +112,9 @@ if (count($course->subjects) > 0) {
           <i class="lyndacon arrow-left"></i>
           <span>{{ $course->title }}</span>
         </div> --}}
-        <meta itemprop="image" content="{{ fromDLHost($course->img) }}" />
-
-        <meta itemprop="name" content="{{ $course->title }}" lang="fa" />
-        <meta itemprop="name" content="{{ $course->titleEng }}" lang="en" />
-        <meta itemprop="url" content="{{ courseURL($course) }}" />
-        <meta itemprop="video" content="{{ fromDLHost($course->previewFile) }}" />
-        <meta itemprop="description" content="{{ $course->description }}" lang="fa" />
-        <meta itemprop="description" content="{{ $course->descriptionEng }}" lang="en" />
 
         <h1 class="panel-title" style="font-size: 1em;">
-          <span class="course-title" itemprop="name" lang="fa">
+          <span class="course-title" lang="fa">
             {{ $course->title }}
             @if ($course->dubbed_id == 1)
               (<span style="color: green">دوبله فارسی</span>)
@@ -131,7 +123,7 @@ if (count($course->subjects) > 0) {
             @endif
           </span>
         </h1>
-        <div class="panel-title text-left" style="direction: ltr; font-size: 1em;" itemprop="name" lang="en">
+        <div class="panel-title text-left" style="direction: ltr; font-size: 1em;" >
           <span class="course-title">{{ $course->titleEng }}</span>
         </div>
 
@@ -303,7 +295,7 @@ if (count($course->subjects) > 0) {
                   @endif
                 </div>
 
-                <div itemprop="description" class="text-justify" style="font-size: 13px;">
+                <div class="text-justify" style="font-size: 13px;">
                   {{-- {{ $course->description }} --}}
                   {!! nl2br(e($course->description)) !!}
                 </div>
@@ -544,7 +536,7 @@ if (count($course->subjects) > 0) {
                     line-height: 1.2;margin-top: 0;">Author</div>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
-                      <img itemprop="image" src="#" class="lazyload" width="100" height="100"
+                      <img src="#" class="lazyload" width="100" height="100"
                         data-src="{{ fromDLHost($author->img) }}" style="border-radius: 10px;"
                         alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
                       <cite>{{ $author->name }}</cite>
@@ -591,7 +583,7 @@ if (count($course->subjects) > 0) {
                     <i class="lyndacon closed-captioning pl-2" title="subtitle"></i>
                   @endif
                 </div>
-                <div class="text-justify" itemprop="description" style="font-size: 13px; margin-top: 10px;">
+                <div class="text-justify" style="font-size: 13px; margin-top: 10px;">
                   {!! nl2br(e($course->descriptionEng)) !!}
                 </div>
               </div>

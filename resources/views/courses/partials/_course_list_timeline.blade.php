@@ -36,14 +36,8 @@
     </div>
     <div class="timeline-body text-justify row">
       <div class="col-md-3 col-sm-12 text-center" itemscope itemtype="http://schema.org/Course">
-        <meta itemprop="name" content="{{ $course->title }}" lang="fa" />
-        <meta itemprop="name" content="{{ $course->titleEng }}" lang="en" />
-        <meta itemprop="url" content="{{ courseURL($course) }}" />
-        <meta itemprop="video" content="{{ fromDLHost($course->previewFile) }}" />
-        <meta itemprop="description" content="{{ $course->description }}" lang="fa" />
-        <meta itemprop="description" content="{{ $course->descriptionEng }}" lang="en" />
 
-        <img itemprop="image" src="#" class="lazyload"
+        <img src="#" class="lazyload"
           data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"
           style="max-height: 150px;border-radius: 5px;"
           alt="دوره آموزشی {{ $course->title }} - Image of Course {{ $course->titleEng }}" />

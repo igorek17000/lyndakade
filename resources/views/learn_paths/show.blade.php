@@ -61,7 +61,7 @@
                                                                                     background: url({{ fromDLHost($path->img) }});
                                                                                     background-size: auto;
                                                                                     height: 300px !important;">
-        <img itemprop="image" src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}"
+        <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}"
           alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
       </div>
       <div class="path-big-img-content w-100">

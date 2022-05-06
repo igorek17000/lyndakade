@@ -37,9 +37,8 @@
 @endpush
 @section('content')
   <div class="row card mx-0 pb-4">
-    <div class="container" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <div class="container" >
       @if (isset($author))
-        <link itemprop="url" href="{{ route('authors.show', [$author->slug]) }}" rel="author">
         <div class="row mx-0 mt-3">
           <div class="col-xs-12">
             <div class="current-page-path">
@@ -49,13 +48,11 @@
             </div>
           </div>
         </div>
-      @else
-        <link itemprop="url" href="{{ route('dubbed.index', [$user->username]) }}" rel="author">
       @endif
       <div class="row mx-0 author-details mt-3">
         @if (isset($author))
           <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
-            <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($author->img) }}"
+            <img class="author lazyload" data-src="{{ fromDLHost($author->img) }}"
               alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}"
               style="width: 200px !important;height: 200px !important; border-radius: 50% !important;">
           </div>
@@ -67,7 +64,7 @@
           </div>
         @else
           <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
-            <img class="author lazyload" itemprop="image" data-src="{{ fromDLHost($user->avatar) }}"
+            <img class="author lazyload" data-src="{{ fromDLHost($user->avatar) }}"
               alt="عکس دوبلور {{ $user->name }} - Image of {{ $user->name }}"
               style="width: 200px !important;height: 200px !important; border-radius: 50% !important;">
           </div>
