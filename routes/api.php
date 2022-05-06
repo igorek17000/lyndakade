@@ -322,11 +322,11 @@ Route::middleware('guest')->post('/courses/set-short-desc', function (Request $r
     $desc = $request->get('desc');
     if ($desc) {
         $desc = explode('||', $desc);
-        return new JsonResponse([
-            'slug' => explode('|', $desc[0])[0],
-            'short_desc_eng' => explode('|', $desc[0])[1],
-            'short_desc_per' => explode('|', $desc[0])[2],
-        ], 200);
+        // return new JsonResponse([
+        //     'slug' => explode('|', $desc[0])[0],
+        //     'short_desc_eng' => explode('|', $desc[0])[1],
+        //     'short_desc_per' => explode('|', $desc[0])[2],
+        // ], 200);
         foreach ($desc as $d) {
             $d = explode('|', $d);
             $slug = $d[0];
