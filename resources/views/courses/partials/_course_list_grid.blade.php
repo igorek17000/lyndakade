@@ -1,4 +1,4 @@
-<div class="col-12 {{ isset($col) ? $col : 'col-lg-3' }} col-md-6 mb-4 mt-2 course" itemscope itemtype="http://schema.org/Course">
+<div class="col-12 {{ isset($col) ? $col : 'col-lg-3' }} col-md-6 mb-4 mt-2 course">
   <div class="card h-100 border-light  bg-light shadow course-grid">
     <img src="#"
       data-src="{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}"

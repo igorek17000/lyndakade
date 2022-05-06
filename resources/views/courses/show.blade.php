@@ -106,7 +106,7 @@ if (count($course->subjects) > 0) {
 
   <div class="row mx-0 justify-content-center">
     <aside class="col-md-10">
-      <div class="section-module" itemscope itemtype="http://schema.org/Course">
+      <div class="section-module">
         {{-- <div class="current-page-path">
           <a href="{{ route('root.home') }}"><span>صفحه اصلی</span></a>
           <i class="lyndacon arrow-left"></i>

@@ -1,4 +1,4 @@
-<div class="col-12 col-lg-3 col-md-6 my-2 course" itemscope="" itemtype="http://schema.org/Course">
+<div class="col-12 col-lg-3 col-md-6 my-2 course">
   <div class="card h-100 border-0 course-grid">
 
     <div class="img-square-wrapper" style="height: 130px;">
