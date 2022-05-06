@@ -1,5 +1,4 @@
-<div
-  class="card course">
+<div class="card course">
   {{-- class="card course @if (isset($loop)) @if ($loop->iteration > 10) hidden-md hidden-sm hidden-xs @endif @endif"> --}}
   <div class="card-horizontal py-2">
     <div class="img-square-wrapper">
@@ -48,7 +47,10 @@
     </div>
     <div class="card-body">
       <a href="{{ courseURL($course) }}">
-        <h5 class="card-title">
+        <div class="card-title" style="font-size: 1.25rem;font-family: inherit;
+        font-weight: 500;
+        line-height: 1.2;
+        color: inherit;margin-top: 0;">
           <p class="mt-2 text-right pr-2 mb-2"
             style="font-size: .9rem; font-weight: 600; /*max-height: 43px;*/ overflow-y: hidden;">
             {{ $course->title }}
@@ -57,14 +59,15 @@
             style="font-size: .9rem; font-weight: 600; /*max-height: 43px;*/ overflow-y: hidden;" dir="ltr">
             {{ $course->titleEng }}
           </p>
-        </h5>
+        </div>
       </a>
       <p class="card-text course-description-grid text-justify">
         {{ $course->description }}
       </p>
     </div>
   </div>
-  <div class="card-footer border-0 text-center" style="font-size: 11px; padding: .25rem .75rem;background-color: rgba(0,0,0,0.1);">
+  <div class="card-footer border-0 text-center"
+    style="font-size: 11px; padding: .25rem .75rem;background-color: rgba(0,0,0,0.1);">
     <div class="row align-items-center no-dark">
       <div class="col-lg-3 col-sm-6 mb-sm-1 my-1">
         تاریخ انتشار
