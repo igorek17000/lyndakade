@@ -54,7 +54,7 @@ if (count($course->subjects) > 0) {
       "image": "{{ fromDLHost($course->img) }}",
       "name": "{{ $course->titleEng }} - {{ $course->title }}",
       "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
-      "description": "{{ ($course->shortDesc ?? $course->description) }}",
+      "description": "{{ $course->shortDesc ?? $course->description }}",
       "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
       "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm' }}",
       "provider": [
@@ -159,11 +159,11 @@ if (count($course->subjects) > 0) {
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
               onclick="(()=>{this.select();
-                                                                                                                              this.setSelectionRange(0, 99999);
-                                                                                                                              navigator.clipboard.writeText(this.value);
-                                                                                                                                toastr.options.rtl = true;
-                                                                                                                                toastr.options.positionClass = 'toast-bottom-left';
-                                                                                                                              toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                                                                                    this.setSelectionRange(0, 99999);
+                                                                                                                                    navigator.clipboard.writeText(this.value);
+                                                                                                                                      toastr.options.rtl = true;
+                                                                                                                                      toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                                                    toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -247,7 +247,10 @@ if (count($course->subjects) > 0) {
                   @endif
                 @endif
                 <div class="author-thumb">
-                  <h5>مدرس</h5>
+                  <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
+                        font-family: inherit;
+                        font-weight: 500;
+                        line-height: 1.2;margin-top: 0;">مدرس</div>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img src="#" class="lazyload" width="100" height="100"
@@ -261,7 +264,10 @@ if (count($course->subjects) > 0) {
                 @if (count($course->users) > 0)
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
-                    <h5>دوبله کننده</h5>
+                    <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
+                        font-family: inherit;
+                        font-weight: 500;
+                        line-height: 1.2;margin-top: 0;">دوبله کننده</div>
                     @foreach ($course->users as $user)
                       <a href="{{ route('dubbed.index', [$user->username]) }}">
                         <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
@@ -532,7 +538,10 @@ if (count($course->subjects) > 0) {
                   @endif
                 @endif
                 <div class="author-thumb">
-                  <h5>Author</h5>
+                  <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
+                    font-family: inherit;
+                    font-weight: 500;
+                    line-height: 1.2;margin-top: 0;">Author</div>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img itemprop="image" src="#" class="lazyload" width="100" height="100"
@@ -546,7 +555,10 @@ if (count($course->subjects) > 0) {
                 @if (count($course->users) > 0)
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
-                    <h5>Dubbed By</h5>
+                    <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
+                      font-family: inherit;
+                      font-weight: 500;
+                      line-height: 1.2;margin-top: 0;">Dubbed By</div>
                     @foreach ($course->users as $user)
                       <a href="{{ route('dubbed.index', [$user->username]) }}">
                         <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
@@ -616,7 +628,7 @@ if (count($course->subjects) > 0) {
                     </span>
                   </div>
                 @endif
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#report-modal">
+                <button type="button" class="btn btn-warning report-issue-toggle">
                   <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                   Report
                 </button>
@@ -811,7 +823,7 @@ if (count($course->subjects) > 0) {
         <div class="section-module">
           <div class="row p-0 m-0">
             <div class="col-6">
-              <h5 class="course-title">مسیرهای آموزشی مرتبط</h5>
+              <div class="course-title" style="margin-bottom: 0.5rem;">مسیرهای آموزشی مرتبط</div>
             </div>
             <div id="carousel-arrows" class="col-6">
               <a class="align-self-center" href="#related_paths" role="button" data-slide="next">
@@ -848,7 +860,7 @@ if (count($course->subjects) > 0) {
       <div class="section-module">
         <div class="row p-0 m-0">
           <div class="col-6">
-            <h5 class="course-title">دوره‌های مرتبط</h5>
+            <div class="course-title" style="margin-bottom: 0.5rem;">دوره‌های مرتبط</div>
           </div>
           <div id="carousel-arrows" class="col-6">
             <a class="align-self-center" href="#related_courses" role="button" data-slide="next">
@@ -878,49 +890,6 @@ if (count($course->subjects) > 0) {
         </div>
       </div>
     </aside>
-  </div>
-
-
-  <div id="report-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="report-modal-title"
-    aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered  modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title w-100" id="report-modal-title">
-            <span>گزارش خرابی - {{ $course->title }}</span> <br />
-            <span style="float: left;">Report issues - {{ $course->titleEng }}</span>
-          </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="لغو">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body pb-0">
-          <form action="{{ route('courses.report-issues') }}" method="post">
-            @csrf
-            <input type="hidden" name="id" id="id" value="{{ $course->id }}" />
-            <div class="form-group">
-              <label for="report_text">پیام:</label>
-              <textarea rows="5" name="report_text" id="report_text" class="form-control col-12"
-                placeholder="متن را اینجا بنویسید ..."> </textarea>
-            </div>
-            <div class="form-group">
-              <label for="report_type">
-                دلیل خرابی:
-              </label>
-              <select name="report_type" id="report_type">
-                <option value="links-{{ $course->id }}">لینک فایل</option>
-                <option value="details-{{ $course->id }}">مشخصات دوره</option>
-                <option value="others-{{ $course->id }}">سایر</option>
-              </select>
-            </div>
-            <div class="form-group modal-footer">
-              <button type="submit" class="btn btn-primary">ارسال</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">لغو</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
   </div>
 @endsection
 @section('script_body')
