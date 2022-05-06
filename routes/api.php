@@ -333,10 +333,10 @@ Route::middleware('guest')->post('/courses/set-short-desc', function (Request $r
             $short_desc_eng = $d[1];
             $short_desc_per = $d[2];
             Course::where('slug_linkedin', $slug)
-                ->orWhere('slug_url', $slug)
-                ->orWhere('slug_url', 'LIKE', '%,' . $slug)
-                ->orWhere('slug_url', 'LIKE', '%,' . $slug . ',%')
-                ->orWhere('slug_url', 'LIKE', $slug . ',%')
+                // ->orWhere('slug_url', $slug)
+                // ->orWhere('slug_url', 'LIKE', '%,' . $slug)
+                // ->orWhere('slug_url', 'LIKE', '%,' . $slug . ',%')
+                // ->orWhere('slug_url', 'LIKE', $slug . ',%')
                 ->update([
                     'shortDesc' => $short_desc_per,
                     'shortDescEng' => $short_desc_eng,
