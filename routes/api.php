@@ -322,6 +322,7 @@ Route::middleware('guest')->post('/courses/set-short-desc', function (Request $r
     $desc = $request->get('desc');
     if ($desc) {
         parse_str($desc, $ds);
+        dd($ds);
         foreach ($ds as $d) {
             $slug = $d['slug'];
             $short_desc_eng = $d['shortDescEng'];
