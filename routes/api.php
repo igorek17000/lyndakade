@@ -318,6 +318,13 @@ Route::middleware('guest')->post('/dubbed/join', function (Request $request) {
     ], 200);
 })->name('dubbed-join.api');
 
+Route::middleware('guest')->post('/courses/get_without-short-desc', function (Request $request) {
+    return new JsonResponse([
+        'data' => Course::whereNull('shortDesc')->get(['slug']),
+        'status' => 'success'
+    ], 200);
+});
+
 Route::middleware('guest')->post('/courses/set-short-desc', function (Request $request) {
     $desc = $request->get('desc');
     if ($desc) {
@@ -345,7 +352,7 @@ Route::middleware('guest')->post('/courses/set-short-desc', function (Request $r
     return new JsonResponse([
         'status' => 'success'
     ], 200);
-})->name('dubbed-join.api');
+});
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
