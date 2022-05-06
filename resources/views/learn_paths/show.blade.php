@@ -53,13 +53,14 @@
   </script>
 @endpush
 @section('content')
+  <h1 class="sr-only">{{ $path->title }} - {{ $path->titleEng }}</h1>
   <div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 150px;">
     <div class="row m-0">
       <div class="path-big-img" style="
-                                                                                max-width: 100%; width: 100%;
-                                                                                background: url({{ fromDLHost($path->img) }});
-                                                                                background-size: auto;
-                                                                                height: 300px !important;">
+                                                                                    max-width: 100%; width: 100%;
+                                                                                    background: url({{ fromDLHost($path->img) }});
+                                                                                    background-size: auto;
+                                                                                    height: 300px !important;">
         <img itemprop="image" src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}"
           alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
       </div>
@@ -79,11 +80,11 @@
                       </path>
                     </svg>
                     <input readonly="" onclick="(()=>{this.select();
-                                                              this.setSelectionRange(0, 99999);
-                                                              navigator.clipboard.writeText(this.value);
-                                                                toastr.options.rtl = true;
-                                                                toastr.options.positionClass = 'toast-bottom-left';
-                                                              toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                  this.setSelectionRange(0, 99999);
+                                                                  navigator.clipboard.writeText(this.value);
+                                                                    toastr.options.rtl = true;
+                                                                    toastr.options.positionClass = 'toast-bottom-left';
+                                                                  toastr.info('لینک کوتاه کپی شد.');})()"
                       style="font-size: 11px;text-align: left;direction: rtl;padding-left: 27px;padding-right: 2px;"
                       title="لینک کوتاه این مسیر آموزشی" type="text" value="lyndakade.ir/L/{{ $path->id }}"
                       id="shorturl" class="form-control">
@@ -102,11 +103,12 @@
                 <div class="row mx-auto">
                   <div class="col-md-6">
                     <div style="font-size: 24px;
-                              margin-top: 10px;
-                              margin-bottom: 9px;
-                              font-weight: 700;min-height: 72px;">
+                                  margin-top: 10px;
+                                  margin-bottom: 9px;
+                                  font-weight: 700;min-height: 72px;">
                       <span>
                         {{ $path->title }}
+
                       </span>
                       <span class="ml-auto text-left d-block d-md-none" dir="ltr">
                         {{ $path->titleEng }}
@@ -119,9 +121,9 @@
                   </div>
                   <div class="col-md-6">
                     <div class="container text-left d-none d-md-block" dir="ltr" style="font-size: 24px;
-                              margin-top: 10px;
-                              margin-bottom: 9px;
-                              font-weight: 700;min-height: 72px;">
+                                  margin-top: 10px;
+                                  margin-bottom: 9px;
+                                  font-weight: 700;min-height: 72px;">
                       <span>
                         {{ $path->titleEng }}
                       </span>
