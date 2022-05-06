@@ -323,15 +323,14 @@ Route::middleware('guest')->post('/courses/set-short-desc', function (Request $r
     if ($desc) {
         $desc = explode('||', $desc);
         // return new JsonResponse([
-        //     'slug' => explode('|', $desc[0])[0],
+        //     'slug' => ,
         //     'short_desc_eng' => explode('|', $desc[0])[1],
         //     'short_desc_per' => explode('|', $desc[0])[2],
         // ], 200);
         foreach ($desc as $d) {
-            $d = explode('|', $d);
-            $slug = $d[0];
-            $short_desc_eng = $d[1];
-            $short_desc_per = $d[2];
+            $slug = explode('|', $d)[0];
+            $short_desc_eng = explode('|', $d)[1];
+            $short_desc_per = explode('|', $d)[2];
             Course::where('slug_linkedin', $slug)
                 // ->orWhere('slug_url', $slug)
                 // ->orWhere('slug_url', 'LIKE', '%,' . $slug)
