@@ -321,7 +321,8 @@ Route::middleware('guest')->post('/dubbed/join', function (Request $request) {
 Route::middleware('guest')->post('/courses/set-short-desc', function (Request $request) {
     $desc = $request->get('desc');
     if ($desc) {
-        foreach ($desc as $d) {
+        parse_str($desc, $ds);
+        foreach ($ds as $d) {
             $slug = $d['slug'];
             $short_desc_eng = $d['shortDescEng'];
             $short_desc_per = $d['shortDescFa'];
