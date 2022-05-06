@@ -318,7 +318,7 @@ Route::middleware('guest')->post('/dubbed/join', function (Request $request) {
     ], 200);
 })->name('dubbed-join.api');
 
-Route::middleware('guest')->post('/courses/get_without-short-desc', function (Request $request) {
+Route::middleware('guest')->get('/courses/get_without-short-desc', function (Request $request) {
     return new JsonResponse([
         'data' => Course::whereNull('shortDesc')->get(['slug']),
         'status' => 'success'
