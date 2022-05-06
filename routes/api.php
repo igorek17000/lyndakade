@@ -321,16 +321,17 @@ Route::middleware('guest')->post('/dubbed/join', function (Request $request) {
 Route::middleware('guest')->post('/courses/set-short-desc', function (Request $request) {
     $desc = $request->get('desc');
     if ($desc) {
-        parse_str($desc, $ds);
+        $desc = explode('||', $desc);
         return new JsonResponse([
-            'desc' => $desc,
-            'ds' => $ds,
-            'status' => 'success'
+            'slug' => explode('|', $desc[0])[0],
+            'short_desc_eng' => explode('|', $desc[0])[0],
+            'short_desc_per' => explode('|', $desc[0])[0],
         ], 200);
-        foreach ($ds as $d) {
-            $slug = $d['slug'];
-            $short_desc_eng = $d['shortDescEng'];
-            $short_desc_per = $d['shortDescFa'];
+        foreach ($desc as $d) {
+            $d = explode('|', $d);
+            $slug = $d[0];
+            $short_desc_eng = $d[1];
+            $short_desc_per = $d[2];
             Course::where('slug_linkedin', $slug)
                 ->orWhere('slug_url', $slug)
                 ->orWhere('slug_url', 'LIKE', '%,' . $slug)
