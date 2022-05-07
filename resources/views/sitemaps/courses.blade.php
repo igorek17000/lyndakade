@@ -16,6 +16,8 @@
             <video:tag>دانلود دوره آموزشی از لینکدین رایگان</video:tag>
             <video:tag>دانلود دوره آموزشی از لیندا رایگان</video:tag>
             <video:tag>دانلود دوره آموزشی رایگان</video:tag>
+            <video:tag>$item->titleEng</video:tag>
+            <video:tag>$item->title</video:tag>
             <video:tag>لینداکده</video:tag>
             </video:video>
             ";
