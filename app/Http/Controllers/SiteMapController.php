@@ -258,7 +258,10 @@ class SiteMapController extends Controller
         <urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"  xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">";
 */
         $courses = Course::where('releaseDate', 'LIKE', "$year-$month%")
-            ->get(['slug_linkedin', 'img', 'title', 'description', 'releaseDate'])
+            ->get([
+                'slug_linkedin', 'img', 'title', 'description', 'releaseDate',
+                'durationHours', 'durationMinutes', 'previewFile'
+            ])
             ->map(function ($course) {
                 $course->img = fromDLHost($course->img);
                 $course->duration = (($course->durationHours * 60) + $course->durationMinutes) * 60;
