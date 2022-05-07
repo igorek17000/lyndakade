@@ -252,15 +252,15 @@ class SiteMapController extends Controller
         ])->header('Content-Type', 'text/xml');
     }
 
-    public function sitemap_courses($year, $month)
+    public function sitemap_courses($year, $month, $day)
     {
         /*
         $today_date = \Carbon\Carbon::now()->toDateString();
         $res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
         <!-- generated-on=\"" . \Carbon\Carbon::now()->toDateTimeString() . "\" -->
         <urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"  xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">";
-*/
-        $courses = Course::where('releaseDate', 'LIKE', "$year-$month%")
+        */
+        $courses = Course::where('releaseDate', 'LIKE', "$year-$month-$day%")
             ->get([
                 'slug_linkedin', 'img', 'title', 'titleEng', 'description', 'releaseDate',
                 'durationHours', 'durationMinutes', 'previewFile'
