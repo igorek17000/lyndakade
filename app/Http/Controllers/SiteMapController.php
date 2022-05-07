@@ -265,7 +265,7 @@ class SiteMapController extends Controller
             ->map(function ($course) {
                 $course->img = fromDLHost($course->img);
                 $course->duration = (($course->durationHours * 60) + $course->durationMinutes) * 60;
-                $course->releaseDate = Carbon::parse($course->releaseDate);
+                // $course->releaseDate = Carbon::parse($course->releaseDate);
                 $course->previewFile = fromDLHost($course->previewFile);
                 return $course;
             });
