@@ -41,7 +41,10 @@ class SiteMapController extends Controller
         $courses_dates = Course::get(['releaseDate'])->map(function ($c) {
             $ee = explode('-', $c->releaseDate);
             return $ee[0] . '-' . $ee[1];
-        })->toArray();
+        });
+
+        $courses_dates = Course::get(['releaseDate'])->toArray();
+
         $courses_dates = array_unique($courses_dates);
         sort($courses_dates);
 
@@ -77,7 +80,7 @@ class SiteMapController extends Controller
         $res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
         <!-- generated-on=\"" . \Carbon\Carbon::now()->toDateTimeString() . "\" -->
         <urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
-*/
+        */
         // $authors = Author::get(['slug']);
 
         // foreach ($authors as $author) {
@@ -118,7 +121,7 @@ class SiteMapController extends Controller
         $res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
         <!-- generated-on=\"" . \Carbon\Carbon::now()->toDateTimeString() . "\" -->
         <urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
-*/
+        */
         // $subjects = Subject::get(['slug']);
         /*
         foreach ($subjects as $subject) {
