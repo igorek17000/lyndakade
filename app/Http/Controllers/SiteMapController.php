@@ -41,9 +41,11 @@ class SiteMapController extends Controller
         $courses_dates = Course::get(['releaseDate'])->map(function ($c) {
             $ee = explode('-', $c->releaseDate);
             return $ee[0] . '-' . $ee[1];
-        });
+        })->toArray();
 
-        $courses_dates = Course::get(['releaseDate'])->toArray();
+        $courses_dates = Course::get(['releaseDate'])->map(function ($c) {
+            return $c->releaseDate;
+        })->toArray();
 
         $courses_dates = array_unique($courses_dates);
         sort($courses_dates);
