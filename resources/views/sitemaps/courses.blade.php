@@ -1,9 +1,9 @@
-<?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>'; ?>'; ?>'; ?>'; ?>'; ?>'; ?>'; ?>'; ?>'; ?>'; ?>'; ?>'; ?>'; ?>
+@php echo '<?xml version="1.0" encoding="UTF-8"?>'; @endphp
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   @foreach ($items as $item)
     <url>
       <loc>{{ route($route_name, $item->slug_linkedin) }}</loc>
-      {{-- @php
+      @php
         echo "<video:video>
             <video:thumbnail_loc>" .
             fromDLHost($item->img) .
@@ -25,7 +25,7 @@
             <video:tag>لینداکده</video:tag>
             </video:video>
             ";
-      @endphp --}}
+      @endphp
       <lastmod>{{ $today_date }}</lastmod>
       <changefreq>daily</changefreq>
       <priority>{{ $priority }}</priority>
