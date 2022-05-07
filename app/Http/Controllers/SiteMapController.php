@@ -259,7 +259,7 @@ class SiteMapController extends Controller
 */
         $courses = Course::where('releaseDate', 'LIKE', "$year-$month%")
             ->get([
-                'slug_linkedin', 'img', 'title', 'description', 'releaseDate',
+                'slug_linkedin', 'img', 'title', 'titleEng', 'description', 'releaseDate',
                 'durationHours', 'durationMinutes', 'previewFile'
             ])
             ->map(function ($course) {
