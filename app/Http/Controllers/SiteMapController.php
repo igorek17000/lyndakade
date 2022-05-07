@@ -165,7 +165,7 @@ class SiteMapController extends Controller
             'today_date' => \Carbon\Carbon::now()->toDateString(),
             'priority' => 1,
             'items' => LearnPath::get(['slug'])->map(function ($path) {
-                $path->slug = explode(",", $path->slug);
+                $path->slug = explode(",", $path->slug)[0];
                 return $path;
             }),
         ])->header('Content-Type', 'text/xml');
