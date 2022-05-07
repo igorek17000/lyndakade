@@ -20,7 +20,7 @@
   @foreach ($courses_dates as $c_d)
     <sitemap>
       <loc>https://lyndakade.ir/{{ 'sitemap-courses-' . $c_d . '.xml' }}</loc>
-      <lastmod>{{ $today_date }}</lastmod>
+      <lastmod>{{ $today_date }}</lastmod>sitemap-learn-paths
     </sitemap>
   @endforeach
 </sitemapindex>

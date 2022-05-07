@@ -164,7 +164,10 @@ class SiteMapController extends Controller
             'route_name' => 'learn.paths.show',
             'today_date' => \Carbon\Carbon::now()->toDateString(),
             'priority' => 1,
-            'items' => LearnPath::get(['slug']),
+            'items' => LearnPath::get(['slug'])->map(function ($path) {
+                $path->slug = explode(",", $path->slug);
+                return $path;
+            }),
         ])->header('Content-Type', 'text/xml');
     }
 
