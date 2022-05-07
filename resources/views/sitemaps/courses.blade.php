@@ -17,7 +17,7 @@
             fromDLHost($item->previewFile) .
             "</video:content_loc>
             <video:duration>" .
-            ($course->durationHours * 60 + $course->durationMinutes) * 60 .
+            ($item->durationHours * 60 + $item->durationMinutes) * 60 .
             "</video:duration>
             <video:tag>دانلود دوره آموزشی از لینکدین رایگان</video:tag>
             <video:tag>دانلود دوره آموزشی از لیندا رایگان</video:tag>
