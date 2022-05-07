@@ -11,6 +11,21 @@ if (count($course->subjects) > 0) {
 @endphp
 
 @push('meta.in.head')
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@id": "{{ fromDLHost($course->previewFile) }}",
+      "@type": "VideoObject",
+      {{-- "duration": "PT54S", --}}
+      "name": "{{ $course->title }} - {{ $course->titleEng }}",
+      "thumbnailUrl": "{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}",
+      "contentUrl": "{{ fromDLHost($course->previewFile) }}",
+      "uploadDate": "{{ $course->releaseDate }}",
+      "description": "{{ $course->shortDesc ?? $course->description }} - {{ $course->shortDescEng ?? $course->descriptionEng }}"
+    }
+  </script>
+
   @include('meta::manager', [
       'image' => $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img),
       'title' => $course->title . ' - ' . $course->titleEng . ' - لیندا کده',
@@ -123,7 +138,7 @@ if (count($course->subjects) > 0) {
             @endif
           </span>
         </h1>
-        <div class="panel-title text-left" style="direction: ltr; font-size: 1em;" >
+        <div class="panel-title text-left" style="direction: ltr; font-size: 1em;">
           <span class="course-title">{{ $course->titleEng }}</span>
         </div>
 
@@ -151,11 +166,11 @@ if (count($course->subjects) > 0) {
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
               onclick="(()=>{this.select();
-                                                                                                                                    this.setSelectionRange(0, 99999);
-                                                                                                                                    navigator.clipboard.writeText(this.value);
-                                                                                                                                      toastr.options.rtl = true;
-                                                                                                                                      toastr.options.positionClass = 'toast-bottom-left';
-                                                                                                                                    toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                                                                                            this.setSelectionRange(0, 99999);
+                                                                                                                                            navigator.clipboard.writeText(this.value);
+                                                                                                                                              toastr.options.rtl = true;
+                                                                                                                                              toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                                                            toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -240,9 +255,9 @@ if (count($course->subjects) > 0) {
                 @endif
                 <div class="author-thumb">
                   <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                        font-family: inherit;
-                        font-weight: 500;
-                        line-height: 1.2;margin-top: 0;">مدرس</div>
+                                font-family: inherit;
+                                font-weight: 500;
+                                line-height: 1.2;margin-top: 0;">مدرس</div>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img src="#" class="lazyload" width="100" height="100"
@@ -257,9 +272,9 @@ if (count($course->subjects) > 0) {
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
                     <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                        font-family: inherit;
-                        font-weight: 500;
-                        line-height: 1.2;margin-top: 0;">دوبله کننده</div>
+                                font-family: inherit;
+                                font-weight: 500;
+                                line-height: 1.2;margin-top: 0;">دوبله کننده</div>
                     @foreach ($course->users as $user)
                       <a href="{{ route('dubbed.index', [$user->username]) }}">
                         <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
@@ -531,9 +546,9 @@ if (count($course->subjects) > 0) {
                 @endif
                 <div class="author-thumb">
                   <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                    font-family: inherit;
-                    font-weight: 500;
-                    line-height: 1.2;margin-top: 0;">Author</div>
+                            font-family: inherit;
+                            font-weight: 500;
+                            line-height: 1.2;margin-top: 0;">Author</div>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img src="#" class="lazyload" width="100" height="100"
@@ -548,9 +563,9 @@ if (count($course->subjects) > 0) {
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
                     <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                      font-family: inherit;
-                      font-weight: 500;
-                      line-height: 1.2;margin-top: 0;">Dubbed By</div>
+                              font-family: inherit;
+                              font-weight: 500;
+                              line-height: 1.2;margin-top: 0;">Dubbed By</div>
                     @foreach ($course->users as $user)
                       <a href="{{ route('dubbed.index', [$user->username]) }}">
                         <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
