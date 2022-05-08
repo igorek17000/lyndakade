@@ -2,7 +2,7 @@
 @push('meta.in.head')
   @include('meta::manager', [
       'image' => fromDLHost($path->img),
-      'title' => $path->titleEng . ' - ' . $path->title . ' - لیندا کده',
+      'title' => $path->title . ' - ' . $path->titleEng . ' - لیندا کده',
       'keywords' => get_seo_keywords() . ' , لیست مسیر آموزشی , learn path, learn-path, all learn paths ' . $path->title,
       'description' => 'مسیر آموزشی ' . $path->description . '| ' . get_seo_description(),
   ])
