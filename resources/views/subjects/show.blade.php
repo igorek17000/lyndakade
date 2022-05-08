@@ -72,7 +72,7 @@
         },
         {
           "@context": "https://schema.org",
-          "@id": "https://LyndaKade.ir/#/schema/breadcrumb/LyndaKade"
+          "@id": "https://LyndaKade.ir/#/schema/breadcrumb/LyndaKade",
           "@type": "BreadcrumbList",
           "itemListElement": [{
               "@type": "ListItem",
