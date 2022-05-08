@@ -14,67 +14,117 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Lynda Kade - لیندا کده",
-      "url": "https://lyndakade.ir/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://lyndakade.ir/search?q={search_term_string}"
+      "@graph": [{
+          "@type": "Organization",
+          "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade",
+          "name": "Lynda Kade - لیندا کده",
+          "url": "https://LyndaKade.ir",
+          "sameAs": [
+            "https://www.aparat.com/LyndaKade.ir",
+            "https://www.instagram.com/LyndaKade.ir/",
+            "https://t.me/LyndaKade/"
+          ],
+          "logo": {
+            "@type": "ImageObject",
+            "@id": "https://LyndaKade.ir/#/schema/image/LyndaKade",
+            "url": "https://lyndakade.ir/image/logoedit2.png",
+            "width": 100,
+            "height": 100,
+            "caption": "Lynda Kade - لیندا کده"
+          },
+          "image": {
+            "@id": "https://LyndaKade.ir/#/schema/image/LyndaKade",
+            "inLanguage": "fa-IR",
+            "url": "https://lyndakade.ir/image/logoedit2.png",
+            "width": 100,
+            "height": 100,
+            "caption": "Lynda Kade - لیندا کده"
+          }
         },
-        "query-input": "required name=search_term_string"
-      }
-    }
-  </script>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@id": "{{ route('courses.newest') }}",
-          "name": "New Courses - جدیدترین دوره ها"
+        {
+          "@type": "WebSite",
+          "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade",
+          "url": "https://LyndaKade.ir",
+          "name": "Lynda Kade - لیندا کده",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://LyndaKade.ir/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "publisher": {
+            "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
+          }
+        },
+        {
+            "@type": "WebPage",
+            "@id": "{{ request()->url() }}",
+            "url": "{{ request()->url() }}",
+            "inLanguage": "fa-IR",
+            "name": "لیندا کده بروز ترین وبسایت آموزشی",
+            "dateModified": "{{ \Carbon\Carbon::now() }}",
+            "description": "",
+            "isPartOf": {
+              "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade"
+            },
+            "about": {
+              "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
+            }
+          },
+        {
+          "@context": "https://schema.org",
+          "@id": "https://LyndaKade.ir/#/schema/breadcrumb/LyndaKade"
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@id": "{{ route('courses.newest') }}",
+              "name": "New Courses - جدیدترین دوره ها",
+              "url": "{{ route('courses.newest') }}"
+            }
+          }, {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@id": "{{ route('learn.paths.index') }}",
+              "name": "Learning Paths - مسیر آموزشی",
+              "url": "{{ route('learn.paths.index') }}"
+            }
+          }, {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@id": "{{ route('packages.index') }}",
+              "name": "Buy Packages - خرید اشتراک",
+              "url": "{{ route('packages.index') }}"
+            }
+          }, {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@id": "{{ route('demands.create') }}",
+              "name": "Request Course - درخواست دوره",
+              "url": "{{ route('demands.create') }}"
+            }
+          }, {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@id": "{{ route('root.contact.us') }}",
+              "name": "Contact Us - تماس با ما",
+              "url": "{{ route('root.contact.us') }}"
+            }
+          }, {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@id": "{{ route('faq') }}",
+              "name": "FAQ - سوالات متداول",
+              "url": "{{ route('faq') }}"
+            }
+          }]
         }
-      }, {
-        "@type": "ListItem",
-        "position": 2,
-        "item": {
-          "@id": "{{ route('learn.paths.index') }}",
-          "name": "Learning Paths - مسیر آموزشی"
-        }
-      }, {
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@id": "{{ route('packages.index') }}",
-          "name": "Buy Packages - خرید اشتراک"
-        }
-      }, {
-        "@type": "ListItem",
-        "position": 4,
-        "item": {
-          "@id": "{{ route('demands.create') }}",
-          "name": "Request Course - درخواست دوره"
-        }
-      }, {
-        "@type": "ListItem",
-        "position": 5,
-        "item": {
-          "@id": "{{ route('root.contact.us') }}",
-          "name": "Contact Us - تماس با ما"
-        }
-      }, {
-        "@type": "ListItem",
-        "position": 6,
-        "item": {
-          "@id": "{{ route('faq') }}",
-          "name": "FAQ - سوالات متداول"
-        }
-      }]
+      ]
     }
   </script>
 @endpush
@@ -202,7 +252,8 @@
       </h5>
       <hr style="border-top: 1px solid  #f8ba16" class="my-2">
       <div class="row">
-        @foreach (\App\LearnPath::inRandomOrder()->limit(8)->get() as $path)
+        @foreach (\App\LearnPath::inRandomOrder()->limit(8)->get()
+      as $path)
           @include('learn_paths.partials.list_item_grid_new', [
               'path' => $path,
               'loop' => $loop,

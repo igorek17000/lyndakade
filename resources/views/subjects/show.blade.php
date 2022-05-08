@@ -14,15 +14,109 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "headline": "{{ $subject->titleEng ?? $subject->title }}",
-      "url": "{{ route('home.show', [$subject->slug]) }}"
+      "@graph": [{
+          "@type": "Organization",
+          "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade",
+          "name": "Lynda Kade - لیندا کده",
+          "url": "https://LyndaKade.ir",
+          "sameAs": [
+            "https://www.aparat.com/LyndaKade.ir",
+            "https://www.instagram.com/LyndaKade.ir/",
+            "https://t.me/LyndaKade/"
+          ],
+          "logo": {
+            "@type": "ImageObject",
+            "@id": "https://LyndaKade.ir/#/schema/image/LyndaKade",
+            "url": "https://lyndakade.ir/image/logoedit2.png",
+            "width": 100,
+            "height": 100,
+            "caption": "Lynda Kade - لیندا کده"
+          },
+          "image": {
+            "@id": "https://LyndaKade.ir/#/schema/image/LyndaKade",
+            "inLanguage": "fa-IR",
+            "url": "https://lyndakade.ir/image/logoedit2.png",
+            "width": 100,
+            "height": 100,
+            "caption": "Lynda Kade - لیندا کده"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade",
+          "url": "https://LyndaKade.ir",
+          "name": "Lynda Kade - لیندا کده",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://LyndaKade.ir/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "publisher": {
+            "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "{{ request()->url() }}",
+          "url": "{{ request()->url() }}",
+          "inLanguage": "fa-IR",
+          "name": "{{ ($subject->title_per ?? $subject->title) . ' (' . ($subject->titleEng ?? $subject->title) . ')' . ' - لیندا کده' }}",
+          "dateModified": "{{ \Carbon\Carbon::now() }}",
+          "description": "",
+          "isPartOf": {
+            "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade"
+          },
+          "about": {
+            "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@id": "https://LyndaKade.ir/#/schema/breadcrumb/LyndaKade"
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@id": "https://LyndaKade.ir/",
+                "name": "Learning",
+                "url": "https://LyndaKade.ir/"
+              }
+            },
+            @if ($subject->library)
+              {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+              "@id": "{{ route('home.show', [$subject->library->slug]) }}",
+              "name": "{{ $subject->library->title . ' - لیندا کده' }}",
+              "url": "{{ route('home.show', [$subject->library->slug]) }}"
+              }
+              },
+            @endif {
+              "@type": "ListItem",
+              "position": {{ $subject->library ? 3 : 2 }},
+              "item": {
+                "@id": "{{ route('home.show', [$subject->slug]) }}",
+                "name": "{{ ($subject->title_per ?? $subject->title) . ' (' . ($subject->titleEng ?? $subject->title) . ')' . ' - لیندا کده' }}",
+                "url": "{{ route('home.show', [$subject->slug]) }}"
+              }
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "headline": "{{ $subject->titleEng ?? $subject->title }}",
+          "url": "{{ route('home.show', [$subject->slug]) }}"
+        }
+      ]
     }
   </script>
 @endpush
 @section('content')
   <div class="row card mx-0 pb-4">
-    <div class="container" >
+    <div class="container">
       <div class="row mx-0 author-details mt-3">
         <div class="col-xs-4 col-sm-4 col-md-4 col-xl-3" style="text-align: center;">
           {{-- <img class="author lazyload" data-src="{{ fromDLHost($user->avatar) }}"

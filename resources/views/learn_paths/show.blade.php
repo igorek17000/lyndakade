@@ -15,39 +15,129 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ItemList",
-      "itemListElement": [
-        @foreach (js_to_courses($path->_courses) as $course)
-          {
-          "@type": "ListItem",
-          "position": "{{ $loop->index + 1 }}",
-          "item": {
-          "@type": "Course",
-          "image": "{{ fromDLHost($course->img) }}",
-          "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
-          "name": "{{ $course->titleEng }} - {{ $course->title }}",
-          "description": "{{ $course->description }}",
-          "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
-          "timeRequired":
-          "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm' }}",
-          "provider": [
-          @foreach ($course->authors as $author)
-            {
-            "@type": "Person",
-            "name": "{{ $author->name }}",
-            "url": {"@id": "{{ route('authors.show', [$author->slug]) }}"}
+      "@graph": [{
+          "@type": "Organization",
+          "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade",
+          "name": "Lynda Kade - لیندا کده",
+          "url": "https://LyndaKade.ir",
+          "sameAs": [
+            "https://www.aparat.com/LyndaKade.ir",
+            "https://www.instagram.com/LyndaKade.ir/",
+            "https://t.me/LyndaKade/"
+          ],
+          "logo": {
+            "@type": "ImageObject",
+            "@id": "https://LyndaKade.ir/#/schema/image/LyndaKade",
+            "url": "https://lyndakade.ir/image/logoedit2.png",
+            "width": 100,
+            "height": 100,
+            "caption": "Lynda Kade - لیندا کده"
+          },
+          "image": {
+            "@id": "https://LyndaKade.ir/#/schema/image/LyndaKade",
+            "inLanguage": "fa-IR",
+            "url": "https://lyndakade.ir/image/logoedit2.png",
+            "width": 100,
+            "height": 100,
+            "caption": "Lynda Kade - لیندا کده"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade",
+          "url": "https://LyndaKade.ir",
+          "name": "Lynda Kade - لیندا کده",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://LyndaKade.ir/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "publisher": {
+            "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "{{ request()->url() }}",
+          "url": "{{ request()->url() }}",
+          "inLanguage": "fa-IR",
+          "name": "{{ $path->title }} - {{ $path->titleEng }} - لیندا کده",
+          "dateModified": "{{ \Carbon\Carbon::now() }}",
+          "description": "",
+          "isPartOf": {
+            "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade"
+          },
+          "about": {
+            "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@id": "https://LyndaKade.ir/#/schema/breadcrumb/LyndaKade"
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@id": "https://LyndaKade.ir/",
+              "name": "Learning",
+              "url": "https://LyndaKade.ir/"
             }
-            @if (!$loop->last)
-              ,
-            @endif
-          @endforeach
+          }, {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@id": "{{ route('learn.paths.index') }}",
+              "name": "مسیرهای آموزشی",
+              "url": "{{ route('learn.paths.index') }}"
+            }
+          }, {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@id": "{{ request()->url() }}",
+              "name": "{{ $path->title }} - {{ $path->titleEng }} - لیندا کده",
+              "url": "{{ request()->url() }}"
+            }
+          }]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": [
+            @foreach (js_to_courses($path->_courses) as $course)
+              {
+              "@type": "ListItem",
+              "position": "{{ $loop->index + 1 }}",
+              "item": {
+              "@type": "Course",
+              "image": "{{ fromDLHost($course->img) }}",
+              "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
+              "name": "{{ $course->titleEng }} - {{ $course->title }}",
+              "description": "{{ $course->description }}",
+              "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
+              "timeRequired":
+              "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm' }}",
+              "provider": [
+              @foreach ($course->authors as $author)
+                {
+                "@type": "Person",
+                "name": "{{ $author->name }}",
+                "url": {"@id": "{{ route('authors.show', [$author->slug]) }}"}
+                }
+                @if (!$loop->last)
+                  ,
+                @endif
+              @endforeach
+              ]
+              }
+              }
+              @if (!$loop->last)
+                ,
+              @endif
+            @endforeach
           ]
-          }
-          }
-          @if (!$loop->last)
-            ,
-          @endif
-        @endforeach
+        }
       ]
     }
   </script>
@@ -57,10 +147,10 @@
   <div id="learn-path-top" class="px-0 pt-0" style="margin-bottom: 150px;">
     <div class="row m-0">
       <div class="path-big-img" style="
-                                                                                    max-width: 100%; width: 100%;
-                                                                                    background: url({{ fromDLHost($path->img) }});
-                                                                                    background-size: auto;
-                                                                                    height: 300px !important;">
+                                                                                        max-width: 100%; width: 100%;
+                                                                                        background: url({{ fromDLHost($path->img) }});
+                                                                                        background-size: auto;
+                                                                                        height: 300px !important;">
         <img src="#" class="lazyload" data-src="{{ fromDLHost($path->img) }}"
           alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}" />
       </div>
@@ -80,11 +170,11 @@
                       </path>
                     </svg>
                     <input readonly="" onclick="(()=>{this.select();
-                                                                  this.setSelectionRange(0, 99999);
-                                                                  navigator.clipboard.writeText(this.value);
-                                                                    toastr.options.rtl = true;
-                                                                    toastr.options.positionClass = 'toast-bottom-left';
-                                                                  toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                      this.setSelectionRange(0, 99999);
+                                                                      navigator.clipboard.writeText(this.value);
+                                                                        toastr.options.rtl = true;
+                                                                        toastr.options.positionClass = 'toast-bottom-left';
+                                                                      toastr.info('لینک کوتاه کپی شد.');})()"
                       style="font-size: 11px;text-align: left;direction: rtl;padding-left: 27px;padding-right: 2px;"
                       title="لینک کوتاه این مسیر آموزشی" type="text" value="lyndakade.ir/L/{{ $path->id }}"
                       id="shorturl" class="form-control">
@@ -103,9 +193,9 @@
                 <div class="row mx-auto">
                   <div class="col-md-6">
                     <div style="font-size: 24px;
-                                  margin-top: 10px;
-                                  margin-bottom: 9px;
-                                  font-weight: 700;min-height: 72px;">
+                                      margin-top: 10px;
+                                      margin-bottom: 9px;
+                                      font-weight: 700;min-height: 72px;">
                       <span>
                         {{ $path->title }}
 
@@ -121,9 +211,9 @@
                   </div>
                   <div class="col-md-6">
                     <div class="container text-left d-none d-md-block" dir="ltr" style="font-size: 24px;
-                                  margin-top: 10px;
-                                  margin-bottom: 9px;
-                                  font-weight: 700;min-height: 72px;">
+                                      margin-top: 10px;
+                                      margin-bottom: 9px;
+                                      font-weight: 700;min-height: 72px;">
                       <span>
                         {{ $path->titleEng }}
                       </span>

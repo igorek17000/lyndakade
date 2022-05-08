@@ -9,9 +9,92 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Confirm Password - {{ __('msg.Confirm Password') }}",
-      "url": "{{ route('password.request') }}"
+      "@graph": [{
+          "@type": "Organization",
+          "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade",
+          "name": "Lynda Kade - لیندا کده",
+          "url": "https://LyndaKade.ir",
+          "sameAs": [
+            "https://www.aparat.com/LyndaKade.ir",
+            "https://www.instagram.com/LyndaKade.ir/",
+            "https://t.me/LyndaKade/"
+          ],
+          "logo": {
+            "@type": "ImageObject",
+            "@id": "https://LyndaKade.ir/#/schema/image/LyndaKade",
+            "url": "https://lyndakade.ir/image/logoedit2.png",
+            "width": 100,
+            "height": 100,
+            "caption": "Lynda Kade - لیندا کده"
+          },
+          "image": {
+            "@id": "https://LyndaKade.ir/#/schema/image/LyndaKade",
+            "inLanguage": "fa-IR",
+            "url": "https://lyndakade.ir/image/logoedit2.png",
+            "width": 100,
+            "height": 100,
+            "caption": "Lynda Kade - لیندا کده"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade",
+          "url": "https://LyndaKade.ir",
+          "name": "Lynda Kade - لیندا کده",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://LyndaKade.ir/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "publisher": {
+            "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
+          }
+        },
+
+        {
+            "@type": "WebPage",
+            "@id": "{{ request()->url() }}",
+            "url": "{{ request()->url() }}",
+            "inLanguage": "fa-IR",
+            "name": " {{ __('msg.Confirm Password') }} . ' - لیندا کده'",
+            "dateModified": "{{ \Carbon\Carbon::now() }}",
+            "description": "",
+            "isPartOf": {
+              "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade"
+            },
+            "about": {
+              "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
+            }
+          },
+        {
+          "@context": "https://schema.org",
+          "@id": "https://LyndaKade.ir/#/schema/breadcrumb/LyndaKade"
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@id": "https://LyndaKade.ir/Learning",
+              "name": "Learning",
+              "url": "https://LyndaKade.ir/Learning"
+            }
+          }, {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@id": "{{ route('password.request') }}",
+              "name": "Confirm Password - {{ __('msg.Confirm Password') }}",
+              "url": "{{ route('password.request') }}"
+            }
+          }]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Confirm Password - {{ __('msg.Confirm Password') }}",
+          "url": "{{ route('password.request') }}"
+        }
+      ]
     }
   </script>
 @endpush
