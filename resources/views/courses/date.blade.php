@@ -88,21 +88,21 @@
               "@id": "{{ route('courses.best') }}",
               @elseif ($coursetype == 'free')
               "@id": "{{ route('courses.free') }}",
-              @endif",
+              @endif
               @if ($coursetype == 'newest')
               "name": "جدیدترین دوره های آموزشی",
               @elseif ($coursetype == 'best')
               "name": "محبوب دوره های آموزشی",
               @elseif ($coursetype == 'free')
               "name": "دوره های آموزشی رایگان",
-              @endif",
+              @endif
               @if ($coursetype == 'newest')
               "url": "{{ route('courses.newest') }}"
               @elseif ($coursetype == 'best')
               "url": "{{ route('courses.best') }}"
               @elseif ($coursetype == 'free')
               "url": "{{ route('courses.free') }}"
-              @endif"
+              @endif
             }
           }]
         },
