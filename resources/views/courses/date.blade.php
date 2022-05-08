@@ -83,25 +83,25 @@
             "position": 2,
             "item": {
               @if ($coursetype == 'newest')
-                {{ route('courses.newest') }}
+              "@id": "{{ route('courses.newest') }}",
               @elseif ($coursetype == 'best')
-                {{ route('courses.best') }}
+              "@id": "{{ route('courses.best') }}",
               @elseif ($coursetype == 'free')
-                {{ route('courses.free') }}
+              "@id": "{{ route('courses.free') }}",
               @endif",
               @if ($coursetype == 'newest')
-                جدیدترین دوره های آموزشی
+              "name": "جدیدترین دوره های آموزشی",
               @elseif ($coursetype == 'best')
-                محبوب دوره های آموزشی
+              "name": "محبوب دوره های آموزشی",
               @elseif ($coursetype == 'free')
-                دوره های آموزشی رایگان
+              "name": "دوره های آموزشی رایگان",
               @endif",
               @if ($coursetype == 'newest')
-                {{ route('courses.newest') }}
+              "url": "{{ route('courses.newest') }}"
               @elseif ($coursetype == 'best')
-                {{ route('courses.best') }}
+              "url": "{{ route('courses.best') }}"
               @elseif ($coursetype == 'free')
-                {{ route('courses.free') }}
+              "url": "{{ route('courses.free') }}"
               @endif"
             }
           }]
