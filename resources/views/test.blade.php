@@ -673,8 +673,9 @@
 @endsection
 @section('script_body')
   {{-- <script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script> --}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.18.1/video.min.js">
-    var player = videojs(document.querySelector('.video-js'), {
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.18.1/video.min.js"></script>
+  <script>
+      var player = videojs(document.querySelector('.video-js'), {
       fluid: true,
       //   playbackRates: [0.5, 1, 1.5, 2],
       controls: true,
@@ -714,8 +715,6 @@
         }
       });
     }
-  </script>
-  <script>
     // window.addEventListener('goftino_ready', function() {
     //   Goftino.setWidget({
     //     hasIcon: false,
