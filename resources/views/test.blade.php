@@ -2,7 +2,7 @@
 @push('meta.in.head')
   {{-- <link href="https://vjs.zencdn.net/7.18.1/video-js.css" rel="stylesheet" /> --}}
   <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.18.1/video-js.min.css" rel="stylesheet" />
-  <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet" />
+  {{-- <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet" /> --}}
 @endpush
 
 @section('content')
