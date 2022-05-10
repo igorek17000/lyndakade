@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @push('meta.in.head')
-  <link href="https://vjs.zencdn.net/7.18.1/video-js.css" rel="stylesheet" />
-  <link href="https://unpkg.com/video.js@7/dist/video-js.min.css" rel="stylesheet" />
+  {{-- <link href="https://vjs.zencdn.net/7.18.1/video-js.css" rel="stylesheet" /> --}}
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.18.1/video-js.min.css" rel="stylesheet" />
   <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet" />
 @endpush
 
@@ -78,11 +78,11 @@
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
               onclick="(()=>{this.select();
-                                                                                                                                                                                                          this.setSelectionRange(0, 99999);
-                                                                                                                                                                                                          navigator.clipboard.writeText(this.value);
-                                                                                                                                                                                                            toastr.options.rtl = true;
-                                                                                                                                                                                                            toastr.options.positionClass = 'toast-bottom-left';
-                                                                                                                                                                                                          toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                                                                                                                                                            this.setSelectionRange(0, 99999);
+                                                                                                                                                                                                            navigator.clipboard.writeText(this.value);
+                                                                                                                                                                                                              toastr.options.rtl = true;
+                                                                                                                                                                                                              toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                                                                                                                            toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -167,9 +167,9 @@
                 <div class="author-thumb">
                   <div
                     style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                              font-family: inherit;
-                                                                                              font-weight: 500;
-                                                                                              line-height: 1.2;margin-top: 0;">
+                                                                                                font-family: inherit;
+                                                                                                font-weight: 500;
+                                                                                                line-height: 1.2;margin-top: 0;">
                     مدرس
                   </div>
                   @foreach ($course->authors as $author)
@@ -187,9 +187,9 @@
                     class="author-thumb">
                     <div
                       style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                              font-family: inherit;
-                                                                                              font-weight: 500;
-                                                                                              line-height: 1.2;margin-top: 0;">
+                                                                                                font-family: inherit;
+                                                                                                font-weight: 500;
+                                                                                                line-height: 1.2;margin-top: 0;">
                       دوبله
                       کننده
                     </div>
@@ -439,9 +439,9 @@
                 <div class="author-thumb">
                   <div
                     style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                          font-family: inherit;
-                                                                                          font-weight: 500;
-                                                                                          line-height: 1.2;margin-top: 0;">
+                                                                                            font-family: inherit;
+                                                                                            font-weight: 500;
+                                                                                            line-height: 1.2;margin-top: 0;">
                     Author
                   </div>
                   @foreach ($course->authors as $author)
@@ -459,9 +459,9 @@
                     class="author-thumb">
                     <div
                       style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                            font-family: inherit;
-                                                                                            font-weight: 500;
-                                                                                            line-height: 1.2;margin-top: 0;">
+                                                                                              font-family: inherit;
+                                                                                              font-weight: 500;
+                                                                                              line-height: 1.2;margin-top: 0;">
                       Dubbed
                       By
                     </div>
@@ -672,11 +672,11 @@
   </div>
 @endsection
 @section('script_body')
-  <script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script>
-  <script>
+  {{-- <script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script> --}}
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.18.1/video.min.js">
     var player = videojs(document.querySelector('.video-js'), {
       fluid: true,
-      playbackRates: [0.5, 1, 1.5, 2],
+      //   playbackRates: [0.5, 1, 1.5, 2],
       controls: true,
       autoplay: true,
       preload: "auto",
@@ -714,6 +714,8 @@
         }
       });
     }
+  </script>
+  <script>
     // window.addEventListener('goftino_ready', function() {
     //   Goftino.setWidget({
     //     hasIcon: false,
