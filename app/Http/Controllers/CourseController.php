@@ -294,7 +294,7 @@ class CourseController extends Controller
     public function subtitle_content(Request $request)
     {
         $course_id = $request->get('courseId');
-        $video_id = $request->get('videoId');
+        // $video_id = $request->get('videoId');
         $course = Course::find($course_id);
         $subtitle = json_decode($course->previewSubtitle);
 

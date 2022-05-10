@@ -664,7 +664,7 @@
       player.on('loadedmetadata', function() {
         var srtText = '';
         $.ajax({
-          url: "{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}",
+          url: "{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}",
           method: 'get',
           async: false,
           success: function(result) {
