@@ -11,6 +11,8 @@ use App\Package;
 use App\SkillLevel;
 use App\Software;
 use App\Subject;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
@@ -437,6 +439,86 @@ class HomeController extends Controller
 
     public function test_url(Request $request)
     {
-        return view('test');
+        $course = Course::with(['authors', 'subjects', 'softwares'])->find(429634);
+        $slug = $course->slug_linkedin;
+
+        $view_dt = Carbon::now();
+        $view_date = $view_dt->format('Y-m-d');
+        $view = \App\View::firstWhere('date', $view_date);
+        if ($view) {
+            $view->increment('views');
+        } else {
+            $view = new \App\View();
+            $view->date = $view_date;
+            $view->views = 1;
+            $view->save();
+        }
+        $related_courses = [];
+        if ($course->related_courses_slug) {
+            $related_slugs = explode(',', $course->related_courses_slug);
+            $related_courses = Course::with('authors')->whereIn('slug_linkedin', $related_slugs);
+            foreach ($related_slugs as $r_slug) {
+                $related_courses = $related_courses
+                    ->orWhere('slug_url',  $r_slug)
+                    ->orWhere('slug_url', 'LIKE', '%,' .  $r_slug)
+                    ->orWhere('slug_url', 'LIKE', '%,' .  $r_slug . ',%')
+                    ->orWhere('slug_url', 'LIKE',  $r_slug . ',%');
+            }
+            $related_courses = $related_courses->get();
+        }
+
+        if (count($related_courses) == 0) {
+            $subjectIds = $course->subjects->pluck('id')->toArray();
+            $related_courses = Course::with('authors')->whereHas('subjects', function ($query) use ($subjectIds) {
+                return $query->whereIn('subjects.id', $subjectIds);
+            })->where('id', '!=', $course->id)
+                ->limit(52)
+                ->get();
+        }
+
+        $related_paths = LearnPath::where('courses_id', $course->id)
+            ->orWhere('courses_id', 'LIKE', $course->id . ',%')
+            ->orWhere('courses_id', 'LIKE', '%,' . $course->id . ',%')
+            ->orWhere('courses_id', 'LIKE', '%,' . $course->id)
+            ->get();
+
+        $skillEng = SkillLevel::find($course->skillLevel)->titleEng;
+        $skill = SkillLevel::find($course->skillLevel)->title;
+
+        $has_subtitle = true;
+        try {
+            foreach (json_decode($course->previewSubtitle) as $subtitle) {
+            }
+            if (json_decode($course->previewSubtitle) == 0) {
+                $has_subtitle = false;
+            }
+        } catch (Exception $e) {
+            $has_subtitle = false;
+        }
+
+        $dubbed_course = Course::where('slug_linkedin', $slug . '-dubbed')
+            ->orWhere('slug_url',  $slug . '-dubbed')
+            ->orWhere('slug_url', 'LIKE', '%,' .  $slug . '-dubbed')
+            ->orWhere('slug_url', 'LIKE', '%,' .  $slug . '-dubbed' . ',%')
+            ->orWhere('slug_url', 'LIKE',  $slug . '-dubbed' . ',%')->first();
+
+        $has_dubbed = false;
+        if ($dubbed_course) {
+            $has_dubbed = $dubbed_course->id;
+        }
+
+        $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc')->get();
+
+        return view('test', [
+            'skill' => $skill,
+            'skillEng' => $skillEng,
+            'course' => $course,
+            'has_dubbed' => $has_dubbed,
+            'has_subtitle' => $has_subtitle,
+            'related_courses' => $related_courses,
+            'related_paths' => $related_paths,
+            'subjects' => $subjects,
+            'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
+        ]);
     }
 }

@@ -301,7 +301,7 @@ class CourseController extends Controller
         try {
             foreach ($subtitle as $file) {
                 $content = Storage::disk('FTP')->get($file->download_link);
-                return '<pre>' . $content . '</pre>';
+                return "WEBVTT\n\n" . $content;
             }
         } catch (Exception $e) {
         }

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use TCG\Voyager\Models\Role;
 
 class RegisterController extends Controller
@@ -84,8 +85,8 @@ class RegisterController extends Controller
         //     'password' => Hash::make($data['password']),
         // ]);
         // return $user;
-    //    return User::create($user);
-        return User::create([
+        //    return User::create($user);
+        $user = User::create([
             'name' => $data['name'],
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
@@ -94,6 +95,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        // Mail::to($data['email']);
+        return  $user;
     }
 
 
