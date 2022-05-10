@@ -308,10 +308,9 @@ class CourseController extends Controller
                     if ($value == "") {
                         unset($matches[0][$key]);
                     } else {
-                        $matches[0][$key] = trim($value);
+                        $matches[0][$key] = str_replace($value, str_replace(",", ".", $value), $content);
                     }
                 }
-                dd($matches);
                 return "WEBVTT\n\n" . $content;
             }
         } catch (Exception $e) {
