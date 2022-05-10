@@ -304,6 +304,14 @@ class CourseController extends Controller
                 $re = '/^([0-9]+\n|)([0-9:,->\s]+)/m';
                 preg_match_all($re, $content, $matches, PREG_SET_ORDER, 0);
 
+                foreach ($matches[0] as $key => $value) {
+                    if ($value == "") {
+                        unset($matches[0][$key]);
+                    } else {
+                        $matches[0][$key] = trim($value);
+                    }
+                }
+
                 return "WEBVTT\n\n" . $content;
             }
         } catch (Exception $e) {
