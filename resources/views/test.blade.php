@@ -675,12 +675,12 @@
   <script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script>
   <script>
     var player = videojs(document.querySelector('.video-js'), {
-      "fluid": true,
+      fluid: true,
       playbackRates: [0.5, 1, 1.5, 2],
-      "controls": true,
-      "autoplay": true,
-      "preload": "auto",
-      "seek": true
+      controls: true,
+      autoplay: true,
+      preload: "auto",
+      seek: true
     });
 
     if ("{{ $course->previewSubtitle }}" != "") {
