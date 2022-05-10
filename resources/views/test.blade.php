@@ -98,7 +98,7 @@
 
             @if ($course->previewSubtitle)
               @foreach (json_decode($course->previewSubtitle) as $subtitle)
-                <track kind="captions" srclang="en" label="English" default
+                <track kind="captions" srclang="en" label="English" @if ($loop->iteration == 1) default @endif
                   src="{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}">
                 {{-- <track kind="subtitles" srclang="en" label="English" default
                   src="{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}" /> --}}
