@@ -78,11 +78,11 @@
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
               onclick="(()=>{this.select();
-                                                                                                                                                                                                this.setSelectionRange(0, 99999);
-                                                                                                                                                                                                navigator.clipboard.writeText(this.value);
-                                                                                                                                                                                                  toastr.options.rtl = true;
-                                                                                                                                                                                                  toastr.options.positionClass = 'toast-bottom-left';
-                                                                                                                                                                                                toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                                                                                                                                                  this.setSelectionRange(0, 99999);
+                                                                                                                                                                                                  navigator.clipboard.writeText(this.value);
+                                                                                                                                                                                                    toastr.options.rtl = true;
+                                                                                                                                                                                                    toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                                                                                                                  toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -91,8 +91,8 @@
         <hr class="mt-0 mb-5">
 
         <div class="video-player">
-          <video class="video-js vjs-theme-city w-100" controls preload="auto"
-            poster="{{ fromDLHost($course->img) }}" {{-- crossorigin="anonymous" --}} {{-- data-setup='{ "fluid" : true , "controls": true, "autoplay": true, "preload": "auto", "seek": true  }' --}}
+          <video class="video-js vjs-theme-city w-100" controls preload="auto" poster="{{ fromDLHost($course->img) }}"
+            {{-- crossorigin="anonymous" --}} {{-- data-setup='{ "fluid" : true , "controls": true, "autoplay": true, "preload": "auto", "seek": true  }' --}}
             data-setup='{ "controls": true, "autoplay": true, "preload": "auto", "seek": true  }'>
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
 
@@ -167,9 +167,10 @@
                 @endif
                 <div class="author-thumb">
                   <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                    font-family: inherit;
-                                                                                    font-weight: 500;
-                                                                                    line-height: 1.2;margin-top: 0;">مدرس
+                                                                                      font-family: inherit;
+                                                                                      font-weight: 500;
+                                                                                      line-height: 1.2;margin-top: 0;">
+                    مدرس
                   </div>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
@@ -185,9 +186,9 @@
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
                     <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                    font-family: inherit;
-                                                                                    font-weight: 500;
-                                                                                    line-height: 1.2;margin-top: 0;">
+                                                                                      font-family: inherit;
+                                                                                      font-weight: 500;
+                                                                                      line-height: 1.2;margin-top: 0;">
                       دوبله
                       کننده
                     </div>
@@ -436,9 +437,9 @@
                 @endif
                 <div class="author-thumb">
                   <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                font-family: inherit;
-                                                                                font-weight: 500;
-                                                                                line-height: 1.2;margin-top: 0;">Author
+                                                                                  font-family: inherit;
+                                                                                  font-weight: 500;
+                                                                                  line-height: 1.2;margin-top: 0;">Author
                   </div>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
@@ -454,9 +455,10 @@
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
                     <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                  font-family: inherit;
-                                                                                  font-weight: 500;
-                                                                                  line-height: 1.2;margin-top: 0;">Dubbed
+                                                                                    font-family: inherit;
+                                                                                    font-weight: 500;
+                                                                                    line-height: 1.2;margin-top: 0;">
+                      Dubbed
                       By
                     </div>
                     @foreach ($course->users as $user)
@@ -684,7 +686,8 @@
           src: blobURL,
           srclang: 'en',
           label: 'english',
-          kind: 'subtitles'
+          kind: 'subtitles',
+          default: true
         }, true);
       });
     }
