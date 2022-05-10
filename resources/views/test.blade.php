@@ -78,11 +78,11 @@
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
               onclick="(()=>{this.select();
-                                                                                                                                                                                                    this.setSelectionRange(0, 99999);
-                                                                                                                                                                                                    navigator.clipboard.writeText(this.value);
-                                                                                                                                                                                                      toastr.options.rtl = true;
-                                                                                                                                                                                                      toastr.options.positionClass = 'toast-bottom-left';
-                                                                                                                                                                                                    toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                                                                                                                                                      this.setSelectionRange(0, 99999);
+                                                                                                                                                                                                      navigator.clipboard.writeText(this.value);
+                                                                                                                                                                                                        toastr.options.rtl = true;
+                                                                                                                                                                                                        toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                                                                                                                      toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -166,10 +166,11 @@
                   @endif
                 @endif
                 <div class="author-thumb">
-                  <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                        font-family: inherit;
-                                                                                        font-weight: 500;
-                                                                                        line-height: 1.2;margin-top: 0;">
+                  <div
+                    style="font-size: 1.25rem;margin-bottom: 0.5rem;
+                                                                                          font-family: inherit;
+                                                                                          font-weight: 500;
+                                                                                          line-height: 1.2;margin-top: 0;">
                     مدرس
                   </div>
                   @foreach ($course->authors as $author)
@@ -185,10 +186,11 @@
                 @if (count($course->users) > 0)
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
-                    <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                        font-family: inherit;
-                                                                                        font-weight: 500;
-                                                                                        line-height: 1.2;margin-top: 0;">
+                    <div
+                      style="font-size: 1.25rem;margin-bottom: 0.5rem;
+                                                                                          font-family: inherit;
+                                                                                          font-weight: 500;
+                                                                                          line-height: 1.2;margin-top: 0;">
                       دوبله
                       کننده
                     </div>
@@ -437,9 +439,9 @@
                 @endif
                 <div class="author-thumb">
                   <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                    font-family: inherit;
-                                                                                    font-weight: 500;
-                                                                                    line-height: 1.2;margin-top: 0;">
+                                                                                      font-family: inherit;
+                                                                                      font-weight: 500;
+                                                                                      line-height: 1.2;margin-top: 0;">
                     Author
                   </div>
                   @foreach ($course->authors as $author)
@@ -456,9 +458,9 @@
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
                     <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                      font-family: inherit;
-                                                                                      font-weight: 500;
-                                                                                      line-height: 1.2;margin-top: 0;">
+                                                                                        font-family: inherit;
+                                                                                        font-weight: 500;
+                                                                                        line-height: 1.2;margin-top: 0;">
                       Dubbed
                       By
                     </div>
@@ -563,8 +565,18 @@
             <div class="tags subject-tags">
               <h5 class="course-title" style="font-size: 1.2rem;">عناوین مرتبط</h5>
               @foreach ($course->subjects as $subject)
-                <a target="_blank"
-                  href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a>
+                {{-- <a target="_blank"
+                  href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a> --}}
+                <a target="_blank" titleEng="{{ $subject->title }}"
+                  title="دارای {{ $subject->courses_count }} دوره آموزشی"
+                  style="position: relative;background-color: #ddd;margin-bottom: 15px;"
+                  href="{{ route('home.show', [$subject->slug]) }}">
+                  <em>{{ $subject->title_per ?? $subject->title }}</em>
+                  <span
+                    style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+                    {{ $subject->courses_count }} دوره
+                  </span>
+                </a>
               @endforeach
             </div>
           @endif
