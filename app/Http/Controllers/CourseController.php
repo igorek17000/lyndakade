@@ -301,19 +301,15 @@ class CourseController extends Controller
         try {
             foreach ($subtitle as $file) {
                 $content = Storage::disk('FTP')->get($file->download_link);
-                // $re = '/^([0-9]+\n|)([0-9:,->\s]+)/m';
-                // $lines = explode("\n", $content);
-                // $length = count($lines);
-                // for ($index = 1; $index < $length; $index++) {
-                //     $line = $lines[$index];
-                //     preg_match($re, $line, $m);
-                //     if ($m) {
-                //         $lines[$index] = str_replace(',', '.', $lines[$index]);
-                //     }
-                // }
-                // $content = implode("\n", $lines);
-                // return "WEBVTT\n\n" . $content;
-                return "WEBVTT\n\n" . str_replace(',', '.', $content);
+                $lines = explode("\n", $content);
+                $length = count($lines);
+                for ($index = 1; $index < $length; $index++) {
+                    if ($index === 1 || trim($lines[$index - 2]) === '') {
+                        $lines[$index] = str_replace(',', '.', $lines[$index]);
+                    }
+                }
+                $content = implode("\n", $lines);
+                return "WEBVTT\n\n" . $content;
             }
         } catch (Exception $e) {
         }
