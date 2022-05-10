@@ -302,15 +302,17 @@ class CourseController extends Controller
             foreach ($subtitle as $file) {
                 $content = Storage::disk('FTP')->get($file->download_link);
                 $re = '/^([0-9]+\n|)([0-9:,->\s]+)/m';
-                preg_match_all($re, $content, $matches, PREG_SET_ORDER, 0);
 
-                foreach ($matches[0] as $key => $value) {
-                    if ($value == "") {
-                        unset($matches[0][$key]);
-                    } else {
-                        $matches[0][$key] = str_replace($value, str_replace(",", ".", $value), $content);
+                $lines = explode("\n", $content);
+                $length = count($lines);
+                for ($index = 1; $index < $length; $index++) {
+                    $line = $lines[$index];
+                    preg_match($re, $line, $m);
+                    if ($m) {
+                        $lines[$index] = str_replace(',', '.', $lines[$index]);
                     }
                 }
+                $content = implode("\n", $lines);
                 return "WEBVTT\n\n" . $content;
             }
         } catch (Exception $e) {
