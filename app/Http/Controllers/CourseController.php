@@ -311,11 +311,8 @@ class CourseController extends Controller
                         $matches[0][$key] = trim($value);
                     }
                 }
-
-                return [
-                    "WEBVTT\n\n" . $content,
-                    $matches
-                ];
+                dd($matches);
+                return "WEBVTT\n\n" . $content;
             }
         } catch (Exception $e) {
         }
