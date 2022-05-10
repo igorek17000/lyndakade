@@ -236,11 +236,13 @@
         <div class="video-player">
           <video class="video-js w-100" controls preload="auto" poster="{{ fromDLHost($course->img) }}"
             {{-- crossorigin="anonymous" --}}
-            data-setup='{ "fluid" : true , "controls": true, "autoplay": false, "preload": "auto", "seek": true  }'>
+            {{-- data-setup='{ "fluid" : true , "controls": true, "autoplay": true, "preload": "auto", "seek": true  }' --}}
+            data-setup='{ "controls": true, "autoplay": true, "preload": "auto", "seek": true  }'
+            >
             <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" />
 
             {{-- <source type="video/mp4" src="//vjs.zencdn.net/v/oceans.mp4" /> --}}
-            @if ($has_subtitle)
+            @if ($course->previewSubtitle)
               @foreach (json_decode($course->previewSubtitle) as $subtitle)
                 <track kind="captions" srclang="en" label="English" default
                   src="{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}">
