@@ -301,6 +301,9 @@ class CourseController extends Controller
         try {
             foreach ($subtitle as $file) {
                 $content = Storage::disk('FTP')->get($file->download_link);
+                $re = '/^([0-9]+\n|)([0-9:,->\s]+)/m';
+                preg_match_all($re, $content, $matches, PREG_SET_ORDER, 0);
+
                 return "WEBVTT\n\n" . $content;
             }
         } catch (Exception $e) {
