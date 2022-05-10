@@ -1,4 +1,4 @@
-@extends('layouts.app-test')
+@extends('layouts.app')
 @push('meta.in.head')
   <link href="https://vjs.zencdn.net/7.18.1/video-js.css" rel="stylesheet" />
   <style>
