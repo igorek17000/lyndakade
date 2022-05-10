@@ -309,8 +309,8 @@ class CourseController extends Controller
                 //     }
                 // }
                 // $content = implode("\n", $lines);
-                return "<pre>" . "WEBVTT\n\n" . $content . "</pre>";
-                // return $content;
+                // return "<pre>" . "WEBVTT\n\n" . $content . "</pre>";
+                return $content;
             }
         } catch (Exception $e) {
         }
