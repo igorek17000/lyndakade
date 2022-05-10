@@ -312,7 +312,10 @@ class CourseController extends Controller
                     }
                 }
 
-                return "WEBVTT\n\n" . $content;
+                return [
+                    "WEBVTT\n\n" . $content,
+                    $matches
+                ];
             }
         } catch (Exception $e) {
         }
