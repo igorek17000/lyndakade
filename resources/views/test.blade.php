@@ -2,7 +2,6 @@
 @push('meta.in.head')
   {{-- <link href="https://vjs.zencdn.net/7.18.1/video-js.css" rel="stylesheet" /> --}}
   <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.18.1/video-js.min.css" rel="stylesheet" />
-  {{-- <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet" /> --}}
 @endpush
 
 @section('content')
@@ -77,12 +76,7 @@
             <span class="input-group-addon"><i class="fa fa-copy"
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
-              onclick="(()=>{this.select();
-                                                                                                                                                                                                            this.setSelectionRange(0, 99999);
-                                                                                                                                                                                                            navigator.clipboard.writeText(this.value);
-                                                                                                                                                                                                              toastr.options.rtl = true;
-                                                                                                                                                                                                              toastr.options.positionClass = 'toast-bottom-left';
-                                                                                                                                                                                                            toastr.info('لینک کوتاه کپی شد.');})()"
+              onclick="(()=>{this.select(); this.setSelectionRange(0, 99999); navigator.clipboard.writeText(this.value); toastr.options.rtl = true; toastr.options.positionClass = 'toast-bottom-left'; toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -91,18 +85,9 @@
         <hr class="mt-0 mb-5">
 
         <div class="video-player">
-          <video class="video-js vjs-theme-city vjs-16-9 vjs-big-play-centered" controls preload="auto"
+          <video id="course-video-player" class="video-js vjs-theme-city vjs-16-9 vjs-big-play-centered" controls preload="auto"
             poster="{{ fromDLHost($course->img) }}" style="width: 100%; max-height: 100%;">
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
-
-            {{-- @if ($course->previewSubtitle)
-              @foreach (json_decode($course->previewSubtitle) as $subtitle)
-                <track kind="captions" srclang="en" label="English" @if ($loop->iteration == 1) default @endif
-                  src="{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}">
-                <track kind="subtitles" srclang="en" label="English" default
-                  src="{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}" />
-              @endforeach
-            @endif --}}
             <p class="vjs-no-js">
               To view this video please enable JavaScript, and consider upgrading to a
               web browser that
@@ -166,10 +151,7 @@
                 @endif
                 <div class="author-thumb">
                   <div
-                    style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                font-family: inherit;
-                                                                                                font-weight: 500;
-                                                                                                line-height: 1.2;margin-top: 0;">
+                    style="font-size: 1.25rem;margin-bottom: 0.5rem;font-family: inherit;font-weight: 500;line-height: 1.2;margin-top: 0;">
                     مدرس
                   </div>
                   @foreach ($course->authors as $author)
@@ -186,10 +168,7 @@
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
                     <div
-                      style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                font-family: inherit;
-                                                                                                font-weight: 500;
-                                                                                                line-height: 1.2;margin-top: 0;">
+                      style="font-size: 1.25rem;margin-bottom: 0.5rem;font-family: inherit;font-weight: 500;line-height: 1.2;margin-top: 0;">
                       دوبله
                       کننده
                     </div>
@@ -438,10 +417,7 @@
                 @endif
                 <div class="author-thumb">
                   <div
-                    style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                            font-family: inherit;
-                                                                                            font-weight: 500;
-                                                                                            line-height: 1.2;margin-top: 0;">
+                    style="font-size: 1.25rem;margin-bottom: 0.5rem;font-family: inherit;font-weight: 500;line-height: 1.2;margin-top: 0;">
                     Author
                   </div>
                   @foreach ($course->authors as $author)
@@ -458,10 +434,7 @@
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
                     <div
-                      style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                              font-family: inherit;
-                                                                                              font-weight: 500;
-                                                                                              line-height: 1.2;margin-top: 0;">
+                      style="font-size: 1.25rem;margin-bottom: 0.5rem;font-family: inherit;font-weight: 500;line-height: 1.2;margin-top: 0;">
                       Dubbed
                       By
                     </div>
@@ -675,7 +648,7 @@
   {{-- <script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script> --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.18.1/video.min.js"></script>
   <script>
-      var player = videojs(document.querySelector('.video-js'), {
+    var player = videojs(document.querySelector('.video-js'), {
       fluid: true,
       //   playbackRates: [0.5, 1, 1.5, 2],
       controls: true,
@@ -688,7 +661,7 @@
       player.on('loadedmetadata', function() {
         var srtText = '';
         $.ajax({
-          url: "{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}",
+          url: "{{ route('courses.subtitle_content', ['courseId' => $course->id, 'lang' => 'fa']) }}",
           method: 'get',
           async: false,
           success: function(result) {
