@@ -296,15 +296,11 @@ class CourseController extends Controller
         $course_id = $request->get('courseId');
         // $video_id = $request->get('videoId');
         $course = Course::find($course_id);
-        $subtitle = str_replace("preview.vtt", "preview.srt", $course->previewSubtitle);
-        $subtitle = json_decode($subtitle);
+        $subtitle = json_decode($course->previewSubtitle);
         try {
             foreach ($subtitle as $file) {
                 $content = Storage::disk('FTP')->get($file->download_link);
-                // return $content;
-                // $re = '/^([0-9]+\n|)([0-9:,->\s]+)/m';
-                $re = '/(.*\n)?(\d:\d\d:\d\d),(\d\d --> \d:\d\d:\d\d),(\d\d)/m';
-                return "WEBVTT\n\n" . str_replace($re, "$1.$2.$3.$4", $content);
+                return $content;
             }
         } catch (Exception $e) {
         }
