@@ -94,7 +94,7 @@
           <video class="video-js vjs-theme-city w-100 h-auto" controls preload="auto" poster="{{ fromDLHost($course->img) }}"
             {{-- crossorigin="anonymous" --}} {{-- data-setup='{ "fluid" : true , "controls": true, "autoplay": true, "preload": "auto", "seek": true  }' --}}
             data-setup='{ "controls": true, "autoplay": true, "preload": "auto", "seek": true  }'>
-            <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" />
+            <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
 
             {{-- <source type="video/mp4" src="//vjs.zencdn.net/v/oceans.mp4" /> --}}
             @if ($course->previewSubtitle)
