@@ -296,8 +296,8 @@ class CourseController extends Controller
         $course_id = $request->get('courseId');
         // $video_id = $request->get('videoId');
         $course = Course::find($course_id);
-        $subtitle = json_decode($course->previewSubtitle);
-        $subtitle = str_replace("preview.vtt", "preview.srt", $subtitle);
+        $subtitle = str_replace("preview.vtt", "preview.srt", $course->previewSubtitle);
+        $subtitle = json_decode($subtitle);
         try {
             foreach ($subtitle as $file) {
                 $content = Storage::disk('FTP')->get($file->download_link);
