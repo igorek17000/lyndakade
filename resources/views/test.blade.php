@@ -231,7 +231,7 @@
               class="form-control">
           </div>
         </div>
-        <hr class="mt-1">
+        <hr class="mt-0 mb-5">
 
         <div class="video-player">
           <video class="video-js w-100" controls preload="auto" poster="{{ fromDLHost($course->img) }}"
