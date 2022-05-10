@@ -100,8 +100,8 @@
               @foreach (json_decode($course->previewSubtitle) as $subtitle)
                 <track kind="captions" srclang="en" label="English" default
                   src="{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}">
-                <track kind="subtitles" srclang="en" label="English" default
-                  src="{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}" />
+                {{-- <track kind="subtitles" srclang="en" label="English" default
+                  src="{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}" /> --}}
               @endforeach
             @endif
             <p class="vjs-no-js">
