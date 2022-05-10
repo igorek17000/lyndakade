@@ -91,7 +91,7 @@
         <hr class="mt-0 mb-5">
 
         <div class="video-player">
-          <video class="video-js vjs-theme-city w-100" controls preload="auto" poster="{{ fromDLHost($course->img) }}"
+          <video class="video-js vjs-theme-city" controls preload="auto" poster="{{ fromDLHost($course->img) }}"
             width="920" height="720" {{-- crossorigin="anonymous" --}} {{-- data-setup='{ "fluid" : true , "controls": true, "autoplay": true, "preload": "auto", "seek": true  }' --}}
             data-setup='{ "controls": true, "autoplay": true, "preload": "auto", "seek": true  }'>
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
