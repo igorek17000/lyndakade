@@ -96,14 +96,14 @@
             data-setup='{ "controls": true, "autoplay": true, "preload": "auto", "seek": true  }'>
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
 
-            @if ($course->previewSubtitle)
+            {{-- @if ($course->previewSubtitle)
               @foreach (json_decode($course->previewSubtitle) as $subtitle)
                 <track kind="captions" srclang="en" label="English" @if ($loop->iteration == 1) default @endif
                   src="{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}">
-                {{-- <track kind="subtitles" srclang="en" label="English" default
-                  src="{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}" /> --}}
+                <track kind="subtitles" srclang="en" label="English" default
+                  src="{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}" />
               @endforeach
-            @endif
+            @endif --}}
             <p class="vjs-no-js">
               To view this video please enable JavaScript, and consider upgrading to a
               web browser that
@@ -662,35 +662,35 @@
   <script>
     var player = videojs(document.querySelector('.video-js'));
 
-    // if ("{{ $course->previewSubtitle }}" != "") {
-    //   player.on('loadedmetadata', function() {
-    //     var srtText = '';
-    //     $.ajax({
-    //       url: "{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}",
-    //       method: 'get',
-    //       async: false,
-    //       success: function(result) {
-    //         srtText = result;
-    //       },
-    //       errors: function(xhr) {
-    //         console.log("xhr", xhr);
-    //       }
-    //     });
-    //     var srtRegex = /(.*\n)?(\d:\d\d:\d\d),(\d\d --> \d:\d\d:\d\d),(\d\d)/g;
-    //     var vttText = 'WEBVTT\n\n' + srtText.replace(srtRegex, '$1$2.$3.$4');
-    //     var vttBlob = new Blob([vttText], {
-    //       type: 'text/vtt'
-    //     });
-    //     var blobURL = URL.createObjectURL(vttBlob);
-    //     this.addRemoteTextTrack({
-    //       src: blobURL,
-    //       srclang: 'en',
-    //       label: 'english',
-    //       kind: 'subtitles',
-    //       default: true
-    //     }, true);
-    //   });
-    // }
+    if ("{{ $course->previewSubtitle }}" != "") {
+      player.on('loadedmetadata', function() {
+        var srtText = '';
+        $.ajax({
+          url: "{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}",
+          method: 'get',
+          async: false,
+          success: function(result) {
+            srtText = result;
+          },
+          errors: function(xhr) {
+            console.log("xhr", xhr);
+          }
+        });
+        var srtRegex = /(.*\n)?(\d:\d\d:\d\d),(\d\d --> \d:\d\d:\d\d),(\d\d)/g;
+        var vttText = 'WEBVTT\n\n' + srtText.replace(srtRegex, '$1$2.$3.$4');
+        var vttBlob = new Blob([vttText], {
+          type: 'text/vtt'
+        });
+        var blobURL = URL.createObjectURL(vttBlob);
+        this.addRemoteTextTrack({
+          src: blobURL,
+          srclang: 'en',
+          label: 'english',
+          kind: 'subtitles',
+          default: true
+        }, true);
+      });
+    }
     // window.addEventListener('goftino_ready', function() {
     //   Goftino.setWidget({
     //     hasIcon: false,
