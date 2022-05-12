@@ -1414,7 +1414,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.js"
     integrity="sha512-OlPa3CLz34wRV8+Aq+Zn39Nc5FNHJPPYLeh/ZXjapjWIQl21a4f6gDM6futqnCIF0IQHEQUf3JJkDdLw+mxglA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+
   @yield('script_body')
   @stack('js')
 
@@ -1517,7 +1517,7 @@
         .replace(/\d/g, x => farsiDigits[x]);
     }
 
-    const player = new Plyr("#preview-video-player", {
+    const preview_video_player = new Plyr("#preview-video-player", {
       title: "",
       controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
         'airplay', 'fullscreen'
@@ -1579,7 +1579,7 @@
 
     $(document).on('click', '.course-preview-button', function(event) {
       const btn = event.currentTarget.dataset;
-      player.source = {
+      preview_video_player.source = {
         type: "video",
         title: btn.title,
         sources: [{
