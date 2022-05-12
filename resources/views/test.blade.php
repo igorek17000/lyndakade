@@ -101,7 +101,6 @@
         </div> --}}
         <div class="video-player">
           <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
-            <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" size="480" />
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
               size="720" default />
 
@@ -118,6 +117,16 @@
             @endif --}}
           </video>
         </div>
+        <button type="button" class="preview-button" data-title="{{ $course->title }}" data-size="720"
+          data-type="video/mp4" data-src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
+          data-poster="{{ fromDLHost($course->img) }}"
+          data-track-src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}"
+          data-track-label="فارسی" data-track-srclang="fa" data-track-default="true">first</button>
+        <button type="button" class="preview-button" data-title="{{ $course->titleEng }}" data-size="720"
+          data-type="video/mp4" data-src="{{ fromDLHost($course->previewFile) }}"
+          data-poster="{{ fromDLHost($course->img) }}"
+          data-track-src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}"
+          data-track-label="فارسی" data-track-srclang="fa" data-track-default="true">second</button>
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description"
@@ -689,6 +698,30 @@
       //   ratio: '16:9',
 
     });
+
+    function setVideo(that = null) {
+      if (that instanceof Event) that = this;
+      const btn = that.dataset;
+      player.source = {
+        type: "video",
+        title: btn.title,
+        sources: [{
+          src: btn.src,
+          type: btn.type,
+          size: Number(btn.size)
+        }],
+        tracks: [{
+          kind: 'captions',
+          label: btn.trackLabel,
+          srclang: btn.trackSrclang,
+          src: btn.trackSrc,
+          default: btn.trackDefault,
+        }, ],
+        poster: btn.poster
+      };
+    }
+
+    $(document).on('click', '.preview-button', setVideo);
 
     // var player = videojs(document.querySelector('.video-js'), {
     //   fluid: true,

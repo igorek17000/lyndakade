@@ -25,6 +25,10 @@ if (count($course->subjects) > 0) {
     }
   </script>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.css"
+    integrity="sha512-SwLjzOmI94KeCvAn5c4U6gS/Sb8UC7lrm40Wf+B0MQxEuGyDqheQHKdBmT4U+r+LkdfAiNH4QHrHtdir3pYBaw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   @include('meta::manager', [
       'image' => $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img),
       'title' => $course->title . ' - ' . $course->titleEng . ' - لیندا کده',
@@ -106,20 +110,20 @@ if (count($course->subjects) > 0) {
           }
         },
         {
-            "@type": "WebPage",
-            "@id": "{{ request()->url() }}",
-            "url": "{{ request()->url() }}",
-            "inLanguage": "fa-IR",
-            "name": "{{ $course->title }} - {{ $course->titleEng }} - لیندا کده",
-            "dateModified": "{{ \Carbon\Carbon::now() }}",
-            "description": "",
-            "isPartOf": {
-              "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade"
-            },
-            "about": {
-              "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
-            }
+          "@type": "WebPage",
+          "@id": "{{ request()->url() }}",
+          "url": "{{ request()->url() }}",
+          "inLanguage": "fa-IR",
+          "name": "{{ $course->title }} - {{ $course->titleEng }} - لیندا کده",
+          "dateModified": "{{ \Carbon\Carbon::now() }}",
+          "description": "",
+          "isPartOf": {
+            "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade"
           },
+          "about": {
+            "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
+          }
+        },
         {
           "@context": "https://schema.org",
           "@id": "https://LyndaKade.ir/#/schema/breadcrumb/LyndaKade",
@@ -154,9 +158,11 @@ if (count($course->subjects) > 0) {
           "provider": [
             @foreach ($course->authors as $author)
               {
-              "@type": "Person",
-              "name": "{{ $author->name }}",
-              "url": {"@id": "{{ route('authors.show', [$author->slug]) }}"}
+                "@type": "Person",
+                "name": "{{ $author->name }}",
+                "url": {
+                  "@id": "{{ route('authors.show', [$author->slug]) }}"
+                }
               }
               @if (!$loop->last)
                 ,
@@ -247,11 +253,11 @@ if (count($course->subjects) > 0) {
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
               onclick="(()=>{this.select();
-                                                                                                                                                      this.setSelectionRange(0, 99999);
-                                                                                                                                                      navigator.clipboard.writeText(this.value);
-                                                                                                                                                        toastr.options.rtl = true;
-                                                                                                                                                        toastr.options.positionClass = 'toast-bottom-left';
-                                                                                                                                                      toastr.info('لینک کوتاه کپی شد.');})()"
+                                                                                                                                                                this.setSelectionRange(0, 99999);
+                                                                                                                                                                navigator.clipboard.writeText(this.value);
+                                                                                                                                                                  toastr.options.rtl = true;
+                                                                                                                                                                  toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                                                                                toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -259,18 +265,10 @@ if (count($course->subjects) > 0) {
         </div>
         <hr class="mt-0 mb-5">
 
-        <div class="video-player">
-          <video controls {{-- id="my-player" --}} class="w-100" {{-- preload="auto" --}}
-            poster="{{ fromDLHost($course->img) }}" {{-- data-setup='{ "fluid" : true , "controls": true, "autoplay": false, "preload": "auto", "seek": true  }' --}} {{-- data-setup='{ "fluid" : true , "preload" : "auto"}' --}}>
-            <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" />
-
-            {{-- <source type="video/mp4" src="//vjs.zencdn.net/v/oceans.mp4" /> --}}
-            @if ($has_subtitle)
-              @foreach (json_decode($course->previewSubtitle) as $subtitle)
-                <track default kind="subtitles" srclang="en" label="English"
-                  src="{{ route('courses.subtitle_content', ['courseId' => $course->id, 'videoId' => 123]) }}" />
-              @endforeach
-            @endif
+        {{-- <div class="video-player">
+          <video id="course-video-player" class="video-js vjs-theme-city vjs-16-9 vjs-big-play-centered" controls
+            preload="auto" poster="{{ fromDLHost($course->img) }}" style="width: 100%; max-height: 100%;">
+            <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
             <p class="vjs-no-js">
               To view this video please enable JavaScript, and consider upgrading to a
               web browser that
@@ -278,6 +276,18 @@ if (count($course->subjects) > 0) {
                 supports HTML5 video
               </a>
             </p>
+          </video>
+        </div> --}}
+        <div class="video-player">
+          <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
+            <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" size="720" default />
+
+            {{-- <track kind="captions" label="English captions"
+              src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}" srclang="en">
+
+            <track kind="captions" label="Persian captions"
+              src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}" srclang="fa" default> --}}
+
           </video>
         </div>
         <nav>
@@ -336,9 +346,9 @@ if (count($course->subjects) > 0) {
                 @endif
                 <div class="author-thumb">
                   <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                          font-family: inherit;
-                                          font-weight: 500;
-                                          line-height: 1.2;margin-top: 0;">مدرس</div>
+                                                    font-family: inherit;
+                                                    font-weight: 500;
+                                                    line-height: 1.2;margin-top: 0;">مدرس</div>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img src="#" class="lazyload" width="100" height="100"
@@ -353,9 +363,9 @@ if (count($course->subjects) > 0) {
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
                     <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                          font-family: inherit;
-                                          font-weight: 500;
-                                          line-height: 1.2;margin-top: 0;">دوبله کننده</div>
+                                                    font-family: inherit;
+                                                    font-weight: 500;
+                                                    line-height: 1.2;margin-top: 0;">دوبله کننده</div>
                     @foreach ($course->users as $user)
                       <a href="{{ route('dubbed.index', [$user->username]) }}">
                         <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
@@ -627,9 +637,9 @@ if (count($course->subjects) > 0) {
                 @endif
                 <div class="author-thumb">
                   <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                      font-family: inherit;
-                                      font-weight: 500;
-                                      line-height: 1.2;margin-top: 0;">Author</div>
+                                                font-family: inherit;
+                                                font-weight: 500;
+                                                line-height: 1.2;margin-top: 0;">Author</div>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img src="#" class="lazyload" width="100" height="100"
@@ -644,9 +654,9 @@ if (count($course->subjects) > 0) {
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
                     <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                        font-family: inherit;
-                                        font-weight: 500;
-                                        line-height: 1.2;margin-top: 0;">Dubbed By</div>
+                                                  font-family: inherit;
+                                                  font-weight: 500;
+                                                  line-height: 1.2;margin-top: 0;">Dubbed By</div>
                     @foreach ($course->users as $user)
                       <a href="{{ route('dubbed.index', [$user->username]) }}">
                         <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
@@ -981,7 +991,31 @@ if (count($course->subjects) > 0) {
   </div>
 @endsection
 @section('script_body')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.js"
+    integrity="sha512-OlPa3CLz34wRV8+Aq+Zn39Nc5FNHJPPYLeh/ZXjapjWIQl21a4f6gDM6futqnCIF0IQHEQUf3JJkDdLw+mxglA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <script>
+    // Plyr.setup("#plyr-video", {
+    const player = new Plyr("#plyr-video", {
+      title: "{{ $course->title }}",
+      controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
+        'airplay', 'fullscreen'
+      ],
+      settings: ['captions', 'quality', 'speed', 'loop'],
+      invertTime: true,
+      toggleInvert: true,
+      captions: {
+        active: true,
+        language: 'fa',
+        update: false
+      },
+      //   ratio: '16:9',
+
+    });
+
+
+
     // window.addEventListener('goftino_ready', function() {
     //   Goftino.setWidget({
     //     hasIcon: false,
