@@ -699,9 +699,9 @@
 
     });
 
-    function setVideo(that = null) {
-      if (that instanceof Event) that = this;
-      const btn = that.dataset;
+    function setVideo(event) {
+      if (event instanceof Event) event = $(this);
+      const btn = event.dataset;
       player.source = {
         type: "video",
         title: btn.title,
