@@ -39,9 +39,12 @@
           بدون زیرنویس
         </div>
       @endif
-      <button href="" class="card-img-overlay" data-toggle="modal" data-target="#preview-modal" class="text-center"
-        data-src="{{ fromDLHost($course->previewFile) }}" data-title="{{ $course->title }}"
-        data-price="{{ $course->price }}" data-url="{{ courseURL($course) }}">
+      <button href="" class="card-img-overlay course-preview-button" data-toggle="modal" data-target="#preview-modal" class="text-center"
+        data-src="{{ fromDLHost($course->previewFile) }}" data-title="{{ $course->title }}" data-type="video/mp4"
+        data-poster="{{ fromDLHost($course->img) }}"
+        data-price="{{ $course->price }}" data-url="{{ courseURL($course) }}" data-size="720"
+        data-track-src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}"
+        data-track-label="فارسی" data-track-srclang="fa">
         پیش نمایش
       </button>
     </div>

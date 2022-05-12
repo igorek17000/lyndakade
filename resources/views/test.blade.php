@@ -734,7 +734,7 @@
       }
     });
 
-    $(document).on('click', '.preview-button', function(event) {
+    $(document).on('click', '.course-preview-button', function(event) {
       const btn = event.currentTarget.dataset;
       player.source = {
         type: "video",

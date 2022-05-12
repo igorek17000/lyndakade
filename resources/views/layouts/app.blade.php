@@ -1142,8 +1142,13 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content text-center">
         <div class="modal-body p-0" id="preview-modal-body">
-          <video class="w-100" src="" controls aria-controls="true"
-            style="border-top-left-radius: 3px; border-top-right-radius: 3px;"></video>
+          {{-- <video src="" controls aria-controls="true"
+            style="border-top-left-radius: 3px; border-top-right-radius: 3px;"></video> --}}
+          <video class="w-100" playsinline controls aria-controls="true" id="preview-video-player"
+            data-poster="" style="border-top-left-radius: 3px; border-top-right-radius: 3px;">
+            <source type="video/mp4" src="" size="720" default />
+            <track kind="captions" label="فارسی" src="" srclang="fa" default>
+          </video>
           <div class="text-right px-2">
             <div>
               <span style="font-size: 1.2rem;" id="preview-modal-title">عنوان دوره</span>
@@ -1406,6 +1411,10 @@
   @yield('script_body')
   @stack('js')
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.js"
+    integrity="sha512-OlPa3CLz34wRV8+Aq+Zn39Nc5FNHJPPYLeh/ZXjapjWIQl21a4f6gDM6futqnCIF0IQHEQUf3JJkDdLw+mxglA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <script>
     function toggleDropdown(e) {
       const _d = $(e.target).closest('.dropdown'),
@@ -1504,22 +1513,103 @@
         .replace(/\d/g, x => farsiDigits[x]);
     }
 
+    const player = new Plyr("#preview-video-player", {
+      title: "{{ $course->title }}",
+      controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
+        'airplay', 'fullscreen'
+      ],
+      settings: ['captions', 'quality', 'speed', 'loop'],
+      invertTime: true,
+      toggleInvert: true,
+      captions: {
+        active: true,
+        language: 'fa',
+        update: false
+      },
+      i18n: {
+        restart: 'پخش مجدد',
+        rewind: 'برگشت به {seektime}s',
+        play: 'پخش',
+        pause: 'توقف',
+        fastForward: 'به جلو رفتن {seektime}s',
+        seek: 'جابجا شدن',
+        seekLabel: '{currentTime} از {duration}',
+        played: 'پخش شده',
+        buffered: 'بافر شده',
+        currentTime: 'زمان فعلی',
+        duration: 'مدت زمان',
+        volume: 'صدا',
+        mute: 'بی صدا',
+        unmute: 'با صدا',
+        enableCaptions: 'فعال کردن زیرنویس',
+        disableCaptions: 'غیرفعال کردن زیرنویس',
+        download: 'دانلود',
+        enterFullscreen: 'فعال کردن تمام صفحه',
+        exitFullscreen: 'غیر فعال کردن تمام صفحه',
+        frameTitle: '{title}',
+        captions: 'زیرنویس‌ها',
+        settings: 'تنظیمات',
+        pip: 'تصویر-در-تصویر',
+        menuBack: 'برگشت به منوی قبلی',
+        speed: 'سرعت',
+        normal: 'عادی',
+        quality: 'کیفیت',
+        loop: 'حلقه پخش',
+        start: 'شروع',
+        end: 'پایان',
+        all: 'همه',
+        reset: 'بازنشانی',
+        disabled: 'غیرفعال',
+        enabled: 'فعال',
+        advertisement: 'تبلیغات',
+        qualityBadge: {
+          2160: '4K',
+          1440: 'HD',
+          1080: 'HD',
+          720: 'HD',
+          576: 'SD',
+          480: 'SD',
+        },
+      }
+    });
+
+    $(document).on('click', '.course-preview-button', function(event) {
+      const btn = event.currentTarget.dataset;
+      player.source = {
+        type: "video",
+        title: btn.title,
+        sources: [{
+          src: btn.src,
+          type: btn.type,
+          size: Number(btn.size)
+        }],
+        tracks: [{
+          kind: 'captions',
+          label: btn.trackLabel,
+          srclang: btn.trackSrclang,
+          src: btn.trackSrc,
+          default: true,
+        }, ],
+        poster: btn.poster
+      };
+    });
+
     $(function() {
-      document.querySelectorAll('*[data-price]').forEach(element => {
-        element.setAttribute('data-price', engToPer(element.getAttribute('data-price')));
-      });
+    //   document.querySelectorAll('*[data-price]').forEach(element => {
+    //     element.setAttribute('data-price', engToPer(element.getAttribute('data-price')));
+    //   });
       $('#preview-modal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget);
         if (button) {
           $('#preview-modal #preview-modal-title').text(button.data('title'));
           document.querySelector('#preview-modal #preview-modal-url').setAttribute('href', button.data('url'));
           // $('#preview-modal-price').text(button.data('price') + ' تومان');
-          document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', button.data(
-            'src'));
-          document.querySelector('#preview-modal #preview-modal-body video').play();
+          //   document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', button.data(
+          //     'src'));
+          //   document.querySelector('#preview-modal #preview-modal-body video').play();
         } else {
           $('#preview-modal #preview-modal-title').text('');
-          document.querySelector('#preview-modal #preview-modal-url').setAttribute('href', '');
+          //   document.querySelector('#preview-modal #preview-modal-url').setAttribute('href', '');
           // $('#preview-modal-price').text('');
         }
       });
