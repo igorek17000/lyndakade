@@ -666,18 +666,18 @@
   <script>
     plyr.setup("#plyr-video", {
       title: "{{ $course->title }}",
-      controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
-        'airplay', 'fullscreen'
-      ],
-      settings: ['captions', 'quality', 'speed', 'loop'],
-      invertTime: true,
-      toggleInvert: true,
-      captions: {
-        active: true,
-        language: 'fa',
-        update: false
-      },
-      ratio: '16:9',
+    //   controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
+    //     'airplay', 'fullscreen'
+    //   ],
+    //   settings: ['captions', 'quality', 'speed', 'loop'],
+    //   invertTime: true,
+    //   toggleInvert: true,
+    //   captions: {
+    //     active: true,
+    //     language: 'fa',
+    //     update: false
+    //   },
+    //   ratio: '16:9',
 
     });
 
