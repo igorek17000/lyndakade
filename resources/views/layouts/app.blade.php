@@ -1411,12 +1411,13 @@
 
   </script> --}}
 
-  @yield('script_body')
-  @stack('js')
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.js"
     integrity="sha512-OlPa3CLz34wRV8+Aq+Zn39Nc5FNHJPPYLeh/ZXjapjWIQl21a4f6gDM6futqnCIF0IQHEQUf3JJkDdLw+mxglA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+  @yield('script_body')
+  @stack('js')
+
 
   <script>
     function toggleDropdown(e) {

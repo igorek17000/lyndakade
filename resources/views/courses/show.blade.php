@@ -991,13 +991,9 @@ if (count($course->subjects) > 0) {
   </div>
 @endsection
 @section('script_body')
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.js"
-    integrity="sha512-OlPa3CLz34wRV8+Aq+Zn39Nc5FNHJPPYLeh/ZXjapjWIQl21a4f6gDM6futqnCIF0IQHEQUf3JJkDdLw+mxglA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script>
-    // Plyr.setup("#plyr-video", {
-    const player = new Plyr("#plyr-video", {
+    const course_player = new Plyr("#plyr-video", {
       title: "{{ $course->title }}",
       controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
         'airplay', 'fullscreen'
