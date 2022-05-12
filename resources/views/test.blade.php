@@ -97,7 +97,7 @@
           </video>
         </div> --}}
         <div class="video-player">
-          <video crossorigin="anonymous" playsinline id="plyr-video" poster="{{ fromDLHost($course->img) }}" controls>
+          <video crossorigin="use-credentials" playsinline id="plyr-video" poster="{{ fromDLHost($course->img) }}" controls>
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
               size="720" />
 
