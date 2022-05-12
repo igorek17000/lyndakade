@@ -97,8 +97,9 @@
           </video>
         </div> --}}
         <div class="video-player">
-          <video id="plyr-video" poster="{{ fromDLHost($course->img) }}" controls>
-            <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
+          <video crossorigin playsinline id="plyr-video" poster="{{ fromDLHost($course->img) }}" controls>
+            <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
+              size="720" />
 
             <track kind="captions" label="English captions" src="{{ fromDLHost($course->previewSubtitle) }}"
               srclang="en" default>
