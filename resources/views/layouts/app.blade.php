@@ -1514,7 +1514,7 @@
     }
 
     const player = new Plyr("#preview-video-player", {
-      title: "{{ $course->title }}",
+      title: "",
       controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
         'airplay', 'fullscreen'
       ],
