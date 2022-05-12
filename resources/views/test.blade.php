@@ -97,25 +97,13 @@
           </video>
         </div> --}}
         <div class="video-player">
-          <video crossorigin="use-credentials" playsinline id="plyr-video" poster="{{ fromDLHost($course->img) }}" controls>
+          <video playsinline id="plyr-video" poster="{{ fromDLHost($course->img) }}" controls>
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
               size="720" />
 
             <track kind="captions" label="English captions"
               src="{{ str_replace('https:', '', fromDLHost($course->previewSubtitle)) }}" srclang="en" default>
           </video>
-
-          {{-- <video id="course-video-player" class="video-js vjs-theme-city vjs-16-9 vjs-big-play-centered" controls
-            preload="auto" poster="{{ fromDLHost($course->img) }}" style="width: 100%; max-height: 100%;">
-            <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
-            <p class="vjs-no-js">
-              To view this video please enable JavaScript, and consider upgrading to a
-              web browser that
-              <a href="https://videojs.com/html5-video-support/" target="_blank">
-                supports HTML5 video
-              </a>
-            </p>
-          </video> --}}
         </div>
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
