@@ -674,7 +674,7 @@
       toggleInvert: true,
       captions: {
         active: true,
-        language: 'auto',
+        language: 'fa',
         update: false
       },
       ratio: '16:9',
