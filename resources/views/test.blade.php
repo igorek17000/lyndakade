@@ -98,10 +98,15 @@
         </div> --}}
         <div class="video-player">
           <video playsinline id="plyr-video" poster="{{ fromDLHost($course->img) }}" controls>
+            <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" size="480" />
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
               size="720" />
+
             <track kind="captions" label="English captions"
-              src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}" srclang="en" default>
+              src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}" srclang="en">
+
+            <track kind="captions" label="Persian captions"
+              src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}" srclang="fa" default>
 
             {{-- @if ($course->previewSubtitleContent)
               @php echo '<script type="text/vtt">'; @endphp
