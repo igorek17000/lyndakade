@@ -101,7 +101,7 @@
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
               size="720" />
 
-            <track kind="captions" label="English captions" src="{{ fromDLHost($course->previewSubtitle) }}"
+            <track kind="captions" label="English captions" src="{{ str_replace("https:","", fromDLHost($course->previewSubtitle)) }}"
               srclang="en" default>
           </video>
 
@@ -676,7 +676,7 @@
       toggleInvert: true,
       captions: { active: true, language: 'auto', update: false },
       ratio: '16:9',
-      
+
     });
 
     var player = videojs(document.querySelector('.video-js'), {
