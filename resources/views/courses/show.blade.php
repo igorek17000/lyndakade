@@ -886,14 +886,14 @@ if (count($course->subjects) > 0) {
     </aside>
   </div>
 
-  @if (count($course->subjects) > 0 || count($course->softwares) > 0)
+  @if (count($subjects) > 0)
     <div class="row mx-0 justify-content-center">
       <aside class="col-md-10">
         <div class="section-module">
-          @if (count($course->subjects) > 0)
+          @if (count($subjects) > 0)
             <div class="tags subject-tags">
               <h5 class="course-title" style="font-size: 1.2rem;">عناوین مرتبط</h5>
-              @foreach ($course->subjects as $subject)
+              @foreach ($subjects as $subject)
                 {{-- <a target="_blank"
                   href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a> --}}
 
@@ -907,16 +907,6 @@ if (count($course->subjects) > 0) {
                     {{ $subject->courses_count }} دوره
                   </span>
                 </a>
-              @endforeach
-            </div>
-          @endif
-
-          @if (count($course->softwares) > 0)
-            <div class="tags software-tags">
-              <h5 class="course-title" style="font-size: 1.2rem;">نرم افزارهای مرتبط</h5>
-              @foreach ($course->softwares as $software)
-                <a target="_blank"
-                  href="{{ route('home.show', [$software->slug]) }}"><em>{{ $software->title }}</em></a>
               @endforeach
             </div>
           @endif
