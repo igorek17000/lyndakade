@@ -103,10 +103,10 @@
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
               size="720" default />
 
-            <track kind="captions" label="English captions"
+            <track kind="captions" label="English"
               src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}" srclang="en">
 
-            <track kind="captions" label="Persian captions"
+            <track kind="captions" label="فارسی"
               src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}" srclang="fa" default>
 
             {{-- @if ($course->previewSubtitleContent)
