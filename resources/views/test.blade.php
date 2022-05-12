@@ -97,7 +97,7 @@
           </video>
         </div> --}}
         <div class="video-player">
-          <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
+          <video playsinline controls id="plyr-video" poster="{{ fromDLHost($course->img) }}">
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
 
             <track kind="captions" label="English captions"
