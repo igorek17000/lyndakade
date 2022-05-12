@@ -20,7 +20,7 @@
     <button href="" class="card-img-overlay course-preview-button" data-toggle="modal" data-target="#preview-modal" class="text-center"
       data-src="{{ $previewFile }}" data-title="مسیر آموزشی {{ $path->title }}" data-price="{{ $path->price() }}"
       data-url="{{ route('learn.paths.show', [$path->slug]) }}" data-type="video/mp4"
-      data-poster="{{ fromDLHost($path->img) }}" data-size="720"
+      data-poster="{{ fromDLHost($path->thumbnail) }}" data-size="720"
       data-track-src="{{ route('courses.subtitle_content', ['courseId' => $courseId]) }}" data-track-label="فارسی"
       data-track-srclang="fa">
       پیش نمایش
