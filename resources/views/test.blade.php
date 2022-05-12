@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @push('meta.in.head')
-  <link rel="stylesheet" href="https://cdn.plyr.io/2.0.15/plyr.css">
+  {{-- <link rel="stylesheet" href="https://cdn.plyr.io/2.0.15/plyr.css"> --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.css"
+    integrity="sha512-SwLjzOmI94KeCvAn5c4U6gS/Sb8UC7lrm40Wf+B0MQxEuGyDqheQHKdBmT4U+r+LkdfAiNH4QHrHtdir3pYBaw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endpush
 
 @section('content')
@@ -97,7 +100,7 @@
           </video>
         </div> --}}
         <div class="video-player">
-          <video playsinline controls id="plyr-video" poster="{{ fromDLHost($course->img) }}">
+          <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
 
             <track kind="captions" label="English captions"
@@ -661,9 +664,13 @@
   </div>
 @endsection
 @section('script_body')
-  <script src="https://cdn.plyr.io/2.0.15/plyr.js"></script>
+  {{-- <script src="https://cdn.plyr.io/2.0.15/plyr.js"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.js"
+    integrity="sha512-OlPa3CLz34wRV8+Aq+Zn39Nc5FNHJPPYLeh/ZXjapjWIQl21a4f6gDM6futqnCIF0IQHEQUf3JJkDdLw+mxglA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script>
+    // Plyr.setup("#plyr-video", {
     const player = new Plyr("#plyr-video", {
       title: "{{ $course->title }}",
       controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
@@ -677,7 +684,7 @@
         language: 'fa',
         update: false
       },
-    //   ratio: '16:9',
+      //   ratio: '16:9',
 
     });
 
