@@ -207,6 +207,7 @@ class CourseController extends Controller
             if (json_decode($course->previewSubtitle) == 0) {
                 $has_subtitle = false;
             }
+            $course->previewSubtitleContent = $this->get_sub_content($course);
         } catch (Exception $e) {
             $has_subtitle = false;
         }
@@ -290,12 +291,8 @@ class CourseController extends Controller
             'paths' => $paths
         ]);
     }
-
-    public function subtitle_content(Request $request)
+    private function get_sub_content($course)
     {
-        $course_id = $request->get('courseId');
-        // $video_id = $request->get('videoId');
-        $course = Course::find($course_id);
         $subtitle = json_decode($course->previewSubtitle);
         try {
             foreach ($subtitle as $file) {
@@ -305,6 +302,13 @@ class CourseController extends Controller
         } catch (Exception $e) {
         }
         return '';
+    }
+    public function subtitle_content(Request $request)
+    {
+        $course_id = $request->get('courseId');
+        // $video_id = $request->get('videoId');
+        $course = Course::find($course_id);
+        return $this->get_sub_content($course);
     }
 
     public function set_price_api(Request $request)

@@ -100,12 +100,14 @@
           <video playsinline id="plyr-video" poster="{{ fromDLHost($course->img) }}" controls>
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
               size="720" />
-
             <track kind="captions" label="English captions"
               src="{{ str_replace('https:', '', fromDLHost($course->previewSubtitle)) }}" srclang="en" default>
-            @php echo '<script type="text/vtt">'; @endphp
-                            {{ $course->previewSubtitleContent }}
-                        @php echo '</script>'; @endphp
+
+            @if ($course->previewSubtitleContent)
+              @php echo '<script type="text/vtt">'; @endphp
+                                                          {{ $course->previewSubtitleContent }}
+                                                      @php echo '</script>'; @endphp
+            @endif
           </video>
         </div>
         <nav>
