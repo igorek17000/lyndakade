@@ -700,9 +700,7 @@
     });
 
     $(document).on('click', '.preview-button', function(event) {
-      console.log(event);
-      if (event instanceof Event) event = $(this);
-      const btn = event.dataset;
+      const btn = event.currentTarget.dataset;
       player.source = {
         type: "video",
         title: btn.title,
