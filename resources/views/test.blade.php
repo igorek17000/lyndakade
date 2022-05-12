@@ -97,10 +97,8 @@
           </video>
         </div> --}}
         <div class="video-player">
-          <video playsinline id="plyr-video" poster="{{ fromDLHost($course->img) }}" controls>
-            <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" size="480" />
-            <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
-              size="720" />
+          <video playsinline controls id="plyr-video" poster="{{ fromDLHost($course->img) }}">
+            <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
 
             <track kind="captions" label="English captions"
               src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}" srclang="en">
@@ -671,7 +669,7 @@
       controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
         'airplay', 'fullscreen'
       ],
-      setting: ['captions', 'quality', 'speed', 'loop'],
+      settings: ['captions', 'quality', 'speed', 'loop'],
       invertTime: true,
       toggleInvert: true,
       captions: {
