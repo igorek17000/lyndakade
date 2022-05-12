@@ -101,7 +101,9 @@
         </div> --}}
         <div class="video-player">
           <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
-            <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
+            <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" size="480" />
+            <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
+              size="720" default />
 
             <track kind="captions" label="English captions"
               src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}" srclang="en">
