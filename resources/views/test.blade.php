@@ -668,7 +668,16 @@
   <script src="https://cdn.plyr.io/2.0.15/plyr.js"></script>
 
   <script>
-    plyr.setup("#plyr-video");
+    plyr.setup("#plyr-video", {
+      title: "{{ $course->title }}",
+      controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
+      setting: ['captions', 'quality', 'speed', 'loop'],
+      invertTime: true,
+      toggleInvert: true,
+      captions: { active: true, language: 'auto', update: false },
+      ratio: '16:9',
+      
+    });
 
     var player = videojs(document.querySelector('.video-js'), {
       fluid: true,
