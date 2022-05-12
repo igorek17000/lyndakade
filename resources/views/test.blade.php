@@ -714,7 +714,7 @@
           label: btn.trackLabel,
           srclang: btn.trackSrclang,
           src: btn.trackSrc,
-          default: btn.trackDefault,
+          default: true,
         }, ],
         poster: btn.poster
       };
