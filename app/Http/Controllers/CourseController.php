@@ -297,7 +297,8 @@ class CourseController extends Controller
         try {
             foreach ($subtitle as $file) {
                 $content = Storage::disk('FTP')->get($file->download_link);
-                return $content;
+                if (strpos(strtolower("WEBVTT"), strtolower($content)))
+                    return $content;
             }
         } catch (Exception $e) {
         }
