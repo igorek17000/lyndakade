@@ -700,7 +700,7 @@
     });
 
     function setVideo(event) {
-      console.log(event.relatedTarget);
+      console.log(event);
       if (event instanceof Event) event = $(this);
       const btn = event.dataset;
       player.source = {
