@@ -97,12 +97,12 @@
           </video>
         </div> --}}
         <div class="video-player">
-          <video {{-- crossorigin --}} playsinline id="plyr-video" poster="{{ fromDLHost($course->img) }}" controls>
+          <video crossorigin="anonymous" playsinline id="plyr-video" poster="{{ fromDLHost($course->img) }}" controls>
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
               size="720" />
 
-            <track kind="captions" label="English captions" src="{{ str_replace("https:","", fromDLHost($course->previewSubtitle)) }}"
-              srclang="en" default>
+            <track kind="captions" label="English captions"
+              src="{{ str_replace('https:', '', fromDLHost($course->previewSubtitle)) }}" srclang="en" default>
           </video>
 
           {{-- <video id="course-video-player" class="video-js vjs-theme-city vjs-16-9 vjs-big-play-centered" controls
@@ -670,55 +670,61 @@
   <script>
     plyr.setup("#plyr-video", {
       title: "{{ $course->title }}",
-      controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
+      controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
+        'airplay', 'fullscreen'
+      ],
       setting: ['captions', 'quality', 'speed', 'loop'],
       invertTime: true,
       toggleInvert: true,
-      captions: { active: true, language: 'auto', update: false },
+      captions: {
+        active: true,
+        language: 'auto',
+        update: false
+      },
       ratio: '16:9',
 
     });
 
-    var player = videojs(document.querySelector('.video-js'), {
-      fluid: true,
-      //   playbackRates: [0.5, 1, 1.5, 2],
-      controls: true,
-      autoplay: true,
-      preload: "auto",
-      seek: true
-    });
+    // var player = videojs(document.querySelector('.video-js'), {
+    //   fluid: true,
+    //   //   playbackRates: [0.5, 1, 1.5, 2],
+    //   controls: true,
+    //   autoplay: true,
+    //   preload: "auto",
+    //   seek: true
+    // });
 
-    if ("{{ $course->previewSubtitle }}" != "") {
-      player.on('loadedmetadata', function() {
-        var srtText = '';
-        $.ajax({
-          url: "{{ route('courses.subtitle_content', ['courseId' => $course->id, 'lang' => 'fa']) }}",
-          method: 'get',
-          async: false,
-          success: function(result) {
-            srtText = result;
-          },
-          errors: function(xhr) {
-            console.log("xhr", xhr);
-          }
-        });
-        if (srtText != "") {
-          var srtRegex = /(.*\n)?(\d:\d\d:\d\d),(\d\d --> \d:\d\d:\d\d),(\d\d)/g;
-          var vttText = 'WEBVTT\n\n' + srtText.replace(srtRegex, '$1$2.$3.$4');
-          var vttBlob = new Blob([vttText], {
-            type: 'text/vtt'
-          });
-          var blobURL = URL.createObjectURL(vttBlob);
-          this.addRemoteTextTrack({
-            src: blobURL,
-            srclang: 'en',
-            label: 'english',
-            kind: 'subtitles',
-            default: true
-          }, true);
-        }
-      });
-    }
+    // if ("{{ $course->previewSubtitle }}" != "") {
+    //   player.on('loadedmetadata', function() {
+    //     var srtText = '';
+    //     $.ajax({
+    //       url: "{{ route('courses.subtitle_content', ['courseId' => $course->id, 'lang' => 'fa']) }}",
+    //       method: 'get',
+    //       async: false,
+    //       success: function(result) {
+    //         srtText = result;
+    //       },
+    //       errors: function(xhr) {
+    //         console.log("xhr", xhr);
+    //       }
+    //     });
+    //     if (srtText != "") {
+    //       var srtRegex = /(.*\n)?(\d:\d\d:\d\d),(\d\d --> \d:\d\d:\d\d),(\d\d)/g;
+    //       var vttText = 'WEBVTT\n\n' + srtText.replace(srtRegex, '$1$2.$3.$4');
+    //       var vttBlob = new Blob([vttText], {
+    //         type: 'text/vtt'
+    //       });
+    //       var blobURL = URL.createObjectURL(vttBlob);
+    //       this.addRemoteTextTrack({
+    //         src: blobURL,
+    //         srclang: 'en',
+    //         label: 'english',
+    //         kind: 'subtitles',
+    //         default: true
+    //       }, true);
+    //     }
+    //   });
+    // }
 
     // window.addEventListener('goftino_ready', function() {
     //   Goftino.setWidget({
