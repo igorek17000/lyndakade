@@ -11,13 +11,18 @@
     @php
       try {
           $previewFile = fromDLHost($path->_courses[0]->previewFile);
+          $courseId = $path->_courses[0]->id;
       } catch (\Throwable $th) {
           $previewFile = '#';
+          $courseId = -1;
       }
     @endphp
     <button href="" class="card-img-overlay" data-toggle="modal" data-target="#preview-modal" class="text-center"
       data-src="{{ $previewFile }}" data-title="مسیر آموزشی {{ $path->title }}" data-price="{{ $path->price() }}"
-      data-url="{{ route('learn.paths.show', [$path->slug]) }}">
+      data-url="{{ route('learn.paths.show', [$path->slug]) }}" data-type="video/mp4"
+      data-poster="{{ fromDLHost($path->img) }}" data-size="720"
+      data-track-src="{{ route('courses.subtitle_content', ['courseId' => $courseId]) }}" data-track-label="فارسی"
+      data-track-srclang="fa">
       پیش نمایش
     </button>
   </div>
