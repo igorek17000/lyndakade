@@ -699,7 +699,7 @@
 
     });
 
-    function setVideo(event) {
+    $(document).on('click', '.preview-button', function(event) {
       console.log(event);
       if (event instanceof Event) event = $(this);
       const btn = event.dataset;
@@ -720,9 +720,7 @@
         }, ],
         poster: btn.poster
       };
-    }
-
-    $(document).on('click', '.preview-button', setVideo);
+    });
 
     // var player = videojs(document.querySelector('.video-js'), {
     //   fluid: true,
