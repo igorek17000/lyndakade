@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @push('meta.in.head')
-  {{-- <link rel="stylesheet" href="https://cdn.plyr.io/2.0.15/plyr.css"> --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.css"
     integrity="sha512-SwLjzOmI94KeCvAn5c4U6gS/Sb8UC7lrm40Wf+B0MQxEuGyDqheQHKdBmT4U+r+LkdfAiNH4QHrHtdir3pYBaw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -122,11 +121,6 @@
           data-poster="{{ fromDLHost($course->img) }}"
           data-track-src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}"
           data-track-label="فارسی" data-track-srclang="fa" data-track-default="true">first</button>
-        <button type="button" class="preview-button" data-title="{{ $course->titleEng }}" data-size="720"
-          data-type="video/mp4" data-src="{{ fromDLHost($course->previewFile) }}"
-          data-poster="{{ fromDLHost($course->img) }}"
-          data-track-src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}"
-          data-track-label="فارسی" data-track-srclang="fa" data-track-default="true">second</button>
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description"
@@ -675,13 +669,11 @@
   </div>
 @endsection
 @section('script_body')
-  {{-- <script src="https://cdn.plyr.io/2.0.15/plyr.js"></script> --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.js"
     integrity="sha512-OlPa3CLz34wRV8+Aq+Zn39Nc5FNHJPPYLeh/ZXjapjWIQl21a4f6gDM6futqnCIF0IQHEQUf3JJkDdLw+mxglA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script>
-    // Plyr.setup("#plyr-video", {
     const player = new Plyr("#plyr-video", {
       title: "{{ $course->title }}",
       controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
@@ -695,8 +687,51 @@
         language: 'fa',
         update: false
       },
-      //   ratio: '16:9',
-
+      i18n: {
+        restart: 'پخش مجدد',
+        rewind: 'برگشت به {seektime}s',
+        play: 'پخش',
+        pause: 'توقف',
+        fastForward: 'به جلو رفتن {seektime}s',
+        seek: 'جابجا شدن',
+        seekLabel: '{currentTime} از {duration}',
+        played: 'پخش شده',
+        buffered: 'Buffered',
+        currentTime: 'زمان فعلی',
+        duration: 'مدت زمان',
+        volume: 'صدا',
+        mute: 'بی صدا',
+        unmute: 'با صدا',
+        enableCaptions: 'فعال کردن زیرنویس',
+        disableCaptions: 'غیرفعال کردن زیرنویس',
+        download: 'دانلود',
+        enterFullscreen: 'فعال کردن تمام صفحه',
+        exitFullscreen: 'غیر فعال کردن تمام صفحه',
+        frameTitle: '{title}',
+        captions: 'زیرنویس‌ها',
+        settings: 'تنظیمات',
+        pip: 'تصویر-در-تصویر',
+        menuBack: 'برگشت به منوی قبلی',
+        speed: 'سرعت',
+        normal: 'عادی',
+        quality: 'کیفیت',
+        loop: 'حلقه پخش',
+        start: 'شروع',
+        end: 'پایان',
+        all: 'همه',
+        reset: 'بازنشانی',
+        disabled: 'غیرفعال شده',
+        enabled: 'فعال شده',
+        advertisement: 'تبلیغات',
+        qualityBadge: {
+          2160: '4K',
+          1440: 'HD',
+          1080: 'HD',
+          720: 'HD',
+          576: 'SD',
+          480: 'SD',
+        },
+      }
     });
 
     $(document).on('click', '.preview-button', function(event) {
