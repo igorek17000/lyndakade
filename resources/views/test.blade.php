@@ -677,7 +677,7 @@
         language: 'fa',
         update: false
       },
-      ratio: '16:9',
+    //   ratio: '16:9',
 
     });
 
