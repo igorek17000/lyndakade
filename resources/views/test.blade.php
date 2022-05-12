@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @push('meta.in.head')
-  {{-- <link href="https://vjs.zencdn.net/7.18.1/video-js.css" rel="stylesheet" /> --}}
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.18.1/video-js.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.plyr.io/2.0.15/plyr.css">
 @endpush
 
 @section('content')
@@ -84,9 +83,9 @@
         </div>
         <hr class="mt-0 mb-5">
 
-        <div class="video-player">
-          <video id="course-video-player" class="video-js vjs-theme-city vjs-16-9 vjs-big-play-centered" controls preload="auto"
-            poster="{{ fromDLHost($course->img) }}" style="width: 100%; max-height: 100%;">
+        {{-- <div class="video-player">
+          <video id="course-video-player" class="video-js vjs-theme-city vjs-16-9 vjs-big-play-centered" controls
+            preload="auto" poster="{{ fromDLHost($course->img) }}" style="width: 100%; max-height: 100%;">
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
             <p class="vjs-no-js">
               To view this video please enable JavaScript, and consider upgrading to a
@@ -96,6 +95,26 @@
               </a>
             </p>
           </video>
+        </div> --}}
+        <div class="video-player">
+          <video id="plyr-video" poster="{{ fromDLHost($course->img) }}" controls>
+            <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
+
+            <track kind="captions" label="English captions" src="{{ fromDLHost($course->previewSubtitle) }}"
+              srclang="en" default>
+          </video>
+
+          {{-- <video id="course-video-player" class="video-js vjs-theme-city vjs-16-9 vjs-big-play-centered" controls
+            preload="auto" poster="{{ fromDLHost($course->img) }}" style="width: 100%; max-height: 100%;">
+            <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}" />
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a
+              web browser that
+              <a href="https://videojs.com/html5-video-support/" target="_blank">
+                supports HTML5 video
+              </a>
+            </p>
+          </video> --}}
         </div>
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -645,9 +664,11 @@
   </div>
 @endsection
 @section('script_body')
-  {{-- <script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script> --}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.18.1/video.min.js"></script>
+  <script src="https://cdn.plyr.io/2.0.15/plyr.js"></script>
+
   <script>
+    plyr.setup("#plyr-video");
+
     var player = videojs(document.querySelector('.video-js'), {
       fluid: true,
       //   playbackRates: [0.5, 1, 1.5, 2],
@@ -688,6 +709,7 @@
         }
       });
     }
+
     // window.addEventListener('goftino_ready', function() {
     //   Goftino.setWidget({
     //     hasIcon: false,

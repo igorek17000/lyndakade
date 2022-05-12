@@ -224,7 +224,7 @@ if (count($course->subjects) > 0) {
         </div>
 
         <div style="position: relative;">
-          @if (count($subjects) > 0)
+          {{-- @if (count($subjects) > 0)
             <ul style="padding-left: 200px;">
               <li class="pr-4 tags">دسته:
                 @foreach ($subjects as $subject)
@@ -241,7 +241,7 @@ if (count($course->subjects) > 0) {
                 @endforeach
               </li>
             </ul>
-          @endif
+          @endif --}}
           <div class="input-group" style="text-align: left;position: absolute;width: 200px;left: 0;top: 2px;">
             <span class="input-group-addon"><i class="fa fa-copy"
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
@@ -257,7 +257,7 @@ if (count($course->subjects) > 0) {
               class="form-control">
           </div>
         </div>
-        <hr class="mt-1">
+        <hr class="mt-0 mb-5">
 
         <div class="video-player">
           <video controls {{-- id="my-player" --}} class="w-100" {{-- preload="auto" --}}
@@ -877,7 +877,7 @@ if (count($course->subjects) > 0) {
     </aside>
   </div>
 
-  {{-- @if (count($course->subjects) > 0 || count($course->softwares) > 0)
+  @if (count($course->subjects) > 0 || count($course->softwares) > 0)
     <div class="row mx-0 justify-content-center">
       <aside class="col-md-10">
         <div class="section-module">
@@ -903,7 +903,7 @@ if (count($course->subjects) > 0) {
         </div>
       </aside>
     </div>
-  @endif --}}
+  @endif
 
   @if (count($related_paths))
     <div class="row mx-0 justify-content-center">
