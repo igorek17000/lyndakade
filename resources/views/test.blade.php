@@ -664,7 +664,7 @@
   <script src="https://cdn.plyr.io/2.0.15/plyr.js"></script>
 
   <script>
-    plyr.setup("#plyr-video", {
+    const player = new Plyr("#plyr-video", {
       title: "{{ $course->title }}",
       controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
         'airplay', 'fullscreen'
