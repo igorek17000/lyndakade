@@ -101,7 +101,7 @@
             <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
               size="720" />
             <track kind="captions" label="English captions"
-              src="{{ str_replace('https:', '', fromDLHost($course->previewSubtitle)) }}" srclang="en" default>
+              src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}" srclang="en" default>
 
             {{-- @if ($course->previewSubtitleContent)
               @php echo '<script type="text/vtt">'; @endphp
