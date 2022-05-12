@@ -103,6 +103,9 @@
 
             <track kind="captions" label="English captions"
               src="{{ str_replace('https:', '', fromDLHost($course->previewSubtitle)) }}" srclang="en" default>
+            @php echo '<script type="text/vtt">'; @endphp
+                            {{ $course->previewSubtitleContent }}
+                        @php echo '</script>'; @endphp
           </video>
         </div>
         <nav>
