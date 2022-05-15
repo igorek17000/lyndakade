@@ -540,7 +540,7 @@ class HomeController extends Controller
             $content = Storage::disk('FTP')->get($file_path);
             if ($lang != 'fa')
                 dd($file_path, $content);
-            if (strpos(strtolower("WEBVTT"), strtolower($content)) != false)
+            if (strlen($content) > 0)
                 return $content;
             return '';
         } catch (Exception $e) {
