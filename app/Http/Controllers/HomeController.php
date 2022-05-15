@@ -535,9 +535,8 @@ class HomeController extends Controller
             $file_path = str_replace(".mp4", ".vtt", $course->previewFile);
             if ($lang != 'fa')
                 $file_path = str_replace(".mp4", ".en.vtt", $course->previewFile);
-
+            dd($file_path);
             $content = Storage::disk('FTP')->get($file_path);
-            dd($content);
             if (strpos(strtolower("WEBVTT"), strtolower($content)) != false)
                 return $content;
             return '';
