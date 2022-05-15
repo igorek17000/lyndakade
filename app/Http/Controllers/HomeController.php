@@ -493,11 +493,11 @@ class HomeController extends Controller
             if (json_decode($course->previewSubtitle) == 0) {
                 $has_subtitle = false;
             }
-            $previewSubtitleContent = $this->get_sub_content($course, 'fa');
-            $previewSubtitleContentEng = $this->get_sub_content($course, 'en');
         } catch (Exception $e) {
             $has_subtitle = false;
         }
+        $previewSubtitleContent = $this->get_sub_content($course, 'fa');
+        $previewSubtitleContentEng = $this->get_sub_content($course, 'en');
 
         $dubbed_course = Course::where('slug_linkedin', $slug . '-dubbed')
             ->orWhere('slug_url',  $slug . '-dubbed')
