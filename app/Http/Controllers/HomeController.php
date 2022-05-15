@@ -532,9 +532,11 @@ class HomeController extends Controller
     private function get_sub_content($course, $lang = 'fa')
     {
         try {
-            $file_path = str_replace(".mp4", ".vtt", $course->previewFile);
+            $js = json_decode($course->previewFile);
+
+            $file_path = str_replace(".mp4", ".vtt", $js->download_link);
             if ($lang != 'fa')
-                $file_path = str_replace(".mp4", ".en.vtt", $course->previewFile);
+                $file_path = str_replace(".mp4", ".en.vtt", $js->download_link);
             dd($file_path);
             $content = Storage::disk('FTP')->get($file_path);
             if (strpos(strtolower("WEBVTT"), strtolower($content)) != false)
