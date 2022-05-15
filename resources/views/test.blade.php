@@ -1,10 +1,179 @@
 @extends('layouts.app')
+
+@php
+$keyword_subs = '';
+if (count($course->subjects) > 0) {
+    foreach ($course->subjects as $subject) {
+        $keyword_subs .= 'آموزش های ' . $subject->title;
+        $keyword_subs .= ', ';
+    }
+}
+@endphp
+
 @push('meta.in.head')
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@id": "{{ fromDLHost($course->previewFile) }}",
+      "@type": "VideoObject",
+      {{-- "duration": "PT54S", --}} "name": "{{ $course->title }} - {{ $course->titleEng }}",
+      "thumbnailUrl": "{{ $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img) }}",
+      "contentUrl": "{{ fromDLHost($course->previewFile) }}",
+      "uploadDate": "{{ $course->releaseDate }}",
+      "description": "{{ $course->shortDesc ?? $course->description }} - {{ $course->shortDescEng ?? $course->descriptionEng }}"
+    }
+  </script>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.css"
     integrity="sha512-SwLjzOmI94KeCvAn5c4U6gS/Sb8UC7lrm40Wf+B0MQxEuGyDqheQHKdBmT4U+r+LkdfAiNH4QHrHtdir3pYBaw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-@endpush
 
+  @include('meta::manager', [
+      'image' => $course->thumbnail ? fromDLHost($course->thumbnail) : fromDLHost($course->img),
+      'title' => $course->title . ' - ' . $course->titleEng . ' - لیندا کده',
+      'description' => ($course->shortDesc ?? $course->description) . ' - ' . ($course->shortDescEng ?? $course->descriptionEng),
+      'keywords' =>
+          'دانلود ' .
+          $course->title .
+          ', ' .
+          'دانلود ' .
+          $course->titleEng .
+          ' , ' .
+          'دانلود دوره ' .
+          $course->title .
+          ', ' .
+          'دانلود دوره ' .
+          $course->titleEng .
+          ' , ' .
+          'دانلود دوره آموزشی ' .
+          $course->title .
+          ', ' .
+          'دانلود دوره آموزشی' .
+          $course->titleEng .
+          ' , ' .
+          $keyword_subs .
+          get_seo_keywords(),
+  ])
+
+  <link rel="alternate" href="{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}">
+  @if ($course->slug_url)
+    @foreach (explode(',', $course->slug_url) as $item)
+      <link rel="alternate" href="{{ route('courses.show.linkedin', [$item]) }}">
+    @endforeach
+  @endif
+
+  <link rel="alternate" href="{{ route('courses.show.short', [$course->id]) }}">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [{
+          "@type": "Organization",
+          "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade",
+          "name": "Lynda Kade - لیندا کده",
+          "url": "https://LyndaKade.ir",
+          "sameAs": [
+            "https://www.aparat.com/LyndaKade.ir",
+            "https://www.instagram.com/LyndaKade.ir/",
+            "https://t.me/LyndaKade/"
+          ],
+          "logo": {
+            "@type": "ImageObject",
+            "@id": "https://LyndaKade.ir/#/schema/image/LyndaKade",
+            "url": "https://lyndakade.ir/image/logoedit2.png",
+            "width": 100,
+            "height": 100,
+            "caption": "Lynda Kade - لیندا کده"
+          },
+          "image": {
+            "@id": "https://LyndaKade.ir/#/schema/image/LyndaKade",
+            "inLanguage": "fa-IR",
+            "url": "https://lyndakade.ir/image/logoedit2.png",
+            "width": 100,
+            "height": 100,
+            "caption": "Lynda Kade - لیندا کده"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade",
+          "url": "https://LyndaKade.ir",
+          "name": "Lynda Kade - لیندا کده",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://LyndaKade.ir/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "publisher": {
+            "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "{{ request()->url() }}",
+          "url": "{{ request()->url() }}",
+          "inLanguage": "fa-IR",
+          "name": "{{ $course->title }} - {{ $course->titleEng }} - لیندا کده",
+          "dateModified": "{{ \Carbon\Carbon::now() }}",
+          "description": "",
+          "isPartOf": {
+            "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade"
+          },
+          "about": {
+            "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@id": "https://LyndaKade.ir/#/schema/breadcrumb/LyndaKade",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@id": "https://LyndaKade.ir/Learning",
+              "name": "Learning",
+              "url": "https://LyndaKade.ir/Learning"
+            }
+          }, {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@id": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
+              "name": "{{ $course->title }} - {{ $course->titleEng }}",
+              "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}"
+            }
+          }]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Course",
+          "image": "{{ fromDLHost($course->img) }}",
+          "name": "{{ $course->titleEng }} - {{ $course->title }}",
+          "url": "{{ route('courses.show.linkedin', [$course->slug_linkedin]) }}",
+          "description": "{{ $course->shortDesc ?? $course->description }}",
+          "dateCreated": "{{ $course->updateDate ?? $course->releaseDate }}",
+          "timeRequired": "{{ $course->durationHours > 0 ? $course->durationHours . 'h ' . $course->durationMinutes . 'm' : $course->durationMinutes . 'm' }}",
+          "provider": [
+            @foreach ($course->authors as $author)
+              {
+                "@type": "Person",
+                "name": "{{ $author->name }}",
+                "url": {
+                  "@id": "{{ route('authors.show', [$author->slug]) }}"
+                }
+              }
+              @if (!$loop->last)
+                ,
+              @endif
+            @endforeach
+          ]
+        }
+      ]
+    }
+  </script>
+@endpush
 @section('content')
   <style>
     @media(max-width: 900px) {
@@ -40,6 +209,12 @@
   <div class="row mx-0 justify-content-center">
     <aside class="col-md-10">
       <div class="section-module">
+        {{-- <div class="current-page-path">
+          <a href="{{ route('root.home') }}"><span>صفحه اصلی</span></a>
+          <i class="lyndacon arrow-left"></i>
+          <span>{{ $course->title }}</span>
+        </div> --}}
+
         <h1 class="panel-title" style="font-size: 1em;">
           <span class="course-title" lang="fa">
             {{ $course->title }}
@@ -77,7 +252,12 @@
             <span class="input-group-addon"><i class="fa fa-copy"
                 style=" position: absolute; z-index: 10; left: 8px; top: 7px; font-size: 18px;"></i></span>
             <input readonly=""
-              onclick="(()=>{this.select(); this.setSelectionRange(0, 99999); navigator.clipboard.writeText(this.value); toastr.options.rtl = true; toastr.options.positionClass = 'toast-bottom-left'; toastr.info('لینک کوتاه کپی شد.');})()"
+              onclick="(()=>{this.select();
+                                                                                                                                                                              this.setSelectionRange(0, 99999);
+                                                                                                                                                                              navigator.clipboard.writeText(this.value);
+                                                                                                                                                                                toastr.options.rtl = true;
+                                                                                                                                                                                toastr.options.positionClass = 'toast-bottom-left';
+                                                                                                                                                                              toastr.info('لینک کوتاه کپی شد.');})()"
               style=" font-size: 12px; text-align: left; direction: rtl; padding-left: 27px; padding-right: 2px; "
               title="لینک کوتاه این دوره" type="text" value="lyndakade.ir/C/{{ $course->id }}" id="shorturl"
               class="form-control">
@@ -100,27 +280,17 @@
         </div> --}}
         <div class="video-player">
           <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
-            <source type="video/mp4" src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
-              size="720" default />
-
-            <track kind="captions" label="English"
-              src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}" srclang="en">
-
-            <track kind="captions" label="فارسی"
-              src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}" srclang="fa" default>
-
-            {{-- @if ($course->previewSubtitleContent)
-              @php echo '<script type="text/vtt">'; @endphp
-                {{ $course->previewSubtitleContent }}
-            @php echo '</script>'; @endphp
-            @endif --}}
+            <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" size="720" default />
+            @if ($previewSubtitleContent != '')
+              <track kind="captions" label="فارسی"
+                src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}&lang=fa" srclang="fa" default>
+            @endif
+            @if ($previewSubtitleContentEng != '')
+              <track kind="captions" label="English"
+              src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}&lang=en" srclang="en">
+            @endif
           </video>
         </div>
-        <button type="button" class="preview-button" data-title="{{ $course->title }}" data-size="720"
-          data-type="video/mp4" data-src="{{ fromDLHost(str_replace('preview', 'preview1', $course->previewFile)) }}"
-          data-poster="{{ fromDLHost($course->img) }}"
-          data-track-src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}"
-          data-track-label="فارسی" data-track-srclang="fa" data-track-default="true">first</button>
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description"
@@ -131,6 +301,8 @@
               <a class="nav-item nav-link" id="nav-concepts-tab" data-toggle="tab" href="#nav-concepts" role="tab"
                 aria-controls="nav-concepts" aria-selected="false">سرفصل ها</a>
             @endif
+            {{-- <a class="nav-item nav-link" id="nav-download-links-tab" data-toggle="tab" href="#nav-download-links"
+              role="tab" aria-controls="nav-download-links" aria-selected="false">لینک های دانلود</a> --}}
           </div>
         </nav>
 
@@ -174,10 +346,10 @@
                   @endif
                 @endif
                 <div class="author-thumb">
-                  <div
-                    style="font-size: 1.25rem;margin-bottom: 0.5rem;font-family: inherit;font-weight: 500;line-height: 1.2;margin-top: 0;">
-                    مدرس
-                  </div>
+                  <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
+                                                                  font-family: inherit;
+                                                                  font-weight: 500;
+                                                                  line-height: 1.2;margin-top: 0;">مدرس</div>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img src="#" class="lazyload" width="100" height="100"
@@ -191,11 +363,10 @@
                 @if (count($course->users) > 0)
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
-                    <div
-                      style="font-size: 1.25rem;margin-bottom: 0.5rem;font-family: inherit;font-weight: 500;line-height: 1.2;margin-top: 0;">
-                      دوبله
-                      کننده
-                    </div>
+                    <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
+                                                                  font-family: inherit;
+                                                                  font-weight: 500;
+                                                                  line-height: 1.2;margin-top: 0;">دوبلور</div>
                     @foreach ($course->users as $user)
                       <a href="{{ route('dubbed.index', [$user->username]) }}">
                         <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
@@ -357,6 +528,32 @@
                     </p>
                   @endif
                 </div>
+                {{-- <div class="row" style="font-weight: 600;">
+                  <div class="col-md-4">
+                    زیرنویس انگلیسی:
+                    @if (get_course_status_state($course->english_subtitle_id))
+                      <span style="color: green;">دارد</span>
+                    @else
+                      <span style="color: red;">ندارد</span>
+                    @endif
+                  </div>
+                  <div class="col-md-4">
+                    زیرنویس فارسی:
+                    @if (get_course_status_state($course->persian_subtitle_id))
+                      <span style="color: green;">دارد</span>
+                    @else
+                      <span style="color: red;">ندارد</span>
+                    @endif
+                  </div>
+                  <div class="col-md-4">
+                    دوبله:
+                    @if (get_course_status_state($course->dubbed_id))
+                      <span style="color: green;">دارد</span>
+                    @else
+                      <span style="color: red;">ندارد</span>
+                    @endif
+                  </div>
+                </div> --}}
               </div>
               <div class="col-sm-3 col-md-3 col-lg-2 text-center">
                 <div class="course-info-stat-cont">
@@ -440,10 +637,10 @@
                   @endif
                 @endif
                 <div class="author-thumb">
-                  <div
-                    style="font-size: 1.25rem;margin-bottom: 0.5rem;font-family: inherit;font-weight: 500;line-height: 1.2;margin-top: 0;">
-                    Author
-                  </div>
+                  <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
+                                                              font-family: inherit;
+                                                              font-weight: 500;
+                                                              line-height: 1.2;margin-top: 0;">Author</div>
                   @foreach ($course->authors as $author)
                     <a href="{{ route('authors.show', [$author->slug]) }}">
                       <img src="#" class="lazyload" width="100" height="100"
@@ -457,11 +654,10 @@
                 @if (count($course->users) > 0)
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
-                    <div
-                      style="font-size: 1.25rem;margin-bottom: 0.5rem;font-family: inherit;font-weight: 500;line-height: 1.2;margin-top: 0;">
-                      Dubbed
-                      By
-                    </div>
+                    <div style="font-size: 1.25rem;margin-bottom: 0.5rem;
+                                                                font-family: inherit;
+                                                                font-weight: 500;
+                                                                line-height: 1.2;margin-top: 0;">Dubbed By</div>
                     @foreach ($course->users as $user)
                       <a href="{{ route('dubbed.index', [$user->username]) }}">
                         <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
@@ -550,21 +746,159 @@
               </div>
             </div>
           @endif
+          {{-- <div class="tab-pane fade" id="nav-download-links" role="tabpanel" aria-labelledby="nav-download-links-tab">
+              @if (auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0))
+                <div class="row justify-content-center text-left" dir="ltr">
+                  <div class="col-lg-2 text-center">
+                    <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
+                  </div>
+                  <div class="col-lg-10">
+                    <p class="text-center text-left" dir="rtl">
+                      این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
+                      @if ($course->persian_subtitle_id == 1)
+                        به همراه زیرنویس فارسی و انگلیسی می‌باشد.
+                      @elseif ($course->english_subtitle_id == 1)
+                        به همراه زیرنویس انگلیسی می‌باشد.
+                      @else
+                        دارای زیرنویس نمی‌باشد
+                      @endif
+                    </p>
+                    <ul class="exercise-files-popover">
+                      @if ($course->courseFile && json_decode($course->courseFile) != null)
+                        @foreach (json_decode($course->courseFile) as $file)
+                          <li role="presentation">
+                            <a role="link"
+                              href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
+                              <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                              <span>
+                                {{ prepare_course_file_name($file->original_name) }}
+                              </span>
+                              @if (isset($file->size))
+                                <span class="text-muted small">
+                                  ({{ formatBytes($file->size) }})
+                                </span>
+                              @endif
+                            </a>
+                          </li>
+                        @endforeach
+                      @endif
+
+                      @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
+                        @php
+                          $idx = 0;
+                        @endphp
+                        @foreach (json_decode($course->exerciseFile) as $file)
+                          @php
+                            $idx = $idx + 1;
+                          @endphp
+                          <li role="presentation">
+                            <a role="link"
+                              href="{{ route('courses.download', [$course->id,hash('md5', 'exFiles') => hash('sha256', auth()->id()),'filename' => $file->original_name]) }}">
+                              <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                              <span>
+                                {{ prepare_course_file_name($file->original_name) }}
+                              </span>
+                              @if (isset($file->size))
+                                <span class="text-muted small">
+                                  ({{ formatBytes($file->size) }})
+                                </span>
+                              @endif
+                            </a>
+                          </li>
+                        @endforeach
+                      @endif
+
+                      @if ($course->persianSubtitleFile && json_decode($course->persianSubtitleFile) != null)
+                        @foreach (json_decode($course->persianSubtitleFile) as $file)
+                          <li role="presentation">
+                            <a role="link"
+                              href="{{ route('courses.download', [$course->id, hash('md5', 'persianSubtitleFile') => hash('sha256', auth()->id())]) }}">
+                              <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                              <span>
+                                فایل زیرنویس فارسی دوره
+                              </span>
+                            </a>
+                          </li>
+                        @endforeach
+                      @endif
+                    </ul>
+                  </div>
+                </div>
+              @else
+                <div class="row justify-content-center text-left" dir="ltr">
+                  <div class="col-lg-2 text-center">
+                    <i class="lyndacon project-files" style="font-size: 120px; color: #ddd"></i>
+                  </div>
+                  <div class="col-lg-10">
+                    @if (!auth()->check())
+                      <p class="text-center" dir="rtl">برای دانلود، لطفا <a
+                          href="{{ route('login', ['returnUrl' => request()->url()]) }}">وارد حساب کاربری</a>
+                        شوید.</p>
+                    @else
+                      <p></p>
+                    @endif
+                    <p class="text-center text-left" dir="rtl">
+                      این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
+                      @if ($course->persian_subtitle_id == 1)
+                        به همراه زیرنویس فارسی و انگلیسی می‌باشد.
+                      @elseif ($course->english_subtitle_id == 1)
+                        به همراه زیرنویس انگلیسی می‌باشد.
+                      @else
+                        دارای زیرنویس نمی‌باشد.
+                      @endif
+                    </p>
+                    <div class="col-lg-10">
+                      @if ($course->courseFile && json_decode($course->courseFile) != null)
+                        @foreach (json_decode($course->courseFile) as $file)
+                          <div>
+                            <span>
+                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                              {{ prepare_course_file_name($file->original_name) }}
+                            </span>
+                            @if (isset($file->size))
+                              <span class="text-muted small">
+                                ({{ formatBytes($file->size) }})
+                              </span>
+                            @endif
+                          </div>
+                        @endforeach
+                      @endif
+                      @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
+                        @foreach (json_decode($course->exerciseFile) as $file)
+                          <div>
+                            <span>
+                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                              {{ prepare_course_file_name($file->original_name) }}
+                            </span>
+                            @if (isset($file->size))
+                              <span class="text-muted small">
+                                ({{ formatBytes($file->size) }})
+                              </span>
+                            @endif
+                          </div>
+                        @endforeach
+                      @endif
+                    </div>
+                  </div>
+                </div>
+              @endif
+            </div> --}}
         </div>
       </div>
     </aside>
   </div>
 
-  @if (count($course->subjects) > 0 || count($course->softwares) > 0)
+  @if (count($subjects) > 0)
     <div class="row mx-0 justify-content-center">
       <aside class="col-md-10">
         <div class="section-module">
-          @if (count($course->subjects) > 0)
+          @if (count($subjects) > 0)
             <div class="tags subject-tags">
               <h5 class="course-title" style="font-size: 1.2rem;">عناوین مرتبط</h5>
-              @foreach ($course->subjects as $subject)
+              @foreach ($subjects as $subject)
                 {{-- <a target="_blank"
                   href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a> --}}
+
                 <a target="_blank" titleEng="{{ $subject->title }}"
                   title="دارای {{ $subject->courses_count }} دوره آموزشی"
                   style="position: relative;background-color: #ddd;margin-bottom: 15px;"
@@ -575,16 +909,6 @@
                     {{ $subject->courses_count }} دوره
                   </span>
                 </a>
-              @endforeach
-            </div>
-          @endif
-
-          @if (count($course->softwares) > 0)
-            <div class="tags software-tags">
-              <h5 class="course-title" style="font-size: 1.2rem;">نرم افزارهای مرتبط</h5>
-              @foreach ($course->softwares as $software)
-                <a target="_blank"
-                  href="{{ route('home.show', [$software->slug]) }}"><em>{{ $software->title }}</em></a>
               @endforeach
             </div>
           @endif
@@ -669,12 +993,8 @@
   </div>
 @endsection
 @section('script_body')
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.js"
-    integrity="sha512-OlPa3CLz34wRV8+Aq+Zn39Nc5FNHJPPYLeh/ZXjapjWIQl21a4f6gDM6futqnCIF0IQHEQUf3JJkDdLw+mxglA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
   <script>
-    const player = new Plyr("#plyr-video", {
+    const course_player = new Plyr("#plyr-video", {
       title: "{{ $course->title }}",
       controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
         'airplay', 'fullscreen'
@@ -732,69 +1052,11 @@
           480: 'SD',
         },
       }
+      //   ratio: '16:9',
+
     });
 
-    $(document).on('click', '.course-preview-button', function(event) {
-      const btn = event.currentTarget.dataset;
-      player.source = {
-        type: "video",
-        title: btn.title,
-        sources: [{
-          src: btn.src,
-          type: btn.type,
-          size: Number(btn.size)
-        }],
-        tracks: [{
-          kind: 'captions',
-          label: btn.trackLabel,
-          srclang: btn.trackSrclang,
-          src: btn.trackSrc,
-          default: true,
-        }, ],
-        poster: btn.poster
-      };
-    });
 
-    // var player = videojs(document.querySelector('.video-js'), {
-    //   fluid: true,
-    //   //   playbackRates: [0.5, 1, 1.5, 2],
-    //   controls: true,
-    //   autoplay: true,
-    //   preload: "auto",
-    //   seek: true
-    // });
-
-    // if ("{{ $course->previewSubtitle }}" != "") {
-    //   player.on('loadedmetadata', function() {
-    //     var srtText = '';
-    //     $.ajax({
-    //       url: "{{ route('courses.subtitle_content', ['courseId' => $course->id, 'lang' => 'fa']) }}",
-    //       method: 'get',
-    //       async: false,
-    //       success: function(result) {
-    //         srtText = result;
-    //       },
-    //       errors: function(xhr) {
-    //         console.log("xhr", xhr);
-    //       }
-    //     });
-    //     if (srtText != "") {
-    //       var srtRegex = /(.*\n)?(\d:\d\d:\d\d),(\d\d --> \d:\d\d:\d\d),(\d\d)/g;
-    //       var vttText = 'WEBVTT\n\n' + srtText.replace(srtRegex, '$1$2.$3.$4');
-    //       var vttBlob = new Blob([vttText], {
-    //         type: 'text/vtt'
-    //       });
-    //       var blobURL = URL.createObjectURL(vttBlob);
-    //       this.addRemoteTextTrack({
-    //         src: blobURL,
-    //         srclang: 'en',
-    //         label: 'english',
-    //         kind: 'subtitles',
-    //         default: true
-    //       }, true);
-    //     }
-    //   });
-    // }
 
     // window.addEventListener('goftino_ready', function() {
     //   Goftino.setWidget({

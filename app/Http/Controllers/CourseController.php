@@ -207,8 +207,8 @@ class CourseController extends Controller
             if (json_decode($course->previewSubtitle) == 0) {
                 $has_subtitle = false;
             }
-            $course->previewSubtitleContent = $this->get_sub_content($course, 'fa');
-            $course->previewSubtitleContentEng = $this->get_sub_content($course, 'en');
+            $previewSubtitleContent = $this->get_sub_content($course, 'fa');
+            $previewSubtitleContentEng = $this->get_sub_content($course, 'en');
         } catch (Exception $e) {
             $has_subtitle = false;
         }
@@ -230,6 +230,8 @@ class CourseController extends Controller
             'skill' => $skill,
             'skillEng' => $skillEng,
             'course' => $course,
+            'previewSubtitleContent' => $previewSubtitleContent,
+            'previewSubtitleContentEng' => $previewSubtitleContentEng,
             'has_dubbed' => $has_dubbed,
             'has_subtitle' => $has_subtitle,
             'related_courses' => $related_courses,

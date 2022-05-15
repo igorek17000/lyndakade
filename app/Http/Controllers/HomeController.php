@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -439,7 +440,7 @@ class HomeController extends Controller
 
     public function test_url(Request $request)
     {
-        $course = Course::with(['authors', 'subjects', 'softwares'])->find(429634);
+        $course = Course::with(['authors', 'subjects', 'softwares'])->find(2161);
         $slug = $course->slug_linkedin;
 
         $view_dt = Carbon::now();
@@ -492,6 +493,8 @@ class HomeController extends Controller
             if (json_decode($course->previewSubtitle) == 0) {
                 $has_subtitle = false;
             }
+            $previewSubtitleContent = $this->get_sub_content($course, 'fa');
+            $previewSubtitleContentEng = $this->get_sub_content($course, 'en');
         } catch (Exception $e) {
             $has_subtitle = false;
         }
@@ -509,10 +512,12 @@ class HomeController extends Controller
 
         $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc')->get();
 
-        return view('test', [
+        return view('courses.show', [
             'skill' => $skill,
             'skillEng' => $skillEng,
             'course' => $course,
+            'previewSubtitleContent' => $previewSubtitleContent,
+            'previewSubtitleContentEng' => $previewSubtitleContentEng,
             'has_dubbed' => $has_dubbed,
             'has_subtitle' => $has_subtitle,
             'related_courses' => $related_courses,
@@ -520,5 +525,31 @@ class HomeController extends Controller
             'subjects' => $subjects,
             'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
         ]);
+    }
+
+    private function get_sub_content($course, $lang = 'fa')
+    {
+        try {
+            $file_path = str_replace(".mp4", ".vtt", $course->previewFile);
+            if ($lang != 'fa')
+                $file_path = str_replace(".mp4", ".en.vtt", $course->previewFile);
+
+            $content = Storage::disk('FTP')->get($file_path);
+            if (strpos(strtolower("WEBVTT"), strtolower($content)))
+                return $content;
+            return '';
+        } catch (Exception $e) {
+        }
+        return '';
+        $subtitle = json_decode($course->previewSubtitle);
+        try {
+            foreach ($subtitle as $file) {
+                $content = Storage::disk('FTP')->get($file->download_link);
+                if (strpos(strtolower("WEBVTT"), strtolower($content)))
+                    return $content;
+            }
+        } catch (Exception $e) {
+        }
+        return '';
     }
 }
