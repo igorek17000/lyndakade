@@ -538,7 +538,8 @@ class HomeController extends Controller
             if ($lang != 'fa')
                 $file_path = str_replace(".mp4", ".en.vtt", $js->download_link);
             $content = Storage::disk('FTP')->get($file_path);
-            dd($file_path, $content);
+            if ($lang != 'fa')
+                dd($file_path, $content);
             if (strpos(strtolower("WEBVTT"), strtolower($content)) != false)
                 return $content;
             return '';
