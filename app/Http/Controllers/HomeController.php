@@ -538,8 +538,8 @@ class HomeController extends Controller
             if ($lang != 'fa')
                 $file_path = str_replace(".mp4", ".EN.vtt", $js->download_link);
             $content = Storage::disk('FTP')->get($file_path);
-            if ($lang != 'fa')
-                dd($file_path, $content);
+            // if ($lang != 'fa')
+            //     dd($file_path, $content);
             if (strlen($content) > 0)
                 return $content;
             return '';
