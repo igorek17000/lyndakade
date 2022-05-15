@@ -213,7 +213,7 @@ class CourseController extends Controller
 
         $previewSubtitleContent = $this->get_sub_content($course, 'fa');
         $previewSubtitleContentEng = $this->get_sub_content($course, 'en');
-        
+
         $dubbed_course = Course::where('slug_linkedin', $slug . '-dubbed')
             ->orWhere('slug_url',  $slug . '-dubbed')
             ->orWhere('slug_url', 'LIKE', '%,' .  $slug . '-dubbed')
@@ -307,7 +307,7 @@ class CourseController extends Controller
             // if ($lang != 'fa')
             //     dd($file_path, $content);
             if (strlen($content) > 0)
-                return $content;
+                return '<pre>' . $content . '</pre>';
             return '';
         } catch (Exception $e) {
         }
