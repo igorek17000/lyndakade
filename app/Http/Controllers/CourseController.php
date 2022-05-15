@@ -207,7 +207,8 @@ class CourseController extends Controller
             if (json_decode($course->previewSubtitle) == 0) {
                 $has_subtitle = false;
             }
-            $course->previewSubtitleContent = $this->get_sub_content($course);
+            $course->previewSubtitleContent = $this->get_sub_content($course, 'fa');
+            $course->previewSubtitleContentEng = $this->get_sub_content($course, 'en');
         } catch (Exception $e) {
             $has_subtitle = false;
         }
@@ -291,8 +292,20 @@ class CourseController extends Controller
             'paths' => $paths
         ]);
     }
-    private function get_sub_content($course)
+    private function get_sub_content($course, $lang = 'fa')
     {
+        try {
+            $file_path = str_replace(".mp4", ".vtt", $course->previewFile);
+            if ($lang != 'fa')
+                $file_path = str_replace(".mp4", ".en.vtt", $course->previewFile);
+
+            $content = Storage::disk('FTP')->get($file_path);
+            if (strpos(strtolower("WEBVTT"), strtolower($content)))
+                return $content;
+            return '';
+        } catch (Exception $e) {
+        }
+        return '';
         $subtitle = json_decode($course->previewSubtitle);
         try {
             foreach ($subtitle as $file) {
@@ -307,9 +320,10 @@ class CourseController extends Controller
     public function subtitle_content(Request $request)
     {
         $course_id = $request->get('courseId');
+        $lang = $request->get('lang', 'fa');
         // $video_id = $request->get('videoId');
         $course = Course::find($course_id);
-        return $this->get_sub_content($course);
+        return $this->get_sub_content($course, $lang);
     }
 
     public function set_price_api(Request $request)
