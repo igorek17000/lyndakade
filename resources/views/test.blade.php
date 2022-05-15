@@ -281,11 +281,11 @@ if (count($course->subjects) > 0) {
         <div class="video-player">
           <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
             <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" size="720" default />
-            @if ($previewSubtitleContent)
+            @if (isset($previewSubtitleContent))
               <track kind="captions" label="فارسی"
                 src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}&lang=fa" srclang="fa" default>
             @endif
-            @if ($previewSubtitleContentEng)
+            @if (isset($previewSubtitleContentEng))
               <track kind="captions" label="English"
               src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}&lang=en" srclang="en">
             @endif

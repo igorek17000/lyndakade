@@ -207,12 +207,13 @@ class CourseController extends Controller
             if (json_decode($course->previewSubtitle) == 0) {
                 $has_subtitle = false;
             }
-            $previewSubtitleContent = $this->get_sub_content($course, 'fa');
-            $previewSubtitleContentEng = $this->get_sub_content($course, 'en');
         } catch (Exception $e) {
             $has_subtitle = false;
         }
 
+        $previewSubtitleContent = $this->get_sub_content($course, 'fa');
+        $previewSubtitleContentEng = $this->get_sub_content($course, 'en');
+        
         $dubbed_course = Course::where('slug_linkedin', $slug . '-dubbed')
             ->orWhere('slug_url',  $slug . '-dubbed')
             ->orWhere('slug_url', 'LIKE', '%,' .  $slug . '-dubbed')
@@ -297,12 +298,15 @@ class CourseController extends Controller
     private function get_sub_content($course, $lang = 'fa')
     {
         try {
-            $file_path = str_replace(".mp4", ".vtt", $course->previewFile);
-            if ($lang != 'fa')
-                $file_path = str_replace(".mp4", ".en.vtt", $course->previewFile);
+            $js = json_decode($course->previewFile)[0];
 
+            $file_path = str_replace(".mp4", ".vtt", $js->download_link);
+            if ($lang != 'fa')
+                $file_path = str_replace(".mp4", ".EN.vtt", $js->download_link);
             $content = Storage::disk('FTP')->get($file_path);
-            if (strpos(strtolower("WEBVTT"), strtolower($content)))
+            // if ($lang != 'fa')
+            //     dd($file_path, $content);
+            if (strlen($content) > 0)
                 return $content;
             return '';
         } catch (Exception $e) {
