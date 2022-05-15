@@ -532,7 +532,7 @@ class HomeController extends Controller
     private function get_sub_content($course, $lang = 'fa')
     {
         try {
-            $js = json_decode($course->previewFile);
+            $js = json_decode($course->previewFile)[0];
 
             $file_path = str_replace(".mp4", ".vtt", $js->download_link);
             if ($lang != 'fa')
