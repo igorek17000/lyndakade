@@ -512,7 +512,7 @@ class HomeController extends Controller
 
         $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc')->get();
 
-        // dd($previewSubtitleContent, $previewSubtitleContentEng);
+        dd($previewSubtitleContent, $previewSubtitleContentEng);
 
         return view('courses.show', [
             'skill' => $skill,
