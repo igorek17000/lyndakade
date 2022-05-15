@@ -307,7 +307,7 @@ class CourseController extends Controller
             // if ($lang != 'fa')
             //     dd($file_path, $content);
             if (strlen($content) > 0)
-                return '<pre>' . $content . '</pre>';
+                return $content;
             return '';
         } catch (Exception $e) {
         }
