@@ -1785,7 +1785,6 @@
   @if (Auth::check())
     <script>
       window.addEventListener('goftino_ready', function() {
-
         Goftino.setUser({
           email: '{{ Auth::user()->email }}',
           name: '{{ Auth::user()->name }}',
