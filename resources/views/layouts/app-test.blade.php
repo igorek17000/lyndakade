@@ -1782,18 +1782,21 @@
       });
     });
   </script>
-  @if(Auth::check())
-  <script>
-    Goftino.setUser({
-      email: '{{ Auth::user()->email }}',
-      name: '{{ Auth::user()->name }}',
-      about: '{{ Auth::user()->username }}',
-      phone: '{{ Auth::user()->mobile }}',
-      avatar: '{{ fromDLHost(Auth::user()->avatar) }}',
-      tags: '',
-      forceUpdate: true
-    });
-  </script>
+  @if (Auth::check())
+    <script>
+      window.addEventListener('goftino_ready', function() {
+
+        Goftino.setUser({
+          email: '{{ Auth::user()->email }}',
+          name: '{{ Auth::user()->name }}',
+          about: '{{ Auth::user()->username }}',
+          phone: '{{ Auth::user()->mobile }}',
+          avatar: '{{ fromDLHost(Auth::user()->avatar) }}',
+          tags: '',
+          forceUpdate: true
+        });
+      });
+    </script>
   @endif
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
   {{-- <p>
