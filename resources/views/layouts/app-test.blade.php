@@ -1775,10 +1775,10 @@
 
 
     $(function() {
-      $(document).on('onsubmit', '#course-request-modal form', function(event) {
-        event.preventDefault();
-        console.log(event);
-        return false;
+      document.querySelectorAll('#course-request-modal form').forEach((course_req_form) => {
+        console.log(course_req_form);
+        console.log(course_req_form.data);
+        return false
       });
     });
   </script>
