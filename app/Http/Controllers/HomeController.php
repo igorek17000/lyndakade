@@ -440,6 +440,8 @@ class HomeController extends Controller
 
     public function test_url(Request $request)
     {
+        return view('test');
+        
         $course = Course::with(['authors', 'subjects', 'softwares'])->find(2161);
         $slug = $course->slug_linkedin;
 
