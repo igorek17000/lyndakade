@@ -1775,7 +1775,7 @@
 
 
     $(function() {
-      $(document).on('click', '#course-request-modal form', function(event) {
+      $(document).on('onsubmit', '#course-request-modal form', function(event) {
         event.preventDefault();
         console.log(event);
         return false;
