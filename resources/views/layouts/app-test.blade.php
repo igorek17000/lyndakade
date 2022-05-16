@@ -1182,7 +1182,7 @@
             </div>
           </nav>
           <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-            <div class="tab-pane fade" id="course-request-link" role="tabpanel"
+            <div class="tab-pane fade  show active" id="course-request-link" role="tabpanel"
               aria-labelledby="course-request-link-tab">
               <form id="method-2" method="POST" action="{{ route('demands.store') }}">
                 @csrf
