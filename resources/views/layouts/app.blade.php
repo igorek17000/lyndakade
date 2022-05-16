@@ -337,7 +337,7 @@
       width: 100%;
     }
 
-    @media(min-width: 575px) {
+    @media (min-width: 575px) {
       .card-horizontal {
         display: flex;
         flex: 1 1 auto;
@@ -438,7 +438,7 @@
       -webkit-box-orient: vertical;
     }
 
-    @media(min-width: 900px) {
+    @media (min-width: 900px) {
       .course-description-grid {
         max-width: 850px;
       }
@@ -523,14 +523,14 @@
       font-size: 14px;
     }
 
-    @media(max-width: 1023px) {
+    @media (max-width: 1023px) {
       .course ul label {
         margin-right: -15px;
         font-size: 12px;
       }
     }
 
-    @media(max-width: 576px) {
+    @media (max-width: 576px) {
       .course ul label {
         margin-right: -15px;
         font-size: 11px;

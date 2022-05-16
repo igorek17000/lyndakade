@@ -106,6 +106,9 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/icons.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/my-stylesheet.css') }}" />
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.css"
+    integrity="sha512-SwLjzOmI94KeCvAn5c4U6gS/Sb8UC7lrm40Wf+B0MQxEuGyDqheQHKdBmT4U+r+LkdfAiNH4QHrHtdir3pYBaw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   {{-- <script async src="{{ asset('js/lazysizes.min.js') }}"></script> --}}
   <script async src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
     integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ=="
@@ -334,7 +337,7 @@
       width: 100%;
     }
 
-    @media(min-width: 575px) {
+    @media (min-width: 575px) {
       .card-horizontal {
         display: flex;
         flex: 1 1 auto;
@@ -424,6 +427,7 @@
     }
 
     .course-description-grid {
+      font-size: 12px !important;
       overflow: hidden;
       max-width: 500px;
       text-overflow: ellipsis;
@@ -434,7 +438,7 @@
       -webkit-box-orient: vertical;
     }
 
-    @media(min-width: 900px) {
+    @media (min-width: 900px) {
       .course-description-grid {
         max-width: 850px;
       }
@@ -519,14 +523,14 @@
       font-size: 14px;
     }
 
-    @media(max-width: 1023px) {
+    @media (max-width: 1023px) {
       .course ul label {
         margin-right: -15px;
         font-size: 12px;
       }
     }
 
-    @media(max-width: 576px) {
+    @media (max-width: 576px) {
       .course ul label {
         margin-right: -15px;
         font-size: 11px;
@@ -653,9 +657,13 @@
       border-width: 0.2em;
     }
 
-    /* .price-range .slider {
-                              width: 170px;
-                            } */
+    footer .list-inline-item img {
+      transition: transform .7s ease-in-out;
+    }
+
+    footer .list-inline-item img:hover {
+      transform: rotate(360deg);
+    }
 
   </style>
 </head>
@@ -675,7 +683,7 @@
       }
 
     </style>
-    @if (true)
+    @if (false)
       <div class="sticky-top text-center" data-toggle="modal" data-target="#dubbed-modal"
         style="font-size: 17px; padding: 10px 0px; background-color: rgb(0, 170, 202); font-family: IranSANS; font-weight: bold; color: rgb(221, 221, 221); cursor: pointer;">
         <img
@@ -752,7 +760,7 @@
       </div>
     @endif
     {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0" @if (app()->isLocal('en')) dir="ltr" @endif> --}}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 py-0">
+    <nav class="navbar navbar-expand-lg navbar-dark w-100 py-0" style="background-color: #252525;">
       <a class="navbar-brand mb-1" href="https://lyndakade.ir">
         <img draggable="false" class="img-logo m-0 p-0" src="https://lyndakade.ir/image/logoedit2.png" title="لینداکده"
           alt="لینداکده - LyndaKade - Lynda Kade - LinkedIN" style="width: 60px; height: 55px;">
@@ -986,7 +994,7 @@
     </style>
 
     {{-- <footer id="footer" class="bg-dark text-muted p-md-5 pt-4 @if (app()->isLocal('en')) text-left @endif"  @if (app()->isLocal('en')) dir="ltr" @endif> --}}
-    <footer id="footer" class="bg-dark text-muted p-md-5 pt-4">
+    {{-- <footer id="footer" class="bg-dark text-muted p-md-5 pt-4">
       <div class="container no-dark">
         <div class="row no-dark">
           <div class="contact col-lg-6 col-md-6 col-sm-12 col-xs-12 text-sm-right text-center">
@@ -1002,24 +1010,24 @@
                     لینداکده-1400
                   </li>
                   <li class="list-inline-item">
-                    <a href="{{ route('root.contact.us') }}" style="color: #00aaca;">تماس با ما</a>
+                    <a rel="noopener noreferrer" href="{{ route('root.contact.us') }}" style="color: #00aaca;">
+                      تماس با ما
+                    </a>
                   </li>
                   <li class="list-inline-item">
-                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
+                    <a rel="noopener noreferrer" class="social-icon text-xs-center" target="_blank"
                       href="http://www.Instagram.com/lyndakade.ir">
-                      <img data-toggle="tooltip" src="#" data-src="{{ asset('image/socialicons/instagram2.png') }}"
-                        alt="Instagram - اینستاگرام" title="اینستاگرام" class="icon-instagram lazyload">
+                      <i class="fab fa-instagram"></i>
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
+                    <a rel="noopener noreferrer" class="social-icon text-xs-center" target="_blank"
                       href="http://www.T.me/LyndaKadeSupport">
-                      <img data-toggle="tooltip" src="#" data-src="{{ asset('image/socialicons/telegram.png') }}"
-                        alt="Telegram - پیشتبانی تلگرام" title="پیشتبانی تلگرام" class="icon-telegram lazyload">
+                      <i class="fab fa-telegram"></i>
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
+                    <a rel="noopener noreferrer" class="social-icon text-xs-center" target="_blank"
                       href="http://www.Aparat.com/LyndaKade.ir">
                       <img data-toggle="tooltip" src="#" data-src="{{ asset('image/socialicons/aparat.png') }}"
                         alt="Aparat - آپارات" title="آپارات" class="icon-aparat lazyload">
@@ -1053,6 +1061,82 @@
           </div>
         </div>
       </div>
+    </footer> --}}
+
+    <footer id="footer" class="p-md-5 pt-4" style="background-color: #252525;">
+      <div class="container no-dark">
+        <div class=" row no-dark">
+          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
+            <a referrerpolicy="origin" target="_blank"
+              href="https://trustseal.enamad.ir/?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD">
+              <img src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD"
+                class=" lazyloaded" referrerpolicy="origin"
+                data-src="https://Trustseal.eNamad.ir/logo.aspx?id=212458&amp;Code=PmAs0cswBnOXzNOOqfGD"
+                alt="نماد الکترونیک enamad در صورت اتصال با آی‌پی داخل کشور، نمایش داده خواهد شد."
+                style="cursor:pointer;" id="PmAs0cswBnOXzNOOqfGD">
+            </a>
+          </div>
+          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 enamad-logo">
+            <img src="https://logo.samandehi.ir/logo.aspx?id=275190&amp;p=odrfyndtujynnbpdbsiylyma"
+              class=" lazyloaded" referrerpolicy="origin" id="nbqejzpeapfujxlzsizpesgt" style="cursor:pointer;"
+              onclick="window.open(&quot;https:\/\/logo.samandehi.ir/Verify.aspx?id=275190&amp;p=uiwkjyoedshwrfthpfvlobpd&quot;, &quot;Popup&quot;,&quot;toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30&quot;)"
+              alt="logo-samandehi - لوگو ساماندهی"
+              data-src="https://logo.samandehi.ir/logo.aspx?id=275190&amp;p=odrfyndtujynnbpdbsiylyma">
+          </div>
+          <div class="column col-lg-2 col-md-2 col-sm-4 col-xs-12 text-center my-2 zarinpal-logo">
+            <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
+          </div>
+          <div class="contact col-lg-6 col-md-6 col-sm-12 col-xs-12 text-sm-right text-center">
+            <h5 class="pt-1 pb-3" style="color: #00aaca;">درباره ما</h5>
+            <p class="text-white pl-md-5 text-justify">
+              لینداکده یک بستر یادگیری پیشرو است که به هر کس کمک می کند تا کسب و کار ، نرم افزار ، فناوری و
+              مهارت های خلاقانه را برای دستیابی به اهداف شخصی و حرفه ای بیاموزد.
+            </p>
+            <div class="row no-dark">
+              <div class="col-12 text-center">
+                <ul class="list-inline">
+                  <li class="list-inline-item text-white">
+                    لینداکده-1400
+                  </li>
+                  <li class="list-inline-item mx-0">
+                    <a href="https://lyndakade.ir/contact-us">
+                      <img class="" src="https://img.icons8.com/plasticine/344/apple-phone.png"
+                        width="32px" alt="تماس با ما">
+                      {{-- <i class="fab fa-phone"></i> --}}
+                    </a>
+                  </li>
+                  <li class="list-inline-item mx-0">
+                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
+                      href="http://www.Instagram.com/lyndakade.ir">
+                      <img class="" src="https://img.icons8.com/plasticine/344/instagram-new--v2.png"
+                        width="32px" alt="کانال اینستاگرام">
+                      {{-- <i class="fab fa-instagram"></i> --}}
+                    </a>
+                  </li>
+                  <li class="list-inline-item mx-0">
+                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
+                      href="http://www.T.me/LyndaKadeSupport">
+                      <img class="" src="https://img.icons8.com/plasticine/344/telegram-app.png"
+                        width="32px" alt="کانال تلگرام">
+                      {{-- <i class="fab fa-telegram"></i> --}}
+                    </a>
+                  </li>
+                  <li class="list-inline-item mx-0">
+                    <a rel="noreferrer" class="social-icon text-xs-center" target="_blank"
+                      href="http://www.Aparat.com/LyndaKade.ir">
+                      <img class="" src="https://img.icons8.com/plasticine/344/aparat.png" width="32px"
+                        alt="کانال آپارات">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 text-center">
+                <p class="mb-md-0 text-white">کلیه‌ی حقوق این سایت متعلق به لینداکده است.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   </div>
 
@@ -1061,14 +1145,104 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content text-center">
         <div class="modal-body p-0" id="preview-modal-body">
-          <video class="w-100" src="" controls aria-controls="true"
-            style="border-top-left-radius: 3px; border-top-right-radius: 3px;"></video>
+          {{-- <video src="" controls aria-controls="true"
+            style="border-top-left-radius: 3px; border-top-right-radius: 3px;"></video> --}}
+          <video class="w-100" playsinline controls aria-controls="true" id="preview-video-player"
+            data-poster="" style="border-top-left-radius: 3px; border-top-right-radius: 3px;">
+            <source type="video/mp4" src="" size="720" default />
+            <track kind="captions" label="فارسی" src="" srclang="fa" default>
+          </video>
           <div class="text-right px-2">
-
             <div>
               <span style="font-size: 1.2rem;" id="preview-modal-title">عنوان دوره</span>
               <a href="#" id="preview-modal-url" style="float: left;" class="btn btn-success mb-2">مشاهده جزئیات</a>
               {{-- <span style="float: left;cursor: auto;" class="btn" id="preview-modal-price">قیمت</span> --}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="course-request-modal" tabindex="-1" role="dialog"
+    aria-labelledby="course-request-modal-title" aria-hidden="true" style="background-color: #444c;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content text-center">
+        <div class="modal-body p-0" id="course-request-modal-body">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="course-request-link-tab" data-toggle="tab"
+                href="#course-request-link" role="tab" aria-controls="course-request-link" aria-selected="true">
+                از طریق لینک دوره
+              </a>
+              <a class="nav-item nav-link" id="course-request-author-tab" data-toggle="tab"
+                href="#course-request-author" role="tab" aria-controls="course-request-author" aria-selected="true">
+                از طریق نام دوره و نام مدرس
+              </a>
+            </div>
+          </nav>
+          <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+            <div class="tab-pane fade" id="course-request-link" role="tabpanel"
+              aria-labelledby="course-request-link-tab">
+              <form id="method-2" method="POST" action="{{ route('demands.store') }}">
+                @csrf
+                <div class="form-group row">
+                  <label for="link" class="col-md-4 col-form-label text-md-left">لینک درس در لینکدین</label>
+                  <div class="col-md-6">
+                    <input id="link" type="url" class="form-control @error('link') is-invalid @enderror" name="link"
+                      value="{{ old('link') }}" autocomplete="link">
+                    @error('link')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group row mb-0">
+                  <div class="col-md-6 col-xs-6 col-sm-6">
+                    <button type="button" class="btn btn-success my-2">
+                      ثبت درخواست
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="course-request-author" role="tabpanel"
+              aria-labelledby="course-request-author-tab">
+              <form id="method-1" method="POST" action="{{ route('demands.store') }}">
+                @csrf
+                <div class="form-group row">
+                  <label for="title" class="col-md-4 col-form-label text-md-left">نام درس</label>
+                  <div class="col-md-6">
+                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror"
+                      name="title" value="{{ old('title') }}" autocomplete="title" autofocus>
+                    @error('title')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="author" class="col-md-4 col-form-label text-md-left">نام مدرس</label>
+                  <div class="col-md-6">
+                    <input id="author" type="text" class="form-control @error('author') is-invalid @enderror"
+                      name="author" value="{{ old('author') }}" autocomplete="author">
+                    @error('author')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group row mb-0">
+                  <div class="col-md-6">
+                    <button type="button" class="btn btn-success my-2">
+                      ثبت درخواست
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -1323,8 +1497,13 @@
 
   </script> --}}
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.js"
+    integrity="sha512-OlPa3CLz34wRV8+Aq+Zn39Nc5FNHJPPYLeh/ZXjapjWIQl21a4f6gDM6futqnCIF0IQHEQUf3JJkDdLw+mxglA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   @yield('script_body')
   @stack('js')
+
 
   <script>
     function toggleDropdown(e) {
@@ -1424,22 +1603,103 @@
         .replace(/\d/g, x => farsiDigits[x]);
     }
 
+    const preview_video_player = new Plyr("#preview-video-player", {
+      title: "",
+      controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
+        'airplay', 'fullscreen'
+      ],
+      settings: ['captions', 'quality', 'speed', 'loop'],
+      invertTime: true,
+      toggleInvert: true,
+      captions: {
+        active: true,
+        language: 'fa',
+        update: false
+      },
+      i18n: {
+        restart: 'پخش مجدد',
+        rewind: 'برگشت به {seektime}s',
+        play: 'پخش',
+        pause: 'توقف',
+        fastForward: 'به جلو رفتن {seektime}s',
+        seek: 'جابجا شدن',
+        seekLabel: '{currentTime} از {duration}',
+        played: 'پخش شده',
+        buffered: 'بافر شده',
+        currentTime: 'زمان فعلی',
+        duration: 'مدت زمان',
+        volume: 'صدا',
+        mute: 'بی صدا',
+        unmute: 'با صدا',
+        enableCaptions: 'فعال کردن زیرنویس',
+        disableCaptions: 'غیرفعال کردن زیرنویس',
+        download: 'دانلود',
+        enterFullscreen: 'فعال کردن تمام صفحه',
+        exitFullscreen: 'غیر فعال کردن تمام صفحه',
+        frameTitle: '{title}',
+        captions: 'زیرنویس‌ها',
+        settings: 'تنظیمات',
+        pip: 'تصویر-در-تصویر',
+        menuBack: 'برگشت به منوی قبلی',
+        speed: 'سرعت',
+        normal: 'عادی',
+        quality: 'کیفیت',
+        loop: 'حلقه پخش',
+        start: 'شروع',
+        end: 'پایان',
+        all: 'همه',
+        reset: 'بازنشانی',
+        disabled: 'غیرفعال',
+        enabled: 'فعال',
+        advertisement: 'تبلیغات',
+        qualityBadge: {
+          2160: '4K',
+          1440: 'HD',
+          1080: 'HD',
+          720: 'HD',
+          576: 'SD',
+          480: 'SD',
+        },
+      }
+    });
+
+    $(document).on('click', '.course-preview-button', function(event) {
+      const btn = event.currentTarget.dataset;
+      preview_video_player.source = {
+        type: "video",
+        title: btn.title,
+        sources: [{
+          src: btn.src,
+          type: btn.type,
+          size: Number(btn.size)
+        }],
+        tracks: [{
+          kind: 'captions',
+          label: btn.trackLabel,
+          srclang: btn.trackSrclang,
+          src: btn.trackSrc,
+          default: true,
+        }, ],
+        poster: btn.poster
+      };
+    });
+
     $(function() {
-      document.querySelectorAll('*[data-price]').forEach(element => {
-        element.setAttribute('data-price', engToPer(element.getAttribute('data-price')));
-      });
+      //   document.querySelectorAll('*[data-price]').forEach(element => {
+      //     element.setAttribute('data-price', engToPer(element.getAttribute('data-price')));
+      //   });
       $('#preview-modal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget);
         if (button) {
           $('#preview-modal #preview-modal-title').text(button.data('title'));
           document.querySelector('#preview-modal #preview-modal-url').setAttribute('href', button.data('url'));
           // $('#preview-modal-price').text(button.data('price') + ' تومان');
-          document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', button.data(
-            'src'));
-          document.querySelector('#preview-modal #preview-modal-body video').play();
+          //   document.querySelector('#preview-modal #preview-modal-body video').setAttribute('src', button.data(
+          //     'src'));
+          //   document.querySelector('#preview-modal #preview-modal-body video').play();
         } else {
           $('#preview-modal #preview-modal-title').text('');
-          document.querySelector('#preview-modal #preview-modal-url').setAttribute('href', '');
+          //   document.querySelector('#preview-modal #preview-modal-url').setAttribute('href', '');
           // $('#preview-modal-price').text('');
         }
       });
@@ -1477,39 +1737,47 @@
         return data;
       }, {});
       const form = document.forms['dubbed-form'];
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const sub_btn = document.querySelector('#dubbed-form #dubbed-form-submit');
-        sub_btn.innerHTML = dub_form_button_loading;
+      if (form) {
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const sub_btn = document.querySelector('#dubbed-form #dubbed-form-submit');
+          sub_btn.innerHTML = dub_form_button_loading;
 
-        const data = formToJSON(form.elements);
-        // console.log(data);
-        const jdata = JSON.stringify(data);
-        // console.log(jdata);
+          const data = formToJSON(form.elements);
+          // console.log(data);
+          const jdata = JSON.stringify(data);
+          // console.log(jdata);
 
-        (async () => {
-          const rawResponse = await fetch("{{ route('dubbed-join.api') }}", {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: jdata
-          });
-          const content = await rawResponse.json();
-          if (content.status == 'success') {
-            form.reset();
-            sub_btn.innerHTML = dub_form_button_done;
-            setTimeout(() => {
+          (async () => {
+            const rawResponse = await fetch("{{ route('dubbed-join.api') }}", {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: jdata
+            });
+            const content = await rawResponse.json();
+            if (content.status == 'success') {
+              form.reset();
+              sub_btn.innerHTML = dub_form_button_done;
+              setTimeout(() => {
+                sub_btn.innerHTML = dub_form_button_default;
+              }, 4000);
+            } else {
               sub_btn.innerHTML = dub_form_button_default;
-            }, 4000);
-          } else {
-            sub_btn.innerHTML = dub_form_button_default;
-          }
-          console.log(content);
-        })();
-      });
+            }
+            console.log(content);
+          })();
+        });
+      }
+    });
 
+
+    $(function() {
+      $(document).on('click', '#course-request-modal button[type="button"]', function(event) {
+        console.log(event);
+      });
     });
   </script>
   {{-- <script type="text/javascript" src="{{ asset('js/my-js.js') }}"></script> --}}
