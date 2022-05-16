@@ -1200,7 +1200,7 @@
                 </div>
                 <div class="form-group row mb-0">
                   <div class="col-md-6 col-xs-6 col-sm-6">
-                    <button type="button" class="btn btn-success my-2">
+                    <button type="submit" class="btn btn-success my-2">
                       ثبت درخواست
                     </button>
                   </div>
@@ -1237,7 +1237,7 @@
                 </div>
                 <div class="form-group row mb-0">
                   <div class="col-md-6">
-                    <button type="button" class="btn btn-success my-2">
+                    <button type="submit" class="btn btn-success my-2">
                       ثبت درخواست
                     </button>
                   </div>
@@ -1775,7 +1775,7 @@
 
 
     $(function() {
-      $(document).on('click', '#course-request-modal button[type="button"]', function(event) {
+      $(document).on('click', '#course-request-modal form', function(event) {
         event.preventDefault();
         console.log(event);
         return false;
