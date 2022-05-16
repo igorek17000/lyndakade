@@ -869,7 +869,7 @@
             <a class="nav-link px-md-1" href="{{ route('packages.index') }}">خرید اشتراک</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link px-md-1" href="{{ route('demands.create') }}">درخواست دوره</a>
+            <a class="nav-link px-md-1" href="" data-toggle="modal" data-target="#course-request-modal">درخواست دوره</a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-md-1" href="{{ route('faq') }}">سوالات متداول</a>
