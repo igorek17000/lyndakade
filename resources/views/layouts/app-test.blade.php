@@ -1776,7 +1776,7 @@
 
     $(function() {
       $(document).on('click', '#course-request-modal button[type="button"]', function(event) {
-          event.preventDefault();
+        event.preventDefault();
         console.log(event);
         return false;
       });
