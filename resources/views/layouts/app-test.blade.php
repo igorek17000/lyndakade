@@ -1215,7 +1215,7 @@
                   <label for="title" class="col-md-4 col-form-label text-md-left">نام درس</label>
                   <div class="col-md-6">
                     <input id="title" type="text" class="form-control @error('title') is-invalid @enderror"
-                      name="title" value="{{ old('title') }}" autocomplete="title" autofocus>
+                      name="title" autocomplete="title" autofocus>
                     @error('title')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -1227,7 +1227,7 @@
                   <label for="author" class="col-md-4 col-form-label text-md-left">نام مدرس</label>
                   <div class="col-md-6">
                     <input id="author" type="text" class="form-control @error('author') is-invalid @enderror"
-                      name="author" value="{{ old('author') }}" autocomplete="author">
+                      name="author" autocomplete="author">
                     @error('author')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

@@ -41,10 +41,12 @@
       @endif
       <button href="" class="card-img-overlay course-preview-button" data-toggle="modal" data-target="#preview-modal" class="text-center"
         data-src="{{ fromDLHost($course->previewFile) }}" data-title="{{ $course->title }}" data-type="video/mp4"
-        data-poster="{{ fromDLHost($course->img) }}"
+        data-poster="{{ fromDLHost($course->img) }}" data-dubbed="{{ $course->dubbed_id }}"
         data-price="{{ $course->price }}" data-url="{{ courseURL($course) }}" data-size="720"
         data-track-src="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}"
-        data-track-label="فارسی" data-track-srclang="fa">
+        data-track-label="فارسی" data-track-srclang="fa"
+      data-track-src-eng="{{ route('courses.subtitle_content', ['courseId' => $course->id]) }}&lang=en"
+      data-track-label-eng="English" data-track-srclang-eng="en">
         پیش نمایش
       </button>
     </div>

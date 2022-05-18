@@ -1587,21 +1587,27 @@
           type: btn.type,
           size: Number(btn.size)
         }],
-        tracks: [{
+        tracks: (btn.dubbed == "1") ? [] : [{
           kind: 'captions',
           label: btn.trackLabel,
           srclang: btn.trackSrclang,
           src: btn.trackSrc,
           default: true,
+        }, {
+          kind: 'captions',
+          label: btn.trackLabelEng,
+          srclang: btn.trackSrclangEng,
+          src: btn.trackSrcEng,
+          default: false,
         }, ],
         poster: btn.poster
       };
     });
 
     $(function() {
-    //   document.querySelectorAll('*[data-price]').forEach(element => {
-    //     element.setAttribute('data-price', engToPer(element.getAttribute('data-price')));
-    //   });
+      //   document.querySelectorAll('*[data-price]').forEach(element => {
+      //     element.setAttribute('data-price', engToPer(element.getAttribute('data-price')));
+      //   });
       $('#preview-modal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget);
         if (button) {

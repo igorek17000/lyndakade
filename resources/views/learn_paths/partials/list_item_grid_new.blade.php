@@ -12,17 +12,21 @@
       try {
           $previewFile = fromDLHost($path->_courses[0]->previewFile);
           $courseId = $path->_courses[0]->id;
+          $courseDubbed_id = $path->_courses[0]->dubbed_id;
       } catch (\Throwable $th) {
           $previewFile = '#';
           $courseId = -1;
+          $courseDubbed_id = -1;
       }
     @endphp
     <button href="" class="card-img-overlay course-preview-button" data-toggle="modal" data-target="#preview-modal" class="text-center"
       data-src="{{ $previewFile }}" data-title="مسیر آموزشی {{ $path->title }}" data-price="{{ $path->price() }}"
       data-url="{{ route('learn.paths.show', [$path->slug]) }}" data-type="video/mp4"
-      data-poster="{{ fromDLHost($path->thumbnail) }}" data-size="720"
+      data-poster="{{ fromDLHost($path->thumbnail) }}" data-size="720" data-dubbed="{{ $courseDubbed_id }}"
       data-track-src="{{ route('courses.subtitle_content', ['courseId' => $courseId]) }}" data-track-label="فارسی"
-      data-track-srclang="fa">
+      data-track-srclang="fa"
+      data-track-src-eng="{{ route('courses.subtitle_content', ['courseId' => $courseId]) }}&lang=en"
+      data-track-label-eng="English" data-track-srclang-eng="en">
       پیش نمایش
     </button>
   </div>
