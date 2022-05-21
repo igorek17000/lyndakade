@@ -119,7 +119,7 @@ class RegisterController extends Controller
         }
 
         return $request->wantsJson()
-            ? new JsonResponse([], 201)
+            ? new JsonResponse(["message" => "ثبت نام با موفقیت انجام شد.", "status" => "success"], 201)
             : redirect($this->redirectPath());
     }
 

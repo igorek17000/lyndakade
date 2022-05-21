@@ -15,6 +15,7 @@ use Illuminate\Validation\ValidationException;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Exception;
+use Illuminate\Http\JsonResponse;
 
 class LoginController extends Controller
 {
@@ -99,6 +100,10 @@ class LoginController extends Controller
         $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         if (Auth::attempt(array($fieldType => $input['username'], 'password' => $input['password']), $request->get('remember', false))) {
 
+            if($request->wantsJson() || $request->input('isApi', false)){
+                return new JsonResponse(["message" => "ثبت نام با موفقیت انجام شد.", "status" => "success"], 200);
+            }
+
             if ($request->has('returnUrl') && $request->get('returnUrl') != route('login')) {
                 return redirect($request->get('returnUrl'));
             }
@@ -116,6 +121,10 @@ class LoginController extends Controller
 
         //keep track of login attempts from the user.
         $this->incrementLoginAttempts($request);
+
+        if ($request->wantsJson() || $request->input('isApi', false)) {
+            return new JsonResponse(["message" => "نام کاربری و پسورد اشتباه است.", "status" => "error"], 200);
+        }
 
         return redirect()->route('login')
             ->with(['error', 'نام کاربری و پسورد اشتباه است.']);

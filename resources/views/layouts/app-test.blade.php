@@ -954,7 +954,8 @@
             {{-- <a class="nav-link btn btn-outline-primary" rel="nofollow"
               href="{{ $login_link }}">{{ __('msg.Login') }}</a> --}}
             <a class="nav-link btn btn-outline-primary" rel="nofollow" href="" data-toggle="modal"
-              data-target="#login-register-modal" onclick="(()=>{document.querySelector('#login-register-modal-login-tab').click();})()">{{ __('msg.Login') }}</a>
+              data-target="#login-register-modal"
+              onclick="(()=>{document.querySelector('#login-register-modal-login-tab').click();})()">{{ __('msg.Login') }}</a>
 
           </div>
           @if (Route::has('register'))
@@ -962,7 +963,8 @@
               {{-- <a class="nav-link btn btn-outline-primary" style="background-color: #008cc9;"
                 href="{{ route('register') }}">{{ __('msg.Register') }}</a> --}}
               <a class="nav-link btn btn-outline-primary" style="background-color: #008cc9;" href="" data-toggle="modal"
-                data-target="#login-register-modal" onclick="(()=>{document.querySelector('#login-register-modal-register-tab').click();})()">{{ __('msg.Register') }}</a>
+                data-target="#login-register-modal"
+                onclick="(()=>{document.querySelector('#login-register-modal-register-tab').click();})()">{{ __('msg.Register') }}</a>
             </div>
           @endif
         @endif
@@ -1195,7 +1197,7 @@
           <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
             <div class="tab-pane fade  show active" id="login-register-modal-login" role="tabpanel"
               aria-labelledby="login-register-modal-login-tab">
-              <form method="POST" action="{{ route('login') }}">
+              <form id="login-modal-form" method="POST" action="{{ route('login') }}">
                 @csrf
                 @if (request()->has('returnUrl'))
                   <input type="hidden" name="returnUrl" value="{{ request()->get('returnUrl') }}" />
@@ -1256,13 +1258,13 @@
             </div>
             <div class="tab-pane fade" id="login-register-modal-register" role="tabpanel"
               aria-labelledby="login-register-modal-register-tab">
-              <form method="POST" action="{{ route('register') }}">
+              <form id="register-modal-form" method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <div class="form-group row">
-                  <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('msg.Name') }}</label>
 
-                  <div class="col-md-8 col-lg-6">
+                  <div class="col-md-6 col-sm-12">
+                    <label for="name">{{ __('msg.Name') }}</label>
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                       value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -1272,13 +1274,10 @@
                       </span>
                     @enderror
                   </div>
-                </div>
 
-                <div class="form-group row">
-                  <label for="firstName"
-                    class="col-md-4 col-form-label text-md-left">{{ __('msg.FirstName') }}</label>
 
-                  <div class="col-md-8 col-lg-6">
+                  <div class="col-md-6 col-sm-12">
+                    <label for="firstName">{{ __('msg.FirstName') }}</label>
                     <input id="firstName" type="text" class="form-control @error('firstName') is-invalid @enderror"
                       name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName">
 
@@ -1288,13 +1287,9 @@
                       </span>
                     @enderror
                   </div>
-                </div>
 
-                <div class="form-group row">
-                  <label for="lastName"
-                    class="col-md-4 col-form-label text-md-left">{{ __('msg.LastName') }}</label>
-
-                  <div class="col-md-8 col-lg-6">
+                  <div class="col-md-6 col-sm-12">
+                    <label for="lastName">{{ __('msg.LastName') }}</label>
                     <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror"
                       name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName">
 
@@ -1304,12 +1299,10 @@
                       </span>
                     @enderror
                   </div>
-                </div>
 
-                <div class="form-group row">
-                  <label for="mobile" class="col-md-4 col-form-label text-md-left">{{ __('msg.Mobile') }}</label>
 
-                  <div class="col-md-8 col-lg-6">
+                  <div class="col-md-6 col-sm-12">
+                    <label for="mobile">{{ __('msg.Mobile') }}</label>
                     <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror"
                       name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile">
 
@@ -1319,13 +1312,10 @@
                       </span>
                     @enderror
                   </div>
-                </div>
 
-                <div class="form-group row">
-                  <label for="username"
-                    class="col-md-4 col-form-label text-md-left">{{ __('msg.UserName') }}</label>
 
-                  <div class="col-md-8 col-lg-6">
+                  <div class="col-md-6 col-sm-12">
+                    <label for="username">{{ __('msg.UserName') }}</label>
                     <input id="username" type="text"
                       class="form-control text-md-right @error('username') is-invalid @enderror" name="username"
                       value="{{ old('username') }}" required autocomplete="username">
@@ -1336,12 +1326,10 @@
                       </span>
                     @enderror
                   </div>
-                </div>
-                <div class="form-group row">
-                  <label for="email"
-                    class="col-md-4 col-form-label text-md-left">{{ __('msg.E-Mail Address') }}</label>
 
-                  <div class="col-md-8 col-lg-6">
+
+                  <div class="col-md-6 col-sm-12">
+                    <label for="email">{{ __('msg.E-Mail Address') }}</label>
                     <input id="email" type="email"
                       class="form-control text-md-right @error('email') is-invalid @enderror" name="email"
                       value="{{ old('email') }}" required autocomplete="email">
@@ -1356,13 +1344,10 @@
                       </span>
                     @enderror
                   </div>
-                </div>
 
-                <div class="form-group row">
-                  <label for="password"
-                    class="col-md-4 col-form-label text-md-left">{{ __('msg.Password') }}</label>
+                  <div class="col-md-6 col-sm-12">
+                    <label for="password">{{ __('msg.Password') }}</label>
 
-                  <div class="col-md-8 col-lg-6">
                     <input id="password" type="password"
                       class="form-control text-md-right @error('password') is-invalid @enderror" name="password"
                       required autocomplete="new-password">
@@ -1373,21 +1358,16 @@
                       </span>
                     @enderror
                   </div>
-                </div>
 
-                <div class="form-group row">
-                  <label for="password-confirm"
-                    class="col-md-4 col-form-label text-md-left">{{ __('msg.Confirm Password') }}</label>
+                  <div class="col-md-6 col-sm-12">
+                    <label for="password-confirm">{{ __('msg.Confirm Password') }}</label>
 
-                  <div class="col-md-8 col-lg-6">
                     <input id="password-confirm" type="password" class="form-control text-md-right"
                       name="password_confirmation" required autocomplete="new-password">
                   </div>
-                </div>
 
-                <div
-                  class="form-group row text-center {{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-                  <div class="col-md-12 col-lg-8 align-self-center">
+                  <div
+                    class="col-md-12 align-self-center {{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
                     {!! app('captcha')->display() !!}
                     @if ($errors->has('g-recaptcha-response'))
                       <span class="help-block">
@@ -1395,9 +1375,8 @@
                       </span>
                     @endif
                   </div>
-                </div>
-                <div class="form-group row mb-0">
-                  <div class="col-md-8 col-lg-6 offset-md-4">
+
+                  <div dType="register" class="col-md-12 text-center">
                     <button type="submit" class="btn btn-primary">
                       {{ __('msg.Register') }}
                     </button>
@@ -2091,6 +2070,79 @@
       }
       prepare_course_req_forms(document.forms['course-request-method-1']);
       prepare_course_req_forms(document.forms['course-request-method-2']);
+
+
+      function prepare_login_register_forms(login_register_form) {
+        if (login_register_form) {
+          login_register_form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const sub_btn = login_register_form.querySelector('button[type="submit"]').parentElement;
+            sub_btn.innerHTML = form_button_loading;
+            var url = '',
+              msg = '',
+              isRegisterForm = (sub_btn.getAttribute('dType') == 'register');
+            if (isRegisterForm) {
+              url = "{{ route('register') }}";
+              msg = "ثبت نام با موفقیت انجام شد.";
+            } else {
+              url = "{{ route('login') }}";
+              msg = "ورود با موفقیت انجام شد.";
+            }
+
+            const data = formToJSON(login_register_form.elements);
+            data.isApi = true;
+            // console.log("data", data);
+            const jdata = JSON.stringify(data);
+            // console.log("jdata", jdata);
+            // setTimeout(() => {
+            //   toastr.options.rtl = true;
+            //   toastr.options.positionClass = 'toast-top-center';
+            //   toastr.info('درخواست دوره ثبت شده است، از طریق ایمیل به شما اطلاع رسانی خواهد شد.')
+            //   login_register_form.reset();
+            //   sub_btn.innerHTML = form_button_done;
+            //   setTimeout(() => {
+            //     sub_btn.innerHTML = form_button_default;
+            //   }, 4000);
+            // }, 2000);
+            (async () => {
+              const rawResponse = await fetch(url, {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: jdata
+              });
+              //   let cc = await rawResponse.text();
+              //   console.log(cc);
+              const content = await rawResponse.json();
+              if (content.status == 'success') {
+                // login_register_form.reset();
+                sub_btn.innerHTML = form_button_done;
+                toastr.options.rtl = true;
+                toastr.options.positionClass = 'toast-top-center';
+                toastr.info(msg)
+                setTimeout(() => {
+                  window.location.reload();
+                }, 1000);
+              } else {
+                toastr.options.rtl = true;
+                toastr.options.positionClass = 'toast-top-center';
+                toastr.warning('در ارسال اطلاعات مشکلی رخ داده است، مجددا تلاش کنید.')
+                sub_btn.innerHTML = form_button_default;
+                if (isRegisterForm) {
+                  login_register_form.querySelector('button[type="submit"]').textContent = 'ثبت نام';
+                } else {
+                  login_register_form.querySelector('button[type="submit"]').textContent = 'ورود';
+                }
+              }
+              //   console.log(content);
+            })();
+          });
+        }
+      }
+      prepare_login_register_forms(document.forms['register-modal-form']);
+      prepare_login_register_forms(document.forms['login-modal-form']);
     });
   </script>
   @if (Auth::check())
