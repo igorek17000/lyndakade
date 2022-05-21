@@ -242,7 +242,7 @@ function percent_off_for_user()
 
 function check_off_for_user(Int $amount)
 {
-    return intval($amount * percent_off_for_user() / 100) * 100;
+    return intval($amount * percent_off_for_user() / 1000) * 1000;
 }
 
 
