@@ -1778,14 +1778,23 @@
             sub_btn.innerHTML = form_button_loading;
 
             const data = formToJSON(course_req_form.elements);
-            if (!(data.link != '' || (data.author != '' && data.title != ''))
-            || (!data.link.toLowerCase().includes('/learning/') && data.author != '' && data.title != '' )) {
+            if (!(data.link || (data.author && data.title))) {
+              toastr.options.rtl = true;
+              toastr.options.positionClass = 'toast-top-center';
+              toastr.warning('اطلاعات بدرستی وارد نشده‌اند. لطفا دوباره تلاش کنید.')
+              sub_btn.innerHTML = form_button_default;
+              return false;
+            }
+            if (data.link) {
+              if (!data.link.toLowerCase().includes('/learning/')) {
                 toastr.options.rtl = true;
                 toastr.options.positionClass = 'toast-top-center';
                 toastr.warning('اطلاعات بدرستی وارد نشده‌اند. لطفا دوباره تلاش کنید.')
                 sub_btn.innerHTML = form_button_default;
                 return false;
+              }
             }
+
             data.isApi = true;
             console.log("data", data);
             const jdata = JSON.stringify(data);
