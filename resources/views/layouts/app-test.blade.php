@@ -1775,7 +1775,7 @@
           course_req_form.addEventListener('submit', (event) => {
             event.preventDefault();
             const sub_btn = course_req_form.querySelector('button[type="submit"]');
-            sub_btn.outerHTML = form_button_loading;
+            sub_btn.innerHTML = form_button_loading;
 
             const data = formToJSON(course_req_form.elements);
             console.log("data", data);
@@ -1783,9 +1783,9 @@
             console.log("jdata", jdata);
             setTimeout(() => {
               course_req_form.reset();
-              sub_btn.outerHTML = form_button_done;
+              sub_btn.innerHTML = form_button_done;
               setTimeout(() => {
-                sub_btn.outerHTML = form_button_default;
+                sub_btn.innerHTML = form_button_default;
               }, 4000);
             }, 2000);
             // (async () => {
@@ -1800,12 +1800,12 @@
             //   const content = await rawResponse.json();
             //   if (content.status == 'success') {
             //     course_req_form.reset();
-            //     sub_btn.outerHTML = form_button_done;
+            //     sub_btn.innerHTML = form_button_done;
             //     setTimeout(() => {
-            //       sub_btn.outerHTML = form_button_default;
+            //       sub_btn.innerHTML = form_button_default;
             //     }, 4000);
             //   } else {
-            //     sub_btn.outerHTML = form_button_default;
+            //     sub_btn.innerHTML = form_button_default;
             //   }
             //   console.log(content);
             // })();
