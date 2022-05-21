@@ -869,7 +869,7 @@
             <a class="nav-link px-md-1" href="{{ route('packages.index') }}">خرید اشتراک</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link px-md-1" href="{{ route('demands.create') }}">درخواست دوره</a>
+            <a class="nav-link px-md-1" href="" data-toggle="modal" data-target="#course-request-modal">درخواست دوره</a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-md-1" href="{{ route('faq') }}">سوالات متداول</a>
@@ -1157,6 +1157,84 @@
               <span style="font-size: 1.2rem;" id="preview-modal-title">عنوان دوره</span>
               <a href="#" id="preview-modal-url" style="float: left;" class="btn btn-success mb-2">مشاهده جزئیات</a>
               {{-- <span style="float: left;cursor: auto;" class="btn" id="preview-modal-price">قیمت</span> --}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="course-request-modal" tabindex="-1" role="dialog"
+    aria-labelledby="course-request-modal-title" aria-hidden="true" style="background-color: #444c;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content text-center">
+        <div class="modal-body p-0" id="course-request-modal-body">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="course-request-link-tab" data-toggle="tab"
+                href="#course-request-link" role="tab" aria-controls="course-request-link" aria-selected="true">
+                از طریق لینک دوره
+              </a>
+              <a class="nav-item nav-link" id="course-request-author-tab" data-toggle="tab"
+                href="#course-request-author" role="tab" aria-controls="course-request-author" aria-selected="true">
+                از طریق نام دوره و نام مدرس
+              </a>
+            </div>
+          </nav>
+          <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+            <div class="tab-pane fade  show active" id="course-request-link" role="tabpanel"
+              aria-labelledby="course-request-link-tab">
+              <form id="course-request-method-2" method="POST" action="{{ route('demands.store') }}">
+                @csrf
+                <div class="form-group row">
+                  <label for="link" class="col-md-4 col-form-label text-md-left">لینک درس در لینکدین</label>
+                  <div class="col-md-6">
+                    <input id="link" type="url" class="form-control @error('link') is-invalid @enderror" name="link"
+                      value="{{ old('link') }}" autocomplete="link">
+                    @error('link')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group text-center m-0">
+                  <button type="submit" class="btn btn-primary">ارسال</button>
+                </div>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="course-request-author" role="tabpanel"
+              aria-labelledby="course-request-author-tab">
+              <form id="course-request-method-1" method="POST" action="{{ route('demands.store') }}">
+                @csrf
+                <div class="form-group row">
+                  <label for="title" class="col-md-4 col-form-label text-md-left">نام درس</label>
+                  <div class="col-md-6">
+                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror"
+                      name="title" autocomplete="title" autofocus>
+                    @error('title')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="author" class="col-md-4 col-form-label text-md-left">نام مدرس</label>
+                  <div class="col-md-6">
+                    <input id="author" type="text" class="form-control @error('author') is-invalid @enderror"
+                      name="author" autocomplete="author">
+                    @error('author')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group text-center m-0">
+                  <button type="submit" class="btn btn-primary">ارسال</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -1643,14 +1721,14 @@
     }
 
     $(function() {
-      const dub_form_button_default = `<button type="submit" class="btn btn-primary">ارسال</button>`;
-      const dub_form_button_loading = `
+      const form_button_default = `<button type="submit" class="btn btn-primary">ارسال</button>`;
+      const form_button_loading = `
       <button class="btn btn-primary" type="button" disabled>
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         <span class="sr-only">درحال ارسال...</span>
       </button>
       `;
-      const dub_form_button_done = `<button type="button" class="btn btn-success" disabled="">ارسال شد.</button>`;
+      const form_button_done = `<button type="button" class="btn btn-success" disabled="">ارسال شد.</button>`;
 
       const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         data[element.name] = element.value;
@@ -1661,7 +1739,7 @@
         form.addEventListener('submit', (event) => {
           event.preventDefault();
           const sub_btn = document.querySelector('#dubbed-form #dubbed-form-submit');
-          sub_btn.innerHTML = dub_form_button_loading;
+          sub_btn.innerHTML = form_button_loading;
 
           const data = formToJSON(form.elements);
           // console.log(data);
@@ -1680,17 +1758,91 @@
             const content = await rawResponse.json();
             if (content.status == 'success') {
               form.reset();
-              sub_btn.innerHTML = dub_form_button_done;
+              sub_btn.innerHTML = form_button_done;
               setTimeout(() => {
-                sub_btn.innerHTML = dub_form_button_default;
+                sub_btn.innerHTML = form_button_default;
               }, 4000);
             } else {
-              sub_btn.innerHTML = dub_form_button_default;
+              sub_btn.innerHTML = form_button_default;
             }
-            console.log(content);
+            // console.log(content);
           })();
         });
       }
+
+      function prepare_course_req_forms(course_req_form) {
+        if (course_req_form) {
+          course_req_form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const sub_btn = course_req_form.querySelector('button[type="submit"]').parentElement;
+            sub_btn.innerHTML = form_button_loading;
+
+            const data = formToJSON(course_req_form.elements);
+            if (!(data.link || (data.author && data.title))) {
+              toastr.options.rtl = true;
+              toastr.options.positionClass = 'toast-top-center';
+              toastr.warning('اطلاعات بدرستی وارد نشده‌اند. لطفا دوباره تلاش کنید.')
+              sub_btn.innerHTML = form_button_default;
+              return false;
+            }
+            if (data.link) {
+              if (!data.link.toLowerCase().includes('/learning/')) {
+                toastr.options.rtl = true;
+                toastr.options.positionClass = 'toast-top-center';
+                toastr.warning('اطلاعات بدرستی وارد نشده‌اند. لطفا دوباره تلاش کنید.')
+                sub_btn.innerHTML = form_button_default;
+                return false;
+              }
+            }
+
+            data.isApi = true;
+            // console.log("data", data);
+            const jdata = JSON.stringify(data);
+            // console.log("jdata", jdata);
+            // setTimeout(() => {
+            //   toastr.options.rtl = true;
+            //   toastr.options.positionClass = 'toast-top-center';
+            //   toastr.info('درخواست دوره ثبت شده است، از طریق ایمیل به شما اطلاع رسانی خواهد شد.')
+            //   course_req_form.reset();
+            //   sub_btn.innerHTML = form_button_done;
+            //   setTimeout(() => {
+            //     sub_btn.innerHTML = form_button_default;
+            //   }, 4000);
+            // }, 2000);
+            (async () => {
+              const rawResponse = await fetch("{{ route('demands.store') }}", {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: jdata
+              });
+              //   let cc = await rawResponse.text();
+              //   console.log(cc);
+              const content = await rawResponse.json();
+              if (content.status == 'success') {
+                course_req_form.reset();
+                sub_btn.innerHTML = form_button_done;
+                toastr.options.rtl = true;
+                toastr.options.positionClass = 'toast-top-center';
+                toastr.info('درخواست دوره ثبت شده است، از طریق ایمیل به شما اطلاع رسانی خواهد شد.')
+                setTimeout(() => {
+                  sub_btn.innerHTML = form_button_default;
+                }, 5000);
+              } else {
+                toastr.options.rtl = true;
+                toastr.options.positionClass = 'toast-top-center';
+                toastr.warning('در ارسال اطلاعات مشکلی رخ داده است، مجددا تلاش کنید.')
+                sub_btn.innerHTML = form_button_default;
+              }
+            //   console.log(content);
+            })();
+          });
+        }
+      }
+      prepare_course_req_forms(document.forms['course-request-method-1']);
+      prepare_course_req_forms(document.forms['course-request-method-2']);
     });
   </script>
   @if (Auth::check())

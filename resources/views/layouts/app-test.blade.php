@@ -1765,7 +1765,7 @@
             } else {
               sub_btn.innerHTML = form_button_default;
             }
-            console.log(content);
+            // console.log(content);
           })();
         });
       }
@@ -1796,9 +1796,9 @@
             }
 
             data.isApi = true;
-            console.log("data", data);
+            // console.log("data", data);
             const jdata = JSON.stringify(data);
-            console.log("jdata", jdata);
+            // console.log("jdata", jdata);
             // setTimeout(() => {
             //   toastr.options.rtl = true;
             //   toastr.options.positionClass = 'toast-top-center';
@@ -1836,7 +1836,7 @@
                 toastr.warning('در ارسال اطلاعات مشکلی رخ داده است، مجددا تلاش کنید.')
                 sub_btn.innerHTML = form_button_default;
               }
-              console.log(content);
+            //   console.log(content);
             })();
           });
         }
