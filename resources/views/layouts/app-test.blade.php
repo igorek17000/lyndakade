@@ -1800,6 +1800,8 @@
                 },
                 body: jdata
               });
+              let cc = await rawResponse.text();
+              console.log(cc);
               const content = await rawResponse.json();
               if (content.status == 'success') {
                 course_req_form.reset();
