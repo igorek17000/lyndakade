@@ -1782,6 +1782,8 @@
             const jdata = JSON.stringify(data);
             console.log("jdata", jdata);
             setTimeout(() => {
+              toastr.options.rtl = true;
+              toastr.options.positionClass = 'toast-bottom-left';
               toastr.info('درخواست دوره ثبت شده است، از طریق ایمیل به شما اطلاع رسانی خواهد شد.')
               course_req_form.reset();
               sub_btn.innerHTML = form_button_done;
