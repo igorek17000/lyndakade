@@ -61,8 +61,7 @@ class DemandController extends Controller
             ]);
             $d->save();
         } else {
-
-            if ($request->ajax()) {
+            if ($request->input('isApi', false)) {
                 return new JsonResponse([
                     'message' => 'عنوان و مدرس نیاز است. یا لینک درس را وارد کنید.',
                     'status' => 'errors',
@@ -89,7 +88,7 @@ class DemandController extends Controller
         if ($email)
             Mail::to($email)->send(new DemandMailer($d, Auth::user()));
 
-        if ($request->ajax()) {
+        if ($request->input('isApi', false)) {
             return new JsonResponse([
                 'message' => 'درخواست با موفقیت ثبت شد.',
                 'status' => 'success',

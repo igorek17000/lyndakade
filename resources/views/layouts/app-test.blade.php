@@ -1778,6 +1778,7 @@
             sub_btn.innerHTML = form_button_loading;
 
             const data = formToJSON(course_req_form.elements);
+            data.isApi = true;
             console.log("data", data);
             const jdata = JSON.stringify(data);
             console.log("jdata", jdata);
