@@ -1809,7 +1809,7 @@
                 toastr.info('درخواست دوره ثبت شده است، از طریق ایمیل به شما اطلاع رسانی خواهد شد.')
                 setTimeout(() => {
                   sub_btn.innerHTML = form_button_default;
-                }, 4000);
+                }, 5000);
               } else {
                 toastr.options.rtl = true;
                 toastr.options.positionClass = 'toast-top-center';
