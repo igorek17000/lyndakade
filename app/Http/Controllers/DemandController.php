@@ -12,6 +12,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
+use Illuminate\Http\JsonResponse;
 
 class DemandController extends Controller
 {
@@ -60,6 +61,13 @@ class DemandController extends Controller
             ]);
             $d->save();
         } else {
+
+            if ($request->ajax()) {
+                return new JsonResponse([
+                    'message' => 'عنوان و مدرس نیاز است. یا لینک درس را وارد کنید.',
+                    'status' => 'errors',
+                ], 200);
+            }
             return back()->with('errors', 'عنوان و مدرس نیاز است. یا لینک درس را وارد کنید.');
         }
 
@@ -81,6 +89,12 @@ class DemandController extends Controller
         if ($email)
             Mail::to($email)->send(new DemandMailer($d, Auth::user()));
 
+        if ($request->ajax()) {
+            return new JsonResponse([
+                'message' => 'درخواست با موفقیت ثبت شد.',
+                'status' => 'success',
+            ], 200);
+        }
         return redirect()->route('root.home')->with('status', 'درخواست با موفقیت ثبت شد.');
     }
 
