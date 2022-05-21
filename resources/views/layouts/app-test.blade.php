@@ -1781,37 +1781,43 @@
             console.log("data", data);
             const jdata = JSON.stringify(data);
             console.log("jdata", jdata);
-            setTimeout(() => {
+            // setTimeout(() => {
+            //   toastr.options.rtl = true;
+            //   toastr.options.positionClass = 'toast-top-center';
+            //   toastr.info('درخواست دوره ثبت شده است، از طریق ایمیل به شما اطلاع رسانی خواهد شد.')
+            //   course_req_form.reset();
+            //   sub_btn.innerHTML = form_button_done;
+            //   setTimeout(() => {
+            //     sub_btn.innerHTML = form_button_default;
+            //   }, 4000);
+            // }, 2000);
+            (async () => {
+              const rawResponse = await fetch("{{ route('demands.store') }}", {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: jdata
+              });
+              const content = await rawResponse.json();
+              if (content.status == 'success') {
+                course_req_form.reset();
+                sub_btn.innerHTML = form_button_done;
               toastr.options.rtl = true;
               toastr.options.positionClass = 'toast-top-center';
               toastr.info('درخواست دوره ثبت شده است، از طریق ایمیل به شما اطلاع رسانی خواهد شد.')
-              course_req_form.reset();
-              sub_btn.innerHTML = form_button_done;
-              setTimeout(() => {
+                setTimeout(() => {
+                  sub_btn.innerHTML = form_button_default;
+                }, 4000);
+              } else {
+              toastr.options.rtl = true;
+              toastr.options.positionClass = 'toast-top-center';
+              toastr.warning('در ارسال اطلاعات مشکلی رخ داده است، مجددا تلاش کنید.')
                 sub_btn.innerHTML = form_button_default;
-              }, 4000);
-            }, 2000);
-            // (async () => {
-            //   const rawResponse = await fetch("{{ route('dubbed-join.api') }}", {
-            //     method: 'POST',
-            //     headers: {
-            //       'Accept': 'application/json',
-            //       'Content-Type': 'application/json'
-            //     },
-            //     body: jdata
-            //   });
-            //   const content = await rawResponse.json();
-            //   if (content.status == 'success') {
-            //     course_req_form.reset();
-            //     sub_btn.innerHTML = form_button_done;
-            //     setTimeout(() => {
-            //       sub_btn.innerHTML = form_button_default;
-            //     }, 4000);
-            //   } else {
-            //     sub_btn.innerHTML = form_button_default;
-            //   }
-            //   console.log(content);
-            // })();
+              }
+              console.log(content);
+            })();
           });
         }
       }
