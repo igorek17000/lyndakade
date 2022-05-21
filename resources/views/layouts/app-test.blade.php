@@ -1729,14 +1729,14 @@
     }
 
     $(function() {
-      const dub_form_button_default = `<button type="submit" class="btn btn-primary">ارسال</button>`;
-      const dub_form_button_loading = `
+      const form_button_default = `<button type="submit" class="btn btn-primary">ارسال</button>`;
+      const form_button_loading = `
       <button class="btn btn-primary" type="button" disabled>
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         <span class="sr-only">درحال ارسال...</span>
       </button>
       `;
-      const dub_form_button_done = `<button type="button" class="btn btn-success" disabled="">ارسال شد.</button>`;
+      const form_button_done = `<button type="button" class="btn btn-success" disabled="">ارسال شد.</button>`;
 
       const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         data[element.name] = element.value;
@@ -1747,7 +1747,7 @@
         form.addEventListener('submit', (event) => {
           event.preventDefault();
           const sub_btn = document.querySelector('#dubbed-form #dubbed-form-submit');
-          sub_btn.innerHTML = dub_form_button_loading;
+          sub_btn.innerHTML = form_button_loading;
 
           const data = formToJSON(form.elements);
           // console.log(data);
@@ -1766,28 +1766,24 @@
             const content = await rawResponse.json();
             if (content.status == 'success') {
               form.reset();
-              sub_btn.innerHTML = dub_form_button_done;
+              sub_btn.innerHTML = form_button_done;
               setTimeout(() => {
-                sub_btn.innerHTML = dub_form_button_default;
+                sub_btn.innerHTML = form_button_default;
               }, 4000);
             } else {
-              sub_btn.innerHTML = dub_form_button_default;
+              sub_btn.innerHTML = form_button_default;
             }
             console.log(content);
           })();
         });
       }
-      
+
       function prepare_course_req_forms(course_req_form) {
         if (course_req_form) {
           course_req_form.addEventListener('submit', (event) => {
             event.preventDefault();
             const sub_btn = course_req_form.querySelector('button[type="submit"]');
-            sub_btn.innerHTML = `
-            <button class="btn btn-primary" type="button" disabled>
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              <span class="sr-only">درحال ارسال...</span>
-            </button>`;
+            sub_btn.outerHTML = form_button_loading;
 
             const data = formToJSON(course_req_form.elements);
             console.log("data", data);
@@ -1806,12 +1802,12 @@
             //   const content = await rawResponse.json();
             //   if (content.status == 'success') {
             //     course_req_form.reset();
-            //     sub_btn.innerHTML = dub_form_button_done;
+            //     sub_btn.outerHTML = form_button_done;
             //     setTimeout(() => {
-            //       sub_btn.innerHTML = dub_form_button_default;
+            //       sub_btn.outerHTML = form_button_default;
             //     }, 4000);
             //   } else {
-            //     sub_btn.innerHTML = dub_form_button_default;
+            //     sub_btn.outerHTML = form_button_default;
             //   }
             //   console.log(content);
             // })();
