@@ -1184,7 +1184,7 @@
           <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
             <div class="tab-pane fade  show active" id="course-request-link" role="tabpanel"
               aria-labelledby="course-request-link-tab">
-              <form id="method-2" method="POST" action="{{ route('demands.store') }}">
+              <form id="course-request-method-2" method="POST" action="{{ route('demands.store') }}">
                 @csrf
                 <div class="form-group row">
                   <label for="link" class="col-md-4 col-form-label text-md-left">لینک درس در لینکدین</label>
@@ -1209,7 +1209,7 @@
             </div>
             <div class="tab-pane fade" id="course-request-author" role="tabpanel"
               aria-labelledby="course-request-author-tab">
-              <form id="method-1" method="POST" action="{{ route('demands.store') }}">
+              <form id="course-request-method-1" method="POST" action="{{ route('demands.store') }}">
                 @csrf
                 <div class="form-group row">
                   <label for="title" class="col-md-4 col-form-label text-md-left">نام درس</label>
@@ -1673,12 +1673,18 @@
           type: btn.type,
           size: Number(btn.size)
         }],
-        tracks: [{
+        tracks: (btn.dubbed == "1") ? [] : [{
           kind: 'captions',
           label: btn.trackLabel,
           srclang: btn.trackSrclang,
           src: btn.trackSrc,
           default: true,
+        }, {
+          kind: 'captions',
+          label: btn.trackLabelEng,
+          srclang: btn.trackSrclangEng,
+          src: btn.trackSrcEng,
+          default: false,
         }, ],
         poster: btn.poster
       };
@@ -1775,11 +1781,48 @@
 
 
     $(function() {
-      document.querySelectorAll('#course-request-modal form').forEach((course_req_form) => {
-        console.log(course_req_form);
-        console.log(course_req_form.data);
-        return false
-      });
+      function prepare_course_req_forms(course_req_form) {
+        if (course_req_form) {
+          course_req_form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const sub_btn = course_req_form.querySelector('button[type="submit"]');
+            sub_btn.innerHTML = `
+            <button class="btn btn-primary" type="button" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span class="sr-only">درحال ارسال...</span>
+            </button>`;
+
+            const data = formToJSON(course_req_form.elements);
+            console.log("data", data);
+            const jdata = JSON.stringify(data);
+            console.log("jdata", jdata);
+
+            // (async () => {
+            //   const rawResponse = await fetch("{{ route('dubbed-join.api') }}", {
+            //     method: 'POST',
+            //     headers: {
+            //       'Accept': 'application/json',
+            //       'Content-Type': 'application/json'
+            //     },
+            //     body: jdata
+            //   });
+            //   const content = await rawResponse.json();
+            //   if (content.status == 'success') {
+            //     course_req_form.reset();
+            //     sub_btn.innerHTML = dub_form_button_done;
+            //     setTimeout(() => {
+            //       sub_btn.innerHTML = dub_form_button_default;
+            //     }, 4000);
+            //   } else {
+            //     sub_btn.innerHTML = dub_form_button_default;
+            //   }
+            //   console.log(content);
+            // })();
+          });
+        }
+      }
+      prepare_course_req_forms(document.forms['course-request-method-1']);
+      prepare_course_req_forms(document.forms['course-request-method-2']);
     });
   </script>
   @if (Auth::check())
