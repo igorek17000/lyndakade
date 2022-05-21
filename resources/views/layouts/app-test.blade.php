@@ -1804,16 +1804,16 @@
               if (content.status == 'success') {
                 course_req_form.reset();
                 sub_btn.innerHTML = form_button_done;
-              toastr.options.rtl = true;
-              toastr.options.positionClass = 'toast-top-center';
-              toastr.info('درخواست دوره ثبت شده است، از طریق ایمیل به شما اطلاع رسانی خواهد شد.')
+                toastr.options.rtl = true;
+                toastr.options.positionClass = 'toast-top-center';
+                toastr.info('درخواست دوره ثبت شده است، از طریق ایمیل به شما اطلاع رسانی خواهد شد.')
                 setTimeout(() => {
                   sub_btn.innerHTML = form_button_default;
                 }, 4000);
               } else {
-              toastr.options.rtl = true;
-              toastr.options.positionClass = 'toast-top-center';
-              toastr.warning('در ارسال اطلاعات مشکلی رخ داده است، مجددا تلاش کنید.')
+                toastr.options.rtl = true;
+                toastr.options.positionClass = 'toast-top-center';
+                toastr.warning('در ارسال اطلاعات مشکلی رخ داده است، مجددا تلاش کنید.')
                 sub_btn.innerHTML = form_button_default;
               }
               console.log(content);

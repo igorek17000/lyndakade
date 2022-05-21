@@ -55,7 +55,7 @@ class LearnPathController extends Controller
         $lib = Library::firstWhere('slug', $learn_path_slug);
         if ($lib) {
             $libraries = Library::with(['paths'])->get();
-            return view('learn_paths.index', [
+            return view('learn_paths.index-new', [
                 'libraries' => $libraries,
                 'selected_library' => $learn_path_slug,
             ]);
