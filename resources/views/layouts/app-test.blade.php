@@ -1198,12 +1198,8 @@
                     @enderror
                   </div>
                 </div>
-                <div class="form-group row mb-0">
-                  <div class="col-md-6 col-xs-6 col-sm-6">
-                    <button type="submit" class="btn btn-success my-2">
-                      ثبت درخواست
-                    </button>
-                  </div>
+                <div class="form-group text-center m-0">
+                  <button type="submit" class="btn btn-primary">ارسال</button>
                 </div>
               </form>
             </div>
@@ -1235,12 +1231,8 @@
                     @enderror
                   </div>
                 </div>
-                <div class="form-group row mb-0">
-                  <div class="col-md-6">
-                    <button type="submit" class="btn btn-success my-2">
-                      ثبت درخواست
-                    </button>
-                  </div>
+                <div class="form-group text-center m-0">
+                  <button type="submit" class="btn btn-primary">ارسال</button>
                 </div>
               </form>
             </div>
