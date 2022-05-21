@@ -30,6 +30,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="ahrefs-site-verification" content="aa83e5ce5c77eea3020a703c0314d147b6de80f758c8bf3e24a3aefc9d48a47c">
 
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SB27JF9C9Y"></script>
   <script>
@@ -114,6 +115,8 @@
     integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{{ mix('js/all.js') }}"></script>
+
+  {!! NoCaptcha::renderJs() !!}
 
   @yield('script_head')
   @stack('css_head')
@@ -948,13 +951,18 @@
               }
 
             @endphp
-            <a class="nav-link btn btn-outline-primary" rel="nofollow"
-              href="{{ $login_link }}">{{ __('msg.Login') }}</a>
+            {{-- <a class="nav-link btn btn-outline-primary" rel="nofollow"
+              href="{{ $login_link }}">{{ __('msg.Login') }}</a> --}}
+            <a class="nav-link btn btn-outline-primary" rel="nofollow" href="" data-toggle="modal"
+              data-target="#login-register-modal" onclick="(()=>{document.querySelector('#login-register-modal-login-tab').click();})()">{{ __('msg.Login') }}</a>
+
           </div>
           @if (Route::has('register'))
             <div class="nav-item">
-              <a class="nav-link btn btn-outline-primary" style="background-color: #008cc9;"
-                href="{{ route('register') }}">{{ __('msg.Register') }}</a>
+              {{-- <a class="nav-link btn btn-outline-primary" style="background-color: #008cc9;"
+                href="{{ route('register') }}">{{ __('msg.Register') }}</a> --}}
+              <a class="nav-link btn btn-outline-primary" style="background-color: #008cc9;" href="" data-toggle="modal"
+                data-target="#login-register-modal" onclick="(()=>{document.querySelector('#login-register-modal-register-tab').click();})()">{{ __('msg.Register') }}</a>
             </div>
           @endif
         @endif
@@ -1163,6 +1171,246 @@
       </div>
     </div>
   </div>
+
+
+  <div class="modal fade" id="login-register-modal" tabindex="-1" role="dialog"
+    aria-labelledby="login-register-modal-title" aria-hidden="true" style="background-color: #444c;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content text-center">
+        <div class="modal-body p-0" id="login-register-modal-body">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="login-register-modal-login-tab" data-toggle="tab"
+                href="#login-register-modal-login" role="tab" aria-controls="login-register-modal-login"
+                aria-selected="true">
+                فرم ورود به حساب کاربری
+              </a>
+              <a class="nav-item nav-link" id="login-register-modal-register-tab" data-toggle="tab"
+                href="#login-register-modal-register" role="tab" aria-controls="login-register-modal-register"
+                aria-selected="true">
+                فرم ثبت نام
+              </a>
+            </div>
+          </nav>
+          <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+            <div class="tab-pane fade  show active" id="login-register-modal-login" role="tabpanel"
+              aria-labelledby="login-register-modal-login-tab">
+              <form method="POST" action="{{ route('login') }}">
+                @csrf
+                @if (request()->has('returnUrl'))
+                  <input type="hidden" name="returnUrl" value="{{ request()->get('returnUrl') }}" />
+                @endif
+                <div class="form-group row">
+                  <label for="username" class="col-md-4 col-form-label text-md-left">
+                    آدرس ایمیل یا نام کاربری
+                  </label>
+                  <div class="col-md-6">
+                    <input id="username" type="text"
+                      class="form-control text-md-right @error('username') is-invalid @enderror" name="username"
+                      value="{{ old('username') }}" required autocomplete="username" autofocus>
+                    @error('username')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ __($message) }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="password"
+                    class="col-md-4 col-form-label text-md-left">{{ __('msg.Password') }}</label>
+                  <div class="col-md-6">
+                    <input id="password" type="password"
+                      class="form-control text-md-right @error('password') is-invalid @enderror" name="password"
+                      required autocomplete="current-password">
+                    @error('password')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ __($message) }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-6 offset-md-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                        {{ old('remember') ? 'checked' : '' }}>
+                      <label class="form-check-label" for="remember">
+                        {{ __('msg.Remember Me') }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row mb-0">
+                  <div class="col-md-8 offset-md-4">
+                    <button type="submit" class="btn btn-primary">
+                      {{ __('msg.Login') }}
+                    </button>
+                    @if (Route::has('password.request'))
+                      <a class="btn btn-link" href="{{ route('password.request') }}">
+                        {{ __('msg.Forgot Your Password?') }}
+                      </a>
+                    @endif
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="login-register-modal-register" role="tabpanel"
+              aria-labelledby="login-register-modal-register-tab">
+              <form method="POST" action="{{ route('register') }}">
+                @csrf
+
+                <div class="form-group row">
+                  <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('msg.Name') }}</label>
+
+                  <div class="col-md-8 col-lg-6">
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                      value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                    @error('name')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ __($message) }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="firstName"
+                    class="col-md-4 col-form-label text-md-left">{{ __('msg.FirstName') }}</label>
+
+                  <div class="col-md-8 col-lg-6">
+                    <input id="firstName" type="text" class="form-control @error('firstName') is-invalid @enderror"
+                      name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName">
+
+                    @error('firstName')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ __($message) }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="lastName"
+                    class="col-md-4 col-form-label text-md-left">{{ __('msg.LastName') }}</label>
+
+                  <div class="col-md-8 col-lg-6">
+                    <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror"
+                      name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName">
+
+                    @error('lastName')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ __($message) }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="mobile" class="col-md-4 col-form-label text-md-left">{{ __('msg.Mobile') }}</label>
+
+                  <div class="col-md-8 col-lg-6">
+                    <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror"
+                      name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile">
+
+                    @error('mobile')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ __($message) }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="username"
+                    class="col-md-4 col-form-label text-md-left">{{ __('msg.UserName') }}</label>
+
+                  <div class="col-md-8 col-lg-6">
+                    <input id="username" type="text"
+                      class="form-control text-md-right @error('username') is-invalid @enderror" name="username"
+                      value="{{ old('username') }}" required autocomplete="username">
+
+                    @error('username')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ __($message) }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="email"
+                    class="col-md-4 col-form-label text-md-left">{{ __('msg.E-Mail Address') }}</label>
+
+                  <div class="col-md-8 col-lg-6">
+                    <input id="email" type="email"
+                      class="form-control text-md-right @error('email') is-invalid @enderror" name="email"
+                      value="{{ old('email') }}" required autocomplete="email">
+                    <small class="form-text text-muted">
+                      لطفا از درستی آدرس ایمیل خود اطمینان حاصل نمایید، زیرا در صورت بروز رسانی دوره های خریداری شده
+                      شما،
+                      اطلاعیه بروزرسانی به ایمیل شما ارسال خواهد شد، که میتوانید آن را رایگان دانلود کنید.
+                    </small>
+                    @error('email')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ __($message) }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="password"
+                    class="col-md-4 col-form-label text-md-left">{{ __('msg.Password') }}</label>
+
+                  <div class="col-md-8 col-lg-6">
+                    <input id="password" type="password"
+                      class="form-control text-md-right @error('password') is-invalid @enderror" name="password"
+                      required autocomplete="new-password">
+
+                    @error('password')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ __($message) }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="password-confirm"
+                    class="col-md-4 col-form-label text-md-left">{{ __('msg.Confirm Password') }}</label>
+
+                  <div class="col-md-8 col-lg-6">
+                    <input id="password-confirm" type="password" class="form-control text-md-right"
+                      name="password_confirmation" required autocomplete="new-password">
+                  </div>
+                </div>
+
+                <div
+                  class="form-group row text-center {{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                  <div class="col-md-12 col-lg-8 align-self-center">
+                    {!! app('captcha')->display() !!}
+                    @if ($errors->has('g-recaptcha-response'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                      </span>
+                    @endif
+                  </div>
+                </div>
+                <div class="form-group row mb-0">
+                  <div class="col-md-8 col-lg-6 offset-md-4">
+                    <button type="submit" class="btn btn-primary">
+                      {{ __('msg.Register') }}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="modal fade" id="course-request-modal" tabindex="-1" role="dialog"
     aria-labelledby="course-request-modal-title" aria-hidden="true" style="background-color: #444c;">
@@ -1836,7 +2084,7 @@
                 toastr.warning('در ارسال اطلاعات مشکلی رخ داده است، مجددا تلاش کنید.')
                 sub_btn.innerHTML = form_button_default;
               }
-            //   console.log(content);
+              //   console.log(content);
             })();
           });
         }
