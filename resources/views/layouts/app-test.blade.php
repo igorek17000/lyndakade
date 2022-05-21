@@ -1777,10 +1777,7 @@
           })();
         });
       }
-    });
-
-
-    $(function() {
+      
       function prepare_course_req_forms(course_req_form) {
         if (course_req_form) {
           course_req_form.addEventListener('submit', (event) => {
