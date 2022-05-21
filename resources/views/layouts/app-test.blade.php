@@ -1774,7 +1774,7 @@
         if (course_req_form) {
           course_req_form.addEventListener('submit', (event) => {
             event.preventDefault();
-            const sub_btn = course_req_form.querySelector('button[type="submit"]');
+            const sub_btn = course_req_form.querySelector('button[type="submit"]').parentElement;
             sub_btn.innerHTML = form_button_loading;
 
             const data = formToJSON(course_req_form.elements);
