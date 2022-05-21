@@ -1789,7 +1789,13 @@
             console.log("data", data);
             const jdata = JSON.stringify(data);
             console.log("jdata", jdata);
-
+            setTimeout(() => {
+              course_req_form.reset();
+              sub_btn.outerHTML = form_button_done;
+                setTimeout(() => {
+                  sub_btn.outerHTML = form_button_default;
+                }, 4000);
+            }, 2000);
             // (async () => {
             //   const rawResponse = await fetch("{{ route('dubbed-join.api') }}", {
             //     method: 'POST',
