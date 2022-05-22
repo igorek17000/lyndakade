@@ -1197,7 +1197,7 @@
           <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
             <div class="tab-pane fade  show active" id="login-register-modal-login" role="tabpanel"
               aria-labelledby="login-register-modal-login-tab">
-              <form id="login-modal-form" method="POST" action="{{ route('login') }}">
+              <form id="login-modal-form" method="POST" action="{{ route('login') }}" class="container-fluid">
                 @csrf
                 @if (request()->has('returnUrl'))
                   <input type="hidden" name="returnUrl" value="{{ request()->get('returnUrl') }}" />
@@ -1206,7 +1206,7 @@
                   <label for="username" class="col-md-4 col-form-label text-md-left">
                     آدرس ایمیل یا نام کاربری
                   </label>
-                  <div class="col-md-6">
+                  <div class="col-md-5">
                     <input id="username" type="text"
                       class="form-control text-md-right @error('username') is-invalid @enderror" name="username"
                       value="{{ old('username') }}" required autocomplete="username" autofocus>
@@ -1220,7 +1220,7 @@
                 <div class="form-group row">
                   <label for="password"
                     class="col-md-4 col-form-label text-md-left">{{ __('msg.Password') }}</label>
-                  <div class="col-md-6">
+                  <div class="col-md-5">
                     <input id="password" type="password"
                       class="form-control text-md-right @error('password') is-invalid @enderror" name="password"
                       required autocomplete="current-password">
@@ -1232,7 +1232,7 @@
                   </div>
                 </div>
                 <div class="form-group row">
-                  <div class="col-md-6 offset-md-4">
+                  <div class="col-md-12">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" name="remember" id="remember"
                         {{ old('remember') ? 'checked' : '' }}>
@@ -1243,7 +1243,7 @@
                   </div>
                 </div>
                 <div class="form-group row mb-0">
-                  <div class="col-md-8 offset-md-4">
+                  <div class="col-md-12">
                     <button type="submit" class="btn btn-primary">
                       {{ __('msg.Login') }}
                     </button>
@@ -1258,7 +1258,7 @@
             </div>
             <div class="tab-pane fade" id="login-register-modal-register" role="tabpanel"
               aria-labelledby="login-register-modal-register-tab">
-              <form id="register-modal-form" method="POST" action="{{ route('register') }}">
+              <form id="register-modal-form" method="POST" action="{{ route('register') }}" class="container-fluid">
                 @csrf
 
                 <div class="form-group row">
