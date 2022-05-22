@@ -3,7 +3,7 @@
   @include('meta::manager',[
   'image' => 'https://lyndakade.ir/image/logo.png',
   'title' => 'پنل دوبله من - لیندا کده',
-  'keywords' => get_seo_keywords() . ' , پنل دوبله من , my dubbed pandel, dubbed panel',
+  'keywords' => get_seo_keywords() . ' , پنل دوبله من , my dubbed panel, dubbed panel',
   'description' => 'پنل دوبله من | ' . get_seo_description(),
   ])
 @endpush
