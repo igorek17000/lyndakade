@@ -1321,8 +1321,8 @@
                   <div class="col-md-6 col-sm-12">
                     <label for="username">{{ __('msg.UserName') }}</label>
                     <input type="text"
-                      class="register-username-modal form-control text-md-right @error('username') is-invalid @enderror" name="username"
-                      value="{{ old('username') }}" required autocomplete="username">
+                      class="register-username-modal form-control text-md-right @error('username') is-invalid @enderror"
+                      name="username" value="{{ old('username') }}" required autocomplete="username">
 
                     @error('username')
                       <span class="invalid-feedback" role="alert">
@@ -1335,8 +1335,8 @@
                   <div class="col-md-6 col-sm-12">
                     <label for="email">{{ __('msg.E-Mail Address') }}</label>
                     <input id="email" type="email"
-                      class="register-email-modal form-control text-md-right @error('email') is-invalid @enderror" name="email"
-                      value="{{ old('email') }}" required autocomplete="email">
+                      class="register-email-modal form-control text-md-right @error('email') is-invalid @enderror"
+                      name="email" value="{{ old('email') }}" required autocomplete="email">
                     <small class="form-text text-muted">
                       لطفا از درستی آدرس ایمیل خود اطمینان حاصل نمایید، زیرا در صورت بروز رسانی دوره های خریداری شده
                       شما،
@@ -1354,9 +1354,8 @@
                   <div class="col-md-6 col-sm-12">
                     <label for="password">{{ __('msg.Password') }}</label>
 
-                    <input type="password"
-                      class="form-control text-md-right @error('password') is-invalid @enderror" name="password"
-                      required autocomplete="new-password">
+                    <input type="password" class="form-control text-md-right @error('password') is-invalid @enderror"
+                      name="password" required autocomplete="new-password">
 
                     @error('password')
                       <span class="invalid-feedback" role="alert">
@@ -2154,7 +2153,9 @@
       prepare_login_register_forms(document.forms['login-modal-form']);
 
       var username_email_keyup = (event) => {
-        console.log(event.target, event.target.getAttribute('id'));
+        let target = event.target,
+          targetName = event.target.getAttribute('name');
+        console.log(target, targetName);
       }
       $(document).on('keyup', '.register-username-modal', username_email_keyup);
       $(document).on('keyup', '.register-email-modal', username_email_keyup);
