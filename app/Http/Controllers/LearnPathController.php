@@ -50,15 +50,18 @@ class LearnPathController extends Controller
      * @param $learn_path_slug
      * @return Factory|RedirectResponse|Response|View
      */
-    public function show($learn_path_slug)
+    public function show(Request $request, $learn_path_slug)
     {
         $lib = Library::firstWhere('slug', $learn_path_slug);
         if ($lib) {
-            $libraries = Library::with(['paths'])->get();
-            return view('learn_paths.index-new', [
-                'libraries' => $libraries,
-                'selected_library' => $learn_path_slug,
-            ]);
+            // $libraries = Library::with(['paths'])->get();
+            return redirect('/');
+            // $cat_id = $request->get('category_id', 7);
+            // $categories = Category::with(['paths'])->get();
+            // return view('learn_paths.index-new', [
+            //     'categories' => $categories,
+            //     'selected_category_id' => $cat_id,
+            // ]);
         }
 
         $path = LearnPath::where('slug', $learn_path_slug)
