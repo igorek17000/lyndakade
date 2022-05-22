@@ -1373,7 +1373,7 @@
                   </div>
 
                 </div>
-                <div class="form-group row">
+                <div class="form-group row mb-0">
                   <div
                     class="col-md-12 align-self-center {{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
                     {!! app('captcha')->display() !!}
