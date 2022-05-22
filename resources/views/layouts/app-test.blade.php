@@ -1240,6 +1240,11 @@
                         {{ __('msg.Remember Me') }}
                       </label>
                     </div>
+                    @if (Route::has('password.request'))
+                      <a class="btn btn-link" href="{{ route('password.request') }}">
+                        {{ __('msg.Forgot Your Password?') }}
+                      </a>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group row mb-0">
@@ -1247,11 +1252,6 @@
                     <button type="submit" class="btn btn-primary">
                       {{ __('msg.Login') }}
                     </button>
-                    @if (Route::has('password.request'))
-                      <a class="btn btn-link" href="{{ route('password.request') }}">
-                        {{ __('msg.Forgot Your Password?') }}
-                      </a>
-                    @endif
                   </div>
                 </div>
               </form>
@@ -2129,14 +2129,15 @@
                 sub_btn.innerHTML = form_button_done;
                 toastr.options.rtl = true;
                 toastr.options.positionClass = 'toast-top-center';
-                toastr.info(msg)
+                toastr.info(content.message)
                 setTimeout(() => {
                   window.location.reload();
                 }, 1000);
               } else {
                 toastr.options.rtl = true;
                 toastr.options.positionClass = 'toast-top-center';
-                toastr.warning('در ارسال اطلاعات مشکلی رخ داده است، مجددا تلاش کنید.')
+                // toastr.warning('در ارسال اطلاعات مشکلی رخ داده است، مجددا تلاش کنید.')
+                toastr.warning(content.message);
                 sub_btn.innerHTML = form_button_default;
                 if (isRegisterForm) {
                   login_register_form.querySelector('button[type="submit"]').textContent = 'ثبت نام';
