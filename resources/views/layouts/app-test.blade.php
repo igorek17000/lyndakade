@@ -2154,8 +2154,9 @@
 
       var username_email_keyup = (event) => {
         let target = event.target,
-          targetName = event.target.getAttribute('name');
-        console.log(target, targetName);
+          targetName = target.getAttribute('name'),
+          targetValue = target.value;
+        console.log(target, targetName, targetValue);
       }
       $(document).on('keyup', '.register-username-modal', username_email_keyup);
       $(document).on('keyup', '.register-email-modal', username_email_keyup);
