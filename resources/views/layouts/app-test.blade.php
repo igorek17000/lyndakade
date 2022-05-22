@@ -1321,7 +1321,7 @@
                   <div class="col-md-6 col-sm-12">
                     <label for="username">{{ __('msg.UserName') }}</label>
                     <input id="username" type="text"
-                      class="form-control text-md-right @error('username') is-invalid @enderror" name="username"
+                      class="register-username-modal form-control text-md-right @error('username') is-invalid @enderror" name="username"
                       value="{{ old('username') }}" required autocomplete="username">
 
                     @error('username')
@@ -1335,7 +1335,7 @@
                   <div class="col-md-6 col-sm-12">
                     <label for="email">{{ __('msg.E-Mail Address') }}</label>
                     <input id="email" type="email"
-                      class="form-control text-md-right @error('email') is-invalid @enderror" name="email"
+                      class="register-email-modal form-control text-md-right @error('email') is-invalid @enderror" name="email"
                       value="{{ old('email') }}" required autocomplete="email">
                     <small class="form-text text-muted">
                       لطفا از درستی آدرس ایمیل خود اطمینان حاصل نمایید، زیرا در صورت بروز رسانی دوره های خریداری شده
@@ -2152,6 +2152,12 @@
       }
       prepare_login_register_forms(document.forms['register-modal-form']);
       prepare_login_register_forms(document.forms['login-modal-form']);
+
+      var username_email_keyup = (event) => {
+        console.log(event.target, event.target.getAttribute('id'));
+      }
+      $(document).on('keyup', '.register-username-modal', username_email_keyup);
+      $(document).on('keyup', '.register-email-modal', username_email_keyup);
     });
   </script>
   @if (Auth::check())
