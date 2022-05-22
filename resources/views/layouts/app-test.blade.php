@@ -1288,6 +1288,8 @@
                     @enderror
                   </div>
 
+                </div>
+                <div class="form-group row">
                   <div class="col-md-6 col-sm-12">
                     <label for="lastName">{{ __('msg.LastName') }}</label>
                     <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror"
@@ -1313,6 +1315,8 @@
                     @enderror
                   </div>
 
+                </div>
+                <div class="form-group row">
 
                   <div class="col-md-6 col-sm-12">
                     <label for="username">{{ __('msg.UserName') }}</label>
@@ -1345,6 +1349,8 @@
                     @enderror
                   </div>
 
+                </div>
+                <div class="form-group row">
                   <div class="col-md-6 col-sm-12">
                     <label for="password">{{ __('msg.Password') }}</label>
 
@@ -1366,6 +1372,8 @@
                       name="password_confirmation" required autocomplete="new-password">
                   </div>
 
+                </div>
+                <div class="form-group row">
                   <div
                     class="col-md-12 align-self-center {{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
                     {!! app('captcha')->display() !!}
