@@ -1320,7 +1320,7 @@
 
                   <div class="col-md-6 col-sm-12">
                     <label for="username">{{ __('msg.UserName') }}</label>
-                    <input id="username" type="text"
+                    <input type="text"
                       class="register-username-modal form-control text-md-right @error('username') is-invalid @enderror" name="username"
                       value="{{ old('username') }}" required autocomplete="username">
 
@@ -1354,7 +1354,7 @@
                   <div class="col-md-6 col-sm-12">
                     <label for="password">{{ __('msg.Password') }}</label>
 
-                    <input id="password" type="password"
+                    <input type="password"
                       class="form-control text-md-right @error('password') is-invalid @enderror" name="password"
                       required autocomplete="new-password">
 
