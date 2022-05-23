@@ -41,9 +41,9 @@
                 @foreach ($factors as $factor)
                   <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td class="text-center">{{ $factor->week_number }}</td>
+                    <td class="text-center">{{ nPersian($factor->week_number) }}</td>
                     <td class="text-center">{{ nPersian($factor->total_minutes, false) }}</td>
-                    <td class="text-center">{{ $factor->courses_id }}</td>
+                    <td class="text-center">{{ nPersian($factor->courses_id) }}</td>
                     <td class="text-center">{{ nPersian($factor->price) }}</td>
                   </tr>
                 @endforeach
@@ -73,7 +73,7 @@
                 @foreach ($invoices as $invoice)
                   <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $invoice->created_at }}</td>
+                    <td>{{ nPersian($invoice->created_at) }}</td>
                     <td>{{ nPersian($invoice->price) }} تومان</td>
                   </tr>
                 @endforeach
