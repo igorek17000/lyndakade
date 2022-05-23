@@ -150,7 +150,7 @@ class UserController extends Controller
 
     public function dubbedCourses(Request $request)
     {
-        // $factor_invoice_data = prepare_dubbed_panel_data_for_user(auth()->user());
+        $factor_invoice_data = prepare_dubbed_panel_data_for_user(auth()->user());
 
         // return view('users.dubbed-courses', [
         //     'invoices' => auth()->user()->invoices,
