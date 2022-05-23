@@ -59,7 +59,7 @@ function prepare_dubbed_panel_data_for_user($user = null)
             $price_cent = ($next_price - $current_price) * $remaining_minutes_percentage;
             $price_per_hours = $current_price + $price_cent;
         }
-        $f->price = ($minutes / 60) * $price_per_hours;
+        $f->price = intval(($minutes / 60) * $price_per_hours / 1000) * 1000;
         $fs[] = $f;
     }
     $factors = collect($fs);
