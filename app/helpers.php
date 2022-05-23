@@ -50,6 +50,8 @@ function prepare_dubbed_panel_data_for_user($user = null)
     $factors_by_weeks_result = DB::select("
     SELECT
         WEEK(end_date) week_number,
+        start_date,
+        end_date,
         minutes,
         course_id
     FROM dubbed_course_factors
