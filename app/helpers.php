@@ -29,7 +29,7 @@ function prepare_dubbed_panel_data_for_user($user = null)
     $fs = [];
     foreach ($factors as $f) {
         $price_list = explode(",", $f->base_prices);
-        $minutes = $f->minutes;
+        $minutes = $f->total_minutes;
 
         $f->price = 0;
         $fs[] = $f;
