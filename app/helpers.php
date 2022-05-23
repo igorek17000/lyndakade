@@ -30,8 +30,8 @@ function prepare_dubbed_panel_data_for_user($user = null)
     foreach ($factors as $f) {
         $price_list = explode(",", $f->base_prices);
         $minutes = $f->minutes;
-        
-        $f->price =
+
+        // $f->price =
     }
     dd($factors[0]->start_date, $factors, $invoices);
 
