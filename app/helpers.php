@@ -57,7 +57,6 @@ function prepare_dubbed_panel_data_for_user($user = null)
         end_date >= DATE_SUB(NOW(), INTERVAL 5 WEEK)
             AND
         user_id = $user->id
-    GROUP BY WEEK(end_date)
     ORDER BY end_date;");
 
     dd($factors_by_weeks_result, (object)([]));
