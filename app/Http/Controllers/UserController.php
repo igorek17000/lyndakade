@@ -157,6 +157,7 @@ class UserController extends Controller
             'factors' => $data['factors'],
             'total_received' => $data['total_received'],
             'total_balance' => $data['total_balance'],
+            'total_income' => $data['total_income'],
         ]);
 
         $courses = auth()->user()->courses;

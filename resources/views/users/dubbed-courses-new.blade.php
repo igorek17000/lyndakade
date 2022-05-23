@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @push('meta.in.head')
-  @include('meta::manager',[
-  'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => 'پنل دوبله من - لیندا کده',
-  'keywords' => get_seo_keywords() . ' , پنل دوبله من , my dubbed panel, dubbed panel',
-  'description' => 'پنل دوبله من | ' . get_seo_description(),
+  @include('meta::manager', [
+      'image' => 'https://lyndakade.ir/image/logo.png',
+      'title' => 'پنل دوبله من - لیندا کده',
+      'keywords' => get_seo_keywords() . ' , پنل دوبله من , my dubbed panel, dubbed panel',
+      'description' => 'پنل دوبله من | ' . get_seo_description(),
   ])
 @endpush
 @push('css_head')
@@ -31,39 +31,25 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">نام دوره آموزشی</th>
-                  <th scope="col">مبلغ دوره</th>
-                  <th scope="col" class="hidden-xs">تعداد خرید دوره</th>
-                  <th scope="col" class="hidden-xs">جمع کل خرید دوره</th>
-                  <th scope="col" class="hidden-xs">تعداد خرید دوره از طریق اشتراک</th>
-                  <th scope="col" class="hidden-xs">جمع کل خرید دوره از طریق اشتراک</th>
-
-                  <th scope="col" class="show-xs" >جمع کل خرید دوره</th>
+                  <th scope="col">شماره هفته</th>
+                  <th scope="col">مجموع دقایق</th>
+                  <th scope="col">کد دوره(های) آموزشی</th>
+                  <th scope="col">میزان دستمزد</th>
                 </tr>
               </thead>
               <tbody>
-
-                {{-- @foreach ($courses as $course)
+                @foreach ($factors as $factor)
                   <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td><a href="{{ $course->link }}">{{ $course->title }}</a></td>
-                    <td class="text-center">{{ $course->price }} تومان</td>
-                    <td class="text-center hidden-xs">{{ $course->course_total_purchase }}</td>
-                    <td class="text-center hidden-xs">{{ $course->balance_purchase }} تومان</td>
-                    <td class="text-center hidden-xs">{{ $course->course_total_unlocked }}</td>
-                    <td class="text-center hidden-xs">{{ $course->balance_unlocked }} تومان</td>
-
-                    <td class="text-center show-xs">{{ $course->balance_unlocked + $course->balance_purchase }} تومان</td>
-
+                    <td class="text-center">{{ $factor->week_number }}</td>
+                    <td class="text-center">{{ nPersian($factor->total_minutes, false) }}</td>
+                    <td class="text-center">{{ $factor->courses_id }}</td>
+                    <td class="text-center">{{ nPersian($factor->price) }}</td>
                   </tr>
-                @endforeach --}}
+                @endforeach
                 <tr>
-                  <th scope="row" colspan="2" class="text-center">جمع کل تسویه شده</th>
-                  <td colspan="5" class="text-center">{{ $total_received }} تومان</td>
-                </tr>
-                <tr>
-                  <th scope="row" colspan="2" class="text-center">جمع مبلغ قابل برداشت</th>
-                  <td colspan="5" class="text-center">{{ $total_balance }} تومان</td>
+                  <th scope="row" colspan="2" class="text-center">جمع کل</th>
+                  <td colspan="3" class="text-center">{{ nPersian($total_income) }} تومان</td>
                 </tr>
               </tbody>
             </table>
@@ -88,12 +74,12 @@
                   <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $invoice->created_at }}</td>
-                    <td>{{ $invoice->price }} تومان</td>
+                    <td>{{ nPersian($invoice->price) }} تومان</td>
                   </tr>
                 @endforeach
                 <tr>
                   <th scope="row" colspan="2" class="text-center">جمع کل</th>
-                  <td class="text-center">{{ $total_received }} تومان</td>
+                  <td class="text-center">{{ nPersian($total_received) }} تومان</td>
                 </tr>
               </tbody>
             </table>

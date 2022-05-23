@@ -70,6 +70,7 @@ function prepare_dubbed_panel_data_for_user($user = null)
         'factors' => $factors,
         'invoices' => $invoices,
         'total_received' => $total_received,
+        'total_income' => $total_balance,
         'total_balance' => $total_balance - $total_received,
     ];
 
@@ -334,10 +335,10 @@ function package_price_discount($pack, $discount_code)
     return $pack->price;
 }
 
-function nPersian($string)
+function nPersian($string, $use_number_format = true)
 {
     $string = strval($string);
-    if (is_numeric($string)) {
+    if (is_numeric($string) && $use_number_format) {
         $string = number_format($string);
     }
 
