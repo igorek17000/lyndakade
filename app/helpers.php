@@ -49,7 +49,7 @@ function prepare_dubbed_panel_data_for_user($user = null)
     // $week_end = \Carbon\Carbon::now()->startOfWeek()->subWeeks()->endOfWeek();
     $factors_by_weeks_result = DB::select("
     SELECT
-        WEEK(end_date) week_number,
+        concat(YEAR(end_date), ' - week ', WEEK(end_date)) week_number,
         start_date,
         end_date,
         minutes,
