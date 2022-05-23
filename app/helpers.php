@@ -44,7 +44,7 @@ function prepare_dubbed_panel_data_for_user($user = null)
     }
     $factors = $user->factors();
     $invoices = $user->invoices;
-    dd($factors, $invoices);
+    dd($factors[0]->start_date, $factors, $invoices);
 
     // $week_start = \Carbon\Carbon::now()->startOfWeek()->subWeeks();
     // $week_end = \Carbon\Carbon::now()->startOfWeek()->subWeeks()->endOfWeek();
