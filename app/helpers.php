@@ -21,6 +21,23 @@ use Illuminate\Support\Facades\Storage;
 
 function prepare_dubbed_panel_data_for_user($user = null)
 {
+    $price_list = [
+        100000,
+        100000,
+        100000,
+        125000,
+        150000,
+        155000,
+        160000,
+        165000,
+        170000,
+        175000,
+        180000,
+        185000,
+        190000,
+        195000,
+        200000
+    ];
     if ($user == null) {
         $user = auth()->user();
     }
@@ -28,10 +45,21 @@ function prepare_dubbed_panel_data_for_user($user = null)
     $invoices = $user->invoices;
     $fs = [];
     foreach ($factors as $f) {
-        $price_list = explode(",", $f->base_prices);
+        // $price_list = explode(",", $f->base_prices);
         $minutes = $f->total_minutes;
-
-        $f->price = 0;
+        $hours = intval($minutes / 60);
+        $remaining_minutes_percentage = ($minutes / 60) - intval($minutes / 60);
+        if (count($price_list) <= $hours) {
+            $price_per_hours = max($price_list);
+        } else if ($hours == 0) {
+            $price_per_hours = min($price_list);
+        } else {
+            $current_price = $price_list[$hours - 1];
+            $next_price = $price_list[$hours];
+            $price_cent = ($next_price - $current_price) * $remaining_minutes_percentage;
+            $price_per_hours = $current_price + $price_cent;
+        }
+        $f->price = ($minutes / 60) * $price_per_hours;
         $fs[] = $f;
     }
     $factors = collect($fs);
