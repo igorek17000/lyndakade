@@ -42,7 +42,7 @@ function prepare_dubbed_panel_data_for_user($user = null)
     if ($user == null) {
         $user = auth()->user();
     }
-    $factors = $user->factors;
+    $factors = $user->factors();
     $invoices = $user->invoices;
     dd($factors, $invoices);
 
