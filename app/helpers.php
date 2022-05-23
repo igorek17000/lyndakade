@@ -60,8 +60,9 @@ function prepare_dubbed_panel_data_for_user($user = null)
             AND
         user_id = $user->id
     ORDER BY end_date;");
-
-    dd($factors_by_weeks_result, (object)([]));
+    $ob = (object)([]);
+    $ob->user = $user;
+    dd($factors_by_weeks_result, $ob);
 /*
     SELECT
         WEEK(end_date) week_number,
