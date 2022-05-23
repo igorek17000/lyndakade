@@ -65,19 +65,24 @@ class User extends \TCG\Voyager\Models\User
     public function factors()
     {
         // return $this->hasMany(DubbedCourseFactor::class);
-        return collect(DB::select("
+        $factors = DB::select("
     SELECT
         concat(YEAR(end_date), ' - week ', WEEK(end_date)) week_number,
         start_date,
         end_date,
-        minutes,
-        course_id
+        sum(minutes) as total_minutes,
+        GROUP_CONCAT(course_id SEPARATOR ',') as courses_id,
+        base_prices
     FROM dubbed_course_factors
     WHERE
         end_date >= DATE_SUB(NOW(), INTERVAL 5 WEEK)
             AND
         user_id = $this->id
-    ORDER BY end_date;"));
+    GROUP BY WEEK(end_date)
+    ORDER BY end_date;");
+
+        // $fs = [];
+        return collect($factors);
     }
 
     /**

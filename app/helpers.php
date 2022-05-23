@@ -21,29 +21,18 @@ use Illuminate\Support\Facades\Storage;
 
 function prepare_dubbed_panel_data_for_user($user = null)
 {
-    $prices = [
-        100000,
-        100000,
-        100000,
-        125000,
-        150000,
-        155000,
-        160000,
-        165000,
-        170000,
-        175000,
-        180000,
-        185000,
-        190000,
-        195000,
-        200000,
-    ];
-
     if ($user == null) {
         $user = auth()->user();
     }
     $factors = $user->factors();
     $invoices = $user->invoices;
+    $fs = [];
+    foreach ($factors as $f) {
+        $price_list = explode(",", $f->base_prices);
+        $minutes = $f->minutes;
+        
+        $f->price =
+    }
     dd($factors[0]->start_date, $factors, $invoices);
 
     // $week_start = \Carbon\Carbon::now()->startOfWeek()->subWeeks();
