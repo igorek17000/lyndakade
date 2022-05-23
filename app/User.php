@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Models\Role;
 
 // use Illuminate\Support\Facades\Auth;
@@ -63,7 +64,20 @@ class User extends \TCG\Voyager\Models\User
      */
     public function factors()
     {
-        return $this->hasMany(DubbedCourseFactor::class);
+        // return $this->hasMany(DubbedCourseFactor::class);
+        return collect(DB::select("
+    SELECT
+        concat(YEAR(end_date), ' - week ', WEEK(end_date)) week_number,
+        start_date,
+        end_date,
+        minutes,
+        course_id
+    FROM dubbed_course_factors
+    WHERE
+        end_date >= DATE_SUB(NOW(), INTERVAL 5 WEEK)
+            AND
+        user_id = $this->id
+    ORDER BY end_date;"));
     }
 
     /**

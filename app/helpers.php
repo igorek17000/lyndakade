@@ -42,40 +42,28 @@ function prepare_dubbed_panel_data_for_user($user = null)
     if ($user == null) {
         $user = auth()->user();
     }
-    // $factors = $user->factors;
-    // $invoices = $user->invoices;
+    $factors = $user->factors;
+    $invoices = $user->invoices;
+    dd($factors, $invoices);
 
     // $week_start = \Carbon\Carbon::now()->startOfWeek()->subWeeks();
     // $week_end = \Carbon\Carbon::now()->startOfWeek()->subWeeks()->endOfWeek();
-    $factors_by_weeks_result = DB::select("
-    SELECT
-        concat(YEAR(end_date), ' - week ', WEEK(end_date)) week_number,
-        start_date,
-        end_date,
-        minutes,
-        course_id
-    FROM dubbed_course_factors
-    WHERE
-        end_date >= DATE_SUB(NOW(), INTERVAL 5 WEEK)
-            AND
-        user_id = $user->id
-    ORDER BY end_date;");
-    $ob = (object)([]);
-    $ob->user = $user;
-    dd($factors_by_weeks_result, $ob);
-/*
-    SELECT
-        WEEK(end_date) week_number,
-        sum(minutes) as total_minutes,
-        GROUP_CONCAT(course_id SEPARATOR ',') as courses_id
-    FROM dubbed_course_factors
-    WHERE
-        end_date >= DATE_SUB(NOW(), INTERVAL 5 WEEK)
-            AND
-        user_id = 1
-    GROUP BY WEEK(end_date)
-    ORDER BY end_date;
-*/
+    // $factors = DB::select("
+    // SELECT
+    //     concat(YEAR(end_date), ' - week ', WEEK(end_date)) week_number,
+    //     start_date,
+    //     end_date,
+    //     minutes,
+    //     course_id
+    // FROM dubbed_course_factors
+    // WHERE
+    //     end_date >= DATE_SUB(NOW(), INTERVAL 5 WEEK)
+    //         AND
+    //     user_id = $user->id
+    // ORDER BY end_date;");
+
+    // $ob = (object)([]);
+    // $ob->user = $user;
 
 }
 
