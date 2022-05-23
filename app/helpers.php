@@ -31,8 +31,10 @@ function prepare_dubbed_panel_data_for_user($user = null)
         $price_list = explode(",", $f->base_prices);
         $minutes = $f->minutes;
 
-        // $f->price =
+        $f->price = 0;
+        $fs[] = $f;
     }
+    $factors = collect($fs);
     dd($factors[0]->start_date, $factors, $invoices);
 
     // $week_start = \Carbon\Carbon::now()->startOfWeek()->subWeeks();
