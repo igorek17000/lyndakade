@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DubbedCourseFactor extends Model
 {
 
-    protected $fillable = ['id', 'course_id', 'start_date', 'end_date', 'total_minutes', 'user_id'];
+    protected $fillable = ['id', 'course_id', 'start_date', 'end_date', 'minutes', 'user_id'];
     // protected $with = ['user'];
 
     public function user()
