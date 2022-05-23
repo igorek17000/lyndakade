@@ -50,8 +50,8 @@ function prepare_dubbed_panel_data_for_user($user = null)
     $factors_by_weeks_result = DB::select("
     SELECT
         WEEK(end_date) week_number,
-        sum(total_minutes) as total_minutes,
-        GROUP_CONCAT(course_id SEPARATOR ',') as courses_id
+        total_minutes,
+        course_id
     FROM dubbed_course_factors
     WHERE
         end_date >= DATE_SUB(NOW(), INTERVAL 5 WEEK)
