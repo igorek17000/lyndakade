@@ -67,7 +67,7 @@ class User extends \TCG\Voyager\Models\User
         // return $this->hasMany(DubbedCourseFactor::class);
         $factors = DB::select("
     SELECT
-        concat(YEAR(end_date), ' - week ', WEEK(end_date)) week_number,
+        concat(YEAR(end_date), ' - هفته ', WEEK(end_date)) week_number,
         start_date,
         end_date,
         sum(minutes) as total_minutes,
