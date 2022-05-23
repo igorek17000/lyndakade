@@ -57,6 +57,16 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * A user can have many invoices
+     *
+     * @return HasMany
+     */
+    public function factors()
+    {
+        return $this->hasMany(DubbedCourseFactor::class);
+    }
+
+    /**
      * A user can have many messages
      *
      * @return HasMany

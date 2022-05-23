@@ -19,6 +19,45 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
+function prepare_dubbed_panel_data_for_user($user = null)
+{
+    if ($user == null) {
+        $user = auth()->user();
+    }
+    // $factors = $user->factors;
+    // $invoices = $user->invoices;
+
+    // $week_start = \Carbon\Carbon::now()->startOfWeek()->subWeeks();
+    // $week_end = \Carbon\Carbon::now()->startOfWeek()->subWeeks()->endOfWeek();
+    $factors_by_weeks = DB::select("
+    SELECT
+        WEEK(end_date) week_number,
+        sum(total_minutes) as total_minutes,
+        GROUP_CONCAT(course_id SEPARATOR ',') as courses_id
+    FROM dubbed_course_factors
+    WHERE
+        end_date >= DATE_SUB(NOW(), INTERVAL 5 WEEK)
+            AND
+        user_id = $user->id
+    GROUP BY WEEK(end_date)
+    ORDER BY end_date;");
+    dd($factors_by_weeks, (object)([]));
+/*
+    SELECT
+        WEEK(end_date) week_number,
+        sum(total_minutes) as total_minutes,
+        GROUP_CONCAT(course_id SEPARATOR ',') as courses_id
+    FROM dubbed_course_factors
+    WHERE
+        end_date >= DATE_SUB(NOW(), INTERVAL 5 WEEK)
+            AND
+        user_id = 1
+    GROUP BY WEEK(end_date)
+    ORDER BY end_date;
+*/
+
+}
+
 
 function get_dashboard_dubbed_table_data()
 {

@@ -53,7 +53,7 @@ class UserController extends Controller
         return view('users.edit', ['user' => Auth::user()]);
     }
 
-   /* public function update_profile(Request $request)
+    /* public function update_profile(Request $request)
     {
         if (auth()->check()) {
             $id = auth()->id();
@@ -150,7 +150,13 @@ class UserController extends Controller
 
     public function dubbedCourses(Request $request)
     {
-        $courses = auth()->user()->courses;
+        $factor_invoice_data = prepare_dubbed_panel_data_for_user(auth()->user());
+        
+        return view('users.dubbed-courses', [
+            'invoices' => auth()->user()->invoices,
+        ]);
+
+        /*$courses = auth()->user()->courses;
 
         $user_percent = auth()->user()->dubbed_percent / 100;
         $res_courses = [];
@@ -193,7 +199,7 @@ class UserController extends Controller
             'invoices' => auth()->user()->invoices,
             'total_received' => $total_received,
             'total_balance' => $total_balance,
-        ]);
+        ]);*/
     }
 
     public function dubbed_index(Request $request, $username)
