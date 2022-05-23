@@ -21,6 +21,24 @@ use Illuminate\Support\Facades\Storage;
 
 function prepare_dubbed_panel_data_for_user($user = null)
 {
+    $prices = [
+        100000,
+        100000,
+        100000,
+        125000,
+        150000,
+        155000,
+        160000,
+        165000,
+        170000,
+        175000,
+        180000,
+        185000,
+        190000,
+        195000,
+        200000,
+    ];
+
     if ($user == null) {
         $user = auth()->user();
     }
@@ -29,7 +47,7 @@ function prepare_dubbed_panel_data_for_user($user = null)
 
     // $week_start = \Carbon\Carbon::now()->startOfWeek()->subWeeks();
     // $week_end = \Carbon\Carbon::now()->startOfWeek()->subWeeks()->endOfWeek();
-    $factors_by_weeks = DB::select("
+    $factors_by_weeks_result = DB::select("
     SELECT
         WEEK(end_date) week_number,
         sum(total_minutes) as total_minutes,
@@ -41,7 +59,8 @@ function prepare_dubbed_panel_data_for_user($user = null)
         user_id = $user->id
     GROUP BY WEEK(end_date)
     ORDER BY end_date;");
-    dd($factors_by_weeks, (object)([]));
+
+    dd($factors_by_weeks_result, (object)([]));
 /*
     SELECT
         WEEK(end_date) week_number,
