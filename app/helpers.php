@@ -43,6 +43,8 @@ function prepare_dubbed_panel_data_for_user($user = null)
     }
     $factors = $user->factors();
     $invoices = $user->invoices;
+    $total_balance = 0;
+    $total_received = $user->invoices()->sum('price');
     $fs = [];
     foreach ($factors as $f) {
         // $price_list = explode(",", $f->base_prices);
@@ -60,9 +62,17 @@ function prepare_dubbed_panel_data_for_user($user = null)
             $price_per_hours = $current_price + $price_cent;
         }
         $f->price = intval(($minutes / 60) * $price_per_hours / 1000) * 1000;
+        $total_balance += $f->price;
         $fs[] = $f;
     }
     $factors = collect($fs);
+    return [
+        'factors' => $factors,
+        'invoices' => $invoices,
+        'total_received' => $total_received,
+        'total_balance' => $total_balance - $total_received,
+    ];
+
     dd($factors[0]->start_date, $factors, $invoices);
 
     // $week_start = \Carbon\Carbon::now()->startOfWeek()->subWeeks();
@@ -80,9 +90,6 @@ function prepare_dubbed_panel_data_for_user($user = null)
     //         AND
     //     user_id = $user->id
     // ORDER BY end_date;");
-
-    // $ob = (object)([]);
-    // $ob->user = $user;
 
 }
 
