@@ -42,7 +42,7 @@
                   <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ nPersian($factor->week_number) }}</td>
-                    <td>{{ nPersian($factor->total_minutes, false) }}</td>
+                    <td>{{ nPersian($factor->total_minutes, false) }} دقیقه</td>
                     <td>
                       @foreach (explode(',', $factor->courses_id) as $c_course_id)
                         <a style="color:darkblue;" href="https://lyndakade.ir/c/{{ $c_course_id }}">{{ $c_course_id }}</a>
@@ -51,7 +51,7 @@
                         @endif
                       @endforeach
                     </td>
-                    <td>{{ nPersian($factor->price) }}</td>
+                    <td>{{ nPersian($factor->price) }} تومان</td>
                   </tr>
                 @endforeach
                 <tr>
