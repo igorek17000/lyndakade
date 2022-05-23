@@ -27,7 +27,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            <table class="table table-striped">
+            <table class="table table-striped table-bordered  text-center">
               <thead class="thead-light">
                 <tr>
                   <th scope="col">#</th>
@@ -41,17 +41,17 @@
                 @foreach ($factors as $factor)
                   <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td class="text-center">{{ nPersian($factor->week_number) }}</td>
-                    <td class="text-center">{{ nPersian($factor->total_minutes, false) }}</td>
-                    <td class="text-center">
+                    <td>{{ nPersian($factor->week_number) }}</td>
+                    <td>{{ nPersian($factor->total_minutes, false) }}</td>
+                    <td>
                       @foreach (explode(',', $factor->courses_id) as $c_course_id)
-                        <a href="https://lyndakade.ir/c/{{ $c_course_id }}">{{ $c_course_id }}</a>
+                        <a style="color:darkblue;" href="https://lyndakade.ir/c/{{ $c_course_id }}">{{ $c_course_id }}</a>
                         @if (!$loop->last)
                           <br />
                         @endif
                       @endforeach
                     </td>
-                    <td class="text-center">{{ nPersian($factor->price) }}</td>
+                    <td>{{ nPersian($factor->price) }}</td>
                   </tr>
                 @endforeach
                 <tr>
@@ -68,7 +68,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            <table class="table table-striped text-center">
+            <table class="table table-striped table-bordered text-center">
               <thead class="thead-light">
                 <tr>
                   <th scope="col" style="width: 40px;">#</th>
