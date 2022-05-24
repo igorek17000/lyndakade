@@ -130,7 +130,8 @@ function get_dashboard_dubbed_table_data()
             'id' => $dubbed_user->id,
             'username' => $dubbed_user->username,
             'total_courses' => $dubbed_user->courses()->count(),
-            'total_balance' => $total_balance,
+            // 'total_balance' => $total_balance,
+            'total_balance' => 0,
         ];
     }
 
