@@ -116,11 +116,11 @@ function get_dashboard_dubbed_table_data()
             $total_balance += $balance_purchase + $balance_unlocked;
         }
 
-        $total_received = 0;
-        foreach ($dubbed_user->invoices as $invoice) {
-            $total_received += $invoice->price;
-        }
-        $total_balance -= $total_received;
+        // $total_received = 0;
+        // foreach ($dubbed_user->invoices as $invoice) {
+        //     $total_received += $invoice->price;
+        // }
+        // $total_balance -= $total_received;
 
         $all_users_balance += $total_balance;
 
