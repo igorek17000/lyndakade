@@ -117,7 +117,7 @@ function get_dashboard_dubbed_table_data()
         }
 
         $total_received = 0;
-        foreach (auth()->user()->invoices as $invoice) {
+        foreach ($dubbed_user->invoices as $invoice) {
             $total_received += $invoice->price;
         }
         $total_balance -= $total_received;
@@ -130,8 +130,8 @@ function get_dashboard_dubbed_table_data()
             'id' => $dubbed_user->id,
             'username' => $dubbed_user->username,
             'total_courses' => $dubbed_user->courses()->count(),
-            // 'total_balance' => $total_balance,
-            'total_balance' => 0,
+            'total_balance' => $total_balance,
+            // 'total_balance' => 0,
         ];
     }
 
@@ -139,8 +139,8 @@ function get_dashboard_dubbed_table_data()
         'id' => -1,
         'username' => 'Total',
         'total_courses' => $all_users_courses,
-        // 'total_balance' => $all_users_balance,
-        'total_balance' => 0,
+        'total_balance' => $all_users_balance,
+        // 'total_balance' => 0,
     ];
     return json_decode(json_encode($res), FALSE);
 }
