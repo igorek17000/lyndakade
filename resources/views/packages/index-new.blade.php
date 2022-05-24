@@ -187,13 +187,6 @@ $packages = \App\Package::get();
   @endif
   <div class="container card mt-0 my-md-5 py-3 ">
     <h2>خرید اشتراک</h2>
-
-    @if (!auth()->check())
-      <div class="px-2 py-1 text-center"
-        style="background-color: orange;border-radius: 20px;font-weight: 600;font-size: 15px;">
-        قبل از خرید اشتراک، لطفا <a href="{{ route('login') }}" style="color: white;">وارد حساب کاربری</a> خود شوید.
-      </div>
-    @endif
     <div class="row d-flex justify-content-center text-center mx-md-5 mt-3" style="font-size: 1.2em;">
       @foreach ($packages as $package)
         <div class="w-20 col-sm-4 mb-4 mx-md-auto mx-5" data-toggle="modal" data-target="#modal{{ $package->id }}">
