@@ -31,7 +31,9 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">شماره هفته</th>
+                  {{-- <th scope="col">شماره هفته</th> --}}
+                  <th scope="col">تاریخ شروع</th>
+                  <th scope="col">تاریخ پایان</th>
                   <th scope="col">مجموع دقایق</th>
                   <th scope="col">کد دوره(های) آموزشی</th>
                   <th scope="col">میزان دستمزد</th>
@@ -41,7 +43,9 @@
                 @foreach ($factors as $factor)
                   <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ nPersian($factor->week_number) }}</td>
+                    {{-- <td>{{ nPersian($factor->week_number) }}</td> --}}
+                    <td>{{ nPersian($factor->start_date) }}</td>
+                    <td>{{ nPersian($factor->end_date) }}</td>
                     <td>{{ nPersian($factor->total_minutes, false) }} دقیقه</td>
                     <td>
                       @foreach (explode(',', $factor->courses_id) as $c_course_id)
