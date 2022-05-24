@@ -47,13 +47,13 @@ function prepare_dubbed_panel_data_for_user($user = null)
     $total_received = $user->invoices()->sum('price');
     $fs = [];
     foreach ($factors as $f) {
-        // $price_list = explode(",", $f->base_prices);
+        $price_list = explode(",", $f->base_prices);
         $minutes = $f->total_minutes;
         $hours = intval($minutes / 60);
         $remaining_minutes_percentage = ($minutes / 60) - intval($minutes / 60);
         if (count($price_list) <= $hours) {
             $price_per_hours = max($price_list);
-        } else if ($hours == 0) {
+        } else if ($hours <= 0) {
             $price_per_hours = min($price_list);
         } else {
             $current_price = $price_list[$hours - 1];
