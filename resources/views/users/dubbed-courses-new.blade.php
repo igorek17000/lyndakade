@@ -27,8 +27,8 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            <h2 class="text-center mb-3">لیست دوبله‌های من</h2>
-            <table class="table table-striped table-bordered  text-center">
+            <h2 class="text-center mb-3" style="font-size: 1.5rem;font-weight: 600;">لیست دوبله‌های من</h2>
+            <table class="table table-sm table-striped table-bordered  text-center">
               <thead class="thead-light">
                 <tr>
                   <th scope="col">#</th>
@@ -79,13 +79,11 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            <h2 class="text-center mb-3">تسویه حساب‌های من</h2>
-            <table class="table table-striped table-bordered text-center">
+            <h2 class="text-center mb-3" style="font-size: 1.5rem;font-weight: 600;">تسویه حساب‌های من</h2>
+            <table class="table table-sm table-striped table-bordered text-center">
               <thead class="thead-light">
                 <tr>
                   <th scope="col" style="width: 40px;">#</th>
