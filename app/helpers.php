@@ -138,7 +138,8 @@ function get_dashboard_dubbed_table_data()
         'id' => -1,
         'username' => 'Total',
         'total_courses' => $all_users_courses,
-        'total_balance' => $all_users_balance,
+        // 'total_balance' => $all_users_balance,
+        'total_balance' => 0,
     ];
     return json_decode(json_encode($res), FALSE);
 }
