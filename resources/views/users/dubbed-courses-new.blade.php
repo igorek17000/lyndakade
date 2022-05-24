@@ -58,9 +58,13 @@
                     <td>{{ nPersian($factor->price) }} تومان</td>
                   </tr>
                 @endforeach
-                <tr>
+                {{-- <tr>
                   <th scope="row" colspan="2" class="text-center">جمع کل</th>
                   <td colspan="3" class="text-center">{{ nPersian($total_income) }} تومان</td>
+                </tr> --}}
+                <tr>
+                  <th scope="row" colspan="2" class="text-center">جمع کل</th>
+                  <td colspan="4" class="text-center">{{ nPersian($total_income) }} تومان</td>
                 </tr>
               </tbody>
             </table>
