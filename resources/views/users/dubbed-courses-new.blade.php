@@ -27,6 +27,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
+            <h2 class="text-center mb-3">لیست دوبله‌های من</h2>
             <table class="table table-striped table-bordered  text-center">
               <thead class="thead-light">
                 <tr>
@@ -44,14 +45,15 @@
                 @foreach ($factors as $factor)
                   <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td >{{ nPersian($factor->week_number) }}</td>
+                    <td>{{ nPersian($factor->week_number) }}</td>
                     {{-- <td class="show-xs">{{ nPersian($factor->week_number) }}</td>
                     <td class="hidden-xs">{{ nPersian($factor->start_date) }}</td>
                     <td class="hidden-xs">{{ nPersian($factor->end_date) }}</td> --}}
                     <td>{{ nPersian($factor->total_minutes, false) }} دقیقه</td>
                     <td>
                       @foreach (explode(',', $factor->courses_id) as $c_course_id)
-                        <a style="color:darkblue;" href="https://lyndakade.ir/c/{{ $c_course_id }}">{{ $c_course_id }}</a>
+                        <a style="color:darkblue;"
+                          href="https://lyndakade.ir/c/{{ $c_course_id }}">{{ $c_course_id }}</a>
                         @if (!$loop->last)
                           <br />
                         @endif
@@ -82,6 +84,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
+            <h2 class="text-center mb-3">تسویه حساب‌های من</h2>
             <table class="table table-striped table-bordered text-center">
               <thead class="thead-light">
                 <tr>
