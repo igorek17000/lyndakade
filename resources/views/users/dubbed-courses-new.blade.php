@@ -44,7 +44,7 @@
               <tbody>
                 @foreach ($factors as $factor)
                   <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
+                    <th scope="row">{{ nPersian($loop->iteration) }}</th>
                     <td>{{ nPersian($factor->week_number) }}</td>
                     {{-- <td class="show-xs">{{ nPersian($factor->week_number) }}</td>
                     <td class="hidden-xs">{{ nPersian($factor->start_date) }}</td>
@@ -94,7 +94,7 @@
               <tbody>
                 @foreach ($invoices as $invoice)
                   <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
+                    <th scope="row">{{ nPersian($loop->iteration) }}</th>
                     <td>{{ nPersian($invoice->created_at) }}</td>
                     <td>{{ nPersian($invoice->price) }} تومان</td>
                   </tr>
