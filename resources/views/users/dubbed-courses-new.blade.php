@@ -31,9 +31,9 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col">#</th>
-                  {{-- <th scope="col">شماره هفته</th> --}}
-                  <th scope="col">تاریخ شروع</th>
-                  <th scope="col">تاریخ پایان</th>
+                  <th class="show-xs" scope="col">شماره هفته</th>
+                  <th class="hidden-xs" scope="col">تاریخ شروع</th>
+                  <th class="hidden-xs" scope="col">تاریخ پایان</th>
                   <th scope="col">مجموع دقایق</th>
                   <th scope="col">کد دوره(های) آموزشی</th>
                   <th scope="col">میزان دستمزد</th>
@@ -43,9 +43,9 @@
                 @foreach ($factors as $factor)
                   <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    {{-- <td>{{ nPersian($factor->week_number) }}</td> --}}
-                    <td>{{ nPersian($factor->start_date) }}</td>
-                    <td>{{ nPersian($factor->end_date) }}</td>
+                    <td class="show-xs">{{ nPersian($factor->week_number) }}</td>
+                    <td class="hidden-xs">{{ nPersian($factor->start_date) }}</td>
+                    <td class="hidden-xs">{{ nPersian($factor->end_date) }}</td>
                     <td>{{ nPersian($factor->total_minutes, false) }} دقیقه</td>
                     <td>
                       @foreach (explode(',', $factor->courses_id) as $c_course_id)
@@ -58,11 +58,11 @@
                     <td>{{ nPersian($factor->price) }} تومان</td>
                   </tr>
                 @endforeach
-                {{-- <tr>
+                <tr class="show-xs">
                   <th scope="row" colspan="2" class="text-center">جمع کل</th>
                   <td colspan="3" class="text-center">{{ nPersian($total_income) }} تومان</td>
-                </tr> --}}
-                <tr>
+                </tr>
+                <tr class="hidden-xs">
                   <th scope="row" colspan="2" class="text-center">جمع کل</th>
                   <td colspan="4" class="text-center">{{ nPersian($total_income) }} تومان</td>
                 </tr>
