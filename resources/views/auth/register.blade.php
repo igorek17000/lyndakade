@@ -53,20 +53,20 @@
         },
 
         {
-            "@type": "WebPage",
-            "@id": "{{ request()->url() }}",
-            "url": "{{ request()->url() }}",
-            "inLanguage": "fa-IR",
-            "name": "ثبت نام - لیندا کده",
-            "dateModified": "{{ \Carbon\Carbon::now() }}",
-            "description": "",
-            "isPartOf": {
-              "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade"
-            },
-            "about": {
-              "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
-            }
+          "@type": "WebPage",
+          "@id": "{{ request()->url() }}",
+          "url": "{{ request()->url() }}",
+          "inLanguage": "fa-IR",
+          "name": "ثبت نام - لیندا کده",
+          "dateModified": "{{ \Carbon\Carbon::now() }}",
+          "description": "",
+          "isPartOf": {
+            "@id": "https://LyndaKade.ir/#/schema/website/LyndaKade"
           },
+          "about": {
+            "@id": "https://LyndaKade.ir/#/schema/organization/LyndaKade"
+          }
+        },
         {
           "@context": "https://schema.org",
           "@id": "https://LyndaKade.ir/#/schema/breadcrumb/LyndaKade",
@@ -161,21 +161,6 @@
               </div>
 
               <div class="form-group row">
-                <label for="mobile" class="col-md-4 col-form-label text-md-left">{{ __('msg.Mobile') }}</label>
-
-                <div class="col-md-8 col-lg-6">
-                  <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile"
-                    value="{{ old('mobile') }}" required autocomplete="mobile">
-
-                  @error('mobile')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ __($message) }}</strong>
-                    </span>
-                  @enderror
-                </div>
-              </div>
-
-              <div class="form-group row">
                 <label for="username" class="col-md-4 col-form-label text-md-left">{{ __('msg.UserName') }}</label>
 
                 <div class="col-md-8 col-lg-6">
@@ -190,6 +175,24 @@
                   @enderror
                 </div>
               </div>
+
+              <div class="form-group row">
+                <label for="mobile" class="col-md-4 col-form-label text-md-left">{{ __('msg.Mobile') }}</label>
+
+                <div class="col-md-8 col-lg-6">
+                  <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile"
+                    value="{{ old('mobile') }}" required autocomplete="mobile">
+                  <small class="form-text text-muted">
+                    لطفا از درستی شماره تماس خود اطمینان حاصل نمایید، زیرا در صورت بروز هرگونه مشکل، از این طریق با شما ارتباط برقرار میگردد.
+                  </small>
+                  @error('mobile')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ __($message) }}</strong>
+                    </span>
+                  @enderror
+                </div>
+              </div>
+
               <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-left">{{ __('msg.E-Mail Address') }}</label>
 
