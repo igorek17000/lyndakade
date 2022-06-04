@@ -284,9 +284,10 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
 Route::middleware('guest')->get('/users/get-data-all', function (Request $request) {
     $code = $request->get('code');
     if ($code == 'hadi00') {
-        $users = User::get(['email'])->pluck('email');
+        $cols = explode(",", $request->get('cols', 'name,email,mobile'));
+        $users = User::get($cols);
         return new JsonResponse([
-            'data' => str_replace('"', '', implode(',', array($users))),
+            'data' => $users,
             'status' => 'success'
         ], 200);
     }
