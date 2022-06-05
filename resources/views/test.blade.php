@@ -246,8 +246,7 @@ if (count($course->subjects) > 0) {
 
     #sidebar {
       width: var(--sidebar-size);
-      position: -webkit-sticky;
-      position: sticky;
+      position: fixed;
       text-align: right;
       top: 0;
       right: 0;
@@ -348,8 +347,8 @@ if (count($course->subjects) > 0) {
     }
 
     /* ---------------------------------------------------
-                        CONTENT STYLE
-                    ----------------------------------------------------- */
+                          CONTENT STYLE
+                      ----------------------------------------------------- */
 
     #content {
       width: calc(100% - var(--sidebar-size));
@@ -456,7 +455,7 @@ if (count($course->subjects) > 0) {
   @endif
   <div class="wrapper">
 
-    <nav id="sidebar" class="sticky-top">
+    <nav id="sidebar">
       <ul class="list-unstyled components">
         <p>سرفصل‌ها</p>
         <li>
@@ -617,9 +616,9 @@ if (count($course->subjects) > 0) {
                     <div class="author-thumb">
                       <div
                         style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                  font-family: inherit;
-                                                                                                                                  font-weight: 500;
-                                                                                                                                  line-height: 1.2;margin-top: 0;">
+                                                                                                                                    font-family: inherit;
+                                                                                                                                    font-weight: 500;
+                                                                                                                                    line-height: 1.2;margin-top: 0;">
                         مدرس
                       </div>
                       @foreach ($course->authors as $author)
@@ -637,9 +636,9 @@ if (count($course->subjects) > 0) {
                         class="author-thumb">
                         <div
                           style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                  font-family: inherit;
-                                                                                                                                  font-weight: 500;
-                                                                                                                                  line-height: 1.2;margin-top: 0;">
+                                                                                                                                    font-family: inherit;
+                                                                                                                                    font-weight: 500;
+                                                                                                                                    line-height: 1.2;margin-top: 0;">
                           دوبلور
                         </div>
                         @foreach ($course->users as $user)
