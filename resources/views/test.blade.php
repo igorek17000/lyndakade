@@ -246,7 +246,8 @@ if (count($course->subjects) > 0) {
 
     #sidebar {
       width: var(--sidebar-size);
-      position: fixed;
+      position: -webkit-sticky;
+        position: sticky;
       text-align: right;
       top: 0;
       right: 0;
@@ -347,8 +348,8 @@ if (count($course->subjects) > 0) {
     }
 
     /* ---------------------------------------------------
-                    CONTENT STYLE
-                ----------------------------------------------------- */
+                      CONTENT STYLE
+                  ----------------------------------------------------- */
 
     #content {
       width: calc(100% - var(--sidebar-size));
@@ -454,7 +455,7 @@ if (count($course->subjects) > 0) {
     @endif
   @endif
 
-  <nav id="sidebar">
+  <nav id="sidebar" class="sticky-top">
     <ul class="list-unstyled components">
       <p>سرفصل‌ها</p>
       <li>
@@ -510,6 +511,13 @@ if (count($course->subjects) > 0) {
     </ul>
   </nav>
   <div id="content">
+					<button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+    </div>
+  <div>
     <div class="row mx-0 justify-content-center">
       <aside class="col-md-10">
         <div class="section-module">
@@ -610,9 +618,9 @@ if (count($course->subjects) > 0) {
                   <div class="author-thumb">
                     <div
                       style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                              font-family: inherit;
-                                                                                                                              font-weight: 500;
-                                                                                                                              line-height: 1.2;margin-top: 0;">
+                                                                                                                                font-family: inherit;
+                                                                                                                                font-weight: 500;
+                                                                                                                                line-height: 1.2;margin-top: 0;">
                       مدرس
                     </div>
                     @foreach ($course->authors as $author)
@@ -630,9 +638,9 @@ if (count($course->subjects) > 0) {
                       class="author-thumb">
                       <div
                         style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                              font-family: inherit;
-                                                                                                                              font-weight: 500;
-                                                                                                                              line-height: 1.2;margin-top: 0;">
+                                                                                                                                font-family: inherit;
+                                                                                                                                font-weight: 500;
+                                                                                                                                line-height: 1.2;margin-top: 0;">
                         دوبلور
                       </div>
                       @foreach ($course->users as $user)
@@ -1102,6 +1110,24 @@ if (count($course->subjects) > 0) {
 @endsection
 @section('script_body')
   <script>
+
+        $(document).ready(function () {
+
+            $('#dismiss, .overlay').on('click', function () {
+                $('#sidebar').removeClass('active');
+                $('.overlay').removeClass('active');
+                $('#content').removeClass('active');
+                $('#sidebarCollapse').removeClass('active');
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content, .overlay').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                // $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                $(this).toggleClass('active');
+            });
+        });
+
     const course_player = new Plyr("#plyr-video", {
       title: "{{ $course->title }}",
       controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
