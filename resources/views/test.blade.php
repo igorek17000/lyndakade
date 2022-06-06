@@ -209,6 +209,12 @@ if (count($course->subjects) > 0) {
       --sidebar-size: 300px;
     }
 
+    @media (max-width: 768px) {
+      :root {
+        --sider-size: 100vw;
+      }
+    }
+
     #dismiss {
       width: 35px;
       height: 35px;
@@ -351,8 +357,8 @@ if (count($course->subjects) > 0) {
     }
 
     /* ---------------------------------------------------
-                                CONTENT STYLE
-                            ----------------------------------------------------- */
+                                    CONTENT STYLE
+                                ----------------------------------------------------- */
 
     #content {
       width: 100%;
@@ -407,14 +413,15 @@ if (count($course->subjects) > 0) {
     }
 
     @media (max-width: 768px) {
+
       /* #sidebarCollapse.active span {
-            transform: none;
-            opacity: 1;
-            margin: 5px auto;
-          } */
-        :root{
-            --sider-size: 100vw
-        }
+                transform: none;
+                opacity: 1;
+                margin: 5px auto;
+              } */
+      :root {
+        --sider-size: 100vw;
+      }
 
       #sidebar {
         margin-right: calc(var(--sidebar-size)*(-1));
@@ -439,10 +446,10 @@ if (count($course->subjects) > 0) {
 
     @media (min-width: 769px) {
       /* #sidebarCollapse span {
-            transform: none;
-            opacity: 1;
-            margin: 5px auto;
-          } */
+                transform: none;
+                opacity: 1;
+                margin: 5px auto;
+              } */
 
       .overlay.active {
         display: none;
@@ -624,9 +631,9 @@ if (count($course->subjects) > 0) {
                     <div class="author-thumb">
                       <div
                         style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                          font-family: inherit;
-                                                                                                                                          font-weight: 500;
-                                                                                                                                          line-height: 1.2;margin-top: 0;">
+                                                                                                                                              font-family: inherit;
+                                                                                                                                              font-weight: 500;
+                                                                                                                                              line-height: 1.2;margin-top: 0;">
                         مدرس
                       </div>
                       @foreach ($course->authors as $author)
@@ -644,9 +651,9 @@ if (count($course->subjects) > 0) {
                         class="author-thumb">
                         <div
                           style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                          font-family: inherit;
-                                                                                                                                          font-weight: 500;
-                                                                                                                                          line-height: 1.2;margin-top: 0;">
+                                                                                                                                              font-family: inherit;
+                                                                                                                                              font-weight: 500;
+                                                                                                                                              line-height: 1.2;margin-top: 0;">
                           دوبلور
                         </div>
                         @foreach ($course->users as $user)
