@@ -457,6 +457,7 @@ if (count($course->subjects) > 0) {
           <i class="fas fa-arrow-left"></i>
         </div>
         <p>سرفصل‌ها</p>
+        
         <li class="course-chapter">
           <a href="#chap1" title="0. Introduction" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             0. مقدمه

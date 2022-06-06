@@ -512,36 +512,50 @@ class HomeController extends Controller
 
         $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc')->get();
 
-        $lines = explode("\n", $course->concepts);
-        if (strpos($course->concepts, "\r\n") !== false) {
-            $lines = explode("\r\n", $course->concepts);
-        }
-        $chapters = [];
-        $item = [
-            'title' => '',
-            'videos' => [],
-        ];
-        foreach ($lines as $line) {
-            if (substr($line, 0, strlen("\t")) === "\t") {
-                $item['videos'][] = str_replace("\t", "", $line);
-            } else {
-                if ($item['title'] !== '')
-                    $chapters[] = $item;
-                $item = [
-                    'title' => $line,
-                    'videos' => [],
-                ];
+        if ($course->concepts) {
+            $lines = explode("\n", $course->concepts);
+            if (strpos($course->concepts, "\r\n") !== false) {
+                $lines = explode("\r\n", $course->concepts);
             }
+            $chapters = [];
+            $item = [
+                'title' => '',
+                'videos' => [],
+            ];
+            foreach ($lines as $line) {
+                if (substr($line, 0, strlen("\t")) === "\t") {
+                    $item['videos'][] = str_replace("\t", "", $line);
+                } else {
+                    if ($item['title'] !== '')
+                        $chapters[] = $item;
+                    $item = [
+                        'title' => $line,
+                        'videos' => [],
+                    ];
+                }
+            }
+            return view('test', [
+                'skill' => $skill,
+                'skillEng' => $skillEng,
+                'course' => $course,
+                'chapters' => $chapters,
+                'previewSubtitleContent' => $previewSubtitleContent,
+                'previewSubtitleContentEng' => $previewSubtitleContentEng,
+                'has_dubbed' => $has_dubbed,
+                'has_subtitle' => $has_subtitle,
+                'related_courses' => $related_courses,
+                'related_paths' => $related_paths,
+                'subjects' => $subjects,
+                'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
+            ]);
         }
-        dd($chapters);
 
         // dd($previewSubtitleContent, $previewSubtitleContentEng);
 
-        return view('test', [
+        return view('courses.show', [
             'skill' => $skill,
             'skillEng' => $skillEng,
             'course' => $course,
-            'chapters' => $chapters,
             'previewSubtitleContent' => $previewSubtitleContent,
             'previewSubtitleContentEng' => $previewSubtitleContentEng,
             'has_dubbed' => $has_dubbed,
