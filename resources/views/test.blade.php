@@ -398,18 +398,18 @@ if (count($course->subjects) > 0) {
 
 
 
-    /* #sidebarCollapse.active span { */
-    /* transform: none; */
-    /* opacity: 1; */
-    /* margin: 5px auto; */
-    /* } */
+    #sidebarCollapse.active span {
+    transform: none;
+    opacity: 1;
+    margin: 5px auto;
+    }
 
     @media (max-width: 768px) {
-      #sidebarCollapse.active span {
+      /* #sidebarCollapse.active span {
         transform: none;
         opacity: 1;
         margin: 5px auto;
-      }
+      } */
 
       #sidebar {
         margin-right: calc(var(--sidebar-size)*(-1));
@@ -433,11 +433,11 @@ if (count($course->subjects) > 0) {
     }
 
     @media (min-width: 769px) {
-      #sidebarCollapse span {
+      /* #sidebarCollapse span {
         transform: none;
         opacity: 1;
         margin: 5px auto;
-      }
+      } */
 
       .overlay.active {
         display: none;
