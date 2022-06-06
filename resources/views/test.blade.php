@@ -480,14 +480,14 @@ if (count($course->subjects) > 0) {
             0. مقدمه
           </a>
           <ul class="list-unstyled collapse" id="chap1" style="">
-            <li class="play-course-video">
-              <a href="#" title="01 - Security concerns with blockchain">
+            <li>
+              <a class="play-course-video" href="#" title="01 - Security concerns with blockchain">
                 01 - نگرانی های امنیتی با بلاک چین
                 <br /><small>60 ثانیه</small>
               </a>
             </li>
-            <li class="play-course-video">
-              <a href="#">
+            <li>
+              <a class="play-course-video" href="#">
                 02 - آنچه باید بدانید
                 <br /><small>60 ثانیه</small>
               </a>
@@ -499,18 +499,18 @@ if (count($course->subjects) > 0) {
             1. راز زدایی از بلاک چین
           </a>
           <ul class="collapse list-unstyled" id="chap2">
-            <li class="play-course-video">
-              <a href="#">
+            <li>
+              <a class="play-course-video" href="#">
                 03 - بلاک چین چیست
                 <br /><small>60 ثانیه</small></a>
             </li>
-            <li class="play-course-video">
-              <a href="#">
+            <li>
+              <a class="play-course-video" href="#">
                 04 - قراردادهای هوشمند و dApps
                 <br /><small>60 ثانیه</small></a>
             </li>
-            <li class="play-course-video">
-              <a href="#">
+            <li>
+              <a class="play-course-video" href="#">
                 05 - بلاک چین چگونه کار می کند
                 <br /><small>60 ثانیه</small></a>
             </li>
@@ -1126,8 +1126,8 @@ if (count($course->subjects) > 0) {
         $('.overlay').removeClass('active');
         $('#content').removeClass('active');
         $('#sidebarCollapse').removeClass('active');
-        $('.play-course-video').removeClass('active');
-        $(this).toggleClass('active');
+        $('.play-course-video').parent().removeClass('active');
+        $(this).parent().toggleClass('active');
       });
       $('#dismiss, .overlay').on('click', function() {
         $('#sidebar').removeClass('active');
