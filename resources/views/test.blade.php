@@ -414,6 +414,7 @@ if (count($course->subjects) > 0) {
       } */
 
       #sidebar {
+          width: 100
         margin-right: calc(var(--sidebar-size)*(-1));
       }
 
