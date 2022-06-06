@@ -210,10 +210,10 @@ if (count($course->subjects) > 0) {
     }
 
     /* @media (max-width: 768px) {
-            :root {
-              --sider-size: 100vw;
-            }
-          } */
+              :root {
+                --sider-size: 100vw;
+              }
+            } */
 
     #dismiss {
       width: 30px;
@@ -357,8 +357,8 @@ if (count($course->subjects) > 0) {
     }
 
     /* ---------------------------------------------------
-                                          CONTENT STYLE
-                                      ----------------------------------------------------- */
+                                            CONTENT STYLE
+                                        ----------------------------------------------------- */
 
     #content {
       width: 100%;
@@ -415,10 +415,10 @@ if (count($course->subjects) > 0) {
     @media (max-width: 767px) {
 
       /* #sidebarCollapse.active span {
-                      transform: none;
-                      opacity: 1;
-                      margin: 5px auto;
-                    } */
+                        transform: none;
+                        opacity: 1;
+                        margin: 5px auto;
+                      } */
 
       #sidebar {
         margin-right: calc(var(--sidebar-size)*(-1));
@@ -426,7 +426,7 @@ if (count($course->subjects) > 0) {
 
       #sidebar.active {
         margin-right: 0;
-          width: 100%;
+        width: 100%;
       }
 
       #content {
@@ -434,7 +434,7 @@ if (count($course->subjects) > 0) {
       }
 
       #content.active {
-          display: none;
+        display: none;
         /* width: calc(100% - var(--sidebar-size)); */
       }
 
@@ -445,10 +445,10 @@ if (count($course->subjects) > 0) {
 
     @media (min-width: 768px) {
       /* #sidebarCollapse span {
-                      transform: none;
-                      opacity: 1;
-                      margin: 5px auto;
-                    } */
+                        transform: none;
+                        opacity: 1;
+                        margin: 5px auto;
+                      } */
 
       .overlay.active {
         display: none;
@@ -481,13 +481,13 @@ if (count($course->subjects) > 0) {
           </a>
           <ul class="list-unstyled collapse" id="chap1" style="">
             <li>
-              <a href="#" title="01 - Security concerns with blockchain">
+              <a class="play-course-video" href="#" title="01 - Security concerns with blockchain">
                 01 - نگرانی های امنیتی با بلاک چین
                 <br /><small>60 ثانیه</small>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a class="play-course-video" href="#">
                 02 - آنچه باید بدانید
                 <br /><small>60 ثانیه</small>
               </a>
@@ -500,17 +500,17 @@ if (count($course->subjects) > 0) {
           </a>
           <ul class="collapse list-unstyled" id="chap2">
             <li>
-              <a href="#">
+              <a class="play-course-video" href="#">
                 03 - بلاک چین چیست
                 <br /><small>60 ثانیه</small></a>
             </li>
             <li>
-              <a href="#">
+              <a class="play-course-video" href="#">
                 04 - قراردادهای هوشمند و dApps
                 <br /><small>60 ثانیه</small></a>
             </li>
             <li>
-              <a href="#">
+              <a class="play-course-video" href="#">
                 05 - بلاک چین چگونه کار می کند
                 <br /><small>60 ثانیه</small></a>
             </li>
@@ -631,9 +631,9 @@ if (count($course->subjects) > 0) {
                 <div class="author-thumb">
                   <div
                     style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                                    font-family: inherit;
-                                                                                                                                                    font-weight: 500;
-                                                                                                                                                    line-height: 1.2;margin-top: 0;">
+                                                                                                                                                      font-family: inherit;
+                                                                                                                                                      font-weight: 500;
+                                                                                                                                                      line-height: 1.2;margin-top: 0;">
                     مدرس
                   </div>
                   @foreach ($course->authors as $author)
@@ -651,9 +651,9 @@ if (count($course->subjects) > 0) {
                     class="author-thumb">
                     <div
                       style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                                    font-family: inherit;
-                                                                                                                                                    font-weight: 500;
-                                                                                                                                                    line-height: 1.2;margin-top: 0;">
+                                                                                                                                                      font-family: inherit;
+                                                                                                                                                      font-weight: 500;
+                                                                                                                                                      line-height: 1.2;margin-top: 0;">
                       دوبلور
                     </div>
                     @foreach ($course->users as $user)
@@ -1121,7 +1121,7 @@ if (count($course->subjects) > 0) {
   <script>
     $(document).ready(function() {
 
-      $('#dismiss, .overlay').on('click', function() {
+      $('#dismiss, .overlay, .play-course-video').on('click', function() {
         $('#sidebar').removeClass('active');
         $('.overlay').removeClass('active');
         $('#content').removeClass('active');
