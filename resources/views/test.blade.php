@@ -377,7 +377,8 @@ if (count($course->subjects) > 0) {
     #sidebarCollapse span {
       width: 80%;
       height: 2px;
-      margin: 0 auto;
+      /* margin: 0 auto; */
+    margin: 5px auto;
       display: block;
       background: #555;
       transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
