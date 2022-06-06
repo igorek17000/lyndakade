@@ -209,11 +209,11 @@ if (count($course->subjects) > 0) {
       --sidebar-size: 300px;
     }
 
-    @media (max-width: 768px) {
+    /* @media (max-width: 768px) {
       :root {
         --sider-size: 100vw;
       }
-    }
+    } */
 
     #dismiss {
       width: 35px;
@@ -419,9 +419,6 @@ if (count($course->subjects) > 0) {
                 opacity: 1;
                 margin: 5px auto;
               } */
-      :root {
-        --sider-size: 100vw;
-      }
 
       #sidebar {
         margin-right: calc(var(--sidebar-size)*(-1));
