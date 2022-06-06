@@ -1246,7 +1246,7 @@ if (count($course->subjects) > 0) {
     });
     course_player.on('ended', function(event) {
       console.log(event);
-      var $next = $(".course-chapter > li.active")
+      var $next = $(".course-chapter li.active")
         .next()
         .find("a.play-course-video")
         .trigger("click");
