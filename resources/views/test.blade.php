@@ -1252,6 +1252,7 @@ if (count($course->subjects) > 0) {
         if ($next_chap.length) {
           $next = $($next_chap.find('li')[0])
         } else {
+            console.log("last chapter finished");
           // last chapter finished
         }
       }
