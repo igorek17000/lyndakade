@@ -1254,9 +1254,9 @@ if (count($course->subjects) > 0) {
     });
     course_player.on('ended', function(event) {
       console.log(event);
-      var $next = $(".plyr-playlist .pls-playing")
+      var $next = $(".course-chapter > li.active")
         .next()
-        .find(".play-course-video")
+        .find("a.play-course-video")
         .trigger("click");
     });
     $('#sidebarCollapse').trigger("click");
