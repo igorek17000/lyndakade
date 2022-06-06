@@ -201,6 +201,7 @@ if (count($course->subjects) > 0) {
     .wrapper {
       display: flex;
       width: 100%;
+    align-items: stretch;
     }
 
     :root {
@@ -246,17 +247,15 @@ if (count($course->subjects) > 0) {
 
     #sidebar {
       width: var(--sidebar-size);
-      position: fixed;
       text-align: right;
-      top: 0;
-      right: 0;
       height: 100vh;
       z-index: 999;
       background: #3a3a3a;
       color: #fff;
       transition: all 0.3s;
       overflow-y: auto;
-      margin-right: 0;
+      /* margin-right: 0; */
+      margin-right: calc(var(--sidebar-size)*(-1));
       scroll-behavior: smooth;
     }
 
@@ -266,7 +265,8 @@ if (count($course->subjects) > 0) {
     }
 
     #sidebar.active {
-      margin-right: calc(var(--sidebar-size)*(-1));
+      margin-right: 0;
+      /* margin-right: calc(var(--sidebar-size)*(-1)); */
     }
 
     #sidebar ul p {
@@ -351,17 +351,16 @@ if (count($course->subjects) > 0) {
                       ----------------------------------------------------- */
 
     #content {
-      width: calc(100% - var(--sidebar-size));
+        width: 100%;
+      /* width: calc(100% - var(--sidebar-size)); */
       padding: 40px;
       min-height: 100vh;
       transition: all 0.3s;
-      position: absolute;
-      top: 0;
-      left: 0;
     }
 
     #content.active {
-      width: 100%;
+      /* width: 100%; */
+      width: calc(100% - var(--sidebar-size));
     }
 
     #sidebarCollapse {
@@ -381,15 +380,15 @@ if (count($course->subjects) > 0) {
       transition-delay: 0.2s;
     }
 
-    #sidebarCollapse span:first-of-type {
+    #sidebarCollapse.active span:first-of-type {
       transform: rotate(45deg) translate(2px, 2px);
     }
 
-    #sidebarCollapse span:nth-of-type(2) {
+    #sidebarCollapse.active span:nth-of-type(2) {
       opacity: 0;
     }
 
-    #sidebarCollapse span:last-of-type {
+    #sidebarCollapse.active span:last-of-type {
       transform: rotate(-45deg) translate(1px, -1px);
     }
 
@@ -402,7 +401,7 @@ if (count($course->subjects) > 0) {
     /* } */
 
     @media (max-width: 768px) {
-      #sidebarCollapse:not(.active) span {
+      #sidebarCollapse.active span {
         transform: none;
         opacity: 1;
         margin: 5px auto;
@@ -430,7 +429,7 @@ if (count($course->subjects) > 0) {
     }
 
     @media (min-width: 769px) {
-      #sidebarCollapse.active span {
+      #sidebarCollapse span {
         transform: none;
         opacity: 1;
         margin: 5px auto;
@@ -510,6 +509,7 @@ if (count($course->subjects) > 0) {
       </li> --}}
       </ul>
     </nav>
+    <div class="overlay"></div>
     <div id="content">
       <button type="button" id="sidebarCollapse" class="navbar-btn">
         <span></span>
