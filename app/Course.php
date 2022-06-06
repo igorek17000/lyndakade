@@ -64,10 +64,9 @@ class Course extends Model
 
         static::retrieved(
             function ($model) {
-                $user_agent = $_SERVER['HTTP_USER_AGENT'];
-
-                if(strpos($user_agent, "Mac") !== FALSE){
-
+                if (strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad') || strstr($_SERVER['HTTP_USER_AGENT'], 'Mac')) {
+                    $model->img = str_replace(".webp", ".jpg", $model->img);
+                    $model->thumbnail = str_replace(".webp", ".jpg", $model->thumbnail);
                 }
             }
         );
