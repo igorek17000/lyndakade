@@ -438,7 +438,9 @@ if (count($course->subjects) > 0) {
       }
 
     }
-
+    #sidebar ul > li:hover > a:before {
+        width: 100%;
+    }
   </style>
   @csrf
   @if (isset($has_dubbed))
