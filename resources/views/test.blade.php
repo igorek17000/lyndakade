@@ -447,7 +447,7 @@ if (count($course->subjects) > 0) {
         </div>
         <p>سرفصل‌ها</p>
         <li>
-          <a href="#chap1" title="0. Introduction" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <a class="course-chapter" href="#chap1" title="0. Introduction" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             0. مقدمه
           </a>
           <ul class="list-unstyled collapse" id="chap1" style="">
@@ -469,7 +469,7 @@ if (count($course->subjects) > 0) {
           </ul>
         </li>
         <li>
-          <a href="#chap2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <a class="course-chapter" href="#chap2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             1. راز زدایی از بلاک چین
           </a>
           <ul class="collapse list-unstyled" id="chap2">
@@ -1241,5 +1241,6 @@ if (count($course->subjects) > 0) {
       // };
     });
     $('#sidebarCollapse').click();
+    $('.course-chapter').click();
   </script>
 @endsection
