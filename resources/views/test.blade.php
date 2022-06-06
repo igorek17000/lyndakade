@@ -464,7 +464,7 @@ if (count($course->subjects) > 0) {
           <ul class="list-unstyled collapse" id="chap1" style="">
             <li>
               <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="#"
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="javascript:void(0);"
                 title="01 - Security concerns with blockchain">
                 01 - نگرانی های امنیتی با بلاک چین
                 <br /><small>60 ثانیه</small>
@@ -472,7 +472,7 @@ if (count($course->subjects) > 0) {
             </li>
             <li>
               <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="#">
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="javascript:void(0);">
                 02 - آنچه باید بدانید
                 <br /><small>60 ثانیه</small>
               </a>
@@ -486,19 +486,19 @@ if (count($course->subjects) > 0) {
           <ul class="collapse list-unstyled" id="chap2">
             <li>
               <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="#">
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="javascript:void(0);">
                 03 - بلاک چین چیست
                 <br /><small>60 ثانیه</small></a>
             </li>
             <li>
               <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="#">
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="javascript:void(0);">
                 04 - قراردادهای هوشمند و dApps
                 <br /><small>60 ثانیه</small></a>
             </li>
             <li>
               <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="#">
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="javascript:void(0);">
                 05 - بلاک چین چگونه کار می کند
                 <br /><small>60 ثانیه</small></a>
             </li>
