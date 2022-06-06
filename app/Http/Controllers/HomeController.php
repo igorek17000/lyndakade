@@ -440,7 +440,7 @@ class HomeController extends Controller
 
     public function test_url(Request $request)
     {
-        $course = Course::with(['authors', 'subjects', 'softwares'])->find(6122);
+        $course = Course::with(['authors', 'subjects', 'softwares'])->find(2765);
         $slug = $course->slug_linkedin;
 
         $view_dt = Carbon::now();
@@ -513,7 +513,7 @@ class HomeController extends Controller
         $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc')->get();
 
         // dd($previewSubtitleContent, $previewSubtitleContentEng);
-        
+
         return view('test', [
             'skill' => $skill,
             'skillEng' => $skillEng,
