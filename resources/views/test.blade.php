@@ -438,9 +438,11 @@ if (count($course->subjects) > 0) {
       }
 
     }
-    #sidebar ul > li:hover > a:before {
-        width: 0;
+
+    #sidebar ul>li:hover>a:before {
+      width: 0;
     }
+
   </style>
   @csrf
   @if (isset($has_dubbed))
@@ -1178,6 +1180,7 @@ if (count($course->subjects) > 0) {
       const btn = event.currentTarget.dataset;
       var video_id = btn.videoId;
       console.log(btn);
+      PlayVideo([]);
       // course_player.source = {
       //   type: "video",
       //   title: btn.title,
@@ -1217,9 +1220,13 @@ if (count($course->subjects) > 0) {
         }
       }
       $next.find("a").trigger("click");
-      course_player.seek(0);
-      course_player.play();
+      PlayVideo([]);
     });
+
+    function PlayVideo(video_data) {
+
+      course_player.play();
+    }
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");
 
