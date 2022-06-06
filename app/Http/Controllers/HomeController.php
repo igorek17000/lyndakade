@@ -511,10 +511,14 @@ class HomeController extends Controller
         }
 
         $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc')->get();
+
         $chapters = explode("\n", $course->concepts);
+        if (strpos($course->concepts, "\r\n") !== false) {
+            $chapters = explode("\r\n", $course->concepts);
+        }
 
         dd($chapters);
-        
+
         // dd($previewSubtitleContent, $previewSubtitleContentEng);
 
         return view('test', [
