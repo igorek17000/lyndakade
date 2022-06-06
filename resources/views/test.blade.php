@@ -210,10 +210,10 @@ if (count($course->subjects) > 0) {
     }
 
     /* @media (max-width: 768px) {
-                        :root {
-                          --sider-size: 100vw;
-                        }
-                      } */
+                            :root {
+                              --sider-size: 100vw;
+                            }
+                          } */
 
     #dismiss {
       width: 30px;
@@ -357,13 +357,14 @@ if (count($course->subjects) > 0) {
     }
 
     /* ---------------------------------------------------
-                                                      CONTENT STYLE
-                                                  ----------------------------------------------------- */
+                                                          CONTENT STYLE
+                                                      ----------------------------------------------------- */
 
     #content {
       width: 100%;
       /* width: calc(100% - var(--sidebar-size)); */
-      padding: 40px;
+      /* padding: 40px; */
+      padding: 0;
       min-height: 100vh;
       transition: all 0.3s;
     }
@@ -415,10 +416,10 @@ if (count($course->subjects) > 0) {
     @media (max-width: 767px) {
 
       /* #sidebarCollapse.active span {
-                                  transform: none;
-                                  opacity: 1;
-                                  margin: 5px auto;
-                                } */
+                                      transform: none;
+                                      opacity: 1;
+                                      margin: 5px auto;
+                                    } */
 
       #sidebar {
         margin-right: calc(var(--sidebar-size)*(-1));
@@ -445,10 +446,10 @@ if (count($course->subjects) > 0) {
 
     @media (min-width: 768px) {
       /* #sidebarCollapse span {
-                                  transform: none;
-                                  opacity: 1;
-                                  margin: 5px auto;
-                                } */
+                                      transform: none;
+                                      opacity: 1;
+                                      margin: 5px auto;
+                                    } */
 
       .overlay.active {
         display: none;
@@ -468,7 +469,6 @@ if (count($course->subjects) > 0) {
     @endif
   @endif
   <div class="wrapper">
-
     <nav id="sidebar">
       <ul class="list-unstyled components">
         <div id="dismiss">
@@ -528,12 +528,14 @@ if (count($course->subjects) > 0) {
       </ul>
     </nav>
     <div id="content">
-      <button type="button" id="sidebarCollapse" class="navbar-btn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
       <div class="section-module my-0">
+        <div style="padding: 0 40px 10px;">
+          <button type="button" id="sidebarCollapse" class="navbar-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
         <h1 class="panel-title" style="font-size: 1em;">
           <span class="course-title" lang="fa">
             {{ $course->title }}
@@ -631,9 +633,9 @@ if (count($course->subjects) > 0) {
                 <div class="author-thumb">
                   <div
                     style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                                                font-family: inherit;
-                                                                                                                                                                font-weight: 500;
-                                                                                                                                                                line-height: 1.2;margin-top: 0;">
+                                                                                                                                                                    font-family: inherit;
+                                                                                                                                                                    font-weight: 500;
+                                                                                                                                                                    line-height: 1.2;margin-top: 0;">
                     مدرس
                   </div>
                   @foreach ($course->authors as $author)
@@ -651,9 +653,9 @@ if (count($course->subjects) > 0) {
                     class="author-thumb">
                     <div
                       style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                                                font-family: inherit;
-                                                                                                                                                                font-weight: 500;
-                                                                                                                                                                line-height: 1.2;margin-top: 0;">
+                                                                                                                                                                    font-family: inherit;
+                                                                                                                                                                    font-weight: 500;
+                                                                                                                                                                    line-height: 1.2;margin-top: 0;">
                       دوبلور
                     </div>
                     @foreach ($course->users as $user)
