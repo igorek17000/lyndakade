@@ -458,8 +458,7 @@ if (count($course->subjects) > 0) {
         </div>
         <p>سرفصل‌ها</p>
         <li class="course-chapter">
-          <a href="#chap1" title="0. Introduction" data-toggle="collapse" aria-expanded="false"
-            class="dropdown-toggle">
+          <a href="#chap1" title="0. Introduction" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             0. مقدمه
           </a>
           <ul class="list-unstyled collapse" id="chap1" style="">
@@ -1259,7 +1258,7 @@ if (count($course->subjects) > 0) {
         wrap: false,
         keyboard: false,
       });
-      $(document.querySelector('.play-course-video')).trigger("click");
+      $(document.querySelector('.course-chapter .play-course-video')).trigger("click");
     });
   </script>
 @endsection
