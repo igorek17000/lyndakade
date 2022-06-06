@@ -209,12 +209,6 @@ if (count($course->subjects) > 0) {
       --sidebar-size: 300px;
     }
 
-    /* @media (max-width: 768px) {
-                                                  :root {
-                                                    --sider-size: 100vw;
-                                                  }
-                                                } */
-
     #dismiss {
       width: 30px;
       height: 30px;
@@ -264,7 +258,6 @@ if (count($course->subjects) > 0) {
       color: #fff;
       transition: all 0.3s;
       overflow-y: auto;
-      /* margin-right: 0; */
       margin-right: calc(var(--sidebar-size)*(-1));
       scroll-behavior: smooth;
     }
@@ -276,7 +269,6 @@ if (count($course->subjects) > 0) {
 
     #sidebar.active {
       margin-right: 0;
-      /* margin-right: calc(var(--sidebar-size)*(-1)); */
     }
 
     #sidebar ul p {
@@ -356,21 +348,14 @@ if (count($course->subjects) > 0) {
       border: 1px solid #ddd;
     }
 
-    /* ---------------------------------------------------
-                                                                                CONTENT STYLE
-                                                                            ----------------------------------------------------- */
-
     #content {
       width: 100%;
-      /* width: calc(100% - var(--sidebar-size)); */
-      /* padding: 40px; */
       padding: 0;
       min-height: 100vh;
       transition: all 0.3s;
     }
 
     #content.active {
-      /* width: 100%; */
       width: calc(100% - var(--sidebar-size));
     }
 
@@ -384,7 +369,6 @@ if (count($course->subjects) > 0) {
     #sidebarCollapse span {
       width: 80%;
       height: 2px;
-      /* margin: 0 auto; */
       margin: 5px auto;
       display: block;
       background: #555;
@@ -404,22 +388,14 @@ if (count($course->subjects) > 0) {
       transform: rotate(-45deg) translate(1px, -1px);
     }
 
-
-
     #sidebarCollapse.active span {
       transform: none;
       opacity: 1;
       margin: 0 auto;
-      /* margin: 5px auto; */
     }
 
     @media (max-width: 767px) {
 
-      /* #sidebarCollapse.active span {
-                                                            transform: none;
-                                                            opacity: 1;
-                                                            margin: 5px auto;
-                                                          } */
 
       #sidebar {
         margin-right: calc(var(--sidebar-size)*(-1));
@@ -436,21 +412,11 @@ if (count($course->subjects) > 0) {
 
       #content.active {
         display: none;
-        /* width: calc(100% - var(--sidebar-size)); */
       }
 
-      /* #sidebarCollapse span { */
-      /* display: none; */
-      /* } */
     }
 
     @media (min-width: 768px) {
-      /* #sidebarCollapse span {
-                                                            transform: none;
-                                                            opacity: 1;
-                                                            margin: 5px auto;
-                                                          } */
-
       .overlay.active {
         display: none;
         opacity: 0;
@@ -486,14 +452,16 @@ if (count($course->subjects) > 0) {
           </a>
           <ul class="list-unstyled collapse" id="chap1" style="">
             <li>
-              <a class="play-course-video" data-video-id="{{ \Illuminate\Support\Facades\Hash::make('-1') }}" href="#"
+              <a class="play-course-video"
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="#"
                 title="01 - Security concerns with blockchain">
                 01 - نگرانی های امنیتی با بلاک چین
                 <br /><small>60 ثانیه</small>
               </a>
             </li>
             <li>
-              <a class="play-course-video" data-video-id="{{ \Illuminate\Support\Facades\Hash::make('-1') }}" href="#">
+              <a class="play-course-video"
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="#">
                 02 - آنچه باید بدانید
                 <br /><small>60 ثانیه</small>
               </a>
@@ -506,17 +474,20 @@ if (count($course->subjects) > 0) {
           </a>
           <ul class="collapse list-unstyled" id="chap2">
             <li>
-              <a class="play-course-video" data-video-id="{{ \Illuminate\Support\Facades\Hash::make('-1') }}" href="#">
+              <a class="play-course-video"
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="#">
                 03 - بلاک چین چیست
                 <br /><small>60 ثانیه</small></a>
             </li>
             <li>
-              <a class="play-course-video" data-video-id="{{ \Illuminate\Support\Facades\Hash::make('-1') }}" href="#">
+              <a class="play-course-video"
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="#">
                 04 - قراردادهای هوشمند و dApps
                 <br /><small>60 ثانیه</small></a>
             </li>
             <li>
-              <a class="play-course-video" data-video-id="{{ \Illuminate\Support\Facades\Hash::make('-1') }}" href="#">
+              <a class="play-course-video"
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="#">
                 05 - بلاک چین چگونه کار می کند
                 <br /><small>60 ثانیه</small></a>
             </li>
@@ -638,10 +609,7 @@ if (count($course->subjects) > 0) {
                 @endif
                 <div class="author-thumb">
                   <div
-                    style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                                                                          font-family: inherit;
-                                                                                                                                                                                          font-weight: 500;
-                                                                                                                                                                                          line-height: 1.2;margin-top: 0;">
+                    style="font-size: 1.25rem;margin-bottom: 0.5rem; font-family: inherit; font-weight: 500; line-height: 1.2;margin-top: 0;">
                     مدرس
                   </div>
                   @foreach ($course->authors as $author)
@@ -658,10 +626,7 @@ if (count($course->subjects) > 0) {
                   <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
                     class="author-thumb">
                     <div
-                      style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                                                                          font-family: inherit;
-                                                                                                                                                                                          font-weight: 500;
-                                                                                                                                                                                          line-height: 1.2;margin-top: 0;">
+                      style="font-size: 1.25rem;margin-bottom: 0.5rem; font-family: inherit; font-weight: 500; line-height: 1.2;margin-top: 0;">
                       دوبلور
                     </div>
                     @foreach ($course->users as $user)
