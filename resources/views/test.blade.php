@@ -433,7 +433,7 @@ if (count($course->subjects) > 0) {
         opacity: 0;
       }
 
-      .plyr video {
+      .video-player .plyr video {
         height: 500px;
       }
 
