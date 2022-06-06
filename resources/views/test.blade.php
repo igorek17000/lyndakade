@@ -210,10 +210,10 @@ if (count($course->subjects) > 0) {
     }
 
     /* @media (max-width: 768px) {
-                                    :root {
-                                      --sider-size: 100vw;
-                                    }
-                                  } */
+                                      :root {
+                                        --sider-size: 100vw;
+                                      }
+                                    } */
 
     #dismiss {
       width: 30px;
@@ -357,8 +357,8 @@ if (count($course->subjects) > 0) {
     }
 
     /* ---------------------------------------------------
-                                                                  CONTENT STYLE
-                                                              ----------------------------------------------------- */
+                                                                    CONTENT STYLE
+                                                                ----------------------------------------------------- */
 
     #content {
       width: 100%;
@@ -416,10 +416,10 @@ if (count($course->subjects) > 0) {
     @media (max-width: 767px) {
 
       /* #sidebarCollapse.active span {
-                                              transform: none;
-                                              opacity: 1;
-                                              margin: 5px auto;
-                                            } */
+                                                transform: none;
+                                                opacity: 1;
+                                                margin: 5px auto;
+                                              } */
 
       #sidebar {
         margin-right: calc(var(--sidebar-size)*(-1));
@@ -446,10 +446,10 @@ if (count($course->subjects) > 0) {
 
     @media (min-width: 768px) {
       /* #sidebarCollapse span {
-                                              transform: none;
-                                              opacity: 1;
-                                              margin: 5px auto;
-                                            } */
+                                                transform: none;
+                                                opacity: 1;
+                                                margin: 5px auto;
+                                              } */
 
       .overlay.active {
         display: none;
@@ -638,9 +638,9 @@ if (count($course->subjects) > 0) {
                 <div class="author-thumb">
                   <div
                     style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                                                            font-family: inherit;
-                                                                                                                                                                            font-weight: 500;
-                                                                                                                                                                            line-height: 1.2;margin-top: 0;">
+                                                                                                                                                                              font-family: inherit;
+                                                                                                                                                                              font-weight: 500;
+                                                                                                                                                                              line-height: 1.2;margin-top: 0;">
                     مدرس
                   </div>
                   @foreach ($course->authors as $author)
@@ -658,9 +658,9 @@ if (count($course->subjects) > 0) {
                     class="author-thumb">
                     <div
                       style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                                                            font-family: inherit;
-                                                                                                                                                                            font-weight: 500;
-                                                                                                                                                                            line-height: 1.2;margin-top: 0;">
+                                                                                                                                                                              font-family: inherit;
+                                                                                                                                                                              font-weight: 500;
+                                                                                                                                                                              line-height: 1.2;margin-top: 0;">
                       دوبلور
                     </div>
                     @foreach ($course->users as $user)
@@ -1210,7 +1210,7 @@ if (count($course->subjects) > 0) {
         Goftino.open();
         if (!isSent) {
           Goftino.sendMessage({
-            text: 'سلام، لطفا گزارش خودتون رو برای "' + course_title + '" در اینجا ذکر کنید.'
+            text: 'سلام کاربر گرامی، لطفا گزارش خودتون رو برای "' + course_title + '" در اینجا ذکر کنید.'
           });
           isSent = true;
         }
@@ -1219,11 +1219,25 @@ if (count($course->subjects) > 0) {
         interval: false,
         wrap: false,
         keyboard: false,
-      })
-    });
+      });
 
-    $(document).ready(function() {
-      $(document).on('click', '.play-course-video', function(e) {
+      $(document).on('click', '#dismiss, .overlay', function(event) {
+    //   $('#dismiss, .overlay').on('click', function() {
+        $('#sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
+        $('#content').removeClass('active');
+        $('#sidebarCollapse').removeClass('active');
+      });
+
+      $(document).on('click', '#sidebarCollapse', function(event) {
+    //   $('#sidebarCollapse').on('click', function() {
+        $('#sidebar, #content, .overlay').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        // $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        $(this).toggleClass('active');
+      });
+
+      $(document).on('click', '.play-course-video', function(event) {
         //   $('.play-course-video').on('click', function() {
         $('#sidebar').removeClass('active');
         $('.overlay').removeClass('active');
@@ -1231,19 +1245,31 @@ if (count($course->subjects) > 0) {
         $('#sidebarCollapse').removeClass('active');
         $('.play-course-video').parent().removeClass('active');
         $(this).parent().toggleClass('active');
-      });
-      $('#dismiss, .overlay').on('click', function() {
-        $('#sidebar').removeClass('active');
-        $('.overlay').removeClass('active');
-        $('#content').removeClass('active');
-        $('#sidebarCollapse').removeClass('active');
-      });
 
-      $('#sidebarCollapse').on('click', function() {
-        $('#sidebar, #content, .overlay').toggleClass('active');
-        $('.collapse.in').toggleClass('in');
-        // $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-        $(this).toggleClass('active');
+        const btn = event.currentTarget.dataset;
+        course_player.source = {
+          type: "video",
+          title: btn.title,
+          sources: [{
+            src: btn.src,
+            type: btn.type,
+            size: Number(btn.size)
+          }],
+          tracks: (btn.dubbed == "1") ? [] : [{
+            kind: 'captions',
+            label: btn.trackLabel,
+            srclang: btn.trackSrclang,
+            src: btn.trackSrc,
+            default: true,
+          }, {
+            kind: 'captions',
+            label: btn.trackLabelEng,
+            srclang: btn.trackSrclangEng,
+            src: btn.trackSrcEng,
+            default: false,
+          }, ],
+          poster: btn.poster
+        };
       });
     });
   </script>
