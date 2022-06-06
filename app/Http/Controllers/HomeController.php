@@ -541,6 +541,7 @@ class HomeController extends Controller
             'skill' => $skill,
             'skillEng' => $skillEng,
             'course' => $course,
+            'chapters' => $chapters,
             'previewSubtitleContent' => $previewSubtitleContent,
             'previewSubtitleContentEng' => $previewSubtitleContentEng,
             'has_dubbed' => $has_dubbed,
