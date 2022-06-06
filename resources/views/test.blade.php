@@ -1208,7 +1208,7 @@ if (count($course->subjects) > 0) {
         keyboard: false,
       });
     });
-    // $(document).ready(function() {
+
     var course_id = '{{ $course->id }}';
     var course_title = '{{ $course->title }}';
     var course_titleEng = '{{ $course->titleEng }}';
@@ -1224,7 +1224,6 @@ if (count($course->subjects) > 0) {
     });
 
     $(document).on('click', '#dismiss, .overlay', function(event) {
-      //   $('#dismiss, .overlay').on('click', function() {
       $('#sidebar').removeClass('active');
       $('.overlay').removeClass('active');
       $('#content').removeClass('active');
@@ -1232,15 +1231,13 @@ if (count($course->subjects) > 0) {
     });
 
     $(document).on('click', '#sidebarCollapse', function(event) {
-      //   $('#sidebarCollapse').on('click', function() {
       $('#sidebar, #content, .overlay').toggleClass('active');
       $('.collapse.in').toggleClass('in');
-      // $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+      $('a[aria-expanded=true]').attr('aria-expanded', 'false');
       $(this).toggleClass('active');
     });
 
     $(document).on('click', '.play-course-video', function(event) {
-      //   $('.play-course-video').on('click', function() {
       if (window.innerWidth < 768) {
         $('#sidebar').removeClass('active');
         $('.overlay').removeClass('active');
@@ -1277,6 +1274,5 @@ if (count($course->subjects) > 0) {
       // };
     });
     $('#sidebarCollapse').click();
-    // });
   </script>
 @endsection
