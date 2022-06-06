@@ -1069,7 +1069,7 @@ if (count($course->subjects) > 0) {
       controls: [
         //'play-large',
         'play',
-        'progress', 'seek', 
+        'progress', 'seek',
         'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
         'airplay', 'fullscreen'
       ],
@@ -1225,7 +1225,12 @@ if (count($course->subjects) > 0) {
 
     function PlayVideo(video_data) {
       course_player.currentTime = 0;
-      course_player.play();
+      if (course_player.ready)
+        course_player.play();
+      else
+        setTimeout(() => {
+          PlayVideo(video_data);
+        }, 100);
     }
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");
