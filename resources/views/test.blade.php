@@ -434,7 +434,7 @@ if (count($course->subjects) > 0) {
       }
 
       video#plyr-video {
-        max-height: 500px;
+        height: 500px;
       }
 
     }
