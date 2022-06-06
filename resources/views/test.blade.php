@@ -1260,7 +1260,7 @@ if (count($course->subjects) > 0) {
         wrap: false,
         keyboard: false,
       });
-      $('.play-course-video')[0].trigger("click");
+      $(document.querySelector('.play-course-video')).trigger("click");
     });
   </script>
 @endsection
