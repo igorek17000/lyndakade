@@ -447,7 +447,8 @@ if (count($course->subjects) > 0) {
         </div>
         <p>سرفصل‌ها</p>
         <li>
-          <a class="course-chapter" href="#chap1" title="0. Introduction" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <a class="course-chapter" href="#chap1" title="0. Introduction" data-toggle="collapse" aria-expanded="false"
+            class="dropdown-toggle">
             0. مقدمه
           </a>
           <ul class="list-unstyled collapse" id="chap1" style="">
