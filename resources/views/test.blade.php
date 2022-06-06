@@ -554,7 +554,7 @@ if (count($course->subjects) > 0) {
           </div>
         </div>
         <hr class="mt-0 mb-5">
-        <div class="video-player">
+        <div class="video-player" style="padding: 0;">
           <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
             <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" size="720" default />
             @if ($course->dubbed_id == 2)
