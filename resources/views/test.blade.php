@@ -1225,12 +1225,13 @@ if (count($course->subjects) > 0) {
 
     function PlayVideo(video_data) {
       course_player.currentTime = 0;
-      if (course_player.ready)
+      try {
         course_player.play();
-      else
+      } catch (error) {
         setTimeout(() => {
           PlayVideo(video_data);
         }, 100);
+      }
     }
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");
