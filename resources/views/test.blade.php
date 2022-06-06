@@ -421,12 +421,12 @@ if (count($course->subjects) > 0) {
                     } */
 
       #sidebar {
-          width: 100%;
         margin-right: calc(var(--sidebar-size)*(-1));
       }
 
       #sidebar.active {
         margin-right: 0;
+          width: 100%;
       }
 
       #content {
