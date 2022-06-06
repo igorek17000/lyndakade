@@ -412,9 +412,11 @@ if (count($course->subjects) > 0) {
             opacity: 1;
             margin: 5px auto;
           } */
+        :root{
+            --sider-size: 100vw
+        }
 
       #sidebar {
-        width: 100vw;
         margin-right: calc(var(--sidebar-size)*(-1));
       }
 
