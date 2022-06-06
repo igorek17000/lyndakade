@@ -1252,6 +1252,13 @@ if (count($course->subjects) > 0) {
       //   poster: btn.poster
       // };
     });
+    course_player.on('ended', function(event) {
+      console.log(event);
+      var $next = $(".plyr-playlist .pls-playing")
+        .next()
+        .find(".play-course-video")
+        .trigger("click");
+    });
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter').trigger("click");
   </script>
