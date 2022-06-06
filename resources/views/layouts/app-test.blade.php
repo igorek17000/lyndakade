@@ -923,11 +923,11 @@
                   <a class="dropdown-item" href="{{ route('courses.mycourses') }}">دروس خریداری شده</a>
                 </li>
               @endif
-              {{-- @if (Auth::user()->role_id == 3)
+              @if (Auth::user()->role_id == 3)
                 <li>
                   <a class="dropdown-item" href="{{ route('users.dubbed-courses') }}">مدیریت دوبله</a>
                 </li>
-              @endif --}}
+              @endif
               <li>
                 <a class="dropdown-item" href="{{ route('my-profile') }}">{{ __('msg.Profile') }}</a>
               </li>

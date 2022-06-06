@@ -58,6 +58,20 @@ class Course extends Model
         ],
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::retrieved(
+            function ($model) {
+                $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+                if(strpos($user_agent, "Mac") !== FALSE){
+
+                }
+            }
+        );
+    }
     /**
      * A Course belong to many users
      *
