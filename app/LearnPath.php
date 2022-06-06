@@ -52,6 +52,10 @@ class LearnPath extends Model
         parent::boot();
 
         static::retrieved(function ($model) {
+            // if (strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad') || strstr($_SERVER['HTTP_USER_AGENT'], 'Mac')) {
+            //     $model->img = str_replace(".webp", ".jpg", $model->img);
+            //     $model->thumbnail = str_replace(".webp", ".jpg", $model->thumbnail);
+            // }
             if ($model->courses) {
 
                 $ids = $model->courses_id;
