@@ -512,11 +512,27 @@ class HomeController extends Controller
 
         $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc')->get();
 
-        $chapters = explode("\n", $course->concepts);
+        $lines = explode("\n", $course->concepts);
         if (strpos($course->concepts, "\r\n") !== false) {
-            $chapters = explode("\r\n", $course->concepts);
+            $lines = explode("\r\n", $course->concepts);
         }
-
+        $chapters = [];
+        $item = [
+            'title' => '',
+            'videos' => [],
+        ];
+        foreach ($lines as $line) {
+            if (substr($line, 0, strlen("\t")) === "\t") {
+                $item['videos'][] = str_replace("\t", "", $line);
+            } else {
+                if ($item['title'] !== '')
+                    $chapters[] = $item;
+                $item = [
+                    'title' => $line,
+                    'videos' => [],
+                ];
+            }
+        }
         dd($chapters);
 
         // dd($previewSubtitleContent, $previewSubtitleContentEng);
