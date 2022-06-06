@@ -1069,7 +1069,7 @@ if (count($course->subjects) > 0) {
       controls: [
         //'play-large',
         'play',
-        'progress',
+        'progress', 'seek', 
         'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
         'airplay', 'fullscreen'
       ],
