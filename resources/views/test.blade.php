@@ -492,7 +492,7 @@ if (count($course->subjects) > 0) {
       </ul>
     </nav>
     <div id="content">
-      <div class="section-module my-0">
+      <div class="section-module my-0" style="box-shadow: none;">
         <div style="padding: 0 40px 10px;">
           <button type="button" id="sidebarCollapse" class="navbar-btn">
             <span></span>
@@ -993,7 +993,7 @@ if (count($course->subjects) > 0) {
       </div>
 
       @if (count($related_paths))
-        <div class="section-module my-0">
+        <div class="section-module my-0" style="box-shadow: none;">
           <div class="row p-0 m-0">
             <div class="col-6">
               <div class="course-title" style="margin-bottom: 0.5rem;">مسیرهای آموزشی مرتبط</div>
@@ -1027,7 +1027,7 @@ if (count($course->subjects) > 0) {
         </div>
       @endif
 
-      <div class="section-module my-0">
+      <div class="section-module my-0" style="box-shadow: none;">
         <div class="row p-0 m-0">
           <div class="col-6">
             <div class="course-title" style="margin-bottom: 0.5rem;">دوره‌های مرتبط</div>
@@ -1225,13 +1225,7 @@ if (count($course->subjects) > 0) {
 
     function PlayVideo(video_data) {
       course_player.currentTime = 0;
-      try {
-        course_player.play();
-      } catch (error) {
-        setTimeout(() => {
-          PlayVideo(video_data);
-        }, 100);
-      }
+      course_player.play();
     }
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");
