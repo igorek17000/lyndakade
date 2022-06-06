@@ -201,7 +201,8 @@ if (count($course->subjects) > 0) {
     .wrapper {
       display: flex;
       width: 100%;
-    align-items: stretch;
+      align-items: stretch;
+      position: relative;
     }
 
     :root {
@@ -246,7 +247,10 @@ if (count($course->subjects) > 0) {
     }
 
     #sidebar {
+      position: sticky;
       width: var(--sidebar-size);
+      text-align: right;
+      top: 0;
       text-align: right;
       height: 100vh;
       z-index: 999;
@@ -347,11 +351,11 @@ if (count($course->subjects) > 0) {
     }
 
     /* ---------------------------------------------------
-                          CONTENT STYLE
-                      ----------------------------------------------------- */
+                            CONTENT STYLE
+                        ----------------------------------------------------- */
 
     #content {
-        width: 100%;
+      width: 100%;
       /* width: calc(100% - var(--sidebar-size)); */
       padding: 40px;
       min-height: 100vh;
@@ -509,7 +513,6 @@ if (count($course->subjects) > 0) {
       </li> --}}
       </ul>
     </nav>
-    <div class="overlay"></div>
     <div id="content">
       <button type="button" id="sidebarCollapse" class="navbar-btn">
         <span></span>
@@ -616,9 +619,9 @@ if (count($course->subjects) > 0) {
                     <div class="author-thumb">
                       <div
                         style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                    font-family: inherit;
-                                                                                                                                    font-weight: 500;
-                                                                                                                                    line-height: 1.2;margin-top: 0;">
+                                                                                                                                      font-family: inherit;
+                                                                                                                                      font-weight: 500;
+                                                                                                                                      line-height: 1.2;margin-top: 0;">
                         مدرس
                       </div>
                       @foreach ($course->authors as $author)
@@ -636,9 +639,9 @@ if (count($course->subjects) > 0) {
                         class="author-thumb">
                         <div
                           style="font-size: 1.25rem;margin-bottom: 0.5rem;
-                                                                                                                                    font-family: inherit;
-                                                                                                                                    font-weight: 500;
-                                                                                                                                    line-height: 1.2;margin-top: 0;">
+                                                                                                                                      font-family: inherit;
+                                                                                                                                      font-weight: 500;
+                                                                                                                                      line-height: 1.2;margin-top: 0;">
                           دوبلور
                         </div>
                         @foreach ($course->users as $user)
