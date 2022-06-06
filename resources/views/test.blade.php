@@ -1179,14 +1179,6 @@ if (count($course->subjects) > 0) {
     //   });
     // });
 
-    $(document).ready(function() {
-      $('.carousel').carousel({
-        interval: false,
-        wrap: false,
-        keyboard: false,
-      });
-    });
-
     var course_id = '{{ $course->id }}';
     var course_title = '{{ $course->title }}';
     var course_titleEng = '{{ $course->titleEng }}';
@@ -1261,6 +1253,14 @@ if (count($course->subjects) > 0) {
     });
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter').trigger("click");
-    $('.course-chapter a.play-course-video')[0].trigger("click");
+
+    $(document).ready(function() {
+      $('.carousel').carousel({
+        interval: false,
+        wrap: false,
+        keyboard: false,
+      });
+      $('.course-chapter a.play-course-video')[0].trigger("click");
+    });
   </script>
 @endsection
