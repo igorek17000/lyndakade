@@ -1251,7 +1251,7 @@ if (count($course->subjects) > 0) {
         .trigger("click");
     });
     $('#sidebarCollapse').trigger("click");
-    $('.course-chapter').parent().trigger("click");
+    $('.course-chapter > a').trigger("click");
 
     $(document).ready(function() {
       $('.carousel').carousel({
