@@ -439,7 +439,7 @@ if (count($course->subjects) > 0) {
 
     }
     #sidebar ul > li:hover > a:before {
-        width: 100%;
+        width: 0;
     }
   </style>
   @csrf
