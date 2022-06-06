@@ -161,11 +161,17 @@
                     @foreach (get_dashboard_dubbed_table_data() as $row)
                       @if ($row->id != -1)
                         <tr>
+                          @php
+                            $user_data = prepare_dubbed_panel_data_for_user(\App\User::where('username', $row->username));
+                            $user_total_balance = $user_data['total_income'] - $data['total_received'];
+                            $user_total_balance = $user_data['total_balance'];
+                          @endphp
                           <th scope="row">{{ $loop->iteration }}</th>
                           <td>{{ $row->id }}</td>
                           <td>{{ $row->username }}</td>
                           <td>{{ $row->total_courses }}</td>
-                          <td>{{ $row->total_balance }}</td>
+                          <td>{{ $user_total_balance }}</td>
+                          {{-- <td>{{ $row->total_balance }}</td> --}}
                         </tr>
                       @else
                         <tr>
@@ -209,7 +215,10 @@
                     @foreach ($courses as $index => $course)
                       <tr>
                         <th scope="row">{{ $index + 1 }}</th>
-                        <td>{{ $course->titleEng }} @if($course->dubbed_id == 1)<b> (Dubbed)</b> @endif</td>
+                        <td>{{ $course->titleEng }} @if ($course->dubbed_id == 1)
+                            <b> (Dubbed)</b>
+                          @endif
+                        </td>
                         <td>{{ number_format($course->total) }}</td>
                         <td>
                           {{ \App\Paid::where('item_id', $course->id)->where('type', '1')->latest()->first()->created_at }}
@@ -250,7 +259,10 @@
                     @foreach ($courses as $index => $course)
                       <tr>
                         <th scope="row">{{ $index + 1 }}</th>
-                        <td>{{ $course->titleEng }} @if($course->dubbed_id == 1)<b> (Dubbed)</b> @endif</td>
+                        <td>{{ $course->titleEng }} @if ($course->dubbed_id == 1)
+                            <b> (Dubbed)</b>
+                          @endif
+                        </td>
                         <td>{{ number_format($course->total) }}</td>
                         <td>{{ \App\UnlockedCourse::where('course_id', $course->id)->latest()->first()->created_at }}
                         </td>
