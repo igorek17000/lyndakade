@@ -1224,7 +1224,7 @@ if (count($course->subjects) > 0) {
     });
 
     function PlayVideo(video_data) {
-
+      course_player.currentTime = 0;
       course_player.play();
     }
     $('#sidebarCollapse').trigger("click");
