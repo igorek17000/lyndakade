@@ -1248,7 +1248,7 @@ if (count($course->subjects) > 0) {
       if ($next.length == 0) {
         var $next_chap = $(document.querySelector(".course-chapter li.active").closest('.course-chapter')).next();
         if($next_chap.length){
-            $next = $next_chap.find('.play-course-video')[0]
+            $next = $($next_chap.find('.play-course-video')[0])
         }else{
             // last chapter finished
         }
