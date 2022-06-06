@@ -434,7 +434,7 @@ if (count($course->subjects) > 0) {
       }
 
       video#plyr-video {
-        max-height: 410px;
+        max-height: 500px;
       }
 
     }
@@ -1138,7 +1138,7 @@ if (count($course->subjects) > 0) {
     //     counter: '#unread_counter'
     //   });
     // });
-
+    var current_playing_video_id = '';
     var course_id = '{{ $course->id }}';
     var course_title = '{{ $course->title }}';
     var course_titleEng = '{{ $course->titleEng }}';
