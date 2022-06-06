@@ -1246,14 +1246,16 @@ if (count($course->subjects) > 0) {
     course_player.on('ended', function(event) {
       var $next = $(".course-chapter li.active").next();
       if ($next.length == 0) {
-        var $next_chap = $(document.querySelector(".course-chapter li.active").closest('.course-chapter')).next();
-        if($next_chap.length){
-            $next = $($next_chap.find('.play-course-video')[0])
-        }else{
-            // last chapter finished
+        var $current_chapter = $(document.querySelector(".course-chapter li.active").closest('.course-chapter'));
+        $current_chapter.trigger('click');
+        var $next_chap = $current_chapter.next();
+        if ($next_chap.length) {
+          $next = $($next_chap.find('li')[0])
+        } else {
+          // last chapter finished
         }
       }
-        $next.find("a").trigger("click");
+      $next.find("a").trigger("click");
     });
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");
