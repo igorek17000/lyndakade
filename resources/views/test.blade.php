@@ -1245,18 +1245,19 @@ if (count($course->subjects) > 0) {
     });
     course_player.on('ended', function(event) {
       var $next = $(".course-chapter li.active").next();
-      if ($next.length == 0) {
+      if ($next.length) {
+        $next.find("a").trigger("click");
+      } else {
         var $current_chapter = $(document.querySelector(".course-chapter li.active").closest('.course-chapter'));
         $current_chapter.trigger('click');
         var $next_chap = $current_chapter.next();
         if ($next_chap.length) {
-          $next = $($next_chap.find('li')[0])
+          $($next_chap.find('li')[0]).find("a").trigger("click");
         } else {
-            console.log("last chapter finished");
+          console.log("last chapter finished");
           // last chapter finished
         }
       }
-      $next.find("a").trigger("click");
     });
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");
