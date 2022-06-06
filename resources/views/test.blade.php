@@ -457,58 +457,25 @@ if (count($course->subjects) > 0) {
           <i class="fas fa-arrow-left"></i>
         </div>
         <p>سرفصل‌ها</p>
-        
-        <li class="course-chapter">
-          <a href="#chap1" title="0. Introduction" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            0. مقدمه
-          </a>
-          <ul class="list-unstyled collapse" id="chap1" style="">
-            <li>
-              <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}"
-                href="javascript:void(0);" title="01 - Security concerns with blockchain">
-                01 - نگرانی های امنیتی با بلاک چین
-                <br /><small>60 ثانیه</small>
-              </a>
-            </li>
-            <li>
-              <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}"
-                href="javascript:void(0);">
-                02 - آنچه باید بدانید
-                <br /><small>60 ثانیه</small>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="course-chapter">
-          <a href="#chap2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            1. راز زدایی از بلاک چین
-          </a>
-          <ul class="collapse list-unstyled" id="chap2">
-            <li>
-              <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}"
-                href="javascript:void(0);">
-                03 - بلاک چین چیست
-                <br /><small>60 ثانیه</small></a>
-            </li>
-            <li>
-              <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}"
-                href="javascript:void(0);">
-                04 - قراردادهای هوشمند و dApps
-                <br /><small>60 ثانیه</small></a>
-            </li>
-            <li>
-              <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}"
-                href="javascript:void(0);">
-                05 - بلاک چین چگونه کار می کند
-                <br /><small>60 ثانیه</small></a>
-            </li>
-          </ul>
-        </li>
+        @foreach ($chapters as $idx => $chapter)
+          <li class="course-chapter">
+            <a href="#chap-{{ $idx }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+              {{ $chapter['title'] }}
+            </a>
+            <ul class="list-unstyled collapse" id="chap-{{ $idx }}" style="">
+              @foreach ($chapter['videos'] as $video)
+                <li>
+                  <a class="play-course-video"
+                    data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . $video['id']) }}"
+                    href="javascript:void(0);">
+                    {{ $video['title'] }}
+                    <br /><small>{{ $video['duration'] }} ثانیه</small>
+                  </a>
+                </li>
+              @endforeach
+            </ul>
+          </li>
+        @endforeach
       </ul>
 
       <ul class="list-unstyled CTAs">
@@ -1235,19 +1202,21 @@ if (count($course->subjects) > 0) {
     });
     course_player.on('ended', function(event) {
       var $next = $(".course-chapter li.active").next();
-      if ($next.length) {
-        $next.find("a").trigger("click");
-      } else {
+      if ($next.length == 0) {
         var $current_chapter = $(document.querySelector(".course-chapter li.active").closest('.course-chapter'));
         $current_chapter.trigger('click');
         var $next_chap = $current_chapter.next();
         if ($next_chap.length) {
-          $($next_chap.find('li')[0]).find("a").trigger("click");
+          $next = $($next_chap.find('li')[0]);
         } else {
           console.log("last chapter finished");
           // last chapter finished
+          return;
         }
       }
+      $next.find("a").trigger("click");
+      course_player.seek(0);
+      course_player.play();
     });
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");

@@ -522,9 +522,15 @@ class HomeController extends Controller
                 'title' => '',
                 'videos' => [],
             ];
+            $ii = 0;
             foreach ($lines as $line) {
                 if (substr($line, 0, strlen("\t")) === "\t") {
-                    $item['videos'][] = str_replace("\t", "", $line);
+                    $ii++;
+                    $item['videos'][] = [
+                        'id' => $ii,
+                        'title' => str_replace("\t", "", $line),
+                        'duration' => $ii,
+                    ];
                 } else {
                     if ($item['title'] !== '')
                         $chapters[] = $item;
