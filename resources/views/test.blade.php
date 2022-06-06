@@ -1247,29 +1247,30 @@ if (count($course->subjects) > 0) {
         $(this).parent().toggleClass('active');
 
         const btn = event.currentTarget.dataset;
-        course_player.source = {
-          type: "video",
-          title: btn.title,
-          sources: [{
-            src: btn.src,
-            type: btn.type,
-            size: Number(btn.size)
-          }],
-          tracks: (btn.dubbed == "1") ? [] : [{
-            kind: 'captions',
-            label: btn.trackLabel,
-            srclang: btn.trackSrclang,
-            src: btn.trackSrc,
-            default: true,
-          }, {
-            kind: 'captions',
-            label: btn.trackLabelEng,
-            srclang: btn.trackSrclangEng,
-            src: btn.trackSrcEng,
-            default: false,
-          }, ],
-          poster: btn.poster
-        };
+        console.log(btn);
+        // course_player.source = {
+        //   type: "video",
+        //   title: btn.title,
+        //   sources: [{
+        //     src: btn.src,
+        //     type: btn.type,
+        //     size: Number(btn.size)
+        //   }],
+        //   tracks: (btn.dubbed == "1") ? [] : [{
+        //     kind: 'captions',
+        //     label: btn.trackLabel,
+        //     srclang: btn.trackSrclang,
+        //     src: btn.trackSrc,
+        //     default: true,
+        //   }, {
+        //     kind: 'captions',
+        //     label: btn.trackLabelEng,
+        //     srclang: btn.trackSrclangEng,
+        //     src: btn.trackSrcEng,
+        //     default: false,
+        //   }, ],
+        //   poster: btn.poster
+        // };
       });
     });
   </script>
