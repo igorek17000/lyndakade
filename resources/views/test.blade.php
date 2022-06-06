@@ -1067,10 +1067,7 @@ if (count($course->subjects) > 0) {
     const course_player = new Plyr("#plyr-video", {
       title: "{{ $course->title }}",
       controls: [
-        'play-large',
-        'play',
-        'progress',
-        'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
+        'play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
         'airplay', 'fullscreen'
       ],
       settings: ['captions', 'quality', 'speed', 'loop'],
