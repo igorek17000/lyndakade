@@ -1261,5 +1261,6 @@ if (count($course->subjects) > 0) {
     });
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter').trigger("click");
+    $('.course-chapter a.play-course-video')[0].trigger("click");
   </script>
 @endsection
