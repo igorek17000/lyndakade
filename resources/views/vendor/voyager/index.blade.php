@@ -163,7 +163,7 @@
                         <tr>
                           @php
                             $user_data = prepare_dubbed_panel_data_for_user(\App\User::firstWhere('username', $row->username));
-                            $user_total_balance = $user_data['total_income'] - $data['total_received'];
+                            $user_total_balance = $user_data['total_income'] - $user_data['total_received'];
                             $user_total_balance = $user_data['total_balance'];
                           @endphp
                           <th scope="row">{{ $loop->iteration }}</th>
