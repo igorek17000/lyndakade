@@ -464,15 +464,16 @@ if (count($course->subjects) > 0) {
           <ul class="list-unstyled collapse" id="chap1" style="">
             <li>
               <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="javascript:void(0);"
-                title="01 - Security concerns with blockchain">
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}"
+                href="javascript:void(0);" title="01 - Security concerns with blockchain">
                 01 - نگرانی های امنیتی با بلاک چین
                 <br /><small>60 ثانیه</small>
               </a>
             </li>
             <li>
               <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="javascript:void(0);">
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}"
+                href="javascript:void(0);">
                 02 - آنچه باید بدانید
                 <br /><small>60 ثانیه</small>
               </a>
@@ -486,19 +487,22 @@ if (count($course->subjects) > 0) {
           <ul class="collapse list-unstyled" id="chap2">
             <li>
               <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="javascript:void(0);">
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}"
+                href="javascript:void(0);">
                 03 - بلاک چین چیست
                 <br /><small>60 ثانیه</small></a>
             </li>
             <li>
               <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="javascript:void(0);">
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}"
+                href="javascript:void(0);">
                 04 - قراردادهای هوشمند و dApps
                 <br /><small>60 ثانیه</small></a>
             </li>
             <li>
               <a class="play-course-video"
-                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}" href="javascript:void(0);">
+                data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . '-1') }}"
+                href="javascript:void(0);">
                 05 - بلاک چین چگونه کار می کند
                 <br /><small>60 ثانیه</small></a>
             </li>
@@ -993,36 +997,28 @@ if (count($course->subjects) > 0) {
             </div>
           @endif
         </div>
-      </div>
 
-      @if (count($subjects) > 0)
-        <div class="row mx-0 justify-content-center">
-          <aside class="col-md-10">
-            <div class="section-module">
-              @if (count($subjects) > 0)
-                <div class="tags subject-tags">
-                  <h5 class="course-title" style="font-size: 1.2rem;">عناوین مرتبط</h5>
-                  @foreach ($subjects as $subject)
-                    {{-- <a target="_blank"
+        @if (count($subjects) > 0)
+          <div class="tags subject-tags">
+            <h5 class="course-title" style="font-size: 1.2rem;">عناوین مرتبط</h5>
+            @foreach ($subjects as $subject)
+              {{-- <a target="_blank"
                   href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a> --}}
 
-                    <a target="_blank" titleEng="{{ $subject->title }}"
-                      title="دارای {{ $subject->courses_count }} دوره آموزشی"
-                      style="position: relative;background-color: #ddd;margin-bottom: 15px;"
-                      href="{{ route('home.show', [$subject->slug]) }}">
-                      <em>{{ $subject->title_per ?? $subject->title }}</em>
-                      <span
-                        style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
-                        {{ $subject->courses_count }} دوره
-                      </span>
-                    </a>
-                  @endforeach
-                </div>
-              @endif
-            </div>
-          </aside>
-        </div>
-      @endif
+              <a target="_blank" titleEng="{{ $subject->title }}"
+                title="دارای {{ $subject->courses_count }} دوره آموزشی"
+                style="position: relative;background-color: #ddd;margin-bottom: 15px;"
+                href="{{ route('home.show', [$subject->slug]) }}">
+                <em>{{ $subject->title_per ?? $subject->title }}</em>
+                <span
+                  style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+                  {{ $subject->courses_count }} دوره
+                </span>
+              </a>
+            @endforeach
+          </div>
+        @endif
+      </div>
 
       @if (count($related_paths))
         <div class="row mx-0 justify-content-center">
@@ -1062,41 +1058,37 @@ if (count($course->subjects) > 0) {
           </aside>
         </div>
       @endif
-      <div class="row mx-0 justify-content-center">
-        <aside class="col-md-10">
-          <div class="section-module">
-            <div class="row p-0 m-0">
-              <div class="col-6">
-                <div class="course-title" style="margin-bottom: 0.5rem;">دوره‌های مرتبط</div>
-              </div>
-              <div id="carousel-arrows" class="col-6">
-                <a class="align-self-center" href="#related_courses" role="button" data-slide="next">
-                  <i class="lyndacon arrow-right" aria-hidden="true"></i>
-                  <span class="sr-only">بعدی</span>
-                </a>
-                <a class="align-self-center" href="#related_courses" role="button" data-slide="prev">
-                  <i class="lyndacon arrow-left" aria-hidden="true"></i>
-                  <span class="sr-only">قبلی</span>
-                </a>
-              </div>
-            </div>
-            <div id="related_courses" class="carousel slide" data-interval="1000000">
-              <div class="carousel-inner" count="{{ count($related_courses) }}">
-                @for ($index = 0; $index < count($related_courses); $index += 4)
-                  <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
-                    <div class="row d-flex">
-                      @for ($i = 0; $i < 4 && $index + $i < count($related_courses); $i++)
-                        @include('courses.partials._course_list_grid-new', [
-                            'course' => $related_courses[$index + $i],
-                        ])
-                      @endfor
-                    </div>
-                  </div>
-                @endfor
-              </div>
-            </div>
+      <div class="section-module">
+        <div class="row p-0 m-0">
+          <div class="col-6">
+            <div class="course-title" style="margin-bottom: 0.5rem;">دوره‌های مرتبط</div>
           </div>
-        </aside>
+          <div id="carousel-arrows" class="col-6">
+            <a class="align-self-center" href="#related_courses" role="button" data-slide="next">
+              <i class="lyndacon arrow-right" aria-hidden="true"></i>
+              <span class="sr-only">بعدی</span>
+            </a>
+            <a class="align-self-center" href="#related_courses" role="button" data-slide="prev">
+              <i class="lyndacon arrow-left" aria-hidden="true"></i>
+              <span class="sr-only">قبلی</span>
+            </a>
+          </div>
+        </div>
+        <div id="related_courses" class="carousel slide" data-interval="1000000">
+          <div class="carousel-inner" count="{{ count($related_courses) }}">
+            @for ($index = 0; $index < count($related_courses); $index += 4)
+              <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
+                <div class="row d-flex">
+                  @for ($i = 0; $i < 4 && $index + $i < count($related_courses); $i++)
+                    @include('courses.partials._course_list_grid-new', [
+                        'course' => $related_courses[$index + $i],
+                    ])
+                  @endfor
+                </div>
+              </div>
+            @endfor
+          </div>
+        </div>
       </div>
     </div>
   </div>
