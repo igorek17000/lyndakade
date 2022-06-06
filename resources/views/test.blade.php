@@ -1241,7 +1241,7 @@ if (count($course->subjects) > 0) {
       //   poster: btn.poster
       // };
     });
-    $('#sidebarCollapse').click();
-    $('.course-chapter').click();
+    $('#sidebarCollapse').trigger("click");
+    $('.course-chapter').trigger("click");
   </script>
 @endsection
