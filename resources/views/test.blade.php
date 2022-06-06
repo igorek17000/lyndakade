@@ -1245,7 +1245,10 @@ if (count($course->subjects) > 0) {
       // };
     });
     course_player.on('ended', function(event) {
-      console.log(event);
+      console.log($(".course-chapter li.active")
+        // .next(".course-chapter li")
+        // .find("a")
+        );
       var $next = $(".course-chapter li.active")
         .next(".course-chapter li")
         .find("a")
