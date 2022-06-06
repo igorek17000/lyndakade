@@ -360,10 +360,21 @@ if (count($course->subjects) > 0) {
     }
 
     #sidebarCollapse {
-      width: 40px;
-      height: 40px;
-      background: #f5f5f5;
-      cursor: pointer;
+    display: inline-block;
+    margin-bottom: 0;
+    padding: 0.4em;
+    border: 1px solid #6c757d;
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1.42857143;
+    border-radius: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     }
 
     #sidebarCollapse span {
