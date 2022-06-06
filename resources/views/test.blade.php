@@ -480,14 +480,14 @@ if (count($course->subjects) > 0) {
             0. مقدمه
           </a>
           <ul class="list-unstyled collapse" id="chap1" style="">
-            <li>
-              <a class="play-course-video" href="#" title="01 - Security concerns with blockchain">
+            <li class="play-course-video">
+              <a href="#" title="01 - Security concerns with blockchain">
                 01 - نگرانی های امنیتی با بلاک چین
                 <br /><small>60 ثانیه</small>
               </a>
             </li>
-            <li>
-              <a class="play-course-video" href="#">
+            <li class="play-course-video">
+              <a href="#">
                 02 - آنچه باید بدانید
                 <br /><small>60 ثانیه</small>
               </a>
@@ -499,18 +499,18 @@ if (count($course->subjects) > 0) {
             1. راز زدایی از بلاک چین
           </a>
           <ul class="collapse list-unstyled" id="chap2">
-            <li>
-              <a class="play-course-video" href="#">
+            <li class="play-course-video">
+              <a href="#">
                 03 - بلاک چین چیست
                 <br /><small>60 ثانیه</small></a>
             </li>
-            <li>
-              <a class="play-course-video" href="#">
+            <li class="play-course-video">
+              <a href="#">
                 04 - قراردادهای هوشمند و dApps
                 <br /><small>60 ثانیه</small></a>
             </li>
-            <li>
-              <a class="play-course-video" href="#">
+            <li class="play-course-video">
+              <a href="#">
                 05 - بلاک چین چگونه کار می کند
                 <br /><small>60 ثانیه</small></a>
             </li>
