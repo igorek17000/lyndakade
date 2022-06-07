@@ -64,9 +64,11 @@ class Course extends Model
 
         static::retrieved(
             function ($model) {
-                if (strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad') || strstr($_SERVER['HTTP_USER_AGENT'], 'Mac')) {
-                    $model->img = str_replace(".webp", ".jpg", $model->img);
-                    $model->thumbnail = str_replace(".webp", ".jpg", $model->thumbnail);
+                if (isset($_SERVER['HTTP_USER_AGENT'])) {
+                    if (strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad') || strstr($_SERVER['HTTP_USER_AGENT'], 'Mac')) {
+                        $model->img = str_replace(".webp", ".jpg", $model->img);
+                        $model->thumbnail = str_replace(".webp", ".jpg", $model->thumbnail);
+                    }
                 }
             }
         );
