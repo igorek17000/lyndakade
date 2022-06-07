@@ -62,7 +62,7 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
         // set course videos
         $videos = "[]";
         try {
-            $previewFile = json_decode($course->previewFile)[0];
+            $previewFile = json_decode($course->previewFile)[0]['download_link'];
             $course_path = str_replace("/preview.mp4", "", strtolower($previewFile));
             $chapters_file = $course_path . "/chapters.json";
             $chapters_file_content = Storage::disk('FTP')->get($chapters_file);
