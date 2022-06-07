@@ -309,7 +309,7 @@ Route::middleware('guest')->post('/courses/videos/get-video', function (Request 
             'status' => 'success'
         ], 200);
     } catch (\Throwable $th) {
-        //throw $th;
+        throw $th;
     }
     return new JsonResponse([
         'file' => false,
