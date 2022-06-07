@@ -468,7 +468,8 @@ if (count($course->subjects) > 0) {
             <ul class="list-unstyled collapse" id="chap-{{ $idx + 1 }}" style="">
               @foreach ($chapter->videos as $video)
                 <li>
-                  <a class="play-course-video" data-dubbed="{{ $course->dubbed_id }}" data-video-id="{{ $video->id }}" href="javascript:void(0);">
+                  <a class="play-course-video" data-title="{{ $video->title }}" data-video-id="{{ $video->id }}"
+                    href="javascript:void(0);">
                     {{ $video->title }}
                     <br /><small>{{ intval($video->duration) }} ثانیه</small>
                   </a>
@@ -1172,8 +1173,9 @@ if (count($course->subjects) > 0) {
       $(this).parent().toggleClass('active');
 
       const btn = event.currentTarget.dataset;
-      var video_id = btn.videoId;
-      PlayVideo(video_id);
+      var videoId = btn.videoId;
+      var title = btn.title;
+      PlayVideo(title, videoId);
     });
     course_player.on('ended', function(event) {
       var $next = $(".course-chapter li.active").next();
@@ -1190,19 +1192,20 @@ if (count($course->subjects) > 0) {
         }
       }
       $next.find("a").trigger("click");
-      var $videoId = $($next.find("a")).data('videoId');
-      PlayVideo($videoId);
+      var videoId = $($next.find("a")).data('videoId');
+      var title = $($next.find("a")).data('title');
+      PlayVideo(title, videoId);
     });
 
-    function PlayVideo(video_id) {
+    function PlayVideo(title, video_id) {
       course_player.source = {
         type: "video",
-        title: btn.title,
+        title: title,
         sources: [{
           src: `https://dl.lyndakade.ir/download.php?code=${video_id}&x=v`,
           type: 'video/mp4'
         }],
-        tracks: (btn.dubbed == "1") ? [] : [{
+        tracks: ("{{ $course->dubbed_id }}" == "1") ? [] : [{
           kind: 'captions',
           label: 'فارسی',
           srclang: 'fa',
