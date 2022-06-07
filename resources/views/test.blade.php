@@ -464,16 +464,16 @@ if (count($course->subjects) > 0) {
         @foreach ($chapters as $idx => $chapter)
           <li class="course-chapter">
             <a href="#chap-{{ $idx }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-              {{ $chapter['title'] }}
+              {{ $chapter->title }}
             </a>
             <ul class="list-unstyled collapse" id="chap-{{ $idx }}" style="">
-              @foreach ($chapter['videos'] as $video)
+              @foreach ($chapter->videos as $video)
                 <li>
                   <a class="play-course-video"
-                    data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . $video['index']) }}"
+                    data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . $video->index) }}"
                     href="javascript:void(0);">
-                    {{ $video['title'] }}
-                    <br /><small>{{ intval($video['duration']) }} ثانیه</small>
+                    {{ $video->title }}
+                    <br /><small>{{ intval($video->duration) }} ثانیه</small>
                   </a>
                 </li>
               @endforeach
