@@ -514,6 +514,11 @@ class HomeController extends Controller
 
         try {
             $chapters = json_decode($course->videos)->chapters;
+            foreach ($chapters as $chapter) {
+                foreach ($chapter->videos as $video) {
+                    $video->id = \Illuminate\Support\Facades\Hash::make($course->id . $video->index);
+                }
+            }
             return view('test', [
                 'skill' => $skill,
                 'skillEng' => $skillEng,
