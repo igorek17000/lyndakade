@@ -522,11 +522,11 @@ class HomeController extends Controller
                     $min = floor(($s - ($hrs * 3600)) / 60);
                     $sec = $s % 60;
                     if ($hrs > 0)
-                        $duration = sprintf('%dH %dM %dS', $hrs, $min, $sec);
+                        $duration = sprintf('%dh %dm %ds', $hrs, $min, $sec);
                     else if ($min > 0)
-                        $duration = sprintf('%dM %dS', $min, $sec);
+                        $duration = sprintf('%dm %ds', $min, $sec);
                     else
-                        $duration = sprintf('%dS', $sec);
+                        $duration = sprintf('%ds', $sec);
                     $video->duration = $duration;
                 }
             }
