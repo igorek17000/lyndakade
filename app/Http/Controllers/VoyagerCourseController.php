@@ -143,14 +143,21 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
         }
 
         // set course videos
-        $videos = "[]";
+        $chapters = [];
         try {
             $previewFile = json_decode($course->previewFile)[0]->download_link;
             $course_path = str_replace("/preview.mp4", "", $previewFile);
             $chapters_file = $course_path . "/chapters.json";
             $chapters_file_content = Storage::disk('FTP')->get($chapters_file);
             if (strlen($chapters_file_content) > 0) {
-                $videos = $chapters_file_content;
+                $chapters = $chapters_file_content;
+                $chapters = json_decode($chapters);
+                foreach ($chapters as $chapter) {
+                    foreach ($chapter->videos as $video) {
+                        $video->id = create_hashed_data_if_not_exists($course->id . "-" . $video->index);
+                        $video->full_path = $course_path . "/" . $video->path;
+                    }
+                }
             }
         } catch (Exception $e) {
             // $videos = $e->getMessage();
@@ -158,7 +165,7 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
 
         Course::where('id', $course->id)->update([
             'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate,
-            'videos' => $videos,
+            'videos' => json_encode($chapters),
         ]);
 
 

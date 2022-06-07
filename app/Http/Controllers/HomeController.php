@@ -519,7 +519,6 @@ class HomeController extends Controller
             foreach ($chapters as $chapter) {
                 foreach ($chapter->videos as $video) {
                     $video->id = \Illuminate\Support\Facades\Hash::make($course->id . $video->index);
-
                     $video->full_path = $course_path . "/" . $video->path;
                 }
             }
