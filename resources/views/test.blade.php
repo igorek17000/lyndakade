@@ -463,7 +463,7 @@ if (count($course->subjects) > 0) {
         <p>سرفصل‌ها</p>
         @foreach ($chapters as $idx => $chapter)
           <li class="course-chapter">
-            <a href="#chap-{{ $idx }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <a href="#chap-{{ $idx+1 }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
               {{ $chapter->title }}
             </a>
             <ul class="list-unstyled collapse" id="chap-{{ $idx }}" style="">
