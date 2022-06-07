@@ -513,10 +513,14 @@ class HomeController extends Controller
         $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc')->get();
 
         try {
+            $previewFile = json_decode($course->previewFile)[0]->download_link;
+            $course_path = str_replace("/preview.mp4", "", $previewFile);
             $chapters = json_decode($course->videos)->chapters;
             foreach ($chapters as $chapter) {
                 foreach ($chapter->videos as $video) {
                     $video->id = \Illuminate\Support\Facades\Hash::make($course->id . $video->index);
+
+                    $video->full_path = $course_path . "/" . $video->path;
                 }
             }
             return view('test', [
