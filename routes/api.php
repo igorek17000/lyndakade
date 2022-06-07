@@ -300,11 +300,14 @@ Route::middleware('guest')->post('/courses/videos/get-video', function (Request 
         foreach ($chapters as $chapter) {
             foreach ($chapter->videos as $video) {
                 if ($video->index === $video_index) {
+                    // $res = $video_index;
                     $res = ($file == 'v' ? $video->path : ($file == 'f' ? $video->sub_fa  : ($file == 'e' ? $video->sub_en  : '')));
                 }
             }
         }
         return new JsonResponse([
+            'course_id' => $course_id,
+            'video_index' => $video_index,
             'file' => $res,
             'status' => 'success'
         ], 200);
