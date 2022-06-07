@@ -442,7 +442,6 @@ if (count($course->subjects) > 0) {
     #sidebar ul>li:hover>a:before {
       width: 0;
     }
-
   </style>
   @csrf
   @if (isset($has_dubbed))
@@ -463,18 +462,15 @@ if (count($course->subjects) > 0) {
         <p>سرفصل‌ها</p>
         @foreach ($chapters as $idx => $chapter)
           <li class="course-chapter">
-            <a href="#chap-{{ $idx+1 }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <a href="#chap-{{ $idx + 1 }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
               {{ $chapter->title }}
             </a>
-            <ul class="list-unstyled collapse" id="chap-{{ $idx+1 }}" style="">
+            <ul class="list-unstyled collapse" id="chap-{{ $idx + 1 }}" style="">
               @foreach ($chapter->videos as $video)
                 <li>
-                  <a class="play-course-video"
-                    data-video-id="{{ $video->id }}"
-                    data-video-full-path="{{ $video->full_path }}"
-                    data-video-sub-en="{{ $video->sub_en }}"
-                    data-video-sub-fa="{{ $video->sub_fa }}"
-                    href="javascript:void(0);">
+                  <a class="play-course-video" data-video-id="{{ $video->id }}"
+                    data-video-full-path="{{ $video->full_path }}" data-video-sub-en="{{ $video->sub_en }}"
+                    data-video-sub-fa="{{ $video->sub_fa }}" href="javascript:void(0);">
                     {{ $video->title }}
                     <br /><small>{{ intval($video->duration) }} ثانیه</small>
                   </a>
