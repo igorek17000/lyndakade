@@ -472,6 +472,8 @@ if (count($course->subjects) > 0) {
                   <a class="play-course-video"
                     data-video-id="{{ $video->id }}"
                     data-video-full-path="{{ $video->full_path }}"
+                    data-video-sub-en="{{ $video->sub_en }}"
+                    data-video-sub-fa="{{ $video->sub_fa }}"
                     href="javascript:void(0);">
                     {{ $video->title }}
                     <br /><small>{{ intval($video->duration) }} ثانیه</small>
