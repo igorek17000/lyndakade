@@ -7,11 +7,13 @@ use App\Mail\CourseAdded;
 use App\Mail\CourseUpdatedMailer;
 use App\Paid;
 use App\User;
+use Exception;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Events\BreadDataUpdated;
 use TCG\Voyager\Events\BreadDataAdded;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
@@ -57,20 +59,24 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
             }
         }
 
-        // $course = Course::find($data->id);
-        // if ($course->users) {
-        //     foreach ($course->users as $user) {
-        //         $email = $user->email;
-        //         if ($email)
-        //             Mail::to($email)->send(new CourseAdded($course));
-        //     }
-        // }
+        // set course videos
+        $videos = "[]";
+        try {
+            $previewFile = json_decode($course->previewFile)[0];
+            $course_path = str_replace("/preview.mp4", "", strtolower($previewFile));
+            $chapters_file = $course_path . "/chapters.json";
+            $chapters_file_content = Storage::disk('FTP')->get($chapters_file);
+            if (strlen($chapters_file_content) > 0) {
+                $videos = $chapters_file_content;
+            }
+        } catch (Exception $e) {
+        }
 
-        // foreach (Course::whereNull('sortingDate')->get() as $course) {
-            Course::where('id', $course->id)->update([
-                'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate
-            ]);
-        // }
+        Course::where('id', $course->id)->update([
+            'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate,
+            'videos' => $videos,
+        ]);
+
 
         if ($request->get('sendMessageToPaidUsers', false)) {
             $course_id = $data->id;
@@ -135,8 +141,22 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
             }
         }
 
+        // set course videos
+        $videos = "[]";
+        try {
+            $previewFile = json_decode($course->previewFile)[0];
+            $course_path = str_replace("/preview.mp4", "", strtolower($previewFile));
+            $chapters_file = $course_path . "/chapters.json";
+            $chapters_file_content = Storage::disk('FTP')->get($chapters_file);
+            if (strlen($chapters_file_content) > 0) {
+                $videos = $chapters_file_content;
+            }
+        } catch (Exception $e) {
+        }
+
         Course::where('id', $course->id)->update([
-            'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate
+            'sortingDate' => $course->updateDate ? $course->updateDate : $course->releaseDate,
+            'videos' => $videos,
         ]);
 
 
