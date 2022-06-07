@@ -514,6 +514,7 @@ class HomeController extends Controller
 
         try {
             $chapters = json_decode($course->videos)->chapters;
+            dd($chapters);
             return view('test', [
                 'skill' => $skill,
                 'skillEng' => $skillEng,
