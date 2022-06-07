@@ -1202,20 +1202,20 @@ if (count($course->subjects) > 0) {
         type: "video",
         title: title,
         sources: [{
-          src: `https://dl.lyndakade.ir/download.php?code=${video_id}&x=v`,
+          src: `//dl.lyndakade.ir/download.php?code=${video_id}&x=v`,
           type: 'video/mp4'
         }],
         tracks: ("{{ $course->dubbed_id }}" == "1") ? [] : [{
           kind: 'captions',
           label: 'فارسی',
           srclang: 'fa',
-          src: `https://dl.lyndakade.ir/download.php?code=${video_id}&x=f`,
+          src: `//dl.lyndakade.ir/download.php?code=${video_id}&x=f`,
           default: true,
         }, {
           kind: 'captions',
           label: 'English',
           srclang: 'en',
-          src: `https://dl.lyndakade.ir/download.php?code=${video_id}&x=e`,
+          src: `//dl.lyndakade.ir/download.php?code=${video_id}&x=e`,
           default: false,
         }, ],
         poster: "{{ fromDLHost($course->img) }}"
