@@ -3,6 +3,7 @@
 use App\Author;
 use App\Course;
 use App\Discount;
+use App\HashedData;
 use App\LearnPath;
 use App\Mail\DubJoinMailer;
 use App\Paid;
@@ -279,6 +280,41 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
         'data' => false,
         'status' => 'failed'
     ], 200);
+})->name('package.check-code.api');
+
+Route::middleware('guest')->post('/courses/videos/get-video', function (Request $request) {
+    $code = $request->input('code');
+    $file = $request->input('x'); // ["v", "f", "e"]
+    if (!$file) {
+        return new JsonResponse([
+            'status' => 'failed'
+        ], 403);
+    }
+    $hashedData = HashedData::firstWhere('hashed', $code);
+    try {
+        $file = strtolower($file);
+        [$course_id, $video_index] = explode(",", $hashedData->data);
+        $res = "";
+        $course = Course::firstWhere("id", $course_id);
+        $chapters = json_decode($course->videos);
+        foreach ($chapters as $chapter) {
+            foreach ($chapter->videos as $video) {
+                if ($video->index === $video_index) {
+                    $res = ($file == 'v' ? $video->path : ($file == 'f' ? $video->sub_fa  : ($file == 'e' ? $video->sub_en  : '')));
+                }
+            }
+        }
+        return new JsonResponse([
+            'file' => $res,
+            'status' => 'success'
+        ], 200);
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+    return new JsonResponse([
+        'file' => false,
+        'status' => 'failed'
+    ], 403);
 })->name('package.check-code.api');
 
 Route::middleware('guest')->get('/users/get-data-all', function (Request $request) {
