@@ -299,7 +299,7 @@ Route::middleware('guest')->post('/courses/videos/get-video', function (Request 
         $chapters = json_decode($course->videos);
         foreach ($chapters as $chapter) {
             foreach ($chapter->videos as $video) {
-                if ($video->index === $video_index) {
+                if ($video->index == $video_index) {
                     // $res = $video_index;
                     $res = ($file == 'v' ? $video->path : ($file == 'f' ? $video->sub_fa  : ($file == 'e' ? $video->sub_en  : '')));
                 }
