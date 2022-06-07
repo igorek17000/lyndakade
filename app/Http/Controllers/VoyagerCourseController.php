@@ -77,7 +77,7 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
                 }
             }
         } catch (Exception $e) {
-            // $videos = $e->getMessage();
+            $chapters = [$e->getMessage()];
         }
 
         Course::where('id', $course->id)->update([
