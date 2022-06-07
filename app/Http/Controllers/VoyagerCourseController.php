@@ -72,6 +72,12 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
                     foreach ($chapter->videos as $video) {
                         $video->id = create_hashed_data_if_not_exists($course->id . "-" . $video->index);
                         $video->full_path = $course_path . "/" . $video->path;
+                        if ($video->sub_fa) {
+                            $video->sub_fa = $course_path . "/" . $video->sub_fa;
+                        }
+                        if ($video->sub_en) {
+                            $video->sub_en = $course_path . "/" . $video->sub_en;
+                        }
                     }
                 }
             }
