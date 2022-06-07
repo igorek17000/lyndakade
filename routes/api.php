@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -282,7 +283,44 @@ Route::middleware('guest')->get('/package/check-code', function (Request $reques
     ], 200);
 })->name('package.check-code.api');
 
+Route::middleware('guest')->get('/courses/videos/get-sub', function (Request $request) {
+    // get sub content for video player
+    $code = $request->input('code');
+    $file = $request->input('x'); // ["v", "f", "e"]
+    if (!$file) {
+        return new JsonResponse([
+            'status' => 'failed'
+        ], 403);
+    }
+    $hashedData = HashedData::firstWhere('hashed', $code);
+    try {
+        $file = strtolower($file);
+        [$course_id, $video_index] = explode(",", $hashedData->data);
+        $res = "";
+        $course = Course::firstWhere("id", $course_id);
+        $chapters = json_decode($course->videos);
+        foreach ($chapters as $chapter) {
+            foreach ($chapter->videos as $video) {
+                if ($video->index == $video_index) {
+                    // $res = $video_index;
+                    $res = ($file == 'f' ? $video->sub_fa  : ($file == 'e' ? $video->sub_en  : ''));
+                    $content = Storage::disk('FTP')->get($res);
+                    if (strlen($content) > 0)
+                        return response($content, 200)
+                            ->header('Content-Type', 'text/plain');
+                    // return $res;
+                }
+            }
+        }
+    } catch (\Throwable $th) {
+        // throw $th;
+    }
+    return 403;
+})->name('courses.get-sub.api');
+
 Route::middleware('guest')->post('/courses/videos/get-video', function (Request $request) {
+    //verify video for dl host
+
     $code = $request->input('code');
     $file = $request->input('x'); // ["v", "f", "e"]
     if (!$file) {

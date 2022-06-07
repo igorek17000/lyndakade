@@ -1209,13 +1209,13 @@ if (count($course->subjects) > 0) {
           kind: 'captions',
           label: 'فارسی',
           srclang: 'fa',
-          src: `//dl.lyndakade.ir/download.php?code=${video_id}&x=f`,
+          src: `https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=f`,
           default: true,
         }, {
           kind: 'captions',
           label: 'English',
           srclang: 'en',
-          src: `//dl.lyndakade.ir/download.php?code=${video_id}&x=e`,
+          src: `https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=e`,
           default: false,
         }, ],
         poster: "{{ fromDLHost($course->img) }}"
