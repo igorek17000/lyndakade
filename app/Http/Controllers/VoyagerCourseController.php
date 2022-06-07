@@ -70,6 +70,7 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
                 $videos = $chapters_file_content;
             }
         } catch (Exception $e) {
+            $videos = $e->getMessage();
         }
 
         Course::where('id', $course->id)->update([
