@@ -466,7 +466,7 @@ if (count($course->subjects) > 0) {
             <a href="#chap-{{ $idx+1 }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
               {{ $chapter->title }}
             </a>
-            <ul class="list-unstyled collapse" id="chap-{{ $idx }}" style="">
+            <ul class="list-unstyled collapse" id="chap-{{ $idx+1 }}" style="">
               @foreach ($chapter->videos as $video)
                 <li>
                   <a class="play-course-video"
