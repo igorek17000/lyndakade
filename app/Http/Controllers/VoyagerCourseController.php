@@ -67,8 +67,8 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
             $chapters_file = $course_path . "/chapters.json";
             $chapters_file_content = Storage::disk('FTP')->get($chapters_file);
             if (strlen($chapters_file_content) > 0) {
-                $chapters = json_decode($chapters_file_content);
-                foreach ($chapters->chapters as $chapter) {
+                $chapters = json_decode($chapters_file_content)->chapters;
+                foreach ($chapters as $chapter) {
                     foreach ($chapter->videos as $video) {
                         $video->id = create_hashed_data_if_not_exists($course->id . "-" . $video->index);
                         $video->full_path = $course_path . "/" . $video->path;

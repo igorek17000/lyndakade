@@ -513,7 +513,7 @@ class HomeController extends Controller
         $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc')->get();
 
         try {
-            $chapters = json_decode($course->videos)->chapters;
+            $chapters = json_decode($course->videos);
             dd($chapters);
             return view('test', [
                 'skill' => $skill,
