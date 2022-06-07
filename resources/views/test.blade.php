@@ -471,7 +471,7 @@ if (count($course->subjects) > 0) {
                   <a class="play-course-video" data-title="{{ $video->title }}" data-video-id="{{ $video->id }}"
                     href="javascript:void(0);">
                     {{ $video->title }}
-                    <br /><small>{{ intval($video->duration) }} ثانیه</small>
+                    <br /><small>{{ $video->duration }}</small>
                   </a>
                 </li>
               @endforeach
