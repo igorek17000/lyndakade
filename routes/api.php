@@ -305,19 +305,11 @@ Route::middleware('guest')->post('/courses/videos/get-video', function (Request 
                 }
             }
         }
-        return new JsonResponse([
-            'course_id' => $course_id,
-            'video_index' => $video_index,
-            'file' => $res,
-            'status' => 'success'
-        ], 200);
+        return $res;
     } catch (\Throwable $th) {
-        throw $th;
+        // throw $th;
     }
-    return new JsonResponse([
-        'file' => false,
-        'status' => 'failed'
-    ], 403);
+    return 403;
 })->name('package.check-code.api');
 
 Route::middleware('guest')->get('/users/get-data-all', function (Request $request) {
