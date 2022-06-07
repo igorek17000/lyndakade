@@ -514,7 +514,22 @@ class HomeController extends Controller
 
         try {
             $chapters = json_decode($course->videos);
-            // dd($chapters);
+            foreach ($chapters as $chapter) {
+                foreach ($chapter->videos as $video) {
+                    $seconds = $video->duration;
+                    $s = intval($seconds);
+                    $hrs = floor($s / 3600);
+                    $min = floor(($s - ($hrs * 3600)) / 60);
+                    $sec = $s % 60;
+                    if ($hrs > 0)
+                        $duration = sprintf('%dH %dM %dS', $hrs, $min, $sec);
+                    else if ($min > 0)
+                        $duration = sprintf('%dM %dS', $min, $sec);
+                    else
+                        $duration = sprintf('%dS', $sec);
+                    $video->duration = $duration;
+                }
+            }
             return view('test', [
                 'skill' => $skill,
                 'skillEng' => $skillEng,
