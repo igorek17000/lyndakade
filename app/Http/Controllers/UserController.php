@@ -148,6 +148,24 @@ class UserController extends Controller
         return $res;
     }
 
+    public function dubbedUsersInDashboard(Request $request)
+    {
+        $users = User::with(['invoices'])->where('role_id', 3)->get(['id', 'username', 'invoices.*']);
+
+        $users = $users->map(function ($user) {
+            $data = prepare_dubbed_panel_data_for_user($user);
+            return [
+                'id' => $user->id,
+                'username' => $user->username,
+                'invoices' => $data['invoices'],
+                'factors' => $data['factors'],
+                'total_received' => $data['total_received'],
+                'total_balance' => $data['total_balance'],
+                'total_income' => $data['total_income'],
+            ];
+        });
+    }
+
     public function dubbedCourses(Request $request)
     {
         $data = prepare_dubbed_panel_data_for_user(auth()->user());

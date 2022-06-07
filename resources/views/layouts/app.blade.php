@@ -750,7 +750,9 @@
         background-color: #00aaca;
         font-family: 'IranSANS';
         font-weight: bold;">
-        {{ nPersian($discount_count) }} عدد تخفیف {{ nPersian($discount->percent) }} درصدی ویژه
+        {{-- {{ nPersian($discount_count) }} --}}
+        {{ nPersian(100) }}
+         عدد تخفیف {{ nPersian($discount->percent) }} درصدی ویژه
         <a href="{{ route('packages.index') }}" style="color: #df9000;text-shadow: 0px 0px 6px black">
           خرید اشتراک
         </a>
