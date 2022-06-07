@@ -78,6 +78,17 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
                         if ($video->sub_en) {
                             $video->sub_en = $course_path . "/" . $video->sub_en;
                         }
+                        $duration = $video->duration;
+                        $duration_unit = ' ثانیه';
+                        if ($duration > 60) {
+                            $duration = intval($video->duration / 60);
+                            $duration_unit = ' دقیقه';
+                        }
+                        if ($duration > 60) {
+                            $duration = intval($video->duration / 60);
+                            $duration_unit = ' ساعت';
+                        }
+                        $video->duration = $duration . $duration_unit;
                     }
                 }
             }
