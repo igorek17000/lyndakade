@@ -440,7 +440,7 @@ class HomeController extends Controller
 
     public function test_url(Request $request)
     {
-        $course = Course::with(['authors', 'subjects', 'softwares'])->find(2822406);
+        $course = Course::with(['authors', 'subjects', 'softwares'])->find(6127);
         $slug = $course->slug_linkedin;
 
         $view_dt = Carbon::now();
@@ -512,6 +512,26 @@ class HomeController extends Controller
 
         $subjects = $course->subjects()->withCount('courses')->orderBy('courses_count', 'desc')->get();
 
+        try {
+            $chapters = json_decode($course->videos)['chapters'];
+            return view('test', [
+                'skill' => $skill,
+                'skillEng' => $skillEng,
+                'course' => $course,
+                'chapters' => $chapters,
+                'previewSubtitleContent' => $previewSubtitleContent,
+                'previewSubtitleContentEng' => $previewSubtitleContentEng,
+                'has_dubbed' => $has_dubbed,
+                'has_subtitle' => $has_subtitle,
+                'related_courses' => $related_courses,
+                'related_paths' => $related_paths,
+                'subjects' => $subjects,
+                'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        /*
         if ($course->concepts) {
             $lines = explode("\n", $course->concepts);
             if (strpos($course->concepts, "\r\n") !== false) {
@@ -555,6 +575,7 @@ class HomeController extends Controller
                 'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
             ]);
         }
+        */
 
         // dd($previewSubtitleContent, $previewSubtitleContentEng);
 

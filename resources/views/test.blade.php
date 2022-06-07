@@ -470,10 +470,10 @@ if (count($course->subjects) > 0) {
               @foreach ($chapter['videos'] as $video)
                 <li>
                   <a class="play-course-video"
-                    data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . $video['id']) }}"
+                    data-video-id="{{ \Illuminate\Support\Facades\Hash::make($course->id . $video['index']) }}"
                     href="javascript:void(0);">
                     {{ $video['title'] }}
-                    <br /><small>{{ $video['duration'] }} ثانیه</small>
+                    <br /><small>{{ intval($video['duration']) }} ثانیه</small>
                   </a>
                 </li>
               @endforeach
