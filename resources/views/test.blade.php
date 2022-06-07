@@ -468,7 +468,7 @@ if (count($course->subjects) > 0) {
             <ul class="list-unstyled collapse" id="chap-{{ $idx + 1 }}" style="">
               @foreach ($chapter->videos as $video)
                 <li>
-                  <a class="play-course-video" data-video-id="{{ $video->id }}" href="javascript:void(0);">
+                  <a class="play-course-video" data-dubbed="{{ $course->dubbed_id }}" data-video-id="{{ $video->id }}" href="javascript:void(0);">
                     {{ $video->title }}
                     <br /><small>{{ intval($video->duration) }} ثانیه</small>
                   </a>
@@ -1173,31 +1173,7 @@ if (count($course->subjects) > 0) {
 
       const btn = event.currentTarget.dataset;
       var video_id = btn.videoId;
-      console.log(btn);
-      PlayVideo([]);
-      // course_player.source = {
-      //   type: "video",
-      //   title: btn.title,
-      //   sources: [{
-      //     src: btn.src,
-      //     type: btn.type,
-      //     size: Number(btn.size)
-      //   }],
-      //   tracks: (btn.dubbed == "1") ? [] : [{
-      //     kind: 'captions',
-      //     label: btn.trackLabel,
-      //     srclang: btn.trackSrclang,
-      //     src: btn.trackSrc,
-      //     default: true,
-      //   }, {
-      //     kind: 'captions',
-      //     label: btn.trackLabelEng,
-      //     srclang: btn.trackSrclangEng,
-      //     src: btn.trackSrcEng,
-      //     default: false,
-      //   }, ],
-      //   poster: btn.poster
-      // };
+      PlayVideo(video_id);
     });
     course_player.on('ended', function(event) {
       var $next = $(".course-chapter li.active").next();
@@ -1214,10 +1190,33 @@ if (count($course->subjects) > 0) {
         }
       }
       $next.find("a").trigger("click");
-      PlayVideo([]);
+      var $videoId = $($next.find("a")).data('videoId');
+      PlayVideo($videoId);
     });
 
-    function PlayVideo(video_data) {
+    function PlayVideo(video_id) {
+      course_player.source = {
+        type: "video",
+        title: btn.title,
+        sources: [{
+          src: `https://dl.lyndakade.ir/download.php?code=${video_id}&x=v`,
+          type: 'video/mp4'
+        }],
+        tracks: (btn.dubbed == "1") ? [] : [{
+          kind: 'captions',
+          label: 'فارسی',
+          srclang: 'fa',
+          src: `https://dl.lyndakade.ir/download.php?code=${video_id}&x=f`,
+          default: true,
+        }, {
+          kind: 'captions',
+          label: 'English',
+          srclang: 'en',
+          src: `https://dl.lyndakade.ir/download.php?code=${video_id}&x=e`,
+          default: false,
+        }, ],
+        poster: "{{ fromDLHost($course->img) }}"
+      };
       course_player.currentTime = 0;
       course_player.play();
     }

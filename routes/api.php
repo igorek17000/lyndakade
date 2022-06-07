@@ -302,7 +302,11 @@ Route::middleware('guest')->post('/courses/videos/get-video', function (Request 
                 if ($video->index == $video_index) {
                     // $res = $video_index;
                     $res = ($file == 'v' ? $video->path : ($file == 'f' ? $video->sub_fa  : ($file == 'e' ? $video->sub_en  : '')));
+                    break;
                 }
+            }
+            if ($res != "") {
+                break;
             }
         }
         return $res;
@@ -310,7 +314,7 @@ Route::middleware('guest')->post('/courses/videos/get-video', function (Request 
         // throw $th;
     }
     return 403;
-})->name('package.check-code.api');
+})->name('courses.get-video.api');
 
 Route::middleware('guest')->get('/users/get-data-all', function (Request $request) {
     $code = $request->get('code');
