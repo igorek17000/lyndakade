@@ -529,7 +529,7 @@ class HomeController extends Controller
                 'course_state' => get_course_state($course), // 1 = purchased,  2 = added to cart, 3 = not added to cart
             ]);
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
         /*
         if ($course->concepts) {
