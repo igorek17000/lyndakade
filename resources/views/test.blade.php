@@ -1074,7 +1074,8 @@ if (count($course->subjects) > 0) {
       captions: {
         active: true,
         language: 'fa',
-        update: true
+        // update: true,
+        update: false,
       },
       i18n: {
         restart: 'پخش مجدد',
