@@ -1071,12 +1071,17 @@ if (count($course->subjects) > 0) {
       settings: ['captions', 'quality', 'speed', 'loop'],
       invertTime: true,
       toggleInvert: true,
+      disableContextMenu: true,
       captions: {
         active: true,
         language: 'fa',
         // update: true,
         update: false,
       },
+      keyboard:{
+          focused: true,
+        global: true
+    },
       i18n: {
         restart: 'پخش مجدد',
         rewind: 'برگشت به {seektime}s',
