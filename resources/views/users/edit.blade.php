@@ -1,16 +1,13 @@
 @extends('layouts.app')
 @push('meta.in.head')
-
-  @include('meta::manager',[
-  'image' => 'https://lyndakade.ir/image/logo.png',
-  'title' => 'ویرایش پروفایل - لینداکده',
-  'keywords' => get_seo_keywords(),
-  'description' => get_seo_description(),
+  @include('meta::manager', [
+      'image' => 'https://lyndakade.ir/image/logo.png',
+      'title' => 'ویرایش پروفایل - لینداکده',
+      'keywords' => get_seo_keywords(),
+      'description' => get_seo_description(),
   ])
-
 @endpush
 @push('css_head')
-
   <style>
     body {
       background: -webkit-linear-gradient(left, #3931af, #00c6ff);
@@ -130,9 +127,7 @@
       font-weight: 600;
       color: #0062cc;
     }
-
   </style>
-
 @endpush
 @section('content')
   <div class="container emp-profile">
@@ -181,6 +176,16 @@
               'type' => 'tel',
               'title' => 'شماره تماس',
           ],
+          [
+              'key' => 'password',
+              'type' => 'password',
+              'title' => 'کلمه عبور',
+          ],
+          [
+              'key' => 'password_confirm',
+              'type' => 'password',
+              'title' => 'تکرار کلمه عبور',
+          ],
       ]
       as $item)
             <div class="form-group row">
@@ -202,8 +207,7 @@
             <div class="form-group row">
               <label for="description" class="col-md-4 col-form-label text-md-left">توضیحات</label>
               <div class="col-md-8 col-lg-6">
-                <textarea class="form-control" id="description" name="description"
-                  rows="7">{{ $user ? $user->description : '' }}</textarea>
+                <textarea class="form-control" id="description" name="description" rows="7">{{ $user ? $user->description : '' }}</textarea>
               </div>
             </div>
           @endif
@@ -214,7 +218,6 @@
       </div>
     </form>
   </div>
-
 @endsection
 
 @section('script_body')

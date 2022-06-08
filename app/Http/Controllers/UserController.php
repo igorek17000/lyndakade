@@ -87,7 +87,6 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-
         $slug = 'users';
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -113,6 +112,12 @@ class UserController extends Controller
         // $request_data = array_merge($request->all(), );
         // dd($request_data);
         $request->request->add(['role_id' => auth()->user()->role_id]);
+
+        // if ($request->request['password'] != $request->request['password_confirm']) {
+        //     return redirect()->route('my-profile.edit')->with('error', 'کلمه های عبور یکسان نیستند.');
+        // }
+        // unset($request->request['password_confirm']);
+        // $request->request['password'] = Hash::make($request->request['password']);
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
