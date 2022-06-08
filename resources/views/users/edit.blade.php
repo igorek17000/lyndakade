@@ -176,16 +176,16 @@
               'type' => 'tel',
               'title' => 'شماره تماس',
           ],
-          [
-              'key' => 'password',
-              'type' => 'password',
-              'title' => 'کلمه عبور',
-          ],
-          [
-              'key' => 'password_confirm',
-              'type' => 'password',
-              'title' => 'تکرار کلمه عبور',
-          ],
+        //   [
+        //       'key' => 'password',
+        //       'type' => 'password',
+        //       'title' => 'کلمه عبور',
+        //   ],
+        //   [
+        //       'key' => 'password_confirm',
+        //       'type' => 'password',
+        //       'title' => 'تکرار کلمه عبور',
+        //   ],
       ]
       as $item)
             <div class="form-group row">
