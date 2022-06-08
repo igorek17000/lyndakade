@@ -456,9 +456,9 @@ class CourseController extends Controller
     {
         try {
             $course_id = $request->input('course_id');
-            $related_courses_slug = $request->input('related_courses_slug');
+            $related_courses_slug = $request->input('related_courses_slug', null);
             $course = Course::find($course_id);
-            if ($course && $related_courses_slug) {
+            if ($course && $related_courses_slug != null) {
                 Course::where('id', $course_id)->update([
                     'related_courses_slug' => $related_courses_slug
                 ]);
