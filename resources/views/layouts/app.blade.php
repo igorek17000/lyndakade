@@ -1605,6 +1605,7 @@
       settings: ['captions', 'quality', 'speed', 'loop'],
       invertTime: true,
       toggleInvert: true,
+      disableContextMenu: true,
       captions: {
         active: true,
         language: 'fa',
