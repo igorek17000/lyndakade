@@ -1219,19 +1219,19 @@ if (count($course->subjects) > 0) {
           label: 'فارسی',
           srclang: 'fa',
           src: `https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=f`,
-          default: true,
+          default: current_lang == 'fa',
         }, {
           kind: 'captions',
           label: 'English',
           srclang: 'en',
           src: `https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=e`,
-          default: false,
+          default: current_lang == 'en',
         }, ],
         poster: "{{ fromDLHost($course->img) }}"
       };
-      course_player.language = 'fa';
       course_player.currentTime = 0;
       course_player.play();
+      course_player.language = current_lang;
     }
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");
