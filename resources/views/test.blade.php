@@ -525,7 +525,11 @@ if (count($course->subjects) > 0) {
         </div>
         <hr class="mt-0 mb-5">
         <div class="video-player" style="padding: 0;">
-            <div id="video-player-title" style="font-size: 1.5rem;"></div>
+          <div id="video-player-title"
+            style="font-size: 1.3rem;color: white;background-color: #000;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 3px 10px;">
+             <br>
+            <small style="color: #bfc1c3!important;"></small>
+          </div>
           <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
             <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" size="720" default />
             @if ($course->dubbed_id == 2)
@@ -1237,8 +1241,9 @@ if (count($course->subjects) > 0) {
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");
     course_player.on('loadedmetadata', function(event) {
-      console.log(event);
-      $('#video-player-title').text(course_player.config.title)
+      var video_title = course_player.config.title;
+      var video_player_title_html = ` ${video_title}<br><small style="color: #bfc1c3!important;">${course_title}</small>`;
+      $('#video-player-title').html(video_player_title_html);
     });
 
     $(document).ready(function() {
