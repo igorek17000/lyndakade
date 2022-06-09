@@ -1072,7 +1072,7 @@ if (count($course->subjects) > 0) {
       invertTime: true,
       toggleInvert: true,
       disableContextMenu: true,
-      loop: false,
+    //   loop: false,
       captions: {
         active: true,
         // language: 'fa',
