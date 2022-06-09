@@ -1838,10 +1838,17 @@
       invertTime: true,
       toggleInvert: true,
       disableContextMenu: true,
+      seekTime:5,
       captions: {
         active: true,
-        language: 'fa',
-        update: false
+        // language: 'fa',
+        language: 'auto',
+        update: true,
+        // update: false,
+      },
+      keyboard: {
+        focused: true,
+        global: true
       },
       i18n: {
         restart: 'پخش مجدد',
