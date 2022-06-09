@@ -526,7 +526,7 @@ if (count($course->subjects) > 0) {
         <hr class="mt-0 mb-5">
         <div class="video-player" style="padding: 0;">
           <div id="video-player-title"
-            style="font-size: 1.3rem;color: white;background-color: #000;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 3px 10px;">
+            style="font-size: 1rem;color: white;background-color: #000;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 3px 10px;">
             <br>
             <small style="color: #bfc1c3!important;"></small>
           </div>
