@@ -463,14 +463,14 @@ if (count($course->subjects) > 0) {
         @foreach ($chapters as $idx => $chapter)
           <li class="course-chapter">
             <a href="#chap-{{ $idx + 1 }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-              {{ $chapter->title }}
+              {{ nPersian($chapter->title) }}
             </a>
             <ul class="list-unstyled collapse" id="chap-{{ $idx + 1 }}" style="">
               @foreach ($chapter->videos as $video)
                 <li>
-                  <a class="play-course-video" data-title="{{ $video->title }}" data-video-id="{{ $video->id }}"
+                  <a class="play-course-video" data-title="{{ nPersian($video->title) }}" data-video-id="{{ $video->id }}"
                     href="javascript:void(0);">
-                    {{ $video->title }}
+                    {{ nPersian($video->title) }}
                     <br /><small>{{ $video->duration }}</small>
                   </a>
                 </li>
