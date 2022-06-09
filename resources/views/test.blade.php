@@ -527,7 +527,7 @@ if (count($course->subjects) > 0) {
         <div class="video-player" style="padding: 0;">
           <div id="video-player-title"
             style="font-size: 1.3rem;color: white;background-color: #000;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 3px 10px;">
-             <br>
+            <br>
             <small style="color: #bfc1c3!important;"></small>
           </div>
           <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
@@ -1241,8 +1241,9 @@ if (count($course->subjects) > 0) {
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");
     course_player.on('loadedmetadata', function(event) {
+      var c_title = course_title.replace('دوره آموزشی ', '');
       var video_title = course_player.config.title;
-      var video_player_title_html = ` ${video_title}<br><small style="color: #bfc1c3!important;">${course_title}</small>`;
+      var video_player_title_html = ` ${video_title}<br><small style="color: #bfc1c3!important;">${c_title}</small>`;
       $('#video-player-title').html(video_player_title_html);
     });
 
