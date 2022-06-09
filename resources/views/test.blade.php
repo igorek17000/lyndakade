@@ -1235,8 +1235,10 @@ if (count($course->subjects) > 0) {
     }
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");
+    const loadedmetadata_test = '';
     course_player.on('loadedmetadata', function(event) {
       console.log(event);
+      loadedmetadata_test = event;
     });
 
     $(document).ready(function() {
