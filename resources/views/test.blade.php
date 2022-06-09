@@ -525,6 +525,7 @@ if (count($course->subjects) > 0) {
         </div>
         <hr class="mt-0 mb-5">
         <div class="video-player" style="padding: 0;">
+            <div id="video-player-title" style="font-size: 1.5rem;"></div>
           <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
             <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" size="720" default />
             @if ($course->dubbed_id == 2)
@@ -1235,10 +1236,9 @@ if (count($course->subjects) > 0) {
     }
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");
-    const loadedmetadata_test = '';
     course_player.on('loadedmetadata', function(event) {
       console.log(event);
-      loadedmetadata_test = event;
+      $('#video-player-title').text(course_player.config.title)
     });
 
     $(document).ready(function() {
