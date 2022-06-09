@@ -75,7 +75,7 @@ class User extends \TCG\Voyager\Models\User
         base_prices
     FROM dubbed_course_factors
     WHERE
-        end_date >= DATE_SUB(NOW(), INTERVAL 100 WEEK)
+        end_date >= DATE_SUB(NOW(), INTERVAL 10000 WEEK)
             AND
         user_id = $this->id
     GROUP BY WEEK(end_date)
