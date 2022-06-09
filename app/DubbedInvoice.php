@@ -10,16 +10,16 @@ class DubbedInvoice extends Model
     protected $fillable = ['id', 'user_id', 'price'];
     // protected $with = ['user'];
 
-    /**
-     * Get the product's price.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getPriceAttribute($value)
-    {
-        return number_format($value);
-    }
+    // /**
+    //  * Get the product's price.
+    //  *
+    //  * @param  string  $value
+    //  * @return string
+    //  */
+    // public function getPriceAttribute($value)
+    // {
+    //     return number_format($value);
+    // }
 
     public function user()
     {
