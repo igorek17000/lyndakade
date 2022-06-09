@@ -1242,7 +1242,7 @@ if (count($course->subjects) > 0) {
     $('.course-chapter > a').trigger("click");
     course_player.on('loadedmetadata', function(event) {
       var c_title = course_title.replace('دوره آموزشی ', '');
-      var video_title = course_player.config.title;
+      var video_title = engToPer(course_player.config.title);
       var video_player_title_html = ` ${video_title}<br><small style="color: #bfc1c3!important;">${c_title}</small>`;
       $('#video-player-title').html(video_player_title_html);
     });
