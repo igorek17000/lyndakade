@@ -18,9 +18,9 @@ class DubbedInvoice extends Model
      */
     public function getPriceAttribute($value)
     {
-        return number_format($value, 0, ',', '.');
+        return number_format($value);
     }
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);
