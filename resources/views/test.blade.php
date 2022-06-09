@@ -1072,7 +1072,6 @@ if (count($course->subjects) > 0) {
       invertTime: true,
       toggleInvert: true,
       disableContextMenu: true,
-    //   loop: false,Z
       captions: {
         active: true,
         // language: 'fa',
@@ -1080,10 +1079,10 @@ if (count($course->subjects) > 0) {
         update: true,
         // update: false,
       },
-      keyboard:{
-          focused: true,
+      keyboard: {
+        focused: true,
         global: true
-    },
+      },
       i18n: {
         restart: 'پخش مجدد',
         rewind: 'برگشت به {seektime}s',
