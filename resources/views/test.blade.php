@@ -1072,7 +1072,7 @@ if (count($course->subjects) > 0) {
       invertTime: true,
       toggleInvert: true,
       disableContextMenu: true,
-      seekTime:5,
+      seekTime: 5,
       captions: {
         active: true,
         // language: 'fa',
@@ -1233,6 +1233,9 @@ if (count($course->subjects) > 0) {
     }
     $('#sidebarCollapse').trigger("click");
     $('.course-chapter > a').trigger("click");
+    course_player.on('loadedmetadata', function(event) {
+      console.log(event);
+    });
 
     $(document).ready(function() {
       $('.carousel').carousel({
