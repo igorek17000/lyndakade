@@ -1206,6 +1206,7 @@ if (count($course->subjects) > 0) {
     });
 
     function PlayVideo(title, video_id) {
+      var current_lang = course_player.language;
       course_player.source = {
         type: "video",
         title: title,
@@ -1228,6 +1229,7 @@ if (count($course->subjects) > 0) {
         }, ],
         poster: "{{ fromDLHost($course->img) }}"
       };
+      course_player.language = current_lang;
       course_player.currentTime = 0;
       course_player.play();
     }
