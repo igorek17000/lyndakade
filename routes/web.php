@@ -28,7 +28,6 @@ Auth::routes();
 
 Route::get('/tests', 'HomeController@test_url')->name('test.url');
 // Route::get('/tests2', 'HomeController@test2_url')->name('test2.url');
-Route::get('/admin/users-dubbed-summary', 'AdminController@users_dubbed_summary')->name('admin.users_dubbed_summary');
 
 Route::get('/faq', function () {
     return response()->view('faq', []);

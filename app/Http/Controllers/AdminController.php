@@ -44,9 +44,4 @@ class AdminController extends Controller
         }
         return redirect()->route('login');
     }
-    public function users_dubbed_summary(Request $request)
-    {
-        return view('/vendor/voyager/users-dubbed-summary');
-
-    }
 }
