@@ -628,6 +628,10 @@ if (count($course->subjects) > 0) {
       -webkit-box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, .45);
       box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, .45);
     }
+
+    .classroom-workspace-overview__files .btn-link {
+        cursor: pointer;
+    }
   </style>
   @csrf
   @if (isset($has_dubbed))
@@ -790,7 +794,7 @@ if (count($course->subjects) > 0) {
               </div>
               <div class="col-sm-6 col-xs-12" style="margin-bottom:  1.6rem;">
                 <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">فایل‌های دوره</h2>
-                <ul class="t-08 t-bold" style="margin-top: 15px;">
+                <ul class="classroom-workspace-overview__files t-08 t-bold" style="margin-top: 15px;">
                   <li style="align-items: center;margin-top: 4px;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
                       fill="currentColor" width="24" height="24" focusable="false"
