@@ -422,22 +422,22 @@ if (count($course->subjects) > 0) {
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                        transform: rotate(45deg) translate(2px, 2px);
-                                      }
+                                                      transform: rotate(45deg) translate(2px, 2px);
+                                                    }
 
-                                      #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                        opacity: 0;
-                                      }
+                                                    #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                                      opacity: 0;
+                                                    }
 
-                                      #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                        transform: rotate(-45deg) translate(1px, -1px);
-                                      }
+                                                    #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                                      transform: rotate(-45deg) translate(1px, -1px);
+                                                    }
 
-                                      #sidebarCollapse.active .sidebarCollapse span {
-                                        transform: none;
-                                        opacity: 1;
-                                        margin: 0 auto;
-                                      } */
+                                                    #sidebarCollapse.active .sidebarCollapse span {
+                                                      transform: none;
+                                                      opacity: 1;
+                                                      margin: 0 auto;
+                                                    } */
 
     @media (max-width: 767px) {
 
@@ -493,7 +493,7 @@ if (count($course->subjects) > 0) {
     .nav-tabs a.nav-link {
       color: #000;
       margin: 0 1.4rem;
-      padding: 9px 8px 11px;
+      padding: 11px 8px;
       text-align: -webkit-center;
       text-align: center;
       border: 0;
@@ -515,6 +515,103 @@ if (count($course->subjects) > 0) {
 
     .nav-tabs .nav-link:not(.active):hover {
       border: 0;
+    }
+
+    .dot-delimiter-after:after {
+      content: '\a0\b7\a0';
+    }
+
+    .dot-delimited-list {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .dot-delimited-list>li {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+    }
+
+    .dot-delimited-list>li:not(:first-of-type):before {
+      content: '\a0\b7\a0';
+      margin: 0 var(--hue-web-dimension-spacing-2xsmall);
+    }
+
+    ul.classroom-workspace-overview__skills-list {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+
+    ._basePadding_8b61ij {
+      padding: .4rem .8rem;
+    }
+
+    ._pill_8b61ij {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      font-size: .75rem;
+      font-weight: 600;
+      text-align: left;
+      margin: 0 .4rem .8rem 0;
+      background: rgba(0, 0, 0, 0);
+      border: .1rem solid rgba(0, 0, 0, 0.3);
+      border-radius: 1.6rem;
+      min-height: 1.6rem;
+      display: -webkit-inline-box;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+
+    ._label_8b61ij,
+    a._label_8b61ij,
+    a._label_8b61ij:focus,
+    a._label_8b61ij:focus:visited,
+    a._label_8b61ij:visited {
+      color: rgba(0, 0, 0, 0.6);
+      text-decoration: none;
+    }
+
+    .t-bold {
+      font-weight: 600;
+    }
+
+    .classroom-workspace-overview__header {
+      margin-bottom: .5rem;
+    }
+
+    .t-08 {
+      font-size: .8rem;
+      line-height: 1.5;
+    }
+
+    .t-10 {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .t-12 {
+      font-size: 1.2rem;
+      line-height: 1.42857;
+    }
+
+    .classroom-workspace-overview__mini-headline {
+      margin-bottom: .5rem;
+    }
+
+    .t-black--light {
+      color: rgba(0, 0, 0, .4);
     }
   </style>
   @csrf
@@ -631,17 +728,136 @@ if (count($course->subjects) > 0) {
             <a class="nav-link" id="nav-overview-tab" data-toggle="tab" href="#nav-overview" role="tab"
               aria-controls="nav-overview" aria-selected="false">Overview</a>
           </li>
-          <li class="nav-item">
-            @if ($course->concepts)
-              <a class="nav-link" id="nav-concepts-tab" data-toggle="tab" href="#nav-concepts" role="tab"
-                aria-controls="nav-concepts" aria-selected="false">سرفصل ها</a>
-            @endif
-          </li>
         </ul>
 
         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
             aria-labelledby="nav-description-tab">
+
+            <div class="container row">
+              <div class="col-lg-8 col-md-8 col-xs-12">
+                <div class="row">
+                  <div class="col-sm-6 col-xs-12" style="border-left: 2px solid #ccc; margin-bottom: 10px;">
+                    <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">
+                      @if (count($course->users) == 0)
+                        مدرس
+                      @else
+                        دوبلور
+                      @endif
+                    </h2>
+                    @php
+                      $author = $course->authors[0];
+                      if (count($course->users) > 0) {
+                          $author = $course->users[0];
+                      }
+                    @endphp
+                    @if (count($course->users) == 0)
+                      <a href="{{ route('authors.show', [$author->slug]) }}"
+                        style="display: flex; flex-wrap: nowrap; align-content: center; flex-direction: row; justify-content: center; align-items: center; height: 80px;">
+                        <img src="#" class="lazyload" width="100" height="100"
+                          data-src="{{ fromDLHost($author->img) }}" style="border-radius: 49.9%;"
+                          alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
+                        <div style="width: 100%;padding-right: 10px;">
+                          <div>{{ $author->name }}</div>
+                          {{-- <div>{{ $author->specialty }}</div> --}}
+                        </div>
+                      </a>
+                    @else
+                      <a href="{{ route('dubbed.index', [$author->slug]) }}"
+                        style="display: flex; flex-wrap: nowrap; align-content: center; flex-direction: row; justify-content: center; align-items: center; height: 80px;">
+                        <img src="#" class="lazyload" width="100" height="100"
+                          data-src="{{ fromDLHost($author->avatar) }}" style="border-radius: 49.9%;"
+                          alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
+                        <div style="width: 100%;padding-right: 10px;">
+                          <div>{{ $author->name }}</div>
+                          {{-- <div>{{ $author->specialty }}</div> --}}
+                        </div>
+                      </a>
+                    @endif
+                  </div>
+                  <div class="col-sm-6 col-xs-12" style="margin-bottom: 10px;">
+                    <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">فایل‌های دوره</h2>
+                    <ul class="t-08 t-bold" style="margin-top: 15px;">
+                      <li style="align-items: center;margin-top: 4px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
+                          fill="currentColor" width="24" height="24" focusable="false"
+                          style="float: right;margin-left: 7px;">
+                          <path
+                            d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
+                          </path>
+                        </svg>
+                        <div>
+                          <span class="dot-delimiter-after">لینک فایل‌های دوره</span>
+                          <button class="btn-link">
+                            نمایش
+                          </button>
+                        </div>
+                      </li>
+                      <li style="align-items: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
+                          fill="currentColor" width="24" height="24" focusable="false"
+                          style="float: right;margin-left: 7px;">
+                          <path
+                            d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
+                          </path>
+                        </svg>
+                        <div>
+                          <span class="dot-delimiter-after">لینک فایل‌های تمرین</span>
+                          <button class="btn-link">
+                            نمایش
+                          </button>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-xs-12 course-online-description">
+                    <div style="margin-top: 20px;">
+                      <div style="margin-bottom: .8rem;">
+                        <h3 class="classroom-workspace-overview__header t-12 t-bold">مشخصات دوره</h3>
+                        <ul class="dot-delimited-list" style="color: #4a4a4a;">
+                          <li>
+                            4h 51m
+                          </li>
+                          <li>پیشرفته</li>
+                          <li>
+                            تاریخ انتشار: 10/9/2020
+                          </li>
+                          <li>
+                            تاریخ بروز رسانی: 10/9/2020
+                          </li>
+                        </ul>
+                      </div>
+                      <div style="text-align: justify;" class="classroom-workspace-overview__description t-10">
+                        <div> description </div>
+                      </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                      <div style="margin-bottom: 1.6rem;">
+                        <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                          مهارت‌ها
+                        </h3>
+                        <ul class="classroom-workspace-overview__skills-list">
+                          <li>
+                            <a href="/learning/search?keywords=Python%20(Programming%20Language)&amp;u=103732282"
+                              class="ember-view _pill_8b61ij _basePadding_8b61ij _label_8b61ij">
+                              Python (Programming Language)
+                            </a>
+                          </li>
+                          <li>
+                            <a href="/learning/search?keywords=Database%20Development&amp;u=103732282"
+                              class="ember-view _pill_8b61ij _basePadding_8b61ij _label_8b61ij">
+                              Database Development
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-xs-12">3</div>
+            </div>
+
             <div class="row">
               <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
                 <div class="course-info-stat-cont m-0 mb-2 w-100">
@@ -1045,18 +1261,6 @@ if (count($course->subjects) > 0) {
               </div>
             </div>
           </div>
-          @if ($course->concepts)
-            <div class="tab-pane fade" id="nav-concepts" role="tabpanel" aria-labelledby="nav-concepts-tab">
-              <div class="row" style="font-size: 1em;">
-                <div class="col-sm-6">
-                  <pre style="font-family: 'IranSANS'; overflow-y: hidden; line-height: 1.5;">{!! $course->concepts !!}</pre>
-                </div>
-                <div class="col-sm-6 text-left" dir="ltr">
-                  <pre style="overflow-y: hidden; line-height: 1.5;">{!! $course->conceptsEng !!}</pre>
-                </div>
-              </div>
-            </div>
-          @endif
         </div>
 
         @if (count($subjects) > 0)
