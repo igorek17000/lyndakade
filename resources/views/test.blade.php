@@ -1044,8 +1044,8 @@ if (count($course->subjects) > 0) {
                 </div>
               </div>
             </div>
-            
-            <div class="row">
+
+            {{-- <div class="row">
               <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
                 <div class="course-info-stat-cont m-0 mb-2 w-100 text-left" dir="ltr">
                   <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
@@ -1181,7 +1181,7 @@ if (count($course->subjects) > 0) {
                   Report
                 </button>
               </div>
-            </div>
+            </div> --}}
           </div>
         </div>
 
