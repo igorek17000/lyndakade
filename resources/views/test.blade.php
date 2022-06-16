@@ -422,22 +422,22 @@ if (count($course->subjects) > 0) {
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                                                                      transform: rotate(45deg) translate(2px, 2px);
-                                                                                    }
+                                                                                          transform: rotate(45deg) translate(2px, 2px);
+                                                                                        }
 
-                                                                                    #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                                                                      opacity: 0;
-                                                                                    }
+                                                                                        #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                                                                          opacity: 0;
+                                                                                        }
 
-                                                                                    #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                                                                      transform: rotate(-45deg) translate(1px, -1px);
-                                                                                    }
+                                                                                        #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                                                                          transform: rotate(-45deg) translate(1px, -1px);
+                                                                                        }
 
-                                                                                    #sidebarCollapse.active .sidebarCollapse span {
-                                                                                      transform: none;
-                                                                                      opacity: 1;
-                                                                                      margin: 0 auto;
-                                                                                    } */
+                                                                                        #sidebarCollapse.active .sidebarCollapse span {
+                                                                                          transform: none;
+                                                                                          opacity: 1;
+                                                                                          margin: 0 auto;
+                                                                                        } */
 
     @media (max-width: 767px) {
 
@@ -688,9 +688,17 @@ if (count($course->subjects) > 0) {
       </ul> --}}
     </nav>
     <div id="content">
-      <div class="container-fluid" style="background-color: #fff;padding: 20px 15px;">
-        <h1 class="panel-title" style="font-size: 1em;">
-          <span class="course-title" lang="fa">
+      <div class="container-fluid" style="background-color: #fff;padding: 0">
+        <h1 class="sr-only" lang="fa">
+          {{ $course->title }}
+          @if ($course->dubbed_id == 1)
+            (<span style="color: green">دوبله فارسی</span>)
+          @elseif ($course->persian_subtitle_id == 1)
+            (<span style="color: green">با زیر نویس فارسی</span>)
+          @endif
+        </h1>
+        {{-- <h1 class="sr-only panel-title " style="font-size: 1em;" lang="fa">
+          <span class="course-title">
             {{ $course->title }}
             @if ($course->dubbed_id == 1)
               (<span style="color: green">دوبله فارسی</span>)
@@ -699,10 +707,9 @@ if (count($course->subjects) > 0) {
             @endif
           </span>
         </h1>
-        <div class="panel-title text-left" style="direction: ltr; font-size: 1em;">
+        <div class="sr-only panel-title text-left" style="direction: ltr; font-size: 1em;">
           <span class="course-title">{{ $course->titleEng }}</span>
         </div>
-
         <div style="position: relative;">
           <div class="input-group" style="text-align: left;position: absolute;width: 200px;left: 0;top: 2px;">
             <span class="input-group-addon"><i class="fa fa-copy"
@@ -714,8 +721,9 @@ if (count($course->subjects) > 0) {
               class="form-control">
           </div>
         </div>
-        <hr class="mt-0 mb-5">
-        <div class="video-player" style="padding: 0;">
+        <hr class="mt-0 mb-5"> --}}
+
+        <div class="video-player" style="padding: 0;margin-top: 0;">
           <div class="title-wrapper">
             <div id="sidebarCollapse">
               <span class="navbar-btn sidebarCollapse">
@@ -892,28 +900,37 @@ if (count($course->subjects) > 0) {
                 </div>
               </div>
 
-              @if (count($subjects) > 0)
+              @if (count($subjects))
                 <div class="col-xs-12" style="margin-bottom: 1.6rem;">
-                  <div style="margin-bottom: 1.6rem;">
-                    <h3 class="classroom-workspace-overview__header t-12 t-bold">
-                      مهارت‌ها
-                    </h3>
-                    <ul class="classroom-workspace-overview__skills-list">
-                      @foreach ($subjects as $subject)
-                        <li>
-                          <a target="_blank" titleEng="{{ $subject->title }}"
-                            title="دارای {{ $subject->courses_count }} دوره آموزشی"
-                            href="{{ route('home.show', [$subject->slug]) }}"
-                            class="ember-view _pill_8b61ij _basePadding_8b61ij _label_8b61ij">
-                            {{ $subject->title_per ?? $subject->title }}
-                            {{-- <span
-                                    style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
-                                    {{ $subject->courses_count }} دوره
-                                </span> --}}
-                          </a>
-                        </li>
-                      @endforeach
-                    </ul>
+                  <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                    مهارت‌ها
+                  </h3>
+                  <ul class="classroom-workspace-overview__skills-list">
+                    @foreach ($subjects as $subject)
+                      <li>
+                        <a target="_blank" titleEng="{{ $subject->title }}"
+                          title="دارای {{ $subject->courses_count }} دوره آموزشی"
+                          href="{{ route('home.show', [$subject->slug]) }}"
+                          class="ember-view _pill_8b61ij _basePadding_8b61ij _label_8b61ij">
+                          {{ $subject->title_per ?? $subject->title }}
+                          {{-- <span
+                                style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+                                {{ $subject->courses_count }} دوره
+                            </span> --}}
+                        </a>
+                      </li>
+                    @endforeach
+                  </ul>
+                </div>
+              @endif
+
+              @if (count($related_paths))
+                <div class="col-xs-12" style="margin-bottom: 1.6rem;">
+                  <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                    مسیرهای آموزشی مرتبط
+                  </h3>
+                  <div>
+
                   </div>
                 </div>
               @endif
@@ -952,6 +969,7 @@ if (count($course->subjects) > 0) {
                   </div>
                 </div>
               @endif
+
               @if (count($related_courses))
                 <div class="col-xs-12">
                   <div class="row p-0 m-0">
