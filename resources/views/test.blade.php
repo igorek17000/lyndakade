@@ -418,7 +418,7 @@ if (count($course->subjects) > 0) {
     }
 
     #video-player-title {
-      padding: 5px 0;
+      padding: 6px 0;
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
