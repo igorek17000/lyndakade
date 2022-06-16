@@ -655,12 +655,12 @@ if (count($course->subjects) > 0) {
       border-left: 2px solid #ccc;
     }
 
-    @media (max-width:575) {
+    @media (max-width: 575px) {
       .classroom-workspace-author-info {
         border-left: 0;
       }
     }
-    @media (min-width:576) {
+    @media (min-width: 576px) {
       .classroom-workspace-author-info>a>div{
         width: 100%;
       }
