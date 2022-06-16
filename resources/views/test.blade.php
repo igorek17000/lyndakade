@@ -363,10 +363,9 @@ if (count($course->subjects) > 0) {
       display: inline-block;
       margin-bottom: 0;
       padding: 0.4em;
-      border: 1px solid #6c757d;
       width: 40px;
       height: 40px;
-      background: #f5f5f5;
+      background: transparent;
       cursor: pointer;
       font-size: 13px;
       line-height: 1.42857143;
@@ -382,7 +381,7 @@ if (count($course->subjects) > 0) {
       height: 2px;
       margin: 5px auto;
       display: block;
-      background: #555;
+      background: #fff;
       transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
       transition-delay: 0.2s;
     }
@@ -525,15 +524,16 @@ if (count($course->subjects) > 0) {
         </div>
         <hr class="mt-0 mb-5">
         <div class="video-player" style="padding: 0;">
-          <div style="font-size: 1.1em;color: white;background-color: #000;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 3px 10px;">
+          <div
+            style="font-size: 1.1em;color: white;background-color: #000;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 3px 10px; display: flex;">
             <div
-              style="float: right;width: 100px;color: #ccc;padding: 5px;margin-left: 10px;display: flex;text-align: center;"
+              style="float: right;width: 110px;color: #ccc;padding: 5px;margin-left: 10px;display: flex;text-align: center;justify-content: center;align-content: center;align-items: center;flex-wrap: nowrap;flex-direction: row;"
               id="sidebarCollapse">
-              <button type="button" class="navbar-btn sidebarCollapse">
+              <span class="navbar-btn sidebarCollapse">
                 <span></span>
                 <span></span>
                 <span></span>
-              </button>
+              </span>
               سرفصل‌ها
             </div>
             <div id="video-player-title">
@@ -1262,7 +1262,8 @@ if (count($course->subjects) > 0) {
       var c_titleEng = course_titleEng;
       var video_title = course_player.config.title;
       var video_titleEng = course_player.config.titleEng;
-      var video_player_title_html = ` <span>${video_title}(${video_titleEng})</span><br><small style="color: #bfc1c3!important;">${c_title}(${c_titleEng})</small>`;
+      var video_player_title_html =
+        ` <span>${video_title}(${video_titleEng})</span><br><small style="color: #bfc1c3!important;">${c_title}(${c_titleEng})</small>`;
       $('#video-player-title').html(video_player_title_html);
     });
 
