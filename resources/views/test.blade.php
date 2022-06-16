@@ -422,22 +422,22 @@ if (count($course->subjects) > 0) {
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                transform: rotate(45deg) translate(2px, 2px);
-                              }
+                                  transform: rotate(45deg) translate(2px, 2px);
+                                }
 
-                              #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                opacity: 0;
-                              }
+                                #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                  opacity: 0;
+                                }
 
-                              #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                transform: rotate(-45deg) translate(1px, -1px);
-                              }
+                                #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                  transform: rotate(-45deg) translate(1px, -1px);
+                                }
 
-                              #sidebarCollapse.active .sidebarCollapse span {
-                                transform: none;
-                                opacity: 1;
-                                margin: 0 auto;
-                              } */
+                                #sidebarCollapse.active .sidebarCollapse span {
+                                  transform: none;
+                                  opacity: 1;
+                                  margin: 0 auto;
+                                } */
 
     @media (max-width: 767px) {
 
@@ -488,12 +488,11 @@ if (count($course->subjects) > 0) {
 
     .nav-tabs a.nav-link {
       color: #000;
-      flex: .1;
       margin: 0.2rem;
       padding: 0.4rem;
       text-align: -webkit-center;
       text-align: center;
-    border: 0;
+      border: 0;
     }
 
     .nav-tabs .nav-link.active {
@@ -504,6 +503,10 @@ if (count($course->subjects) > 0) {
 
     .nav-tabs .nav-link:not(.active):hover {
       border: 0;
+    }
+
+    .nav-tabs .nav-item {
+      flex: .1;
     }
   </style>
   @csrf
@@ -622,8 +625,8 @@ if (count($course->subjects) > 0) {
           </li>
           <li class="nav-item">
             @if ($course->concepts)
-              <a class="nav-link" id="nav-concepts-tab" data-toggle="tab" href="#nav-concepts"
-                role="tab" aria-controls="nav-concepts" aria-selected="false">سرفصل ها</a>
+              <a class="nav-link" id="nav-concepts-tab" data-toggle="tab" href="#nav-concepts" role="tab"
+                aria-controls="nav-concepts" aria-selected="false">سرفصل ها</a>
             @endif
           </li>
         </ul>
