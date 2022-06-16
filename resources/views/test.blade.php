@@ -630,7 +630,12 @@ if (count($course->subjects) > 0) {
     }
 
     .classroom-workspace-overview__files .btn-link {
+    text-decoration: none;
         cursor: pointer;
+    }
+    .classroom-workspace-overview__files .btn-link:hover:focus:visited {
+        border: 0;
+    text-decoration: none;
     }
   </style>
   @csrf
