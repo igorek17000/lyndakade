@@ -406,8 +406,8 @@ if (count($course->subjects) > 0) {
       font-size: 1.1em;
       color: white;
       background-color: #000;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
+      /* border-top-left-radius: 5px; */
+      /* border-top-right-radius: 5px; */
       padding: 0 10px;
       display: flex;
       border-bottom: 1px solid rgba(255, 255, 255, .35);
