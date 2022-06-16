@@ -493,6 +493,7 @@ if (count($course->subjects) > 0) {
       padding: 0.4rem;
       text-align: -webkit-center;
       text-align: center;
+    border: 0;
     }
 
     .nav-tabs .nav-link.active {
