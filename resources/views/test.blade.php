@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-      #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-          transform: rotate(45deg) translate(2px, 2px);
-      }
+        #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+            transform: rotate(45deg) translate(2px, 2px);
+        }
 
-      #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-          opacity: 0;
-      }
+        #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+            opacity: 0;
+        }
 
-      #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-          transform: rotate(-45deg) translate(1px, -1px);
-      }
+        #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+            transform: rotate(-45deg) translate(1px, -1px);
+        }
 
-      #sidebarCollapse.active .sidebarCollapse span {
-          transform: none;
-          opacity: 1;
-          margin: 0 auto;
-      }
-      */
+        #sidebarCollapse.active .sidebarCollapse span {
+            transform: none;
+            opacity: 1;
+            margin: 0 auto;
+        }
+        */
 
     @media (max-width: 767px) {
 
@@ -650,6 +650,21 @@ if (count($course->subjects) > 0) {
       text-decoration: none;
       outline: 0 !important;
     }
+
+    .classroom-workspace-author-info {
+      border-left: 2px solid #ccc;
+    }
+
+    @media (max-width:575) {
+      .classroom-workspace-author-info {
+        border-left: 0;
+      }
+    }
+    @media (min-width:576) {
+      .classroom-workspace-author-info>a>div{
+        width: 100%;
+      }
+    }
   </style>
   @csrf
   @if (isset($has_dubbed))
@@ -745,7 +760,7 @@ if (count($course->subjects) > 0) {
               سرفصل‌ها
             </div>
             <div id="video-player-title">
-            <div></div>
+              <div></div>
               <div style="color: #bfc1c3!important;font-size: 80%;"></div>
             </div>
           </div>
@@ -780,7 +795,7 @@ if (count($course->subjects) > 0) {
             aria-labelledby="nav-description-tab">
 
             <div class="row">
-              <div class="col-sm-6 col-xs-12" style="border-left: 2px solid #ccc; margin-bottom: 1.6rem;">
+              <div class="col-sm-6 col-xs-12 classroom-workspace-author-info" style="margin-bottom: 1.6rem;">
                 <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">
                   @if (count($course->users) == 0)
                     مدرس
