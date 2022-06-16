@@ -403,7 +403,7 @@ if (count($course->subjects) > 0) {
     }
 
     .video-player .title-wrapper {
-      font-size: 1.1em;
+      font-size: 1rem;
       color: white;
       background-color: #000;
       /* border-top-left-radius: 5px; */
