@@ -422,22 +422,22 @@ if (count($course->subjects) > 0) {
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                      transform: rotate(45deg) translate(2px, 2px);
-                                    }
+                                        transform: rotate(45deg) translate(2px, 2px);
+                                      }
 
-                                    #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                      opacity: 0;
-                                    }
+                                      #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                        opacity: 0;
+                                      }
 
-                                    #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                      transform: rotate(-45deg) translate(1px, -1px);
-                                    }
+                                      #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                        transform: rotate(-45deg) translate(1px, -1px);
+                                      }
 
-                                    #sidebarCollapse.active .sidebarCollapse span {
-                                      transform: none;
-                                      opacity: 1;
-                                      margin: 0 auto;
-                                    } */
+                                      #sidebarCollapse.active .sidebarCollapse span {
+                                        transform: none;
+                                        opacity: 1;
+                                        margin: 0 auto;
+                                      } */
 
     @media (max-width: 767px) {
 
@@ -500,11 +500,11 @@ if (count($course->subjects) > 0) {
     }
 
     .nav-tabs a.nav-link:first-child {
-        margin-right: 0;
+      margin-right: 0;
     }
 
     .nav-tabs a.nav-link:last-child {
-        margin-left: 0;
+      margin-left: 0;
     }
 
     .nav-tabs .nav-link.active {
