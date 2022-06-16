@@ -487,7 +487,7 @@ if (count($course->subjects) > 0) {
     }
 
     .nav-tabs .nav-item {
-      flex: 1;
+      flex: .15;
     }
 
     .nav-tabs a.nav-link {
@@ -754,7 +754,7 @@ if (count($course->subjects) > 0) {
                     @if (count($course->users) == 0)
                       <a href="{{ route('authors.show', [$author->slug]) }}"
                         style="display: flex; flex-wrap: nowrap; align-content: center; flex-direction: row; justify-content: center; align-items: center; height: 80px;">
-                        <img src="#" class="lazyload" width="100" height="100"
+                        <img src="#" class="lazyload" width="80" height="80"
                           data-src="{{ fromDLHost($author->img) }}" style="border-radius: 49.9%;"
                           alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
                         <div style="width: 100%;padding-right: 10px;">
@@ -765,7 +765,7 @@ if (count($course->subjects) > 0) {
                     @else
                       <a href="{{ route('dubbed.index', [$author->slug]) }}"
                         style="display: flex; flex-wrap: nowrap; align-content: center; flex-direction: row; justify-content: center; align-items: center; height: 80px;">
-                        <img src="#" class="lazyload" width="100" height="100"
+                        <img src="#" class="lazyload" width="80" height="80"
                           data-src="{{ fromDLHost($author->avatar) }}" style="border-radius: 49.9%;"
                           alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
                         <div style="width: 100%;padding-right: 10px;">
