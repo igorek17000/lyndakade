@@ -491,7 +491,7 @@ if (count($course->subjects) > 0) {
     <nav id="sidebar">
       <ul class="list-unstyled components">
         <div id="dismiss">
-          <i class="fas fa-arrow-left"></i>
+          <i class="fas fa-arrow-right"></i>
         </div>
         <p>سرفصل‌ها</p>
         @foreach ($chapters as $idx => $chapter)
