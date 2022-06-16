@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-            #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                transform: rotate(45deg) translate(2px, 2px);
-            }
+              #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                  transform: rotate(45deg) translate(2px, 2px);
+              }
 
-            #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                opacity: 0;
-            }
+              #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                  opacity: 0;
+              }
 
-            #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                transform: rotate(-45deg) translate(1px, -1px);
-            }
+              #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                  transform: rotate(-45deg) translate(1px, -1px);
+              }
 
-            #sidebarCollapse.active .sidebarCollapse span {
-                transform: none;
-                opacity: 1;
-                margin: 0 auto;
-            }
-            */
+              #sidebarCollapse.active .sidebarCollapse span {
+                  transform: none;
+                  opacity: 1;
+                  margin: 0 auto;
+              }
+              */
 
     @media (max-width: 767px) {
 
@@ -805,7 +805,7 @@ if (count($course->subjects) > 0) {
           </li>
         </ul>
 
-        <div class="container tab-content" id="nav-tabContent">
+        <div class="container tab-content" id="nav-tabContent" style="margin-bottom: 0;">
           <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
             aria-labelledby="nav-description-tab">
 
@@ -899,7 +899,7 @@ if (count($course->subjects) > 0) {
                   </li>
                 </ul>
               </div>
-              <div class="col-xs-12" style="margin-bottom: 1.6rem;">
+              <div class="col-xs-12">
                 <div style="margin-bottom: .8rem;">
                   <h3 class="classroom-workspace-overview__header t-12 t-bold">مشخصات دوره</h3>
                   <ul class="dot-delimited-list" style="color: #4a4a4a;">
@@ -1154,9 +1154,9 @@ if (count($course->subjects) > 0) {
           </div>
         </div>
 
-        <div class="container tab-content">
-          @if (count($subjects))
-            <div class="col-xs-12" style="margin-bottom: 1.6rem;">
+        @if (count($subjects))
+          <div class="container tab-content" style="margin-bottom: 0;">
+            <div class="col-xs-12">
               <h3 class="classroom-workspace-overview__header t-12 t-bold">
                 مهارت‌ها
               </h3>
@@ -1177,12 +1177,12 @@ if (count($course->subjects) > 0) {
                 @endforeach
               </ul>
             </div>
-          @endif
-        </div>
+          </div>
+        @endif
 
-        <div class="container tab-content">
-          @if (count($related_paths))
-            <div class="col-xs-12" style="margin-bottom: 1.6rem;">
+        @if (count($related_paths))
+          <div class="container tab-content" style="margin-bottom: 0;">
+            <div class="col-xs-12">
               <h3 class="classroom-workspace-overview__header t-12 t-bold">
                 مسیرهای آموزشی مرتبط
               </h3>
@@ -1194,12 +1194,12 @@ if (count($course->subjects) > 0) {
                 @endfor
               </div>
             </div>
-          @endif
-        </div>
+          </div>
+        @endif
 
-        <div class="container tab-content">
-          @if (count($related_courses))
-            <div class="col-xs-12" style="margin-bottom: 1.6rem;">
+        @if (count($related_courses))
+          <div class="container tab-content" style="margin-bottom: 0;">
+            <div class="col-xs-12">
               <h3 class="classroom-workspace-overview__header t-12 t-bold">
                 دوره‌های آموزشی مرتبط
               </h3>
@@ -1211,8 +1211,8 @@ if (count($course->subjects) > 0) {
                 @endfor
               </div>
             </div>
-          @endif
-        </div>
+          </div>
+        @endif
       </div>
     </div>
   </div>
