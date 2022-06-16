@@ -422,22 +422,22 @@ if (count($course->subjects) > 0) {
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                      transform: rotate(45deg) translate(2px, 2px);
-                    }
+                        transform: rotate(45deg) translate(2px, 2px);
+                      }
 
-                    #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                      opacity: 0;
-                    }
+                      #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                        opacity: 0;
+                      }
 
-                    #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                      transform: rotate(-45deg) translate(1px, -1px);
-                    }
+                      #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                        transform: rotate(-45deg) translate(1px, -1px);
+                      }
 
-                    #sidebarCollapse.active .sidebarCollapse span {
-                      transform: none;
-                      opacity: 1;
-                      margin: 0 auto;
-                    } */
+                      #sidebarCollapse.active .sidebarCollapse span {
+                        transform: none;
+                        opacity: 1;
+                        margin: 0 auto;
+                      } */
 
     @media (max-width: 767px) {
 
@@ -475,6 +475,21 @@ if (count($course->subjects) > 0) {
 
     #sidebar ul>li:hover>a:before {
       width: 0;
+    }
+
+    .nav-tabs#nav-tab a.nav-item {
+      color: #000;
+      flex: .1;
+      margin: 0.2rem;
+      padding: 0.4rem;
+      text-align: -webkit-center;
+      text-align: center;
+    }
+
+    .nav-tabs#nav-tab .nav-link.active {
+      color: #0073b1;
+      border: 0;
+      border-bottom: 2px solid #0073b1;
     }
   </style>
   @csrf
@@ -589,8 +604,8 @@ if (count($course->subjects) > 0) {
             <a class="nav-item nav-link" id="nav-overview-tab" data-toggle="tab" href="#nav-overview" role="tab"
               aria-controls="nav-overview" aria-selected="false">Overview</a>
             @if ($course->concepts)
-              <a class="nav-item nav-link" id="nav-concepts-tab" data-toggle="tab" href="#nav-concepts"
-                role="tab" aria-controls="nav-concepts" aria-selected="false">سرفصل ها</a>
+              <a class="nav-item nav-link" id="nav-concepts-tab" data-toggle="tab" href="#nav-concepts" role="tab"
+                aria-controls="nav-concepts" aria-selected="false">سرفصل ها</a>
             @endif
           </div>
         </nav>
