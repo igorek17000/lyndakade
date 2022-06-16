@@ -677,7 +677,7 @@ if (count($course->subjects) > 0) {
       </ul> --}}
     </nav>
     <div id="content">
-      <div class="section-module my-0" style="box-shadow: none;">
+      <div class="container-fluid" style="background-color: #fff;padding: 20px 15px;">
         <h1 class="panel-title" style="font-size: 1em;">
           <span class="course-title" lang="fa">
             {{ $course->title }}
