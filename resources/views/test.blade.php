@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-              #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                  transform: rotate(45deg) translate(2px, 2px);
-              }
+                #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                    transform: rotate(45deg) translate(2px, 2px);
+                }
 
-              #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                  opacity: 0;
-              }
+                #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                    opacity: 0;
+                }
 
-              #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                  transform: rotate(-45deg) translate(1px, -1px);
-              }
+                #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                    transform: rotate(-45deg) translate(1px, -1px);
+                }
 
-              #sidebarCollapse.active .sidebarCollapse span {
-                  transform: none;
-                  opacity: 1;
-                  margin: 0 auto;
-              }
-              */
+                #sidebarCollapse.active .sidebarCollapse span {
+                    transform: none;
+                    opacity: 1;
+                    margin: 0 auto;
+                }
+                */
 
     @media (max-width: 767px) {
 
@@ -860,7 +860,7 @@ if (count($course->subjects) > 0) {
                         </path>
                       </svg>
                       <span class="dot-delimiter-after">لینک فایل‌های دوره</span>
-                      <button class="btn-link"  data-toggle="modal" data-target="#course-files-modal">
+                      <button class="btn-link" data-toggle="modal" data-target="#course-files-modal">
                         نمایش
                       </button>
                     </div>
@@ -931,9 +931,9 @@ if (count($course->subjects) > 0) {
               <div class="col-sm-6 col-xs-12 classroom-workspace-author-info" style="margin-bottom: 1.6rem;">
                 <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">
                   @if (count($course->users) == 0)
-                    مدرس
+                    INSTRUCTOR
                   @else
-                    دوبلور
+                    DUBBED BY
                   @endif
                 </h2>
                 @php
@@ -967,7 +967,8 @@ if (count($course->subjects) > 0) {
                 @endif
               </div>
               <div class="col-sm-6 col-xs-12" style="margin-bottom:  1.6rem;">
-                <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">فایل‌های دوره</h2>
+                <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">RELATED TO THIS COURSE
+                </h2>
                 <ul class="classroom-workspace-overview__files t-08 t-bold" style="margin-top: 15px;">
                   <li>
                     <div>
@@ -978,9 +979,9 @@ if (count($course->subjects) > 0) {
                           d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
                         </path>
                       </svg>
-                      <span class="dot-delimiter-after">لینک فایل‌های دوره</span>
-                      <button class="btn-link"  data-toggle="modal" data-target="#course-files-modal">
-                        نمایش
+                      <span class="dot-delimiter-after">Course Files</span>
+                      <button class="btn-link" data-toggle="modal" data-target="#course-files-modal">
+                        Show all
                       </button>
                     </div>
                   </li>
@@ -994,9 +995,9 @@ if (count($course->subjects) > 0) {
                           d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z">
                         </path>
                       </svg>
-                      <span class="dot-delimiter-after">گزارش خرابی</span>
+                      <span class="dot-delimiter-after">Issue Report</span>
                       <button class="btn-link report-issue-toggle">
-                        ثبت گزارش
+                        Submit report
                       </button>
                     </div>
                   </li>
@@ -1004,7 +1005,7 @@ if (count($course->subjects) > 0) {
               </div>
               <div class="col-xs-12">
                 <div style="margin-bottom: .8rem;">
-                  <h3 class="classroom-workspace-overview__header t-12 t-bold">مشخصات دوره</h3>
+                  <h3 class="classroom-workspace-overview__header t-12 t-bold">Course Details</h3>
                   <ul class="dot-delimited-list" style="color: #4a4a4a;">
                     <li>
                       @if ($course->durationHours)
@@ -1014,33 +1015,33 @@ if (count($course->subjects) > 0) {
                         {{ $course->durationMinutes }}m
                       @endif
                     </li>
-                    <li>{{ $skill }}</li>
+                    <li>{{ $skillEng }}</li>
                     <li>
-                      تاریخ انتشار:
-                      <span title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
-                        @php
-                          $d = date('Y/m/d', strtotime($course->releaseDate));
-                          $d = explode('/', $d);
-                          echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
-                        @endphp
+                      Release:
+                      <span
+                        title="@php
+                                    $d = explode('/', date('Y/m/d', strtotime($course->releaseDate)));
+                                    echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                                @endphp">
+                        {{ date('Y/m/d', strtotime($course->releaseDate)) }}
                       </span>
                     </li>
                     @if ($course->updateDate)
                       <li>
-                        تاریخ بروز رسانی:
-                        <span title="{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
-                          @php
-                            $d = date('Y/m/d', strtotime($course->updateDate));
-                            $d = explode('/', $d);
-                            echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
-                          @endphp
+                        Updated:
+                        <span
+                          title="@php
+                                    $d = explode('/', date('Y/m/d', strtotime($course->updateDate)));
+                                    echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                                @endphp">
+                          {{ date('Y/m/d', strtotime($course->updateDate)) }}
                         </span>
                       </li>
                     @endif
                   </ul>
                 </div>
                 <div style="text-align: justify;" class="classroom-workspace-overview__description t-10">
-                  <div> {!! nl2br(e($course->description)) !!} </div>
+                  <div> {!! nl2br(e($course->descriptionEng)) !!} </div>
                 </div>
               </div>
             </div>
@@ -1247,13 +1248,13 @@ if (count($course->subjects) > 0) {
       </div>
     </div>
   </div>
-  
-  <div class="modal fade" id="course-files-modal" tabindex="-1" role="dialog" aria-labelledby="course-files-modal-title"
-    aria-hidden="true" style="background-color: #444c;">
+
+  <div class="modal fade" id="course-files-modal" tabindex="-1" role="dialog"
+    aria-labelledby="course-files-modal-title" aria-hidden="true" style="background-color: #444c;">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content text-center">
         <div class="modal-body p-0" id="course-files-modal-body">
-          
+
         </div>
       </div>
     </div>
