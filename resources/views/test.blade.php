@@ -636,6 +636,7 @@ if (count($course->subjects) > 0) {
     .classroom-workspace-overview__files .btn-link:hover:focus:visited {
         border: 0;
     text-decoration: none;
+    outline:0;
     }
   </style>
   @csrf
