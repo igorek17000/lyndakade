@@ -501,7 +501,7 @@ if (count($course->subjects) > 0) {
       border-bottom: 2px solid #0073b1;
     }
 
-    .nav-tabs .nav-link:hover {
+    .nav-tabs .nav-link:not(.active):hover {
       border: 0;
     }
   </style>
