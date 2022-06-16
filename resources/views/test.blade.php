@@ -499,11 +499,11 @@ if (count($course->subjects) > 0) {
       border: 0;
     }
 
-    .nav-tabs a.nav-link:first-child {
+    .nav-tabs .nav-item:first-child a.nav-link {
       margin-right: 0;
     }
 
-    .nav-tabs a.nav-link:last-child {
+    .nav-tabs .nav-item:last-child a.nav-link {
       margin-left: 0;
     }
 
