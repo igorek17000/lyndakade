@@ -973,6 +973,20 @@ if (count($course->subjects) > 0) {
                   </div>
                 </div>
               @endif
+              @if (count($related_courses))
+                <div class="col-xs-12" style="margin-bottom: 1.6rem;">
+                  <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                    دوره‌های آموزشی مرتبط
+                  </h3>
+                  <div>
+                    @for ($i = 0; $i < 4 && $i < count($related_courses); $i++)
+                        @include('courses.partials._course_list_grid-new', [
+                            'course' => $related_courses[$i],
+                        ])
+                    @endfor
+                  </div>
+                </div>
+              @endif
 
               @if (count($related_paths))
                 <div class="col-xs-12">
