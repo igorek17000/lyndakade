@@ -386,19 +386,19 @@ if (count($course->subjects) > 0) {
       transition-delay: 0.2s;
     }
 
-    .sidebarCollapse.active span:first-of-type {
+    #sidebarCollapse.active .sidebarCollapse span:first-of-type {
       transform: rotate(45deg) translate(2px, 2px);
     }
 
-    .sidebarCollapse.active span:nth-of-type(2) {
+    #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
       opacity: 0;
     }
 
-    .sidebarCollapse.active span:last-of-type {
+    #sidebarCollapse.active .sidebarCollapse span:last-of-type {
       transform: rotate(-45deg) translate(1px, -1px);
     }
 
-    .sidebarCollapse.active span {
+    #sidebarCollapse.active .sidebarCollapse span {
       transform: none;
       opacity: 1;
       margin: 0 auto;
@@ -490,13 +490,6 @@ if (count($course->subjects) > 0) {
     </nav>
     <div id="content">
       <div class="section-module my-0" style="box-shadow: none;">
-        <div style="padding: 0 40px 10px;">
-          <button type="button" id="sidebarCollapse" class="navbar-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
         <h1 class="panel-title" style="font-size: 1em;">
           <span class="course-title" lang="fa">
             {{ $course->title }}
