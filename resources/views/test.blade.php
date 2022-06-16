@@ -359,7 +359,7 @@ if (count($course->subjects) > 0) {
       width: calc(100% - var(--sidebar-size));
     }
 
-    #sidebarCollapse {
+    .sidebarCollapse {
       display: inline-block;
       margin-bottom: 0;
       padding: 0.4em;
@@ -377,7 +377,7 @@ if (count($course->subjects) > 0) {
       user-select: none;
     }
 
-    #sidebarCollapse span {
+    .sidebarCollapse span {
       width: 80%;
       height: 2px;
       margin: 5px auto;
@@ -387,19 +387,19 @@ if (count($course->subjects) > 0) {
       transition-delay: 0.2s;
     }
 
-    #sidebarCollapse.active span:first-of-type {
+    .sidebarCollapse.active span:first-of-type {
       transform: rotate(45deg) translate(2px, 2px);
     }
 
-    #sidebarCollapse.active span:nth-of-type(2) {
+    .sidebarCollapse.active span:nth-of-type(2) {
       opacity: 0;
     }
 
-    #sidebarCollapse.active span:last-of-type {
+    .sidebarCollapse.active span:last-of-type {
       transform: rotate(-45deg) translate(1px, -1px);
     }
 
-    #sidebarCollapse.active span {
+    .sidebarCollapse.active span {
       transform: none;
       opacity: 1;
       margin: 0 auto;
@@ -468,8 +468,8 @@ if (count($course->subjects) > 0) {
             <ul class="list-unstyled collapse" id="chap-{{ $idx + 1 }}" style="">
               @foreach ($chapter->videos as $video)
                 <li>
-                  <a class="play-course-video" data-title="{{ nPersian($video->title) }}" data-video-id="{{ $video->id }}"
-                    href="javascript:void(0);">
+                  <a class="play-course-video" data-title="{{ nPersian($video->title) }}"
+                    data-video-id="{{ $video->id }}" href="javascript:void(0);">
                     {{ nPersian($video->title) }}
                     <br /><small>{{ $video->duration }}</small>
                   </a>
@@ -525,10 +525,21 @@ if (count($course->subjects) > 0) {
         </div>
         <hr class="mt-0 mb-5">
         <div class="video-player" style="padding: 0;">
-          <div id="video-player-title"
-            style="font-size: 1rem;color: white;background-color: #000;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 3px 10px;">
-            <br>
-            <small style="color: #bfc1c3!important;"></small>
+          <div style="font-size: 1.1em;color: white;background-color: #000;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 3px 10px;">
+            <div
+              style="float: right;width: 100px;color: #ccc;padding: 5px;margin-left: 10px;display: flex;text-align: center;"
+              id="sidebarCollapse">
+              <button type="button" class="navbar-btn sidebarCollapse">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              سرفصل‌ها
+            </div>
+            <div id="video-player-title">
+              <br>
+              <small style="color: #bfc1c3!important;"></small>
+            </div>
           </div>
           <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
             <source type="video/mp4" src="{{ fromDLHost($course->previewFile) }}" size="720" default />
@@ -552,8 +563,8 @@ if (count($course->subjects) > 0) {
             <a class="nav-item nav-link" id="nav-overview-tab" data-toggle="tab" href="#nav-overview" role="tab"
               aria-controls="nav-overview" aria-selected="false">Overview</a>
             @if ($course->concepts)
-              <a class="nav-item nav-link" id="nav-concepts-tab" data-toggle="tab" href="#nav-concepts" role="tab"
-                aria-controls="nav-concepts" aria-selected="false">سرفصل ها</a>
+              <a class="nav-item nav-link" id="nav-concepts-tab" data-toggle="tab" href="#nav-concepts"
+                role="tab" aria-controls="nav-concepts" aria-selected="false">سرفصل ها</a>
             @endif
           </div>
         </nav>
@@ -621,7 +632,8 @@ if (count($course->subjects) > 0) {
                     </div>
                     @foreach ($course->users as $user)
                       <a href="{{ route('dubbed.index', [$user->username]) }}">
-                        <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
+                        <img src="#" class="lazyload"
+                          alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
                           data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
                           height="100">
                         <cite>{{ $user->name }}</cite>
@@ -885,7 +897,8 @@ if (count($course->subjects) > 0) {
                     </div>
                     @foreach ($course->users as $user)
                       <a href="{{ route('dubbed.index', [$user->username]) }}">
-                        <img src="#" class="lazyload" alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
+                        <img src="#" class="lazyload"
+                          alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
                           data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
                           height="100">
                         <cite>{{ $user->name }}</cite>
@@ -896,7 +909,8 @@ if (count($course->subjects) > 0) {
               </div>
               <div class="col-sm-7 col-md-6 col-lg-8 course-description-english" role="contentinfo" dir="ltr">
                 <div style="margin: 0;font-size: 13px;font-weight: 600;">
-                  <span title="@php
+                  <span
+                    title="@php
                     $d = explode('/', date('Y/m/d', strtotime($course->releaseDate)));
                     echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                   @endphp">
@@ -905,7 +919,8 @@ if (count($course->subjects) > 0) {
                     <i class="lyndacon closed-captioning pl-2" title="subtitle"></i>
                   </span>
                   @if ($course->updateDate)
-                    <span title="@php
+                    <span
+                      title="@php
                       $d = explode('/', date('Y/m/d', strtotime($course->updateDate)));
                       echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                     @endphp">
@@ -945,7 +960,8 @@ if (count($course->subjects) > 0) {
                   </span>
                 </div>
                 @if ($course->views > 0)
-                  <div class="course-info-stat-cont viewers" title="Number of people watched this course (from linkedin)">
+                  <div class="course-info-stat-cont viewers"
+                    title="Number of people watched this course (from linkedin)">
                     <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
                     <span style="color: #888; margin-bottom: 4px;">
                       People watched this course
@@ -1215,6 +1231,7 @@ if (count($course->subjects) > 0) {
       course_player.source = {
         type: "video",
         title: title,
+        titleEng: titleEng,
         sources: [{
           src: `//dl.lyndakade.ir/download.php?code=${video_id}&x=v`,
           type: 'video/mp4'
@@ -1242,8 +1259,10 @@ if (count($course->subjects) > 0) {
     $('.course-chapter > a').trigger("click");
     course_player.on('loadedmetadata', function(event) {
       var c_title = course_title.replace('دوره آموزشی ', '');
+      var c_titleEng = course_titleEng;
       var video_title = course_player.config.title;
-      var video_player_title_html = ` ${video_title}<br><small style="color: #bfc1c3!important;">${c_title}</small>`;
+      var video_titleEng = course_player.config.titleEng;
+      var video_player_title_html = ` <span>${video_title}(${video_titleEng})</span><br><small style="color: #bfc1c3!important;">${c_title}(${c_titleEng})</small>`;
       $('#video-player-title').html(video_player_title_html);
     });
 
