@@ -422,22 +422,22 @@ if (count($course->subjects) > 0) {
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                transform: rotate(45deg) translate(2px, 2px);
-              }
+                  transform: rotate(45deg) translate(2px, 2px);
+                }
 
-              #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                opacity: 0;
-              }
+                #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                  opacity: 0;
+                }
 
-              #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                transform: rotate(-45deg) translate(1px, -1px);
-              }
+                #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                  transform: rotate(-45deg) translate(1px, -1px);
+                }
 
-              #sidebarCollapse.active .sidebarCollapse span {
-                transform: none;
-                opacity: 1;
-                margin: 0 auto;
-              } */
+                #sidebarCollapse.active .sidebarCollapse span {
+                  transform: none;
+                  opacity: 1;
+                  margin: 0 auto;
+                } */
 
     @media (max-width: 767px) {
 
@@ -503,7 +503,8 @@ if (count($course->subjects) > 0) {
               @foreach ($chapter->videos as $video)
                 <li>
                   <a class="play-course-video" data-title="{{ nPersian($video->title) }}"
-                    data-video-id="{{ $video->id }}" href="javascript:void(0);">
+                    data-title-eng="{{ $video->titleEng }}" data-video-id="{{ $video->id }}"
+                    href="javascript:void(0);">
                     {{ nPersian($video->title) }}
                     <br /><small>{{ $video->duration }}</small>
                   </a>
@@ -1229,7 +1230,8 @@ if (count($course->subjects) > 0) {
       const btn = event.currentTarget.dataset;
       var videoId = btn.videoId;
       var title = btn.title;
-      PlayVideo(title, videoId);
+      var titleEng = btn.titleEng;
+      PlayVideo(title, titleEng, videoId);
     });
     course_player.on('ended', function(event) {
       var $next = $(".course-chapter li.active").next();
@@ -1248,10 +1250,11 @@ if (count($course->subjects) > 0) {
       $next.find("a").trigger("click");
       var videoId = $($next.find("a")).data('videoId');
       var title = $($next.find("a")).data('title');
-      PlayVideo(title, videoId);
+      var titleEng = $($next.find("a")).data('titleEng');
+      PlayVideo(title, titleEng, videoId);
     });
 
-    function PlayVideo(title, video_id) {
+    function PlayVideo(title, titleEng, video_id) {
       var current_lang = course_player.language;
       course_player.source = {
         type: "video",
