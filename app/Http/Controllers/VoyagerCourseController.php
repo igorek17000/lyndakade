@@ -72,17 +72,20 @@ class VoyagerCourseController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
                     foreach ($chapter->videos as $video) {
                         $video->id = create_hashed_data_if_not_exists($course->id . "," . $video->index);
                         $video->path = $course_path . "/" . $video->path;
-                        if ($video->sub_fa) {
-                            $video->sub_fa = $course_path . "/" . $video->sub_fa;
-                        }
-                        if ($video->sub_en) {
-                            $video->sub_en = $course_path . "/" . $video->sub_en;
+                        try {
+                            if ($video->sub_en) {
+                                $video->sub_en = $course_path . "/" . $video->sub_en;
+                            }
+                            if ($video->sub_fa) {
+                                $video->sub_fa = $course_path . "/" . $video->sub_fa;
+                            }
+                        } catch (\Throwable $th) {
                         }
                     }
                 }
             }
         } catch (Exception $e) {
-            $chapters = [$e->getMessage()];
+            $chapters = [];
         }
 
         Course::where('id', $course->id)->update([
