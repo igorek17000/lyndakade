@@ -515,14 +515,14 @@ if (count($course->subjects) > 0) {
         @endforeach
       </ul>
 
-      <ul class="list-unstyled CTAs">
+      {{-- <ul class="list-unstyled CTAs">
         <li>
           <a href="" class="download">Download</a>
         </li>
-        {{-- <li>
+        <li>
         <a href="" class="article">Back</a>
-      </li> --}}
-      </ul>
+      </li>
+      </ul> --}}
     </nav>
     <div id="content">
       <div class="section-module my-0" style="box-shadow: none;">
