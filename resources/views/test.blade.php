@@ -386,7 +386,7 @@ if (count($course->subjects) > 0) {
       transition-delay: 0.2s;
     }
 
-    #sidebarCollapse.active .sidebarCollapse {
+    #sidebarCollapse.active {
       display: none;
     }
 
