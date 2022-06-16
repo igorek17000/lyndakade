@@ -447,6 +447,11 @@
       }
 
     }
+    @media (min-width: 1370px) {
+      .course-description-grid {
+        max-width: 960px;
+      }
+    }
 
     .border-0 {
       border: 0;

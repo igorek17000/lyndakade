@@ -861,22 +861,7 @@ if (count($course->subjects) > 0) {
                         </path>
                       </svg>
                       <span class="dot-delimiter-after">لینک فایل‌های دوره</span>
-                      <button class="btn-link">
-                        نمایش
-                      </button>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
-                        fill="currentColor" width="24" height="24" focusable="false"
-                        style="float: right;margin-left: 7px;">
-                        <path
-                          d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
-                        </path>
-                      </svg>
-                      <span class="dot-delimiter-after">لینک فایل‌های تمرین</span>
-                      <button class="btn-link">
+                      <button class="btn-link"  data-toggle="modal" data-target="#course-files-modal">
                         نمایش
                       </button>
                     </div>
@@ -1213,6 +1198,17 @@ if (count($course->subjects) > 0) {
             </div>
           </div>
         @endif
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="course-files-modal" tabindex="-1" role="dialog" aria-labelledby="course-files-modal-title"
+    aria-hidden="true" style="background-color: #444c;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content text-center">
+        <div class="modal-body p-0" id="course-files-modal-body">
+          
+        </div>
       </div>
     </div>
   </div>
