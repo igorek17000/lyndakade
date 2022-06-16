@@ -988,7 +988,7 @@ if (count($course->subjects) > 0) {
                 </div>
               @endif
 
-              @if (count($related_paths))
+              {{-- @if (count($related_paths))
                 <div class="col-xs-12">
                   <div class="row p-0 m-0">
                     <div class="col-6">
@@ -1021,9 +1021,9 @@ if (count($course->subjects) > 0) {
                     </div>
                   </div>
                 </div>
-              @endif
+              @endif --}}
 
-              @if (count($related_courses))
+              {{-- @if (count($related_courses))
                 <div class="col-xs-12">
                   <div class="row p-0 m-0">
                     <div class="col-6">
@@ -1056,7 +1056,7 @@ if (count($course->subjects) > 0) {
                     </div>
                   </div>
                 </div>
-              @endif
+              @endif --}}
             </div>
 
           </div>
