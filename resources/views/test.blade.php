@@ -1155,7 +1155,7 @@ if (count($course->subjects) > 0) {
         </div>
 
         @if (count($subjects))
-          <div class="container tab-content" style="margin-bottom: 0;">
+          <div class="container tab-content" style="margin-bottom: 0;padding-left: 0;padding-right: 0;">
             <div class="col-xs-12">
               <h3 class="classroom-workspace-overview__header t-12 t-bold">
                 مهارت‌ها
@@ -1181,7 +1181,7 @@ if (count($course->subjects) > 0) {
         @endif
 
         @if (count($related_paths))
-          <div class="container tab-content" style="margin-bottom: 0;">
+          <div class="container tab-content" style="margin-bottom: 0;padding-left: 0;padding-right: 0;">
             <div class="col-xs-12">
               <h3 class="classroom-workspace-overview__header t-12 t-bold">
                 مسیرهای آموزشی مرتبط
@@ -1198,7 +1198,7 @@ if (count($course->subjects) > 0) {
         @endif
 
         @if (count($related_courses))
-          <div class="container tab-content" style="margin-bottom: 0;">
+          <div class="container tab-content" style="margin-bottom: 0;padding-left: 0;padding-right: 0;">
             <div class="col-xs-12">
               <h3 class="classroom-workspace-overview__header t-12 t-bold">
                 دوره‌های آموزشی مرتبط
