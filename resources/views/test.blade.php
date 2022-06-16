@@ -1292,7 +1292,7 @@ if (count($course->subjects) > 0) {
       if (video_titleEng.includes(' - '))
         video_titleEng = video_titleEng.substring(video_titleEng.indexOf(' - ') + 3);
       var video_player_title_html =
-        ` <span>${video_title}(${video_titleEng})</span><br><small style="color: #bfc1c3!important;">${c_title}(${c_titleEng})</small>`;
+        ` <span>${video_title} (${video_titleEng})</span><br><small style="color: #bfc1c3!important;">${c_title} (${c_titleEng})</small>`;
       $('#video-player-title').html(video_player_title_html);
     });
 
