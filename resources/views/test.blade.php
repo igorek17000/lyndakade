@@ -387,40 +387,57 @@ if (count($course->subjects) > 0) {
     }
 
     #sidebarCollapse {
-    float: right;
-    width: 110px;
-    color: #ccc;
-    padding: 5px;
-    margin-left: 10px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    flex-direction: row;
+      float: right;
+      width: 110px;
+      color: #ccc;
+      padding: 5px;
+      margin-left: 10px;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      border-left: 2px solid rgba(255, 255, 255, .35);
     }
+
+    .video-player .title-wrapper {
+      font-size: 1.1em;
+      color: white;
+      background-color: #000;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      padding: 0 10px;
+      display: flex;
+      border-bottom: 1px solid rgba(255, 255, 255, .35);
+    }
+
     #sidebarCollapse.active {
       display: none;
     }
 
+    #video-player-title {
+      padding: 5px 0;
+    }
+
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-        transform: rotate(45deg) translate(2px, 2px);
-      }
+                transform: rotate(45deg) translate(2px, 2px);
+              }
 
-      #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-        opacity: 0;
-      }
+              #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                opacity: 0;
+              }
 
-      #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-        transform: rotate(-45deg) translate(1px, -1px);
-      }
+              #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                transform: rotate(-45deg) translate(1px, -1px);
+              }
 
-      #sidebarCollapse.active .sidebarCollapse span {
-        transform: none;
-        opacity: 1;
-        margin: 0 auto;
-      } */
+              #sidebarCollapse.active .sidebarCollapse span {
+                transform: none;
+                opacity: 1;
+                margin: 0 auto;
+              } */
 
     @media (max-width: 767px) {
 
@@ -535,10 +552,9 @@ if (count($course->subjects) > 0) {
         </div>
         <hr class="mt-0 mb-5">
         <div class="video-player" style="padding: 0;">
-          <div
-            style="font-size: 1.1em;color: white;background-color: #000;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 3px 10px; display: flex;">
-            <div
-              id="sidebarCollapse">
+          <div class="title-wrapper"
+            style="font-size: 1.1em;color: white;background-color: #000;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 0 10px;display: flex;border-bottom: 1px solid #fff;">
+            <div id="sidebarCollapse">
               <span class="navbar-btn sidebarCollapse">
                 <span></span>
                 <span></span>
