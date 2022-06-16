@@ -969,7 +969,11 @@ if (count($course->subjects) > 0) {
                     مسیرهای آموزشی مرتبط
                   </h3>
                   <div>
-
+                    @for ($i = 0; $i < 4 && + $i < count($related_paths); $i++)
+                        @include('learn_paths.partials.list_item_grid_new', [
+                            'path' => $related_paths[$i],
+                        ])
+                    @endfor
                   </div>
                 </div>
               @endif
