@@ -1255,7 +1255,7 @@ if (count($course->subjects) > 0) {
       PlayVideo(title, videoId);
     });
 
-    function PlayVideo(title, titleEng, video_id) {
+    function PlayVideo(title, video_id) {
       var current_lang = course_player.language;
       course_player.source = {
         type: "video",
