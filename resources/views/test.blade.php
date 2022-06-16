@@ -422,22 +422,22 @@ if (count($course->subjects) > 0) {
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                            transform: rotate(45deg) translate(2px, 2px);
-                          }
+                                transform: rotate(45deg) translate(2px, 2px);
+                              }
 
-                          #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                            opacity: 0;
-                          }
+                              #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                opacity: 0;
+                              }
 
-                          #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                            transform: rotate(-45deg) translate(1px, -1px);
-                          }
+                              #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                transform: rotate(-45deg) translate(1px, -1px);
+                              }
 
-                          #sidebarCollapse.active .sidebarCollapse span {
-                            transform: none;
-                            opacity: 1;
-                            margin: 0 auto;
-                          } */
+                              #sidebarCollapse.active .sidebarCollapse span {
+                                transform: none;
+                                opacity: 1;
+                                margin: 0 auto;
+                              } */
 
     @media (max-width: 767px) {
 
@@ -477,7 +477,7 @@ if (count($course->subjects) > 0) {
       width: 0;
     }
 
-    .nav-tabs#nav-tab {
+    .nav-tabs {
       display: flex;
       flex-wrap: wrap;
       align-content: center;
@@ -486,7 +486,7 @@ if (count($course->subjects) > 0) {
       align-items: center;
     }
 
-    .nav-tabs#nav-tab a.nav-item {
+    .nav-tabs a.nav-link {
       color: #000;
       flex: .1;
       margin: 0.2rem;
@@ -495,7 +495,7 @@ if (count($course->subjects) > 0) {
       text-align: center;
     }
 
-    .nav-tabs#nav-tab .nav-link.active {
+    .nav-tabs .nav-link.active {
       color: #0073b1;
       border: 0;
       border-bottom: 2px solid #0073b1;
@@ -610,18 +610,22 @@ if (count($course->subjects) > 0) {
             @endif
           </video>
         </div>
-        <nav>
-          <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description"
-              role="tab" aria-controls="nav-description" aria-selected="true">توضیحات</a>
-            <a class="nav-item nav-link" id="nav-overview-tab" data-toggle="tab" href="#nav-overview" role="tab"
+        <ul class="nav nav-tabs justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" role="tab"
+              aria-controls="nav-description" aria-selected="true">توضیحات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="nav-overview-tab" data-toggle="tab" href="#nav-overview" role="tab"
               aria-controls="nav-overview" aria-selected="false">Overview</a>
+          </li>
+          <li class="nav-item">
             @if ($course->concepts)
-              <a class="nav-item nav-link" id="nav-concepts-tab" data-toggle="tab" href="#nav-concepts" role="tab"
-                aria-controls="nav-concepts" aria-selected="false">سرفصل ها</a>
+              <a class="nav-link" id="nav-concepts-tab" data-toggle="tab" href="#nav-concepts"
+                role="tab" aria-controls="nav-concepts" aria-selected="false">سرفصل ها</a>
             @endif
-          </div>
-        </nav>
+          </li>
+        </ul>
 
         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
