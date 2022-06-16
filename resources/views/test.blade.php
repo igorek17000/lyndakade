@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-        #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-            transform: rotate(45deg) translate(2px, 2px);
-        }
+            #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                transform: rotate(45deg) translate(2px, 2px);
+            }
 
-        #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-            opacity: 0;
-        }
+            #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                opacity: 0;
+            }
 
-        #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-            transform: rotate(-45deg) translate(1px, -1px);
-        }
+            #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                transform: rotate(-45deg) translate(1px, -1px);
+            }
 
-        #sidebarCollapse.active .sidebarCollapse span {
-            transform: none;
-            opacity: 1;
-            margin: 0 auto;
-        }
-        */
+            #sidebarCollapse.active .sidebarCollapse span {
+                transform: none;
+                opacity: 1;
+                margin: 0 auto;
+            }
+            */
 
     @media (max-width: 767px) {
 
@@ -640,12 +640,12 @@ if (count($course->subjects) > 0) {
       box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, .45);
     }
 
-    .classroom-workspace-overview__files{
-        margin-top: 15px;
-        display: flex;
-        flex-direction: column;
-        align-content: stretch;
-        align-items: stretch;
+    .classroom-workspace-overview__files {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      align-content: stretch;
+      align-items: stretch;
     }
 
     .classroom-workspace-overview__files .btn-link {
@@ -667,14 +667,16 @@ if (count($course->subjects) > 0) {
       .classroom-workspace-author-info {
         border-left: 0;
       }
-    .classroom-workspace-overview__files>li>div{
+
+      .classroom-workspace-overview__files>li>div {
         position: relative;
         width: 220px;
         margin: 0 auto;
+      }
     }
-    }
+
     @media (min-width: 576px) {
-      .classroom-workspace-author-info>a>div{
+      .classroom-workspace-author-info>a>div {
         width: 100%;
       }
     }
@@ -851,13 +853,13 @@ if (count($course->subjects) > 0) {
                 <ul class="classroom-workspace-overview__files t-08 t-bold" style="margin-top: 15px;">
                   <li>
                     <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
-                      fill="currentColor" width="24" height="24" focusable="false"
-                      style="float: right;margin-left: 7px;">
-                      <path
-                        d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
-                      </path>
-                    </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
+                        fill="currentColor" width="24" height="24" focusable="false"
+                        style="float: right;margin-left: 7px;">
+                        <path
+                          d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
+                        </path>
+                      </svg>
                       <span class="dot-delimiter-after">لینک فایل‌های دوره</span>
                       <button class="btn-link">
                         نمایش
@@ -866,13 +868,13 @@ if (count($course->subjects) > 0) {
                   </li>
                   <li>
                     <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
-                      fill="currentColor" width="24" height="24" focusable="false"
-                      style="float: right;margin-left: 7px;">
-                      <path
-                        d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
-                      </path>
-                    </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
+                        fill="currentColor" width="24" height="24" focusable="false"
+                        style="float: right;margin-left: 7px;">
+                        <path
+                          d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
+                        </path>
+                      </svg>
                       <span class="dot-delimiter-after">لینک فایل‌های تمرین</span>
                       <button class="btn-link">
                         نمایش
@@ -881,14 +883,14 @@ if (count($course->subjects) > 0) {
                   </li>
                   <li>
                     <div>
-                    <svg class="svg-inline--fa fa-exclamation-triangle fa-w-18" aria-hidden="true" data-prefix="fa"
-                      data-icon="exclamation-triangle" role="img" xmlns="http://www.w3.org/2000/svg"
-                      data-fa-i2svg="" style="float: right;margin-left: 7px;font-size: 20px;" viewBox="0 0 576 512"
-                      width="24" height="24">
-                      <path fill="currentColor"
-                        d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z">
-                      </path>
-                    </svg>
+                      <svg class="svg-inline--fa fa-exclamation-triangle fa-w-18" aria-hidden="true" data-prefix="fa"
+                        data-icon="exclamation-triangle" role="img" xmlns="http://www.w3.org/2000/svg"
+                        data-fa-i2svg="" style="float: right;margin-left: 7px;font-size: 20px;" viewBox="0 0 576 512"
+                        width="24" height="24">
+                        <path fill="currentColor"
+                          d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z">
+                        </path>
+                      </svg>
                       <span class="dot-delimiter-after">گزارش خرابی</span>
                       <button class="btn-link report-issue-toggle">
                         ثبت گزارش
@@ -938,59 +940,6 @@ if (count($course->subjects) > 0) {
                   <div> {!! nl2br(e($course->description)) !!} </div>
                 </div>
               </div>
-
-              @if (count($subjects))
-                <div class="col-xs-12" style="margin-bottom: 1.6rem;">
-                  <h3 class="classroom-workspace-overview__header t-12 t-bold">
-                    مهارت‌ها
-                  </h3>
-                  <ul class="classroom-workspace-overview__skills-list">
-                    @foreach ($subjects as $subject)
-                      <li>
-                        <a target="_blank" titleEng="{{ $subject->title }}"
-                          title="دارای {{ $subject->courses_count }} دوره آموزشی"
-                          href="{{ route('home.show', [$subject->slug]) }}"
-                          class="ember-view _pill_8b61ij _basePadding_8b61ij _label_8b61ij">
-                          {{ $subject->title_per ?? $subject->title }}
-                          {{-- <span
-                                style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
-                                {{ $subject->courses_count }} دوره
-                            </span> --}}
-                        </a>
-                      </li>
-                    @endforeach
-                  </ul>
-                </div>
-              @endif
-
-              @if (count($related_paths))
-                <div class="col-xs-12" style="margin-bottom: 1.6rem;">
-                  <h3 class="classroom-workspace-overview__header t-12 t-bold">
-                    مسیرهای آموزشی مرتبط
-                  </h3>
-                  <div>
-                    @for ($i = 0; $i < 4 && + $i < count($related_paths); $i++)
-                        @include('learn_paths.partials.list_item_grid_new', [
-                            'path' => $related_paths[$i],
-                        ])
-                    @endfor
-                  </div>
-                </div>
-              @endif
-              @if (count($related_courses))
-                <div class="col-xs-12" style="margin-bottom: 1.6rem;">
-                  <h3 class="classroom-workspace-overview__header t-12 t-bold">
-                    دوره‌های آموزشی مرتبط
-                  </h3>
-                  <div>
-                    @for ($i = 0; $i < 4 && $i < count($related_courses); $i++)
-                        @include('courses.partials._course_list_new', [
-                            'course' => $related_courses[$i],
-                        ])
-                    @endfor
-                  </div>
-                </div>
-              @endif
 
               {{-- @if (count($related_paths))
                 <div class="col-xs-12">
@@ -1205,93 +1154,64 @@ if (count($course->subjects) > 0) {
           </div>
         </div>
 
-        @if (count($subjects) > 0)
-          <div class="tags subject-tags">
-            <h5 class="course-title" style="font-size: 1.2rem;">عناوین مرتبط</h5>
-            @foreach ($subjects as $subject)
-              {{-- <a target="_blank"
-                  href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a> --}}
-
-              <a target="_blank" titleEng="{{ $subject->title }}"
-                title="دارای {{ $subject->courses_count }} دوره آموزشی"
-                style="position: relative;background-color: #ddd;margin-bottom: 15px;"
-                href="{{ route('home.show', [$subject->slug]) }}">
-                <em>{{ $subject->title_per ?? $subject->title }}</em>
-                <span
-                  style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
-                  {{ $subject->courses_count }} دوره
-                </span>
-              </a>
-            @endforeach
-          </div>
-        @endif
-      </div>
-
-      @if (count($related_paths))
-        <div class="section-module my-0" style="box-shadow: none;">
-          <div class="row p-0 m-0">
-            <div class="col-6">
-              <div class="course-title" style="margin-bottom: 0.5rem;">مسیرهای آموزشی مرتبط</div>
+        <div class="container tab-content">
+          @if (count($subjects))
+            <div class="col-xs-12" style="margin-bottom: 1.6rem;">
+              <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                مهارت‌ها
+              </h3>
+              <ul class="classroom-workspace-overview__skills-list">
+                @foreach ($subjects as $subject)
+                  <li>
+                    <a target="_blank" titleEng="{{ $subject->title }}"
+                      title="دارای {{ $subject->courses_count }} دوره آموزشی"
+                      href="{{ route('home.show', [$subject->slug]) }}"
+                      class="ember-view _pill_8b61ij _basePadding_8b61ij _label_8b61ij">
+                      {{ $subject->title_per ?? $subject->title }}
+                      {{-- <span
+                                style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+                                {{ $subject->courses_count }} دوره
+                            </span> --}}
+                    </a>
+                  </li>
+                @endforeach
+              </ul>
             </div>
-            <div id="carousel-arrows" class="col-6">
-              <a class="align-self-center" href="#related_paths" role="button" data-slide="next">
-                <i class="lyndacon arrow-right" aria-hidden="true"></i>
-                <span class="sr-only">بعدی</span>
-              </a>
-              <a class="align-self-center" href="#related_paths" role="button" data-slide="prev">
-                <i class="lyndacon arrow-left" aria-hidden="true"></i>
-                <span class="sr-only">قبلی</span>
-              </a>
-            </div>
-          </div>
-          <div id="related_paths" class="carousel slide" data-interval="1000000">
-            <div class="carousel-inner" count="{{ count($related_paths) }}">
-              @for ($index = 0; $index < count($related_paths); $index += 4)
-                <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
-                  <div class="row d-flex">
-                    @for ($i = 0; $i < 4 && $index + $i < count($related_paths); $i++)
-                      @include('learn_paths.partials.list_item_grid_new', [
-                          'path' => $related_paths[$index + $i],
-                      ])
-                    @endfor
-                  </div>
-                </div>
-              @endfor
-            </div>
-          </div>
+          @endif
         </div>
-      @endif
 
-      <div class="section-module my-0" style="box-shadow: none;">
-        <div class="row p-0 m-0">
-          <div class="col-6">
-            <div class="course-title" style="margin-bottom: 0.5rem;">دوره‌های مرتبط</div>
-          </div>
-          <div id="carousel-arrows" class="col-6">
-            <a class="align-self-center" href="#related_courses" role="button" data-slide="next">
-              <i class="lyndacon arrow-right" aria-hidden="true"></i>
-              <span class="sr-only">بعدی</span>
-            </a>
-            <a class="align-self-center" href="#related_courses" role="button" data-slide="prev">
-              <i class="lyndacon arrow-left" aria-hidden="true"></i>
-              <span class="sr-only">قبلی</span>
-            </a>
-          </div>
-        </div>
-        <div id="related_courses" class="carousel slide" data-interval="1000000">
-          <div class="carousel-inner" count="{{ count($related_courses) }}">
-            @for ($index = 0; $index < count($related_courses); $index += 4)
-              <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
-                <div class="row d-flex">
-                  @for ($i = 0; $i < 4 && $index + $i < count($related_courses); $i++)
-                    @include('courses.partials._course_list_grid-new', [
-                        'course' => $related_courses[$index + $i],
-                    ])
-                  @endfor
-                </div>
+        <div class="container tab-content">
+          @if (count($related_paths))
+            <div class="col-xs-12" style="margin-bottom: 1.6rem;">
+              <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                مسیرهای آموزشی مرتبط
+              </h3>
+              <div>
+                @for ($i = 0; $i < 4 && +$i < count($related_paths); $i++)
+                  @include('learn_paths.partials.list_item_grid_new', [
+                      'path' => $related_paths[$i],
+                  ])
+                @endfor
               </div>
-            @endfor
-          </div>
+            </div>
+          @endif
+        </div>
+
+        <div class="container tab-content">
+          @if (count($related_courses))
+            <div class="col-xs-12" style="margin-bottom: 1.6rem;">
+              <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                دوره‌های آموزشی مرتبط
+              </h3>
+              <div>
+                @for ($i = 0; $i < 4 && $i < count($related_courses); $i++)
+                  @include('courses.partials._course_list_new', [
+                      'course' => $related_courses[$i],
+                  ])
+                @endfor
+              </div>
+            </div>
+          @endif
         </div>
       </div>
     </div>
