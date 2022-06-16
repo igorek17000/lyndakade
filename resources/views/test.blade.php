@@ -421,8 +421,7 @@ if (count($course->subjects) > 0) {
       padding: 6px 0;
     }
 
-    #video-player-title span,
-    #video-player-title small {
+    #video-player-title>div {
       overflow: hidden !important;
       text-overflow: ellipsis !important;
       display: -webkit-box !important;
@@ -746,8 +745,8 @@ if (count($course->subjects) > 0) {
               سرفصل‌ها
             </div>
             <div id="video-player-title">
-              <br>
-              <small style="color: #bfc1c3!important;"></small>
+            <div></div>
+              <div style="color: #bfc1c3!important;font-size: 80%;"></div>
             </div>
           </div>
           <video playsinline controls id="plyr-video" data-poster="{{ fromDLHost($course->img) }}">
@@ -1700,7 +1699,7 @@ if (count($course->subjects) > 0) {
       if (video_titleEng.includes(' - '))
         video_titleEng = video_titleEng.substring(video_titleEng.indexOf(' - ') + 3);
       var video_player_title_html =
-        ` <span>${video_title} (${video_titleEng})</span><br><small style="color: #bfc1c3!important;">${c_title} (${c_titleEng})</small>`;
+        ` <div>${video_title} (${video_titleEng})</div><div style="color: #bfc1c3!important;font-size: 80%;">${c_title} (${c_titleEng})</div>`;
       $('#video-player-title').html(video_player_title_html);
     });
 
