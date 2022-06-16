@@ -624,7 +624,7 @@ if (count($course->subjects) > 0) {
 
     ._pill_8b61ij:hover {
       background: rgba(0, 0, 0, .04);
-      border: 1rem solid rgba(0, 0, 0, .45);
+      border: .1rem solid rgba(0, 0, 0, .45);
       -webkit-box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, .45);
       box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, .45);
     }
