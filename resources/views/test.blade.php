@@ -952,7 +952,7 @@ if (count($course->subjects) > 0) {
                   </div>
                 </div>
               @endif
-              @if (count($related_paths))
+              @if (count($related_courses))
                 <div class="col-xs-12">
                   <div class="row p-0 m-0">
                     <div class="col-6">
