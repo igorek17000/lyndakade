@@ -206,7 +206,7 @@ if (count($course->subjects) > 0) {
     }
 
     :root {
-      --sidebar-size: 300px;
+      --sidebar-size: 350px;
     }
 
     #dismiss {
@@ -422,22 +422,22 @@ if (count($course->subjects) > 0) {
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                                              transform: rotate(45deg) translate(2px, 2px);
-                                                            }
+                                                                transform: rotate(45deg) translate(2px, 2px);
+                                                              }
 
-                                                            #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                                              opacity: 0;
-                                                            }
+                                                              #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                                                opacity: 0;
+                                                              }
 
-                                                            #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                                              transform: rotate(-45deg) translate(1px, -1px);
-                                                            }
+                                                              #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                                                transform: rotate(-45deg) translate(1px, -1px);
+                                                              }
 
-                                                            #sidebarCollapse.active .sidebarCollapse span {
-                                                              transform: none;
-                                                              opacity: 1;
-                                                              margin: 0 auto;
-                                                            } */
+                                                              #sidebarCollapse.active .sidebarCollapse span {
+                                                                transform: none;
+                                                                opacity: 1;
+                                                                margin: 0 auto;
+                                                              } */
 
     @media (max-width: 767px) {
 
@@ -612,6 +612,21 @@ if (count($course->subjects) > 0) {
 
     .t-black--light {
       color: rgba(0, 0, 0, .4);
+    }
+
+
+    ._pill_8b61ij:hover ._label_8b61ij,
+    a._label_8b61ij:hover,
+    a._label_8b61ij:hover:visited {
+      color: rgba(0, 0, 0, .75);
+      text-decoration: none;
+    }
+
+    ._pill_8b61ij:hover {
+      background: rgba(0, 0, 0, .04);
+      border: 1rem solid rgba(0, 0, 0, .45);
+      -webkit-box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, .45);
+      box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, .45);
     }
   </style>
   @csrf
