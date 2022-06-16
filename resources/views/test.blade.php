@@ -422,22 +422,22 @@ if (count($course->subjects) > 0) {
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                                      transform: rotate(45deg) translate(2px, 2px);
-                                                    }
+                                                              transform: rotate(45deg) translate(2px, 2px);
+                                                            }
 
-                                                    #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                                      opacity: 0;
-                                                    }
+                                                            #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                                              opacity: 0;
+                                                            }
 
-                                                    #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                                      transform: rotate(-45deg) translate(1px, -1px);
-                                                    }
+                                                            #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                                              transform: rotate(-45deg) translate(1px, -1px);
+                                                            }
 
-                                                    #sidebarCollapse.active .sidebarCollapse span {
-                                                      transform: none;
-                                                      opacity: 1;
-                                                      margin: 0 auto;
-                                                    } */
+                                                            #sidebarCollapse.active .sidebarCollapse span {
+                                                              transform: none;
+                                                              opacity: 1;
+                                                              margin: 0 auto;
+                                                            } */
 
     @media (max-width: 767px) {
 
@@ -816,42 +816,68 @@ if (count($course->subjects) > 0) {
                         <h3 class="classroom-workspace-overview__header t-12 t-bold">مشخصات دوره</h3>
                         <ul class="dot-delimited-list" style="color: #4a4a4a;">
                           <li>
-                            4h 51m
+                            @if ($course->durationHours)
+                              {{ $course->durationHours }}h
+                            @endif
+                            @if ($course->durationMinutes)
+                              {{ $course->durationMinutes }}m
+                            @endif
                           </li>
-                          <li>پیشرفته</li>
+                          <li>{{ $skill }}</li>
                           <li>
-                            تاریخ انتشار: 10/9/2020
+                            تاریخ انتشار:
+                            <span title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
+                              @php
+                                $d = date('Y/m/d', strtotime($course->releaseDate));
+                                $d = explode('/', $d);
+                                echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                              @endphp
+                            </span>
                           </li>
-                          <li>
-                            تاریخ بروز رسانی: 10/9/2020
-                          </li>
+                          @if ($course->updateDate)
+                            <li>
+                              تاریخ بروز رسانی:
+                              <span title="{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
+                                @php
+                                  $d = date('Y/m/d', strtotime($course->updateDate));
+                                  $d = explode('/', $d);
+                                  echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                                @endphp
+                              </span>
+                            </li>
+                          @endif
                         </ul>
                       </div>
                       <div style="text-align: justify;" class="classroom-workspace-overview__description t-10">
-                        <div> description </div>
+                        <div> {!! nl2br(e($course->description)) !!} </div>
                       </div>
                     </div>
-                    <div style="margin-top: 20px;">
-                      <div style="margin-bottom: 1.6rem;">
-                        <h3 class="classroom-workspace-overview__header t-12 t-bold">
-                          مهارت‌ها
-                        </h3>
-                        <ul class="classroom-workspace-overview__skills-list">
-                          <li>
-                            <a href="/learning/search?keywords=Python%20(Programming%20Language)&amp;u=103732282"
-                              class="ember-view _pill_8b61ij _basePadding_8b61ij _label_8b61ij">
-                              Python (Programming Language)
-                            </a>
-                          </li>
-                          <li>
-                            <a href="/learning/search?keywords=Database%20Development&amp;u=103732282"
-                              class="ember-view _pill_8b61ij _basePadding_8b61ij _label_8b61ij">
-                              Database Development
-                            </a>
-                          </li>
-                        </ul>
+
+                    @if (count($subjects) > 0)
+                      <div style="margin-top: 20px;">
+                        <div style="margin-bottom: 1.6rem;">
+                          <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                            مهارت‌ها
+                          </h3>
+                          <ul class="classroom-workspace-overview__skills-list">
+                            @foreach ($subjects as $subject)
+                              <li>
+                                <a target="_blank" titleEng="{{ $subject->title }}"
+                                  title="دارای {{ $subject->courses_count }} دوره آموزشی"
+                                  href="{{ route('home.show', [$subject->slug]) }}"
+                                  class="ember-view _pill_8b61ij _basePadding_8b61ij _label_8b61ij">
+                                  {{ $subject->title_per ?? $subject->title }}
+                                  {{-- <span
+                                  style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+                                  {{ $subject->courses_count }} دوره
+                                </span> --}}
+                                </a>
+                              </li>
+                            @endforeach
+                          </ul>
+                        </div>
                       </div>
-                    </div>
+                    @endif
                   </div>
                 </div>
               </div>
