@@ -552,8 +552,7 @@ if (count($course->subjects) > 0) {
         </div>
         <hr class="mt-0 mb-5">
         <div class="video-player" style="padding: 0;">
-          <div class="title-wrapper"
-            style="font-size: 1.1em;color: white;background-color: #000;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 0 10px;display: flex;border-bottom: 1px solid #fff;">
+          <div class="title-wrapper">
             <div id="sidebarCollapse">
               <span class="navbar-btn sidebarCollapse">
                 <span></span>
