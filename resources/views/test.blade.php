@@ -386,6 +386,20 @@ if (count($course->subjects) > 0) {
       transition-delay: 0.2s;
     }
 
+    #sidebarCollapse {
+    float: right;
+    width: 110px;
+    color: #ccc;
+    padding: 5px;
+    margin-left: 10px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    }
     #sidebarCollapse.active {
       display: none;
     }
@@ -524,7 +538,6 @@ if (count($course->subjects) > 0) {
           <div
             style="font-size: 1.1em;color: white;background-color: #000;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 3px 10px; display: flex;">
             <div
-              style="float: right;width: 110px;color: #ccc;padding: 5px;margin-left: 10px;display: flex;text-align: center;justify-content: center;align-content: center;align-items: center;flex-wrap: nowrap;flex-direction: row;"
               id="sidebarCollapse">
               <span class="navbar-btn sidebarCollapse">
                 <span></span>
