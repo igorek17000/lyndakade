@@ -640,6 +640,14 @@ if (count($course->subjects) > 0) {
       box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, .45);
     }
 
+    .classroom-workspace-overview__files{
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+        align-content: stretch;
+        align-items: stretch;
+    }
+
     .classroom-workspace-overview__files .btn-link {
       text-decoration: none;
       cursor: pointer;
@@ -659,6 +667,11 @@ if (count($course->subjects) > 0) {
       .classroom-workspace-author-info {
         border-left: 0;
       }
+    .classroom-workspace-overview__files>li>div{
+        position: relative;
+        width: 220px;
+        margin: 0 auto;
+    }
     }
     @media (min-width: 576px) {
       .classroom-workspace-author-info>a>div{
@@ -836,7 +849,7 @@ if (count($course->subjects) > 0) {
               <div class="col-sm-6 col-xs-12" style="margin-bottom:  1.6rem;">
                 <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">فایل‌های دوره</h2>
                 <ul class="classroom-workspace-overview__files t-08 t-bold" style="margin-top: 15px;">
-                  <li style="align-items: center;margin-top: 4px;">
+                  <li>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
                       fill="currentColor" width="24" height="24" focusable="false"
                       style="float: right;margin-left: 7px;">
@@ -851,7 +864,7 @@ if (count($course->subjects) > 0) {
                       </button>
                     </div>
                   </li>
-                  <li style="align-items: center;">
+                  <li>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
                       fill="currentColor" width="24" height="24" focusable="false"
                       style="float: right;margin-left: 7px;">
