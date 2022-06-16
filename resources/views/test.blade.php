@@ -815,7 +815,7 @@ if (count($course->subjects) > 0) {
                     <img src="#" class="lazyload" width="80" height="80"
                       data-src="{{ fromDLHost($author->img) }}" style="border-radius: 49.9%;"
                       alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
-                    <div style="width: 100%;padding-right: 10px;">
+                    <div style="/*width: 100%;*/ padding-right: 10px;">
                       <div>{{ $author->name }}</div>
                       {{-- <div>{{ $author->specialty }}</div> --}}
                     </div>
