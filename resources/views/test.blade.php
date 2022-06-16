@@ -421,23 +421,35 @@ if (count($course->subjects) > 0) {
       padding: 6px 0;
     }
 
-    /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                                                                          transform: rotate(45deg) translate(2px, 2px);
-                                                                                        }
+    #video-player-title span,
+    #video-player-title small {
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      display: -webkit-box !important;
+      -webkit-box-orient: vertical !important;
+      -webkit-line-clamp: 2 !important;
+      /* line-height: 2; */
+    }
 
-                                                                                        #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                                                                          opacity: 0;
-                                                                                        }
+    /*
+      #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+          transform: rotate(45deg) translate(2px, 2px);
+      }
 
-                                                                                        #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                                                                          transform: rotate(-45deg) translate(1px, -1px);
-                                                                                        }
+      #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+          opacity: 0;
+      }
 
-                                                                                        #sidebarCollapse.active .sidebarCollapse span {
-                                                                                          transform: none;
-                                                                                          opacity: 1;
-                                                                                          margin: 0 auto;
-                                                                                        } */
+      #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+          transform: rotate(-45deg) translate(1px, -1px);
+      }
+
+      #sidebarCollapse.active .sidebarCollapse span {
+          transform: none;
+          opacity: 1;
+          margin: 0 auto;
+      }
+      */
 
     @media (max-width: 767px) {
 
