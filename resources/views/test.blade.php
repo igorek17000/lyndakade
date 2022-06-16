@@ -422,22 +422,22 @@ if (count($course->subjects) > 0) {
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                                                        transform: rotate(45deg) translate(2px, 2px);
-                                                                      }
+                                                                          transform: rotate(45deg) translate(2px, 2px);
+                                                                        }
 
-                                                                      #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                                                        opacity: 0;
-                                                                      }
+                                                                        #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                                                          opacity: 0;
+                                                                        }
 
-                                                                      #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                                                        transform: rotate(-45deg) translate(1px, -1px);
-                                                                      }
+                                                                        #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                                                          transform: rotate(-45deg) translate(1px, -1px);
+                                                                        }
 
-                                                                      #sidebarCollapse.active .sidebarCollapse span {
-                                                                        transform: none;
-                                                                        opacity: 1;
-                                                                        margin: 0 auto;
-                                                                      } */
+                                                                        #sidebarCollapse.active .sidebarCollapse span {
+                                                                          transform: none;
+                                                                          opacity: 1;
+                                                                          margin: 0 auto;
+                                                                        } */
 
     @media (max-width: 767px) {
 
@@ -750,152 +750,149 @@ if (count($course->subjects) > 0) {
             aria-labelledby="nav-description-tab">
 
             <div class="container row">
-              <div class="col-lg-8 col-md-8 col-xs-12">
-                <div class="row">
-                  <div class="col-sm-6 col-xs-12" style="border-left: 2px solid #ccc; margin-bottom: 10px;">
-                    <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">
-                      @if (count($course->users) == 0)
-                        مدرس
-                      @else
-                        دوبلور
+              <div class="col-sm-6 col-xs-12" style="border-left: 2px solid #ccc; margin-bottom: 10px;">
+                <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">
+                  @if (count($course->users) == 0)
+                    مدرس
+                  @else
+                    دوبلور
+                  @endif
+                </h2>
+                @php
+                  $author = $course->authors[0];
+                  if (count($course->users) > 0) {
+                      $author = $course->users[0];
+                  }
+                @endphp
+                @if (count($course->users) == 0)
+                  <a href="{{ route('authors.show', [$author->slug]) }}"
+                    style="display: flex; flex-wrap: nowrap; align-content: center; flex-direction: row; justify-content: center; align-items: center; height: 80px;">
+                    <img src="#" class="lazyload" width="80" height="80"
+                      data-src="{{ fromDLHost($author->img) }}" style="border-radius: 49.9%;"
+                      alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
+                    <div style="width: 100%;padding-right: 10px;">
+                      <div>{{ $author->name }}</div>
+                      {{-- <div>{{ $author->specialty }}</div> --}}
+                    </div>
+                  </a>
+                @else
+                  <a href="{{ route('dubbed.index', [$author->slug]) }}"
+                    style="display: flex; flex-wrap: nowrap; align-content: center; flex-direction: row; justify-content: center; align-items: center; height: 80px;">
+                    <img src="#" class="lazyload" width="80" height="80"
+                      data-src="{{ fromDLHost($author->avatar) }}" style="border-radius: 49.9%;"
+                      alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
+                    <div style="width: 100%;padding-right: 10px;">
+                      <div>{{ $author->name }}</div>
+                      {{-- <div>{{ $author->specialty }}</div> --}}
+                    </div>
+                  </a>
+                @endif
+              </div>
+              <div class="col-sm-6 col-xs-12" style="margin-bottom: 10px;">
+                <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">فایل‌های دوره</h2>
+                <ul class="t-08 t-bold" style="margin-top: 15px;">
+                  <li style="align-items: center;margin-top: 4px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
+                      fill="currentColor" width="24" height="24" focusable="false"
+                      style="float: right;margin-left: 7px;">
+                      <path
+                        d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
+                      </path>
+                    </svg>
+                    <div>
+                      <span class="dot-delimiter-after">لینک فایل‌های دوره</span>
+                      <button class="btn-link">
+                        نمایش
+                      </button>
+                    </div>
+                  </li>
+                  <li style="align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
+                      fill="currentColor" width="24" height="24" focusable="false"
+                      style="float: right;margin-left: 7px;">
+                      <path
+                        d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
+                      </path>
+                    </svg>
+                    <div>
+                      <span class="dot-delimiter-after">لینک فایل‌های تمرین</span>
+                      <button class="btn-link">
+                        نمایش
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-xs-12 course-online-description">
+                <div style="margin-top: 20px;">
+                  <div style="margin-bottom: .8rem;">
+                    <h3 class="classroom-workspace-overview__header t-12 t-bold">مشخصات دوره</h3>
+                    <ul class="dot-delimited-list" style="color: #4a4a4a;">
+                      <li>
+                        @if ($course->durationHours)
+                          {{ $course->durationHours }}h
+                        @endif
+                        @if ($course->durationMinutes)
+                          {{ $course->durationMinutes }}m
+                        @endif
+                      </li>
+                      <li>{{ $skill }}</li>
+                      <li>
+                        تاریخ انتشار:
+                        <span title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
+                          @php
+                            $d = date('Y/m/d', strtotime($course->releaseDate));
+                            $d = explode('/', $d);
+                            echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                          @endphp
+                        </span>
+                      </li>
+                      @if ($course->updateDate)
+                        <li>
+                          تاریخ بروز رسانی:
+                          <span title="{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
+                            @php
+                              $d = date('Y/m/d', strtotime($course->updateDate));
+                              $d = explode('/', $d);
+                              echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                            @endphp
+                          </span>
+                        </li>
                       @endif
-                    </h2>
-                    @php
-                      $author = $course->authors[0];
-                      if (count($course->users) > 0) {
-                          $author = $course->users[0];
-                      }
-                    @endphp
-                    @if (count($course->users) == 0)
-                      <a href="{{ route('authors.show', [$author->slug]) }}"
-                        style="display: flex; flex-wrap: nowrap; align-content: center; flex-direction: row; justify-content: center; align-items: center; height: 80px;">
-                        <img src="#" class="lazyload" width="80" height="80"
-                          data-src="{{ fromDLHost($author->img) }}" style="border-radius: 49.9%;"
-                          alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
-                        <div style="width: 100%;padding-right: 10px;">
-                          <div>{{ $author->name }}</div>
-                          {{-- <div>{{ $author->specialty }}</div> --}}
-                        </div>
-                      </a>
-                    @else
-                      <a href="{{ route('dubbed.index', [$author->slug]) }}"
-                        style="display: flex; flex-wrap: nowrap; align-content: center; flex-direction: row; justify-content: center; align-items: center; height: 80px;">
-                        <img src="#" class="lazyload" width="80" height="80"
-                          data-src="{{ fromDLHost($author->avatar) }}" style="border-radius: 49.9%;"
-                          alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
-                        <div style="width: 100%;padding-right: 10px;">
-                          <div>{{ $author->name }}</div>
-                          {{-- <div>{{ $author->specialty }}</div> --}}
-                        </div>
-                      </a>
-                    @endif
-                  </div>
-                  <div class="col-sm-6 col-xs-12" style="margin-bottom: 10px;">
-                    <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">فایل‌های دوره</h2>
-                    <ul class="t-08 t-bold" style="margin-top: 15px;">
-                      <li style="align-items: center;margin-top: 4px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
-                          fill="currentColor" width="24" height="24" focusable="false"
-                          style="float: right;margin-left: 7px;">
-                          <path
-                            d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
-                          </path>
-                        </svg>
-                        <div>
-                          <span class="dot-delimiter-after">لینک فایل‌های دوره</span>
-                          <button class="btn-link">
-                            نمایش
-                          </button>
-                        </div>
-                      </li>
-                      <li style="align-items: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
-                          fill="currentColor" width="24" height="24" focusable="false"
-                          style="float: right;margin-left: 7px;">
-                          <path
-                            d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
-                          </path>
-                        </svg>
-                        <div>
-                          <span class="dot-delimiter-after">لینک فایل‌های تمرین</span>
-                          <button class="btn-link">
-                            نمایش
-                          </button>
-                        </div>
-                      </li>
                     </ul>
                   </div>
-                  <div class="col-xs-12 course-online-description">
-                    <div style="margin-top: 20px;">
-                      <div style="margin-bottom: .8rem;">
-                        <h3 class="classroom-workspace-overview__header t-12 t-bold">مشخصات دوره</h3>
-                        <ul class="dot-delimited-list" style="color: #4a4a4a;">
-                          <li>
-                            @if ($course->durationHours)
-                              {{ $course->durationHours }}h
-                            @endif
-                            @if ($course->durationMinutes)
-                              {{ $course->durationMinutes }}m
-                            @endif
-                          </li>
-                          <li>{{ $skill }}</li>
-                          <li>
-                            تاریخ انتشار:
-                            <span title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
-                              @php
-                                $d = date('Y/m/d', strtotime($course->releaseDate));
-                                $d = explode('/', $d);
-                                echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
-                              @endphp
-                            </span>
-                          </li>
-                          @if ($course->updateDate)
-                            <li>
-                              تاریخ بروز رسانی:
-                              <span title="{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
-                                @php
-                                  $d = date('Y/m/d', strtotime($course->updateDate));
-                                  $d = explode('/', $d);
-                                  echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
-                                @endphp
-                              </span>
-                            </li>
-                          @endif
-                        </ul>
-                      </div>
-                      <div style="text-align: justify;" class="classroom-workspace-overview__description t-10">
-                        <div> {!! nl2br(e($course->description)) !!} </div>
-                      </div>
-                    </div>
+                  <div style="text-align: justify;" class="classroom-workspace-overview__description t-10">
+                    <div> {!! nl2br(e($course->description)) !!} </div>
+                  </div>
+                </div>
 
-                    @if (count($subjects) > 0)
-                      <div style="margin-top: 20px;">
-                        <div style="margin-bottom: 1.6rem;">
-                          <h3 class="classroom-workspace-overview__header t-12 t-bold">
-                            مهارت‌ها
-                          </h3>
-                          <ul class="classroom-workspace-overview__skills-list">
-                            @foreach ($subjects as $subject)
-                              <li>
-                                <a target="_blank" titleEng="{{ $subject->title }}"
-                                  title="دارای {{ $subject->courses_count }} دوره آموزشی"
-                                  href="{{ route('home.show', [$subject->slug]) }}"
-                                  class="ember-view _pill_8b61ij _basePadding_8b61ij _label_8b61ij">
-                                  {{ $subject->title_per ?? $subject->title }}
-                                  {{-- <span
+                @if (count($subjects) > 0)
+                  <div style="margin-top: 20px;">
+                    <div style="margin-bottom: 1.6rem;">
+                      <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                        مهارت‌ها
+                      </h3>
+                      <ul class="classroom-workspace-overview__skills-list">
+                        @foreach ($subjects as $subject)
+                          <li>
+                            <a target="_blank" titleEng="{{ $subject->title }}"
+                              title="دارای {{ $subject->courses_count }} دوره آموزشی"
+                              href="{{ route('home.show', [$subject->slug]) }}"
+                              class="ember-view _pill_8b61ij _basePadding_8b61ij _label_8b61ij">
+                              {{ $subject->title_per ?? $subject->title }}
+                              {{-- <span
                                   style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
                                   {{ $subject->courses_count }} دوره
                                 </span> --}}
-                                </a>
-                              </li>
-                            @endforeach
-                          </ul>
-                        </div>
-                      </div>
-                    @endif
+                            </a>
+                          </li>
+                        @endforeach
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                @endif
               </div>
+
               @if (count($related_paths))
                 <div class="col-xs-12">
                   <div class="row p-0 m-0">
