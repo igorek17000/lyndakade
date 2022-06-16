@@ -422,22 +422,22 @@ if (count($course->subjects) > 0) {
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                                                transform: rotate(45deg) translate(2px, 2px);
-                                                              }
+                                                                    transform: rotate(45deg) translate(2px, 2px);
+                                                                  }
 
-                                                              #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                                                opacity: 0;
-                                                              }
+                                                                  #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                                                    opacity: 0;
+                                                                  }
 
-                                                              #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                                                transform: rotate(-45deg) translate(1px, -1px);
-                                                              }
+                                                                  #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                                                    transform: rotate(-45deg) translate(1px, -1px);
+                                                                  }
 
-                                                              #sidebarCollapse.active .sidebarCollapse span {
-                                                                transform: none;
-                                                                opacity: 1;
-                                                                margin: 0 auto;
-                                                              } */
+                                                                  #sidebarCollapse.active .sidebarCollapse span {
+                                                                    transform: none;
+                                                                    opacity: 1;
+                                                                    margin: 0 auto;
+                                                                  } */
 
     @media (max-width: 767px) {
 
@@ -896,170 +896,212 @@ if (count($course->subjects) > 0) {
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4 col-xs-12">3</div>
-            </div>
+              <div class="col-lg-4 col-md-4 col-xs-12">
 
-            <div class="row">
-              <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
-                <div class="course-info-stat-cont m-0 mb-2 w-100">
-                  <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
-                    @if (get_course_price($course->price) != $course->price)
-                      <del style="color: #f44">
-                        {{ $course->price == 0 ? 'رایگان' : nPersian(number_format($course->price)) . ' تومان' }}
-                      </del>
-                      <br>
-                    @endif
-                    {{ $course->price == 0 ? 'رایگان' : nPersian(number_format(get_course_price($course->price))) . ' تومان' }}
-                  </span>
-                </div>
-                @if (auth()->check() && $course->price > 0)
-                  @if ($course_state == '1')
-                    <div id="cart-btn">
-                      <span class="btn btn-secondary align-self-center m-0 mb-2 w-100">
-                        خریداری شده
-                      </span>
+                @if (count($related_paths))
+                  <div class="section-module my-0" style="box-shadow: none;">
+                    <div class="row p-0 m-0">
+                      <div class="col-6">
+                        <div class="course-title" style="margin-bottom: 0.5rem;">مسیرهای آموزشی مرتبط</div>
+                      </div>
+                      <div id="carousel-arrows" class="col-6">
+                        <a class="align-self-center" href="#related_paths" role="button" data-slide="next">
+                          <i class="lyndacon arrow-right" aria-hidden="true"></i>
+                          <span class="sr-only">بعدی</span>
+                        </a>
+                        <a class="align-self-center" href="#related_paths" role="button" data-slide="prev">
+                          <i class="lyndacon arrow-left" aria-hidden="true"></i>
+                          <span class="sr-only">قبلی</span>
+                        </a>
+                      </div>
                     </div>
-                  @elseif ($course_state == '2')
-                    <div id="cart-btn" data-lang="FA">
-                      <a data-id="1-{{ $course->id }}" data-lang="FA"
-                        class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
-                        حذف از سبد خرید
-                      </a>
+                    <div id="related_paths" class="carousel slide" data-interval="1000000">
+                      <div class="carousel-inner" count="{{ count($related_paths) }}">
+                        @for ($index = 0; $index < count($related_paths); $index += 4)
+                          <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
+                            <div class="row d-flex">
+                              @for ($i = 0; $i < 4 && $index + $i < count($related_paths); $i++)
+                                @include('learn_paths.partials.list_item_grid_new', [
+                                    'path' => $related_paths[$index + $i],
+                                ])
+                              @endfor
+                            </div>
+                          </div>
+                        @endfor
+                      </div>
                     </div>
-                  @elseif($course_state == '3')
-                    <div id="cart-btn" data-lang="FA">
-                      <a data-id="1-{{ $course->id }}" data-lang="FA"
-                        class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
-                        افزودن به سبد خرید
-                      </a>
-                    </div>
-                  @endif
-                @endif
-                <div class="author-thumb">
-                  <div
-                    style="font-size: 1.25rem;margin-bottom: 0.5rem; font-family: inherit; font-weight: 500; line-height: 1.2;margin-top: 0;">
-                    مدرس
                   </div>
-                  @foreach ($course->authors as $author)
-                    <a href="{{ route('authors.show', [$author->slug]) }}">
-                      <img src="#" class="lazyload" width="100" height="100"
-                        data-src="{{ fromDLHost($author->img) }}" style="border-radius: 10px;"
-                        alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
-                      <cite>{{ $author->name }}</cite>
-                    </a>
-                  @endforeach
-                </div>
+                @endif
 
-                @if (count($course->users) > 0)
-                  <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
-                    class="author-thumb">
+                <div class="section-module my-0" style="box-shadow: none;">
+                  <div class="row p-0 m-0">
+                    <div class="col-6">
+                      <div class="course-title" style="margin-bottom: 0.5rem;">دوره‌های مرتبط</div>
+                    </div>
+                    <div id="carousel-arrows" class="col-6">
+                      <a class="align-self-center" href="#related_courses" role="button" data-slide="next">
+                        <i class="lyndacon arrow-right" aria-hidden="true"></i>
+                        <span class="sr-only">بعدی</span>
+                      </a>
+                      <a class="align-self-center" href="#related_courses" role="button" data-slide="prev">
+                        <i class="lyndacon arrow-left" aria-hidden="true"></i>
+                        <span class="sr-only">قبلی</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div id="related_courses" class="carousel slide" data-interval="1000000">
+                    <div class="carousel-inner" count="{{ count($related_courses) }}">
+                      @for ($index = 0; $index < count($related_courses); $index += 4)
+                        <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
+                          <div class="row d-flex">
+                            @for ($i = 0; $i < 4 && $index + $i < count($related_courses); $i++)
+                              @include('courses.partials._course_list_grid-new', [
+                                  'course' => $related_courses[$index + $i],
+                              ])
+                            @endfor
+                          </div>
+                        </div>
+                      @endfor
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
+                  <div class="course-info-stat-cont m-0 mb-2 w-100">
+                    <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
+                      @if (get_course_price($course->price) != $course->price)
+                        <del style="color: #f44">
+                          {{ $course->price == 0 ? 'رایگان' : nPersian(number_format($course->price)) . ' تومان' }}
+                        </del>
+                        <br>
+                      @endif
+                      {{ $course->price == 0 ? 'رایگان' : nPersian(number_format(get_course_price($course->price))) . ' تومان' }}
+                    </span>
+                  </div>
+                  @if (auth()->check() && $course->price > 0)
+                    @if ($course_state == '1')
+                      <div id="cart-btn">
+                        <span class="btn btn-secondary align-self-center m-0 mb-2 w-100">
+                          خریداری شده
+                        </span>
+                      </div>
+                    @elseif ($course_state == '2')
+                      <div id="cart-btn" data-lang="FA">
+                        <a data-id="1-{{ $course->id }}" data-lang="FA"
+                          class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
+                          حذف از سبد خرید
+                        </a>
+                      </div>
+                    @elseif($course_state == '3')
+                      <div id="cart-btn" data-lang="FA">
+                        <a data-id="1-{{ $course->id }}" data-lang="FA"
+                          class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
+                          افزودن به سبد خرید
+                        </a>
+                      </div>
+                    @endif
+                  @endif
+                  <div class="author-thumb">
                     <div
                       style="font-size: 1.25rem;margin-bottom: 0.5rem; font-family: inherit; font-weight: 500; line-height: 1.2;margin-top: 0;">
-                      دوبلور
+                      مدرس
                     </div>
-                    @foreach ($course->users as $user)
-                      <a href="{{ route('dubbed.index', [$user->username]) }}">
-                        <img src="#" class="lazyload"
-                          alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
-                          data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
-                          height="100">
-                        <cite>{{ $user->name }}</cite>
+                    @foreach ($course->authors as $author)
+                      <a href="{{ route('authors.show', [$author->slug]) }}">
+                        <img src="#" class="lazyload" width="100" height="100"
+                          data-src="{{ fromDLHost($author->img) }}" style="border-radius: 10px;"
+                          alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
+                        <cite>{{ $author->name }}</cite>
                       </a>
                     @endforeach
                   </div>
-                @endif
-              </div>
-              <div class="col-sm-7 col-md-6 col-lg-8 course-description" role="contentinfo">
-                <div style="margin: 0;font-size: 13px;font-weight: 600;">
-                  <span title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
-                    تاریخ انتشار
-                    @php
-                      $d = date('Y/m/d', strtotime($course->releaseDate));
-                      $d = explode('/', $d);
-                      echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
-                    @endphp
-                    <i class="lyndacon closed-captioning pl-2" title="زیرنویس"></i>
-                  </span>
-                  @if ($course->updateDate)
-                    <span title="{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
-                      تاریخ بروزرسانی
+
+                  @if (count($course->users) > 0)
+                    <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
+                      class="author-thumb">
+                      <div
+                        style="font-size: 1.25rem;margin-bottom: 0.5rem; font-family: inherit; font-weight: 500; line-height: 1.2;margin-top: 0;">
+                        دوبلور
+                      </div>
+                      @foreach ($course->users as $user)
+                        <a href="{{ route('dubbed.index', [$user->username]) }}">
+                          <img src="#" class="lazyload"
+                            alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
+                            data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
+                            height="100">
+                          <cite>{{ $user->name }}</cite>
+                        </a>
+                      @endforeach
+                    </div>
+                  @endif
+                </div>
+                <div class="col-sm-7 col-md-6 col-lg-8 course-description" role="contentinfo">
+                  <div style="margin: 0;font-size: 13px;font-weight: 600;">
+                    <span title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
+                      تاریخ انتشار
                       @php
-                        $d = date('Y/m/d', strtotime($course->updateDate));
+                        $d = date('Y/m/d', strtotime($course->releaseDate));
                         $d = explode('/', $d);
                         echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                       @endphp
+                      <i class="lyndacon closed-captioning pl-2" title="زیرنویس"></i>
                     </span>
-                    <i class="lyndacon closed-captioning pl-2" title="زیرنویس"></i>
-                  @endif
-                </div>
-
-                <div class="text-justify" style="font-size: 13px;">
-                  {!! nl2br(e($course->description)) !!}
-                </div>
-                @php
-                  $is_unlocked = auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0);
-                @endphp
-                <div
-                  style="border: 2px solid orange;border-radius: 15px;margin-top: 15px;padding: 15px 20px;font-size: 13px;text-align: left;direction: ltr;">
-                  <p
-                    style="text-align: center;direction: rtl;margin-bottom: 10px;@if ($is_unlocked) font-weight: 600; @endif">
-                    این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
-                    @if ($course->dubbed_id == 1)
-                      دوبله فارسی می‌باشد.
-                    @elseif ($course->persian_subtitle_id == 1)
-                      به همراه زیرنویس فارسی و انگلیسی می‌باشد.
-                    @elseif ($course->english_subtitle_id == 1)
-                      به همراه زیرنویس انگلیسی می‌باشد.
-                    @else
-                      دارای زیرنویس نمی‌باشد
-                    @endif
-                  </p>
-                  <ul class="exercise-files-popover">
-                    @if ($course->courseFile && json_decode($course->courseFile) != null)
-                      @foreach (json_decode($course->courseFile) as $file)
-                        <li role="presentation">
-                          @if ($is_unlocked)
-                            <a role="link"
-                              href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
-                              <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
-                              <span>
-                                {{ prepare_course_file_name($file->original_name) }}
-                              </span>
-                              @if (isset($file->size))
-                                <span class="text-muted small">
-                                  ({{ formatBytes($file->size) }})
-                                </span>
-                              @endif
-                            </a>
-                          @else
-                            <span>
-                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
-                              {{ prepare_course_file_name($file->original_name) }}
-                            </span>
-                            @if (isset($file->size))
-                              <span class="text-muted small">
-                                ({{ formatBytes($file->size) }})
-                              </span>
-                            @endif
-                          @endif
-                        </li>
-                      @endforeach
-                    @endif
-
-                    @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
-                      @php
-                        $idx = 0;
-                      @endphp
-                      @foreach (json_decode($course->exerciseFile) as $file)
+                    @if ($course->updateDate)
+                      <span title="{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
+                        تاریخ بروزرسانی
                         @php
-                          $idx = $idx + 1;
+                          $d = date('Y/m/d', strtotime($course->updateDate));
+                          $d = explode('/', $d);
+                          echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                         @endphp
-                        <li role="presentation">
-                          @if ($is_unlocked)
-                            <a role="link"
-                              href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
-                              <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                      </span>
+                      <i class="lyndacon closed-captioning pl-2" title="زیرنویس"></i>
+                    @endif
+                  </div>
+
+                  <div class="text-justify" style="font-size: 13px;">
+                    {!! nl2br(e($course->description)) !!}
+                  </div>
+                  @php
+                    $is_unlocked = auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0);
+                  @endphp
+                  <div
+                    style="border: 2px solid orange;border-radius: 15px;margin-top: 15px;padding: 15px 20px;font-size: 13px;text-align: left;direction: ltr;">
+                    <p
+                      style="text-align: center;direction: rtl;margin-bottom: 10px;@if ($is_unlocked) font-weight: 600; @endif">
+                      این دوره شامل {{ nPersian($course->partNumbers) }} ویدئو آموزشی
+                      @if ($course->dubbed_id == 1)
+                        دوبله فارسی می‌باشد.
+                      @elseif ($course->persian_subtitle_id == 1)
+                        به همراه زیرنویس فارسی و انگلیسی می‌باشد.
+                      @elseif ($course->english_subtitle_id == 1)
+                        به همراه زیرنویس انگلیسی می‌باشد.
+                      @else
+                        دارای زیرنویس نمی‌باشد
+                      @endif
+                    </p>
+                    <ul class="exercise-files-popover">
+                      @if ($course->courseFile && json_decode($course->courseFile) != null)
+                        @foreach (json_decode($course->courseFile) as $file)
+                          <li role="presentation">
+                            @if ($is_unlocked)
+                              <a role="link"
+                                href="{{ route('courses.download', [$course->id, hash('md5', 'courseFile') => hash('sha256', auth()->id())]) }}">
+                                <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                                <span>
+                                  {{ prepare_course_file_name($file->original_name) }}
+                                </span>
+                                @if (isset($file->size))
+                                  <span class="text-muted small">
+                                    ({{ formatBytes($file->size) }})
+                                  </span>
+                                @endif
+                              </a>
+                            @else
                               <span>
+                                <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
                                 {{ prepare_course_file_name($file->original_name) }}
                               </span>
                               @if (isset($file->size))
@@ -1067,290 +1109,350 @@ if (count($course->subjects) > 0) {
                                   ({{ formatBytes($file->size) }})
                                 </span>
                               @endif
-                            </a>
-                          @else
-                            <span>
-                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
-                              {{ prepare_course_file_name($file->original_name) }}
-                            </span>
-                            @if (isset($file->size))
-                              <span class="text-muted small">
-                                ({{ formatBytes($file->size) }})
-                              </span>
                             @endif
-                          @endif
-                        </li>
-                      @endforeach
-                    @endif
-                    @if ($course->persianSubtitleFile && json_decode($course->persianSubtitleFile) != null)
-                      @foreach (json_decode($course->persianSubtitleFile) as $file)
-                        <li role="presentation">
-                          @if ($is_unlocked)
-                            <a role="link"
-                              href="{{ route('courses.download', [$course->id, hash('md5', 'persianSubtitleFile') => hash('sha256', auth()->id())]) }}">
-                              <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                          </li>
+                        @endforeach
+                      @endif
+
+                      @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
+                        @php
+                          $idx = 0;
+                        @endphp
+                        @foreach (json_decode($course->exerciseFile) as $file)
+                          @php
+                            $idx = $idx + 1;
+                          @endphp
+                          <li role="presentation">
+                            @if ($is_unlocked)
+                              <a role="link"
+                                href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
+                                <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                                <span>
+                                  {{ prepare_course_file_name($file->original_name) }}
+                                </span>
+                                @if (isset($file->size))
+                                  <span class="text-muted small">
+                                    ({{ formatBytes($file->size) }})
+                                  </span>
+                                @endif
+                              </a>
+                            @else
                               <span>
+                                <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                                {{ prepare_course_file_name($file->original_name) }}
+                              </span>
+                              @if (isset($file->size))
+                                <span class="text-muted small">
+                                  ({{ formatBytes($file->size) }})
+                                </span>
+                              @endif
+                            @endif
+                          </li>
+                        @endforeach
+                      @endif
+                      @if ($course->persianSubtitleFile && json_decode($course->persianSubtitleFile) != null)
+                        @foreach (json_decode($course->persianSubtitleFile) as $file)
+                          <li role="presentation">
+                            @if ($is_unlocked)
+                              <a role="link"
+                                href="{{ route('courses.download', [$course->id, hash('md5', 'persianSubtitleFile') => hash('sha256', auth()->id())]) }}">
+                                <i class="lyndacon unlock" style="font-size: 20px; color: #ddd"></i>
+                                <span>
+                                  فایل زیرنویس فارسی
+                                </span>
+                              </a>
+                            @else
+                              <span>
+                                <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
                                 فایل زیرنویس فارسی
                               </span>
-                            </a>
-                          @else
-                            <span>
-                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
-                              فایل زیرنویس فارسی
-                            </span>
-                            @if (isset($file->size))
-                              <span class="text-muted small">
-                                ({{ formatBytes($file->size) }})
-                              </span>
+                              @if (isset($file->size))
+                                <span class="text-muted small">
+                                  ({{ formatBytes($file->size) }})
+                                </span>
+                              @endif
                             @endif
-                          @endif
-                        </li>
-                      @endforeach
+                          </li>
+                        @endforeach
+                      @endif
+                    </ul>
+                    @if (!auth()->check())
+                      <p style="text-align: center;direction: rtl;font-size: 14px;font-weight: 600;">
+                        برای دانلود، لطفا
+                        <a style="color: blue;" href="{{ route('login', ['returnUrl' => request()->url()]) }}">
+                          وارد حساب کاربری
+                        </a>
+                        شوید.
+                      </p>
                     @endif
-                  </ul>
-                  @if (!auth()->check())
-                    <p style="text-align: center;direction: rtl;font-size: 14px;font-weight: 600;">
-                      برای دانلود، لطفا
-                      <a style="color: blue;" href="{{ route('login', ['returnUrl' => request()->url()]) }}">
-                        وارد حساب کاربری
-                      </a>
-                      شوید.
-                    </p>
-                  @endif
+                  </div>
                 </div>
-              </div>
-              <div class="col-sm-3 col-md-3 col-lg-2 text-center">
-                <div class="course-info-stat-cont">
-                  <span class="course-info-stat skill-levels clearfix">
-                    <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
-                    <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
-                    <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
-                  </span>
-                  <span style="color: #888; margin-bottom: 4px;">
-                    سطح
-                    <strong>
-                      {{ $skill }}
-                    </strong>
-                  </span>
-                </div>
-                <div class="course-info-stat-cont duration">
-                  <span class="course-info-stat">
-                    @if ($course->durationHours)
-                      {{ $course->durationHours }}h
-                    @endif
-                    @if ($course->durationMinutes)
-                      {{ $course->durationMinutes }}m
-                    @endif
-                  </span>
-
-                  <span style="color: #888; margin-bottom: 4px;">
-                    مدت زمان دوره
-                  </span>
-                </div>
-                @if ($course->views > 0)
-                  <div class="course-info-stat-cont viewers"
-                    title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
-                    <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
+                <div class="col-sm-3 col-md-3 col-lg-2 text-center">
+                  <div class="course-info-stat-cont">
+                    <span class="course-info-stat skill-levels clearfix">
+                      <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
+                      <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
+                      <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
+                    </span>
                     <span style="color: #888; margin-bottom: 4px;">
-                      تعدادی افرادی که این دوره را مشاهده کردند
+                      سطح
+                      <strong>
+                        {{ $skill }}
+                      </strong>
                     </span>
                   </div>
-                @endif
-                <button type="button" class="btn btn-warning report-issue-toggle">
-                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                  گزارش خرابی
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab">
-            <div class="row">
-              <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
-                <div class="course-info-stat-cont m-0 mb-2 w-100 text-left" dir="ltr">
-                  <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
-                    @if (get_course_price($course->price) != $course->price)
-                      <del style="color: #f44">
-                        {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
-                      </del>
-                      <br>
-                    @endif
-                    {{ $course->price == 0 ? 'FREE' : number_format(get_course_price($course->price)) . ' Toman' }}
-                  </span>
-                </div>
-                @if (auth()->check() && $course->price > 0)
-                  @if ($course_state == '1')
-                    <div id="cart-btn">
-                      <span class="btn btn-secondary align-self-center m-0 mb-2 w-100">
-                        Purchased
+                  <div class="course-info-stat-cont duration">
+                    <span class="course-info-stat">
+                      @if ($course->durationHours)
+                        {{ $course->durationHours }}h
+                      @endif
+                      @if ($course->durationMinutes)
+                        {{ $course->durationMinutes }}m
+                      @endif
+                    </span>
+
+                    <span style="color: #888; margin-bottom: 4px;">
+                      مدت زمان دوره
+                    </span>
+                  </div>
+                  @if ($course->views > 0)
+                    <div class="course-info-stat-cont viewers"
+                      title="تعدادی افرادی که این دوره را مشاهده کردند (در لینکدین)">
+                      <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
+                      <span style="color: #888; margin-bottom: 4px;">
+                        تعدادی افرادی که این دوره را مشاهده کردند
                       </span>
                     </div>
-                  @elseif ($course_state == '2')
-                    <div id="cart-btn" data-lang="EN">
-                      <a data-id="1-{{ $course->id }}" data-lang="EN"
-                        class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
-                        Remove From Cart
-                      </a>
-                    </div>
-                  @elseif($course_state == '3')
-                    <div id="cart-btn" data-lang="EN">
-                      <a data-id="1-{{ $course->id }}" data-lang="EN"
-                        class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
-                        Add To Cart
-                      </a>
-                    </div>
                   @endif
-                @endif
-                <div class="author-thumb">
-                  <div
-                    style="font-size: 1.25rem;margin-bottom: 0.5rem; font-family: inherit; font-weight: 500; line-height: 1.2;margin-top: 0;">
-                    Author
-                  </div>
-                  @foreach ($course->authors as $author)
-                    <a href="{{ route('authors.show', [$author->slug]) }}">
-                      <img src="#" class="lazyload" width="100" height="100"
-                        data-src="{{ fromDLHost($author->img) }}" style="border-radius: 10px;"
-                        alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
-                      <cite>{{ $author->name }}</cite>
-                    </a>
-                  @endforeach
+                  <button type="button" class="btn btn-warning report-issue-toggle">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    گزارش خرابی
+                  </button>
                 </div>
-
-                @if (count($course->users) > 0)
-                  <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
-                    class="author-thumb">
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab">
+              <div class="row">
+                <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
+                  <div class="course-info-stat-cont m-0 mb-2 w-100 text-left" dir="ltr">
+                    <span class="course-info-stat" style="background-color: darkgreen; font-size: 18px;">
+                      @if (get_course_price($course->price) != $course->price)
+                        <del style="color: #f44">
+                          {{ $course->price == 0 ? 'FREE' : number_format($course->price) . ' Toman' }}
+                        </del>
+                        <br>
+                      @endif
+                      {{ $course->price == 0 ? 'FREE' : number_format(get_course_price($course->price)) . ' Toman' }}
+                    </span>
+                  </div>
+                  @if (auth()->check() && $course->price > 0)
+                    @if ($course_state == '1')
+                      <div id="cart-btn">
+                        <span class="btn btn-secondary align-self-center m-0 mb-2 w-100">
+                          Purchased
+                        </span>
+                      </div>
+                    @elseif ($course_state == '2')
+                      <div id="cart-btn" data-lang="EN">
+                        <a data-id="1-{{ $course->id }}" data-lang="EN"
+                          class="btn btn-danger align-self-center cart-remove-btn m-0 mb-2 w-100">
+                          Remove From Cart
+                        </a>
+                      </div>
+                    @elseif($course_state == '3')
+                      <div id="cart-btn" data-lang="EN">
+                        <a data-id="1-{{ $course->id }}" data-lang="EN"
+                          class="btn btn-download align-self-center cart-add-btn m-0 mb-2 w-100">
+                          Add To Cart
+                        </a>
+                      </div>
+                    @endif
+                  @endif
+                  <div class="author-thumb">
                     <div
                       style="font-size: 1.25rem;margin-bottom: 0.5rem; font-family: inherit; font-weight: 500; line-height: 1.2;margin-top: 0;">
-                      Dubbed By
+                      Author
                     </div>
-                    @foreach ($course->users as $user)
-                      <a href="{{ route('dubbed.index', [$user->username]) }}">
-                        <img src="#" class="lazyload"
-                          alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
-                          data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
-                          height="100">
-                        <cite>{{ $user->name }}</cite>
+                    @foreach ($course->authors as $author)
+                      <a href="{{ route('authors.show', [$author->slug]) }}">
+                        <img src="#" class="lazyload" width="100" height="100"
+                          data-src="{{ fromDLHost($author->img) }}" style="border-radius: 10px;"
+                          alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}" />
+                        <cite>{{ $author->name }}</cite>
                       </a>
                     @endforeach
                   </div>
-                @endif
-              </div>
-              <div class="col-sm-7 col-md-6 col-lg-8 course-description-english" role="contentinfo" dir="ltr">
-                <div style="margin: 0;font-size: 13px;font-weight: 600;">
-                  <span
-                    title="@php
+
+                  @if (count($course->users) > 0)
+                    <div style="background-color: #ece81a;padding: 10px 0;border-radius: 15px;margin-top: 5px;"
+                      class="author-thumb">
+                      <div
+                        style="font-size: 1.25rem;margin-bottom: 0.5rem; font-family: inherit; font-weight: 500; line-height: 1.2;margin-top: 0;">
+                        Dubbed By
+                      </div>
+                      @foreach ($course->users as $user)
+                        <a href="{{ route('dubbed.index', [$user->username]) }}">
+                          <img src="#" class="lazyload"
+                            alt="عکس {{ $user->name }} - Image of {{ $user->name }}"
+                            data-src="{{ fromDLHost($user->avatar) }}" style="border-radius: 10px;" width="100"
+                            height="100">
+                          <cite>{{ $user->name }}</cite>
+                        </a>
+                      @endforeach
+                    </div>
+                  @endif
+                </div>
+                <div class="col-sm-7 col-md-6 col-lg-8 course-description-english" role="contentinfo" dir="ltr">
+                  <div style="margin: 0;font-size: 13px;font-weight: 600;">
+                    <span
+                      title="@php
                     $d = explode('/', date('Y/m/d', strtotime($course->releaseDate)));
                     echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                   @endphp">
-                    Release:
-                    {{ date('Y/m/d', strtotime($course->releaseDate)) }}
-                    <i class="lyndacon closed-captioning pl-2" title="subtitle"></i>
-                  </span>
-                  @if ($course->updateDate)
-                    <span
-                      title="@php
+                      Release:
+                      {{ date('Y/m/d', strtotime($course->releaseDate)) }}
+                      <i class="lyndacon closed-captioning pl-2" title="subtitle"></i>
+                    </span>
+                    @if ($course->updateDate)
+                      <span
+                        title="@php
                       $d = explode('/', date('Y/m/d', strtotime($course->updateDate)));
                       echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
                     @endphp">
-                      Update:
-                      {{ date('Y/m/d', strtotime($course->updateDate)) }}
+                        Update:
+                        {{ date('Y/m/d', strtotime($course->updateDate)) }}
+                      </span>
+                      <i class="lyndacon closed-captioning pl-2" title="subtitle"></i>
+                    @endif
+                  </div>
+                  <div class="text-justify" style="font-size: 13px; margin-top: 10px;">
+                    {!! nl2br(e($course->descriptionEng)) !!}
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-2 text-center">
+                  <div class="course-info-stat-cont">
+                    <span class="course-info-stat skill-levels clearfix">
+                      <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
+                      <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
+                      <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
                     </span>
-                    <i class="lyndacon closed-captioning pl-2" title="subtitle"></i>
-                  @endif
-                </div>
-                <div class="text-justify" style="font-size: 13px; margin-top: 10px;">
-                  {!! nl2br(e($course->descriptionEng)) !!}
-                </div>
-              </div>
-              <div class="col-sm-3 col-md-3 col-lg-2 text-center">
-                <div class="course-info-stat-cont">
-                  <span class="course-info-stat skill-levels clearfix">
-                    <span class="beginner {{ $skillEng == 'Beginner' ? 'active' : '' }}"></span>
-                    <span class="intermediate {{ $skillEng == 'Intermediate' ? 'active' : '' }}"></span>
-                    <span class="advanced {{ $skillEng == 'Advanced' ? 'active' : '' }}"></span>
-                  </span>
 
-                  <span style="color: #888; margin-bottom: 4px;">
-                    Skill Level <strong>{{ $skillEng }}</strong>
-                  </span>
-                </div>
-                <div class="course-info-stat-cont duration">
-                  <span class="course-info-stat">
-                    @if ($course->durationHours)
-                      {{ $course->durationHours }}h
-                    @endif
-                    @if ($course->durationMinutes)
-                      {{ $course->durationMinutes }}m
-                    @endif
-                  </span>
-                  <span style="color: #888; margin-bottom: 4px;">
-                    Duration
-                  </span>
-                </div>
-                @if ($course->views > 0)
-                  <div class="course-info-stat-cont viewers"
-                    title="Number of people watched this course (from linkedin)">
-                    <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
                     <span style="color: #888; margin-bottom: 4px;">
-                      People watched this course
+                      Skill Level <strong>{{ $skillEng }}</strong>
                     </span>
                   </div>
-                @endif
-                <button type="button" class="btn btn-warning report-issue-toggle">
-                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                  Report
-                </button>
+                  <div class="course-info-stat-cont duration">
+                    <span class="course-info-stat">
+                      @if ($course->durationHours)
+                        {{ $course->durationHours }}h
+                      @endif
+                      @if ($course->durationMinutes)
+                        {{ $course->durationMinutes }}m
+                      @endif
+                    </span>
+                    <span style="color: #888; margin-bottom: 4px;">
+                      Duration
+                    </span>
+                  </div>
+                  @if ($course->views > 0)
+                    <div class="course-info-stat-cont viewers"
+                      title="Number of people watched this course (from linkedin)">
+                      <span id="course-viewers" class="course-info-stat">{{ number_format($course->views) }}</span>
+                      <span style="color: #888; margin-bottom: 4px;">
+                        People watched this course
+                      </span>
+                    </div>
+                  @endif
+                  <button type="button" class="btn btn-warning report-issue-toggle">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    Report
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        @if (count($subjects) > 0)
-          <div class="tags subject-tags">
-            <h5 class="course-title" style="font-size: 1.2rem;">عناوین مرتبط</h5>
-            @foreach ($subjects as $subject)
-              {{-- <a target="_blank"
+          @if (count($subjects) > 0)
+            <div class="tags subject-tags">
+              <h5 class="course-title" style="font-size: 1.2rem;">عناوین مرتبط</h5>
+              @foreach ($subjects as $subject)
+                {{-- <a target="_blank"
                   href="{{ route('home.show', [$subject->slug]) }}"><em>{{ $subject->title_per ?? $subject->title }}</em></a> --}}
 
-              <a target="_blank" titleEng="{{ $subject->title }}"
-                title="دارای {{ $subject->courses_count }} دوره آموزشی"
-                style="position: relative;background-color: #ddd;margin-bottom: 15px;"
-                href="{{ route('home.show', [$subject->slug]) }}">
-                <em>{{ $subject->title_per ?? $subject->title }}</em>
-                <span
-                  style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
-                  {{ $subject->courses_count }} دوره
-                </span>
-              </a>
-            @endforeach
+                <a target="_blank" titleEng="{{ $subject->title }}"
+                  title="دارای {{ $subject->courses_count }} دوره آموزشی"
+                  style="position: relative;background-color: #ddd;margin-bottom: 15px;"
+                  href="{{ route('home.show', [$subject->slug]) }}">
+                  <em>{{ $subject->title_per ?? $subject->title }}</em>
+                  <span
+                    style="position: absolute;color: darkblue;top: 80%;font-weight: 600;left: 0;width: 100%;text-align: center;background-color: darkgray;font-size: 10px;padding: 2px 0;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+                    {{ $subject->courses_count }} دوره
+                  </span>
+                </a>
+              @endforeach
+            </div>
+          @endif
+        </div>
+
+        @if (count($related_paths))
+          <div class="section-module my-0" style="box-shadow: none;">
+            <div class="row p-0 m-0">
+              <div class="col-6">
+                <div class="course-title" style="margin-bottom: 0.5rem;">مسیرهای آموزشی مرتبط</div>
+              </div>
+              <div id="carousel-arrows" class="col-6">
+                <a class="align-self-center" href="#related_paths" role="button" data-slide="next">
+                  <i class="lyndacon arrow-right" aria-hidden="true"></i>
+                  <span class="sr-only">بعدی</span>
+                </a>
+                <a class="align-self-center" href="#related_paths" role="button" data-slide="prev">
+                  <i class="lyndacon arrow-left" aria-hidden="true"></i>
+                  <span class="sr-only">قبلی</span>
+                </a>
+              </div>
+            </div>
+            <div id="related_paths" class="carousel slide" data-interval="1000000">
+              <div class="carousel-inner" count="{{ count($related_paths) }}">
+                @for ($index = 0; $index < count($related_paths); $index += 4)
+                  <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
+                    <div class="row d-flex">
+                      @for ($i = 0; $i < 4 && $index + $i < count($related_paths); $i++)
+                        @include('learn_paths.partials.list_item_grid_new', [
+                            'path' => $related_paths[$index + $i],
+                        ])
+                      @endfor
+                    </div>
+                  </div>
+                @endfor
+              </div>
+            </div>
           </div>
         @endif
-      </div>
 
-      @if (count($related_paths))
         <div class="section-module my-0" style="box-shadow: none;">
           <div class="row p-0 m-0">
             <div class="col-6">
-              <div class="course-title" style="margin-bottom: 0.5rem;">مسیرهای آموزشی مرتبط</div>
+              <div class="course-title" style="margin-bottom: 0.5rem;">دوره‌های مرتبط</div>
             </div>
             <div id="carousel-arrows" class="col-6">
-              <a class="align-self-center" href="#related_paths" role="button" data-slide="next">
+              <a class="align-self-center" href="#related_courses" role="button" data-slide="next">
                 <i class="lyndacon arrow-right" aria-hidden="true"></i>
                 <span class="sr-only">بعدی</span>
               </a>
-              <a class="align-self-center" href="#related_paths" role="button" data-slide="prev">
+              <a class="align-self-center" href="#related_courses" role="button" data-slide="prev">
                 <i class="lyndacon arrow-left" aria-hidden="true"></i>
                 <span class="sr-only">قبلی</span>
               </a>
             </div>
           </div>
-          <div id="related_paths" class="carousel slide" data-interval="1000000">
-            <div class="carousel-inner" count="{{ count($related_paths) }}">
-              @for ($index = 0; $index < count($related_paths); $index += 4)
+          <div id="related_courses" class="carousel slide" data-interval="1000000">
+            <div class="carousel-inner" count="{{ count($related_courses) }}">
+              @for ($index = 0; $index < count($related_courses); $index += 4)
                 <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
                   <div class="row d-flex">
-                    @for ($i = 0; $i < 4 && $index + $i < count($related_paths); $i++)
-                      @include('learn_paths.partials.list_item_grid_new', [
-                          'path' => $related_paths[$index + $i],
+                    @for ($i = 0; $i < 4 && $index + $i < count($related_courses); $i++)
+                      @include('courses.partials._course_list_grid-new', [
+                          'course' => $related_courses[$index + $i],
                       ])
                     @endfor
                   </div>
@@ -1359,239 +1461,205 @@ if (count($course->subjects) > 0) {
             </div>
           </div>
         </div>
-      @endif
-
-      <div class="section-module my-0" style="box-shadow: none;">
-        <div class="row p-0 m-0">
-          <div class="col-6">
-            <div class="course-title" style="margin-bottom: 0.5rem;">دوره‌های مرتبط</div>
-          </div>
-          <div id="carousel-arrows" class="col-6">
-            <a class="align-self-center" href="#related_courses" role="button" data-slide="next">
-              <i class="lyndacon arrow-right" aria-hidden="true"></i>
-              <span class="sr-only">بعدی</span>
-            </a>
-            <a class="align-self-center" href="#related_courses" role="button" data-slide="prev">
-              <i class="lyndacon arrow-left" aria-hidden="true"></i>
-              <span class="sr-only">قبلی</span>
-            </a>
-          </div>
-        </div>
-        <div id="related_courses" class="carousel slide" data-interval="1000000">
-          <div class="carousel-inner" count="{{ count($related_courses) }}">
-            @for ($index = 0; $index < count($related_courses); $index += 4)
-              <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
-                <div class="row d-flex">
-                  @for ($i = 0; $i < 4 && $index + $i < count($related_courses); $i++)
-                    @include('courses.partials._course_list_grid-new', [
-                        'course' => $related_courses[$index + $i],
-                    ])
-                  @endfor
-                </div>
-              </div>
-            @endfor
-          </div>
-        </div>
       </div>
     </div>
-  </div>
-@endsection
-@section('script_body')
-  <script>
-    const course_player = new Plyr("#plyr-video", {
-      title: "{{ $course->title }}",
-      controls: [
-        'play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
-        'airplay', 'fullscreen'
-      ],
-      settings: ['captions', 'quality', 'speed', 'loop'],
-      invertTime: true,
-      toggleInvert: true,
-      disableContextMenu: true,
-      seekTime: 5,
-      captions: {
-        active: true,
-        // language: 'fa',
-        language: 'auto',
-        update: true,
-        // update: false,
-      },
-      keyboard: {
-        focused: true,
-        global: true
-      },
-      i18n: {
-        restart: 'پخش مجدد',
-        rewind: 'برگشت به {seektime}s',
-        play: 'پخش',
-        pause: 'توقف',
-        fastForward: 'به جلو رفتن {seektime}s',
-        seek: 'جابجا شدن',
-        seekLabel: '{currentTime} از {duration}',
-        played: 'پخش شده',
-        buffered: 'بافر شده',
-        currentTime: 'زمان فعلی',
-        duration: 'مدت زمان',
-        volume: 'صدا',
-        mute: 'بی صدا',
-        unmute: 'با صدا',
-        enableCaptions: 'فعال کردن زیرنویس',
-        disableCaptions: 'غیرفعال کردن زیرنویس',
-        download: 'دانلود',
-        enterFullscreen: 'فعال کردن تمام صفحه',
-        exitFullscreen: 'غیر فعال کردن تمام صفحه',
-        frameTitle: '{title}',
-        captions: 'زیرنویس‌ها',
-        settings: 'تنظیمات',
-        pip: 'تصویر-در-تصویر',
-        menuBack: 'برگشت به منوی قبلی',
-        speed: 'سرعت',
-        normal: 'عادی',
-        quality: 'کیفیت',
-        loop: 'حلقه پخش',
-        start: 'شروع',
-        end: 'پایان',
-        all: 'همه',
-        reset: 'بازنشانی',
-        disabled: 'غیرفعال',
-        enabled: 'فعال',
-        advertisement: 'تبلیغات',
-        qualityBadge: {
-          2160: '4K',
-          1440: 'HD',
-          1080: 'HD',
-          720: 'HD',
-          576: 'SD',
-          480: 'SD',
+  @endsection
+  @section('script_body')
+    <script>
+      const course_player = new Plyr("#plyr-video", {
+        title: "{{ $course->title }}",
+        controls: [
+          'play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip',
+          'airplay', 'fullscreen'
+        ],
+        settings: ['captions', 'quality', 'speed', 'loop'],
+        invertTime: true,
+        toggleInvert: true,
+        disableContextMenu: true,
+        seekTime: 5,
+        captions: {
+          active: true,
+          // language: 'fa',
+          language: 'auto',
+          update: true,
+          // update: false,
         },
-      }
-      //   ratio: '16:9',
+        keyboard: {
+          focused: true,
+          global: true
+        },
+        i18n: {
+          restart: 'پخش مجدد',
+          rewind: 'برگشت به {seektime}s',
+          play: 'پخش',
+          pause: 'توقف',
+          fastForward: 'به جلو رفتن {seektime}s',
+          seek: 'جابجا شدن',
+          seekLabel: '{currentTime} از {duration}',
+          played: 'پخش شده',
+          buffered: 'بافر شده',
+          currentTime: 'زمان فعلی',
+          duration: 'مدت زمان',
+          volume: 'صدا',
+          mute: 'بی صدا',
+          unmute: 'با صدا',
+          enableCaptions: 'فعال کردن زیرنویس',
+          disableCaptions: 'غیرفعال کردن زیرنویس',
+          download: 'دانلود',
+          enterFullscreen: 'فعال کردن تمام صفحه',
+          exitFullscreen: 'غیر فعال کردن تمام صفحه',
+          frameTitle: '{title}',
+          captions: 'زیرنویس‌ها',
+          settings: 'تنظیمات',
+          pip: 'تصویر-در-تصویر',
+          menuBack: 'برگشت به منوی قبلی',
+          speed: 'سرعت',
+          normal: 'عادی',
+          quality: 'کیفیت',
+          loop: 'حلقه پخش',
+          start: 'شروع',
+          end: 'پایان',
+          all: 'همه',
+          reset: 'بازنشانی',
+          disabled: 'غیرفعال',
+          enabled: 'فعال',
+          advertisement: 'تبلیغات',
+          qualityBadge: {
+            2160: '4K',
+            1440: 'HD',
+            1080: 'HD',
+            720: 'HD',
+            576: 'SD',
+            480: 'SD',
+          },
+        }
+        //   ratio: '16:9',
 
-    });
+      });
 
 
 
-    // window.addEventListener('goftino_ready', function() {
-    //   Goftino.setWidget({
-    //     hasIcon: false,
-    //     counter: '#unread_counter'
-    //   });
-    // });
-    var current_playing_video_id = '';
-    var course_id = '{{ $course->id }}';
-    var course_title = '{{ $course->title }}';
-    var course_titleEng = '{{ $course->titleEng }}';
-    var video_titleEng = '';
-    var isSent = false;
-    $(document).on('click', '.report-issue-toggle', function(e) {
-      Goftino.open();
-      if (!isSent) {
-        Goftino.sendMessage({
-          text: 'سلام کاربر گرامی، لطفا گزارش خودتون رو برای "' + course_title + '" در اینجا ذکر کنید.'
-        });
-        isSent = true;
-      }
-    });
+      // window.addEventListener('goftino_ready', function() {
+      //   Goftino.setWidget({
+      //     hasIcon: false,
+      //     counter: '#unread_counter'
+      //   });
+      // });
+      var current_playing_video_id = '';
+      var course_id = '{{ $course->id }}';
+      var course_title = '{{ $course->title }}';
+      var course_titleEng = '{{ $course->titleEng }}';
+      var video_titleEng = '';
+      var isSent = false;
+      $(document).on('click', '.report-issue-toggle', function(e) {
+        Goftino.open();
+        if (!isSent) {
+          Goftino.sendMessage({
+            text: 'سلام کاربر گرامی، لطفا گزارش خودتون رو برای "' + course_title + '" در اینجا ذکر کنید.'
+          });
+          isSent = true;
+        }
+      });
 
-    $(document).on('click', '#dismiss, .overlay', function(event) {
-      $('#sidebar').removeClass('active');
-      $('.overlay').removeClass('active');
-      $('#content').removeClass('active');
-      $('#sidebarCollapse').removeClass('active');
-    });
-
-    $(document).on('click', '#sidebarCollapse', function(event) {
-      $('#sidebar, #content, .overlay').toggleClass('active');
-      $('.collapse.in').toggleClass('in');
-      $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-      $(this).toggleClass('active');
-    });
-
-    $(document).on('click', '.play-course-video', function(event) {
-      if (window.innerWidth < 768) {
+      $(document).on('click', '#dismiss, .overlay', function(event) {
         $('#sidebar').removeClass('active');
         $('.overlay').removeClass('active');
         $('#content').removeClass('active');
         $('#sidebarCollapse').removeClass('active');
-      }
-      $('.play-course-video').parent().removeClass('active');
-      $(this).parent().toggleClass('active');
-
-      const btn = event.currentTarget.dataset;
-      var videoId = btn.videoId;
-      var title = btn.title;
-      video_titleEng = btn.titleEng;
-      PlayVideo(title, videoId);
-    });
-    course_player.on('ended', function(event) {
-      var $next = $(".course-chapter li.active").next();
-      if ($next.length == 0) {
-        var $current_chapter = $(document.querySelector(".course-chapter li.active").closest('.course-chapter'));
-        $current_chapter.trigger('click');
-        var $next_chap = $current_chapter.next();
-        if ($next_chap.length) {
-          $next = $($next_chap.find('li')[0]);
-        } else {
-          console.log("last chapter finished");
-          // last chapter finished
-          return;
-        }
-      }
-      $next.find("a").trigger("click");
-      var videoId = $($next.find("a")).data('videoId');
-      var title = $($next.find("a")).data('title');
-      video_titleEng = $($next.find("a")).data('titleEng')
-      PlayVideo(title, videoId);
-    });
-
-    function PlayVideo(title, video_id) {
-      var current_lang = course_player.language;
-      course_player.source = {
-        type: "video",
-        title: title,
-        sources: [{
-          src: `//dl.lyndakade.ir/download.php?code=${video_id}&x=v`,
-          type: 'video/mp4'
-        }],
-        tracks: ("{{ $course->dubbed_id }}" == "1") ? [] : [{
-          kind: 'captions',
-          label: 'فارسی',
-          srclang: 'fa',
-          src: `https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=f`,
-          default: true,
-        }, {
-          kind: 'captions',
-          label: 'English',
-          srclang: 'en',
-          src: `https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=e`,
-          default: false,
-        }, ],
-        poster: "{{ fromDLHost($course->img) }}"
-      };
-      course_player.language = 'fa';
-      course_player.currentTime = 0;
-      course_player.play();
-    }
-    $('#sidebarCollapse').trigger("click");
-    $('.course-chapter > a').trigger("click");
-    course_player.on('loadedmetadata', function(event) {
-      var c_title = course_title.replace('دوره آموزشی ', '');
-      var c_titleEng = course_titleEng;
-      var video_title = course_player.config.title;
-      if (video_titleEng.includes(' - '))
-        video_titleEng = video_titleEng.substring(video_titleEng.indexOf(' - ') + 3);
-      var video_player_title_html =
-        ` <span>${video_title} (${video_titleEng})</span><br><small style="color: #bfc1c3!important;">${c_title} (${c_titleEng})</small>`;
-      $('#video-player-title').html(video_player_title_html);
-    });
-
-    $(document).ready(function() {
-      $('.carousel').carousel({
-        interval: false,
-        wrap: false,
-        keyboard: false,
       });
-      $(document.querySelector('.course-chapter .play-course-video')).trigger("click");
-    });
-  </script>
-@endsection
+
+      $(document).on('click', '#sidebarCollapse', function(event) {
+        $('#sidebar, #content, .overlay').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        $(this).toggleClass('active');
+      });
+
+      $(document).on('click', '.play-course-video', function(event) {
+        if (window.innerWidth < 768) {
+          $('#sidebar').removeClass('active');
+          $('.overlay').removeClass('active');
+          $('#content').removeClass('active');
+          $('#sidebarCollapse').removeClass('active');
+        }
+        $('.play-course-video').parent().removeClass('active');
+        $(this).parent().toggleClass('active');
+
+        const btn = event.currentTarget.dataset;
+        var videoId = btn.videoId;
+        var title = btn.title;
+        video_titleEng = btn.titleEng;
+        PlayVideo(title, videoId);
+      });
+      course_player.on('ended', function(event) {
+        var $next = $(".course-chapter li.active").next();
+        if ($next.length == 0) {
+          var $current_chapter = $(document.querySelector(".course-chapter li.active").closest('.course-chapter'));
+          $current_chapter.trigger('click');
+          var $next_chap = $current_chapter.next();
+          if ($next_chap.length) {
+            $next = $($next_chap.find('li')[0]);
+          } else {
+            console.log("last chapter finished");
+            // last chapter finished
+            return;
+          }
+        }
+        $next.find("a").trigger("click");
+        var videoId = $($next.find("a")).data('videoId');
+        var title = $($next.find("a")).data('title');
+        video_titleEng = $($next.find("a")).data('titleEng')
+        PlayVideo(title, videoId);
+      });
+
+      function PlayVideo(title, video_id) {
+        var current_lang = course_player.language;
+        course_player.source = {
+          type: "video",
+          title: title,
+          sources: [{
+            src: `//dl.lyndakade.ir/download.php?code=${video_id}&x=v`,
+            type: 'video/mp4'
+          }],
+          tracks: ("{{ $course->dubbed_id }}" == "1") ? [] : [{
+            kind: 'captions',
+            label: 'فارسی',
+            srclang: 'fa',
+            src: `https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=f`,
+            default: true,
+          }, {
+            kind: 'captions',
+            label: 'English',
+            srclang: 'en',
+            src: `https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=e`,
+            default: false,
+          }, ],
+          poster: "{{ fromDLHost($course->img) }}"
+        };
+        course_player.language = 'fa';
+        course_player.currentTime = 0;
+        course_player.play();
+      }
+      $('#sidebarCollapse').trigger("click");
+      $('.course-chapter > a').trigger("click");
+      course_player.on('loadedmetadata', function(event) {
+        var c_title = course_title.replace('دوره آموزشی ', '');
+        var c_titleEng = course_titleEng;
+        var video_title = course_player.config.title;
+        if (video_titleEng.includes(' - '))
+          video_titleEng = video_titleEng.substring(video_titleEng.indexOf(' - ') + 3);
+        var video_player_title_html =
+          ` <span>${video_title} (${video_titleEng})</span><br><small style="color: #bfc1c3!important;">${c_title} (${c_titleEng})</small>`;
+        $('#video-player-title').html(video_player_title_html);
+      });
+
+      $(document).ready(function() {
+        $('.carousel').carousel({
+          interval: false,
+          wrap: false,
+          keyboard: false,
+        });
+        $(document.querySelector('.course-chapter .play-course-video')).trigger("click");
+      });
+    </script>
+  @endsection
