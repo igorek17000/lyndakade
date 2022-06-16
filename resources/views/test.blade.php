@@ -422,22 +422,22 @@ if (count($course->subjects) > 0) {
     }
 
     /* #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                  transform: rotate(45deg) translate(2px, 2px);
-                }
+                      transform: rotate(45deg) translate(2px, 2px);
+                    }
 
-                #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                  opacity: 0;
-                }
+                    #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                      opacity: 0;
+                    }
 
-                #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                  transform: rotate(-45deg) translate(1px, -1px);
-                }
+                    #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                      transform: rotate(-45deg) translate(1px, -1px);
+                    }
 
-                #sidebarCollapse.active .sidebarCollapse span {
-                  transform: none;
-                  opacity: 1;
-                  margin: 0 auto;
-                } */
+                    #sidebarCollapse.active .sidebarCollapse span {
+                      transform: none;
+                      opacity: 1;
+                      margin: 0 auto;
+                    } */
 
     @media (max-width: 767px) {
 
@@ -1192,6 +1192,7 @@ if (count($course->subjects) > 0) {
     var course_id = '{{ $course->id }}';
     var course_title = '{{ $course->title }}';
     var course_titleEng = '{{ $course->titleEng }}';
+    var video_titleEng = '';
     var isSent = false;
     $(document).on('click', '.report-issue-toggle', function(e) {
       Goftino.open();
@@ -1230,8 +1231,8 @@ if (count($course->subjects) > 0) {
       const btn = event.currentTarget.dataset;
       var videoId = btn.videoId;
       var title = btn.title;
-      var titleEng = btn.titleEng;
-      PlayVideo(title, titleEng, videoId);
+      video_titleEng = btn.titleEng;
+      PlayVideo(title, videoId);
     });
     course_player.on('ended', function(event) {
       var $next = $(".course-chapter li.active").next();
@@ -1250,8 +1251,8 @@ if (count($course->subjects) > 0) {
       $next.find("a").trigger("click");
       var videoId = $($next.find("a")).data('videoId');
       var title = $($next.find("a")).data('title');
-      var titleEng = $($next.find("a")).data('titleEng');
-      PlayVideo(title, titleEng, videoId);
+      video_titleEng = $($next.find("a")).data('titleEng')
+      PlayVideo(title, videoId);
     });
 
     function PlayVideo(title, titleEng, video_id) {
@@ -1259,7 +1260,6 @@ if (count($course->subjects) > 0) {
       course_player.source = {
         type: "video",
         title: title,
-        titleEng: titleEng,
         sources: [{
           src: `//dl.lyndakade.ir/download.php?code=${video_id}&x=v`,
           type: 'video/mp4'
@@ -1289,7 +1289,8 @@ if (count($course->subjects) > 0) {
       var c_title = course_title.replace('دوره آموزشی ', '');
       var c_titleEng = course_titleEng;
       var video_title = course_player.config.title;
-      var video_titleEng = course_player.config.titleEng;
+      if (video_titleEng.includes(' - '))
+        video_titleEng = video_titleEng.substring(video_titleEng.indexOf(' - ') + 3);
       var video_player_title_html =
         ` <span>${video_title}(${video_titleEng})</span><br><small style="color: #bfc1c3!important;">${c_title}(${c_titleEng})</small>`;
       $('#video-player-title').html(video_player_title_html);
