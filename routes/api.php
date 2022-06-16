@@ -394,7 +394,7 @@ Route::middleware('guest')->post('/dubbed/join', function (Request $request) {
 
 Route::middleware('guest')->get('/get-without-short-desc', function (Request $request) {
     return new JsonResponse([
-        'data' => Course::whereNull('shortDesc')->get(['slug_linkedin']),
+        'data' => Course::whereNull('shortDesc')->orWhere('shortDesc', '')->get(['slug_linkedin']),
         'status' => 'success'
     ], 200);
 });
