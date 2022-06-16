@@ -980,7 +980,7 @@ if (count($course->subjects) > 0) {
                   </h3>
                   <div>
                     @for ($i = 0; $i < 4 && $i < count($related_courses); $i++)
-                        @include('courses.partials._course_list_grid-new', [
+                        @include('courses.partials._course_list_new', [
                             'course' => $related_courses[$i],
                         ])
                     @endfor
