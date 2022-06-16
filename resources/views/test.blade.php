@@ -808,7 +808,6 @@ if (count($course->subjects) > 0) {
         <div class="container tab-content" id="nav-tabContent" style="margin-bottom: 0;">
           <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
             aria-labelledby="nav-description-tab">
-
             <div class="row">
               <div class="col-sm-6 col-xs-12 classroom-workspace-author-info" style="margin-bottom: 1.6rem;">
                 <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">
@@ -925,80 +924,127 @@ if (count($course->subjects) > 0) {
                   <div> {!! nl2br(e($course->description)) !!} </div>
                 </div>
               </div>
-
-              {{-- @if (count($related_paths))
-                <div class="col-xs-12">
-                  <div class="row p-0 m-0">
-                    <div class="col-6">
-                      <div class="course-title" style="margin-bottom: 0.5rem;">مسیرهای آموزشی مرتبط</div>
-                    </div>
-                    <div id="carousel-arrows" class="col-6">
-                      <a class="align-self-center" href="#related_paths" role="button" data-slide="next">
-                        <i class="lyndacon arrow-right" aria-hidden="true"></i>
-                        <span class="sr-only">بعدی</span>
-                      </a>
-                      <a class="align-self-center" href="#related_paths" role="button" data-slide="prev">
-                        <i class="lyndacon arrow-left" aria-hidden="true"></i>
-                        <span class="sr-only">قبلی</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div id="related_paths" class="carousel slide" data-interval="1000000">
-                    <div class="carousel-inner" count="{{ count($related_paths) }}">
-                      @for ($index = 0; $index < count($related_paths); $index += 4)
-                        <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
-                          <div class="row d-flex">
-                            @for ($i = 0; $i < 4 && $index + $i < count($related_paths); $i++)
-                              @include('learn_paths.partials.list_item_grid_new', [
-                                  'path' => $related_paths[$index + $i],
-                              ])
-                            @endfor
-                          </div>
-                        </div>
-                      @endfor
-                    </div>
-                  </div>
-                </div>
-              @endif --}}
-
-              {{-- @if (count($related_courses))
-                <div class="col-xs-12">
-                  <div class="row p-0 m-0">
-                    <div class="col-6">
-                      <div class="course-title" style="margin-bottom: 0.5rem;">دوره‌های مرتبط</div>
-                    </div>
-                    <div id="carousel-arrows" class="col-6">
-                      <a class="align-self-center" href="#related_courses" role="button" data-slide="next">
-                        <i class="lyndacon arrow-right" aria-hidden="true"></i>
-                        <span class="sr-only">بعدی</span>
-                      </a>
-                      <a class="align-self-center" href="#related_courses" role="button" data-slide="prev">
-                        <i class="lyndacon arrow-left" aria-hidden="true"></i>
-                        <span class="sr-only">قبلی</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div id="related_courses" class="carousel slide" data-interval="1000000">
-                    <div class="carousel-inner" count="{{ count($related_courses) }}">
-                      @for ($index = 0; $index < count($related_courses); $index += 4)
-                        <div class="carousel-item {{ $index < 4 ? 'active' : '' }}" index=" {{ $index }}">
-                          <div class="row d-flex">
-                            @for ($i = 0; $i < 4 && $index + $i < count($related_courses); $i++)
-                              @include('courses.partials._course_list_grid-new', [
-                                  'course' => $related_courses[$index + $i],
-                              ])
-                            @endfor
-                          </div>
-                        </div>
-                      @endfor
-                    </div>
-                  </div>
-                </div>
-              @endif --}}
             </div>
-
           </div>
           <div class="tab-pane fade" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab">
+            <div class="row">
+              <div class="col-sm-6 col-xs-12 classroom-workspace-author-info" style="margin-bottom: 1.6rem;">
+                <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">
+                  @if (count($course->users) == 0)
+                    مدرس
+                  @else
+                    دوبلور
+                  @endif
+                </h2>
+                @php
+                  $author = $course->authors[0];
+                  if (count($course->users) > 0) {
+                      $author = $course->users[0];
+                  }
+                @endphp
+                @if (count($course->users) == 0)
+                  <a href="{{ route('authors.show', [$author->slug]) }}"
+                    style="display: flex; flex-wrap: nowrap; align-content: center; flex-direction: row; justify-content: center; align-items: center; height: 80px;">
+                    <img src="#" class="lazyload" width="80" height="80"
+                      data-src="{{ fromDLHost($author->img) }}" style="border-radius: 49.9%;"
+                      alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
+                    <div style="/*width: 100%;*/ padding-right: 10px;">
+                      <div>{{ $author->name }}</div>
+                      {{-- <div>{{ $author->specialty }}</div> --}}
+                    </div>
+                  </a>
+                @else
+                  <a href="{{ route('dubbed.index', [$author->slug]) }}"
+                    style="display: flex; flex-wrap: nowrap; align-content: center; flex-direction: row; justify-content: center; align-items: center; height: 80px;">
+                    <img src="#" class="lazyload" width="80" height="80"
+                      data-src="{{ fromDLHost($author->avatar) }}" style="border-radius: 49.9%;"
+                      alt="عکس مدرس {{ $author->name }} - Image of Author {{ $author->name }}">
+                    <div style="width: 100%;padding-right: 10px;">
+                      <div>{{ $author->name }}</div>
+                      {{-- <div>{{ $author->specialty }}</div> --}}
+                    </div>
+                  </a>
+                @endif
+              </div>
+              <div class="col-sm-6 col-xs-12" style="margin-bottom:  1.6rem;">
+                <h2 class="classroom-workspace-overview__mini-headline t-12 t-bold t-black--light">فایل‌های دوره</h2>
+                <ul class="classroom-workspace-overview__files t-08 t-bold" style="margin-top: 15px;">
+                  <li>
+                    <div>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
+                        fill="currentColor" width="24" height="24" focusable="false"
+                        style="float: right;margin-left: 7px;">
+                        <path
+                          d="M22.25 10H20V7a1 1 0 00-1-1h-7.83l-.61-1.4a1 1 0 00-.91-.6H3a1 1 0 00-1 1v15a1 1 0 001 1h15.62a1 1 0 00.94-.66L23 11a.8.8 0 000-.28.75.75 0 00-.75-.72zM4 14.7V6h5.13L10 8h8v2H6.4a1 1 0 00-.94.66zM18.05 19H4.42L7 12h13.6z">
+                        </path>
+                      </svg>
+                      <span class="dot-delimiter-after">لینک فایل‌های دوره</span>
+                      <button class="btn-link"  data-toggle="modal" data-target="#course-files-modal">
+                        نمایش
+                      </button>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <svg class="svg-inline--fa fa-exclamation-triangle fa-w-18" aria-hidden="true" data-prefix="fa"
+                        data-icon="exclamation-triangle" role="img" xmlns="http://www.w3.org/2000/svg"
+                        data-fa-i2svg="" style="float: right;margin-left: 7px;font-size: 20px;" viewBox="0 0 576 512"
+                        width="24" height="24">
+                        <path fill="currentColor"
+                          d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z">
+                        </path>
+                      </svg>
+                      <span class="dot-delimiter-after">گزارش خرابی</span>
+                      <button class="btn-link report-issue-toggle">
+                        ثبت گزارش
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-xs-12">
+                <div style="margin-bottom: .8rem;">
+                  <h3 class="classroom-workspace-overview__header t-12 t-bold">مشخصات دوره</h3>
+                  <ul class="dot-delimited-list" style="color: #4a4a4a;">
+                    <li>
+                      @if ($course->durationHours)
+                        {{ $course->durationHours }}h
+                      @endif
+                      @if ($course->durationMinutes)
+                        {{ $course->durationMinutes }}m
+                      @endif
+                    </li>
+                    <li>{{ $skill }}</li>
+                    <li>
+                      تاریخ انتشار:
+                      <span title="{{ nPersian(date('Y/m/d', strtotime($course->releaseDate))) }}">
+                        @php
+                          $d = date('Y/m/d', strtotime($course->releaseDate));
+                          $d = explode('/', $d);
+                          echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                        @endphp
+                      </span>
+                    </li>
+                    @if ($course->updateDate)
+                      <li>
+                        تاریخ بروز رسانی:
+                        <span title="{{ nPersian(date('Y/m/d', strtotime($course->updateDate))) }}">
+                          @php
+                            $d = date('Y/m/d', strtotime($course->updateDate));
+                            $d = explode('/', $d);
+                            echo nPersian(gregorian_to_jalali(intval($d[0]), intval($d[1]), intval($d[2]), '/'));
+                          @endphp
+                        </span>
+                      </li>
+                    @endif
+                  </ul>
+                </div>
+                <div style="text-align: justify;" class="classroom-workspace-overview__description t-10">
+                  <div> {!! nl2br(e($course->description)) !!} </div>
+                </div>
+              </div>
+            </div>
+            
             <div class="row">
               <div class="col-sm-2 col-md-3 col-lg-2 course-meta">
                 <div class="course-info-stat-cont m-0 mb-2 w-100 text-left" dir="ltr">
