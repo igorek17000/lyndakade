@@ -1,6 +1,6 @@
 <div
   class="path col-xl-3 col-lg-4 col-md-6 col-sm-6 my-1 @if (isset($loop)) @if ($loop->iteration > 6) hidden-md hidden-sm hidden-xs @endif @endif">
-  <div class="mx-auto" style="position: relative;width: 255px;">
+  <div class="mx-auto" style="position: relative;width: 245px;">
     <img class="lazyload d-inline-block" data-src="{{ fromDLHost($path->thumbnail) }}"
       alt="مسیر آموزشی {{ $path->title }} - Image of Learn Path {{ $path->titleEng }}"
       style="border-radius: 5px; max-height: 143.44px; min-height: 143.44px;">
