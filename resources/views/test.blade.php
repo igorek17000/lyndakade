@@ -1674,6 +1674,7 @@ if (count($course->subjects) > 0) {
         'startTime');
       // console.log('play', index, startTime);
       course_player.currentTime = parseFloat(startTime);
+      course_player.play();
     }
 
     $(document).on('click', '.content-transcript-line', function() {
