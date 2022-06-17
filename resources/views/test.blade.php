@@ -1502,8 +1502,25 @@ if (count($course->subjects) > 0) {
     var course_title = '{{ $course->title }}';
     var course_titleEng = '{{ $course->titleEng }}';
     var video_titleEng = '';
-    var base_course_url = '{{ request()->url() }}'.split('/').slice(0, 5).join('/');;
+    var base_course_url = '{{ request()->url() }}'.split('/').slice(0, 5).join('/');
     var isSent = false;
+    var course_videos = {
+        @foreach ($course->chapters as $chapter)
+            @foreach ($chapter->videos as $video)
+                "{{ $video->id }}": {
+                    index: '{{ $video->index }}',
+                    id: '{{ $video->id }}',
+                    title: '{{ $video->title }}',
+                    titleEng: '{{ $video->titleEng }}',
+                    duration: parseFloat('{{ $video->duration }}'),
+                    path: '{{ $video->path }}',
+                    sub_en: '{{ $video->sub_en }}',
+                    sub_fa: '{{ $video->sub_fa }}',
+                },
+            @endforeach
+        @endforeach
+    };
+
     $(document).on('click', '.report-issue-toggle', function(e) {
       Goftino.open();
       if (!isSent) {
