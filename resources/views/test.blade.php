@@ -1266,7 +1266,7 @@ if (count($course->subjects) > 0) {
           </div>
           <div class="tab-pane fade" id="nav-transcript" role="tabpanel" aria-labelledby="nav-transcript-tab">
             <div class="row">
-              <div class="col-sm-6 col-xs-12">
+              <div class="col-sm-6 col-xs-12" style="text-align: justify;">
                 <div style="margin-bottom: .8rem;">
                   <h3 class="classroom-workspace-overview__header t-12 t-bold" id="video-title">
                   </h3>
@@ -1274,7 +1274,7 @@ if (count($course->subjects) > 0) {
                   </div>
                 </div>
               </div>
-              <div class="col-sm-6 col-xs-12" style="direction: ltr;text-align: left;">
+              <div class="col-sm-6 col-xs-12" style="direction: ltr;text-align: justify;">
                 <div style="margin-bottom: .8rem;">
                   <h3 class="classroom-workspace-overview__header t-12 t-bold" id="video-title-en">
                   </h3>
