@@ -776,8 +776,9 @@ if (count($course->subjects) > 0) {
             <ul class="list-unstyled collapse" id="chap-{{ $idx + 1 }}" style="">
               @foreach ($chapter->videos as $video)
                 <li>
-                  <a class="play-course-video" data-title="{{ nPersian($video->title) }}"
-                    data-title-eng="{{ $video->titleEng }}" data-video-id="{{ $video->id }}"
+                  <a class="play-course-video" data-video-id="{{ $video->id }}"
+                   {{-- data-title="{{ nPersian($video->title) }}"
+                    data-title-eng="{{ $video->titleEng }}" --}}
                     href="javascript:void(0);">
                     {{ nPersian($video->title) }}
                     <br /><small>{{ $video->duration }}</small>
