@@ -703,7 +703,7 @@ if (count($course->subjects) > 0) {
     .content-transcript-line--active {
       color: #000;
       text-decoration: underline;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     #course-files-modal-body .c-table {
