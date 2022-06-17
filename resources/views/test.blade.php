@@ -1688,7 +1688,7 @@ if (count($course->subjects) > 0) {
         var sub_time = parseFloat($(el).data('startTime'));
         if (sub_time < cTime)
             idx++;
-        // console.log(idx, sub_time, cTime, sub_time < cTime);
+        console.log(idx, sub_time, cTime, sub_time < cTime);
       })
       active_transcript_line(idx);
     });
