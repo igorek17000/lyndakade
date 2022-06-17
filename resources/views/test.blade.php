@@ -1512,7 +1512,7 @@ if (count($course->subjects) > 0) {
                     id: '{{ $video->id }}',
                     title: '{{ $video->title }}',
                     titleEng: '{{ $video->titleEng }}',
-                    duration: parseFloat('{{ $video->duration }}'),
+                    duration: '{{ $video->duration }}',
                     path: '{{ $video->path }}',
                     sub_en: '{{ $video->sub_en }}',
                     sub_fa: '{{ $video->sub_fa }}',
