@@ -1323,6 +1323,9 @@ if (count($course->subjects) > 0) {
       <div class="modal-content text-center">
         <div class="modal-body p-0" id="course-files-modal-body">
           <div class="c-table">
+                @php
+                  $is_unlocked = auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0);
+                @endphp
             <div class="c-header">
               لینک فایل های تمرین
             </div>
