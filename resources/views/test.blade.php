@@ -1502,6 +1502,7 @@ if (count($course->subjects) > 0) {
     var course_title = '{{ $course->title }}';
     var course_titleEng = '{{ $course->titleEng }}';
     var video_titleEng = '';
+    var base_course_url = '{{ request()->url() }}';
     var isSent = false;
     $(document).on('click', '.report-issue-toggle', function(e) {
       Goftino.open();
