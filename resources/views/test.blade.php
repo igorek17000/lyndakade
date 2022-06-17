@@ -1677,7 +1677,7 @@ if (count($course->subjects) > 0) {
     }
 
     $(document).on('click', '.content-transcript-line', function() {
-      var idx = $(this).data('index');
+      var idx = $(this).data(`index${course_player.captions.language.replace('fa', 'Fa').replace('en', 'En')}`);
       active_transcript_line(idx);
       play_at_transcript_line(idx);
     })
