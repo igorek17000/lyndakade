@@ -1507,16 +1507,7 @@ if (count($course->subjects) > 0) {
     var course_videos = {
         @foreach ($chapters as $chapter)
             @foreach ($chapter->videos as $video)
-                "{{ $video->id }}": {
-                    index: '{{ $video->index }}',
-                    id: '{{ $video->id }}',
-                    title: '{{ $video->title }}',
-                    titleEng: '{{ $video->titleEng }}',
-                    duration: '{{ $video->duration }}',
-                    path: '{{ $video->path }}',
-                    sub_en: '{{ $video->sub_en }}',
-                    sub_fa: '{{ $video->sub_fa }}',
-                },
+                "{{ $video->id }}": {{ $video }},
             @endforeach
         @endforeach
     };
