@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                                                    #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                                        transform: rotate(45deg) translate(2px, 2px);
-                                                    }
+                                                      #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                                                          transform: rotate(45deg) translate(2px, 2px);
+                                                      }
 
-                                                    #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                                        opacity: 0;
-                                                    }
+                                                      #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                                          opacity: 0;
+                                                      }
 
-                                                    #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                                        transform: rotate(-45deg) translate(1px, -1px);
-                                                    }
+                                                      #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                                          transform: rotate(-45deg) translate(1px, -1px);
+                                                      }
 
-                                                    #sidebarCollapse.active .sidebarCollapse span {
-                                                        transform: none;
-                                                        opacity: 1;
-                                                        margin: 0 auto;
-                                                    }
-                                                    */
+                                                      #sidebarCollapse.active .sidebarCollapse span {
+                                                          transform: none;
+                                                          opacity: 1;
+                                                          margin: 0 auto;
+                                                      }
+                                                      */
 
     @media (max-width: 767px) {
 
@@ -776,8 +776,7 @@ if (count($course->subjects) > 0) {
             <ul class="list-unstyled collapse" id="chap-{{ $idx + 1 }}" style="">
               @foreach ($chapter->videos as $video)
                 <li>
-                  <a class="play-course-video" data-video-id="{{ $video->id }}"
-                   {{-- data-title="{{ nPersian($video->title) }}"
+                  <a class="play-course-video" data-video-id="{{ $video->id }}" {{-- data-title="{{ nPersian($video->title) }}"
                     data-title-eng="{{ $video->titleEng }}" --}}
                     href="javascript:void(0);">
                     {{ nPersian($video->title) }}
@@ -1417,6 +1416,24 @@ if (count($course->subjects) > 0) {
   </div>
 @endsection
 @section('script_body')
+  <script>
+    var course_videos = {
+      @foreach ($chapters as $chapter)
+        @foreach ($chapter->videos as $video)
+          "{{ $video->id }}": {
+            index: '{{ $video->index }}',
+            id: '{{ $video->id }}',
+            title: '{{ $video->title }}',
+            titleEng: '{{ $video->titleEng }}',
+            duration: '{{ $video->duration }}',
+            path: '{{ $video->path }}',
+            sub_en: '{{ $video->sub_en }}',
+            sub_fa: '{{ $video->sub_fa }}',
+          },
+        @endforeach
+      @endforeach
+    };
+  </script>
   <script src="{{ asset('js/webvtt-parser.js') }}"></script>
   <script>
     const course_player = new Plyr("#plyr-video", {
@@ -1505,22 +1522,6 @@ if (count($course->subjects) > 0) {
     var video_titleEng = '';
     var base_course_url = '{{ request()->url() }}'.split('/').slice(0, 5).join('/');
     var isSent = false;
-    var course_videos = {
-        @foreach ($chapters as $chapter)
-            @foreach ($chapter->videos as $video)
-                "{{ $video->id }}": {
-                    index: '{{ $video->index }}',
-                    id: '{{ $video->id }}',
-                    title: '{{ $video->title }}',
-                    titleEng: '{{ $video->titleEng }}',
-                    duration: '{{ $video->duration }}',
-                    path: '{{ $video->path }}',
-                    sub_en: '{{ $video->sub_en }}',
-                    sub_fa: '{{ $video->sub_fa }}',
-                },
-            @endforeach
-        @endforeach
-    };
 
     $(document).on('click', '.report-issue-toggle', function(e) {
       Goftino.open();
@@ -1576,10 +1577,10 @@ if (count($course->subjects) > 0) {
           return;
         }
       }
-    //   var videoId = $($next.find("a")).data('videoId');
-    //   var title = $($next.find("a")).data('title');
-    //   video_titleEng = $($next.find("a")).data('titleEng');
-    //   PlayVideo(title, videoId);
+      //   var videoId = $($next.find("a")).data('videoId');
+      //   var title = $($next.find("a")).data('title');
+      //   video_titleEng = $($next.find("a")).data('titleEng');
+      //   PlayVideo(title, videoId);
       $next.find("a").trigger("click");
     });
 
@@ -1618,7 +1619,7 @@ if (count($course->subjects) > 0) {
       var c_title = course_title.replace('دوره آموزشی ', '');
       var c_titleEng = course_titleEng;
       var video_title = course_player.config.title;
-    //   history.pushState({page: video_title}, video_title, base_course_url + `/${video_title}`); 
+      //   history.pushState({page: video_title}, video_title, base_course_url + `/${video_title}`); 
       document.title = video_title;
       if (video_titleEng.includes(' - '))
         video_titleEng = video_titleEng.substring(video_titleEng.indexOf(' - ') + 3);
@@ -1627,7 +1628,7 @@ if (count($course->subjects) > 0) {
       );
       $('#video-title').html(video_title);
       $('#video-title-en').html(video_titleEng);
-      
+
     });
 
     function httpGet(theUrl) {
@@ -1701,7 +1702,7 @@ if (count($course->subjects) > 0) {
 
     $(document).on('click', '.content-transcript-line', function() {
       if (course_player.captions.languages.includes($(this).data('lang')))
-            course_player.language = $(this).data('lang');
+        course_player.language = $(this).data('lang');
       var idx = $(this).data(`index${course_player.captions.language.replace('fa', 'Fa').replace('en', 'En')}`);
       //   active_transcript_line(idx);
       play_at_transcript_line(idx);
