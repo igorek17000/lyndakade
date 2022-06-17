@@ -1619,7 +1619,7 @@ if (count($course->subjects) > 0) {
     }
     async function fill_transcript(video_id) {
       var sub_content = httpGet(`https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=f`);
-      var transcript_html = nl2br(sub_content);
+      var transcript_html = nl2br(sub_content.replace('WEBVTT', '').trim());
 
       $('.classroom-transcript__lines').html(transcript_html);
     }
