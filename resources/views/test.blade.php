@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                        #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                            transform: rotate(45deg) translate(2px, 2px);
-                        }
+                          #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                              transform: rotate(45deg) translate(2px, 2px);
+                          }
 
-                        #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                            opacity: 0;
-                        }
+                          #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                              opacity: 0;
+                          }
 
-                        #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                            transform: rotate(-45deg) translate(1px, -1px);
-                        }
+                          #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                              transform: rotate(-45deg) translate(1px, -1px);
+                          }
 
-                        #sidebarCollapse.active .sidebarCollapse span {
-                            transform: none;
-                            opacity: 1;
-                            margin: 0 auto;
-                        }
-                        */
+                          #sidebarCollapse.active .sidebarCollapse span {
+                              transform: none;
+                              opacity: 1;
+                              margin: 0 auto;
+                          }
+                          */
 
     @media (max-width: 767px) {
 
@@ -729,13 +729,14 @@ if (count($course->subjects) > 0) {
     }
 
     #course-files-modal-body .c-table .c-item a:hover {
-        background-color: #9c9c9c;
-        color: #fff;
-        cursor: pointer;
+      background-color: #9c9c9c;
+      color: #fff;
+      cursor: pointer;
     }
+
     #course-files-modal-body .c-table .c-item a::before {
-        content: '\000BB';
-        padding-right: 8px;
+      content: '\000BB';
+      padding-right: 8px;
     }
   </style>
   @csrf
@@ -1323,52 +1324,52 @@ if (count($course->subjects) > 0) {
       <div class="modal-content text-center">
         <div class="modal-body p-0" id="course-files-modal-body">
           <div class="c-table">
-                @php
-                  $is_unlocked = auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0);
-                @endphp
+            @php
+              $is_unlocked = auth()->check() && (Auth::user()->role->id == TCG\Voyager\Models\Role::firstWhere('name', 'admin')->id || $course_state == '1' || $course->price == 0);
+            @endphp
             <div class="c-header">
               لینک فایل های تمرین
             </div>
             <div class="c-item">
-                @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
-                      @php
-                        $idx = 0;
-                      @endphp
-                      @foreach (json_decode($course->exerciseFile) as $file)
-                        @php
-                          $idx = $idx + 1;
-                        @endphp
-
-
-                          @if ($is_unlocked)
-                            <a href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
-                                <i class="lyndacon unlock" style="font-size: 20px;"></i>
-                                <span>
-                                {{ prepare_course_file_name($file->original_name) }}
-                                </span>
-                                @if (isset($file->size))
-                                <span class="text-muted small">
-                                    ({{ formatBytes($file->size) }})
-                                </span>
-                                @endif
-                            </a>
-                          @else
-                            <span>
-                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
-                              {{ prepare_course_file_name($file->original_name) }}
-                            </span>
-                            @if (isset($file->size))
-                              <span class="text-muted small">
-                                ({{ formatBytes($file->size) }})
-                              </span>
-                            @endif
-                          @endif
-                      @endforeach
+              @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
+                @php
+                  $idx = 0;
+                @endphp
+                @foreach (json_decode($course->exerciseFile) as $file)
+                  @php
+                    $idx = $idx + 1;
+                  @endphp
+                  @if ($is_unlocked)
+                    <a
+                      href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
+                      <i class="lyndacon unlock" style="font-size: 20px;"></i>
+                      <span>
+                        {{ prepare_course_file_name($file->original_name) }}
+                      </span>
+                      @if (isset($file->size))
+                        <span class="text-muted small">
+                          ({{ formatBytes($file->size) }})
+                        </span>
+                      @endif
+                    </a>
+                  @else
+                    <span>
+                      <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                      {{ prepare_course_file_name($file->original_name) }}
+                    </span>
+                    @if (isset($file->size))
+                      <span class="text-muted small">
+                        ({{ formatBytes($file->size) }})
+                      </span>
                     @endif
+                  @endif
+                @endforeach
+              @else
+                <span style="text-align: center;">
+                  این دوره، فایل تمرین ندارد.
+                </span>
+              @endif
 
-              <a href="http://dl2.soft98.ir/adobe/Unity/2020.2.7f1/builtin_shaders.zip?1655423933">
-                builtin_shaders
-            </a>
             </div>
           </div>
         </div>
