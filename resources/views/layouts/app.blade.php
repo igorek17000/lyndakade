@@ -1148,14 +1148,12 @@
   </div>
 
   <div class="modal fade" id="preview-modal" tabindex="-1" role="dialog" aria-labelledby="preview-modal-title"
-    aria-hidden="true" style="background-color: #444c;">
+    aria-hidden="true" style="background-color: rgba(66, 66, 66, 0.8);">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content text-center">
         <div class="modal-body p-0" id="preview-modal-body">
-          {{-- <video src="" controls aria-controls="true"
-            style="border-top-left-radius: 3px; border-top-right-radius: 3px;"></video> --}}
           <video class="w-100" playsinline controls aria-controls="true" id="preview-video-player"
-            data-poster="" style="border-top-left-radius: 3px; border-top-right-radius: 3px;">
+            data-poster="" style="border-top-left-radius: 3px; border-top-right-radius: 3px; height: auto">
             <source type="video/mp4" src="" size="720" default />
             <track kind="captions" label="فارسی" src="" srclang="fa" default>
           </video>
