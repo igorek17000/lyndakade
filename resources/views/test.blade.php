@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                                                      #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                                          transform: rotate(45deg) translate(2px, 2px);
-                                                      }
+                                                        #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                                                            transform: rotate(45deg) translate(2px, 2px);
+                                                        }
 
-                                                      #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                                          opacity: 0;
-                                                      }
+                                                        #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                                            opacity: 0;
+                                                        }
 
-                                                      #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                                          transform: rotate(-45deg) translate(1px, -1px);
-                                                      }
+                                                        #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                                            transform: rotate(-45deg) translate(1px, -1px);
+                                                        }
 
-                                                      #sidebarCollapse.active .sidebarCollapse span {
-                                                          transform: none;
-                                                          opacity: 1;
-                                                          margin: 0 auto;
-                                                      }
-                                                      */
+                                                        #sidebarCollapse.active .sidebarCollapse span {
+                                                            transform: none;
+                                                            opacity: 1;
+                                                            margin: 0 auto;
+                                                        }
+                                                        */
 
     @media (max-width: 767px) {
 
@@ -1577,10 +1577,6 @@ if (count($course->subjects) > 0) {
           return;
         }
       }
-      //   var videoId = $($next.find("a")).data('videoId');
-      //   var title = $($next.find("a")).data('title');
-      //   video_titleEng = $($next.find("a")).data('titleEng');
-      //   PlayVideo(title, videoId);
       $next.find("a").trigger("click");
     });
 
@@ -1620,7 +1616,7 @@ if (count($course->subjects) > 0) {
       var c_titleEng = course_titleEng;
       var video_title = course_player.config.title;
       //   history.pushState({page: video_title}, video_title, base_course_url + `/${video_title}`); 
-      document.title = video_title;
+      document.title = video_title + ' - ' + c_title;
       if (video_titleEng.includes(' - '))
         video_titleEng = video_titleEng.substring(video_titleEng.indexOf(' - ') + 3);
       $('#video-player-title').html(
