@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                    #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                        transform: rotate(45deg) translate(2px, 2px);
-                    }
+                      #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                          transform: rotate(45deg) translate(2px, 2px);
+                      }
 
-                    #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                        opacity: 0;
-                    }
+                      #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                          opacity: 0;
+                      }
 
-                    #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                        transform: rotate(-45deg) translate(1px, -1px);
-                    }
+                      #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                          transform: rotate(-45deg) translate(1px, -1px);
+                      }
 
-                    #sidebarCollapse.active .sidebarCollapse span {
-                        transform: none;
-                        opacity: 1;
-                        margin: 0 auto;
-                    }
-                    */
+                      #sidebarCollapse.active .sidebarCollapse span {
+                          transform: none;
+                          opacity: 1;
+                          margin: 0 auto;
+                      }
+                      */
 
     @media (max-width: 767px) {
 
@@ -693,6 +693,53 @@ if (count($course->subjects) > 0) {
         width: 100%;
       }
     }
+
+    #course-files-modal-body .c-table {
+      display: table;
+      margin: 15px;
+      padding: 0;
+    }
+
+    #course-files-modal-body .c-table .c-header {
+      display: table;
+      width: 100%;
+      text-align: center;
+      border-radius: 10px 10px 0 0;
+      color: #fff;
+      background: #437593;
+    }
+
+    #course-files-modal-body .c-table .c-header .c-cell {
+      font-size: 15px;
+      color: #fff;
+      line-height: 1.2;
+      font-weight: 700;
+      padding-right: 20px;
+      padding-top: 19px;
+      padding-bottom: 19px;
+    }
+
+    #course-files-modal-body .c-table .c-body {
+      display: table;
+      width: 100%;
+      background: #fff;
+    }
+
+    #course-files-modal-body .c-table .c-body .c-cell {
+      font-size: 11px;
+      color: #666;
+    }
+
+    #course-files-modal-body .c-table .c-body .c-cell a {
+      display: block;
+      background: #fff;
+      padding: 7px 10px;
+      color: gray;
+      border-bottom: 1px solid #efefef;
+      font-size: 12px;
+      text-align: left;
+      direction: ltr;
+    }
   </style>
   @csrf
   @if (isset($has_dubbed))
@@ -901,7 +948,7 @@ if (count($course->subjects) > 0) {
                   <h3 class="classroom-workspace-overview__header t-12 t-bold">
                     <span style="border-bottom: 3px solid #005aff;">مشخصات دوره
                     </span>
-                </h3>
+                  </h3>
                   <ul class="dot-delimited-list" style="color: #4a4a4a;">
                     <li>
                       @if ($course->durationHours)
@@ -1024,7 +1071,7 @@ if (count($course->subjects) > 0) {
                   <h3 class="classroom-workspace-overview__header t-12 t-bold">
                     <span style="border-bottom: 3px solid #005aff;">Course Details
                     </span>
-                </h3>
+                  </h3>
                   <ul class="dot-delimited-list" style="color: #4a4a4a;">
                     <li>
                       @if ($course->durationHours)
@@ -1209,8 +1256,8 @@ if (count($course->subjects) > 0) {
           <div class="container tab-content" style="margin-bottom: 0;padding-left: 0;padding-right: 0;">
             <div class="col-xs-12">
               <h3 class="classroom-workspace-overview__header t-12 t-bold">
-                    <span style="border-bottom: 3px solid #005aff;">مهارت‌ها
-                    </span>
+                <span style="border-bottom: 3px solid #005aff;">مهارت‌ها
+                </span>
               </h3>
               <ul class="classroom-workspace-overview__skills-list">
                 @foreach ($subjects as $subject)
@@ -1236,9 +1283,9 @@ if (count($course->subjects) > 0) {
           <div class="container tab-content clearfix" style="margin-bottom: 0;padding-left: 0;padding-right: 0;">
             <div class="col-xs-12">
               <h3 class="classroom-workspace-overview__header t-12 t-bold">
-                    <span style="border-bottom: 3px solid #005aff;">
-                مسیرهای آموزشی مرتبط
-                    </span>
+                <span style="border-bottom: 3px solid #005aff;">
+                  مسیرهای آموزشی مرتبط
+                </span>
               </h3>
               <div>
                 @for ($i = 0; $i < 4 && +$i < count($related_paths); $i++)
@@ -1255,9 +1302,9 @@ if (count($course->subjects) > 0) {
           <div class="container tab-content" style="margin-bottom: 0;padding-left: 0;padding-right: 0;">
             <div class="col-xs-12">
               <h3 class="classroom-workspace-overview__header t-12 t-bold">
-                    <span style="border-bottom: 3px solid #005aff;">
-                دوره‌های آموزشی مرتبط
-                    </span>
+                <span style="border-bottom: 3px solid #005aff;">
+                  دوره‌های آموزشی مرتبط
+                </span>
               </h3>
               <div>
                 @for ($i = 0; $i < 4 && $i < count($related_courses); $i++)
@@ -1278,7 +1325,19 @@ if (count($course->subjects) > 0) {
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content text-center">
         <div class="modal-body p-0" id="course-files-modal-body">
+          <div class="c-table">
+            <div class="c-header">
+              <div class="c-cell">
+                لینک فایل های تمرین
+              </div>
+            </div>
 
+            <div class="c-body">
+              <div class="c-cell">
+                <a href="http://dl2.soft98.ir/adobe/Unity/2020.2.7f1/builtin_shaders.zip?1655423933">builtin_shaders</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
