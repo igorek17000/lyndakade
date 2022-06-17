@@ -727,6 +727,16 @@ if (count($course->subjects) > 0) {
       text-align: left;
       direction: ltr;
     }
+
+    #course-files-modal-body .c-table .c-item a:hover {
+        background-color: #9c9c9c;
+        color: #fff;
+        cursor: pointer;
+    }
+    #course-files-modal-body .c-table .c-item a::before {
+        content: '\000BB';
+        padding-right: 8px;
+    }
   </style>
   @csrf
   @if (isset($has_dubbed))
