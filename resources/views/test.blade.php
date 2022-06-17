@@ -863,7 +863,7 @@ if (count($course->subjects) > 0) {
           </li>
           <li class="nav-item">
             <a class="nav-link" id="nav-transcript-tab" data-toggle="tab" href="#nav-transcript" role="tab"
-              aria-controls="nav-transcript" aria-selected="false">Transcript</a>
+              aria-controls="nav-transcript" aria-selected="false">زیرنویس</a>
           </li>
         </ul>
 
@@ -1256,7 +1256,7 @@ if (count($course->subjects) > 0) {
             <div class="row">
               <div class="col-xs-12">
                 <div style="margin-bottom: .8rem;">
-                  <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                  <h3 class="classroom-workspace-overview__header t-12 t-bold" id="video-title">
                     عنوان فیلم
                   </h3>
                   <div class="t-10 t-black--light">
@@ -1583,9 +1583,8 @@ if (count($course->subjects) > 0) {
       var video_title = course_player.config.title;
       if (video_titleEng.includes(' - '))
         video_titleEng = video_titleEng.substring(video_titleEng.indexOf(' - ') + 3);
-      var video_player_title_html =
-        ` <div>${video_title} (${video_titleEng})</div><div style="color: #bfc1c3!important;font-size: 80%;">${c_title} (${c_titleEng})</div>`;
-      $('#video-player-title').html(video_player_title_html);
+      $('#video-player-title').html(` <div>${video_title} (${video_titleEng})</div><div style="color: #bfc1c3!important;font-size: 80%;">${c_title} (${c_titleEng})</div>`);
+      $('#video-title').html(`${video_title}`);
     });
 
     $(document).ready(function() {
