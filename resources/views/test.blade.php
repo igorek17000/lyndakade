@@ -1674,11 +1674,9 @@ if (count($course->subjects) > 0) {
       course_player.currentTime = parseFloat(startTime);
     }
 
-    
-
     $(document).on('click', '.content-transcript-line', function() {
       var idx = $(this).data('index');
-    //   active_transcript_line(idx);
+      active_transcript_line(idx);
       play_at_transcript_line(idx);
     })
 
