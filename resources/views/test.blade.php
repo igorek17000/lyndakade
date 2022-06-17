@@ -1670,6 +1670,10 @@ if (count($course->subjects) > 0) {
       active_transcript_line(idx);
     })
 
+    course_player.on('timeupdate', function(event) {
+        console.log(event);
+    });
+
     $(document).ready(function() {
       $('.carousel').carousel({
         interval: false,
