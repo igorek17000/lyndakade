@@ -1353,6 +1353,7 @@ if (count($course->subjects) > 0) {
                       @endif
                     </a>
                   @else
+                  <a href="#">
                     <span>
                       <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
                       {{ prepare_course_file_name($file->original_name) }}
@@ -1362,6 +1363,7 @@ if (count($course->subjects) > 0) {
                         ({{ formatBytes($file->size) }})
                       </span>
                     @endif
+                </a>
                   @endif
                 @endforeach
               @else
