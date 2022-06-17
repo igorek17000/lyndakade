@@ -1330,7 +1330,7 @@ if (count($course->subjects) > 0) {
             <div class="c-header">
               لینک فایل های تمرین
             </div>
-            <div class="c-item">
+            <div class="c-item" @if (!($course->exerciseFile && json_decode($course->exerciseFile) != null)) style="padding-top: .75rem" @endif>
               @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
                 @php
                   $idx = 0;
