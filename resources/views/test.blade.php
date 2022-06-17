@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                  #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                      transform: rotate(45deg) translate(2px, 2px);
-                  }
+                    #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                        transform: rotate(45deg) translate(2px, 2px);
+                    }
 
-                  #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                      opacity: 0;
-                  }
+                    #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                        opacity: 0;
+                    }
 
-                  #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                      transform: rotate(-45deg) translate(1px, -1px);
-                  }
+                    #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                        transform: rotate(-45deg) translate(1px, -1px);
+                    }
 
-                  #sidebarCollapse.active .sidebarCollapse span {
-                      transform: none;
-                      opacity: 1;
-                      margin: 0 auto;
-                  }
-                  */
+                    #sidebarCollapse.active .sidebarCollapse span {
+                        transform: none;
+                        opacity: 1;
+                        margin: 0 auto;
+                    }
+                    */
 
     @media (max-width: 767px) {
 
@@ -482,6 +482,10 @@ if (count($course->subjects) > 0) {
         height: 500px;
       }
 
+    }
+
+    #preview-modal-body .plyr video {
+      height: auto !important;
     }
 
     #sidebar ul>li:hover>a:before {
