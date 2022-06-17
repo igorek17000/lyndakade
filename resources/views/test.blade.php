@@ -1672,6 +1672,7 @@ if (count($course->subjects) > 0) {
     function play_at_transcript_line(index) {
       var startTime = $(`.content-transcript-line[data-index-${course_player.captions.language}="${index}"]`).data(
         'startTime');
+    console.log('play', index, startTime);
       course_player.currentTime = parseFloat(startTime);
     }
 
