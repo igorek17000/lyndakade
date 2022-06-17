@@ -1426,9 +1426,6 @@ if (count($course->subjects) > 0) {
             title: '{{ $video->title }}',
             titleEng: '{{ $video->titleEng }}',
             duration: '{{ $video->duration }}',
-            path: '{{ $video->path }}',
-            sub_en: '{{ $video->sub_en }}',
-            sub_fa: '{{ $video->sub_fa }}',
           },
         @endforeach
       @endforeach
