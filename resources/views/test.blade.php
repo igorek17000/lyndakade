@@ -1635,7 +1635,8 @@ if (count($course->subjects) > 0) {
       transcript_text = transcript_text.replace('WEBVTT', '').trim();
       var transcript_html = nl2br(transcript_text);
 
-      return '<span>' + transcript_html.replace('<br>', '</span><span>') + '</span>';
+    //   return '<span>' + transcript_html.replace('<br>', '</span><span>') + '</span>';
+      return transcript_html;
     }
     async function fill_transcript(video_id) {
       var sub_content;
