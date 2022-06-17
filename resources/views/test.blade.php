@@ -1617,7 +1617,7 @@ if (count($course->subjects) > 0) {
       var c_title = course_title.replace('دوره آموزشی ', '');
       var c_titleEng = course_titleEng;
       var video_title = course_player.config.title;
-      history.pushState({page: video_title}, video_title, base_course_url + `/${video_title}`); 
+    //   history.pushState({page: video_title}, video_title, base_course_url + `/${video_title}`); 
       document.title = video_title;
       if (video_titleEng.includes(' - '))
         video_titleEng = video_titleEng.substring(video_titleEng.indexOf(' - ') + 3);
