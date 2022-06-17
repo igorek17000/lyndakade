@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                                            #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                                transform: rotate(45deg) translate(2px, 2px);
-                                            }
+                                                  #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                                                      transform: rotate(45deg) translate(2px, 2px);
+                                                  }
 
-                                            #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                                opacity: 0;
-                                            }
+                                                  #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                                      opacity: 0;
+                                                  }
 
-                                            #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                                transform: rotate(-45deg) translate(1px, -1px);
-                                            }
+                                                  #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                                      transform: rotate(-45deg) translate(1px, -1px);
+                                                  }
 
-                                            #sidebarCollapse.active .sidebarCollapse span {
-                                                transform: none;
-                                                opacity: 1;
-                                                margin: 0 auto;
-                                            }
-                                            */
+                                                  #sidebarCollapse.active .sidebarCollapse span {
+                                                      transform: none;
+                                                      opacity: 1;
+                                                      margin: 0 auto;
+                                                  }
+                                                  */
 
     @media (max-width: 767px) {
 
@@ -1636,14 +1636,15 @@ if (count($course->subjects) > 0) {
       return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
     }
 
-    function transcript_text_to_spans(transcript_text) {
+    function transcript_text_to_spans(transcript_text, lang) {
       var pa = new WebVTTParser();
       var r = pa.parse(transcript_text, 'metadata');
       var transcript_html = '',
         idx = 1;
 
       r.cues.forEach(el => {
-        transcript_html += `<span class="content-transcript-line" data-index="${idx}"> ${el.text}  </span>`;
+        transcript_html +=
+          `<span class="content-transcript-line" data-index-${lang}="${idx}" data-start-time-${lang}="${el.startTime}"> ${el.text}  </span>`;
         idx += 1;
       });
 
@@ -1653,25 +1654,43 @@ if (count($course->subjects) > 0) {
     async function fill_transcript(video_id) {
       var sub_content;
       sub_content = httpGet(`https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=f`);
-      $('.classroom-transcript__lines').html(transcript_text_to_spans(sub_content));
+      $('.classroom-transcript__lines').html(transcript_text_to_spans(sub_content, 'fa'));
 
       sub_content = httpGet(`https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=e`);
-      $('.classroom-transcript__lines-en').html(transcript_text_to_spans(sub_content));
+      $('.classroom-transcript__lines-en').html(transcript_text_to_spans(sub_content, 'en'));
     }
 
     function active_transcript_line(index) {
       var activeClass = 'content-transcript-line--active';
+    //   if ($(`.content-transcript-line[data-index-${course_player.captions.language}="${index}"]`).hasClass(activeClass))
+    //     return;
       $('.content-transcript-line').removeClass(activeClass);
-      $(`.content-transcript-line[data-index="${index}"]`).toggleClass(activeClass);
+      $(`.content-transcript-line[data-index-${course_player.captions.language}="${index}"]`).toggleClass(activeClass);
     }
+
+    function play_at_transcript_line(index) {
+      var startTime = $(`.content-transcript-line[data-index-${course_player.captions.language}="${index}"]`).data(
+        'startTime');
+      course_player.currentTime = parseFloat(startTime);
+    }
+
+    
 
     $(document).on('click', '.content-transcript-line', function() {
       var idx = $(this).data('index');
-      active_transcript_line(idx);
+    //   active_transcript_line(idx);
+      play_at_transcript_line(idx);
     })
 
     course_player.on('timeupdate', function(event) {
-        console.log(event);
+      var cTime = course_player.currentTime;
+      var idx = 0;
+      document.querySelectorAll(`.content-transcript-line[data-index-${course_player.captions.language}]`).forEach(el=>{
+        var sub_time = parseFloat($(el).data('startTime'));
+        if (sub_time < cTime)
+            idx++;
+      })
+      active_transcript_line(idx);
     });
 
     $(document).ready(function() {
