@@ -1660,8 +1660,8 @@ if (count($course->subjects) > 0) {
       $('.classroom-transcript__lines-en').html(transcript_text_to_spans(sub_content, 'en'));
     }
 
-    function active_transcript_line(index) {
-        console.log('active', index);
+    function active_transcript_line(index, there='1') {
+        console.log('active', index, there);
       var activeClass = 'content-transcript-line--active';
     //   if ($(`.content-transcript-line[data-index-${course_player.captions.language}="${index}"]`).hasClass(activeClass))
     //     return;
@@ -1678,7 +1678,7 @@ if (count($course->subjects) > 0) {
 
     $(document).on('click', '.content-transcript-line', function() {
       var idx = $(this).data(`index${course_player.captions.language.replace('fa', 'Fa').replace('en', 'En')}`);
-      active_transcript_line(idx);
+      active_transcript_line(idx, 1);
       play_at_transcript_line(idx);
     })
 
@@ -1691,7 +1691,7 @@ if (count($course->subjects) > 0) {
             idx++;
         // console.log(idx, sub_time, cTime, sub_time < cTime);
       })
-      active_transcript_line(idx);
+      active_transcript_line(idx, 2);
     });
 
     $(document).ready(function() {
