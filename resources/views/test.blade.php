@@ -1505,7 +1505,7 @@ if (count($course->subjects) > 0) {
     var base_course_url = '{{ request()->url() }}'.split('/').slice(0, 5).join('/');
     var isSent = false;
     var course_videos = {
-        @foreach ($course->chapters as $chapter)
+        @foreach ($chapters as $chapter)
             @foreach ($chapter->videos as $video)
                 "{{ $video->id }}": {
                     index: '{{ $video->index }}',
