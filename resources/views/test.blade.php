@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                                          #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                              transform: rotate(45deg) translate(2px, 2px);
-                                          }
+                                            #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                                                transform: rotate(45deg) translate(2px, 2px);
+                                            }
 
-                                          #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                              opacity: 0;
-                                          }
+                                            #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                                opacity: 0;
+                                            }
 
-                                          #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                              transform: rotate(-45deg) translate(1px, -1px);
-                                          }
+                                            #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                                transform: rotate(-45deg) translate(1px, -1px);
+                                            }
 
-                                          #sidebarCollapse.active .sidebarCollapse span {
-                                              transform: none;
-                                              opacity: 1;
-                                              margin: 0 auto;
-                                          }
-                                          */
+                                            #sidebarCollapse.active .sidebarCollapse span {
+                                                transform: none;
+                                                opacity: 1;
+                                                margin: 0 auto;
+                                            }
+                                            */
 
     @media (max-width: 767px) {
 
@@ -1659,11 +1659,15 @@ if (count($course->subjects) > 0) {
       $('.classroom-transcript__lines-en').html(transcript_text_to_spans(sub_content));
     }
 
-    $(document).on('click', '.content-transcript-line', function() {
+    function active_transcript_line(index) {
       var activeClass = 'content-transcript-line--active';
       $('.content-transcript-line').removeClass(activeClass);
+      $(`.content-transcript-line[data-index="${index}"]`).toggleClass(activeClass);
+    }
+
+    $(document).on('click', '.content-transcript-line', function() {
       var idx = $(this).data('index');
-      $(`.content-transcript-line[data-index="${idx}"]`).toggleClass(activeClass);
+      active_transcript_line(idx);
     })
 
     $(document).ready(function() {
