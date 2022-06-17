@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                                                  #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                                      transform: rotate(45deg) translate(2px, 2px);
-                                                  }
+                                                    #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                                                        transform: rotate(45deg) translate(2px, 2px);
+                                                    }
 
-                                                  #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                                      opacity: 0;
-                                                  }
+                                                    #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                                        opacity: 0;
+                                                    }
 
-                                                  #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                                      transform: rotate(-45deg) translate(1px, -1px);
-                                                  }
+                                                    #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                                        transform: rotate(-45deg) translate(1px, -1px);
+                                                    }
 
-                                                  #sidebarCollapse.active .sidebarCollapse span {
-                                                      transform: none;
-                                                      opacity: 1;
-                                                      margin: 0 auto;
-                                                  }
-                                                  */
+                                                    #sidebarCollapse.active .sidebarCollapse span {
+                                                        transform: none;
+                                                        opacity: 1;
+                                                        margin: 0 auto;
+                                                    }
+                                                    */
 
     @media (max-width: 767px) {
 
@@ -1644,7 +1644,7 @@ if (count($course->subjects) > 0) {
 
       r.cues.forEach(el => {
         transcript_html +=
-          `<span class="content-transcript-line" data-index-${lang}="${idx}" data-start-time="${el.startTime}"> ${el.text}  </span>`;
+          `<span class="content-transcript-line" data-lang="${lang}" data-index-${lang}="${idx}" data-start-time="${el.startTime}"> ${el.text}  </span>`;
         idx += 1;
       });
 
@@ -1661,10 +1661,10 @@ if (count($course->subjects) > 0) {
     }
 
     function active_transcript_line(index) {
-        // console.log('active', index);
+      // console.log('active', index);
       var activeClass = 'content-transcript-line--active';
-    //   if ($(`.content-transcript-line[data-index-${course_player.captions.language}="${index}"]`).hasClass(activeClass))
-    //     return;
+      //   if ($(`.content-transcript-line[data-index-${course_player.captions.language}="${index}"]`).hasClass(activeClass))
+      //     return;
       $('.content-transcript-line').removeClass(activeClass);
       $(`.content-transcript-line[data-index-${course_player.captions.language}="${index}"]`).toggleClass(activeClass);
     }
@@ -1672,25 +1672,28 @@ if (count($course->subjects) > 0) {
     function play_at_transcript_line(index) {
       var startTime = $(`.content-transcript-line[data-index-${course_player.captions.language}="${index}"]`).data(
         'startTime');
-    // console.log('play', index, startTime);
+      // console.log('play', index, startTime);
       course_player.currentTime = parseFloat(startTime);
     }
 
     $(document).on('click', '.content-transcript-line', function() {
+      if (course_player.captions.languages.includes($(this).data('lang')))
+            course_player.language = $(this).data('lang');
       var idx = $(this).data(`index${course_player.captions.language.replace('fa', 'Fa').replace('en', 'En')}`);
-    //   active_transcript_line(idx);
+      //   active_transcript_line(idx);
       play_at_transcript_line(idx);
     })
 
     course_player.on('timeupdate', function(event) {
       var cTime = course_player.currentTime;
       var idx = 0;
-      document.querySelectorAll(`.content-transcript-line[data-index-${course_player.captions.language}]`).forEach(el=>{
-        var sub_time = parseFloat(el.dataset.startTime);
-        if (sub_time <= cTime)
+      document.querySelectorAll(`.content-transcript-line[data-index-${course_player.captions.language}]`).forEach(
+        el => {
+          var sub_time = parseFloat(el.dataset.startTime);
+          if (sub_time <= cTime)
             idx++;
-        // console.log(idx, sub_time, cTime, sub_time < cTime);
-      })
+          // console.log(idx, sub_time, cTime, sub_time < cTime);
+        })
       active_transcript_line(idx);
     });
 
