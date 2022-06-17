@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                          #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                              transform: rotate(45deg) translate(2px, 2px);
-                          }
+                            #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                                transform: rotate(45deg) translate(2px, 2px);
+                            }
 
-                          #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                              opacity: 0;
-                          }
+                            #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                opacity: 0;
+                            }
 
-                          #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                              transform: rotate(-45deg) translate(1px, -1px);
-                          }
+                            #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                transform: rotate(-45deg) translate(1px, -1px);
+                            }
 
-                          #sidebarCollapse.active .sidebarCollapse span {
-                              transform: none;
-                              opacity: 1;
-                              margin: 0 auto;
-                          }
-                          */
+                            #sidebarCollapse.active .sidebarCollapse span {
+                                transform: none;
+                                opacity: 1;
+                                margin: 0 auto;
+                            }
+                            */
 
     @media (max-width: 767px) {
 
@@ -861,6 +861,10 @@ if (count($course->subjects) > 0) {
             <a class="nav-link" id="nav-overview-tab" data-toggle="tab" href="#nav-overview" role="tab"
               aria-controls="nav-overview" aria-selected="false">Overview</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" id="nav-transcript-tab" data-toggle="tab" href="#nav-transcript" role="tab"
+              aria-controls="nav-transcript" aria-selected="false">Transcript</a>
+          </li>
         </ul>
 
         <div class="container tab-content" id="nav-tabContent" style="margin-bottom: 0;">
@@ -1248,6 +1252,22 @@ if (count($course->subjects) > 0) {
               </div>
             </div> --}}
           </div>
+          <div class="tab-pane fade" id="nav-transcript" role="tabpanel" aria-labelledby="nav-transcript-tab">
+            <div class="row">
+              <div class="col-xs-12">
+                <div style="margin-bottom: .8rem;">
+                  <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                    عنوان فیلم
+                  </h3>
+                  <div class="t-10 t-black--light">
+                    <span class="content-transcript-line"> - [Kathryn] When creating Python programs </span>
+                    <span class="content-transcript-line"> you'll likely want to populate data </span>
+                    <span class="content-transcript-line"> in your application automatically,  </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         @if (count($subjects))
@@ -1353,17 +1373,17 @@ if (count($course->subjects) > 0) {
                       @endif
                     </a>
                   @else
-                  <a href="#">
-                    <span>
-                      <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
-                      {{ prepare_course_file_name($file->original_name) }}
-                    </span>
-                    @if (isset($file->size))
-                      <span class="text-muted small">
-                        ({{ formatBytes($file->size) }})
+                    <a href="#">
+                      <span>
+                        <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                        {{ prepare_course_file_name($file->original_name) }}
                       </span>
-                    @endif
-                </a>
+                      @if (isset($file->size))
+                        <span class="text-muted small">
+                          ({{ formatBytes($file->size) }})
+                        </span>
+                      @endif
+                    </a>
                   @endif
                 @endforeach
               @else
