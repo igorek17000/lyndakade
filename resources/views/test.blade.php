@@ -1327,7 +1327,45 @@ if (count($course->subjects) > 0) {
               لینک فایل های تمرین
             </div>
             <div class="c-item">
-              <a href="http://dl2.soft98.ir/adobe/Unity/2020.2.7f1/builtin_shaders.zip?1655423933">builtin_shaders</a>
+                @if ($course->exerciseFile && json_decode($course->exerciseFile) != null)
+                      @php
+                        $idx = 0;
+                      @endphp
+                      @foreach (json_decode($course->exerciseFile) as $file)
+                        @php
+                          $idx = $idx + 1;
+                        @endphp
+
+
+                          @if ($is_unlocked)
+                            <a href="{{ route('courses.download', [$course->id, hash('md5', 'exFiles') => hash('sha256', auth()->id()), 'filename' => $file->original_name]) }}">
+                                <i class="lyndacon unlock" style="font-size: 20px;"></i>
+                                <span>
+                                {{ prepare_course_file_name($file->original_name) }}
+                                </span>
+                                @if (isset($file->size))
+                                <span class="text-muted small">
+                                    ({{ formatBytes($file->size) }})
+                                </span>
+                                @endif
+                            </a>
+                          @else
+                            <span>
+                              <i class="lyndacon lock align-self-center m-1" style="font-size: 16px;"></i>
+                              {{ prepare_course_file_name($file->original_name) }}
+                            </span>
+                            @if (isset($file->size))
+                              <span class="text-muted small">
+                                ({{ formatBytes($file->size) }})
+                              </span>
+                            @endif
+                          @endif
+                      @endforeach
+                    @endif
+
+              <a href="http://dl2.soft98.ir/adobe/Unity/2020.2.7f1/builtin_shaders.zip?1655423933">
+                builtin_shaders
+            </a>
             </div>
           </div>
         </div>
