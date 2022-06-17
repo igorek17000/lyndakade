@@ -1502,7 +1502,7 @@ if (count($course->subjects) > 0) {
     var course_title = '{{ $course->title }}';
     var course_titleEng = '{{ $course->titleEng }}';
     var video_titleEng = '';
-    var base_course_url = '{{ request()->url() }}';
+    var base_course_url = '{{ request()->url() }}'.split('/').slice(0, 5).join('/');;
     var isSent = false;
     $(document).on('click', '.report-issue-toggle', function(e) {
       Goftino.open();
@@ -1600,6 +1600,8 @@ if (count($course->subjects) > 0) {
       var c_title = course_title.replace('دوره آموزشی ', '');
       var c_titleEng = course_titleEng;
       var video_title = course_player.config.title;
+      history.pushState({page: video_title}, video_title, base_course_url + `/${video_title}`); 
+      document.title = video_title;
       if (video_titleEng.includes(' - '))
         video_titleEng = video_titleEng.substring(video_titleEng.indexOf(' - ') + 3);
       $('#video-player-title').html(
@@ -1607,6 +1609,7 @@ if (count($course->subjects) > 0) {
       );
       $('#video-title').html(video_title);
       $('#video-title-en').html(video_titleEng);
+      
     });
 
     function httpGet(theUrl) {
