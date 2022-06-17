@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                              #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                  transform: rotate(45deg) translate(2px, 2px);
-                              }
+                                #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                                    transform: rotate(45deg) translate(2px, 2px);
+                                }
 
-                              #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                  opacity: 0;
-                              }
+                                #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                    opacity: 0;
+                                }
 
-                              #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                  transform: rotate(-45deg) translate(1px, -1px);
-                              }
+                                #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                    transform: rotate(-45deg) translate(1px, -1px);
+                                }
 
-                              #sidebarCollapse.active .sidebarCollapse span {
-                                  transform: none;
-                                  opacity: 1;
-                                  margin: 0 auto;
-                              }
-                              */
+                                #sidebarCollapse.active .sidebarCollapse span {
+                                    transform: none;
+                                    opacity: 1;
+                                    margin: 0 auto;
+                                }
+                                */
 
     @media (max-width: 767px) {
 
@@ -1586,7 +1586,7 @@ if (count($course->subjects) > 0) {
         video_titleEng = video_titleEng.substring(video_titleEng.indexOf(' - ') + 3);
       $('#video-player-title').html(
         ` <div>${video_title} (${video_titleEng})</div><div style="color: #bfc1c3!important;font-size: 80%;">${c_title} (${c_titleEng})</div>`
-        );
+      );
       $('#video-title').html(video_title);
     });
 
@@ -1609,9 +1609,17 @@ if (count($course->subjects) > 0) {
 
       return xmlhttp.response;
     }
+
+    function nl2br(str, is_xhtml) {
+      if (typeof str === 'undefined' || str === null) {
+        return '';
+      }
+      var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+      return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+    }
     async function fill_transcript(video_id) {
       var sub_content = httpGet(`https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=f`);
-      var transcript_html = sub_content;
+      var transcript_html = nl2br(sub_content);
 
       $('.classroom-transcript__lines').html(transcript_html);
     }
