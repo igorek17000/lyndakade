@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                            #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                transform: rotate(45deg) translate(2px, 2px);
-                            }
+                              #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                                  transform: rotate(45deg) translate(2px, 2px);
+                              }
 
-                            #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                opacity: 0;
-                            }
+                              #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                  opacity: 0;
+                              }
 
-                            #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                transform: rotate(-45deg) translate(1px, -1px);
-                            }
+                              #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                  transform: rotate(-45deg) translate(1px, -1px);
+                              }
 
-                            #sidebarCollapse.active .sidebarCollapse span {
-                                transform: none;
-                                opacity: 1;
-                                margin: 0 auto;
-                            }
-                            */
+                              #sidebarCollapse.active .sidebarCollapse span {
+                                  transform: none;
+                                  opacity: 1;
+                                  margin: 0 auto;
+                              }
+                              */
 
     @media (max-width: 767px) {
 
@@ -1259,10 +1259,10 @@ if (count($course->subjects) > 0) {
                   <h3 class="classroom-workspace-overview__header t-12 t-bold" id="video-title">
                     عنوان فیلم
                   </h3>
-                  <div class="t-10 t-black--light">
+                  <div class="classroom-transcript__lines t-10 t-black--light">
                     <span class="content-transcript-line"> - [Kathryn] When creating Python programs </span>
                     <span class="content-transcript-line"> you'll likely want to populate data </span>
-                    <span class="content-transcript-line"> in your application automatically,  </span>
+                    <span class="content-transcript-line"> in your application automatically, </span>
                   </div>
                 </div>
               </div>
@@ -1548,6 +1548,7 @@ if (count($course->subjects) > 0) {
     });
 
     function PlayVideo(title, video_id) {
+      fill_transcript(video_id);
       var current_lang = course_player.language;
       course_player.source = {
         type: "video",
@@ -1583,9 +1584,37 @@ if (count($course->subjects) > 0) {
       var video_title = course_player.config.title;
       if (video_titleEng.includes(' - '))
         video_titleEng = video_titleEng.substring(video_titleEng.indexOf(' - ') + 3);
-      $('#video-player-title').html(` <div>${video_title} (${video_titleEng})</div><div style="color: #bfc1c3!important;font-size: 80%;">${c_title} (${c_titleEng})</div>`);
-      $('#video-title').html(`${video_title}`);
+      $('#video-player-title').html(
+        ` <div>${video_title} (${video_titleEng})</div><div style="color: #bfc1c3!important;font-size: 80%;">${c_title} (${c_titleEng})</div>`
+        );
+      $('#video-title').html(video_title);
     });
+
+    function httpGet(theUrl) {
+      let xmlhttp;
+
+      if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          return xmlhttp.responseText;
+        }
+      }
+      xmlhttp.open("GET", theUrl, false);
+      xmlhttp.send();
+
+      return xmlhttp.response;
+    }
+    async function fill_transcript(video_id) {
+      var sub_content = httpGet(`https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=f`);
+      var transcript_html = sub_content;
+
+      $('.classroom-transcript__lines').html(transcript_html);
+    }
 
     $(document).ready(function() {
       $('.carousel').carousel({
