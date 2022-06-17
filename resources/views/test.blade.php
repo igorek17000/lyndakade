@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                                #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                                    transform: rotate(45deg) translate(2px, 2px);
-                                }
+                                    #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                                        transform: rotate(45deg) translate(2px, 2px);
+                                    }
 
-                                #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                                    opacity: 0;
-                                }
+                                    #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                                        opacity: 0;
+                                    }
 
-                                #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                                    transform: rotate(-45deg) translate(1px, -1px);
-                                }
+                                    #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                                        transform: rotate(-45deg) translate(1px, -1px);
+                                    }
 
-                                #sidebarCollapse.active .sidebarCollapse span {
-                                    transform: none;
-                                    opacity: 1;
-                                    margin: 0 auto;
-                                }
-                                */
+                                    #sidebarCollapse.active .sidebarCollapse span {
+                                        transform: none;
+                                        opacity: 1;
+                                        margin: 0 auto;
+                                    }
+                                    */
 
     @media (max-width: 767px) {
 
@@ -1254,12 +1254,24 @@ if (count($course->subjects) > 0) {
           </div>
           <div class="tab-pane fade" id="nav-transcript" role="tabpanel" aria-labelledby="nav-transcript-tab">
             <div class="row">
-              <div class="col-xs-12">
+              <div class="col-sm-6 col-xs-12">
                 <div style="margin-bottom: .8rem;">
                   <h3 class="classroom-workspace-overview__header t-12 t-bold" id="video-title">
                     عنوان فیلم
                   </h3>
                   <div class="classroom-transcript__lines t-10 t-black--light">
+                    <span class="content-transcript-line"> - [Kathryn] When creating Python programs </span>
+                    <span class="content-transcript-line"> you'll likely want to populate data </span>
+                    <span class="content-transcript-line"> in your application automatically, </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xs-12">
+                <div style="margin-bottom: .8rem;">
+                  <h3 class="classroom-workspace-overview__header t-12 t-bold" id="video-title-en">
+                    عنوان فیلم
+                  </h3>
+                  <div class="classroom-transcript__lines-en t-10 t-black--light">
                     <span class="content-transcript-line"> - [Kathryn] When creating Python programs </span>
                     <span class="content-transcript-line"> you'll likely want to populate data </span>
                     <span class="content-transcript-line"> in your application automatically, </span>
@@ -1588,6 +1600,7 @@ if (count($course->subjects) > 0) {
         ` <div>${video_title} (${video_titleEng})</div><div style="color: #bfc1c3!important;font-size: 80%;">${c_title} (${c_titleEng})</div>`
       );
       $('#video-title').html(video_title);
+      $('#video-title-en').html(video_titleEng);
     });
 
     function httpGet(theUrl) {
@@ -1617,11 +1630,20 @@ if (count($course->subjects) > 0) {
       var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
       return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
     }
-    async function fill_transcript(video_id) {
-      var sub_content = httpGet(`https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=f`);
-      var transcript_html = nl2br(sub_content.replace('WEBVTT', '').trim());
 
-      $('.classroom-transcript__lines').html(transcript_html);
+    function transcript_text_to_spans(transcript_text) {
+      transcript_text = transcript_text.replace('WEBVTT', '').trim();
+      var transcript_html = nl2br(transcript_text);
+
+      return '<span>' + transcript_html.replace('<br>', '</span><span>') + '</span>';
+    }
+    async function fill_transcript(video_id) {
+      var sub_content;
+      sub_content = httpGet(`https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=f`);
+      $('.classroom-transcript__lines').html(transcript_text_to_spans(sub_content));
+
+      sub_content = httpGet(`https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=e`);
+      $('.classroom-transcript__lines-en').html(transcript_text_to_spans(sub_content));
     }
 
     $(document).ready(function() {
