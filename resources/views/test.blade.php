@@ -431,24 +431,24 @@ if (count($course->subjects) > 0) {
     }
 
     /*
-                      #sidebarCollapse.active .sidebarCollapse span:first-of-type {
-                          transform: rotate(45deg) translate(2px, 2px);
-                      }
+                        #sidebarCollapse.active .sidebarCollapse span:first-of-type {
+                            transform: rotate(45deg) translate(2px, 2px);
+                        }
 
-                      #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
-                          opacity: 0;
-                      }
+                        #sidebarCollapse.active .sidebarCollapse span:nth-of-type(2) {
+                            opacity: 0;
+                        }
 
-                      #sidebarCollapse.active .sidebarCollapse span:last-of-type {
-                          transform: rotate(-45deg) translate(1px, -1px);
-                      }
+                        #sidebarCollapse.active .sidebarCollapse span:last-of-type {
+                            transform: rotate(-45deg) translate(1px, -1px);
+                        }
 
-                      #sidebarCollapse.active .sidebarCollapse span {
-                          transform: none;
-                          opacity: 1;
-                          margin: 0 auto;
-                      }
-                      */
+                        #sidebarCollapse.active .sidebarCollapse span {
+                            transform: none;
+                            opacity: 1;
+                            margin: 0 auto;
+                        }
+                        */
 
     @media (max-width: 767px) {
 
@@ -695,21 +695,14 @@ if (count($course->subjects) > 0) {
     }
 
     #course-files-modal-body .c-table {
-      display: table;
-      margin: 15px;
-      padding: 0;
+      padding: 15px;
+      min-height: 250px;
     }
 
     #course-files-modal-body .c-table .c-header {
-      display: table;
-      width: 100%;
       text-align: center;
       border-radius: 10px 10px 0 0;
-      color: #fff;
       background: #437593;
-    }
-
-    #course-files-modal-body .c-table .c-header .c-cell {
       font-size: 15px;
       color: #fff;
       line-height: 1.2;
@@ -719,18 +712,12 @@ if (count($course->subjects) > 0) {
       padding-bottom: 19px;
     }
 
-    #course-files-modal-body .c-table .c-body {
-      display: table;
-      width: 100%;
-      background: #fff;
-    }
-
-    #course-files-modal-body .c-table .c-body .c-cell {
+    #course-files-modal-body .c-table .c-item {
       font-size: 11px;
       color: #666;
     }
 
-    #course-files-modal-body .c-table .c-body .c-cell a {
+    #course-files-modal-body .c-table .c-item a {
       display: block;
       background: #fff;
       padding: 7px 10px;
@@ -1327,15 +1314,10 @@ if (count($course->subjects) > 0) {
         <div class="modal-body p-0" id="course-files-modal-body">
           <div class="c-table">
             <div class="c-header">
-              <div class="c-cell">
-                لینک فایل های تمرین
-              </div>
+              لینک فایل های تمرین
             </div>
-
-            <div class="c-body">
-              <div class="c-cell">
-                <a href="http://dl2.soft98.ir/adobe/Unity/2020.2.7f1/builtin_shaders.zip?1655423933">builtin_shaders</a>
-              </div>
+            <div class="c-item" style=>
+              <a href="http://dl2.soft98.ir/adobe/Unity/2020.2.7f1/builtin_shaders.zip?1655423933">builtin_shaders</a>
             </div>
           </div>
         </div>
