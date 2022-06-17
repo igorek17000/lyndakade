@@ -1412,6 +1412,7 @@ if (count($course->subjects) > 0) {
   </div>
 @endsection
 @section('script_body')
+  <script src="{{ asset('js/webvtt-parser.js') }}"></script>
   <script>
     const course_player = new Plyr("#plyr-video", {
       title: "{{ $course->title }}",
@@ -1632,12 +1633,17 @@ if (count($course->subjects) > 0) {
     }
 
     function transcript_text_to_spans(transcript_text) {
-      transcript_text = transcript_text.replace('WEBVTT', '').trim();
-      var transcript_html = nl2br(transcript_text);
+      var pa = new WebVTTParser();
+      var r = pa.parse(transcript_text, 'metadata');
+      var transcript_html = '';
 
-      return '<span class="content-transcript-line">' + transcript_html.replace('<br>', '</span><span class="content-transcript-line">') + '</span>';
-    //   return transcript_html;
+      r.cues.forEach(el => {
+        transcript_html += `<span class="content-transcript-line" data-index="${el.id}">${el.text}</span>`;
+      });
+
+      return transcript_html;
     }
+    
     async function fill_transcript(video_id) {
       var sub_content;
       sub_content = httpGet(`https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=f`);
