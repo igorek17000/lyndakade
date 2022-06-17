@@ -694,6 +694,12 @@ if (count($course->subjects) > 0) {
       }
     }
 
+    .content-transcript-line:hover {
+        color: #000;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
     #course-files-modal-body .c-table {
       padding: 15px;
       min-height: 250px;
@@ -1257,24 +1263,16 @@ if (count($course->subjects) > 0) {
               <div class="col-sm-6 col-xs-12">
                 <div style="margin-bottom: .8rem;">
                   <h3 class="classroom-workspace-overview__header t-12 t-bold" id="video-title">
-                    عنوان فیلم
                   </h3>
                   <div class="classroom-transcript__lines t-10 t-black--light">
-                    <span class="content-transcript-line"> - [Kathryn] When creating Python programs </span>
-                    <span class="content-transcript-line"> you'll likely want to populate data </span>
-                    <span class="content-transcript-line"> in your application automatically, </span>
                   </div>
                 </div>
               </div>
               <div class="col-sm-6 col-xs-12" style="direction: ltr;text-align: left;">
                 <div style="margin-bottom: .8rem;">
                   <h3 class="classroom-workspace-overview__header t-12 t-bold" id="video-title-en">
-                    عنوان فیلم
                   </h3>
                   <div class="classroom-transcript__lines-en t-10 t-black--light">
-                    <span class="content-transcript-line"> - [Kathryn] When creating Python programs </span>
-                    <span class="content-transcript-line"> you'll likely want to populate data </span>
-                    <span class="content-transcript-line"> in your application automatically, </span>
                   </div>
                 </div>
               </div>
