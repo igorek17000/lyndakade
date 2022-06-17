@@ -1365,7 +1365,7 @@ if (count($course->subjects) > 0) {
                   @endif
                 @endforeach
               @else
-                <span style="text-align: center;">
+                <span style="text-align: center; font-size: 1rem;">
                   این دوره، فایل تمرین ندارد.
                 </span>
               @endif
