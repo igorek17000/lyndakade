@@ -1636,7 +1636,7 @@ if (count($course->subjects) > 0) {
       var transcript_html = '', idx = 1;
 
       r.cues.forEach(el => {
-        transcript_html += `<span class="content-transcript-line" data-index="${idx}">${el.text}</span>`;
+        transcript_html += `<span class="content-transcript-line" data-index="${idx}"> ${el.text}  </span>`;
         idx += 1;
       });
 
