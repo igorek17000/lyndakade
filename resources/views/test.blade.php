@@ -1661,6 +1661,7 @@ if (count($course->subjects) > 0) {
     }
 
     function active_transcript_line(index) {
+        console.log('active', index);
       var activeClass = 'content-transcript-line--active';
     //   if ($(`.content-transcript-line[data-index-${course_player.captions.language}="${index}"]`).hasClass(activeClass))
     //     return;
@@ -1684,11 +1685,10 @@ if (count($course->subjects) > 0) {
       var cTime = course_player.currentTime;
       var idx = 0;
       document.querySelectorAll(`.content-transcript-line[data-index-${course_player.captions.language}]`).forEach(el=>{
-        // console.log(idx, el);
-        var sub_time = parseFloat($(el).data('startTime'));
+        var sub_time = parseFloat(el.dataset.startTime);
         if (sub_time < cTime)
             idx++;
-        console.log(idx, sub_time, cTime, sub_time < cTime);
+        // console.log(idx, sub_time, cTime, sub_time < cTime);
       })
       active_transcript_line(idx);
     });
