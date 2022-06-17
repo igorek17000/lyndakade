@@ -1557,8 +1557,8 @@ if (count($course->subjects) > 0) {
 
       const btn = event.currentTarget.dataset;
       var videoId = btn.videoId;
-      var title = btn.title;
-      video_titleEng = btn.titleEng;
+      var title = course_videos[videoId].title;
+      video_titleEng = course_videos[videoId].titleEng;
       PlayVideo(title, videoId);
     });
     course_player.on('ended', function(event) {
@@ -1575,11 +1575,11 @@ if (count($course->subjects) > 0) {
           return;
         }
       }
+    //   var videoId = $($next.find("a")).data('videoId');
+    //   var title = $($next.find("a")).data('title');
+    //   video_titleEng = $($next.find("a")).data('titleEng');
+    //   PlayVideo(title, videoId);
       $next.find("a").trigger("click");
-      var videoId = $($next.find("a")).data('videoId');
-      var title = $($next.find("a")).data('title');
-      video_titleEng = $($next.find("a")).data('titleEng')
-      PlayVideo(title, videoId);
     });
 
     function PlayVideo(title, video_id) {
