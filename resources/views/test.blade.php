@@ -1316,7 +1316,7 @@ if (count($course->subjects) > 0) {
             <div class="c-header">
               لینک فایل های تمرین
             </div>
-            <div class="c-item" style=>
+            <div class="c-item">
               <a href="http://dl2.soft98.ir/adobe/Unity/2020.2.7f1/builtin_shaders.zip?1655423933">builtin_shaders</a>
             </div>
           </div>
