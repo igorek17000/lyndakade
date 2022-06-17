@@ -1635,15 +1635,16 @@ if (count($course->subjects) > 0) {
     function transcript_text_to_spans(transcript_text) {
       var pa = new WebVTTParser();
       var r = pa.parse(transcript_text, 'metadata');
-      var transcript_html = '';
+      var transcript_html = '', idx = 1;
 
       r.cues.forEach(el => {
-        transcript_html += `<span class="content-transcript-line" data-index="${el.id}">${el.text}</span>`;
+        transcript_html += `<span class="content-transcript-line" data-index="${idx}">${el.text}</span>`;
+        idx += 1;
       });
 
       return transcript_html;
     }
-    
+
     async function fill_transcript(video_id) {
       var sub_content;
       sub_content = httpGet(`https://lyndakade.ir/api/courses/videos/get-sub?code=${video_id}&x=f`);
