@@ -1687,7 +1687,7 @@ if (count($course->subjects) > 0) {
       var idx = 0;
       document.querySelectorAll(`.content-transcript-line[data-index-${course_player.captions.language}]`).forEach(el=>{
         var sub_time = parseFloat(el.dataset.startTime);
-        if (sub_time < cTime)
+        if (sub_time <= cTime)
             idx++;
         // console.log(idx, sub_time, cTime, sub_time < cTime);
       })
