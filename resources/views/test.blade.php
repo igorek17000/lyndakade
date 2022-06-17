@@ -1662,9 +1662,8 @@ if (count($course->subjects) > 0) {
     $(document).on('click', '.content-transcript-line', function() {
       var activeClass = 'content-transcript-line--active';
       $('.content-transcript-line').removeClass(activeClass);
-      $(this).toggleClass(activeClass);
       var idx = $(this).data('index');
-      console.log(idx);
+      $(`.content-transcript-line[data-index="${idx}"]`).toggleClass(activeClass);
     })
 
     $(document).ready(function() {
