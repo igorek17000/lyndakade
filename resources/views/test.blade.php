@@ -898,7 +898,10 @@ if (count($course->subjects) > 0) {
               </div>
               <div class="col-xs-12">
                 <div style="margin-bottom: .8rem;">
-                  <h3 class="classroom-workspace-overview__header t-12 t-bold">مشخصات دوره</h3>
+                  <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                    <span style="border-bottom: 3px solid #005aff;">مشخصات دوره
+                    </span>
+                </h3>
                   <ul class="dot-delimited-list" style="color: #4a4a4a;">
                     <li>
                       @if ($course->durationHours)
@@ -1018,7 +1021,10 @@ if (count($course->subjects) > 0) {
               </div>
               <div class="col-xs-12">
                 <div style="margin-bottom: .8rem;">
-                  <h3 class="classroom-workspace-overview__header t-12 t-bold">Course Details</h3>
+                  <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                    <span style="border-bottom: 3px solid #005aff;">Course Details
+                    </span>
+                </h3>
                   <ul class="dot-delimited-list" style="color: #4a4a4a;">
                     <li>
                       @if ($course->durationHours)
@@ -1203,7 +1209,8 @@ if (count($course->subjects) > 0) {
           <div class="container tab-content" style="margin-bottom: 0;padding-left: 0;padding-right: 0;">
             <div class="col-xs-12">
               <h3 class="classroom-workspace-overview__header t-12 t-bold">
-                مهارت‌ها
+                    <span style="border-bottom: 3px solid #005aff;">مهارت‌ها
+                    </span>
               </h3>
               <ul class="classroom-workspace-overview__skills-list">
                 @foreach ($subjects as $subject)
@@ -1229,7 +1236,9 @@ if (count($course->subjects) > 0) {
           <div class="container tab-content clearfix" style="margin-bottom: 0;padding-left: 0;padding-right: 0;">
             <div class="col-xs-12">
               <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                    <span style="border-bottom: 3px solid #005aff;">
                 مسیرهای آموزشی مرتبط
+                    </span>
               </h3>
               <div>
                 @for ($i = 0; $i < 4 && +$i < count($related_paths); $i++)
@@ -1246,7 +1255,9 @@ if (count($course->subjects) > 0) {
           <div class="container tab-content" style="margin-bottom: 0;padding-left: 0;padding-right: 0;">
             <div class="col-xs-12">
               <h3 class="classroom-workspace-overview__header t-12 t-bold">
+                    <span style="border-bottom: 3px solid #005aff;">
                 دوره‌های آموزشی مرتبط
+                    </span>
               </h3>
               <div>
                 @for ($i = 0; $i < 4 && $i < count($related_courses); $i++)
