@@ -1661,7 +1661,7 @@ if (count($course->subjects) > 0) {
     }
 
     function active_transcript_line(index) {
-        console.log('active', index);
+        // console.log('active', index);
       var activeClass = 'content-transcript-line--active';
     //   if ($(`.content-transcript-line[data-index-${course_player.captions.language}="${index}"]`).hasClass(activeClass))
     //     return;
@@ -1672,7 +1672,7 @@ if (count($course->subjects) > 0) {
     function play_at_transcript_line(index) {
       var startTime = $(`.content-transcript-line[data-index-${course_player.captions.language}="${index}"]`).data(
         'startTime');
-    console.log('play', index, startTime);
+    // console.log('play', index, startTime);
       course_player.currentTime = parseFloat(startTime);
     }
 
