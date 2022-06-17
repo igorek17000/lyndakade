@@ -1644,7 +1644,7 @@ if (count($course->subjects) > 0) {
 
       r.cues.forEach(el => {
         transcript_html +=
-          `<span class="content-transcript-line" data-index-${lang}="${idx}" data-start-time-${lang}="${el.startTime}"> ${el.text}  </span>`;
+          `<span class="content-transcript-line" data-index-${lang}="${idx}" data-start-time="${el.startTime}"> ${el.text}  </span>`;
         idx += 1;
       });
 
@@ -1684,7 +1684,7 @@ if (count($course->subjects) > 0) {
       var cTime = course_player.currentTime;
       var idx = 0;
       document.querySelectorAll(`.content-transcript-line[data-index-${course_player.captions.language}]`).forEach(el=>{
-        console.log(idx, el);
+        // console.log(idx, el);
         var sub_time = parseFloat($(el).data('startTime'));
         if (sub_time < cTime)
             idx++;
